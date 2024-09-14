@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{marginnote} % put icons in margins
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\cl}[1]{\overline{#1}}
+
+\newcommand{\due}[1]{\reversemarginpar\marginnote
+    {\textcolor{red}{#1}}
+    }
+
+\theoremstyle{definition}
+	\newtheorem{exercise}{} %Exercise
+
+\begin{document}
+
+\noindent
+    {\large \textbf{MAT257 -- Week 1 Homework}}
+
+\exercise \due{9/13}
+    Let $A_1,A_2,A_3,\ldots$ be a sequence of countable sets. Prove that $\bigcup_{i\geq 1} A_i$ is countable.
+
+\begin{proof}
+    Since \(A_i\) is countable, denote \(A_{ij}\) to be the \(j\)th element of set \(A_i\).
+
+    Define \(f: \bigcup_{i \ge 1} A_i \to \mathbb{N}\) as 
+    \[
+        f(A_{ij})=2^{i}3^{j}
+    \]
+    We will show that \(f\) is injective. Let \(A_{pq}, A_{rs} \in  \bigcup_{i \geq 1} A_i\). Suppose that \(f(A_{pq} ) = f(A_{rs} )\). Then
+    \[
+        2^p 3^q = 2^r 3^s
+    \]
+    Since every integer has a unique prime factorisation, it follows that \(p = r\), \(q = s\). Thus \(A_{pq} = A_{rs} \).
+
+    Now, define the injection \(g: \mathbb{N} \to \bigcup_{i\geq 1} A_i\) to be \(g(n) = A_{1n} \). 
+    
+    Therefore by the Schröder–Bernstein theorem, \(|\bigcup_{i\geq 1} A_i | = |\mathbb{N} |\). Thus the set is countable.
+
+\end{proof}
+    
+\exercise \due{9/13}
+    Let $X,Y,Z$ be three vector spaces. Prove that $L^2(X,Y;Z)$ is isomorphic to $L(X,L(Y,Z))$.
+
+   (For two vector spaces $X,Y$, we use $L(X,Y)$ to denote the space of linear mappings from $X$ to $Y$. For three vector spaces $X,Y,Z$, and a a function $\beta:X\times Y\rightarrow Z$, we let $\beta(\,\cdot\,,y_0)$ denote the function $X\rightarrow Z$ given by $x\mapsto \beta(x,y_0)$, where $y_0\in Y$ is some fixed vector; this is called the \textbf{$y_0$-slice} of $\beta$. The \textbf{$x_0$-slice} $\beta(x_0, \,\cdot\,)$ is defined similarly. We say that $\beta$ is \textbf{bilinear} if $\beta(\,\cdot\,,y_0)$ is linear for all $y_0\in Y$, and $\beta(x_0, \,\cdot\,)$ is linear for all $x_0\in X$. We use $L^2(X,Y;Z)$ the denote the space of \textit{bilinear} mappings $\beta:X\times Y\rightarrow Z$. You should convince yourself that $L^2(X,Y;Z)$ is a vector space under pointwise operations: for two bilinear mappings $\alpha,\beta:X\times Y\rightarrow Z$ and a scalar $c\in \R$, we form the linear combination $c\alpha+\beta$ via $(x,y)\mapsto c\alpha(x,y) + \beta(x,y)$.)
+
+   \begin{proof}
+        For a bilinear map \(T \in L^2(X,Y;Z)\), \((x,y) \in X \times Y\), Define \(\phi : L^2(X,Y;Z) \to L(X,L(Y,Z))\) such that
+        \[
+            \phi (T)(x,y) = T(x, \cdot)(y)
+        \]  
+        where \(T(x,\cdot)\) is the \(x\)-slice of \(T\). We claim that this transformation is an isomorphism.
+
+        First, let \(\phi (T) = 0\). Then \(\forall x \in X \text{,} T(x, \cdot)(y) = 0\), from which it follows that \(T(x, y) = 0\), meaning \(\phi\) is injective. 
+        
+        Next, fix \(U \in L(X,L(Y,Z))\). Let \(\beta \) be the basis for \(X\). Let \(T \in L^2(X,Y;Z)\) be the linear transformation such that \(T(x, \cdot) = U(x) \text{, for all } x \in \beta \). We see that \(\forall x,y \in X \times Y\),
+        \[
+            \phi (T)(x,y) = T(x, \cdot)(y) = U(x)(y)
+        \]
+        making \(\phi \) surjective.
+
+        Thus \(\phi \) is an isomorphism, and we get that \(L^2(X,Y;Z) \cong L(X,L(Y,Z))\) as desired.
+   \end{proof}
+
+\exercise \due{9/13}
+    Let $I=(a,b)$ and $J=(c,d)$ be two open intervals on the real line. Let $f:I\rightarrow J$ be an increasing function such that $f(I)$ is dense in $J$. Prove that $f$ is continuous.
+
+    (For two sets $D,S\subseteq \R$ we say that $D$ is \textbf{dense} in $S$ if $D\cap (s-\varepsilon,s+\varepsilon)\neq\varnothing$ for all $s\in S$ and all $\varepsilon>0$.)
+\begin{proof}
+    Fixing an \(a \in I\), let \(\varepsilon > 0\). We can assume without loss of generality that \(\varepsilon \) is small enough that \((f(a) - \varepsilon , f(a) + \varepsilon ) \subset J\). Since \(f(I)\) is dense in \(J\), we can always find an \(y_1 \in (f(a) - \varepsilon , f(a)) \text{ and } y_2 \in (f(a), f(a) + \varepsilon )\) such that \(y_1 , y_2 \in f(I)\). 
+
+\end{proof}
+\end{document}

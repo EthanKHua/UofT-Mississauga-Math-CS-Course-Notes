@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section{MAT301 Notes: Week 2 (Fall 2024)}
+    \begin{example}
+        Let \(G\) be a group. Prove that
+        \[
+            C_G (a) = \forall a \in G \iff G \text{ is Abelian}
+        \]
+        Note that the centralizer \(C_G(a)\) is defined by \(C_G(a) = \{ g \in G : ga=ag  \} \)
+        \begin{proof}
+            We begin by proving the \(\impliedby\) direction.
+
+            Let \(a \in G\). Then, since \(G\) is Abelian, every element commutes with \(a\). Therefore
+
+            \[
+                C_G(a) = G
+            \]  
+
+            Conversely, let \(x,y \in G\). Then we have
+            \[
+                x \in C_G(x)=G=C_G(y) \implies xy=yx
+            \]
+
+        \end{proof}
+    \end{example}
+    \begin{example}
+        Let \(G\) be a group. Prove that \(G\) is Abelian if and only if \((xy)^2=x^2y^2 , x,y \in G\).
+        \begin{proof}
+            Suppose \(G\) is Abelian. Then
+            \[
+                (xy)^2=(xy)(xy)=(xx)(yy)=x^2 y^2
+            \] 
+            Next suppose \((xy)^2 = x^2 y^2\). Then
+            \[
+                xxyy = x^2 y^2 = (xy)^2 = xyxy
+            \]
+            Applying \(x^{-1}\) to the left and \(y^{-1}\) to the right obtains
+            \[
+                x^{-1} xxyy y^{-1} = x^{-1} xyxy y^{-1} \implies xy=yx
+            \]
+        \end{proof} 
+    \end{example}
+\end{document}
