@@ -74,4 +74,23 @@
             \]
         \end{proof} 
     \end{example}
+    \begin{exercise}
+        Let \(G\) be a group. Let \(a, b \in G\), where \(a\) has odd order. Prove that if \(a = bab\), then \(b = b^{-1} \). 
+        \begin{proof}
+            Suppose that \(a = bab\). Then if we apply \(ab\) to the right on both sides, we have
+            \[
+                a(ab) = bab(ab) \implies a^2 b = ba^2 \tag{1}
+            \]
+            Since \(a\) is odd order, \(a^{2n+1} = e \implies a = a^{2n+2} \), where \(n \in \mathbb{N} \). Thus
+            \[
+                a = bab = ba^{2n+2}b = b(a^2)^{n+1}b
+            \] 
+            We apply (1) \(n+1\) times to obtain that
+            \[
+                a = b(a^2)^{n+1}b = b^2 (a^2)^{n+1} = b^2 a^{2n+2} = b^2 a \implies e = b^2 \implies b = b^{-1} 
+            \]
+            We are done.
+            
+        \end{proof} 
+    \end{exercise}
 \end{document}
