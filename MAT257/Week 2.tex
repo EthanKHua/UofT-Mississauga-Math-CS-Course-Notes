@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+% \swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+\newtheorem{thm}{Theorem}
+\numberwithin{thm}{section} % Theorem numbers are determined by section.
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{example}[thm]{Example}
+\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+	
+
+	
+	\noindent\textbf{Solvers: Sanchit, Udo, Ethan}
+
+    \noindent\textbf{Writeup: Ethan}
+
+    \noindent\textbf{Exercise 2.21.} What can be said about $\cl{A\cup B}$?
+	
+    Let \((X, d)\) be a metric space, and let \(A, B \in X\). We want to investigate whether the closure of a set is distributive over set union. That is,
+
+    \[
+        \cl{A\cup B} = \cl{A} \cup \cl{B}
+    \]
+
+    We will now prove that this claim is true.
+
+\begin{proof}
+	We will show set equality using double subset inclusion. Let \(x \in \cl{A \cup B}\). By definition of a limit point, for every open ball of the form \(B(x, \varepsilon )\), there exists a \(y \in (A \cup B) \cap B(x, \varepsilon ) = (A \cap B(x, \varepsilon )) \cup (B \cap B(x,\varepsilon ))\). If \(y \in A \cap B(x, \varepsilon )\), then \(x \in \cl{A}\), or, likewise, if \(y \in B \cap B(x,\varepsilon )\), then \(x \in \cl{B}\). In other words, \(x \in \cl{A} \cup \cl{B}\).
+
+    Thus \(\cl{A\cup B} \subseteq \cl{A} \cup \cl{B}\).
+
+    \noindent Conversely, let \(x \in \cl{A} \cup \cl{B} \). We do the same process as before, but backwards. We have that
+    \[
+        \forall \varepsilon > 0, \exists y \in X \text{ such that } y \in A \cap B(x, \varepsilon ) \text{ or } y \in B \cap B(x, \varepsilon )
+    \]
+    \[
+        \implies y \in (A \cap B(x, \varepsilon )) \cup (B \cap B(x, \varepsilon )) \implies y \in (A \cup B) \cap B(x, \varepsilon ) \implies x \in \cl{A \cup B}
+    \]
+    Which shows that \(\cl{A} \cup \cl{B} \subseteq \cl{A \cup B}\). Thus \(\cl{A\cup B} = \cl{A} \cup \cl{B}\).
+
+\end{proof}
+	We will now see that distributivity also holds for a finite union of sets, as well. \\
+
+    \noindent\textbf{Proposition.} Let \(A_i \in X, i \in \mathbb{N} \). Then \(\forall n \in \mathbb{N} , \cl{\bigcup_{i=1}^n A_i} = \bigcup_{i=1}^{n} \cl{A_i}\).
+    \begin{proof}
+        We will show this by performing induction on \(n\). When \(n = 1\), obviously \(\cl{\bigcup_{i=1}^1 A_i} = \cl{A_1} = \bigcup_{i=1}^{1} \cl{A_i}\).
+
+        Now suppose this equality holds for \(n = k\), for some natural \(k\). Then from our previous claim, as well as our assumption,
+        \[
+            \cl{\bigcup_{i=1}^{k+1} A_i} = \cl{\bigcup_{i=1}^{k} A_i \cup A_{k+1} } = \cl{\bigcup_{i=1}^{k} A_i} \cup \cl{A_{k+1} } = \bigcup_{i=1}^{k} \cl{A_i} \cup \cl{A_{k+1} } = 
+            \bigcup_{i=1}^{k+1} \cl{A_i}
+        \]
+        Thus the equality holds for all \(n \in \mathbb{N} \).
+
+    \end{proof}
+\end{document}
