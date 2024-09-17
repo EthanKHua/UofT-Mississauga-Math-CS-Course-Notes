@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section{Week 2 Homework - Ethan Hua}
+    \begin{exercise}
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that there exists an infinitely differentiable function $\alpha:\R\rightarrow \R$ such that $\alpha(t)=0$ for all $t\leq 0$, and $\alpha(t)>0$ for all $t>0$.
+    
+            \begin{proof}
+                We define \(\alpha (t) =
+                \begin{dcases}
+                    0, &\text{ if } t \leq 0 ;\\
+                    e^{-\frac{1}{t}} , &\text{ if } t > 0.\\
+                \end{dcases}\) 
+                
+                Trivially \(\alpha (t) = 0 \text{ if } t \leq 0\) and \(\alpha (t) > 0 \text{ if }t > 0\). It remains to show that \(\alpha \) is infinitely differentiable.
+
+                Since \(0\) is infinitely differentiable, and \(e^{-\frac{1}{x}}\) is infinitely differentiable for \(x > 0\), it suffices to show that derivatives of all orders of \(\alpha \) are continuous at \(t = 0\).
+
+                We will prove using induction that
+                \[
+                    \forall n \in \mathbb{N} \cup \{0\} \text{, } \lim_{t \to 0} \alpha ^{(n)} (t) = 0
+                \]
+                We will only worry about the right hand limit, as the left hand limit always evaluates to \(0\).
+
+                For \(n = 0\),
+                \[
+                    \lim_{t \to 0^+} \alpha ^{(0)} (t) = \lim_{t \to 0^+} \alpha (t) = \lim_{t \to 0^+} e^{-\frac{1}{x}} = 0
+                \]
+                Thus the case for \(n = 0\) holds.
+
+                Now suppose that the claim holds for \(n = k,\) for some \(k \in \mathbb{N} \cup \{0\}\). It can be shown that when \(t > 0\), 
+                \[
+                    \alpha ^{(k)} (t) = \sum_{i=0}^{\infty} \frac{(-1)^{i+k+1}(i+k+1)!}{t^{i+k+1} i!(i+1)!} = \frac{(-1)^{k+1}(k+1)!}{t^{k+1}} + \sum_{i=1}^{\infty} \frac{(-1)^{i+k+1}(i+k+1)!}{t^{i+k+1} i!(i+1)!}
+                \]
+
+            \end{proof}
+    
+            \item Prove that there exists an infinitely differentiable function $\beta:\R\rightarrow \R$ such that $\beta(t)=1$ for all $t\geq 1$, and $\beta(t)=0$ for all $t\leq 0$.
+    
+            \textcolor{blue}{Hint: The shape you're looking for is $\dfrac{X}{X+Y}$.}
+    
+            \item Prove that there exists an infinitely differentiable function $\varphi:\R\rightarrow \R$ such that $\varphi(t)=1$ for all $t\in [2,3]$, and $\varphi(t)=0$ for $t\in \R\setminus (1,4)$.
+    
+            \textcolor{blue}{Hint: Your function $\beta(t)$ does half the job. Make a function $\gamma(t)$ that does the other half of the job. Then multiply them together.}
+        \end{enumerate}
+    \end{exercise}
+    \begin{exercise}
+        Let $S\subseteq \R^n$. Consider the following three statements:
+        \begin{itemize}
+            \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_1)$.
+            \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_2)$.
+            \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_{\max})$.
+        \end{itemize}
+        Among these statements, determine which implications are true and which are false. There are six implications to investigate. Supply proof or counterexample as appropriate. Include pictures.
+    \end{exercise}
+    \begin{exercise}
+        Let $(X,\|\cdot\|_X)$ and $(Y,\|\cdot\|_Y)$ be two normed vector spaces. A linear mapping $T:X\rightarrow Y$ is called \textbf{bounded} if there exists a constant $M\geq 0$ such that
+        \[ \|T(x)\|_Y \leq M \|x\|_X \quad \text{for all $x\in X$.}  \]
+        Let $B(X,Y)$ denote the set of these bounded linear operators. The \textbf{operator norm} on $B(X,Y)$, denoted by $\|\cdot\|_{\mathrm{op}}$, is defined as follows:
+            \[ \|T\|_{\mathrm{op}} = \sup\{ \|T(x)\|_Y : x\in X \text{ and } \|x\|_X\leq 1 \}. \]
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $B(X,Y)$ is a linear subspace of $L(X,Y)$.
+        
+            (In MAT257, the term ``linear subspace'' means what ``subspace'' meant in MAT240, \textit{i.e.} ``a nonempty subset of a vector space which is closed under addition and scalar multiplication.'')
+            
+            \item Prove that $\|\cdot\|_{\mathrm{op}}$ is a norm on $B(X,Y)$.
+        
+            \item Let $T:\R^2\rightarrow \R^2$ be the linear mapping given by $T(x,y)=(x+y,x)$. Find, with proof, the exact value of $\|T\|_{\mathrm{op}}$. (Here, $\R^2$ is equipped with the usual norm.)
+        
+            \item Find, with proof, an example of an unbounded linear operator.
+        \end{enumerate}
+    \end{exercise}
+\end{document}
