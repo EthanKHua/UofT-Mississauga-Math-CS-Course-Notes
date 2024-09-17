@@ -87,6 +87,60 @@
             \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_{\max})$.
         \end{itemize}
         Among these statements, determine which implications are true and which are false. There are six implications to investigate. Supply proof or counterexample as appropriate. Include pictures.
+        \\\\
+        \noindent Denote each statement as (1), (2), and (3), respectively. We claim that each statement implies all the other statements.
+        \begin{proof}
+            In this proof, we denote:
+            \begin{enumerate}
+                \item an open ball with respect to the 1-norm as \(B_1(p, \varepsilon )\)
+                \item an open ball with respect to the Euclidean norm as \(B_2(p, \varepsilon )\) 
+                \item an open ball with respect to the max-norm as \(B_{\text{max} } (p, \varepsilon )\)  
+            \end{enumerate}
+            \((1) \implies (2)\):
+
+            Suppose (1) is true. There exists a \(p = (p_1, p_2, \dots, p_n) \in \mathbb{R}^n\) and \(r > 0\) such that
+            \[
+                S \subseteq B_1(p, r)
+            \] 
+            We will show that \(S \subseteq B_2(p, r)\). Let \(x = (x_1, x_2, \dots, x_n) \in S\). Since \(S \subseteq B_1(p, r)\), by the triangle inequality,
+            \[
+                \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i=1}^{n} (x_i - p_i)^2} \leq \sum_{i=0}^n \left\vert x_i - p_i \right\vert  = \left\lVert x - p \right\rVert _1 < r
+            \]
+            Thus \(x \in B_2(p, r)\).
+            \\\\
+            \((2) \implies (1)\):
+            
+            We will show using induction on \(n\) that if for some open ball in \(\mathbb{R} ^n\) , \(S \subseteq B_2(p, r)\),  then \(S \subseteq B_1(p, \sqrt{n} r )\) 
+
+            Let \(n = 1\). Suppose (2) is true. Fix \(x \in S \subseteq \mathbb{R} \). Then by (2),
+            \[
+                r > \left\lVert x - p \right\rVert _2 = \sqrt{(x - p)^2} = \left\vert x - p \right\vert = \left\lVert x - p \right\rVert _1 \implies S \subseteq B_1(p, \sqrt{1} \cdot r) 
+            \]
+            Thus the claim holds for \(n = 1\). Now suppose the claim holds for \(n = k\). Assume (2) is true. Let \(x \in S\). By (2),
+            \[
+                \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i=1}^{k+1} (x_i - p_i)^2} < r \implies \sum_{i=1}^{k+1} (x_i - p_i)^2 < r^2\tag{*}
+            \]
+            We want to show that \(x \in B_1(p, \sqrt{n} r)\), or
+            \[
+                \left\lVert x - p \right\rVert _1 = \sum_{i=0}^{k+1} \left\vert x_i - p_i \right\vert < \sqrt{n} r \iff \left(\sum_{i=0}^{k+1} \left\vert x_i - p_i \right\vert\right)^2 < nr^2 
+            \]
+            We have
+            \[
+                \left(\sum_{i=0}^{k+1} \left\vert x_i - p_i \right\vert\right)^2 = \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert + \left\vert x_{k+1} - p_{k+1} \right\vert \right)^2
+            \]
+            \[
+                = \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right)^2 + 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + \left\vert x_{k+1} - p_{k+1} \right\vert ^2 \tag{**}
+            \]
+            Manipulating the inequality from (*), we obtain
+            \[
+                \sum_{i=1}^{k} (x_i - p_i)^2 < r^2 - \left\vert x_{k+1} - p_{k+1}  \right\vert ^2
+            \]
+            which implies that \((x_1, x_2, \dots , x_k)\) is in the open ball \(B_2(p, r)\) on \(\mathbb{R} ^k\). From the indudction hypothesis,
+            \[
+                (**) < k(r^2 - \left\vert x_{k+1} - p_{k+1}  \right\vert ^2) + 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + \left\vert x_{k+1} - p_{k+1} \right\vert ^2
+            \]
+
+        \end{proof}
     \end{exercise}
     \begin{exercise}
         Let $(X,\|\cdot\|_X)$ and $(Y,\|\cdot\|_Y)$ be two normed vector spaces. A linear mapping $T:X\rightarrow Y$ is called \textbf{bounded} if there exists a constant $M\geq 0$ such that
