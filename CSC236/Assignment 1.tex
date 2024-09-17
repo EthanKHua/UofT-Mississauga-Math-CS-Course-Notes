@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
+\usepackage[left=2.6cm, right=2.6cm, top=1.5cm, includehead, includefoot]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[d]{esvect}
+\usepackage{listings}
+\usepackage{enumitem} % To allow for alph in enumerate
+\usepackage{braket}
+\usepackage{float} % To allow for H setting in figures.
+
+%% header
+\pagestyle{fancy}
+\fancyhead[L]{\bf\large CSC236 UTM \\ Assignment 1}
+\fancyhead[R]{\bf\large Fall 2024 \\Due Sept 30}
+%\fancyfoot[C]{Page \thepage\ of 2}
+\setlength{\headheight}{35pt}
+
+\begin{document}
+    \noindent\textbf{Question 1.} Define the predicates
+    \[
+        P(n)\colon \text{ For any set } A\text{, if } |A|=n \text{ then } |\mathcal{P}(A)|=2^n
+    \]
+    \[
+        Q(A,n)\colon |A|=n \Longrightarrow |\mathcal{P}(A)|=2^n
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Prove \(\forall n \in \mathbb{N} , P(n)\).
+        \begin{proof}
+            \noindent\textbf{Base Case.} To show \(P(0)\), consider any set A such that \(\left\vert A \right\vert = 0\). Then \(A = \varnothing \) and its only subset is \(\varnothing\) . Thus \(\left\vert \mathcal{P}(A) \right\vert = 1 = 2^0\), verifying that \(P(0)\) is true.
+
+            \noindent\textbf{Induction Step.} Suppose \(P(k)\) holds for some \(k \in \mathbb{N} \). Now \(P(k+1)\) will be proven to hold. Let \(A\) be a set such that \(\left\vert A \right\vert = k+1\). \(k+1\) is at least \(1\), so \(A\) possesses at least one element, which will be denoted as \(a\).
+            
+            Consider the set \(A\setminus \{ a \} \). Since \(\bigl\vert A\setminus\{a\}\bigr\vert = k \), by the induction hypothesis,
+            \[
+                \bigl\vert\mathcal{P}(A\setminus\{a\})\bigr\vert = 2^k
+            \]
+            Notice that \(\mathcal{P}(A\setminus\{a\})\) contains all the subsets of \(A\) that do not contain \(a\). The remaining subsets must all contain \(a\). The remaining subsets of \(A\) can be obtained by taking every individual element in \(\mathcal{P}(A\setminus\{a\})\) and unioning it with \(\{a\}\). Thus \(A\) contains twice as many subsets as \(A\setminus \{a\}\). In mathematical terms, 
+            \[
+                \left\vert \mathcal{P}(A) \right\vert = 2 \cdot \left\vert \mathcal{P}(A\setminus\{a\}) \right\vert = 2 \cdot 2^k = 2^{k+1} 
+            \]
+            It has been shown that \(P(k+1)\) holds.
+
+            \noindent By the principle of simple induction, \(\forall n \in \mathbb{N} , P(n)\). 
+
+        \end{proof}
+        \item  Prove that for every set \(A\), \(\forall n \in \mathbb{N} \text{, } Q(n)\). 
+    \end{enumerate}
+\end{document}
