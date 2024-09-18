@@ -94,7 +94,7 @@
             \begin{enumerate}
                 \item an open ball with respect to the 1-norm as \(B_1(p, \varepsilon )\)
                 \item an open ball with respect to the Euclidean norm as \(B_2(p, \varepsilon )\) 
-                \item an open ball with respect to the max-norm as \(B_{\text{max} } (p, \varepsilon )\)  
+                \item an open ball with respect to the max-norm as \(B_{\max} (p, \varepsilon )\)  
             \end{enumerate}
             \((1) \implies (2)\):
 
@@ -107,8 +107,8 @@
                 \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i=1}^{n} (x_i - p_i)^2} \leq \sum_{i=0}^n \left\vert x_i - p_i \right\vert  = \left\lVert x - p \right\rVert _1 < r
             \]
             Thus \(x \in B_2(p, r)\).
-            \\\\
-            \((2) \implies (1)\):
+
+            \noindent\((2) \implies (1)\):
             
             We will show using induction on \(n\) that if for some open ball in \(\mathbb{R} ^n\) , \(S \subseteq B_2(p, r)\),  then \(S \subseteq B_1(p, \sqrt{n} r )\) 
 
@@ -137,8 +137,61 @@
             \]
             which implies that \((x_1, x_2, \dots , x_k)\) is in the open ball \(B_2(p, r)\) on \(\mathbb{R} ^k\). From the indudction hypothesis,
             \[
-                (**) < k(r^2 - \left\vert x_{k+1} - p_{k+1}  \right\vert ^2) + 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + \left\vert x_{k+1} - p_{k+1} \right\vert ^2
+                (**) < k(r^2 - \left\vert x_{k+1} - p_{k+1}  \right\vert ^2) + 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + r^2 - \sum_{i=1}^{k} (x_i - p_i)^2
             \]
+            \[
+                = (k+1)r^2 - \left(k\left\vert x_{k+1} - p_{k+1}  \right\vert ^2 - 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + \sum_{i=1}^{k} (x_i - p_i)^2\right)
+            \]
+            \[
+                = (k+1)r^2 - \sum_{i=1}^k \left(\left\vert x_{k+1} - p_{k+1}  \right\vert ^2 - 2\left\vert x_{k+1} - p_{k+1} \right\vert\left\vert x_i - p_i \right\vert + (x_i - p_i)^2\right)
+            \]
+            \[
+                = (k+1)r^2 - \sum_{i=1}^k \left(\left\vert x_{k+1} - p_{k+1}  \right\vert - \left\vert x_i - p_i \right\vert \right) ^2 \leq (k+1)r^2
+            \]
+            In summary, we have that
+            \[
+                \left\lVert x - p \right\rVert _1 < \sqrt{k+1} r
+            \]
+            Thus \(x\) is in the open ball \(B_1(p, \sqrt{k+1} r)\), which means that (1) is true. By the principle of induction, the claim holds for all \(n \in \mathbb{N} \). 
+
+            \noindent\((1) \implies (3)\):
+            Suppose (1). Then \(S\) is a subset of some open ball \(B_1(p, r)\). We will show that \(S \subseteq B_{max} (p, r)\).
+            
+            Let \(x \in S\). Then by (1):
+            \[
+                \left\lVert x - p \right\rVert _{\max} = \max_{1 \leq i \leq n} \{\left\vert x_i - p_i \right\vert \} \leq \sum_{i=1} ^n \left\vert x_i - p_i \right\vert = \left\lVert x - p \right\rVert _1 < r
+            \]
+            Thus \(x \in B_{\max} (p, r)\), so (3) is true.
+            
+            \noindent \((3) \implies (1)\):
+
+            Suppose that (3) holds true. Then for some open ball \(B_{\max}(p, r)\). We will show that \(S \subseteq B_1(p, nr)\).
+            
+            Let \(x \in S\). We have
+            \[
+                \left\lVert x - p \right\rVert _{1} = \sum_{i=1} ^n \left\vert x_i - p_i \right\vert \leq n\max_{0 \leq i \leq n} {\left\vert x_i - p_i \right\vert } = n \left\lVert x - p \right\rVert _{\max} < nr
+            \]
+            Thus \(x \in B_1(p, nr)\), which implies that (1) is true.
+
+            \noindent \((2) \implies (3)\):
+            
+            Suppose (2) is true. Then \(S \subseteq B_2(p,r)\), where \(B_2(p, r)\) is some open ball on the Euclidean norm. We want to show that \(S \subseteq B_{\max }(p, r)\). Indeed, we have
+            \[
+                \left\lVert x - p \right\rVert _{\max } = \max _{1 \leq i \leq n} \left\vert x_i - p_i \right\vert \leq \sqrt{\sum_{i=1} ^n \left\vert x_i - p_i \right\vert ^2} < r 
+            \] 
+            Thus \(S \subseteq B_{\max}(p, r)\), so (3) is true.
+            
+            \noindent \((3) \implies (2)\):
+            
+            Suppose that (3) holds true. Then for some open ball with the max-norm, \(S \subseteq B_{\max}(p, r)\). We will show that \(S \subseteq B_2(p, nr)\)
+            
+            Let \(x \in S\). Then be the triangle inequality,
+            \[
+                \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i = 1}^n \left\vert a_i - p_i \right\vert } \leq \sum_{i=1}^n \left\vert a_i - p_i \right\vert \leq n\max_{1 \leq i \leq n} \left\vert x_i - p_i \right\vert < n \left\lVert x - p \right\rVert _{\max} < nr
+            \]
+            Thus \(x \in B_2(p,nr)\), so (2) holds.
+            
+            \noindent Therefore, we have proven every implication to be true.
 
         \end{proof}
     \end{exercise}
@@ -149,14 +202,66 @@
             \[ \|T\|_{\mathrm{op}} = \sup\{ \|T(x)\|_Y : x\in X \text{ and } \|x\|_X\leq 1 \}. \]
         \begin{enumerate}[label=(\alph*)]
             \item Prove that $B(X,Y)$ is a linear subspace of $L(X,Y)$.
-        
-            (In MAT257, the term ``linear subspace'' means what ``subspace'' meant in MAT240, \textit{i.e.} ``a nonempty subset of a vector space which is closed under addition and scalar multiplication.'')
             
+            \begin{proof}
+                The 0-transformation \(\left\lVert Z(x) \right\rVert  = 0 \leq \left\lVert x \right\rVert _X \text{, } \forall x \in X\), because of the definition of a norm. Thus \(0 \in B(X,Y)\).
+                Let \(T, U \in B(X,Y) \text{, } c \in \mathbb{R}\). Then for all \(x \in X\), there exist \(M, N \geq 0\) such that
+                \[
+                    T(x) \leq M \left\lVert x \right\rVert _X \text{ and } U(x) \leq N \left\lVert x \right\rVert _X \implies T(x) + U(x) \leq (M+N) \left\lVert x \right\rVert _X
+                \] 
+                Which implies that \(T+U\) is a member of \(B(X,Y)\). As well, from the first inequality,
+                \[
+                    T(x) \leq M \left\lVert x \right\rVert _X \implies cT(x) \leq  cM \left\lVert x \right\rVert _X
+                \]
+                Which implies that \(cT\) is a member of \(B(X,Y)\).
+
+                Since \(0 \in B(X,Y)\)and \(B(X,Y)\) is closed under addition and scalar multiplication, \(B(X,Y)\) is a subspace of \(L(X,Y)\).
+
+            \end{proof}
             \item Prove that $\|\cdot\|_{\mathrm{op}}$ is a norm on $B(X,Y)$.
         
+            \begin{proof}
+                It suffices to show that for \(T, U \in B(X,Y)\), \(\left\lVert T \right\rVert _{op} = 0 \iff T = 0\) and \(\left\lVert T+U \right\rVert _{op} \leq  \left\lVert T \right\rVert _{op} + \left\lVert U \right\rVert _{op}\).
+
+                Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X \text{, } \left\lVert x \right\rVert _X \leq 1 \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
+                
+                Now suppose the converse, that \(\left\lVert T \right\rVert _{op} = 0\). Then 
+                \[
+                    \forall x \in X, \left\lVert x \right\rVert _X \leq 1, \left\lVert T(x) \right\rVert _Y \leq 0.
+                \]
+                But by the definition of the norm in Y,
+                \[
+                    0 \leq \left\lVert T(x) \right\rVert _Y
+                \]
+                It follows that \(T(x) = 0\).
+
+                Now we show that the triangle inequality holds with respect to the operator norm.
+
+                Fix \(T, U \in B(X,Y)\). We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
+                Let \(x \in X^\prime\). By definition,
+                \[
+                    T(x) \leq \sup T(X^\prime) \text{ and } U(x) \leq \sup U(X^\prime)
+                \]
+                Adding both together obtains
+                \[
+                    T(x) + U(x) \leq \sup T(X^\prime) + \sup U(X^\prime)
+                \]
+                We see that \(\sup T(X^\prime) + \sup U(X^\prime)\) is an upper bound for \(T(x) + U(x)\). By the definition of the least upper bound,
+                \[
+                    \sup \{T(X^\prime)+U(X^\prime)\} \leq  \sup T(X^\prime) + \sup U(X^\prime) \implies \left\lVert T+U \right\rVert _{op} \leq \left\lVert T \right\rVert _{op} + \left\lVert U \right\rVert _{op}
+                \]
+                Thus the operator norm is, indeed, a norm.
+
+            \end{proof}
             \item Let $T:\R^2\rightarrow \R^2$ be the linear mapping given by $T(x,y)=(x+y,x)$. Find, with proof, the exact value of $\|T\|_{\mathrm{op}}$. (Here, $\R^2$ is equipped with the usual norm.)
         
             \item Find, with proof, an example of an unbounded linear operator.
+            
+            \begin{proof}
+                Let \(X=Y=\mathbb{R} ^n\).
+                Let \(\left\lVert \cdot \right\rVert _X=\left\lVert \cdot \right\rVert _2\) and
+                \(\left\lVert \cdot \right\rVert _Y=\left\lVert \cdot \right\rVert _{\max} \)  
+            \end{proof}
         \end{enumerate}
     \end{exercise}
 \end{document}
