@@ -44,6 +44,40 @@
             \noindent By the principle of simple induction, \(\forall n \in \mathbb{N} , P(n)\). 
 
         \end{proof}
-        \item  Prove that for every set \(A\), \(\forall n \in \mathbb{N} \text{, } Q(n)\). 
+        \item  Prove that for every set \(A\), \(\forall n \in \mathbb{N} \text{, } Q(n)\).
+        This method does not work. Here is the attempt at the proof:
+        \begin{proof}
+            Fix a set \(A\). Proceed with using simple induction.
+
+            \textbf{Base Case.} Let \(n=0\). To show \(Q(A, n)\) holds, suppose that \(\left\vert A \right\vert = 0\). Then \(A = \varnothing \). Thus \(\mathcal{P} (A) = \{ \varnothing  \} \implies \left\vert \mathcal{P} (A) \right\vert = 1 = 2^0 \).
+            
+            Thus \(Q(A, 0)\).
+
+            \textbf{Induction Step.} Suppose that \(Q(A, k)\) holds for some \(k \in \mathbb{N}\). To show \(Q(A, k+1)\), suppose \(\left\vert A \right\vert = k+1\). However, this is where the problem arises. 
+
+            The induction hypothesis cannot be utilised since our assumption requires \(\left\vert A \right\vert = k+1\), while the condition to use the induction hypothesis is \(\left\vert A \right\vert = k\).
+            
+            Thus the proof by induction cannot be continued.
+
+        \end{proof}
+    \end{enumerate}
+    \noindent\textbf{Question 2.} Let \(n,m \in \mathbb{N}\). Let \(A, B\) be arbitrary finite sets of size \(m\) and \(n\) respectively.
+    \begin{enumerate}[label=\alph*)]
+        \item How many fuctions are there with domain \(A\) and co-domain \(B\)?
+        It can be shown using simple induction on \(m\) that the answer to this question is \(n^m\).
+        \begin{proof}
+            For \(n,m \in \mathbb{N} \), define the predicate
+            \[
+                P(n,m) \colon \text{There are } n^m \text{ functions with finite domain of size } m \text{ and finite co-domain of size } n
+            \]
+            Fix \(m \in \mathbb{N}\).
+            
+            If \(m=0\), 
+
+            \textbf{Base Case.} Let \(m = 0\). There are no functions that can map to nothing, therefore the number of functions is \(0 = 0^m\).
+
+            \textbf{Induction Step.} Suppose that \(P(n, k)\) holds for every \(n \in \mathbb{N}\), but only for some \(k \in \mathbb{N}\). Let \(A, B\) be finite sets such that \(\left\vert A \right\vert = k+1\) and \(\left\vert B \right\vert = n\). \(A\) contains at least one element \(a\). Consider the set \(A\setminus\{a\}\).
+
+        \end{proof}
     \end{enumerate}
 \end{document}
