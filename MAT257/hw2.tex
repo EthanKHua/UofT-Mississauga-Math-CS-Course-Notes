@@ -55,6 +55,8 @@
                 \[
                     \forall n \in \mathbb{N} \cup \{0\} \text{, } \lim_{t \to 0} \alpha ^{(n)} (t) = 0
                 \]
+
+                Before we begin, we wi
                 We will only worry about the right hand limit, as the left hand limit always evaluates to \(0\).
 
                 For \(n = 0\),
@@ -62,11 +64,6 @@
                     \lim_{t \to 0^+} \alpha ^{(0)} (t) = \lim_{t \to 0^+} \alpha (t) = \lim_{t \to 0^+} e^{-\frac{1}{x}} = 0
                 \]
                 Thus the case for \(n = 0\) holds.
-
-                Now suppose that the claim holds for \(n = k,\) for some \(k \in \mathbb{N} \cup \{0\}\). It can be shown that when \(t > 0\), 
-                \[
-                    \alpha ^{(k)} (t) = \sum_{i=0}^{\infty} \frac{(-1)^{i+k+1}(i+k+1)!}{t^{i+k+1} i!(i+1)!} = \frac{(-1)^{k+1}(k+1)!}{t^{k+1}} + \sum_{i=1}^{\infty} \frac{(-1)^{i+k+1}(i+k+1)!}{t^{i+k+1} i!(i+1)!}
-                \]
 
             \end{proof}
     
@@ -221,7 +218,7 @@
             \item Prove that $\|\cdot\|_{\mathrm{op}}$ is a norm on $B(X,Y)$.
         
             \begin{proof}
-                It suffices to show that for \(T, U \in B(X,Y)\), \(\left\lVert T \right\rVert _{op} = 0 \iff T = 0\) and \(\left\lVert T+U \right\rVert _{op} \leq  \left\lVert T \right\rVert _{op} + \left\lVert U \right\rVert _{op}\).
+                To prove that the operator norm is a norm, we first verify that \(\left\lVert T \right\rVert _{op} = 0 \iff T = 0\).
 
                 Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X \text{, } \left\lVert x \right\rVert _X \leq 1 \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
                 
@@ -234,6 +231,18 @@
                     0 \leq \left\lVert T(x) \right\rVert _Y
                 \]
                 It follows that \(T(x) = 0\).
+
+                We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
+
+                To show nonnegativity, we note that for \(x \in X^\prime\),
+                \[
+                    \left\lVert T \right\rVert _{op} \geq \left\lVert T(x) \right\rVert _Y \geq 0
+                \]
+
+                To show homogeity, let \(T \in G(X,Y), c \in \mathbb{R}\). Then
+                \[
+                    \left\lVert cT \right\rVert _{op} = \sup \{ \left\lVert cT(x) \right\rVert _Y : x \in X^\prime\} = \sup \{ c\left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = c\sup \{ \left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = c \left\lVert T \right\rVert _{op}
+                \] 
 
                 Now we show that the triangle inequality holds with respect to the operator norm.
 
@@ -258,9 +267,10 @@
             \item Find, with proof, an example of an unbounded linear operator.
             
             \begin{proof}
-                Let \(X=Y=\mathbb{R} ^n\).
-                Let \(\left\lVert \cdot \right\rVert _X=\left\lVert \cdot \right\rVert _2\) and
-                \(\left\lVert \cdot \right\rVert _Y=\left\lVert \cdot \right\rVert _{\max} \)  
+                Let \(X=Y=\mathbb{R} ^n\), \(\left\lVert \cdot \right\rVert _X=\left\lVert \cdot \right\rVert _2\) and
+                \(\left\lVert \cdot \right\rVert _Y=\left\lVert \cdot \right\rVert _{\max} \)
+                
+                Let \(T(x) = x\). Fix \(M \geq 0\). 
             \end{proof}
         \end{enumerate}
     \end{exercise}
