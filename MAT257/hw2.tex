@@ -85,9 +85,9 @@
         \end{itemize}
         Among these statements, determine which implications are true and which are false. There are six implications to investigate. Supply proof or counterexample as appropriate. Include pictures.
         \\\\
-        \noindent Denote each statement as (1), (2), and (3), respectively. We claim that each statement implies all the other statements.
+        \noindent\textbf{Claim.} Denote each statement as (1), (2), and (3), respectively. We claim that each statement implies all the other statements.
         \begin{proof}
-            In this proof, we denote:
+            First of all, I am so sorry that you have to read this. Secondly, in this proof, we denote:
             \begin{enumerate}
                 \item an open ball with respect to the 1-norm as \(B_1(p, \varepsilon )\)
                 \item an open ball with respect to the Euclidean norm as \(B_2(p, \varepsilon )\) 
@@ -267,10 +267,24 @@
             \item Find, with proof, an example of an unbounded linear operator.
             
             \begin{proof}
-                Let \(X=Y=\mathbb{R} ^n\), \(\left\lVert \cdot \right\rVert _X=\left\lVert \cdot \right\rVert _2\) and
-                \(\left\lVert \cdot \right\rVert _Y=\left\lVert \cdot \right\rVert _{\max} \)
+                Define \(\ell ^0\) to be the set of all sequences that are eventually 0. Consider the metric spaces \((\ell^{0}, \left\lVert \cdot \right\rVert _{\ell \infty})\) and \((C[0, 1], \left\lVert \cdot \right\rVert _{C\infty} )\). Here, we denote \(\left\lVert \cdot \right\rVert _{\ell \infty}\) as the sup norm on \(\ell ^{\infty} \) and \(\left\lVert \cdot \right\rVert _{C\infty}\) as the sup norm on \(C[0,1]\)..
                 
-                Let \(T(x) = x\). Fix \(M \geq 0\). 
+                Let \(T: \ell^{0} \to C[0,1]\) be defined by
+                \[
+                    T((a_n)_n) = \sum_{i=0}^k a_i i^x \text{, where } k \text{ is the last index where } a_k \neq 0
+                \]
+                First, we will show that \(T\) is a linear transformation. Fix \((a_n)_n, (b_n)_n \in \ell ^0, c \in \mathbb{R}\). Let \(k = \max \{ k_a, k_b \} \), where \(k_a, k_b\) are the last index where \(a_{k_a}\) and \(b_{k_b}\) are non-zero, respectively. Then
+                \[
+                    T(c(a_n)+(b_n)) = \sum_{i=0}^k (ca_i + b_i) i^x = c\sum_{i=0}^k a_i i^x + \sum_{i=0}^k b_i i^x = c\sum_{i=0}^{k_a} a_i i^x + \sum_{i=0}^{k_b} b_i i^x = cT((a_n)) + T((b_n))
+                \]
+                This verifies that \(T\) is a linear transformation.
+
+                Now we show that \(T\) is unbounded. Fix \(M \geq 0\). Let \((a_n)_n \in \ell ^0\) such that \(a_i = 1\) if \(i=M+1\) and 0 otherwise. We have that
+                \[
+                    \left\lVert T((a_n)) \right\rVert _{C\infty} = \left\lVert (M+1)^x \right\rVert _{C\infty} = M+1 > M = M \left\lVert (a_n) \right\rVert _{\ell \infty}
+                \]
+                Thus \(T\) is an unbounded linear operator.
+
             \end{proof}
         \end{enumerate}
     \end{exercise}
