@@ -129,7 +129,7 @@
                     \beta (t) = 0
                 \]
 
-                Since \(\alpha(t)\) is infinitely differentiable and \(\beta is composed of \alpha \), it follows that \(\beta\) is also infinitely differentiable.
+                Since \(\alpha(t)\) is infinitely differentiable and \(\beta\) is composed of \(\alpha \), it follows that \(\beta\) is also infinitely differentiable.
 
             \end{proof}
     
@@ -145,7 +145,7 @@
                 \[
                     \phi (t) = \beta (t-1) \beta (4-t) = 0
                 \]
-                
+
             \end{proof}
         \end{enumerate}
     \end{exercise}
@@ -293,19 +293,19 @@
             \begin{proof}
                 To prove that the operator norm is a norm, we first verify that \(\left\lVert T \right\rVert _{op} = 0 \iff T = 0\).
 
-                Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X \text{, } \left\lVert x \right\rVert _X \leq 1 \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
+                We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
+
+                Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X^\prime \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
                 
                 Now suppose the converse, that \(\left\lVert T \right\rVert _{op} = 0\). Then 
                 \[
-                    \forall x \in X, \left\lVert x \right\rVert _X \leq 1, \left\lVert T(x) \right\rVert _Y \leq 0.
+                    \forall x \in X^\prime, \left\lVert T(x) \right\rVert _Y \leq \left\lVert T \right\rVert _{op} = 0.
                 \]
                 But by the definition of the norm in Y,
                 \[
                     0 \leq \left\lVert T(x) \right\rVert _Y
                 \]
                 It follows that \(T(x) = 0\).
-
-                We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
 
                 To show nonnegativity, we note that for \(x \in X^\prime\),
                 \[
@@ -314,13 +314,12 @@
 
                 To show homogeity, let \(T \in G(X,Y), c \in \mathbb{R}\). Then
                 \[
-                    \left\lVert cT \right\rVert _{op} = \sup \{ \left\lVert cT(x) \right\rVert _Y : x \in X^\prime\} = \sup \{ c\left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = c\sup \{ \left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = c \left\lVert T \right\rVert _{op}
+                    \left\lVert cT \right\rVert _{op} = \sup \{ \left\lVert cT(x) \right\rVert _Y : x \in X^\prime\} = \sup \{ |c|\left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = |c|\sup \{ \left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = |c| \left\lVert T \right\rVert _{op}
                 \] 
 
                 Now we show that the triangle inequality holds with respect to the operator norm.
 
-                Fix \(T, U \in B(X,Y)\). We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
-                Let \(x \in X^\prime\). By definition,
+                Fix \(T, U \in B(X,Y)\). Let \(x \in X^\prime\). By definition,
                 \[
                     T(x) \leq \sup T(X^\prime) \text{ and } U(x) \leq \sup U(X^\prime)
                 \]
@@ -340,7 +339,7 @@
             \textbf{Claim.} \(\left\lVert T \right\rVert _{op} = \sqrt{\frac{3+\sqrt{5}}{2}} \)
 
             \begin{proof}
-                We will show that \(T(x,y)\) acheives a global maximum.
+                We will show that \(T(x,y)\) is bounded above by this value, and that equality is possible.
                 
                 Let \((x,y) \in \mathbb{R} ^2\) such that \(\sqrt{x^2 + y^2} \leq 1 \implies y \leq \pm \sqrt{1-x^2} \leq \sqrt{1-x^2}\).
                 For such \((x,y)\),
@@ -351,7 +350,7 @@
                 \[
                     \sqrt{2x^2 + 2xy + y^2} \leq \sqrt{x^2 + 2x\sqrt{1-x^2} + 1}
                 \]
-                We attempt to maximize this function for \(x \in \). Maximizing this function is synonymous to maximizing \(f(x) = x^2 + 2x\sqrt{1-x^2} + 1\) on the interval \([0,1]\) (The interval is the set of all \(x\) that satisfy the constraint \(x^2 + y^2 \leq 1\)). Taking the derivative, we get
+                We attempt to maximize this function for \(x \in [0,1]\) (The interval is the set of all \(x\) that satisfy the constraint \(x^2 + y^2 \leq 1\)). Maximizing this function is synonymous to maximizing \(f(x) = x^2 + 2x\sqrt{1-x^2} + 1\) on the interval \([0,1]\). Taking the derivative, we get
                 \[
                     f^\prime(x) = 2x + 2\sqrt{1-x^2} -\frac{2x^2}{\sqrt{1-x^2}} = \frac{2x\sqrt{1-x^2} + 2 - 4x^2}{\sqrt{1-x^2}}
                 \]
@@ -374,7 +373,7 @@
                 \[
                     f\left(\sqrt{\frac{1}{2}-\frac{1}{2\sqrt{5}}}\right) = \frac{3}{2}+\frac{3}{2\sqrt{5}}
                 \]
-                It is pretty obvious that \(f\) acheives the maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\). Then \(\sqrt{x^2 + 2x\sqrt{1-x^2} + 1}\) also acheives a maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\), which is \(\sqrt{\frac{3+\sqrt{5}}{2}}\).
+                It is not too hard to see that \(f\) acheives the maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\). Then \(\sqrt{x^2 + 2x\sqrt{1-x^2} + 1}\) also acheives a maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\), which is \(\sqrt{\frac{3+\sqrt{5}}{2}}\).
 
                 In summary, we have for all \((x,y) \in \mathbb{R} ^2\),
                 \[
@@ -382,7 +381,7 @@
                 \]
                 Thus \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is an upper bound for \(\left\lVert T(x,y) \right\rVert _2\).
 
-                To show that \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is the least upper bound, it suffices to show that \(\left\lVert T(x,y) \right\rVert _2\) can acheive that value. Indeed, if we let \(x=\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)},y= \sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)}\) we see that
+                To show that \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is the least upper bound, it suffices to show that \(\left\lVert T(x,y) \right\rVert _2\) can acheive that value. Indeed, if we let \(x=\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)},y= \sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)}\) we see that
                 \[
                     \left\lVert T(x,y) \right\rVert = \sqrt{\left(\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)} + \sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)}\right)^2 + \left(\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)}\right)^2}
                 \]
