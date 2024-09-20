@@ -51,31 +51,105 @@
 
                 Since \(0\) is infinitely differentiable, and \(e^{-\frac{1}{x}}\) is infinitely differentiable for \(x > 0\), it suffices to show that derivatives of all orders of \(\alpha \) are continuous at \(t = 0\).
 
-                We will prove using induction that
-                \[
-                    \forall n \in \mathbb{N} \cup \{0\} \text{, } \lim_{t \to 0} \alpha ^{(n)} (t) = 0
-                \]
+                We will continue by proving a lemma.
 
-                First, we will show that 
+                \textbf{Lemma.} \(\forall n \in \mathbb{N}, \text{ for } t > 0 \text{, } \alpha^{(n)} (t) = Q(t)\alpha (t)\), where \(Q(x)\) is a linear combination of nonpositive integer powers of \(t\).
+
+                We will show this using induction.
+                \begin{proof}
+                    When \(n=1\), fixing \(t > 0\), we have
+                    \[
+                        \alpha ^\prime(t) = \frac{1}{t^2}e^\frac{-1}{t} = \frac{1}{t^2}\alpha (t)
+                    \]
+                    We let \(Q(t) = t^{-2}\) and we are done.
+
+                    Now suppose that the lemma holds for all \(i \leq k\), for some \(k \in \mathbb{N}\).
+
+                    Then for \(t > 0\),
+                    \[
+                        \alpha ^{(k)}(t) = P(t)\alpha (t). \text{ where } P(t) \text{ is a linear combination of nonpositive integer powers of t}
+                    \]
+                    Taking the derivative of both sides with respect to \(t\), we obtain
+                    \[
+                        \alpha ^{(k+1)}(t) = P^\prime(t)\alpha (t) + P(t)\alpha ^\prime (t)
+                    \]
+                    The lemma holds for \(i = 1\), therefore for some \(R(t)\),
+                    \[
+                        P^\prime(t)\alpha (t) + P(t)\alpha ^\prime (t) = P^\prime(t)\alpha (t) + P(t)R(t)\alpha (t) = (P^\prime(t) + P(t)R(t))\alpha (t)
+                    \]
+                    \(P^\prime(t) + P(t)R(t)\) is a linear conbination of nonpositive integer powers of \(t\), therefore letting \(Q(t) = P^\prime(t) + P(t)R(t)\), we get our desired conclusion.
+
+                    By the principle of induction, the lemma holds true for all \(n \in \mathbb{N}\).
+
+                \end{proof}
+
+                We now continue in proving that derivatives of all orders of \(\alpha\) are continuous at 0. We show this by proving that
+                \[
+                    \lim_{t \to 0} \alpha ^{(n)}(t) = 0 \text{, where } n \in \mathbb{N}
+                \]
                 We will only worry about the right hand limit, as the left hand limit always evaluates to \(0\).
 
-                For \(n = 0\),
+                Let \(n \in \mathbb{N}\). Since we only deal with positive \(t\), by our lemma,
                 \[
-                    \lim_{t \to 0^+} \alpha ^{(0)} (t) = \lim_{t \to 0^+} \alpha (t) = \lim_{t \to 0^+} e^{-\frac{1}{x}} = 0
+                    \alpha ^{(n)}(t) = Q(t)\alpha (t)
                 \]
-                Thus the case for \(n = 0\) holds.
+                Where \(Q(t)\) is a linear combination of nonpositive integer powers of \(t\). So
+                \[
+                    \lim_{t \to 0^+} \alpha ^{(n)}(t) = \lim_{t \to 0^+} Q(t)\alpha (t) = \lim_{t \to 0^+} \sum_{i=0}^k a_i t^{-i} \alpha (t)
+                \]
+                Where \(a_i\) are real constants and \(k \in \mathbb{N}\).
+
+                Consider an arbitrary term \(a_i t^{-i} \alpha (t) = a_i t^{-i} e^\frac{-1}{t}\). We want to show that \(\lim_{t \to 0^+}a_i t^{-i} e^\frac{-1}{t}\) exists and is equal to 0.
+
+                First, we will perform the substitution \(x = \frac{1}{t}\). Then the limit becomes
+                \[
+                    \lim_{x \to \infty} a_i x^i e^{-x} = 0
+                \]
+                The proof for this fact is omitted, but applying L'Hopital's rule \(i\) times produces the same result. Thus,
+                \[
+                    \lim_{t \to 0^+} \alpha ^{(n)}(t) = \lim_{t \to 0^+} \sum_{i=0}^k a_i t^{-i} \alpha (t) = \sum_{i=0} ^k \lim_{t \to 0^+} a_i t^{-i} \alpha (t) = \sum_{i=0} ^k 0 = 0
+                \]
+                Thus \(\alpha \) is infinitely differentiable everywhere.
 
             \end{proof}
     
             \item Prove that there exists an infinitely differentiable function $\beta:\R\rightarrow \R$ such that $\beta(t)=1$ for all $t\geq 1$, and $\beta(t)=0$ for all $t\leq 0$.
     
-            \textcolor{blue}{Hint: The shape you're looking for is $\dfrac{X}{X+Y}$.}
+            \begin{proof}
+                Define
+                \[
+                    \beta (t) = \frac{\alpha (t)}{\alpha (t) + \alpha (1-t)}
+                \] 
+                If \(t\geq 1\), we also have \(1-t \leq 0\). Then
+                \[
+                    \beta (t) = \frac{\alpha (t)}{\alpha (t)} = 0
+                \]
+                As well, if \(t \leq 0\), we have
+                \[
+                    \beta (t) = 0
+                \]
+
+                Since \(\alpha(t)\) is infinitely differentiable and \(\beta\) is composed of \(\alpha \), it follows that \(\beta\) is also infinitely differentiable.
+
+            \end{proof}
     
             \item Prove that there exists an infinitely differentiable function $\varphi:\R\rightarrow \R$ such that $\varphi(t)=1$ for all $t\in [2,3]$, and $\varphi(t)=0$ for $t\in \R\setminus (1,4)$.
     
-            \textcolor{blue}{Hint: Your function $\beta(t)$ does half the job. Make a function $\gamma(t)$ that does the other half of the job. Then multiply them together.}
+            \begin{proof}
+                Define \(\phi (t) = \beta (t-1) \beta (4-t)\).
+                Since \(\beta\) is infinitely differentiable, \(\phi\) is as well. For \(t \in [2,3]\), \(t-1 \geq 1\) and \(4-t \geq 1\). Thus
+                \[
+                    \phi (t) = \beta(t-1) \beta (4-t) = 1
+                \]
+                If \(t \in \mathbb{R} \setminus (1,4)\), then \(t-1 \leq 0\) or \(4-t \leq 0\). In each case \(\beta(t-1) = 0\) or \(\beta (4-t) = 0\), respectively, thus we have
+                \[
+                    \phi (t) = \beta (t-1) \beta (4-t) = 0
+                \]
+
+            \end{proof}
         \end{enumerate}
     \end{exercise}
+    \pagebreak
     \begin{exercise}
         Let $S\subseteq \R^n$. Consider the following three statements:
         \begin{itemize}
@@ -192,6 +266,7 @@
 
         \end{proof}
     \end{exercise}
+    \pagebreak
     \begin{exercise}
         Let $(X,\|\cdot\|_X)$ and $(Y,\|\cdot\|_Y)$ be two normed vector spaces. A linear mapping $T:X\rightarrow Y$ is called \textbf{bounded} if there exists a constant $M\geq 0$ such that
         \[ \|T(x)\|_Y \leq M \|x\|_X \quad \text{for all $x\in X$.}  \]
@@ -220,19 +295,19 @@
             \begin{proof}
                 To prove that the operator norm is a norm, we first verify that \(\left\lVert T \right\rVert _{op} = 0 \iff T = 0\).
 
-                Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X \text{, } \left\lVert x \right\rVert _X \leq 1 \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
+                We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
+
+                Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X^\prime \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
                 
                 Now suppose the converse, that \(\left\lVert T \right\rVert _{op} = 0\). Then 
                 \[
-                    \forall x \in X, \left\lVert x \right\rVert _X \leq 1, \left\lVert T(x) \right\rVert _Y \leq 0.
+                    \forall x \in X^\prime, \left\lVert T(x) \right\rVert _Y \leq \left\lVert T \right\rVert _{op} = 0.
                 \]
                 But by the definition of the norm in Y,
                 \[
                     0 \leq \left\lVert T(x) \right\rVert _Y
                 \]
                 It follows that \(T(x) = 0\).
-
-                We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
 
                 To show nonnegativity, we note that for \(x \in X^\prime\),
                 \[
@@ -241,13 +316,12 @@
 
                 To show homogeity, let \(T \in G(X,Y), c \in \mathbb{R}\). Then
                 \[
-                    \left\lVert cT \right\rVert _{op} = \sup \{ \left\lVert cT(x) \right\rVert _Y : x \in X^\prime\} = \sup \{ c\left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = c\sup \{ \left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = c \left\lVert T \right\rVert _{op}
+                    \left\lVert cT \right\rVert _{op} = \sup \{ \left\lVert cT(x) \right\rVert _Y : x \in X^\prime\} = \sup \{ |c|\left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = |c|\sup \{ \left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = |c| \left\lVert T \right\rVert _{op}
                 \] 
 
                 Now we show that the triangle inequality holds with respect to the operator norm.
 
-                Fix \(T, U \in B(X,Y)\). We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
-                Let \(x \in X^\prime\). By definition,
+                Fix \(T, U \in B(X,Y)\). Let \(x \in X^\prime\). By definition,
                 \[
                     T(x) \leq \sup T(X^\prime) \text{ and } U(x) \leq \sup U(X^\prime)
                 \]
@@ -263,7 +337,63 @@
 
             \end{proof}
             \item Let $T:\R^2\rightarrow \R^2$ be the linear mapping given by $T(x,y)=(x+y,x)$. Find, with proof, the exact value of $\|T\|_{\mathrm{op}}$. (Here, $\R^2$ is equipped with the usual norm.)
-        
+            
+            \textbf{Claim.} \(\left\lVert T \right\rVert _{op} = \sqrt{\frac{3+\sqrt{5}}{2}} \)
+
+            \begin{proof}
+                We will show that \(T(x,y)\) is bounded above by this value, and that equality is possible.
+                
+                Let \((x,y) \in \mathbb{R} ^2\) such that \(\sqrt{x^2 + y^2} \leq 1 \implies y \leq \pm \sqrt{1-x^2} \leq \sqrt{1-x^2}\).
+                For such \((x,y)\),
+                \[
+                    \left\lVert T(x,y) \right\rVert _2 = \left\lVert (x+y, x) \right\rVert _2 = \sqrt{(x+y)^2 + x^2} = \sqrt{2x^2 + 2xy + y^2} 
+                \]
+                By the monotonicity of the squareroot,
+                \[
+                    \sqrt{2x^2 + 2xy + y^2} \leq \sqrt{x^2 + 2x\sqrt{1-x^2} + 1}
+                \]
+                We attempt to maximize this function for \(x \in [0,1]\) (The interval is the set of all \(x\) that satisfy the constraint \(x^2 + y^2 \leq 1\)). Maximizing this function is synonymous to maximizing \(f(x) = x^2 + 2x\sqrt{1-x^2} + 1\) on the interval \([0,1]\). Taking the derivative, we get
+                \[
+                    f^\prime(x) = 2x + 2\sqrt{1-x^2} -\frac{2x^2}{\sqrt{1-x^2}} = \frac{2x\sqrt{1-x^2} + 2 - 4x^2}{\sqrt{1-x^2}}
+                \]
+                Now, we find every critical point. When \(f^\prime\) is undefined, \(x = 1\).
+                Now, let \(f^\prime(x) = 0\), \(x\neq 1\) . Then through a series of calculations I really don't want to type out,
+                \[
+                    \frac{2x\sqrt{1-x^2} + 2 - 4x^2}{\sqrt{1-x^2}} = 0 \implies 5x^4 - 5x^2 + 1 = 0 \implies x^2 = \frac{1}{2}\pm\frac{1}{2\sqrt{5}} \implies x = \sqrt{\frac{1}{2}\pm\frac{1}{2\sqrt{5}}} 
+                \]
+                We disregard the negative solution since we want \(x \in [0,1]\).
+                Now we evaluate \(f\) at the endpoints, as well as at every point we found:
+                \[
+                    f(0) = 1
+                \]
+                \[
+                    f(1) = 2
+                \]
+                \[
+                    f\left(\sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\right) = \frac{3+\sqrt{5}}{2}
+                \]
+                \[
+                    f\left(\sqrt{\frac{1}{2}-\frac{1}{2\sqrt{5}}}\right) = \frac{3}{2}+\frac{3}{2\sqrt{5}}
+                \]
+                It is not too hard to see that \(f\) acheives the maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\). Then \(\sqrt{x^2 + 2x\sqrt{1-x^2} + 1}\) also acheives a maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\), which is \(\sqrt{\frac{3+\sqrt{5}}{2}}\).
+
+                In summary, we have for all \((x,y) \in \mathbb{R} ^2\),
+                \[
+                    \left\lVert T(x,y) \right\rVert _2 \leq \sqrt{\frac{3+\sqrt{5}}{2}}
+                \]
+                Thus \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is an upper bound for \(\left\lVert T(x,y) \right\rVert _2\).
+
+                To show that \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is the least upper bound, it suffices to show that \(\left\lVert T(x,y) \right\rVert _2\) can acheive that value. Indeed, if we let \(x=\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)},y= \sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)}\) we see that
+                \[
+                    \left\lVert T(x,y) \right\rVert = \sqrt{\left(\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)} + \sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)}\right)^2 + \left(\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)}\right)^2}
+                \]
+                \[
+                    = \sqrt{2\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right) + 2\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)}\sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)} + \left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)} = \sqrt{\frac{3+\sqrt{5}}{2}} 
+                \]
+                Thus \(\left\lVert T \right\rVert _{op} = \sup \{ \left\lVert T(x,y) \right\rVert _2 : \left\lVert (x,y) \right\rVert _2 \leq 1\} = \sqrt{\frac{3+\sqrt{5}}{2}}\)
+
+            \end{proof}
+
             \item Find, with proof, an example of an unbounded linear operator.
             
             \begin{proof}
