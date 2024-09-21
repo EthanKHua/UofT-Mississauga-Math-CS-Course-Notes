@@ -62,7 +62,40 @@
     \begin{enumerate}[label=(\alph*)]
         \item Let $C^\infty[0,1]$ denote the set of infinitely differentiably functions $f:[0,1]\rightarrow \R$. Prove that $C^\infty[0,1]$ is \textit{not} a closed subset of $(C[0,1],\|\cdot\|_\infty)$.
 
-        \textcolor{blue}{Note: Do not use MAT159 sledgehammers to solve this problem. If you're not sure if your approach involves a sledgehammer, consult Ehsaan first.}
+        \begin{proof}
+            To show that this set is not closed, we just need to find a limit point that is not an element of the set. Let \(f(x) = |x-\frac{1}{2}|\). Clearly \(f \notin C^{\infty} [0,1]\). To prove \(f\) is a limit point of \(C^{\infty} [0,1]\), first let \(\varepsilon > 0\) and consider the open ball \(B(f, \varepsilon)\). There exists an \(n \in \mathbb{N}\) such that \(n + 1 > \frac{1}{\varepsilon} \implies asdfasfas\). Let \[g_n(x) = \int _\frac{1}{2}^x \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt \text{, } x \in [0,1] \]
+
+            Since the integrand is constructed using infinitely differentiable functions, \(g_n\) is infinitely differentiable as well, thus \(g_n \in C^{\infty}[0,1]\). Notice that \(g_n(1) = \int _\frac{1}{2}^1 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt\). If we perform the substitution \(u = 1-t\), we see that
+            \[
+                g_n(1) = \int _\frac{1}{2}^1 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt = -\int _\frac{1}{2}^0 \frac{e^{-\frac{n}{1-u}}-e^{-\frac{n}{u}}}{e^{-\frac{n}{1-u}}+e^{-\frac{n}{u}}} du = g_n(0)
+            \]
+            Thus we can conclude that
+            \[
+                g_n(1) = \frac{1}{2}(g_n(1) + g_n(0)) = \frac{1}{2}\left(\int _\frac{1}{2}^1 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt + \int _\frac{1}{2}^0 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{1-t}}+e^{-\frac{n}{t}}} dt\right) = \frac{1}{2} \left(\right)
+            \]
+            which we can solve by using the substitution 
+            
+            We compute \(\|f-g_n\| _\infty = \sup \{|f(x) - g_n(x)| : x \in [0,1]\}\).
+
+            Let \(h(x) = f(x) - g_n(x)\). We try to maximize \(|h(x)|\). Taking its derivative with respect to \(x\), we get
+            \[
+                h^\prime(x) = f^\prime(x) - g_n^\prime(x) = \frac{x-\frac{1}{2}}{|x-\frac{1}{2}|} - \frac{e^{-\frac{n}{x}}-e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}}
+            \]
+            There is a critical point at \(x = \frac{1}{2}\) since \(h^\prime(\frac{1}{2})\) is undefined. Otherwise, if \(x > \frac{1}{2}\),
+            \[
+                h^\prime(x) = 1 - \frac{e^{-\frac{n}{x}}-e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} = \frac{2e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} > 0
+            \]
+            If \(x < 0\),
+            \[
+                h^\prime(x) = -1 - \frac{e^{-\frac{n}{x}}-e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} = \frac{-2e^{-\frac{n}{x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} < 0
+            \]
+            Checking all critical points and endpoints, we see that
+            \[
+                h(\frac{1}{2}) = 0
+                h(0) = 
+            \]
+            
+        \end{proof}
 
         \item Let $C$ be the set of \textbf{convergent} sequences of real numbers. Prove that $C$ is a closed subset of $(\ell^\infty,\|\cdot\|_\infty)$.
 
