@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox,mathtools}
 \hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
 \usepackage[left=2.6cm, right=2.6cm, top=1.5cm, includehead, includefoot]{geometry}
 \usepackage[dvipsnames]{xcolor}
@@ -61,6 +61,7 @@
 
         \end{proof}
     \end{enumerate}
+    \pagebreak
     \noindent\textbf{Question 2.} Let \(n,m \in \mathbb{N}\). Let \(A, B\) be arbitrary finite sets of size \(m\) and \(n\) respectively.
     \begin{enumerate}[label=\alph*)]
         \item How many fuctions are there with domain \(A\) and co-domain \(B\)?
@@ -68,17 +69,30 @@
         \begin{proof}
             For \(n,m \in \mathbb{N} \), define the predicate
             \[
-                P(n,m) \colon \text{There are } n^m \text{ functions with finite domain of size } m \text{ and finite co-domain of size } n
+                P(m) \colon \forall n \in \mathbb{N} \text{, there are } n^m \text{ functions with finite domain of size } m \text{ and finite co-domain of size } n
             \]
             Fix \(m \in \mathbb{N}\).
-            
-            If \(m=0\), 
 
-            \textbf{Base Case.} Let \(m = 0\). There are no functions that can map to nothing, therefore the number of functions is \(0 = 0^m\).
+            \textbf{Base Case.} Let \(m = 0\). There are no functions that can map to nothing, therefore the number of functions is \(0^n = 0\).
 
-            \textbf{Induction Step.} Suppose that \(P(n, k)\) holds for every \(n \in \mathbb{N}\), but only for some \(k \in \mathbb{N}\). Let \(A, B\) be finite sets such that \(\left\vert A \right\vert = k+1\) and \(\left\vert B \right\vert = n\). \(A\) contains at least one element \(a\). Consider the set \(A\setminus\{a\}\).
+            \textbf{Induction Step.} Suppose that \(P(n, k)\) holds for every \(n \in \mathbb{N}\), but only for some \(k \in \mathbb{N}\). Let \(A, B\) be finite sets such that \(\left\vert A \right\vert = k+1\) and \(\left\vert B \right\vert = n\). \(A\) contains at least one element \(a\). Consider the set \(A\setminus\{a\}\). By the induction hypothesis, there are \(n^k\) functions with domain \(A\setminus\{a\}\) and co-domain \(B\). For every such function \(f_k\) and some \(b \in B\) , define a new function
+            \[
+                f_b(x) = \begin{dcases}
+                    f_k(x), &\text{ if } x \in A\setminus \{a\} ;\\
+                    b, &\text{ if } x=a;
+                \end{dcases}
+            \]
+            Every function that maps elements from \(A\) to \(B\) can be written in this form. Thus there are \(n^k*n = n^{k+1} \) fuctions that map from \(A\) to \(B\).
 
-            
+        \end{proof}
+
+        \item Use part (a) to prove the original statement in Q1 directly without the use of induction.
+        \begin{proof}
+            Let \(A\) be a set such that \(|A| = n\). Every subset \(A^\prime\) of \(A\) can be defined as a function \(f\) that maps elements of \(A\) to \(\{0,1\}\):
+            \[
+                \text{For any } a \in A \text{, if } a \in A^\prime, f(a) = 1 \text{. Otherwise, } f(a) = 0
+            \]
+            From the previous part, there are \(2^n\) different functions with domain \(A\) and co-domain \(\{0,1\}\), which also means that there are \(2^n\) subsets of \(A\), which implies that \(\mathcal{P} (A)=2^n\).
 
         \end{proof}
     \end{enumerate}
