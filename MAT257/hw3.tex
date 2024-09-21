@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+\stepcounter{section}
+\stepcounter{section}
+\section{Week 3 Homework}
+    \exercise Let $S\subseteq C[0,1]$. Consider the following two statements:
+    \begin{itemize}
+        \item $S$ is an open subset of $(C[0,1],\|\cdot\|_1)$.
+        \item $S$ is an open subset of $(C[0,1],\|\cdot\|_\infty)$.
+    \end{itemize}
+    Determine if the first statement implies the second, and vice-versa. Supply proof or counterexample as appropriate.
+
+    \begin{proof}
+        We claim that the first statement implies the second, but not the converse.
+
+        Suppose that \(S\) is an open subset of \((C[0,1], \|\cdot\|_1)\). For any \(g \in S\), there is an open ball with respect to the 1-norm centered around \(g\) with radius \(\varepsilon\) such that \(B_1 (g, \varepsilon)\subseteq S\). We proceed to show that \(B_\infty (g, \varepsilon) \subseteq B_1 (g, \varepsilon)\). Let \(f \in B_\infty (g, \varepsilon)\). Then
+        \[
+            \|f-g\| _1 = \int _0^1 \left\vert f-g \right\vert \leq \int _0^1 \sup \{ \left\vert f-g \right\vert \} = \|f-g\| _\infty < \varepsilon 
+        \]
+        Thus \(B_\infty (g, \varepsilon) \subseteq B_1 (g, \varepsilon) \subseteq S\). Thus \(S\) is an open subset of \((C[0,1], \|\cdot \| _1)\).
+
+        Now we show that the converse is not necessarily true. Let \(S = B_\infty (0, 1)\). This is an open subset of \((C[0,1],\|\cdot\|_\infty)\). Consider \(f(x) = 0 \in B_\infty (0, 1)\). For every \(\varepsilon > 0\), we can always find \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon}\). Let \(g(x) = x^{n-1}\). Since \(\int _0^1 g(x)dx = \frac{1}{n} < \varepsilon\), \(g(x) \in B_1(0, \varepsilon)\). But \(g(1) = 1\), which means that \(g(x) \notin B_\infty (0, 1)\). Thus \(f\) is not an interior point of \(B_\infty (0, 1)\) with respect to the 1-norm, which means that \(B_\infty (0, 1)\) is not an open subset of \((C[0,1],\|\cdot\|_1)\).
+        
+    \end{proof}
+    \exercise\textit{Can linear subspaces be open and/or closed?}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $C^\infty[0,1]$ denote the set of infinitely differentiably functions $f:[0,1]\rightarrow \R$. Prove that $C^\infty[0,1]$ is \textit{not} a closed subset of $(C[0,1],\|\cdot\|_\infty)$.
+
+        \textcolor{blue}{Note: Do not use MAT159 sledgehammers to solve this problem. If you're not sure if your approach involves a sledgehammer, consult Ehsaan first.}
+
+        \item Let $C$ be the set of \textbf{convergent} sequences of real numbers. Prove that $C$ is a closed subset of $(\ell^\infty,\|\cdot\|_\infty)$.
+
+        \item Let $(X,\|\cdot\|)$ be a normed vector space, and let $M$ be a \textcolor{red}{linear subspace} of $X$. Prove that $M$ is an open set if and only if $M=X$.
+    \end{enumerate}
+
+    \exercise \textit{The Bolzano--Weierstrass Theorem.}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that every bounded sequence in $(\R^d,\|\cdot\|_2)$ has a convergent subsequence.
+        \item Give an example of a normed vector space $(X,\|\cdot\|)$ containing a sequence $(x_n)$ which has no convergent subsequences.
+    \end{enumerate}
+\end{document}

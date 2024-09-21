@@ -4,6 +4,8 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{mathtools}
+\usepackage[pdftex]{graphicx}
+\graphicspath{{./images/}}
 
 \newcommand{\Z}{\mathbf{Z}}
 \newcommand{\N}{\mathbf{N}}
@@ -35,7 +37,7 @@
 	\newtheorem{exercise}[thm]{Exercise} %Exercise
 
 \begin{document}
-    \section{Week 2 Homework - Ethan Hua}
+    \section{Week 2 Homework}
     \begin{exercise}
         \begin{enumerate}[label=(\alph*)]
             \item Prove that there exists an infinitely differentiable function $\alpha:\R\rightarrow \R$ such that $\alpha(t)=0$ for all $t\leq 0$, and $\alpha(t)>0$ for all $t>0$.
@@ -122,7 +124,7 @@
                 \] 
                 If \(t\geq 1\), we also have \(1-t \leq 0\). Then
                 \[
-                    \beta (t) = \frac{\alpha (t)}{\alpha (t)} = 0
+                    \beta (t) = \frac{\alpha (t)}{\alpha (t)} = 1
                 \]
                 As well, if \(t \leq 0\), we have
                 \[
@@ -159,110 +161,60 @@
         \end{itemize}
         Among these statements, determine which implications are true and which are false. There are six implications to investigate. Supply proof or counterexample as appropriate. Include pictures.
         \\\\
-        \noindent\textbf{Claim.} Denote each statement as (1), (2), and (3), respectively. We claim that each statement implies all the other statements.
+        \noindent\textbf{Claim.} Each statement implies all the other statements.
         \begin{proof}
-            First of all, I am so sorry that you have to read this. Secondly, in this proof, we denote:
-            \begin{enumerate}
-                \item an open ball with respect to the 1-norm as \(B_1(p, \varepsilon )\)
-                \item an open ball with respect to the Euclidean norm as \(B_2(p, \varepsilon )\) 
-                \item an open ball with respect to the max-norm as \(B_{\max} (p, \varepsilon )\)  
-            \end{enumerate}
-            \((1) \implies (2)\):
+            \textbf{Lemma.} Strong equivalence is an equivalence relation.
+            \begin{proof}
+                Let \(d_1, d_2, d_3\) be metrics on some set \(X\). We proceed by proving each property of equivalence relations.
+                \begin{enumerate}
+                    \item Reflexivity:
+                    Let \(\alpha = \beta = 1\). Clearly \(d_1(x,y) \leq d_1(x,y) \leq d_1(x,y)\). Thus the relation is reflexive.
 
-            Suppose (1) is true. There exists a \(p = (p_1, p_2, \dots, p_n) \in \mathbb{R}^n\) and \(r > 0\) such that
-            \[
-                S \subseteq B_1(p, r)
-            \] 
-            We will show that \(S \subseteq B_2(p, r)\). Let \(x = (x_1, x_2, \dots, x_n) \in S\). Since \(S \subseteq B_1(p, r)\), by the triangle inequality,
-            \[
-                \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i=1}^{n} (x_i - p_i)^2} \leq \sum_{i=0}^n \left\vert x_i - p_i \right\vert  = \left\lVert x - p \right\rVert _1 < r
-            \]
-            Thus \(x \in B_2(p, r)\).
+                    \item Symmetry:
+                    Suppose \(\hat{\alpha} d_1(x,y) \leq d_2(x,y) \leq \hat{\beta} d_1(x,y)\). Let \(\alpha = \frac{1}{\hat{\beta}}, \beta = \frac{1}{\hat{\alpha}}\). We see that
+                    \[
+                        \hat{\alpha} \leq \frac{d_2(x,y)}{d_1(x,y)} \leq \hat{\beta} \implies \frac{1}{\hat{\beta}} \leq \frac{d_1(x,y)}{d_2(x,y)} \leq \frac{1}{\hat{\alpha}} \implies \alpha d_2(x,y) \leq d_1(x,y) \leq \beta d_2(x,y)
+                    \]
+                    Thus the relation is symmetric.
 
-            \noindent\((2) \implies (1)\):
+                    \item Transitivity:
+                    Suppose that \(\hat{\alpha} d_1(x,y) \leq d_2(x,y) \leq \hat{\beta} d_1(x,y)\) and \(\tilde{\alpha} d_2(x,y) \leq d_3(x,y) \leq \tilde{\beta} d_2(x,y)\). Let \(\alpha = \hat{\alpha}\tilde{\alpha}, \beta = \hat{\beta}\tilde{\beta}\). We have
+                    \[
+                        \alpha d_1(x,y) = \hat{\alpha}\tilde{\alpha} \leq \tilde{\alpha}d_2(x,y) \leq d_3(x,y) \leq \tilde{\beta}d_2(x,y) \leq \hat{\beta}\tilde{\beta}d_1(x,y) = \beta d_1(x,y)
+                    \]
+                    \[
+                        \implies \alpha d_1(x,y) \leq d_3(x,y) \leq \beta d_1(x,y)
+                    \]
+                    Thus the relation is transitive.
+                \end{enumerate}
+                Therefore, the relation is an equivalence relation.
+            \end{proof}
             
-            We will show using induction on \(n\) that if for some open ball in \(\mathbb{R} ^n\) , \(S \subseteq B_2(p, r)\),  then \(S \subseteq B_1(p, \sqrt{n} r )\) 
+            We want to show that \(\|\cdot\|_1, \|\cdot\|_2, \|\cdot\|_{\max}\) are strongly equivalent to each other. First, we will show that \(\|\cdot\|_1 \sim \|\cdot\|_{\max}\) and \(\|\cdot\|_2 \sim \|\cdot\|_{\max}\). We have that
+            \[
+                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{x_i,y_i\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \sum_{i=1}^n |x_i - y_i|
+            \]
+            From this, we have the inequalities
+            \[
+                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \max _{1\leq i\leq n} \{x_i,y_i\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \text{ and } \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{x_i,y_i\} \leq \sum_{i=1}^n |x_i - y_i|
+            \]
+            \[
+                \implies \frac{1}{n} \|x - y\|_2 \leq \|x - y\|_{\max} \leq \|x - y\|_2 \text{ and } \frac{1}{n} \|x - y\|_1 \leq \|x - y\|_{\max} \leq \|x - y\|_1
+            \]
+            \[
+                \implies \|\cdot\|_2 \sim \|\cdot\|_{\max} \text{ and } \|\cdot\|_1 \sim \|\cdot\|_{\max}
+            \]
+            Using transitivity and symmetry we can also conclude that \(\|\cdot\|_1 \sim \|\cdot\|_2\). Thus every metric is strongly equivalent to one another, meaning that for any open ball on one of the three metrics, we can find another open ball of a different metric that is a super set of the former open ball, from which our claim follows immediately after.
+            \pagebreak
 
-            Let \(n = 1\). Suppose (2) is true. Fix \(x \in S \subseteq \mathbb{R} \). Then by (2),
-            \[
-                r > \left\lVert x - p \right\rVert _2 = \sqrt{(x - p)^2} = \left\vert x - p \right\vert = \left\lVert x - p \right\rVert _1 \implies S \subseteq B_1(p, \sqrt{1} \cdot r) 
-            \]
-            Thus the claim holds for \(n = 1\). Now suppose the claim holds for \(n = k\). Assume (2) is true. Let \(x \in S\). By (2),
-            \[
-                \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i=1}^{k+1} (x_i - p_i)^2} < r \implies \sum_{i=1}^{k+1} (x_i - p_i)^2 < r^2\tag{*}
-            \]
-            We want to show that \(x \in B_1(p, \sqrt{n} r)\), or
-            \[
-                \left\lVert x - p \right\rVert _1 = \sum_{i=0}^{k+1} \left\vert x_i - p_i \right\vert < \sqrt{n} r \iff \left(\sum_{i=0}^{k+1} \left\vert x_i - p_i \right\vert\right)^2 < nr^2 
-            \]
-            We have
-            \[
-                \left(\sum_{i=0}^{k+1} \left\vert x_i - p_i \right\vert\right)^2 = \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert + \left\vert x_{k+1} - p_{k+1} \right\vert \right)^2
-            \]
-            \[
-                = \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right)^2 + 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + \left\vert x_{k+1} - p_{k+1} \right\vert ^2 \tag{**}
-            \]
-            Manipulating the inequality from (*), we obtain
-            \[
-                \sum_{i=1}^{k} (x_i - p_i)^2 < r^2 - \left\vert x_{k+1} - p_{k+1}  \right\vert ^2
-            \]
-            which implies that \((x_1, x_2, \dots , x_k)\) is in the open ball \(B_2(p, r)\) on \(\mathbb{R} ^k\). From the indudction hypothesis,
-            \[
-                (**) < k(r^2 - \left\vert x_{k+1} - p_{k+1}  \right\vert ^2) + 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + r^2 - \sum_{i=1}^{k} (x_i - p_i)^2
-            \]
-            \[
-                = (k+1)r^2 - \left(k\left\vert x_{k+1} - p_{k+1}  \right\vert ^2 - 2\left\vert x_{k+1} - p_{k+1} \right\vert \left(\sum_{i=0}^{k} \left\vert x_i - p_i \right\vert\right) + \sum_{i=1}^{k} (x_i - p_i)^2\right)
-            \]
-            \[
-                = (k+1)r^2 - \sum_{i=1}^k \left(\left\vert x_{k+1} - p_{k+1}  \right\vert ^2 - 2\left\vert x_{k+1} - p_{k+1} \right\vert\left\vert x_i - p_i \right\vert + (x_i - p_i)^2\right)
-            \]
-            \[
-                = (k+1)r^2 - \sum_{i=1}^k \left(\left\vert x_{k+1} - p_{k+1}  \right\vert - \left\vert x_i - p_i \right\vert \right) ^2 \leq (k+1)r^2
-            \]
-            In summary, we have that
-            \[
-                \left\lVert x - p \right\rVert _1 < \sqrt{k+1} r
-            \]
-            Thus \(x\) is in the open ball \(B_1(p, \sqrt{k+1} r)\), which means that (1) is true. By the principle of induction, the claim holds for all \(n \in \mathbb{N} \). 
+            \textbf{Pictures.}
+            \includegraphics[width=5cm, height=5cm]{12.png}
+            \includegraphics[width=5cm, height=5cm]{21.png}
+            \includegraphics[width=5cm, height=5cm]{13.png}
 
-            \noindent\((1) \implies (3)\):
-            Suppose (1). Then \(S\) is a subset of some open ball \(B_1(p, r)\). We will show that \(S \subseteq B_{max} (p, r)\).
-            
-            Let \(x \in S\). Then by (1):
-            \[
-                \left\lVert x - p \right\rVert _{\max} = \max_{1 \leq i \leq n} \{\left\vert x_i - p_i \right\vert \} \leq \sum_{i=1} ^n \left\vert x_i - p_i \right\vert = \left\lVert x - p \right\rVert _1 < r
-            \]
-            Thus \(x \in B_{\max} (p, r)\), so (3) is true.
-            
-            \noindent \((3) \implies (1)\):
-
-            Suppose that (3) holds true. Then for some open ball \(B_{\max}(p, r)\). We will show that \(S \subseteq B_1(p, nr)\).
-            
-            Let \(x \in S\). We have
-            \[
-                \left\lVert x - p \right\rVert _{1} = \sum_{i=1} ^n \left\vert x_i - p_i \right\vert \leq n\max_{0 \leq i \leq n} {\left\vert x_i - p_i \right\vert } = n \left\lVert x - p \right\rVert _{\max} < nr
-            \]
-            Thus \(x \in B_1(p, nr)\), which implies that (1) is true.
-
-            \noindent \((2) \implies (3)\):
-            
-            Suppose (2) is true. Then \(S \subseteq B_2(p,r)\), where \(B_2(p, r)\) is some open ball on the Euclidean norm. We want to show that \(S \subseteq B_{\max }(p, r)\). Indeed, we have
-            \[
-                \left\lVert x - p \right\rVert _{\max } = \max _{1 \leq i \leq n} \left\vert x_i - p_i \right\vert \leq \sqrt{\sum_{i=1} ^n \left\vert x_i - p_i \right\vert ^2} < r 
-            \] 
-            Thus \(S \subseteq B_{\max}(p, r)\), so (3) is true.
-            
-            \noindent \((3) \implies (2)\):
-            
-            Suppose that (3) holds true. Then for some open ball with the max-norm, \(S \subseteq B_{\max}(p, r)\). We will show that \(S \subseteq B_2(p, nr)\)
-            
-            Let \(x \in S\). Then be the triangle inequality,
-            \[
-                \left\lVert x - p \right\rVert _2 = \sqrt{\sum_{i = 1}^n \left\vert a_i - p_i \right\vert } \leq \sum_{i=1}^n \left\vert a_i - p_i \right\vert \leq n\max_{1 \leq i \leq n} \left\vert x_i - p_i \right\vert < n \left\lVert x - p \right\rVert _{\max} < nr
-            \]
-            Thus \(x \in B_2(p,nr)\), so (2) holds.
-            
-            \noindent Therefore, we have proven every implication to be true.
+            \includegraphics[width=5cm, height=5cm]{31.png}
+            \includegraphics[width=5cm, height=5cm]{23.png}
+            \includegraphics[width=5cm, height=5cm]{32.png}
 
         \end{proof}
     \end{exercise}
@@ -281,11 +233,11 @@
                 \[
                     T(x) \leq M \left\lVert x \right\rVert _X \text{ and } U(x) \leq N \left\lVert x \right\rVert _X \implies T(x) + U(x) \leq (M+N) \left\lVert x \right\rVert _X
                 \] 
-                Which implies that \(T+U\) is a member of \(B(X,Y)\). As well, from the first inequality,
+                Which implies that \(T+U\) is a member of \(B(X,Y)\). As well, from the first inequality, depending on if \(c \) is positive or negative, we have
                 \[
-                    T(x) \leq M \left\lVert x \right\rVert _X \implies cT(x) \leq  cM \left\lVert x \right\rVert _X
+                    T(x) \leq M \left\lVert x \right\rVert _X \implies cT(x) \leq  cM \left\lVert x \right\rVert _X \text{ or } -cT(x) \leq  -cM \left\lVert x \right\rVert
                 \]
-                Which implies that \(cT\) is a member of \(B(X,Y)\).
+                Note that if \(c=0\), \(cT = 0\). Regardless, this implies that \(cT\) is a member of \(B(X,Y)\).
 
                 Since \(0 \in B(X,Y)\)and \(B(X,Y)\) is closed under addition and scalar multiplication, \(B(X,Y)\) is a subspace of \(L(X,Y)\).
 
@@ -307,7 +259,7 @@
                 \[
                     0 \leq \left\lVert T(x) \right\rVert _Y
                 \]
-                It follows that \(T(x) = 0\).
+                It follows that \(\left\lVert T(x) \right\rVert  = 0 \implies T(x) = 0\).
 
                 To show nonnegativity, we note that for \(x \in X^\prime\),
                 \[
@@ -341,7 +293,7 @@
             \textbf{Claim.} \(\left\lVert T \right\rVert _{op} = \sqrt{\frac{3+\sqrt{5}}{2}} \)
 
             \begin{proof}
-                We will show that \(T(x,y)\) is bounded above by this value, and that equality is possible.
+                We will show that \(\|T(x,y)\| _2\) is bounded above by this value, and that equality is possible.
                 
                 Let \((x,y) \in \mathbb{R} ^2\) such that \(\sqrt{x^2 + y^2} \leq 1 \implies y \leq \pm \sqrt{1-x^2} \leq \sqrt{1-x^2}\).
                 For such \((x,y)\),

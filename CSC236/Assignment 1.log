@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.5)  18 SEP 2024 18:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  20 SEP 2024 00:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/night/Documents/Uni/CSC236/Assignment 1"
-(c:/Users/night/Documents/Uni/CSC236/Assignment 1.tex
+**"c:/Users/ethan/Documents/University/Course-Notes/CSC236/Assignment 1.tex"
+(c:/Users/ethan/Documents/University/Course-Notes/CSC236/Assignment 1.tex
 LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-08-16>
+L3 programming layer <2024-08-30>
 (c:/texlive/2024/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
 (c:/texlive/2024/texmf-dist/tex/latex/base/size11.clo
@@ -486,19 +486,19 @@ Overfull \hbox (2.78148pt too wide) detected at line 72
 [2] (./Assignment 1.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-08-16>
+L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `"Assignment 1".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14030 strings out of 473578
- 214650 string characters out of 5732243
- 1944960 words of memory out of 5000000
- 36718 multiletter control sequences out of 15000+600000
+ 14030 strings out of 473579
+ 214710 string characters out of 5732263
+ 634072 words of memory out of 5000000
+ 36717 multiletter control sequences out of 15000+600000
  563933 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,13n,80p,583b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,80p,607b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on "Assignment 1.pdf" (2 pages, 108279 bytes).
 PDF statistics:

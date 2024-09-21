@@ -24,19 +24,33 @@
 \begin{document}
 
 \noindent
-    {\large \textbf{MAT257 -- Week 1 Homework - Ethan Hua}}
+    {\large \textbf{MAT257 -- Week 1 Homework}}
 
 \exercise \due{9/13}
     Let $A_1,A_2,A_3,\ldots$ be a sequence of countable sets. Prove that $\bigcup_{i\geq 1} A_i$ is countable.
 
-\begin{proof}
-    Since \(A_i\) is countable, denote \(A_{ij}\) to be the \(j\)th element of set \(A_i\).
+    \noindent My previous submission did not take into account the fact that the sets could have been not disjoint. This resubmission should resolve that issue.
 
-    Define \(f: \bigcup_{i \ge 1} A_i \to \mathbb{N}\) as 
+
+    \noindent\textbf{Changelog:}\begin{enumerate}
+        \item Fixed the argument to address the non-disjoint case.
+    \end{enumerate}
+
+\begin{proof}
+    \textcolor{red}{Notice that \[\bigcup_{i \ge 1} A_i = A_1 \cup (A_2 \setminus A_1) \cup (A_3 \setminus (A_1 \cap A_2)) \cup \dots\] We define a new collection of sets \(\{B_i\}\) as follows:}
+    \textcolor{red}{
+        \[
+            B_1 = A_1
+        \] 
+        \[
+            B_k = A_k \setminus \left(\bigcap_{i=1}^{k-1} A_i\right) \text{, } k>1
+        \]
+    }
+    Since \(A_i\) is countable, denote \(A_{ij}\) to be the \(j\)th element of set \(A_i\). \textcolor{red}{Noting that \(\bigcup_{i \ge 1} A_i = \bigcup_{i \ge 1} B_i\), Define \(f: \bigcup_{i \ge 1} B_i \to \mathbb{N}\) as }
     \[
         f(A_{ij})=2^{i}3^{j}
     \]
-    We will show that \(f\) is injective. Let \(A_{pq}, A_{rs} \in  \bigcup_{i \geq 1} A_i\). Suppose that \(f(A_{pq} ) = f(A_{rs} )\). Then
+    We will show that \(f\) is injective. Let \(A_{pq}, A_{rs} \in \textcolor{red}{\bigcup_{i \geq 1} B_i}\). Suppose that \(f(A_{pq} ) = f(A_{rs} )\). Then
     \[
         2^p 3^q = 2^r 3^s
     \]
@@ -47,7 +61,7 @@
     \noindent Therefore by the Schröder–Bernstein theorem, \(|\bigcup_{i\geq 1} A_i | = |\mathbb{N} |\). Thus the set is countable.
 
 \end{proof}
-    
+\pagebreak
 \exercise \due{9/13}
     Let $X,Y,Z$ be three vector spaces. Prove that $L^2(X,Y;Z)$ is isomorphic to $L(X,L(Y,Z))$.
 

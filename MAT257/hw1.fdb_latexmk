@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1726342959.12681 "c:/Users/ethan/Documents/University/Course-Notes/MAT257/hw1.tex" "hw1.pdf" "hw1" 1726342959.78151 0
-  "c:/Users/ethan/Documents/University/Course-Notes/MAT257/hw1.tex" 1726342958 4874 b73e3bd7c35013e052812bda5dc74959 ""
+["pdflatex"] 1726854010.98696 "c:/Users/ethan/Documents/University/Course-Notes/MAT257/hw1.tex" "hw1.pdf" "hw1" 1726854012.11668 0
+  "c:/Users/ethan/Documents/University/Course-Notes/MAT257/hw1.tex" 1726854010 5647 bfcc52183788d6a72e5d47ab5e836f40 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1726287842 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1726284637 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1726284637 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -54,8 +54,8 @@
   "c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1726295378 5542416 d400e725470b266b0be98a49b18fd6f3 ""
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1726295784 3326052 4d51688e986988ccbfea2a5b51221503 ""
   "c:/texlive/2024/texmf.cnf" 1726295345 713 e69b156964470283e0530f5060668171 ""
-  "hw1.aux" 1726342959 155 2e07beb38e13186411bc85777b4612a9 "pdflatex"
-  "hw1.tex" 1726342958 4874 b73e3bd7c35013e052812bda5dc74959 ""
+  "hw1.aux" 1726854012 155 0f3b23efca22c34ac999ee9dd8092f9f "pdflatex"
+  "hw1.tex" 1726854010 5647 bfcc52183788d6a72e5d47ab5e836f40 ""
   (generated)
   "hw1.aux"
   "hw1.log"
