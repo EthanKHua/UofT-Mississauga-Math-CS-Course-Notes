@@ -106,6 +106,12 @@
 
     \begin{enumerate}[label=(\alph*)]
         \item Prove that every bounded sequence in $(\R^d,\|\cdot\|_2)$ has a convergent subsequence.
+        
+        \begin{proof}
+            We take the Bolzano-Weierstrass Theorem in \(\mathbb{R}\) for granted and use this to prove it for \(\mathbb{R}^d\). We will do this using induction on \(d\). When \(d=1\), it follows trivially from the theorem in \(\mathbb{R}\).
+
+            Now suppose that the claim is true for some \(d = k\), for some \(k \in \mathbb{N}\). Let \((a_n)_{n\geq1} \) be a bounded sequence in \((\R^k,\|\cdot\|_2)\). Define another sequence \((b_n)_{n\geq 1}\) in \(\mathbb{R}^{k-1}\) such that \(b_i\) is the first \(k-1\) components of \(a_i\). From our assumption, \(b_i\) has a convergent subsequence \((b_{n_i})_{i\geq1}\). Consider the sequence \((a_{n_i})_{i\geq0}\).
+        \end{proof}
         \item Give an example of a normed vector space $(X,\|\cdot\|)$ containing a sequence $(x_n)$ which has no convergent subsequences.
     \end{enumerate}
 \end{document}
