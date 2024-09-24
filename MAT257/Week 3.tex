@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{emoji}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \setcounter{section}{3}
+    \section{Week 4}
+    \noindent\textbf{Solvers:} Sanchit, Ethan, Udu
+    
+    \noindent\textbf{Writeup:} Ethan
+    
+    \textbf{Exercise 4.10.} Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces, and let $f:X\rightarrow Y$ be a function. Prove that if \(f\) is continuous, then $f^{-1}(U)$ is an open subset of $X$ if $U$ is an open subset of $Y$.
+
+    \begin{proof}
+        Suppose that \(f\) is continuous. Let \(U\) be an open subset of \(Y\). We will now show that \(f^{-1} (U)\) is an open subset of \(X\). Let \(x_0 \in f^{-1} (U)\). It follows that \(f(x_0) \in U\). We need to find an open ball centered around \(x_0\) such that it is a subset of \(f^{-1} (U)\).
+        
+        Since \(U\) is open, there exists an \(\varepsilon > 0\) such that \(B_Y(f(x_0), \varepsilon) \subseteq U\). By the continuity of \(f\), there is a \(\delta > 0\) such that \(d_X (x_0, x) < \delta \implies d_Y (f(x_0), f(x)) < \varepsilon\).
+        
+        Take the open ball \(B_X(x_0, \delta)\) in \(X\). We want to show that \(B_X (x_0, \delta) \subseteq f^{-1} (U)\).
+
+        Let \(x \in B_X (x_0, \delta)\). Then \(d_X(x_0, x) < \delta\), which implies that \(d_Y (f(x_0), f(x)) < \varepsilon\) from continuity. It follows that \(f(x) \in B_Y (f(x_0), \varepsilon) \subseteq U\). By definition, this means that \(x \in f^{-1} (U)\). Thus \(B_X (x_0, \delta) \subseteq f^{-1} (U)\), which means that \(f^{-1} (U)\) is an open subset of \(X\).
+
+    \end{proof}
+\end{document}
