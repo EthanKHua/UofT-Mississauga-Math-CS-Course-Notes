@@ -57,43 +57,16 @@
         Now we show that the converse is not necessarily true. Let \(S = B_\infty (0, 1)\). This is an open subset of \((C[0,1],\|\cdot\|_\infty)\). Consider \(f(x) = 0 \in B_\infty (0, 1)\). For every \(\varepsilon > 0\), we can always find \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon}\). Let \(g(x) = x^{n-1}\). Since \(\int _0^1 g(x)dx = \frac{1}{n} < \varepsilon\), \(g(x) \in B_1(0, \varepsilon)\). But \(g(1) = 1\), which means that \(g(x) \notin B_\infty (0, 1)\). Thus \(f\) is not an interior point of \(B_\infty (0, 1)\) with respect to the 1-norm, which means that \(B_\infty (0, 1)\) is not an open subset of \((C[0,1],\|\cdot\|_1)\).
         
     \end{proof}
+    \exercise Let $X$ be any set. The \textbf{diagonal} of $X\times X$ is the following set:
+    \[ \Delta = \{(x,x) : x \in X\}. \]
+    Prove that if $(X,d)$ is a metric space, then $\Delta$ is a closed subset of $X\times X$ (with respect to the product metric).
     \exercise\textit{Can linear subspaces be open and/or closed?}
 
     \begin{enumerate}[label=(\alph*)]
         \item Let $C^\infty[0,1]$ denote the set of infinitely differentiably functions $f:[0,1]\rightarrow \R$. Prove that $C^\infty[0,1]$ is \textit{not} a closed subset of $(C[0,1],\|\cdot\|_\infty)$.
 
         \begin{proof}
-            To show that this set is not closed, we just need to find a limit point that is not an element of the set. Let \(f(x) = |x-\frac{1}{2}|\). Clearly \(f \notin C^{\infty} [0,1]\). To prove \(f\) is a limit point of \(C^{\infty} [0,1]\), first let \(\varepsilon > 0\) and consider the open ball \(B(f, \varepsilon)\). There exists an \(n \in \mathbb{N}\) such that \(n + 1 > \frac{1}{\varepsilon} \implies asdfasfas\). Let \[g_n(x) = \int _\frac{1}{2}^x \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt \text{, } x \in [0,1] \]
-
-            Since the integrand is constructed using infinitely differentiable functions, \(g_n\) is infinitely differentiable as well, thus \(g_n \in C^{\infty}[0,1]\). Notice that \(g_n(1) = \int _\frac{1}{2}^1 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt\). If we perform the substitution \(u = 1-t\), we see that
-            \[
-                g_n(1) = \int _\frac{1}{2}^1 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt = -\int _\frac{1}{2}^0 \frac{e^{-\frac{n}{1-u}}-e^{-\frac{n}{u}}}{e^{-\frac{n}{1-u}}+e^{-\frac{n}{u}}} du = g_n(0)
-            \]
-            Thus we can conclude that
-            \[
-                g_n(1) = \frac{1}{2}(g_n(1) + g_n(0)) = \frac{1}{2}\left(\int _\frac{1}{2}^1 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{t}}+e^{-\frac{n}{1-t}}} dt + \int _\frac{1}{2}^0 \frac{e^{-\frac{n}{t}}-e^{-\frac{n}{1-t}}}{e^{-\frac{n}{1-t}}+e^{-\frac{n}{t}}} dt\right) = \frac{1}{2} \left(\right)
-            \]
-            which we can solve by using the substitution 
-            
-            We compute \(\|f-g_n\| _\infty = \sup \{|f(x) - g_n(x)| : x \in [0,1]\}\).
-
-            Let \(h(x) = f(x) - g_n(x)\). We try to maximize \(|h(x)|\). Taking its derivative with respect to \(x\), we get
-            \[
-                h^\prime(x) = f^\prime(x) - g_n^\prime(x) = \frac{x-\frac{1}{2}}{|x-\frac{1}{2}|} - \frac{e^{-\frac{n}{x}}-e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}}
-            \]
-            There is a critical point at \(x = \frac{1}{2}\) since \(h^\prime(\frac{1}{2})\) is undefined. Otherwise, if \(x > \frac{1}{2}\),
-            \[
-                h^\prime(x) = 1 - \frac{e^{-\frac{n}{x}}-e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} = \frac{2e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} > 0
-            \]
-            If \(x < 0\),
-            \[
-                h^\prime(x) = -1 - \frac{e^{-\frac{n}{x}}-e^{-\frac{n}{1-x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} = \frac{-2e^{-\frac{n}{x}}}{e^{-\frac{n}{x}}+e^{-\frac{n}{1-x}}} < 0
-            \]
-            Checking all critical points and endpoints, we see that
-            \[
-                h(\frac{1}{2}) = 0
-                h(0) = 
-            \]
+            To show that this set is not closed, we just need to find a limit point that is not an element of the set. Let \(f(x) = |x-\frac{1}{2}|\). Clearly \(f \notin C^{\infty} [0,1]\). To prove \(f\) is a limit point of \(C^{\infty} [0,1]\), first let \(\varepsilon > 0\) and consider the open ball \(B(f, \varepsilon)\). There exists an \(n \in \mathbb{N}\) such that \(n + 1 > \frac{1}{\varepsilon} \implies asdfasfas\). 
             
         \end{proof}
 
@@ -110,8 +83,43 @@
         \begin{proof}
             We take the Bolzano-Weierstrass Theorem in \(\mathbb{R}\) for granted and use this to prove it for \(\mathbb{R}^d\). We will do this using induction on \(d\). When \(d=1\), it follows trivially from the theorem in \(\mathbb{R}\).
 
-            Now suppose that the claim is true for some \(d = k\), for some \(k \in \mathbb{N}\). Let \((a_n)_{n\geq1} \) be a bounded sequence in \((\R^k,\|\cdot\|_2)\). Define another sequence \((b_n)_{n\geq 1}\) in \(\mathbb{R}^{k-1}\) such that \(b_i\) is the first \(k-1\) components of \(a_i\). From our assumption, \(b_i\) has a convergent subsequence \((b_{n_i})_{i\geq1}\). Consider the sequence \((a_{n_i})_{i\geq0}\).
+            Now suppose that the claim is true for some \(d = k\), for some \(k \in \mathbb{N}\). Let \((a_n)_{n\geq1} \) be a bounded sequence in \((\R^k,\|\cdot\|_2)\). Define another sequence \((b_n)_{n\geq 1}\) in \(\mathbb{R}^{k-1}\) such that \(b_i\) is the first \(k-1\) components of \(a_i\). From our assumption, \(b_i\) has a convergent subsequence \((b_{n_i})_{i\geq1}\). Consider another sequence \((c_{n_i})_{i\geq0}\) in \(\mathbb{R}\) , where \(c_{n_i}\) is equal to the last component of \(a_{n_i}\). By the Theorem in \(\mathbb{R}\), \((c_{n_i})_{i\geq1}\) has a convergent subsequence \((c_{n_{m_i}})_{i\geq1}\). Suppose that \((b_{n_{m_i}})_{i\geq1}\) converges to \(B = (B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converges to \(C\). We claim that \((a_{n_{m_i}})_{i\geq1}\) is our desired subsequence, which converges to \((B_1, B_2, \dots, B_{k-1}, C)\).
+
+            Let \(\varepsilon > 0\). Since \((B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converge,
+            \[
+                \exists N_b , N_c > 0 \text{ such that } n_b > N_b \implies \| b_{n_b} - B \| _2 < \frac{\varepsilon}{2}\text{ and } n_c > N_c \implies | c_{n_c} - C | < \frac{\varepsilon}{2}
+            \]
+            Let \(N = \max \{N_b, N_c\}\). Let \(n \in \mathbb{N}\), \(n > N\). Then
+            \[
+                \|a_n - (B_1, B_2, \dots, B_{k-1}, C) \| _2 = \sqrt{(a_1 - B_1)^2 + (a_2 - B_2)^2 + \dots + (a_{k-1} - B_{k-1})^2 + (a_k - C)^2} 
+            \]
+            Using an inequality that I don't know the name of, we have
+            \[
+                \sqrt{(a_1 - B_1)^2 + (a_2 - B_2)^2 + \dots + (a_{k-1} - B_{k-1})^2 + (a_k - C)^2}
+            \]
+            \[
+                \leq \sqrt{(a_1 - B_1)^2 + (a_2 - B_2)^2 + \dots + (a_{k-1} - B_{k-1})^2} + \sqrt{(a_k - C)^2} = \| b_n - B \| _2 + | c_n - C | _2
+            \]
+            \[
+                < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+            \]
+            Thus \((a_{n_{m_i}})_{i\geq1}\) converges, which means that \((a_n)_{n\geq1}\) does indeed have a convergent subsequence. By the principle of induction, the Bolzano-Weierstrass Theorem holds in \((\mathbb{R}^d, \|\cdot\|_2)\) and we are done.
+
         \end{proof}
-        \item Give an example of a normed vector space $(X,\|\cdot\|)$ containing a sequence $(x_n)$ which has no convergent subsequences.
+        \item Give an example of a normed vector space $(X,\|\cdot\|)$ containing a \textcolor{red}{(bounded?)} sequence $(x_n)$ which has no convergent subsequences.
+        
+        \begin{proof}
+            Consider the normed vector space \((\ell^{\infty}, \| \cdot \| _\infty)\). Let \((\vec{x_n})_{n\geq1}\) be a sequence in \((\ell^{\infty}, \| \cdot \| _\infty)\) defined by \(\vec{x_i}_k = \begin{dcases}
+                1, &\text{ if } k=i ;\\
+                0, &\text{ otherwise} .
+            \end{dcases}\)
+
+            Clearly \((\vec{x_n})_{n\geq1}\) is bounded. Let \((\vec{x_{n_i}})_{i\geq1}\) be a subsequence of \((\vec{x_n})_{n\geq1}\). We will show that \((\vec{x_{n_i}})_{i\geq1}\) diverges.
+
+            For any \(L \in \ell^{\infty}\) Let \(\varepsilon = 1\). For any \(N \in \mathbb{N}\), we just take \(n = N\). Then
+            \[
+                \vec{x_i}_k
+            \]
+        \end{proof}
     \end{enumerate}
 \end{document}
