@@ -72,6 +72,33 @@
 
         \item Let $C$ be the set of \textbf{convergent} sequences of real numbers. Prove that $C$ is a closed subset of $(\ell^\infty,\|\cdot\|_\infty)$.
 
+        \begin{proof}
+            Let \((a_n)_{n\geq1}\) be a limit point of \(C\). Suppose for contradiction that \((a_n)\) diverges. For any \(\hat{\varepsilon} > 0\), there exists a convergent sequence \((b_n)_{n\geq1} \in B((a_n), \hat{\varepsilon})\). Say that \((b_n)\) converges to \(L\). Then since \((a_n)\) diverges,
+            \[
+                \exists \tilde{\varepsilon} > 0 \text{ such that } \forall N \in \mathbb{N} \text{, } \exists \tilde{n} \geq N \text{ such that } |a_{\tilde{n}} - L | \geq \tilde{\varepsilon} \geq \min \{\tilde{\varepsilon}, \hat{\varepsilon}\} 
+            \]
+            Let \(\varepsilon = |\hat{\varepsilon} - \tilde{\varepsilon}|\). Since \((b_n)\) converges, \(\exists N \in \mathbb{N} \text{ such that } n \geq N \implies |b_n - L| < \varepsilon\). If we take \(\tilde{n}\) for this \(N\), we have
+            \[
+                \tilde{\varepsilon} \leq |a_{\tilde{n}} - L | = |a_{\tilde{n}} - b_{\tilde{n}} + b_{\tilde{n}} - L | \leq |a_{\tilde{n}} - b_{\tilde{n}}| + |b_{\tilde{n}} - L |
+            \]
+            \[
+                |a_{\tilde{n}} - b_{\tilde{n}}| + |b_{\tilde{n}} - L | < \hat{\varepsilon} + |\hat{\varepsilon} - \tilde{\varepsilon}|
+            \]
+            If \(\hat{\varepsilon} < \tilde{\varepsilon}\),
+            \[
+                \hat{\varepsilon} + |\hat{\varepsilon} - \tilde{\varepsilon}| = \tilde{\varepsilon}
+            \]
+            If \(\hat{\varepsilon} \geq \tilde{\varepsilon}\),
+            \[
+                \hat{\varepsilon} + |\hat{\varepsilon} - \tilde{\varepsilon}| = 2\hat{\varepsilon} - \tilde{\varepsilon} \leq \hat{\varepsilon}
+            \]
+            regardless, this implies that
+            \[
+                \tilde{\varepsilon} < \tilde{\varepsilon}
+            \]
+            which is a contradiction. Thus \((a_n)\) is convergent, which means that it is in \(C^{\infty}\). Since every limit point is in the set itself, \(C^{\infty}\) is closed.
+
+        \end{proof}
         \item Let $(X,\|\cdot\|)$ be a normed vector space, and let $M$ be a \textcolor{red}{linear subspace} of $X$. Prove that $M$ is an open set if and only if $M=X$.
     \end{enumerate}
 
@@ -116,10 +143,15 @@
 
             Clearly \((\vec{x_n})_{n\geq1}\) is bounded. Let \((\vec{x_{n_i}})_{i\geq1}\) be a subsequence of \((\vec{x_n})_{n\geq1}\). We will show that \((\vec{x_{n_i}})_{i\geq1}\) diverges.
 
-            For any \(L \in \ell^{\infty}\) Let \(\varepsilon = 1\). For any \(N \in \mathbb{N}\), we just take \(n = N\). Then
+            For any \((L_k)_{k\geq1} \in \ell^{\infty}\) Let \(\varepsilon = \frac{1}{2}\). Let \(N \in \mathbb{N}\). If there are no values of \(p \geq N\) so that \(\|(\vec{x_p})_k - L_{k}\| _\infty < \varepsilon\), we are done. Now suppose the opposite, that there is a \(p \geq N\) such that \(\|(\vec{x_{p}})_k - L_{k}\|_\infty < \varepsilon\). Let \(n = p + 1\). By the reverse triangle inequality,
             \[
-                \vec{x_i}_k
+                \| (\vec{x_n})_k - L_k \|_\infty = \|(\vec{x_n})_k - (\vec{x_{p}})_k + (\vec{x_{p}})_k - L_k \| _\infty \geq \left|\|(\vec{x_n})_k - (\vec{x_{p}})_k \| _\infty - \|(\vec{x_{p}})_k - L_k \| _\infty \right| 
             \]
+            \[
+                = \left| 1 - \|(\vec{x_{p}})_k - L_k \| _\infty \right| \geq  1 - \varepsilon = \frac{1}{2}
+            \]
+            Thus \((\vec{x_{n_i}})_{i\geq1}\) diverges.
+
         \end{proof}
     \end{enumerate}
 \end{document}
