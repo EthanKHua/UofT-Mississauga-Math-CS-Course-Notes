@@ -57,9 +57,16 @@
         Now we show that the converse is not necessarily true. Let \(S = B_\infty (0, 1)\). This is an open subset of \((C[0,1],\|\cdot\|_\infty)\). Consider \(f(x) = 0 \in B_\infty (0, 1)\). For every \(\varepsilon > 0\), we can always find \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon}\). Let \(g(x) = x^{n-1}\). Since \(\int _0^1 g(x)dx = \frac{1}{n} < \varepsilon\), \(g(x) \in B_1(0, \varepsilon)\). But \(g(1) = 1\), which means that \(g(x) \notin B_\infty (0, 1)\). Thus \(f\) is not an interior point of \(B_\infty (0, 1)\) with respect to the 1-norm, which means that \(B_\infty (0, 1)\) is not an open subset of \((C[0,1],\|\cdot\|_1)\).
         
     \end{proof}
-    \exercise Let $X$ be any set. The \textbf{diagonal} of $X\times X$ is the following set:
-    \[ \Delta = \{(x,x) : x \in X\}. \]
-    Prove that if $(X,d)$ is a metric space, then $\Delta$ is a closed subset of $X\times X$ (with respect to the product metric).
+        \exercise Let $X$ be any set. The \textbf{diagonal} of $X\times X$ is the following set:
+        \[ \Delta = \{(x,x) : x \in X\}. \]
+        Prove that if $(X,d)$ is a metric space, then $\Delta$ is a closed subset of $X\times X$ (with respect to the product metric).
+
+        \begin{proof}
+            Suppose that \((X,d)\) is a metric space. We want to show that every limit point of \(\Delta\) is a member of \(\Delta\).
+
+            Let \((a,b) \in X\times X\) be a limit point of \(\Delta\).
+        \end{proof}
+
     \exercise\textit{Can linear subspaces be open and/or closed?}
 
     \begin{enumerate}[label=(\alph*)]
@@ -100,6 +107,17 @@
 
         \end{proof}
         \item Let $(X,\|\cdot\|)$ be a normed vector space, and let $M$ be a \textcolor{red}{linear subspace} of $X$. Prove that $M$ is an open set if and only if $M=X$.
+        
+        \begin{proof}
+            First, suppose that \(M=X\). Then for every \(x \in X\), any open ball in \(X\) is obviously a subset of \(X\). Thus \(M\) is open.
+
+            Next, suppose that \(M\) is an open subset of \(X\). To show that \(X=M\), it suffices to show that \(X \subseteq M\), since we already have \(M \subseteq X\).
+
+            Since \(M\) is a subspace, we know that \(0 \in M\). Thus there exists \(\varepsilon > 0\) such that \(B(0, \varepsilon) \subseteq M\). Let \(\beta\) be the basis for \(X\).
+            
+            For every \(\vec{x} \in \beta\), \(\left\lVert \frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \right\rVert = \frac{\varepsilon\|\vec{x}\|}{2\|\vec{x}\|} = \frac{\varepsilon}{2} < \varepsilon\), which means that \(\frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \in M\). Since \(M\) is a subspace, it follows that \(\beta \subseteq M \implies X = \operatorname{span} \beta \subseteq M\). Thus \(M=X\) and we are done.
+
+        \end{proof}
     \end{enumerate}
 
     \exercise \textit{The Bolzano--Weierstrass Theorem.}
