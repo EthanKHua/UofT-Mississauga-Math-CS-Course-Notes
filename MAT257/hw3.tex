@@ -57,24 +57,60 @@
         Now we show that the converse is not necessarily true. Let \(S = B_\infty (0, 1)\). This is an open subset of \((C[0,1],\|\cdot\|_\infty)\). Consider \(f(x) = 0 \in B_\infty (0, 1)\). For every \(\varepsilon > 0\), we can always find \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon}\). Let \(g(x) = x^{n-1}\). Since \(\int _0^1 g(x)dx = \frac{1}{n} < \varepsilon\), \(g(x) \in B_1(0, \varepsilon)\). But \(g(1) = 1\), which means that \(g(x) \notin B_\infty (0, 1)\). Thus \(f\) is not an interior point of \(B_\infty (0, 1)\) with respect to the 1-norm, which means that \(B_\infty (0, 1)\) is not an open subset of \((C[0,1],\|\cdot\|_1)\).
         
     \end{proof}
-        \exercise Let $X$ be any set. The \textbf{diagonal} of $X\times X$ is the following set:
-        \[ \Delta = \{(x,x) : x \in X\}. \]
-        Prove that if $(X,d)$ is a metric space, then $\Delta$ is a closed subset of $X\times X$ (with respect to the product metric).
+    \pagebreak
+    \exercise Let $X$ be any set. The \textbf{diagonal} of $X\times X$ is the following set:
+    \[ \Delta = \{(x,x) : x \in X\}. \]
+    Prove that if $(X,d)$ is a metric space, then $\Delta$ is a closed subset of $X\times X$ (with respect to the product metric).
 
-        \begin{proof}
-            Suppose that \((X,d)\) is a metric space. We want to show that every limit point of \(\Delta\) is a member of \(\Delta\).
+    \begin{proof}
+        We define \(d\) as the metric in \(X\) and \(d_X\) to be the product metric of \(X \times X\). Suppose that \((X,d)\) is a metric space. We want to show that every limit point of \(\Delta\) is a member of \(\Delta\).
 
-            Let \((a,b) \in X\times X\) be a limit point of \(\Delta\).
-        \end{proof}
+        Let \((a,b) \in X\times X\) be a limit point of \(\Delta\) and suppose for contradiction that \((a,b)\) is not an element of \(X\). This implies that \(d(a,b) > 0\). Consider the open ball \(B((a,b), d(a,b))\). For all \((x,x) \in X\), by the triangle inequality,
+        \[
+            d_X((a,b), (x,x)) = d(a,x) + d(b,x) \geq d(a,b)
+        \]
+        This means that no element lies within this open ball centered around \((a,b)\), contradicting the fact that \((a,b)\) is a limit point of \(X\). Thus \((a,b) \in X\).
 
+    \end{proof}
+    \pagebreak
     \exercise\textit{Can linear subspaces be open and/or closed?}
 
     \begin{enumerate}[label=(\alph*)]
         \item Let $C^\infty[0,1]$ denote the set of infinitely differentiably functions $f:[0,1]\rightarrow \R$. Prove that $C^\infty[0,1]$ is \textit{not} a closed subset of $(C[0,1],\|\cdot\|_\infty)$.
 
         \begin{proof}
-            To show that this set is not closed, we just need to find a limit point that is not an element of the set. Let \(f(x) = |x-\frac{1}{2}|\). Clearly \(f \notin C^{\infty} [0,1]\). To prove \(f\) is a limit point of \(C^{\infty} [0,1]\), first let \(\varepsilon > 0\) and consider the open ball \(B(f, \varepsilon)\). There exists an \(n \in \mathbb{N}\) such that \(n + 1 > \frac{1}{\varepsilon} \implies asdfasfas\). 
-            
+            To show that this set is not closed, we just need to find a limit point that is not an element of the set. Let \(f(x) = |x-\frac{1}{2}|\). Clearly \(f \notin C^{\infty} [0,1]\). To prove \(f\) is a limit point of \(C^{\infty} [0,1]\), first let \(\varepsilon > 0\) and consider the open ball \(B(f, \varepsilon)\). There exists an \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon^2} \implies \frac{1}{\sqrt{n}} < \varepsilon\).
+
+            Let \(g_n(x) = \sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}\). Since \(x^2 + \frac{1}{n}\) is always positive and the squareroot function is infinitely differentiable for all positive real numbers, \(g_n\) is infinitely differentiable for all \(x \in [0,1]\). Our goal is to find an upper bound for \(|f - g_n|\). For convenience, we perform the change of variables \(t = x - \frac{1}{2}\). Define a new function in \(C[-\frac{1}{2},\frac{1}{2}]\) as \(h(t) = f(t) - g_n(t)\). We find the global maximum and minimum of \(h\). Taking the derivative with respect to \(t\), we obtain
+            \[
+                h^\prime (t) = \frac{|t|}{t} - \frac{t}{\sqrt{t^2 + \frac{1}{n}}}
+            \]
+            We see that \(h\) has a critical point at \(t = 0\) since \(h^\prime(0)\) is undefined.
+            Note that \(\pm t \leq  |t| \leq \sqrt{t^2 + \frac{1}{n}} \implies \sqrt{t^2 + \frac{1}{n}} \pm t > 0\). If \(t > 0\),
+            \[
+                h^\prime (t) = 1 - \frac{t}{\sqrt{t^2 + \frac{1}{n}}} = \frac{\sqrt{t^2 + \frac{1}{n}} - t}{\sqrt{t^2 + \frac{1}{n}}} > 0
+            \]
+            If \(t < 0\),
+            \[
+                h^\prime (t) = -1 - \frac{t}{\sqrt{t^2 + \frac{1}{n}}} = \frac{-\sqrt{t^2 + \frac{1}{n}} - t}{\sqrt{t^2 + \frac{1}{n}}} < 0
+            \]
+            Therefore \(h\) acheives a local minimum at \(t = 0\).
+            We evaluate \(h\) at its critical points and endpoints:
+            \[
+                h\left(-\frac{1}{2}\right) = \frac{1}{2} - \sqrt{\frac{1}{4}+\frac{1}{n}}
+            \]
+            \[
+                h(0) = -\frac{1}{\sqrt{n}}
+            \]
+            \[
+                h\left(\frac{1}{2}\right) = \frac{1}{2} - \sqrt{\frac{1}{4}+\frac{1}{n}}
+            \]
+            By the monotonicity of the squareroot, \(-\frac{1}{\sqrt{n}} < \sqrt{\frac{1}{4} + \frac{1}{n}} < \frac{1}{2} - \sqrt{\frac{1}{4} + \frac{1}{n}} < 0\). Thus \(-\frac{1}{\sqrt{n}}\) is the global minimum of \(h\) and \(\frac{1}{2} - \sqrt{\frac{1}{4} + \frac{1}{n}}\) is the global maximum of \(h\). Note that \(|h(0)| > |h(\frac{1}{2})|\). Thus
+            \[
+                \|f-g_n\| _\infty = \sup_{0\leq x\leq 1}\{|f(x)-g_n(x)|\} = \sup_{-\frac{1}{2} \leq t \leq \frac{1}{2}} \{|h(t)\} = \frac{1}{\sqrt{n}} < \varepsilon
+            \]
+            Thus \(f\) is a limit point of \(C^{\infty}\), but is not a member of the set. Thus \(C^{\infty}\) is not closed.
+
         \end{proof}
 
         \item Let $C$ be the set of \textbf{convergent} sequences of real numbers. Prove that $C$ is a closed subset of $(\ell^\infty,\|\cdot\|_\infty)$.
@@ -94,17 +130,17 @@
         \item Let $(X,\|\cdot\|)$ be a normed vector space, and let $M$ be a \textcolor{red}{linear subspace} of $X$. Prove that $M$ is an open set if and only if $M=X$.
         
         \begin{proof}
-            First, suppose that \(M=X\). Then for every \(x \in X\), any open ball in \(X\) is obviously a subset of \(X\). Thus \(M\) is open.
+            First, suppose that \(M=X\). Then for every \(x \in X\), any open ball centered around \(x\) is obviously a subset of \(X\). Thus \(M\) is open.
 
-            Next, suppose that \(M\) is an open subset of \(X\). To show that \(X=M\), it suffices to show that \(X \subseteq M\), since we already have \(M \subseteq X\).
+            Next, suppose that \(M\) is an open. To show that \(X=M\), it suffices to show that \(X \subseteq M\), since we already have \(M \subseteq X\) from \(M\) being a subspace of \(X\).
 
-            Since \(M\) is a subspace, we know that \(0 \in M\). Thus there exists \(\varepsilon > 0\) such that \(B(0, \varepsilon) \subseteq M\). Let \(\beta\) be the basis for \(X\).
+            Since \(M\) is a subspace, we know that \(0 \in M\). Thus there exists \(\varepsilon > 0\) such that \(B(0, \varepsilon) \subseteq M\).
             
-            For every \(\vec{x} \in \beta\), \(\left\lVert \frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \right\rVert = \frac{\varepsilon\|\vec{x}\|}{2\|\vec{x}\|} = \frac{\varepsilon}{2} < \varepsilon\), which means that \(\frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \in M\). Since \(M\) is a subspace, it follows that \(\beta \subseteq M \implies X = \operatorname{span} \beta \subseteq M\). Thus \(M=X\) and we are done.
+            Let \(\beta\) be the basis for \(X\). For every \(\vec{x} \in \beta\), \(\left\lVert \frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \right\rVert = \frac{\varepsilon\|\vec{x}\|}{2\|\vec{x}\|} = \frac{\varepsilon}{2} < \varepsilon\), which means that \(\frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \in M\). Since \(M\) is a subspace, it follows that \(\beta \subseteq M \implies X = \operatorname{span} \beta \subseteq M\). Thus \(M=X\) and we are done.
 
         \end{proof}
     \end{enumerate}
-
+    \pagebreak
     \exercise \textit{The Bolzano--Weierstrass Theorem.}
 
     \begin{enumerate}[label=(\alph*)]
@@ -113,7 +149,7 @@
         \begin{proof}
             We take the Bolzano-Weierstrass Theorem in \(\mathbb{R}\) for granted and use this to prove it for \(\mathbb{R}^d\). We will do this using induction on \(d\). When \(d=1\), it follows trivially from the theorem in \(\mathbb{R}\).
 
-            Now suppose that the claim is true for some \(d = k\), for some \(k \in \mathbb{N}\). Let \((a_n)_{n\geq1} \) be a bounded sequence in \((\R^k,\|\cdot\|_2)\). Define another sequence \((b_n)_{n\geq 1}\) in \(\mathbb{R}^{k-1}\) such that \(b_i\) is the first \(k-1\) components of \(a_i\). From our assumption, \(b_i\) has a convergent subsequence \((b_{n_i})_{i\geq1}\). Consider another sequence \((c_{n_i})_{i\geq0}\) in \(\mathbb{R}\) , where \(c_{n_i}\) is equal to the last component of \(a_{n_i}\). By the Theorem in \(\mathbb{R}\), \((c_{n_i})_{i\geq1}\) has a convergent subsequence \((c_{n_{m_i}})_{i\geq1}\). Suppose that \((b_{n_{m_i}})_{i\geq1}\) converges to \(B = (B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converges to \(C\). We claim that \((a_{n_{m_i}})_{i\geq1}\) is our desired subsequence, which converges to \((B_1, B_2, \dots, B_{k-1}, C)\).
+            Now suppose that the claim is true for some \(d = k-1\), for some \(k \in \mathbb{N}\). Let \((a_n)_{n\geq1} \) be a bounded sequence in \((\R^k,\|\cdot\|_2)\). Define another sequence \((b_n)_{n\geq 1}\) in \(\mathbb{R}^{k-1}\) such that \(b_i\) is the first \(k-1\) components of \(a_i\). From our assumption, \(b_i\) has a convergent subsequence \((b_{n_i})_{i\geq1}\). Consider another sequence \((c_{n_i})_{i\geq0}\) in \(\mathbb{R}\) , where \(c_{n_i}\) is equal to the last component of \(a_{n_i}\). By the Theorem in \(\mathbb{R}\), \((c_{n_i})_{i\geq1}\) has a convergent subsequence \((c_{n_{m_i}})_{i\geq1}\). Since \((b_{n_i})_{i\geq1}\) converges, we know that \((b_{n_{m_i}})_{i\geq1}\) converges to the same value as well. Suppose that \((b_{n_{m_i}})_{i\geq1}\) converges to \(B = (B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converges to \(C\). We claim that \((a_{n_{m_i}})_{i\geq1}\) is our desired subsequence, which converges to \((B_1, B_2, \dots, B_{k-1}, C)\).
 
             Let \(\varepsilon > 0\). Since \((B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converge,
             \[
