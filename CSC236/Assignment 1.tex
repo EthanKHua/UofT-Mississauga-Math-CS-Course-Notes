@@ -27,7 +27,7 @@
     \begin{enumerate}[label=\alph*)]
         \item Prove \(\forall n \in \mathbb{N} , P(n)\).
         \begin{proof}
-            \noindent\textbf{Base Case.} To show \(P(0)\), consider any set A such that \(\left\vert A \right\vert = 0\). Then \(A = \varnothing \) and its only subset is \(\varnothing\) . Thus \(\left\vert \mathcal{P}(A) \right\vert = 1 = 2^0\), verifying that \(P(0)\) is true.
+            \noindent\textbf{Base Case.} To show \(P(0)\), consider any set A such that \(\left\vert A \right\vert = 0\). Then \(A = \varnothing \) and its only subset is \(\varnothing\). Thus \(\mathcal{P} (A) = \{\varnothing\} \implies \left\vert \mathcal{P}(A) \right\vert = 1 = 2^0\), verifying that \(P(0)\) is true.
 
             \noindent\textbf{Induction Step.} Suppose \(P(k)\) holds for some \(k \in \mathbb{N} \). Now \(P(k+1)\) will be proven to hold. Let \(A\) be a set such that \(\left\vert A \right\vert = k+1\). \(k+1\) is at least \(1\), so \(A\) possesses at least one element, which will be denoted as \(a\).
             
@@ -67,9 +67,13 @@
         \item How many fuctions are there with domain \(A\) and co-domain \(B\)?
         It can be shown using simple induction on \(m\) that the answer to this question is \(n^m\).
         \begin{proof}
+            First, particular edge cases will be examined.
             For \(n,m \in \mathbb{N} \), define the predicate
             \[
-                P(m) \colon \forall n \in \mathbb{N} \text{, there are } n^m \text{ functions with finite domain of size } m \text{ and finite co-domain of size } n
+                P(m) \colon \text{ For every positive natural } n \text{, there are } n^m \text{ functions with finite domain of size } m
+            \]
+            \[
+                \text{ and finite co-domain of size } n
             \]
             Fix \(m \in \mathbb{N}\).
 
@@ -96,4 +100,76 @@
 
         \end{proof}
     \end{enumerate}
+    \pagebreak
+    \noindent\textbf{Question 3.} In propositional logic, you have seen the connectives $\neg, \wedge, \vee, \rightarrow, $ and $\leftrightarrow$. Prove using structural induction that any proposition built using these connectives is equivalent to a proposition built only using $\neg, \rightarrow$.
+    \begin{proof}
+        The proof will be done using structural induction.
+
+        For a proposition \(P\), Define the predicate
+        \[
+            Q(P) : P \text{ is equivalent to some proposition built only using } \neg \text{, } \rightarrow
+        \]
+        \textbf{Base Case.} For all \(P_i(x_{j_1}, x_{j_2}, \dots, x_{j_k})\), they are equivalent to a proposition built only using \(\neg, \rightarrow\), which are themselves. Thus \(Q(P_i(x_{j_1}, x_{j_2}, \dots, x_{j_k}))\) holds.
+
+        \textbf{Induction Step.} Let \(A,B\) be propositions such that \(Q(A)\) and \(Q(B)\) hold. It follows that \(A\equiv C, B\equiv D\), where \(C, D\) are propositions built from only \(\neg \text{, } \rightarrow\). 5 recursive cases will be considered.
+
+        \begin{enumerate}
+            \item \(\neg A \equiv \neg C\), thus \(Q(\neg A)\) holds
+            \item \(A \implies B \equiv C \implies D\), \(Q(A \implies B)\) holds
+            \item \(A \land B \equiv C \land D\). It will be shown using a truth table that \(C \land D \equiv \neg(C\implies \neg D)\).
+            \begin{displaymath}
+                \begin{array}{c c | c | c}
+                    C & D & C \land D & \neg(C\implies \neg D)\\
+                    \hline
+                    T & T & T & T\\
+                    T & F & F & F\\
+                    F & T & F & F\\
+                    F & F & F & F\\
+                \end{array}
+            \end{displaymath}
+            Since \(A \land B \equiv \neg(C\implies \neg D)\), which is a proposition built from only \(\neg, \implies\). Thus \(Q(A \land B)\) holds.
+
+            \item \(A \lor B \equiv C \lor D\). It will be shown using a truth table that \(C \lor D \equiv \neg(\neg C\implies D)\).
+            \begin{displaymath}
+                \begin{array}{c c | c | c}
+                    C & D & C \lor D & \neg(\neg C\implies D)\\
+                    \hline
+                    T & T & T & T\\
+                    T & F & T & T\\
+                    F & T & T & T\\
+                    F & F & F & F\\
+                \end{array}
+            \end{displaymath}
+            Since \(A \lor B \equiv \neg(\neg C\implies D)\), which is a proposition built from only \(\neg, \implies\). Thus \(Q(A \lor B)\) holds.
+
+            \item \(A \iff B \equiv C \iff D\). It will be shown using a truth table that \(C \iff D \equiv \neg((C \implies D) \implies \neg(D \implies C))\).
+            \begin{displaymath}
+                \begin{array}{c c | c | c}
+                    C & D & C \iff D & \neg((C \implies D) \implies \neg(D \implies C))\\
+                    \hline
+                    T & T & T & T\\
+                    T & F & F & F\\
+                    F & T & F & F\\
+                    F & F & T & T\\
+                \end{array}
+            \end{displaymath}
+            Since \(C \iff D \equiv \neg((C \implies D) \implies \neg(D \implies C))\), which is a proposition built from only \(\neg, \implies\). Thus \(Q(A \iff B)\) holds.
+        \end{enumerate}
+        By the principle of structural induction, \(Q(P)\) holds for all propositions \(P\).
+        
+    \end{proof}
+    \pagebreak
+    \noindent\textbf{Question 4.} Consider the following two-pointer style Python program which finds whether a given string $s$ is a palindrome or not:
+    \begin{lstlisting}[language=Python]
+    def check_if_palindrome(s):
+        left = 0
+        right = len(s) - 1
+        while left < right:
+            if s[left] != s[right]:
+                return False
+            left += 1
+            right -= 1
+        return True
+    \end{lstlisting}
+    Prove correctness and termination. Clearly state the loop variant and the loopinvariant, and use induction properly.
 \end{document}
