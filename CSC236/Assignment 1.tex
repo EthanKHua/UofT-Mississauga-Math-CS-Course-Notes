@@ -64,39 +64,46 @@
     \pagebreak
     \noindent\textbf{Question 2.} Let \(n,m \in \mathbb{N}\). Let \(A, B\) be arbitrary finite sets of size \(m\) and \(n\) respectively.
     \begin{enumerate}[label=\alph*)]
-        \item How many fuctions are there with domain \(A\) and co-domain \(B\)?
-        It can be shown using simple induction on \(m\) that the answer to this question is \(n^m\).
+        \item How many functions are there with domain \(A\) and co-domain \(B\)? 
+        
+        It can be shown that the answer to this question is \(n^m\). For the sake of convenience, \(0^0\) will be defined to be equal to 1.
         \begin{proof}
-            First, particular edge cases will be examined.
-            For \(n,m \in \mathbb{N} \), define the predicate
+            Let \(m,n \in \mathbb{N}\) and \(A,B\) be sets of size \(m\) and \(n\), respectively. Recall that a function is well defined if and only if every element in the domain maps to a unique element in the codomain. Now consider the following cases:
+
+            If \(m=n=0\), a function is vacuously well defined. In this case, the number of functions is equal to \(1=0^0\).
+
+            If \(m=0, n\neq 0\), a function is also vacuously well defined, so the number of functions is equal to \(1=n^0\).
+
+            If \(m\neq 0, n=0\), there is no element in the codomain that an element in the domain can map to. This means that no function can be well defined, and thus there exist \(0 = 0^m\) functions.
+
+            The last case, when both \(m\) and \(n\) are positive, will be shown by simple induction on \(m\).
+            For \(m \in \mathbb{N}^+\), define the predicate
             \[
-                P(m) \colon \text{ For every positive natural } n \text{, there are } n^m \text{ functions with finite domain of size } m
+                P(m) \colon \forall n \in \mathbb{N}^+ \text{, there are } n^m \text{ functions with finite domain of size } m
             \]
             \[
                 \text{ and finite co-domain of size } n
             \]
-            Fix \(m \in \mathbb{N}\).
 
-            \textbf{Base Case.} Let \(m = 0\). There are no functions that can map to nothing, therefore the number of functions is \(0^n = 0\).
+            \textbf{Base Case.} If \(m = 1\), the domain of the function contains only one element. This one element can map to \(n\) possible elements in the codomain, resulting in \(n^1\) distinct functions. Thus \(P(1)\) holds.
 
-            \textbf{Induction Step.} Suppose that \(P(n, k)\) holds for every \(n \in \mathbb{N}\), but only for some \(k \in \mathbb{N}\). Let \(A, B\) be finite sets such that \(\left\vert A \right\vert = k+1\) and \(\left\vert B \right\vert = n\). \(A\) contains at least one element \(a\). Consider the set \(A\setminus\{a\}\). By the induction hypothesis, there are \(n^k\) functions with domain \(A\setminus\{a\}\) and co-domain \(B\). For every such function \(f_k\) and some \(b \in B\) , define a new function
-            \[
-                f_b(x) = \begin{dcases}
-                    f_k(x), &\text{ if } x \in A\setminus \{a\} ;\\
-                    b, &\text{ if } x=a;
-                \end{dcases}
-            \]
-            Every function that maps elements from \(A\) to \(B\) can be written in this form. Thus there are \(n^k*n = n^{k+1} \) fuctions that map from \(A\) to \(B\).
+            \textbf{Induction Step.} Suppose that \(P(k)\) holds for some positive integer \(k\). Then the domain \(A\) contains at least one element \(a\).
+            
+            Let \(n \in \mathbb{N}^+\). Consider the set \(A\setminus\{a\}\), which has \(k\) elements. By the induction hypothesis, there are \(n^k\) functions with domain \(A\setminus\{a\}\) and co-domain \(B\). For every such function, it is possible to expand its domain to include \(a\). Since \(a\) can map to \(n\) different elements in the codomain, which means that every function with domain \(A \setminus \{a\}\) and codomain \(B\) induce \(n\) distinct functions with domain \(A\) and codomain \(B\). Thus there are \(n^k \cdot n = n^{k+1} \) fuctions that map from \(A\) to \(B\). Therefore \(P(k+1)\) holds.
+
+            By the principle of simple induction, \(P(m)\) is true for all positive naturals \(m\).
+
+            
 
         \end{proof}
 
         \item Use part (a) to prove the original statement in Q1 directly without the use of induction.
         \begin{proof}
-            Let \(A\) be a set such that \(|A| = n\). Every subset \(A^\prime\) of \(A\) can be defined as a function \(f\) that maps elements of \(A\) to \(\{0,1\}\):
+            Let \(A\) be a set such that \(|A| = n\). Every subset \(A^\prime\) of \(A\) can be represented as a unique function \(f\) that maps elements of \(A\) to \(\{0,1\}\):
             \[
                 \text{For any } a \in A \text{, if } a \in A^\prime, f(a) = 1 \text{. Otherwise, } f(a) = 0
             \]
-            From the previous part, there are \(2^n\) different functions with domain \(A\) and co-domain \(\{0,1\}\), which also means that there are \(2^n\) subsets of \(A\), which implies that \(\mathcal{P} (A)=2^n\).
+            From the part a), there are \(2^n\) different functions with domain \(A\) and co-domain \(\{0,1\}\), which also means that there are \(2^n\) subsets of \(A\), which implies that \(\mathcal{P} (A)=2^n\).
 
         \end{proof}
     \end{enumerate}
@@ -105,7 +112,7 @@
     \begin{proof}
         The proof will be done using structural induction.
 
-        For a proposition \(P\), Define the predicate
+        For a proposition \(P\) built using the connectives $\neg, \wedge, \vee, \rightarrow, \leftrightarrow$, Define the predicate
         \[
             Q(P) : P \text{ is equivalent to some proposition built only using } \neg \text{, } \rightarrow
         \]
@@ -174,6 +181,52 @@
     Prove correctness and termination. Clearly state the loop variant and the loopinvariant, and use induction properly.
     
     \begin{proof}
-        
+        (Note: / will denote integer division.)
+
+        First, it will be proven that the program loop terminates. Define the loop variant to be \(right\). \(right\) is initialized to be \(\texttt{len}(s) -1\) and decrements by 1 every loop iteration. If \(\texttt{len}(s) = 0\), \(left > right\) and the loop never runs. Otherwise, \(right\) is a natural number that decreases every loop iteration. Thus the loop will terminate.
+
+        Now correctness will be proven. Let \(s\) be a string and \(i\) be a natural number. The loop invariant will be defined as
+        \[
+            P(i) \colon (0 \leq i \leq \texttt{len} (s)/2 + 1) \implies (\forall k > 0, k < i \implies s[k-1] = s[\texttt{len} (s) - k])
+        \]
+        The goal is to show that \(P(\texttt{len}(s)/2+1)\) is true after the last iteration of the loop is executed, which shows that the first half of the string is exactly the second half reversed. This will be accomplished by using induction on \(i\) to show that for every natural \(i\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
+
+        \textbf{Base Case.} Let \(i=1\). It is quite clear that \(0 \leq i \leq \texttt{len}(s)+1\) is always true. But for every \(k \in \mathbb{N}, k > 0\), \(k\) can never be less than 1. Therefore \(P(1)\) is vacuously true.
+
+        \textbf{Induction Hypothesis.} Suppose that for some natural \(i\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
+
+        \textbf{Induction Step.} Suppose that \(0 \leq i+1 \leq \texttt{len}(s)/2\). If \(i+1 \in \{0, 1\}\), then \(P(i+1)\) follows immediately. Otherwise, we have that \(1 \leq i+1 \leq \texttt{len}(s)/2-1 \implies 0 \leq i \leq \texttt{len}(s) /2 -2\), which implies the conclusion of the induction hypothesis. To show that \(P(i+1)\) is true at the beginning of the \(i+1\)th iteration, it suffices to show that when \(k=i\), \(s[k-1]=s[\texttt{len}(s) - k]\) after the \(i\)th iteration ends, since the values of \(k\) less than \(i\) are covered by the induction hypothesis.
+
+        Notice that \(left\) starts at 0 and increments once at the end of every iteration, and \(right\) starts at \(\texttt{len}(s) -1\) and decrements at the end of every iteration. Thus, at the start of the \(i\)th iteration, \(left=i-1\) and \(right=\texttt{len}(s) - i\).
+
+        Now, iterating through the loop, there are two cases to consider.
+        \begin{enumerate}
+           \item \(s[left] \neq s[right]\):
+           
+           This signifies that the string is not a palindrome and the program terminates by returning false. The \(i+1\)th iteration is never reached, so this case can be disregarded
+
+           \item \(s[left] = s[right]\):
+           
+           This implies \(s[i - 1] = s[\texttt{len}(s) - i]\). Here, the body of the if-statement block does not run and \(left\) and \(right\) get incremented and decremented.
+
+           Then, the \(i\)th iteration ends and the \(i+1\)th iteration begins. Note that \(s[k-1]=s[\texttt{len}(s) - k]\) for all \(k < i\), as well as when \(k=i\). Thus \(P(i+1)\) is true at the start of the \(i+1\)th iteration.
+        \end{enumerate}
+        By the principle of simple induction, \(P(i)\) is true at the start of the \(i\)th iteration of the loop for all natural numbers \(i\).
+
     \end{proof}
+    \pagebreak
+    \noindent\textbf{Question 5.} Answer the following:
+    \begin{enumerate}
+        \item \textbf{(2 pt)} For any natural $n$, how many $n$-ary connectives are there? You do not need to justify your answer using induction. \emph{Hint: Check Q2}.
+
+        \begin{proof}
+            \(n\)-ary connectives can be represented as a function from \(\{T, F\}^n\) to \(\{T, F\}\), so by using question 2, it can be concluded that there are \(2^{2^n}\) different \(n\)-ary connectives.
+
+        \end{proof}
+        \item \textbf{(13 pts)} Prove that any truth table that can ever exist is the truth table of some proposition built using only $\{\neg, \wedge\}$.
+        
+        \begin{proof}
+            Proceed using structural induction.
+        \end{proof}
+    \end{enumerate}
 \end{document}
