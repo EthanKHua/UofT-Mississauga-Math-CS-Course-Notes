@@ -118,15 +118,15 @@
         \]
         \textbf{Base Case.} For all \(P_i(x_{j_1}, x_{j_2}, \dots, x_{j_k})\), they are equivalent to a proposition built only using \(\neg, \rightarrow\), which are themselves. Thus \(Q(P_i(x_{j_1}, x_{j_2}, \dots, x_{j_k}))\) holds.
 
-        \textbf{Induction Step.} Let \(A,B\) be propositions such that \(Q(A)\) and \(Q(B)\) hold. It follows that \(A\equiv C, B\equiv D\), where \(C, D\) are propositions built from only \(\neg \text{, } \rightarrow\). 5 recursive cases will be considered.
+        \noindent\textbf{Induction Step.} Let \(A,B\) be propositions such that \(Q(A)\) and \(Q(B)\) hold. It follows that \(A\equiv C, B\equiv D\), where \(C, D\) are propositions built from only \(\neg \text{, } \rightarrow\). 5 recursive cases will be considered.
 
         \begin{enumerate}
             \item \(\neg A \equiv \neg C\), thus \(Q(\neg A)\) holds
-            \item \(A \implies B \equiv C \implies D\), \(Q(A \implies B)\) holds
-            \item \(A \land B \equiv C \land D\). It will be shown using a truth table that \(C \land D \equiv \neg(C\implies \neg D)\).
+            \item \(A \rightarrow B \equiv C \rightarrow D\), \(Q(A \rightarrow B)\) holds
+            \item \(A \land B \equiv C \land D\). It will be shown using a truth table that \(C \land D \equiv \neg(C \rightarrow \neg D)\).
             \begin{displaymath}
                 \begin{array}{c c | c | c}
-                    C & D & C \land D & \neg(C\implies \neg D)\\
+                    C & D & C \land D & \neg(C \rightarrow \neg D)\\
                     \hline
                     T & T & T & T\\
                     T & F & F & F\\
@@ -134,12 +134,12 @@
                     F & F & F & F\\
                 \end{array}
             \end{displaymath}
-            Since \(A \land B \equiv \neg(C\implies \neg D)\), which is a proposition built from only \(\neg, \implies\). Thus \(Q(A \land B)\) holds.
+            Since \(A \land B \equiv \neg(C \rightarrow \neg D)\), which is a proposition built from only \(\neg, \rightarrow\). Thus \(Q(A \land B)\) holds.
 
-            \item \(A \lor B \equiv C \lor D\). It will be shown using a truth table that \(C \lor D \equiv \neg(\neg C\implies D)\).
+            \item \(A \lor B \equiv C \lor D\). It will be shown using a truth table that \(C \lor D \equiv \neg(\neg C \rightarrow D)\).
             \begin{displaymath}
                 \begin{array}{c c | c | c}
-                    C & D & C \lor D & \neg(\neg C\implies D)\\
+                    C & D & C \lor D & \neg(\neg C \rightarrow D)\\
                     \hline
                     T & T & T & T\\
                     T & F & T & T\\
@@ -147,12 +147,12 @@
                     F & F & F & F\\
                 \end{array}
             \end{displaymath}
-            Since \(A \lor B \equiv \neg(\neg C\implies D)\), which is a proposition built from only \(\neg, \implies\). Thus \(Q(A \lor B)\) holds.
+            Since \(A \lor B \equiv \neg(\neg C \rightarrow D)\), which is a proposition built from only \(\neg, \rightarrow\). Thus \(Q(A \lor B)\) holds.
 
-            \item \(A \iff B \equiv C \iff D\). It will be shown using a truth table that \(C \iff D \equiv \neg((C \implies D) \implies \neg(D \implies C))\).
+            \item \(A \leftrightarrow B \equiv C \iff D\). It will be shown using a truth table that \(C \leftrightarrow D \equiv \neg((C \rightarrow D) \implies \neg(D \rightarrow C))\).
             \begin{displaymath}
                 \begin{array}{c c | c | c}
-                    C & D & C \iff D & \neg((C \implies D) \implies \neg(D \implies C))\\
+                    C & D & C \leftrightarrow D & \neg((C \rightarrow D) \rightarrow \neg(D \rightarrow C))\\
                     \hline
                     T & T & T & T\\
                     T & F & F & F\\
@@ -160,7 +160,7 @@
                     F & F & T & T\\
                 \end{array}
             \end{displaymath}
-            Since \(C \iff D \equiv \neg((C \implies D) \implies \neg(D \implies C))\), which is a proposition built from only \(\neg, \implies\). Thus \(Q(A \iff B)\) holds.
+            Since \(C \leftrightarrow D \equiv \neg((C \rightarrow D) \rightarrow \neg(D \rightarrow C))\), which is a proposition built from only \(\neg, \rightarrow\). Thus \(Q(A \leftrightarrow B)\) holds.
         \end{enumerate}
         By the principle of structural induction, \(Q(P)\) holds for all propositions \(P\).
         
@@ -178,12 +178,14 @@
             right -= 1
         return True
     \end{lstlisting}
-    Prove correctness and termination. Clearly state the loop variant and the loopinvariant, and use induction properly.
+    Prove correctness and termination. Clearly state the loop variant and the loop invariant, and use induction properly.
     
     \begin{proof}
         (Note: / will denote integer division.)
 
-        First, it will be proven that the program loop terminates. Define the loop variant to be \(right\). \(right\) is initialized to be \(\texttt{len}(s) -1\) and decrements by 1 every loop iteration. If \(\texttt{len}(s) = 0\), \(left > right\) and the loop never runs. Otherwise, \(right\) is a natural number that decreases every loop iteration. Thus the loop will terminate.
+        This program takes a string as an input and returns true if the string is a palindrome, and false if the string is not.
+
+        First, it will be proven that the program loop terminates. Define the loop variant to be \(right\). \(right\) is initialized to be \(\texttt{len}(s) -1\) and decrements by 1 every loop iteration. If \(\texttt{len}(s) = 0\), \(left > right\) and the loop never runs. Otherwise, \(right\) is an integer that is bounded below by \(left\) that decreases every loop iteration. Thus the loop will terminate.
 
         Now correctness will be proven. Let \(s\) be a string and \(i\) be a natural number. The loop invariant will be defined as
         \[
@@ -193,17 +195,17 @@
 
         \textbf{Base Case.} Let \(i=1\). It is quite clear that \(0 \leq i \leq \texttt{len}(s)+1\) is always true. But for every \(k \in \mathbb{N}, k > 0\), \(k\) can never be less than 1. Therefore \(P(1)\) is vacuously true.
 
-        \textbf{Induction Hypothesis.} Suppose that for some natural \(i\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
+        \textbf{Induction Hypothesis.} Suppose that for some positive natural \(i\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
 
-        \textbf{Induction Step.} Suppose that \(0 \leq i+1 \leq \texttt{len}(s)/2\). If \(i+1 \in \{0, 1\}\), then \(P(i+1)\) follows immediately. Otherwise, we have that \(1 \leq i+1 \leq \texttt{len}(s)/2-1 \implies 0 \leq i \leq \texttt{len}(s) /2 -2\), which implies the conclusion of the induction hypothesis. To show that \(P(i+1)\) is true at the beginning of the \(i+1\)th iteration, it suffices to show that when \(k=i\), \(s[k-1]=s[\texttt{len}(s) - k]\) after the \(i\)th iteration ends, since the values of \(k\) less than \(i\) are covered by the induction hypothesis.
+        \textbf{Induction Step.} Suppose that \(0 \leq i+1 \leq \texttt{len}(s)/2\). If \(i+1 \in \{0, 1\}\), then \(P(i+1)\) follows trivially. Otherwise, we have that \(1 \leq i+1 \leq \texttt{len}(s)/2-1 \implies 0 \leq i \leq \texttt{len}(s) /2 -2\), which implies the conclusion of the induction hypothesis. To show that \(P(i+1)\) is true at the beginning of the \(i+1\)th iteration, it suffices to show that when \(k=i\), \(s[k-1]=s[\texttt{len}(s) - k]\) after the \(i\)th iteration ends, since the values of \(k\) less than \(i\) are covered by the induction hypothesis.
 
-        Notice that \(left\) starts at 0 and increments once at the end of every iteration, and \(right\) starts at \(\texttt{len}(s) -1\) and decrements at the end of every iteration. Thus, at the start of the \(i\)th iteration, \(left=i-1\) and \(right=\texttt{len}(s) - i\).
+        Notice that \(left\) starts at 0 and increments once at the end of every iteration, and \(right\) starts at \(\texttt{len}(s) -1\) and decrements at the end of every iteration. Thus, at the start of the \(i\)th iteration, \(left\) and \(right\) will have been incremented or decremented \(i-1\) times, so \(left=i-1\) and \(right=\texttt{len}(s) - i\).
 
         Now, iterating through the loop, there are two cases to consider.
         \begin{enumerate}
            \item \(s[left] \neq s[right]\):
            
-           This signifies that the string is not a palindrome and the program terminates by returning false. The \(i+1\)th iteration is never reached, so this case can be disregarded
+           This signifies that the string is not a palindrome and the program terminates by returning false, satisfying the postconditions of the program. The \(i+1\)th iteration is never reached, so this case can be disregarded
 
            \item \(s[left] = s[right]\):
            
@@ -216,7 +218,7 @@
     \end{proof}
     \pagebreak
     \noindent\textbf{Question 5.} Answer the following:
-    \begin{enumerate}
+    \begin{enumerate}[label=\alph*)]
         \item \textbf{(2 pt)} For any natural $n$, how many $n$-ary connectives are there? You do not need to justify your answer using induction. \emph{Hint: Check Q2}.
 
         \begin{proof}
@@ -226,7 +228,80 @@
         \item \textbf{(13 pts)} Prove that any truth table that can ever exist is the truth table of some proposition built using only $\{\neg, \wedge\}$.
         
         \begin{proof}
-            Proceed using structural induction.
+            For positive naturals \(n\), define the predicate
+            \[
+                P(n) \colon \text{Any } n \text{-ary truth table is the truth table of some proposition built using only } \{ \neg, \land \}
+            \] 
+            The statement \(\forall n \in \mathbb{N}^+, P(n)\) will be proved using simple induction on \(n\).
+
+            \textbf{Base Case.} Let \(n = 1\). Let \(p\) be an arbitrary predicate. Then all the possible unary truth tables are
+            \[
+                \begin{array}{c|c}
+                    p &  Y \\
+                    \hline
+                    T &  T \\
+                    F &  T \\
+                \end{array}
+                \qquad
+                \begin{array}{c|c}
+                    p &  Y \\
+                    \hline
+                    T &  T \\
+                    F &  F \\
+                \end{array}
+                \qquad
+                \begin{array}{c|c}
+                    p &  Y \\
+                    \hline
+                    T &  F \\
+                    F &  T \\
+                \end{array}
+                \qquad
+                \begin{array}{c|c}
+                    p &  Y \\
+                    \hline
+                    T &  F \\
+                    F &  F \\
+                \end{array}
+            \]
+            which represent the propositions \(T, p, \neg p\), and \(F\) respectively. Since they are built using only \(\{\neg , \land\}\), \(P(1)\) is true.
+
+            \textbf{Induction Hypothesis.} Suppose that for some positive natural \(k\), \(P(k)\) is true. Now consider any \(n+1\)-ary truth table \(Y\) with inputs \(p_1, p_2, \dots, p_n, p_{n+1}\). The truth table can be seperated into two \(k\)-ary truth tables by fixing \(p_{k+1}\) to be either true or false. Label the truth tables by \(Y_T\) and \(Y_F\), respectively.
+            
+            By the induction hypothesis, there are propositions built from \(\{\neg, \land\}\) such that their truth tables are exactly equal to \(Y_T\) and \(Y_F\). These propositions will be denoted by \(\Theta _T(p_1, \dots, p_k)\) and \(\Theta _F (p_1, \dots, p_k)\).
+
+            Consider the \(k+1\)-ary truth function
+            \[
+                \Theta (p_1,p_2, \dots, p_k, p_{k+1}) \coloneqq (p_{k+1} \land \Theta _T(p_1, \dots, p_k)) \lor (\neg p_{k+1} \land \Theta _F (p_1, \dots, p_{k+1}))
+            \] 
+            It will be shown that this truth function's truth table is \(Y\).
+
+            Let \(p_1,p_2, \dots, p_k, p_{k+1} \in \{T, F\}\). There are two cases:
+            \begin{enumerate}
+                \item If \(p_{k+1}\) is \(T\), the output of \(Y\) is precisely \(\Theta _T(p_1, \dots, p_k)\). Notice that
+                \[
+                    \Theta (p_1, \dots, p_k, T) \equiv (T \land \Theta _T(p_1, \dots, p_k)) \lor (F \land \Theta _F (p_1, \dots, p_k)) \equiv \Theta _T(p_1, \dots, p_k)
+                \]
+                Thus \(\Theta (p_1, \dots, p_k, p_{k+1})\) matches the output of \(Y\) when \(p_{k+1}\) is true.
+                \item If \(p_{k+1}\) is \(F\), the output of \(Y\) is equivalent to \(\Theta _F (p_1, \dots, p_k)\). Note that
+                \[
+                    \Theta (p_1, \dots, p_k, F) \equiv (F \land \Theta _T(p_1, \dots, p_k)) \lor (T \land \Theta _F (p_1, \dots, p_k)) \equiv \Theta _F(p_1, \dots, p_k)
+                \]
+                Thus \(\Theta (p_1, \dots, p_k, p_{k+1})\) also matches the output of \(Y\) when \(p_{k+1}\) is false.
+            \end{enumerate}
+            Since \(\Theta (p_1, \dots, p_k, p_{k+1})\) matches the output of \(Y\) both when \(p_{k+1} = T\) and \(p_{k+1} = F\), it can be concluded that \(\Theta (p_1, \dots, p_k, p_{k+1})\) always matches the output of \(Y\).
+
+            Using De Morgan's law, it follows that
+            \[
+                \Theta (p_1, \dots, p_k, p_{k+1}) = (p_{k+1} \land \Theta _T(p_1, \dots, p_k)) \lor (\neg p_{k+1} \land \Theta _F (p_1, \dots, p_{k+1}))
+            \]
+            \[
+                = \neg (\neg(p_{k+1} \land \Theta _T(p_1, \dots, p_k)) \land \neg(\neg p_{k+1} \land \Theta _F (p_1, \dots, p_{k+1})))
+            \]
+            Therefore \(\Theta\) is a proposition built from only \(\{\neg, \land\}\), so \(P(k+1)\) is true.
+
+            By the principle of simple induction, every truth table is the truth table of some truth function.
+
         \end{proof}
     \end{enumerate}
 \end{document}
