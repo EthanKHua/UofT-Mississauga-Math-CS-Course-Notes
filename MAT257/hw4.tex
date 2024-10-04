@@ -59,4 +59,28 @@
 
         \item Give an example of a normed vector space $(X,\|\cdot\|)$ and a contraction mapping $f:X\rightarrow X$ such that $f$ does \textbf{not} have a fixed point.
     \end{enumerate}
+    \noindent\textbf{Question 12.} \textit{The Intermediate Value Theorem.}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item A subset $I\subseteq \R$ is called an \textbf{interval} if $a,b\in I$ implies $[a,b]\subseteq I$.
+
+        Let $I\subseteq \R$. Prove that $I$ is connected (with respect to the usual metric on $\R$) if and only if $I$ is an interval.
+        
+        \begin{proof}
+            We prove the equivalent statement \(I\) is disconnected if and only if \(I\) is not an interval.
+
+            Suppose \(I\) is disconnected. Then there exist disjoint, open, non-empty sets \(A,B \subseteq I\) such that \(A \cup B = I\). Take any \(a \in A\) and \(b \in B\). We can assume without loss of generality that \(a<b\) and consider the interval \([a,b]\).
+
+            Conversely, suppose that \(I\) is not an interval. Then for \(p<q \in I\), there is a \(c \in [p,q]\) such that \(c \notin I\). Define subsets \(A\) and \(B\) in \(I\) as \(A = \{x\in I \colon x < c\}\) and \(B = \{x\in I \colon x > c\}\). \(A\) and \(B\) are non-empty because \(p \in A\) and \(q \in B\). The sets are also disjoint by construction. To show that \(A\) is open, take any \(a \in A\).
+            
+            For this value of \(a\), take \(\varepsilon = c - a > 0\). For all \(x \in B_I(a, \varepsilon)\), note that \(x \in I\). if \(x < a\), immediately we have \(x < a < c \implies x \in A\). If \(x >a\), since \(x\) is within the open ball surrounding \(a\), \(x-a = |x-a| < c-a \implies x<c \implies x\in A\). Thus every element of \(A\) is an interior point, so \(A\) is open.
+
+        \end{proof}
+
+        \item Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces, and let $f:X\rightarrow Y$ be a continuous function. Prove that if $C$ is a connected subset of $X$, then $f(C)$ is a connected subset of $Y$.
+        
+        \item Recall the \textbf{Intermediate Value Theorem} from single-variable calculus. \textit{``Let $I\subseteq \R$ be an open interval and $f:I\rightarrow \R$ be a continuous function. Suppose that $a,b\in f(I)$ are two numbers such that $a<b$, and suppose that $a<y_0<b$. Then there exists $x_0\in I$ such that $f(x_0)=y_0$.''}
+
+        Prove that this theorem immediately follows from (a) and (b). Thus, (b) is a generalization of the Intermediate Value Theorem.
+    \end{enumerate}
 \end{document}
