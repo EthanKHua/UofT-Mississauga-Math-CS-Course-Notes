@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \setcounter{section}{3}
+    \section{Homework 4}
+    \noindent\textbf{Question 11.} Let $(X,d)$ be a metric space. A function $f:X\rightarrow X$ is called a \textbf{contraction mapping} if there exists a constant $M\in (0,1)$ such that
+    \[ d(f(x),f(y))\leq M d(x,y) \quad \text{for all $x,y\in X$.} \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose that $(X,d)$ is a complete metric space, and that $f:X\rightarrow X$ is a contraction mapping. Prove that $f$ has a unique fixed point; \textit{i.e.} there exists a unique point $x_0\in X$ such that $f(x_0)=x_0$.
+        
+        \begin{proof}
+            Let \((X, d)\) be a complete metric space and \(f\) be a contraction mapping. In this proof, for \(n \in \mathbb{N}\), we denote \(f^n\) to be a composition of \(f\). First, we will prove a lemma:
+
+            \textbf{Lemma.} \(\forall x \in X, k \in \mathbb{N}, d(x, f^n(x)) < C\), where \(C\) is a real constant.
+
+            To prove this, we will use an induction argument on \(k\).
+
+            Let \(k=1\).
+
+            Now suppose that the claim holds true for \(k=l\), where \(l \in \mathbb{N}\). Then by the triangle inequality,
+            \[
+                d(x, f^{l+1} (x)) \leq d(x, f^l (x)) + d(f^l(x), f^{l+1}(x))
+            \]
+        \end{proof}
+
+        \item Give an example of a normed vector space $(X,\|\cdot\|)$ and a contraction mapping $f:X\rightarrow X$ such that $f$ does \textbf{not} have a fixed point.
+    \end{enumerate}
+\end{document}
