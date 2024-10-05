@@ -43,18 +43,7 @@
         \item Suppose that $(X,d)$ is a complete metric space, and that $f:X\rightarrow X$ is a contraction mapping. Prove that $f$ has a unique fixed point; \textit{i.e.} there exists a unique point $x_0\in X$ such that $f(x_0)=x_0$.
         
         \begin{proof}
-            Let \((X, d)\) be a complete metric space and \(f\) be a contraction mapping. In this proof, for \(n \in \mathbb{N}\), we denote \(f^n\) to be a composition of \(f\). First, we will prove a lemma:
-
-            \textbf{Lemma.} \(\forall x \in X, k \in \mathbb{N}, d(x, f^n(x)) < C\), where \(C\) is a real constant.
-
-            To prove this, we will use an induction argument on \(k\).
-
-            Let \(k=1\).
-
-            Now suppose that the claim holds true for \(k=l\), where \(l \in \mathbb{N}\). Then by the triangle inequality,
-            \[
-                d(x, f^{l+1} (x)) \leq d(x, f^l (x)) + d(f^l(x), f^{l+1}(x))
-            \]
+            Let \((X, d)\) be a complete metric space and \(f\) be a contraction mapping. In this proof, for \(n \in \mathbb{N}\), we denote \(f^n\) to be a composition of \(f\) \(n\) times.
 
             Let \(x \in X\). Define the sequence \((x_i)_{i\in \mathbb{N}}\) by \(x_i = f^i(x)\). We show that this is a Cauchy sequence.
 
@@ -62,17 +51,17 @@
             \[
                 d(x_m,x_n) = d(f^m(x), f^n(x)) \leq M^m d(x, f^{n-m}(x))
             \]
-            By the triangle equality,
+            By the triangle inequality,
             \[
-                M^m d(x, f^{n-m}(x)) \leq M^m (d(x,f(x))+d(f(x), f^2(x))+d(f^2(x), f^3(x))+\cdots+d(f^{n-m-1} (x), f^{n-m} (x)))
+                M^m d(x, f^{n-m}(x)) \leq M^m \left(d(x,f(x))+d(f(x), f^2(x))+d(f^2(x), f^3(x))+\cdots+d(f^{n-m-1} (x), f^{n-m} (x))\right)
             \]
             \[
-                \leq M^m (d(x, f(x)) + Md(x,f(x)) + M^2d(x,f(x)) + \cdots + M^{n-m-1}d(x,f(x)))
+                \leq M^m \left(d(x, f(x)) + Md(x,f(x)) + M^2d(x,f(x)) + \cdots + M^{n-m-1}d(x,f(x))\right)
             \]
             \[
-                = M^m d(x,f(x)) (1 + M + \cdots + M^{n-m-1}) = \frac{M^m}{1-M}d(x,f(x))
+                = M^m d(x,f(x)) (1 + M + \cdots + M^{n-m-1}) = \frac{M^m(1-M^{n-m})}{1-M}d(x,f(x)) < \frac{M^m}{1-M}d(x,f(x))
             \]
-            Since \(0 < M < 1\), \(M^m < M^N\). Thus
+            Since \(0 < M < 1\) and \(M \geq N\), \(M^m < M^N\). Thus
             \[
                 \frac{M^m}{1-M}d(x,f(x)) < \frac{M^N}{1-M}d(x,f(x)) < \varepsilon
             \]
@@ -80,13 +69,24 @@
             \[
                 d(x_m, x_n) < \varepsilon
             \]
-            which shows that \((x_i)\) is a Cauchy sequence. By the completeness of \(X\), \((x_n)\) converges to some value which will be denoted as \(x_0\).
+            which shows that \((x_i)\) is a Cauchy sequence. By the completeness of \(X\), \((x_n)\) converges to some value which will be denoted as \(x_0\). In fact, \(x_0\) is the fixed point we want. To prove this, we will show that if \((x_n)\) converges to \(x_0\), then it also converges to \(f(x_0)\).
+
+            Suppose \((x_n) \to x_0\). Letting \(\varepsilon > 0\), there exists an \(N^\prime > 0\) such that \(d(f^n(x), x_0) < \varepsilon\) for all \(n \geq N^\prime\). Let \(N = N^\prime + 1\).  For all \(n \geq N\),
+            \[
+                d(f^n(x), f(x_0)) \leq Md(f^{n-1} (x), x_0)
+            \]
+            \(n-1 \geq N^\prime\) so
+            \[
+                Md(f^{n-1} (x), x_0) < \varepsilon
+            \]
+            We have shown that \((x_0)\) converges to both \(x_0\) and \(f(x_0)\). By the uniqueness of limits, we have \(x_0 = f(x_0)\).
+
         \end{proof}
 
         \item Give an example of a normed vector space $(X,\|\cdot\|)$ and a contraction mapping $f:X\rightarrow X$ such that $f$ does \textbf{not} have a fixed point.
         
         \begin{proof}
-            Let \(f: \mathbb{R}\setminus \{0\} \to \mathbb{R}\setminus \{0\}\) be defined by \(f(x) = \frac{x}{2}\), where \(\mathbb{R}\) is endowed with the usual metric in \(\mathbb{R}\) . First we verify that \(f\) is a contraction mapping. Let \(M = \frac{2}{3}\) Let \(x,y \in \mathbb{R}\setminus\{0\}\). Then indeed,
+            Let \(f: \mathbb{R}\setminus \{0\} \to \mathbb{R}\setminus \{0\}\) be defined by \(f(x) = \frac{x}{2}\), where \(\mathbb{R}\setminus \{0\}\) is endowed with the usual metric in \(\mathbb{R}\) . First we verify that \(f\) is a contraction mapping. Let \(M = \frac{2}{3}\) and \(x,y \in \mathbb{R}\setminus\{0\}\). Then indeed,
             \[
                 \left|f(x)-f(y)\right| = \left|\frac{x}{2} - \frac{y}{2}\right| = \frac{1}{2} \left|x - y\right| \leq \frac{2}{3} \left|x-y\right| = M\left|x-y\right|
             \]
@@ -109,11 +109,21 @@
         \begin{proof}
             We prove the equivalent statement \(I\) is disconnected if and only if \(I\) is not an interval.
 
-            Suppose \(I\) is disconnected. Then there exist disjoint, open, non-empty sets \(A,B \subseteq I\) such that \(A \cup B = I\). Take any \(a \in A\) and \(b \in B\). We can assume without loss of generality that \(a<b\) and consider the interval \([a,b]\).
+            Suppose \(I\) is disconnected. Then there exist disjoint, open, non-empty sets \(A,B \subseteq I\) such that \(A \cup B = I\). Take any \(a \in A\) and \(b \in B\). We can assume without loss of generality that \(a<b\).
 
-            Conversely, suppose that \(I\) is not an interval. Then for \(p<q \in I\), there is a \(c \in [p,q]\) such that \(c \notin I\). Define subsets \(A\) and \(B\) in \(I\) as \(A = \{x\in I \colon x < c\}\) and \(B = \{x\in I \colon x > c\}\). \(A\) and \(B\) are non-empty because \(p \in A\) and \(q \in B\). The sets are also disjoint by construction. To show that \(A\) is open, take any \(a \in A\).
+            Let \(S = [a,b]\cap A\). Notice that for all elements \(x \in S\), \(x \leq b\). Thus \(b\) is an upper bound for \(S\). Since \(\mathbb{R}\) possesses the least upper bound property, this set has a supremum \(m \in \mathbb{R}\). By the definition of least upper bound, we see that \(a \leq m \leq b\), so \(m \in [a,b]\). Now, we consider two cases.
+
+            If \(m \notin A\), it suffices to show that \(m \notin B\). Since \(m\) is the supremem of \(S\), we can always find an element in \(S\) that is greater than \(m - \varepsilon\), so there is always an element in \(A\) that is within the \(\varepsilon\) ball surrounding \(m\). Thus \(m\) is a limit point of \(A\), which means that it is impossible for \(m\) to be an element of \(B\), which is an open set. Thus we have that \(m \notin A \cup B = I\) as desired.
+
+            If \(m \in A\), then since \(A\) is an open subset of \(I\), \(m\) is an interior point of \(A\). But we also know that \(m\) is greater than or equal to any other element in \(A\). It must be that for some \(\varepsilon > 0\), the interval \((m, m + \varepsilon)\) is disjoint from \(I\). Otherwise, it contradicts the fact that \(A\) is open in \(I\). Then take any value \(x\) from the set \((m,\varepsilon) \cap [a, b]\) and notice that \(x \notin I\) but \(x \in [a,b]\).
+
+            In both cases, we have shown that \(I\) is not an interval.
+
+            Conversely, suppose that \(I\) is not an interval. Then for \(p<q \in I\), there is a \(c \in [p,q]\) such that \(c \notin I\). Define subsets \(A\) and \(B\) in \(I\) as \(A = \{x\in I \colon x < c\}\) and \(B = \{x\in I \colon x > c\}\). \(A\) and \(B\) are non-empty because \(p \in A\) and \(q \in B\). The sets are also disjoint by construction.
             
-            For this value of \(a\), take \(\varepsilon = c - a > 0\). For all \(x \in B_I(a, \varepsilon)\), note that \(x \in I\). if \(x < a\), immediately we have \(x < a < c \implies x \in A\). If \(x >a\), since \(x\) is within the open ball surrounding \(a\), \(x-a = |x-a| < c-a \implies x<c \implies x\in A\). Thus every element of \(A\) is an interior point, so \(A\) is open.
+            To show that \(A\) is open, first take any \(a \in A\). For this value of \(a\), take \(\varepsilon = c - a > 0\). For all \(x \in B_I(a, \varepsilon)\), note that \(x \in I\). As well, if \(x < a\), immediately we have \(x < a < c \implies x \in A\). If \(x >a\), since \(x\) is within the open ball surrounding \(a\), \(x-a = |x-a| < c-a \implies x<c \implies x\in A\). Thus every element of \(A\) is an interior point, so \(A\) is open.
+
+            We can use a very similar argument for the set \(B\), so the proof is omitted. We conclude that \(B\) is open as well. Therefore \(I\) is disconnected.
 
         \end{proof}
 
@@ -122,7 +132,7 @@
         \begin{proof}
             We examine the contrapositive: if \(f(C)\) is a disconnnected subset of \(Y\), then \(C\) is a disconnected subset of \(X\).
 
-            Suppose that \(f(C)\) is a disconnected subset of \(Y\). Then there exist non-empty, disjoint, open subsets \(A,B \subseteq f(C)\) such that \(A \cup B = f(C)\). Consider the subsets \(f^{-1} (A), f^{-1} (B) \subseteq C\). Notice that if \(x \in f^{-1} (A)\), \(f(x) \in A\). Since \(A,B\) are disjoint, \(f(x) \notin B\), so \(x \notin f^{-1} (B)\). We see that \(f^{-1} (A)\) and \(f^{-1} (B)\) are disjoint.
+            Suppose that \(f(C)\) is a disconnected subset of \(Y\). Then there exist non-empty, disjoint, open subsets \(A,B \subseteq f(C)\) such that \(A \cup B = f(C)\). Consider the sets \(f^{-1} (A), f^{-1} (B) \subseteq C\). Notice that if \(x \in f^{-1} (A)\), \(f(x) \in A\). Since \(A,B\) are disjoint, \(f(x) \notin B\), so \(x \notin f^{-1} (B)\). It follows that \(f^{-1} (A)\) and \(f^{-1} (B)\) are disjoint.
             
             Now, we will show that \(f^{-1} (A)\) is non-empty and open.
             
@@ -130,11 +140,11 @@
             
             To show that \(f^{-1} (A)\) is open, we use the topological definition of continuity of \(f\) to conclude that since \(A\) is open, \(f^{-1} (A)\) is open as well.
 
-            We can apply the same argument for \(f^{-1} (B)\) and show that the set is non-empty and open as well.
+            We can apply the same argument for \(f^{-1} (B)\), so \(B\) is non-empty and open as well.
 
-            Thus \(f^{-1} (A), f^{-1} (B)\) are non-empty, disjoint, and open. It remains to show that \(f^{-1} (A) \cup f^{-1} (B) = C\). The \(\subseteq\) direction is trivial, so we only show the other direction.
+            Thus \(f^{-1} (A), f^{-1} (B)\) are non-empty, disjoint, and open. It remains to show that \(f^{-1} (A) \cup f^{-1} (B) = C\). Immediately, we know that \(f^{-1} (A) \subseteq C\) and \(f^{-1} (B) \subseteq C\), so \(f^{-1} (A) \cup f^{-1} (B) \subseteq C\).
 
-            Let \(x \in C\). We know that \(f(x) \in f(C)\), which means that either \(f(x) \in A\) or \(f(x) \in B\). It follows that \(x \in f^{-1} (A)\) or \(x \in f^{-1} (B) \implies x \in f^{-1} (A) \cup f^{-1} (B)\). Thus \(f^{-1} (A) \cup f^{-1} (B) = C\).
+            For the other direction, let \(x \in C\). We know that \(f(x) \in f(C)\), which means that either \(f(x) \in A\) or \(f(x) \in B\). It follows that \(x \in f^{-1} (A)\) or \(x \in f^{-1} (B) \implies x \in f^{-1} (A) \cup f^{-1} (B)\). Thus \(f^{-1} (A) \cup f^{-1} (B) = C\).
 
             We conclude that \(C\) is a disconnected subset of \(X\), which shows that the contrapositive of the original statement is true, completing the proof.
             
@@ -145,7 +155,7 @@
         Prove that this theorem immediately follows from (a) and (b). Thus, (b) is a generalization of the Intermediate Value Theorem.
 
         \begin{proof}
-            Let \(a,b,y_0 \in f(I)\) and suppose that \(a<y_0<b\). Since \(I\) is an interval, by part (a) \(I\) is connected. As well, by continuity of \(f\), it follows from the result of (b) that \(f(I)\) is a connected subset of \(\mathbb{R}\). By (a) once again, \(f(I)\) is an interval. Thus \([a,b] \in f(I)\). Since \(a<y_0<b\), \(y_0 \in [a,b] \in f(I)\) which implies that \(y_0 = f(x_0)\) for some \(x_0 \in I\), which is what we were looking for.
+            Let \(a,b,y_0 \in f(I)\) and suppose that \(a<y_0<b\). Since \(I\) is an interval, by part (a) \(I\) is connected. As well, by continuity of \(f\), it follows from the result of (b) that \(f(I)\) is a connected subset of \(\mathbb{R}\). By (a) once again, \(f(I)\) is an interval. Thus \([a,b] \subseteq f(I)\). Since \(a<y_0<b\), \(y_0 \in [a,b] \subseteq f(I)\) which implies that \(y_0 = f(x_0)\) for some \(x_0 \in I\), which is what we were looking for.
         \end{proof}
     \end{enumerate}
 \end{document}

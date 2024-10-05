@@ -161,6 +161,15 @@
         \end{itemize}
         Among these statements, determine which implications are true and which are false. There are six implications to investigate. Supply proof or counterexample as appropriate. Include pictures.
         \\\\
+        \noindent\textbf{\textcolor{red}{Note.}} My previous submission did not consider when \(d(x,y) = 0\) when proving symmetry. As well, I made a typo when writing the max-norm. Finally, the last paragraph was not written out mathematically. This resubmission should fix those issues.
+    
+        \noindent\textbf{Changelog.}
+        \begin{enumerate}
+            \item Added an argument when proving symmetry to address division by 0
+            \item Fixed max-norm typo
+            \item Rewrote last explanation in a more mathematical fashion
+        \end{enumerate}
+
         \noindent\textbf{Claim.} Each statement implies all the other statements.
         \begin{proof}
             \textbf{Lemma.} Strong equivalence is an equivalence relation.
@@ -171,7 +180,7 @@
                     Let \(\alpha = \beta = 1\). Clearly \(d_1(x,y) \leq d_1(x,y) \leq d_1(x,y)\). Thus the relation is reflexive.
 
                     \item Symmetry:
-                    Suppose \(\hat{\alpha} d_1(x,y) \leq d_2(x,y) \leq \hat{\beta} d_1(x,y)\). Let \(\alpha = \frac{1}{\hat{\beta}}, \beta = \frac{1}{\hat{\alpha}}\). We see that
+                    Suppose \(\hat{\alpha} d_1(x,y) \leq d_2(x,y) \leq \hat{\beta} d_1(x,y)\). Let \(\alpha = \frac{1}{\hat{\beta}}, \beta = \frac{1}{\hat{\alpha}}\). \textcolor{red}{If \(x=y\), then \(d_1(x,y) = d_2(x,y) = 0\), so the inequality trivially holds.} \textcolor{red}{Otherwise, \(d_1(x,y) > 0, d_2(x,y) > 0\)}, so we see that
                     \[
                         \hat{\alpha} \leq \frac{d_2(x,y)}{d_1(x,y)} \leq \hat{\beta} \implies \frac{1}{\hat{\beta}} \leq \frac{d_1(x,y)}{d_2(x,y)} \leq \frac{1}{\hat{\alpha}} \implies \alpha d_2(x,y) \leq d_1(x,y) \leq \beta d_2(x,y)
                     \]
@@ -192,11 +201,11 @@
             
             We want to show that \(\|\cdot\|_1, \|\cdot\|_2, \|\cdot\|_{\max}\) are strongly equivalent to each other. First, we will show that \(\|\cdot\|_1 \sim \|\cdot\|_{\max}\) and \(\|\cdot\|_2 \sim \|\cdot\|_{\max}\). We have that
             \[
-                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{x_i,y_i\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \sum_{i=1}^n |x_i - y_i|
+                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{\textcolor{red}{|x_i - y_i|}\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \sum_{i=1}^n |x_i - y_i|
             \]
             From this, we have the inequalities
             \[
-                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \max _{1\leq i\leq n} \{x_i,y_i\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \text{ and } \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{x_i,y_i\} \leq \sum_{i=1}^n |x_i - y_i|
+                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \max _{1\leq i\leq n} \{\textcolor{red}{|x_i - y_i|}\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \text{ and } \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{\textcolor{red}{|x_i - y_i|}\} \leq \sum_{i=1}^n |x_i - y_i|
             \]
             \[
                 \implies \frac{1}{n} \|x - y\|_2 \leq \|x - y\|_{\max} \leq \|x - y\|_2 \text{ and } \frac{1}{n} \|x - y\|_1 \leq \|x - y\|_{\max} \leq \|x - y\|_1
@@ -204,10 +213,10 @@
             \[
                 \implies \|\cdot\|_2 \sim \|\cdot\|_{\max} \text{ and } \|\cdot\|_1 \sim \|\cdot\|_{\max}
             \]
-            Using transitivity and symmetry we can also conclude that \(\|\cdot\|_1 \sim \|\cdot\|_2\). Thus every metric is strongly equivalent to one another, meaning that for any open ball on one of the three metrics, we can find another open ball of a different metric that is a super set of the former open ball, from which our claim follows immediately after.
-            \pagebreak
+            Using transitivity and symmetry we can also conclude that \(\|\cdot\|_1 \sim \|\cdot\|_2\). Thus every metric is strongly equivalent to one another. \textcolor{red}{It follows that for any \(i,j \in \{1, 2, \max\}\), there exists \(c_{ij} > 0\) such that for all \(x,y \in \mathbb{R}^n\), \(d_i(x,y) \leq c_{ij} \cdot d_j(x,y)\), meaning that for \(S \subseteq \mathbb{R}^n\), if \(S\) is bounded with respect to the 1-norm, 2-norm, or the max-norm, it is bounded with respect to the other norms as well,} from which our claim follows immediately after.
 
             \textbf{Pictures.}
+
             \includegraphics[width=5cm, height=5cm]{12.png}
             \includegraphics[width=5cm, height=5cm]{21.png}
             \includegraphics[width=5cm, height=5cm]{13.png}

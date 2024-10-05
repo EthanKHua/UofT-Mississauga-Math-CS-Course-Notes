@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  20 SEP 2024 20:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  4 OCT 2024 23:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -309,7 +309,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 162--166
+Underfull \hbox (badness 10000) in paragraph at lines 162--165
 
  []
 
@@ -319,42 +319,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 162--166
 <./images/12.png, id=27, 416.30531pt x 417.05812pt>
 File: ./images/12.png Graphic file (type png)
 <use ./images/12.png>
-Package pdftex.def Info: ./images/12.png  used on input line 211.
+Package pdftex.def Info: ./images/12.png  used on input line 220.
 (pdftex.def)             Requested size: 142.26608pt x 142.26244pt.
 <./images/21.png, id=29, 416.30531pt x 415.5525pt>
 File: ./images/21.png Graphic file (type png)
 <use ./images/21.png>
-Package pdftex.def Info: ./images/21.png  used on input line 212.
+Package pdftex.def Info: ./images/21.png  used on input line 221.
 (pdftex.def)             Requested size: 142.26608pt x 142.26247pt.
 <./images/13.png, id=30, 414.79968pt x 414.04688pt>
 File: ./images/13.png Graphic file (type png)
 <use ./images/13.png>
-Package pdftex.def Info: ./images/13.png  used on input line 213.
+Package pdftex.def Info: ./images/13.png  used on input line 222.
 (pdftex.def)             Requested size: 142.26424pt x 142.26508pt.
-
-Overfull \hbox (25.32494pt too wide) in paragraph at lines 210--214
-[]\OT1/cmr/bx/n/10 Pictures. [] [] [] 
- []
-
 <./images/31.png, id=31, 517.18219pt x 517.935pt>
 File: ./images/31.png Graphic file (type png)
 <use ./images/31.png>
-Package pdftex.def Info: ./images/31.png  used on input line 215.
+Package pdftex.def Info: ./images/31.png  used on input line 224.
 (pdftex.def)             Requested size: 142.26105pt x 142.26263pt.
 <./images/23.png, id=32, 416.30531pt x 416.30531pt>
 File: ./images/23.png Graphic file (type png)
 <use ./images/23.png>
-Package pdftex.def Info: ./images/23.png  used on input line 216.
+Package pdftex.def Info: ./images/23.png  used on input line 225.
 (pdftex.def)             Requested size: 142.26608pt x 142.26608pt.
 <./images/32.png, id=33, 413.29407pt x 414.04688pt>
 File: ./images/32.png Graphic file (type png)
 <use ./images/32.png>
-Package pdftex.def Info: ./images/32.png  used on input line 217.
+Package pdftex.def Info: ./images/32.png  used on input line 226.
 (pdftex.def)             Requested size: 142.26497pt x 142.26508pt.
 
 
 [4 <./images/12.png> <./images/21.png> <./images/13.png> <./images/31.png> <./images/23.png> <./images/32.png>]
-Overfull \hbox (6.03648pt too wide) detected at line 272
+Overfull \hbox (6.03648pt too wide) detected at line 281
 [][] \OT1/cmr/m/n/10 = []\OMS/cmsy/m/n/10 f[][] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = []\OMS/cmsy/m/n/10 fj\OML/cmm/m/it/10 c\OMS/cmsy/m/n/10 j [][] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 c\OMS/cmsy/m/n/10 j []f[][] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 g \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 c\OMS/cmsy/m/n/10 j [][]
  []
 
@@ -377,9 +372,9 @@ Here is how much of TeX's memory you used:
  28041 multiletter control sequences out of 15000+600000
  561981 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,10n,67p,512b,405s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 59i,10n,67p,642b,405s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on hw2.pdf (7 pages, 352447 bytes).
+Output written on hw2.pdf (7 pages, 354854 bytes).
 PDF statistics:
  117 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream
