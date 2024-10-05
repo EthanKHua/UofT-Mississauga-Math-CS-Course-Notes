@@ -55,10 +55,50 @@
             \[
                 d(x, f^{l+1} (x)) \leq d(x, f^l (x)) + d(f^l(x), f^{l+1}(x))
             \]
+
+            Let \(x \in X\). Define the sequence \((x_i)_{i\in \mathbb{N}}\) by \(x_i = f^i(x)\). We show that this is a Cauchy sequence.
+
+            Let \(\varepsilon > 0\). There exists an \(N > 0\) such that \(\dfrac{M^N\cdot d(x,f(x))}{1-M} < \varepsilon\), since \(\dfrac{d(x,f(x))}{1-M}\) is constant. Then for all \(m,n \geq N, m<n\),
+            \[
+                d(x_m,x_n) = d(f^m(x), f^n(x)) \leq M^m d(x, f^{n-m}(x))
+            \]
+            By the triangle equality,
+            \[
+                M^m d(x, f^{n-m}(x)) \leq M^m (d(x,f(x))+d(f(x), f^2(x))+d(f^2(x), f^3(x))+\cdots+d(f^{n-m-1} (x), f^{n-m} (x)))
+            \]
+            \[
+                \leq M^m (d(x, f(x)) + Md(x,f(x)) + M^2d(x,f(x)) + \cdots + M^{n-m-1}d(x,f(x)))
+            \]
+            \[
+                = M^m d(x,f(x)) (1 + M + \cdots + M^{n-m-1}) = \frac{M^m}{1-M}d(x,f(x))
+            \]
+            Since \(0 < M < 1\), \(M^m < M^N\). Thus
+            \[
+                \frac{M^m}{1-M}d(x,f(x)) < \frac{M^N}{1-M}d(x,f(x)) < \varepsilon
+            \]
+            All in all, we have that
+            \[
+                d(x_m, x_n) < \varepsilon
+            \]
+            which shows that \((x_i)\) is a Cauchy sequence. By the completeness of \(X\), \((x_n)\) converges to some value which will be denoted as \(x_0\).
         \end{proof}
 
         \item Give an example of a normed vector space $(X,\|\cdot\|)$ and a contraction mapping $f:X\rightarrow X$ such that $f$ does \textbf{not} have a fixed point.
+        
+        \begin{proof}
+            Let \(f: \mathbb{R}\setminus \{0\} \to \mathbb{R}\setminus \{0\}\) be defined by \(f(x) = \frac{x}{2}\), where \(\mathbb{R}\) is endowed with the usual metric in \(\mathbb{R}\) . First we verify that \(f\) is a contraction mapping. Let \(M = \frac{2}{3}\) Let \(x,y \in \mathbb{R}\setminus\{0\}\). Then indeed,
+            \[
+                \left|f(x)-f(y)\right| = \left|\frac{x}{2} - \frac{y}{2}\right| = \frac{1}{2} \left|x - y\right| \leq \frac{2}{3} \left|x-y\right| = M\left|x-y\right|
+            \]
+            Suppose for contradiction that \(f\) has a fixed point \(x_0 \in \mathbb{R}\setminus\{0\}\).  Then
+            \[
+                x_0 = f(x_0) \implies x_0 = \frac{x_0}{2} \implies \frac{x_0}{2} = 0 \implies x_0 = 0
+            \]
+            But \(0 \notin \mathbb{R}\setminus\{0\}\). There is a contradiction. Thus \(f\) has no fixed point.
+
+        \end{proof}
     \end{enumerate}
+    \pagebreak
     \noindent\textbf{Question 12.} \textit{The Intermediate Value Theorem.}
 
     \begin{enumerate}[label=(\alph*)]
@@ -79,8 +119,33 @@
 
         \item Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces, and let $f:X\rightarrow Y$ be a continuous function. Prove that if $C$ is a connected subset of $X$, then $f(C)$ is a connected subset of $Y$.
         
+        \begin{proof}
+            We examine the contrapositive: if \(f(C)\) is a disconnnected subset of \(Y\), then \(C\) is a disconnected subset of \(X\).
+
+            Suppose that \(f(C)\) is a disconnected subset of \(Y\). Then there exist non-empty, disjoint, open subsets \(A,B \subseteq f(C)\) such that \(A \cup B = f(C)\). Consider the subsets \(f^{-1} (A), f^{-1} (B) \subseteq C\). Notice that if \(x \in f^{-1} (A)\), \(f(x) \in A\). Since \(A,B\) are disjoint, \(f(x) \notin B\), so \(x \notin f^{-1} (B)\). We see that \(f^{-1} (A)\) and \(f^{-1} (B)\) are disjoint.
+            
+            Now, we will show that \(f^{-1} (A)\) is non-empty and open.
+            
+            We know that \(A\) is non-empty, so there exists an element \(y \in A\). By the definition of image, \(y=f(x)\) for some \(x \in C\). it follows that \(x \in f^{-1} (A)\). Thus \(f^{-1} (A)\) is non-empty.
+            
+            To show that \(f^{-1} (A)\) is open, we use the topological definition of continuity of \(f\) to conclude that since \(A\) is open, \(f^{-1} (A)\) is open as well.
+
+            We can apply the same argument for \(f^{-1} (B)\) and show that the set is non-empty and open as well.
+
+            Thus \(f^{-1} (A), f^{-1} (B)\) are non-empty, disjoint, and open. It remains to show that \(f^{-1} (A) \cup f^{-1} (B) = C\). The \(\subseteq\) direction is trivial, so we only show the other direction.
+
+            Let \(x \in C\). We know that \(f(x) \in f(C)\), which means that either \(f(x) \in A\) or \(f(x) \in B\). It follows that \(x \in f^{-1} (A)\) or \(x \in f^{-1} (B) \implies x \in f^{-1} (A) \cup f^{-1} (B)\). Thus \(f^{-1} (A) \cup f^{-1} (B) = C\).
+
+            We conclude that \(C\) is a disconnected subset of \(X\), which shows that the contrapositive of the original statement is true, completing the proof.
+            
+        \end{proof}
+        
         \item Recall the \textbf{Intermediate Value Theorem} from single-variable calculus. \textit{``Let $I\subseteq \R$ be an open interval and $f:I\rightarrow \R$ be a continuous function. Suppose that $a,b\in f(I)$ are two numbers such that $a<b$, and suppose that $a<y_0<b$. Then there exists $x_0\in I$ such that $f(x_0)=y_0$.''}
 
         Prove that this theorem immediately follows from (a) and (b). Thus, (b) is a generalization of the Intermediate Value Theorem.
+
+        \begin{proof}
+            Let \(a,b,y_0 \in f(I)\) and suppose that \(a<y_0<b\). Since \(I\) is an interval, by part (a) \(I\) is connected. As well, by continuity of \(f\), it follows from the result of (b) that \(f(I)\) is a connected subset of \(\mathbb{R}\). By (a) once again, \(f(I)\) is an interval. Thus \([a,b] \in f(I)\). Since \(a<y_0<b\), \(y_0 \in [a,b] \in f(I)\) which implies that \(y_0 = f(x_0)\) for some \(x_0 \in I\), which is what we were looking for.
+        \end{proof}
     \end{enumerate}
 \end{document}
