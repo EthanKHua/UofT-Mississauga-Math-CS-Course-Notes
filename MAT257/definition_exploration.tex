@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section{Seperablility Stuff}
+    \begin{thm}
+        Let \((X, d)\) be a seperable metric space. Then \(A \subseteq X\) is seperable with respect to the metric \(d\).
+    \end{thm}
+    \begin{proof}
+        Since \(X\) is seperable, there exists a countable dense set \(D \subseteq X\).
+
+        For any \(a_i \in A\) and any \(k \in \mathbb{N}\), there exists an element \(d_{ik} \in D\) such that \(d_{ik} \in B(a_i, \frac{1}{k})\).
+
+        Consider the set
+        \[
+            D^\prime = \bigcup_{i \in I} \left(\bigcup_{k \in \mathbb{N}} d_{ik}\right)
+        \]
+        Notice that \(D^\prime \subseteq D\) so it is at most countable.
+
+        For all \(a \in A\), \(\varepsilon > 0\), consider the open ball \(B(a, \varepsilon)\). By the Archimedian property, there exists \(k \in \mathbb{N}\) such that \(k > \frac{1}{\varepsilon} \implies \frac{1}{k} < \varepsilon\). It follows that \(B(a, \frac{1}{k}) \subseteq B(a, \varepsilon)\), and we know we can find a \(d_{ik} \in D^\prime\) within this open ball. Thus \(D^\prime\) is dense in \(A\).
+
+        Since \(D^\prime\) is dense and at most countable, \(A\) is seperable.
+
+    \end{proof}
+
+    \begin{thm}
+        Let \(X,Y\) be metric spaces let and \(f \colon C \to X\) be a continuous function. If \(A \subseteq X\) is seperable, then \(f(A)\) is seperable.
+    \end{thm}
+    \begin{proof}
+        Define \(d_X\) and \(d_Y\) to be metrics on \(X\) and \(Y\) respectively. Suppose that \(A\) is seperable. We will show that \(f(A)\) is seperable by equivalently showing that it is pre-totally bounded.
+
+        Let \(\varepsilon > 0\). By the continuity of \(f\), for every \(a \in A\), there exists \(\delta > 0\) such that for all \(x \in A\), \(d_X(x, a) < \delta \implies d_Y(f(x), f(a)) < \varepsilon\). Keep this value of \(\delta\).
+
+        Since \(A\) is seperable, by Theorem y.x \textcolor{red}{(replace this with the thm number idk what it is)}, \(A\) is pre-totally bounded. By definition, \(A\) is covered by a countable subcover \(\{B_X(a_i, \delta)\}_{i\in\mathbb{N}}\).
+
+        Consider the countable collection \(\{B_Y(f(a_i), \varepsilon)\}_{i\in\mathbb{N}}\). We will show that this collection covers \(f(A)\). Let \(y \in f(A)\). Then \(y = f(x)\) for some \(x \in A \subseteq \{B_X(a_i, \delta)\}_{i\in\mathbb{N}}\). This implies that \(x\) is an some open ball \(B_X(a_k, \delta) \implies d_X(x, a_k) < \delta\). By the continuity of \(f\), this implies that \(d_Y(y, f(a_k)) = d_Y(f(x), f(a_k)) < \varepsilon \implies y \in B_Y(f(a_k), \varepsilon) \subseteq \{B_Y(f(a_i), \varepsilon)\}_{i\in\mathbb{N}}\).
+
+        We see that \(f(A)\) is pre-totally bounded, which implies by \textcolor{red}{thm 29384qwurjhq} that \(f(A)\) is seperable.
+        
+    \end{proof}
+\end{document}
