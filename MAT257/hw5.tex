@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \setcounter{section}{4}
+    \section{Homework 5}
+    \noindent\textbf{13.} Let $(X,\|\cdot\|_X)$, $(Y,\|\cdot\|_Y)$ be two normed vector spaces and let $T:X\rightarrow Y$ be a linear mapping. %\due{10/4}
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that $T$ is continuous if and only if $T$ is a bounded linear mapping.
+        
+        \begin{proof}
+            Suppose that \(T\) is continuous. Then at \(x_0 = 0\), there exists a \(\delta >0\) such that
+            \[
+                \|x\| _X < \delta \implies \|T(x)\| _2 \leq 1
+            \]
+            We claim that our \(M = \frac{2}{\delta}\).Let \(x \in X\). Notice that \(\left\lVert\dfrac{\delta \cdot x}{2\|x\| _X}\right\rVert _X <= \delta\). By the continuity of \(T\) we have that
+            \[
+                \left\lVert T\left(\dfrac{\delta \cdot x}{2\|x\| _X} \right)\right\rVert _Y \leq 1 \implies \dfrac{\delta}{2\cdot \|x\| _X}\left\lVert T\left(x\right) \right\rVert _Y \leq 1 \implies \left\lVert T\left(x\right) \right\rVert _Y\leq \dfrac{2}{\delta}\|x\| _X
+            \]
+            Thus \(T\) is a bounded linear mapping.
+
+            Next, suppose that \(T\) is a bounded linear mapping. Then there is an \(M > 0\) such that for all \(x \in X\),
+            \[
+                \|T(x)\|_Y \leq M\|x\| _X
+            \]
+            We will show that \(T\) is continuous everywhere. Fix \(a \in X\). Let \(\varepsilon > 0\). Let \(\delta = \dfrac{\varepsilon}{M}\). Let \(x \in X\) and suppose that \(\|x - a\| _X < \delta\). Then
+            \[
+                \|T(x) - T(a)\| _Y = \|T(x-a)\| _Y \leq M\|x-a\| _X < \varepsilon
+            \]
+            and we are done. 
+        \end{proof}
+        
+        \item Suppose that $(Y,\|\cdot\|_Y)=(\R^n,\|\cdot\|_2)$. Prove that $T$ is continuous if and only if $\ker(T)$ is closed.
+        \begin{proof}
+            Suppose that \(T\) is continuous. Let \(a\) be a limit point for \(\ker (T)\). We want to show that \(T(a)=0\). 
+            
+            By definition, \(T\) being continuous implies that
+            \[
+                \lim_{x \to a} T(x) = T(a)
+            \]
+            or more formally, letting \(\varepsilon\) be arbitrary, there exists a \(\delta\) such that
+            \[
+                \|x - a\| _X < \delta \implies \|T(x) - T(a)\| _2
+            \]
+
+            Since \(a\) is a limit point of \(\ker (T)\), there exists \(x \in \ker (T)\) such that
+            \[
+                x \in B(a, \delta) \implies \|x -a\| _X \implies \|T(x)-T(a)\| _2 < \varepsilon \implies \|T(a)\| _2 < \varepsilon
+            \]
+            By properties of norms \(\|T(a)\| _2 \geq 0\), so we must have that \(T(a) = 0 \implies a \in \ker (T)\). Thus \(\ker(T)\) is closed.
+
+            Conversely, suppose that \(\ker (T)\) is closed. Assume for contradiction that \(T\) is continuous. Then \(T\) is not a bounded operator.
+
+            For \(n\in\mathbb{N}\), there exists an \(x_n \in X\) so that \(\|T(x_n)\| _2 \geq n\|x\| _X\).
+
+            Let \(x_0 \notin \ker (T)\). Define a sequence \((a_n)_{n\in\mathbb{N}}\) by \(a_n = x_0 - \dfrac{\|T(x_0)\| _2}{\|T(x_n)\| _2}x_n\). Notice that
+            \[
+                \|T(a_n)\| = \left\lVert T\left(x_0 - \dfrac{\|T(x_0)\| _2}{\|T(x_n)\| _2}x_n\right) \right\rVert = \left\lVert T\left(x_0 \right) - \dfrac{\|T(x_0)\| _2}{\|T(x_n)\| _2} T(x_n) \right\rVert \leq \|T(x_0)\| _2 + 
+            \]
+
+        \end{proof}
+    \end{enumerate}
+    \pagebreak
+    \noindent\textbf{17.} \textit{The magic number lemma.}
+
+    Let $(X,d)$ be a metric space and let $\{U_i\}_{i\in I}$ be an open cover of $X$; this means that each $U_i$ is an open subset of $X$, and that $X=\bigcup_{i\in I} U_i$. A \textbf{magic number} for $\{U_i\}_{i\in I}$ is a number $\delta>0$ with the following property: if $A\subseteq X$ is a set with $\diam(A)<\delta$, then $A\subseteq U_i$ for at least one index $i\in I$.
+
+    Suppose that $(X,d)$ is a clustering metric space. Prove that every open cover has a magic number.
+
+    \begin{proof}
+        Suppose that \((X,d)\) is a clustering metric space. Suppose for the sake of contradiction that there exists an open cover \(\{U_i\}_{i\in I}\) that doesnt have a magic number.
+
+        For \(n \in \mathbb{N}\), there is \(A_n \subseteq X\) with \(\diam A_n < \frac{2}{n}\) so that \(A_n \nsubseteq U_i\) for all indices \(i \in I\). Since \(\diam A_n < \frac{2}{n}\), we can cover \(A_n\) with an open ball \(B(a_n, \frac{1}{n})\), where \(a_n\) is some element in \(X\).
+
+        Define a sequence \((a_n)_{n\in \mathbb{N}}\) in \(X\) such that \(a_n\) is equal to the one above.
+
+        By the clustering property of \(X\), \((a_n)\) has a convergent subsequence, which will be redefined as \((a_n)\). Denote the limit of \((a_n)\) as \(p\).
+
+        \(p\) is an element of \(X\), so it is contained in some \(U_i\) in the open cover. Since \(U_i\) is open, we can find \(\varepsilon > 0\) such that \(B(p, \varepsilon) \subseteq U_i\). As well, since \((a_n)\) converges to \(p\) we can find infinitely many entries of the sequence within the open ball \(B(p, \frac{\varepsilon}{2})\). Thus we can find a large enough \(n\) such that \(n > \frac{2}{\varepsilon}\), which gives \(\frac{1}{n} < \frac{\varepsilon}{2}\), and still have that \(a_n\) is \(\frac{\varepsilon}{2}\)-close to \(p\).
+
+        Now, consider the open ball \(B(a_n, \frac{1}{n})\). We will show that \(B(a_n, \frac{1}{n}) \subseteq B(p, \varepsilon)\).
+
+        Let \(x \in B(a_n, \frac{1}{n})\). Then \(d(x, a_n) < \frac{1}{n} < \frac{\varepsilon}{2}\), so we have
+        \[
+            d(x,p) \leq d(x,a_n) + d(a_n,p) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \implies x \in B(p, \varepsilon)
+        \]
+        which is what we wanted.
+
+        Recall that the set \(A_n\) is covered by \(B(a_n, \frac{1}{n})\). Then we have
+        \[
+            A_n \subseteq B(a_n, \frac{1}{n}) \subseteq B(p, \varepsilon) \subseteq U_i
+        \]
+        contradicting the fact that \(A_n \nsubseteq U_i\). Thus every open cover has a magic number.
+
+    \end{proof}
+\end{document}
