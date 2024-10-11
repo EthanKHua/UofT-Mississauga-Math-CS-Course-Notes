@@ -14,6 +14,7 @@
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Tr}{\mathrm{Tr}}
 \newcommand{\im}{\mathrm{im}}
 \newcommand{\rank}{\mathrm{rank}}
@@ -82,17 +83,135 @@
             \]
             By properties of norms \(\|T(a)\| _2 \geq 0\), so we must have that \(T(a) = 0 \implies a \in \ker (T)\). Thus \(\ker(T)\) is closed.
 
-            Conversely, suppose that \(\ker (T)\) is closed. Assume for contradiction that \(T\) is continuous. Then \(T\) is not a bounded operator.
-
-            For \(n\in\mathbb{N}\), there exists an \(x_n \in X\) so that \(\|T(x_n)\| _2 \geq n\|x\| _X\).
-
-            Let \(x_0 \notin \ker (T)\). Define a sequence \((a_n)_{n\in\mathbb{N}}\) by \(a_n = x_0 - \dfrac{\|T(x_0)\| _2}{\|T(x_n)\| _2}x_n\). Notice that
-            \[
-                \|T(a_n)\| = \left\lVert T\left(x_0 - \dfrac{\|T(x_0)\| _2}{\|T(x_n)\| _2}x_n\right) \right\rVert = \left\lVert T\left(x_0 \right) - \dfrac{\|T(x_0)\| _2}{\|T(x_n)\| _2} T(x_n) \right\rVert \leq \|T(x_0)\| _2 + 
-            \]
+            I have no clue how to prove the converse so yeah.
 
         \end{proof}
     \end{enumerate}
+    \pagebreak
+    \noindent\textbf{16.} Let $(X,\|\cdot\|)$ be a normed vector space, let $B(X)=B(X,X)$ be the space of bounded linear operators on $X$, and equip $B(X)$ with the operator norm $\|\cdot\|_{\op}$. Let $\GL(X)$ be the set of invertible bounded linear operators:
+        \[ \GL(X) = \{T\in B(X) : \text{$T$ is invertible}\}. \]
+    (The notation $\GL$ means ``general linear group.'')
+    
+    Prove that if $(X,\|\cdot\|)$ is complete, then $\GL(X)$ is an open subset of $(B(X),\|\cdot\|_{\mathrm{op}})$.
+    
+    \begin{proof}
+        First, we prove a couple lemmas.
+
+        \noindent\textbf{Lemma 1.}
+            For all \(S\), \(T \in B(X,X)\),
+            \[
+                \|ST\| _{\op} \leq \|S\| _{\op} \|T\| _{\op}
+            \]
+            To prove this, let \(x \in X\) so that \(\|x\| _X \leq 1\). Then
+            \[
+                \|S(T(x))\| _X = \left\lVert S\left(\dfrac{\|T(x)\| _X}{\|T(x)\| _X} T(x)\right)\right\rVert _X= \|T(x)\| _X \left\lVert S\left(\dfrac{T(x)}{\|T(x)\| _X}\right)\right\rVert _X
+            \]
+            Notice that \(\left\lVert\dfrac{T(x)}{\|T(x)\| _X}\right\rVert _X = 1\). We obtain that
+            \[
+                \|S(T(x))\| _X = \|T(x)\| _X \left\lVert S\left(\dfrac{T(x)}{\|T(x)\| _X}\right)\right\rVert _X \leq \|T\| _{\op} \|S\| _{\op}
+            \]
+            Since \(\|T\| _{\op} \|S\| _{\op}\) is an upper bound for \(\|S(T(x))\| _X\) when \(\|x\| _X \leq 1\), by definition of supremum we can conclude that \(\|ST\| _{\op} \leq \|S\| _{\op} \|T\| _{\op}\), proving the first lemma.
+
+            Next, the following lemma will help in proving Lemma 3.
+
+            \noindent\textbf{Lemma 2.} If \(T,U \in B(X)\), then for \(x \in X\),
+            \[
+                \|T(x)-U(x)\| _X \leq \|X\| _X \|T-U\| _{\op}
+            \]
+            Let \(T,U \in B(X)\). Then
+            \[
+                \|(T-U)(x)\| _X = \left\lVert \|x\| _X (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert = \|x\| _X \left\lVert (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert 
+            \]
+            Since \(\dfrac{x}{\|x\| _X} =1\),
+            \[
+                \|x\| _X \left\lVert (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert \leq \|x\| _X \|T-U\| _{\op}
+            \]
+            which is what we wanted. 
+
+            We will use the proceeding lemma to help us prove Lemma 4.
+
+            \noindent\textbf{Lemma 3.} If \(X\) is complete then \(B(X,X)\) is complete.
+
+            For every Cauchy sequence \((T_n)\) in \(B(X,X)\), the sequence \((T_n (x_i))\), where \(x_i\) is an arbitrary element in \(X\), is a Cauchy sequence in \(X\). By the completeness of \(X\), \((T_n(x_i))\) converges to some \(L_i\). Let \(T\) be a linear operator on \(X\) defined by \(T(x_i) = L_i\). We can see that this is indeed a linear operator because
+            \[
+                cT(x_i) + T(x_j) = cL_i + L_j = c \lim_{n \to \infty} T_n(x_i) + \lim_{n \to \infty} T_n(x_j) = \lim_{n \to \infty} cT_n(x_i) + T_n(x_j) = \lim_{n \to \infty} T_n(cx_i + x_j)
+            \]
+            \(X\) is closed, so \(cx_i + x_j\) is equal to some \(x_k \in X\). Thus
+            \[
+                cT(x_i) + T(x_j) = \lim_{n \to \infty} T_n(cx_i + x_j) = \lim_{n \to \infty} T_n(x_k) = L_k = T(x_k)
+            \]
+            which implies that \(T\) is a linear operator.
+
+            To show that \(T\) is bounded, we know that \(T_n\) is bounded, so \(\|T_n(x)\| _X < M_n \|x\| _X\), for some \(M_n > 0\). As well, we have that \(T_n\) is uniformly continuous. Thus for a sufficiently large \(n \in \mathbb{N}\), for all \(x \in X\), using Lemma 2,
+            \[
+                \|T(x)\| _X = \lim_{m \to \infty} \|T_m(x)\| _X \leq \lim_{m \to \infty} \|T_m(x) - T_n(x)\| _X + \|T_n(x)\| _X < \lim_{m \to \infty} \|T_n-T_m\| _{\op} \|x\| _X + \|T_n(x)\| _X
+            \]
+            \[
+                \leq \|x\| _X + M_n \|x\| _X
+            \]
+            Thus \(T \in B(X)\). To show that \(T_n\) converges to \(T\), fix \(\varepsilon > 0\). For all \(x\in X\) such that \(\|x\| _X \leq 1\), there exists a sufficiently large \(N\) such that for all \(x \in X\), if \(n > N\) then
+            \[
+                \|T(x) - T_n(x)\| _X < \varepsilon \implies \|T-T_n\| _{\op} < \varepsilon
+            \]
+            Thus we can conclude that \(B(X,X)\) is complete.
+
+            \noindent\textbf{Lemma 4.} If \(T \in B(X,X)\) such that \(\|I - T\| _{\op} < 1\), then \(T\) is invertible and
+            \[
+                T^{-1} = \sum_{i=0}^{\infty}(I-T)^i
+            \]
+            Suppose that \(T \in B(X,X)\) and \(\|I - T\| _{\op} < 1\). Let \((a_n)_{n\geq1}\) be a Cauchy sequence in \(B(X,X)\) defined by
+            \[
+                a_n = \sum_{i=0}^n (I-T)^i
+            \]
+            We verify that this sequence is Cauchy. Let \(\varepsilon > 0\). Since \(\|I - T\| _{\op} < 1\), there exists natural \(N\) such that
+            \[
+                \frac{\|I-T\| _{\op} ^N}{1-\|I-T\| _{\op}} < \varepsilon
+            \]
+            Let \(m,n > N\) and suppose that \(m < n\). Then
+            \[
+                \left\lVert a_n - a_m\right\rVert _{\op} = \left\lVert\sum_{i=0}^{n} (I-T)^i - \sum_{i=0}^{m} (I-T)^i \right\rVert _{\op} = \left\lVert\sum_{i=m+1}^n (I-T)^i \right\rVert _{\op}
+            \]
+            By the triangle inequality and Lemma 1,
+            \[
+                \left\lVert\sum_{i=m+1}^n (I-T)^i \right\rVert \leq \sum_{i=m+1}^n \left\lVert (I-T)^i \right\rVert \leq \sum_{i=m+1}^n \left\lVert I-T \right\rVert ^i = \left\lVert I-T \right\rVert ^{m+1} \sum_{i=0}^{n-m-1} \left\lVert I-T \right\rVert ^i
+            \]
+            \[
+                = \left\lVert I-T \right\rVert ^{m+1} \dfrac{1-\|I-T\|^{n-m}}{1-\|I-T\|}
+            \]
+            \(1-\|I-T\|^{n-m}<1\), so
+            \[
+                \left\lVert I-T \right\rVert ^{m+1} \dfrac{1-\|I-T\|^{n-m}}{1-\|I-T\|} < \dfrac{\|I-T\|^{m+1}}{1-\|I-T\|} < \dfrac{\|I-T\|^{N}}{1-\|I-T\|} < \varepsilon
+            \]
+            We see that \((a_n)\) is indeed a Cauchy sequence.
+
+            By Lemma 4, \(B(X,X)\) is complete, so \((a_n)\) converges, meaning that \(\sum_{i=0}^{\infty}(I-T)^i\) exists. Now, notice that
+            \[
+                T\left( \sum_{i=0}^{\infty}(I-T)^i \right) = (I - (I-T))\left( \sum_{i=0} ^{\infty} (I-T)^i \right) = \sum_{i=0} ^{\infty} (I-T)^i - \sum_{i=0} ^{\infty} (I-T)^{i+1} = \sum_{i=0} ^{\infty} \left( (I-T)^i - (I-T)^{i+1} \right)
+            \]
+            This is a telescoping series. As \(i \to \infty\), \((I-T)^i \to 0\). Thus
+            \[
+                T\left( \sum_{i=0}^{\infty}(I-T)^i \right) = \sum_{i=0} ^{\infty} \left( (I-T)^i - (I-T)^{i+1} \right) = I
+            \]
+            Thus \(\sum_{i=0}^{\infty}(I-T)^i\) is the inverse of \(T\), which implies that \(T^{-1}\) exists.
+            \\\\
+            Now we can show that \(B(X)\) is open.
+
+            Let \(T \in B(X)\). Consider the open ball \(B(T, \frac{1}{\|T^{-1}\| _{\op}})\). For all \(S \in B(T, \frac{1}{\|T^{-1}\| _{\op}})\),
+            \[
+                \|T - S\| _{\op} < \frac{1}{\|T^{-1}\| _{\op}} \implies \|T-S\| _{\op} \|T^{-1}\| _{\op} < 1
+            \]
+            By Lemma 1, we have that
+            \[
+                1 > \|T-S\| _{\op} \|T^{-1}\| _{\op} \geq \|(T-S)T^{-1}\| _{\op} = \|I - ST^{-1}\| _{\op}
+            \]
+            By Lemma 4, \(ST^{-1}\) is invertible. If we let \(S^{-1} = T^{-1}(ST^{-1})^{-1}\), we see that
+            \[
+                S S^{-1} = S (T^{-1} (ST^{-1})^{-1}) = (ST^{-1})(ST^{-1})^{-1} = I
+            \]
+            Thus \(S\) is invertible, which means that \(S \in B(X)\). Therefore \(B(X)\) is open.
+
+    \end{proof}
+
     \pagebreak
     \noindent\textbf{17.} \textit{The magic number lemma.}
 
