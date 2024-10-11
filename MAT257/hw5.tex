@@ -88,6 +88,14 @@
         \end{proof}
     \end{enumerate}
     \pagebreak
+    \noindent\textbf{14.} Let $T:X\rightarrow Y$ be a bounded linear mapping between complete normed vector spaces $X$ and $Y$. Is it necessarily true that $T^{-1}$ is also bounded?
+    \begin{proof}
+        \(T^{-1}\) is indeed bounded. Let \(T\) be a bounded linear mapping. For some \(M >0\),
+        \[
+            \|T(x)\|_Y \leq M\|x\|_X \text{for all } x \in X
+        \]
+    \end{proof}
+    \pagebreak
     \noindent\textbf{16.} Let $(X,\|\cdot\|)$ be a normed vector space, let $B(X)=B(X,X)$ be the space of bounded linear operators on $X$, and equip $B(X)$ with the operator norm $\|\cdot\|_{\op}$. Let $\GL(X)$ be the set of invertible bounded linear operators:
         \[ \GL(X) = \{T\in B(X) : \text{$T$ is invertible}\}. \]
     (The notation $\GL$ means ``general linear group.'')
@@ -149,7 +157,7 @@
             \[
                 \leq \|x\| _X + M_n \|x\| _X
             \]
-            Thus \(T \in B(X)\). To show that \(T_n\) converges to \(T\), fix \(\varepsilon > 0\). For all \(x\in X\) such that \(\|x\| _X \leq 1\), there exists a sufficiently large \(N\) such that for all \(x \in X\), if \(n > N\) then
+            We get the last inequality because \(T_n\) is Cauchy and bounded as well. Thus \(T \in B(X)\). To show that \(T_n\) converges to \(T\), fix \(\varepsilon > 0\). For all \(x\in X\) such that \(\|x\| _X \leq 1\), there exists a sufficiently large \(N\) such that for all \(x \in X\), if \(n > N\) then
             \[
                 \|T(x) - T_n(x)\| _X < \varepsilon \implies \|T-T_n\| _{\op} < \varepsilon
             \]
@@ -211,7 +219,6 @@
             Thus \(S\) is invertible, which means that \(S \in B(X)\). Therefore \(B(X)\) is open.
 
     \end{proof}
-
     \pagebreak
     \noindent\textbf{17.} \textit{The magic number lemma.}
 
