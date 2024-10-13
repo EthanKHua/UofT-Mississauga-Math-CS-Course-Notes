@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adj
+ustbox}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
+\usepackage[left=2.6cm, right=2.6cm, top=1.5cm, includehead, includefoot]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[d]{esvect}
+\usepackage{listings}
+\usepackage{enumitem} % To allow for alph in enumerate
+\usepackage{braket}
+\usepackage{float} % To allow for H setting in figures.
+%% header
+\pagestyle{fancy}
+\fancyhead[L]{\bf\large CSC236 UTM \\ Assignment 2}
+\fancyhead[R]{\bf\large Fall 2024 \\Due Oct 28}
+%\fancyfoot[C]{Page \thepage\ of 2}
+\setlength{\headheight}{35pt}
+
+\begin{document}
+    \textbf{Q1.} On pages 55 and 56 of the textbook there is a proof for the correctness of the program \verb|avg|. The author used the invariant $$Inv(\verb|i|,\verb|sum|)\colon 0\leq \verb|i| < len(A) \wedge \verb|sum|=\sum_{k=0}^{\verb|i|-1}A[k].$$
+    As you can see, the invariant is a predicate in two variables: $\verb|i|$, $\verb|sum|$. These two variables are used in the program \verb|avg|, but neither is the variable on which the induction proof is based.
+    The author is using simple induction, but it is not very clear what the induction variable is (also the induction predicate itself is ambiguous). We want to make sure you understand what is going on there by having you re-write the proof by yourself in a style similar to the one we use in lectures. Here is the predicate
+    you should be proving:
+    $$Q(j): \text{At the beginning of the } j^{th} \text{ iteration}, \verb|sum|=\sum_{k=0}^{\verb|i|-1}A[k].$$
+    Remark 1: By the program's design, the variables $\verb|i|,\verb|sum|$ may change with each iteration (in other words, both are functions of $j$). This is why it might be more appropriate to write
+    
+    $$Q(j): \verb|sum|_j=\sum_{k=0}^{\verb|i|_j-1}A[k] \quad \text{or} \quad Q(j): \verb|sum|(j)=\sum_{k=0}^{\verb|i|(j)-1}A[k].$$
+
+    where $\verb|i|_j$ (or $\verb|i|(j)$) means the value of program variable $\verb|i|$ at the beginning of the $j^{th}$ iteration (the same with $\verb|sum|$).
+    That said, we believe that the version above Remark 1 is the best to work with as long as one understands that $\verb|i|,\verb|sum|$ are iteration dependent.
+
+    Remark 2: Using $j$ as an index in Remark 1 has a different meaning from that which is intended by the author. The author is using indices to differentiate between the values of $\verb|i|$, $\verb|sum|$ at the beginning of an (arbitrary) iteration and
+    their values after the iteration is run.
+    \medskip
+    The end goal is to prove $Q(len(A))$. A proof by induction will show that $$\forall
+    j\in\{1,\ldots,len(A)\}, Q(j).$$ Your proof must follow the style used in lectures.
+
+    \begin{proof}
+        It will be shown using simple induction that \(\forall j \in \{1,..., \texttt{len}(A) \},Q(j)\).
+
+        \textbf{Base Case.} Let \(j = 1\). At the beginning of the first iteration of the loop, \(i=0\) and \(sum=0\). Notice that in the expression \(\sum_{k=0} ^-1 A[k]\), the lower bound is greater than the upper bound. This results in an empty sum that evaluates to \(0\). Therefore the base case holds.
+
+        \textbf{Induction Hypothesis.} Suppose that for some \(j \in \{1,..., \texttt{len}(A)\}\), \(Q(j)\) is true. The goal is to show that \(Q(j+1)\) is true as well.
+
+        \textbf{Induction Step.} \(i\) increases by 1 at the end of each iteration, so at the beginning of the \(j\)th iteration, \(i = j-1\). Additionally, from the induction hypothesis,
+        \[
+            sum = \sum_{k=0}^{i-1} A[k]
+        \]
+        Running through the loop, on line 9, \(A[i]\) is added to \(sum\) 
+    \end{proof}
+\end{document}
