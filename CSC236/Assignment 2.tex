@@ -38,11 +38,11 @@ ustbox}
     \begin{proof}
         It will be shown using simple induction that \(\forall j \in \{1,..., \texttt{len}(A) \},Q(j)\).
 
-        \textbf{Base Case.} Let \(j = 1\). At the beginning of the first iteration of the loop, \(i=0\) and \(sum=0\). Notice that in the expression \(\sum_{k=0} ^-1 A[k]\), the lower bound is greater than the upper bound. This results in an empty sum that evaluates to \(0\). Therefore the base case holds.
+        \textbf{Base Case.} Let \(j = 1\). At the beginning of the first iteration of the loop, \(i=0\) and \(sum=0\). Notice that in the expression \(\sum_{k=0} ^{-1} A[k]\), the lower bound is greater than the upper bound. This results in an empty sum that evaluates to \(0\). Therefore the base case holds.
 
         \textbf{Induction Hypothesis.} Suppose that for some \(j \in \{1,..., \texttt{len}(A)\}\), \(Q(j)\) is true.
 
-        \textbf{Induction Step.} \(i\) increases by 1 at the end of each iteration, so at the beginning of the \(j\)th iteration, \(i = j-1<\texttt{len}(A)\), which means that the loop body enters. From the induction hypothesis,
+        \textbf{Induction Step.} \(i\) increases by 1 at the end of each iteration, so at the beginning of the \(j\)th iteration, \(i = j-1<\texttt{len}(A)\), which means that the loop body is entered. From the induction hypothesis,
         \[
             sum = \sum_{k=0}^{j-2} A[k]
         \]
@@ -56,6 +56,30 @@ ustbox}
         \]
         as desired.
 
-        By the principle of simple induction, \(Q(j)\) holds for any \(j \in \{1,2,..., \texttt{len}(A)\}\).
+        By the principle of simple induction, at the beginning of the \(j\)th iteration, \(Q(j)\) holds for any \(j \in \{1,2,..., \texttt{len}(A), \texttt{len}(A) +1\}\).
+
+        At the beginning of the \(\texttt{len}(A) +1\)th iteration, \(i = \texttt{len}(A)\), so the loop terminates. The program returns \(sum / \texttt{len}(A)\) on line 11, which is exactly the average of the numbers in \(A\).
+
     \end{proof}
+    \pagebreak
+    \textbf{Q2.} --Following up on the Q1-- We mentioned this in class, but it is good to remind you again of the fact that, proving $\forall j\in\{1,\ldots,len(A)\}, Q(j)$ is equivalent to proving $\forall n\in\mathbb{N}, Q'(n)$ where $$Q'(n): 0\leq n<len(A) \Rightarrow Q(n+1).$$ Explain the equivalence.
+    \begin{proof}
+        It will be proven that the two statements imply each other, that is,
+        \[
+            \forall j \in \{1,..., \texttt{len}(A)\}, Q(j) \iff \forall n \in \mathbb{N}, 0 \leq n < \texttt{len}(A) \implies Q(n+1)
+        \]
+        To prove the forward direction, suppose that \(Q(j)\) holds true for all \(j \in \{1,..., \texttt{len}(A)\}\). Let \(n\) be a natural number such that \(0 \leq n < \texttt{len}(A)\). It follows that \(n \in \{0, 1,..., \texttt{len}(A) -1\}\), which implies that \(n+1 \in \{1,..., \texttt{len}(A)\}\). By the original assumption, \(Q(n+1)\) is true.
+
+        Conversely, suppose that for all natural \(n\), if \(0 \leq n <\texttt{len}(A)\) then \(Q(n+1)\) is true. Let \(j \in \{1,..., \texttt{len}(A)\}\). Then \(j-1 \in \{0,...,\texttt{len}(A)-1\}\).  It is clear that \(j-1\) is a natural number and that \(0\leq j <\texttt{len}(A)\). By the assumption in the beginning, \(Q(j)\) is true.
+
+        Thus both statements are equivalent to each other.
+
+    \end{proof}
+    \pagebreak
+    \textbf{Q3.} Solve questions 6 to 10 on pages 64 to 66 of the textbook. There is a typo in Q8 line 12 (it should be \verb|c = 1| instead of \verb|c == 1|). Proofs must follow the lecture's format and level of clarity. Only \textbf{one} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
+
+    \textit{Question 6.}\begin{enumerate}
+        \item Give a loop invariant that characterizes the values of \(a\) and \(y\).
+        
+    \end{enumerate}
 \end{document}
