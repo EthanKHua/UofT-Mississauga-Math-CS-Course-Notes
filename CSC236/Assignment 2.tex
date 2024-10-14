@@ -40,12 +40,22 @@ ustbox}
 
         \textbf{Base Case.} Let \(j = 1\). At the beginning of the first iteration of the loop, \(i=0\) and \(sum=0\). Notice that in the expression \(\sum_{k=0} ^-1 A[k]\), the lower bound is greater than the upper bound. This results in an empty sum that evaluates to \(0\). Therefore the base case holds.
 
-        \textbf{Induction Hypothesis.} Suppose that for some \(j \in \{1,..., \texttt{len}(A)\}\), \(Q(j)\) is true. The goal is to show that \(Q(j+1)\) is true as well.
+        \textbf{Induction Hypothesis.} Suppose that for some \(j \in \{1,..., \texttt{len}(A)\}\), \(Q(j)\) is true.
 
-        \textbf{Induction Step.} \(i\) increases by 1 at the end of each iteration, so at the beginning of the \(j\)th iteration, \(i = j-1\). Additionally, from the induction hypothesis,
+        \textbf{Induction Step.} \(i\) increases by 1 at the end of each iteration, so at the beginning of the \(j\)th iteration, \(i = j-1<\texttt{len}(A)\), which means that the loop body enters. From the induction hypothesis,
         \[
-            sum = \sum_{k=0}^{i-1} A[k]
+            sum = \sum_{k=0}^{j-2} A[k]
         \]
-        Running through the loop, on line 9, \(A[i]\) is added to \(sum\) 
+        Running through the loop, on line 9, \(A[j-1]\) is added to \(sum\). After this line is executed, the new value of sum becomes
+        \[
+            sum = \sum_{k=0} ^{j-2} A[k] + A[j-1] = \sum_{k=0} ^{j-1} A[k]
+        \]
+        Then, line 10 executes and the value of \(i\) is incremented and becomes \(j\). After the line is executed, the program returns to the top of loop, signifying the beginning of the \(j+1\)th iteration. \(sum\) remains unchanged since the execution of line 9, and is equal to
+        \[
+            \sum_{k=0}^{j-1} A[k] = \sum_{k=0}^{i-1} A[k]
+        \]
+        as desired.
+
+        By the principle of simple induction, \(Q(j)\) holds for any \(j \in \{1,2,..., \texttt{len}(A)\}\).
     \end{proof}
 \end{document}
