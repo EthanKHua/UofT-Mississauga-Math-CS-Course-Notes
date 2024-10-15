@@ -122,10 +122,8 @@
 
             Next, the following lemma will help in proving Lemma 3.
 
-            \noindent\textbf{Lemma 2.} If \(T,U \in B(X)\), then for \(x \in X\),
-            \[
-                \|T(x)-U(x)\| _X \leq \|X\| _X \|T-U\| _{\op}
-            \]
+            \noindent\textbf{Lemma 2.} If \(T,U \in B(X)\), then for \(x \in X\), \(\|T(x)-U(x)\| _X \leq \|x\| _X \|T-U\| _{\op}\).
+
             Let \(T,U \in B(X)\). Then
             \[
                 \|(T-U)(x)\| _X = \left\lVert \|x\| _X (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert = \|x\| _X \left\lVert (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert 
@@ -229,7 +227,7 @@
     \begin{proof}
         Suppose that \((X,d)\) is a clustering metric space. Suppose for the sake of contradiction that there exists an open cover \(\{U_i\}_{i\in I}\) that doesnt have a magic number.
 
-        For \(n \in \mathbb{N}\), there is \(A_n \subseteq X\) with \(\diam A_n < \frac{2}{n}\) so that \(A_n \nsubseteq U_i\) for all indices \(i \in I\). Since \(\diam A_n < \frac{2}{n}\), we can cover \(A_n\) with an open ball \(B(a_n, \frac{1}{n})\), where \(a_n\) is some element in \(X\).
+        For \(n \in \mathbb{N}\), there is \(A_n \subseteq X\) with \(\diam A_n < \frac{1}{n}\) so that \(A_n \nsubseteq U_i\) for all indices \(i \in I\). Since \(\diam A_n < \frac{1}{n}\), we can cover \(A_n\) with an open ball \(B(a_n, \frac{1}{n})\), where \(a_n\) is some element in \(X\).
 
         Define a sequence \((a_n)_{n\in \mathbb{N}}\) in \(X\) such that \(a_n\) is equal to the one above.
 
@@ -252,4 +250,34 @@
         contradicting the fact that \(A_n \nsubseteq U_i\). Thus every open cover has a magic number.
 
     \end{proof}
+    \pagebreak
+    \noindent\textbf{18.} The sequence space $\ell^1$ has two norms: the $1$-norm $\|\cdot\|_1$, and the sup norm $\|\cdot\|_\infty$ inherited from $\ell^\infty$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Is $(\ell^1,\|\cdot\|_\infty)$ separable?
+        \item Is $(\ell^1,\|\cdot\|_1)$ separable?
+        \begin{proof}
+            Yes to both. We will show part (b) first and notice that part (a) follows right after.
+
+            Let \(D\) be the set of all sequences of rational numbers that are eventually 0. This set is obviously a subset of \(\ell ^1\). We can write \(D\) as the countable union of rational sequences that terminate after the \(n\)th term, which countable since there is a bijection to \(\mathbb{Q}^n\). It follows that \(D\) is countable. It remains to show that \(D\) is dense in \(\ell ^1\) with respect to the 1-norm.
+
+            Let \(x \in \ell ^1\) and \(\varepsilon > 0\). Since \(x\) is absolutely summable, every partial sum is strictly less than the limit of the series, denoted as \(L\). Also, for all \(n\) greater than some \(N > 0\),
+            \[
+                \sum_{i=N+1} ^{n} |x_i| = \sum_{i=0} ^{n} |x_i| - \sum_{i=0} ^{N} |x_i| < L - \sum_{i=0} ^{N} |x_i| < L - \left(L - \frac{\varepsilon}{2}\right) = \frac{\varepsilon}{2}
+            \]
+            When \(1\leq i\leq N\), by the density of \(\mathbb{Q}\) in \(\mathbb{R}\), we can find a \(q_i \in \mathbb{Q}\) such that \(\|x_i - q_i\| < \frac{\varepsilon}{2N}\).
+            
+            Let \(q = \begin{dcases}
+                q_i, &\text{ if } 1\leq i\leq N ;\\
+                0, &\text{ otherwise} .
+            \end{dcases}\). 
+            We see that
+            \[
+                \|x-q\| _1 = \sum_{i=0} ^{\infty} |x_i - q_i| = \sum_{i=0} ^N |x_i - q_i| + \sum_{i=N+1}^{\infty} |x_i| < \frac{N\varepsilon}{2N} + \frac{\varepsilon}{2} = \varepsilon
+            \]
+            Thus \(D\) is dense, implying that \(\ell ^1\) is separable with respect to the 1-norm.
+
+            Note that for all \(x \in \ell ^1\), \(\|x\| _\infty \leq \|x\| _1\). it follows immediately that \((\ell ^1, \|\cdot\| _\infty)\) is separable as well.
+
+        \end{proof}
+    \end{enumerate}
 \end{document}

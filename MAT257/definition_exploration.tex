@@ -37,22 +37,20 @@
 \begin{document}
     \section{Seperablility Stuff}
     \begin{thm}
-        Let \((X, d)\) be a seperable metric space. Then \(A \subseteq X\) is seperable with respect to the metric \(d\).
+        Let \((X, d)\) be a separable metric space. Then \(A \subseteq X\) is separable with respect to the metric \(d\).
     \end{thm}
     \begin{proof}
-        Since \(X\) is seperable, there exists a countable dense set \(D \subseteq X\).
+        Since \(X\) is separable, it is pre-totally bounded. We will show that a metric subspace \(A\) is separable by showing that it is pre-totally bounded.
 
-        For any \(a_i \in A\) and any \(k \in \mathbb{N}\), there exists an element \(d_{ik} \in D\) such that \(d_{ik} \in B(a_i, \frac{1}{k})\).
+        Let \(\varepsilon > 0\). Since \(X\) is pre-totally bounded, there exists a finite collection of open balls \(\{ B(x_i, \frac{\varepsilon}{2})\}_{i\leq n}\) that covers \(X\). We define the desired collection of open balls in \(A\) with the following method:
 
-        Consider the set
-        \[
-            D^\prime = \bigcup_{i \in I} \left(\bigcup_{k \in \mathbb{N}} d_{ik}\right)
-        \]
-        Notice that \(D^\prime \subseteq D\) so it is at most countable.
+        If \(B(x_i, \frac{\varepsilon}{2})\) contains some element \(a_i \in A\), we add \(B_A(a_i, \varepsilon)\) to the collection.
 
-        For all \(a \in A\), \(\varepsilon > 0\), consider the open ball \(B(a, \varepsilon)\). By the Archimedian property, there exists \(k \in \mathbb{N}\) such that \(k > \frac{1}{\varepsilon} \implies \frac{1}{k} < \varepsilon\). It follows that \(B(a, \frac{1}{k}) \subseteq B(a, \varepsilon)\), and we know we can find a \(d_{ik} \in D^\prime\) within this open ball. Thus \(D^\prime\) is dense in \(A\).
+        The number of open balls in this collection is at most the number of open balls in the original collection in \(X\), so \(\{B_A(a_i, \varepsilon)\}\) is finite.
 
-        Since \(D^\prime\) is dense and at most countable, \(A\) is seperable.
+        It remains to show that the collection covers \(A\). Let \(a \in A\). Then \(a \in B(x_i, \frac{\varepsilon}{2})\) for some \(i\). It follows that \(a \in B(x_i,\frac{\varepsilon}{2})\cap A \subseteq B_A(a_i, \varepsilon)\). Thus \(A\) is covered by this collection, so \(A\) is pre-totally bounded.
+
+        Thus we can conclude that \(A\) is separable.
 
     \end{proof}
 
