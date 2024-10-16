@@ -4,7 +4,9 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{mathtools}
-\usepackage{tcolorbox}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
 
 % \RequirePackage{background}
 % \backgroundsetup{
@@ -17,12 +19,15 @@
 %     }
 % }
 
-\definecolor{pastelblue}{RGB}{106, 175, 255}
-\definecolor{darkgray}{RGB}{80, 80, 80}
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
 
 
-\pagecolor{pastelblue}
-\color{darkgray}
+\pagecolor{darkgray}
+\color{offwhite}
 
 \newcommand{\Z}{\mathbf{Z}}
 \newcommand{\N}{\mathbf{N}}
@@ -37,7 +42,6 @@
 \newcommand{\Tr}{\mathrm{Tr}}
 \newcommand{\im}{\mathrm{im}}
 \newcommand{\rank}{\mathrm{rank}}
-\newcommand{\question}[1]{\textbf{Q#1.}}
 
 \newcommand{\cl}[1]{\overline{#1}}
 
@@ -56,25 +60,24 @@
 	\newtheorem{exercise}[thm]{Exercise} %Exercise
 
 \begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \\ \end{proof}, #1, breakable=true}
     \setcounter{section}{5}
     \section{HOMEWORK 6 HAAHHAHAHAHAHAA}
-    \begin{tcolorbox}[colback=orange, colframe=green, title=Question.]
-        \textbf{Question.}
+    \begin{question}{19}
+        Let $X$ be a metric space and let $A\subseteq X$. A \textbf{compact exhaustion} for $A$ is a sequence of compact sets $K_1,K_2,K_3,\ldots$ such that $U=\bigcup_{i\geq 1}K_i$ and $K_i\subseteq K_{i+1}^\circ$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $U\subseteq \R^n$ be a bounded open set. Show that $U$ has a compact exhaustion.
+            \item Now show that every open set $U\subseteq \R^n$ has a compact exhaustion.
+        \end{enumerate}
         \tcblower
-        womp womp
-    \end{tcolorbox}
-    \question{19}
-    Let $X$ be a metric space and let $A\subseteq X$. A \textbf{compact exhaustion} for $A$ is a sequence of compact sets $K_1,K_2,K_3,\ldots$ such that $U=\bigcup_{i\geq 1}K_i$ and $K_i\subseteq K_{i+1}^\circ$.
-    \begin{enumerate}[label=(\alph*)]
-        \item Let $U\subseteq \R^n$ be a bounded open set. Show that $U$ has a compact exhaustion.
-        \item Now show that every open set $U\subseteq \R^n$ has a compact exhaustion.
-    \end{enumerate}
+        Suppose Question 19 is true. Then the result immediately follows.
+    \end{question}
     \pagebreak
-    \question{20}
-    Let $x,y\in \ell^\infty$ be two sequences. Let us say that $y$ is \textbf{dominated} by $x$, denoted $x\geq y$, if $|x_n|\geq |y_n|$ for all $n\in \N$. Let $D_x$ denote the set of all sequences which are dominated by $x$:
-        \[ D_x = \{y\in \ell^\infty: |y_n|\leq |x_n| \text{ for all $n\in \N$}\}. \]
-    Prove that $D_x$ is compact if and only if $x_n\rightarrow 0$.
-    \begin{proof}
-        Suppose that \(D_x\) is compact. Suppose for contradiction that \(x_n \nrightarrow 0\). For some 
-    \end{proof}
+    % \question{20}
+    % Let $x,y\in \ell^\infty$ be two sequences. Let us say that $y$ is \textbf{dominated} by $x$, denoted $x\geq y$, if $|x_n|\geq |y_n|$ for all $n\in \N$. Let $D_x$ denote the set of all sequences which are dominated by $x$:
+    %     \[ D_x = \{y\in \ell^\infty: |y_n|\leq |x_n| \text{ for all $n\in \N$}\}. \]
+    % Prove that $D_x$ is compact if and only if $x_n\rightarrow 0$.
+    % \begin{proof}
+    %     Suppose that \(D_x\) is compact. Suppose for contradiction that \(x_n \nrightarrow 0\). For some 
+    % \end{proof}
 \end{document}
