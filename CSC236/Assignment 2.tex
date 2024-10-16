@@ -80,6 +80,73 @@ ustbox}
 
     \textit{Question 6.}\begin{enumerate}
         \item Give a loop invariant that characterizes the values of \(a\) and \(y\).
+        \begin{proof}
+            Define the loop invariant to be
+            \[
+                Inv(x, y) : a = x + \frac{y(y+1)}{2} - 55
+            \]
+            It will be proven that at the beginning of the \(i\)th iteration of the loop, \(Inv(x,y)\) is true.
+
+            \textbf{Base Case.} At the beginning of the first iteration, \(a=x\) and \(y=10\). Thus
+            \[
+                x + \frac{y(y+1)}{2} - 55 = x - \frac{10(11)}{2} - 55 = x - 55 + 55 = x = a
+            \]
+            The base case has been proven to be true.
+
+            \textbf{Induction Hypothesis.} Now suppose that for some positive natural \(j\), \(Inv(a,y)\) holds true at the beginning of the \(j\)th iteration. \(y\) is initially 10 and is decremmented at the end of every iteration, so at the beginning of the \(j\)th iteration, \(y=10-(j-1) = 11 - j\). Then the loop invariant states that 
+            \[
+                a = x +\frac{(11-j)(12-j)}{2}-55
+            \]
+
+            \textbf{Induction Step.} If \(a \leq 0\), the loop terminates and never reaches the beginning of the \(j+1\)th iteration. Otherwise, on line 6 in the \(j\)th iteration, \(a\) is subtracted by \(y=11-j\). Using the induction hypothesis, the value of \(a\) is now
+            \[
+                a = x + \frac{(11-j)(12-j)}{2} - 55 - (11-j) = x + \left(\frac{(11-j)(12-j)}{2} - (11 - j)\right)
+            \]
+            \[
+                = x+\frac{(11-j)(12-j-2)}{2}-55 = x+\frac{(10-j)(11-j)}{2}-55
+            \]
+            Finally, on line 7, the value of \(y\) is decremented by 1 and becomes \(y = 10-j\). The program then arrives at the beginning of the \(j+1\)th iteration. Indeed, it is true that
+            \[
+                a = x+\frac{(10-j)(11-j)}{2}-55 = x+\frac{y(y+1)}{2}-55
+            \]
+            Thus \(Inv(a,y)\) is true at the beginning of the \(j+1\)th iteration. Verifying the validity of the loop invariant.
+
+        \end{proof}
         
+        \item Show that sometimes this code fails to terminate
+        \begin{proof}
+            Let \(x=56\). It wil be shown using simple induction that at the beginning of every iteration, \(a > 0\), which implies that the loop can never terminate.
+
+            Consider the beginning of an arbitrary \(i\)th iteration. It is known that \(y = 11 - j\). From the loop invariant found in part (a),
+            \[
+                a = x + \frac{y(y+1)}{2} - 55 = 56 + \frac{(11-j)(12-j)}{2} - 55 = 1 + \frac{(11-j)(12-j)}{2}
+            \]
+            Note that \(\frac{(11-j)(12-j)}{2} < 0\) if and only if \(11 < j\) and \(j < 12\) at the same time, which is impossible for \(j \in \mathbb{N}\). Thus \(\frac{(11-j)(12-j)}{2} \geq 0\) so
+            \[
+                a = 1 + \frac{(11-j)(12-j)}{2} \geq 1 > 0
+            \]
+            Therefore, \(a >0\) at the beginning of all iterations, which means that the loop never terminates.
+
+        \end{proof}
+    \end{enumerate}
+    \noindent\textit{Question 7.} State the pre- and post-conditions that the algorithms must satisfy, then prove that each algorithm is correct.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        \begin{proof}
+            Pre-condition: \(a\) is a non-zero number and \(b\) is a natural number.
+            
+            Post-condition: Returns the value of \(a^b\).
+
+            The correctness of the program will be proved using complete induction on \(b\). For the entirety of the proof, \(a\) is fixed to be an arbitrary non-zero number.
+
+            \textbf{Base Case.} When \(b=0\), the method returns 1, which is exactly \(a^b\).
+
+            \textbf{Induction Hypothesis.} Suppose that the program returns the correct value of \(a^b\) for all \(b \leq n\), for some \(n \in \mathbb{N}\).
+
+            \textbf{Induction Step.} When \(b = n+1\), \(b \geq 1\), so line 3 is not reached. Consider two possible cases:
+            
+            If \(b\) is even, line 5 and 6 will be executed. A new variable \(x\) is initialized to be equal to \verb|exp_rec(a, b / 2)|. By the induction hypthesis, the value of \(x\) is \(a^{\frac{b}{2}}\). The program returns \verb|x * x|, which is equal to \(a^{\frac{b}{2}} \cdot a^{\frac{b}{2}} = a^b\) on line 6. 
+
+        \end{proof}
     \end{enumerate}
 \end{document}
