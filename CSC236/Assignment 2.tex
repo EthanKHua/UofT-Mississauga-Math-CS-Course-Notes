@@ -145,8 +145,20 @@ ustbox}
 
             \textbf{Induction Step.} When \(b = n+1\), \(b \geq 1\), so line 3 is not reached. Consider two possible cases:
             
-            If \(b\) is even, line 5 and 6 will be executed. A new variable \(x\) is initialized to be equal to \verb|exp_rec(a, b / 2)|. By the induction hypthesis, the value of \(x\) is \(a^{\frac{b}{2}}\). The program returns \verb|x * x|, which is equal to \(a^{\frac{b}{2}} \cdot a^{\frac{b}{2}} = a^b\) on line 6. 
+            If \(b\) is even, line 5 and 6 will be executed. A new variable \(x\) is initialized to be equal to \verb|exp_rec(a, b / 2)|. Since \(\frac{b}{2}\) is natural and less than or equal to \(n\), By the induction hypthesis, the value of \(x\) is \(a^{\frac{b}{2}}\). The program returns \verb|x * x|, which is equal to \(a^{\frac{b}{2}} \cdot a^{\frac{b}{2}} = a^b\) on line 6. 
 
+            If \(b\) is odd, line 8 and 9 will be executed. By a similar argument as the case above, a variable \(x\) is initialized to the value \(a^{\frac{b-1}{2}}\) and \verb|x * x * a| is returned, which has the value of \(a^{\frac{b-1}{2}} \cdot a^{\frac{b-1}{2}} \cdot a = a^b\)
+
+            Therefore, it can be concluded that the program satisfies the postconditions for all natural \(b\).
+
+        \end{proof}
+
+        \item 
+        \begin{proof}
+            Define the loop invariant
+            \[
+                P(\texttt{mult}, \texttt{exp})
+            \]
         \end{proof}
     \end{enumerate}
 \end{document}
