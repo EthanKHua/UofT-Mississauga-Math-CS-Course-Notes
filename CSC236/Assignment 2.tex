@@ -155,10 +155,75 @@ ustbox}
 
         \item 
         \begin{proof}
-            Define the loop invariant
+            Let \(a\) be a non-zero number and \(b\) be a natural number. For a positive natural \(i\), define the loop invariant
             \[
-                P(\texttt{mult}, \texttt{exp})
+                P(i) : \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = a^b
             \]
+            It will be shown using induction on \(i\) that for \(i \in \{1, 2,..., \lfloor \log _2 (b) \rfloor + 1\}\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
+
+            \textbf{Base Case.} Let \(i=1\). At the start of the very first iteration, \verb|mult = a|, \verb|ans = 1|, and \verb|exp = b|, so it follows that
+            \[
+                \texttt{mult}^\texttt{exp} \cdot \text{ans} = a^b \cdot 1 = a^b
+            \]
+            Thus the base case holds.
+
+            \textbf{Induction Hypothesis.} Let \(j \in \{1,2,..., \lfloor \log _2(b) \rfloor\}\). Suppose that at the beginning of the \(j\)th iteration, \(P(j)\) is true. That is,
+            \[
+                \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = a^b
+            \]
+            \textbf{Induction Step.} Let \(\texttt{mult}_{0},\texttt{exp}_{0},\texttt{ans}_{0}\) be the value of  \(\texttt{mult},\texttt{exp},\texttt{ans}\) at the beginning of the \(j\)th iteration and let \(\texttt{mult}_{1},\texttt{exp}_{1},\texttt{ans}_{1}\) denote the value of the variables at the beginning of the \(j+1\)th iteration.
+
+            Now, two cases will be considered for the analysis of the loop execution.
+
+            If \verb|exp| is odd, then line 7 will run and multiply \verb|ans| by \verb|mult|, which implies that \(\texttt{ans}_1 = \texttt{ans}_0 \cdot \texttt{mult}_0\).
+
+            Line 8 will run and will multiply \verb|mult| by itself, so \(\texttt{mult}_1 = \texttt{mult}_0^{\, 2}\).
+            
+            As well, \verb|exp| can be rewritten as \(2n+1\), for some natural \(n\), so line 9 will result in \(\texttt{exp}_1 = \texttt{exp}_0 // 2 = \frac{\texttt{exp}_0 - 1}{2}\)
+
+            After line 9, the current iteration ends and the \(j+1\)th iteration begins. Using algebriac manipulation and the induction hypothesis, \(P(j+1)\) can be verified to be true:
+            \[
+                \texttt{mult}_1^{\texttt{exp}_1} \cdot \texttt{ans}_1 = (\texttt{mult}_0^{\, 2})^\frac{\texttt{exp}_0 - 1}{2} \cdot (\texttt{ans}_0 \cdot \texttt{mult}_0) = (\texttt{mult}_0)^{\texttt{exp}_0 - 1}(\texttt{mult}_0 \cdot \texttt{ans}_0)
+            \]
+            \[
+                = \texttt{mult}_0 ^{\texttt{exp}_0} \cdot \texttt{ans}_0 = a^b
+            \]
+
+            Otherwise if \verb|exp| is even, then line 7 will not run, so \(\texttt{ans}_1 = \texttt{ans}_0\).
+
+            Finally, from line 8, it is seen that \(\texttt{mult}_1 = \texttt{mult}_0^2\)
+
+            \verb|exp| can be written as \(2k\) for some natural \(k\), so line 9 produces \(\texttt{exp}_1 = \texttt{exp}_0 // 2 = \frac{\texttt{exp}_0}{2}\).
+
+            The execution of line 9 denotes the end of the \(j\)th iteration and the start of the \(j+1\)th iteraton. Similar to the previous case, it is seen that 
+            \[
+                \texttt{mult}_1^{\texttt{exp}_1} \cdot \texttt{ans}_1 = (\texttt{mult}_0^{\, 2})^\frac{\texttt{exp}_0}{2} \cdot (\texttt{ans}_0) = \texttt{mult}_0^{\texttt{exp}_0} \cdot \texttt{ans}_0 = a^b
+            \]
+            Thus, in either case, \(P(j+1)\) has been shown to hold.
+
+            By the principle of simple induction, it has been shown that \(P(\lfloor \log _2(b) \rfloor + 1)\) is true at the beginning of iteration number \(\lfloor \log _2(b) \rfloor + 1\). Since \verb|exp| was initialized as \(b\) and has been halved \(\lfloor \log _2(b) \rfloor + 1\) times, the value of \verb|exp| at the beginning of the iteration is 0, which means that the loop terminates. Using the fact that \(P(\lfloor \log _2(b) \rfloor + 1)\) holds,
+            \[
+                \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = \texttt{mult}^0 \cdot \texttt{ans} = \texttt{ans} = a^b
+            \]
+            The program returns \verb|ans| on line 10, which satisfies its postconditions.
         \end{proof}
     \end{enumerate}
+    \textit{Question 8.} Prove that \verb|majority()| is correct.
+    \begin{proof}
+        
+    \end{proof}
+    \textit{Question 9.} Studying bubblesort.
+    \begin{enumerate}[label=(\alph*)]
+        \item State and prove an invariant for the inner loop
+        \item State and prove an invariant for the outer loop
+        \item Prove that \verb|bubblesort| is correct, according to its specifications
+    \end{enumerate}
+    \textit{Question 10.} Consider the following generalization of the \verb|min| function.
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that this algorithm is correct
+        \item Analyze the worse-case running time of this algorithm.
+    \end{enumerate}
+    \pagebreak
+    \textbf{Q4.} Solve questions 6,7,10,12, and 14 on pages 46 to 48 of the textbook. Only \textbf{two} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
+    \textit{Question 7.} Let \(T(n)\) denote the number of distinct full binary trees with \(n\) nodes. Give a recurrence for \(T(n)\). Then use induction to prove that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\).
 \end{document}
