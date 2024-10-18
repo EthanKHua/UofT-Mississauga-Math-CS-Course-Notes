@@ -1,6 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adj
-ustbox}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox,mathtools}
 \hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
 \usepackage[left=2.6cm, right=2.6cm, top=1.5cm, includehead, includefoot]{geometry}
 \usepackage[dvipsnames]{xcolor}
@@ -210,7 +209,20 @@ ustbox}
     \end{enumerate}
     \textit{Question 8.} Prove that \verb|majority()| is correct.
     \begin{proof}
-        
+        Let \(A\) be a list with more than half of its entries equal to each other, and let \(x\) be that value. As well, let \(n > \frac{\texttt{len}(A)}{2}\) represent the number of occurences of \(x\) in \(A\). For a positive natural \(i\), define the loop invariant
+        \[
+            P(i) : \text{if } m \neq x, \text{ then } A[i:\texttt{len}(A)] \text{ has more than half of its entries equal to } x
+        \]
+        It will be shown using complete induction that for \(i \in \{1,2,...,\texttt{len}(A)\}\), \(P(i)\) is true at the beginning of the \(i\)th loop iteration.
+
+        \textbf{Base Case.} Let \(i=1\). When the program first enters the loop, \(m=A[0]\). Suppose that \(m \neq x\). Then the length of \(A[1:\texttt{len}(A)]\) is reduced by 1, but still contains \(n\) occurences of \(x\). This implies that \(A[1:\texttt{len}(A)]\) also has more than half of its elements equal to \(x\). Thus the base case holds true.
+
+        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(j \in \{1, 2,..., \texttt{len}(A) - 1\}\). Suppose that for all \(j \leq k\),  at the beginning of the \(j\)th iteration, \(P(j)\) is true. It is obvious that \(k \leq \texttt{len}(A) - 1\), so the loop body runs.
+
+        Now, examine the contrapositive of the statement of the predicate:
+        \[
+            \text{if } A[j+1:\texttt{len}(A)] \text{ has less than or equal to half of its entries equal to } x \text{, then } m=x
+        \]
     \end{proof}
     \textit{Question 9.} Studying bubblesort.
     \begin{enumerate}[label=(\alph*)]
@@ -225,5 +237,32 @@ ustbox}
     \end{enumerate}
     \pagebreak
     \textbf{Q4.} Solve questions 6,7,10,12, and 14 on pages 46 to 48 of the textbook. Only \textbf{two} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
+
+    \textit{Question 6.} Let \(T(n)\) be the number of binary strings of length \(n\) where every 1 is immediately preceded by a 0.
+    \begin{enumerate}[label=(\alph*)]
+        \item Develop a recurrence for \(T(n)\)
+        \item Find a closed form for \(T(n)\) 
+        \item Prove that the closed form is correct using induction
+    \end{enumerate}
+
     \textit{Question 7.} Let \(T(n)\) denote the number of distinct full binary trees with \(n\) nodes. Give a recurrence for \(T(n)\). Then use induction to prove that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\).
+
+    \textit{Question 10.} Let \(H(n)\) denote the number of binary strings of length \(n\) that have no odd length blocks of 1's.
+
+    Develop a recursive definition for \(H(n)\), and justify why it is correct. Then find a closed form for \(H\) using repeated substitution.
+
+    \textit{Question 12.} Analyze the worse-case runtime of \verb|fast_rec_mult|.
+
+    \textit{Question 14.} Recall the recurrence for the worst-case runtime of quicksort:
+    \[
+        T(n)=\begin{dcases}
+            c, &\text{ if } n\leq 1;\\
+            T(|L|)+T(|G|) + dn, &\text{ if } n>1;\\
+        \end{dcases}
+    \]
+    where \(L\) and \(G\) are the partitions of the list.
+    \begin{enumerate}
+        \item Suppose the lists are always evenly split; that is, \(|L| = |G| = \frac{n}{2}\) at each recursive call. Find a tight asymptotic bound on the runtime of quicksort using this assumption.
+        \item Now suppose that the lists are always very unevenly split: \(|L| = n-2\) and \(|G| = 1\) at each recursive call. Find a tight asymptotic bound on the runtime of quicksort using this assumption.
+    \end{enumerate}
 \end{document}
