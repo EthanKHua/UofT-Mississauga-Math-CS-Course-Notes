@@ -209,20 +209,21 @@
     \end{enumerate}
     \textit{Question 8.} Prove that \verb|majority()| is correct.
     \begin{proof}
+        First, a new definition will be defined to make the proof more concise and clear to read: A list of integers that has more than half of its entries equal to some integer \(x\) is called a \textbf{majority list} for \(x\).
+
         Let \(A\) be a list with more than half of its entries equal to each other, and let \(x\) be that value. As well, let \(n > \frac{\texttt{len}(A)}{2}\) represent the number of occurences of \(x\) in \(A\). For a positive natural \(i\), define the loop invariant
         \[
-            P(i) : \text{if } m \neq x, \text{ then } A[i:\texttt{len}(A)] \text{ has more than half of its entries equal to } x
+            P(i) : \text{if } A[0:i] \text{ is a majority list for } x \text{, then } m=x
         \]
         It will be shown using complete induction that for \(i \in \{1,2,...,\texttt{len}(A)\}\), \(P(i)\) is true at the beginning of the \(i\)th loop iteration.
 
-        \textbf{Base Case.} Let \(i=1\). When the program first enters the loop, \(m=A[0]\). Suppose that \(m \neq x\). Then the length of \(A[1:\texttt{len}(A)]\) is reduced by 1, but still contains \(n\) occurences of \(x\). This implies that \(A[1:\texttt{len}(A)]\) also has more than half of its elements equal to \(x\). Thus the base case holds true.
+        \textbf{Base Case.} Let \(i=1\). When the program first enters the loop, \(m=A[0]\). Suppose that \(A[0:1]\) is a majority list for \(x\). But \(A[0:1]\) only has one element, so it must be that \(m=A[0]=x\). Thus the base case holds true.
 
-        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(j \in \{1, 2,..., \texttt{len}(A) - 1\}\). Suppose that for all \(j \leq k\),  at the beginning of the \(j\)th iteration, \(P(j)\) is true. It is obvious that \(k \leq \texttt{len}(A) - 1\), so the loop body runs.
+        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(k \in \{1, 2,..., \texttt{len}(A) - 1\}\). Suppose that for all \(j \leq k\),  at the beginning of the \(j\)th iteration, \(P(j)\) is true. It is obvious that \(k \leq \texttt{len}(A) - 1\), so the loop body runs.
 
-        Now, examine the contrapositive of the statement of the predicate:
-        \[
-            \text{if } A[j+1:\texttt{len}(A)] \text{ has less than or equal to half of its entries equal to } x \text{, then } m=x
-        \]
+        \textbf{Induction Step.} Let \(c_j,m_j\) denote the value of \(c,m\) respectively at the beginning of the \(j\)th iteration. Suppose that \(A[0:k+1]\) is a majority list for \(x\). Here, two cases will be considered.
+
+        Consider the case where for all \(j\leq k\), \(A[0:j]\) is not a majority list for \(x\).
     \end{proof}
     \textit{Question 9.} Studying bubblesort.
     \begin{enumerate}[label=(\alph*)]
