@@ -217,20 +217,22 @@
 
         Before continuing to prove correctness, a new definition will be defined to make the proof more concise and clear to read: A list of integers that has more than half of its entries equal to some integer \(x\) is called a \textbf{majority list} for \(x\).
 
-        Let \(A\) be a list with more than half of its entries equal to each other, and let \(x\) be that value. As well, let \(n_i\) represent the difference between the number of occurences of \(x\) and the other values in \(A[0:i]\). For a positive natural \(i\), define the loop invariant
+        Let \(A\) be a list with more than half of its entries equal to each other, and let \(x\) be that value. As well, let \(n_i\) represent the absolute difference between the number of occurences of \(x\) and the other values in \(A[0:i]\). For a positive natural \(i\), define the loop invariant
         \[
             P(i) : \text{if } A[0:i] \text{ is a majority list for } x \text{, then } m=x \text{ and } c \geq n_i \text{. As well,}
         \]
         \[
-            \text{if } A[0:i] \text{ is a list with half its elements equal to } x \text{, then } c=0 \text{ or } m=x
+            \text{if } A[0:i] \text{ is a not a majority list for } x \text{, then } c\leq n_i \text{ or } m=x
         \]
         It will be shown using complete induction that for \(i \in \{1,2,...,\texttt{len}(A)\}\), \(P(i)\) is true at the beginning of the \(i\)th loop iteration.
 
         \textbf{Base Case.} Consider two base cases.
         
-        Let \(i = 1\). Suppose that \(A[0:1]\) is a majority list for \(x\). Then it must be that \(A[0]=x\). Upon entering the loop for the first time, \(m=A[0]\) and \(c=1\), which satisfies the conclusion of the first implication. Secondly, notice that the second statement is vacuously true because a list with one element cannot have half of its elements equal to \(x\). Thus at the beginning of the first iteration, \(P(1)\) holds true.
+        Let \(i = 1\). Suppose that \(A[0:1]\) is a majority list for \(x\). Then it must be that \(A[0]=x\) and \(n_1=1\). Upon entering the loop for the first time, \(m=A[0]\) and \(c=1\geq n_1\), which satisfies the conclusion of the first implication. Secondly, sppose that \(A[0:1]\) is not a majority list for \(x\). Then \(A[0]\neq x\) and \(n_1=1\). The first time entering the loop, \(c=1\leq n_1\), which is sufficient to prove the second statement to be true.
 
-        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(k \in \{1,2,...,\texttt{len}(A) -1\}\). Suppose that for all \(j \leq k\), at the start of the \(j\)th iteration, \(P(j)\) is true. The end goal is to show that \(P(k+1)\) is true at the beginning of the \(k+1\)th iteration.
+        Thus at the beginning of the 1st iteration, \(P(1)\) is true.
+
+        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(k \in \{1,2,...,\texttt{len}(A) -1\}\). Suppose that at the start of the \(k\)th iteration, \(P(k)\) is true. The end goal is to show that \(P(k+1)\) is true at the beginning of the \(k+1\)th iteration.
 
         \textbf{Induction Step.} Let \(m_i, c_i\) denote the values of \(m\) and \(c\) at the start of the \(i\)th iteration. To prove the first implication, suppose that \(A[0:k+1]\) is a majority list for \(x\). Consider the following two cases:
         \begin{enumerate}
@@ -240,31 +242,27 @@
 
             \item \(A[0:k]\) is not a majority list for \(x\):
             
-            The only way for \(A[0:k]\) to not be a majority list for \(x\) at the same time as \(A[0:k+1]\) is if \(A[k]=x\) and \(A[0:k]\) has half its elements equal to \(x\). By the induction hypothesis, \(c_k = 0\) or \(m_k=x\). Executing the \(k\)th iteration, if \(c_k=0\), running lines 11 and 12 result in \(m_{k+1} = A[k] = x\) and \(c_{k+1} = 1\). Otherwise, if \(c_k \neq 0\), then \(m_k=x\). \(A[k]=x\), so the condition on line 13 is satisfied, running line 14, so \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). \(m\) remains unchanged so \(x=m_k=m_{k+1}\). In either case, the first implication is still shown to be true.
+            The only way for \(A[0:k]\) to not be a majority list for \(x\) at the same time as \(A[0:k+1]\) is if \(A[k]=x\) and \(A[0:k]\) has half its elements equal to \(x\). Since \(n_k=0\), by the induction hypothesis, \(c_k = 0\) or \(m_k=x\). Executing the \(k\)th iteration, if \(c_k=0\), running lines 11 and 12 result in \(m_{k+1} = A[k] = x\) and \(c_{k+1} = 1\). Otherwise, if \(c_k \neq 0\), then \(m_k=x\). \(A[k]=x\), so the condition on line 13 is satisfied, running line 14, so \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). \(m\) remains unchanged so \(x=m_k=m_{k+1}\). In either case, the first implication is still shown to be true.
         \end{enumerate}
         Therefore, the first implication holds true.
 
-        Now, proving the second implication, suppose that \(A[0:k+1]\) is a list with half its elements equal to \(x\). This means that \(A[0:k+1]\) is a list with at least 2 elements. Again, consider cases.
+        Now, proving the second implication, suppose that \(A[0:k+1]\) is not a majority list for \(x\). Again, consider cases.
         \begin{enumerate}
-            \item Neither of the last 2 elements are equal to \(x\):
+            \item \(A[0:k]\) is not a majority list for \(x\):
             
-            In this case, \(A[0:k-1]\) is a majority list for \(x\). By the induction hypothesis, at the beginning of the \(k-1\)th iteration, \(m_{k-1} = x\) and \(c_{k-1} \geq n_{k-1} = 2\). Iterating through the \(k-1\)th iteration, only lines 16 and 17 are ran, which means that \(m_k = m_{k-1}\) and \(c_k = c_{k-1} - 1 \geq 1\). Again, iterating through the \(k\)th iteration of the loop, only lines 16 and 17 are ran, so \(m_{k+1} = m_k = m_{k-1} = x\) and \(c_{k+1} = c_k \geq 1\), which satisfies the conclusion.
-            
-            \item Exactly 1 of the last 2 elements are equal to \(x\):
-            
-            In this case, \(A[0:k-1]\) is a list with half of its elements equal to \(x\). By the induction hypothesis, at the start of the \(k-1\)th iteration, either \(c_{k-1} = 0\) or \(m_{k-1} = x\).
-            
-            In the \(k-1\)th iteration, if \(c_{k-1} = 0\), then the iteration will run lines 11 and 12, resulting in \(c_k = 1\) and \(m_k = A[k-1]\). The \(k\)th iteration will then run line 16, as \(c_k \neq 0\) and \(m_k = A[k-1] \neq A[k]\). Thus \(c_{k+1} = c_k - 1 = 0\).
+            By the induction hypothesis, \(c_k \leq n_k\) or \(m_k = x\). Consider what happens if \(A[k]= x\). Executing the \(k\)th iteration, if \(c_k=0\), lines 11 results in \(m_{k+1} = A[k]= x\). If not, then the value of \(m\) is unchanged so \(m_{k+1} = m_k\). Next, if the condition on line 13 is true, then \(x = A[k]= m_k= m_{k+1}\). Finally, if line 16 runs, it means that \(m_k = x \neq A[k]\), thus \(c_k \leq n_k\) must be true. Then \(c_{k+1} = c_k - 1 \leq n_k - 1 = n_{k+1}\). In all situations, either \(m_{k+1} = x\) or \(c_{k+1} \leq n_{k+1}\).
 
-            Otherwise, \(m_{k-1} = x\) is true, so either line 14 or 16 will run, depending on whether \(A[k-1]=x=m_{k-1}\). If the equality is true, then \(A[k-1] = x\), and \(A[k] \neq x\). Line 14 will run in the \(k-1\)th iteration, making \(c_k = c_{k-1} + 1\) and \(m_k = m_{k-1}\). Then, since \(c_k > 0\), \(m_k = x\), and \(x=A[k-1]\neq A[k]\), line 16 will run, so the variable \(m\) remains unchanged, meaning \(m_{k+1} = m_k = x\). On the other hand, if the equality is not true, \(A[k-1] \neq x\) and \(A[k] = x\). Returning to the \(k-1\)th iteration, line 16 will run, so \(m_k = m_{k-1} = x\) and \(c_k = c_{k-1} - 1\). Next, in the \(k\)th iteration, if \(c_k =  0\), \(m_{k+1} = A[k] = x\). If not, line 14 will run, keeping \(m_{k+1} = m_k = x\).
+            Now, consider what happens when \(A[k]\neq x\). Again, executing the \(k\)th iteration, if \(c_k = 0\), line 12 results in \(c_{k+1} = 1\), but notice that since \(A[0:k]\) is not a majority list, appending a value not equal to \(x\) will increase the value of \(n_{k+1}\). Particularly, \(n_{k+1} = n_k + 1\). Then \(c_{k+1} \leq n_k + 1 = n_{k+1}\). If \(c_k \neq 0\), then similar to the previous case, \(m_{k+1} = m_k\). If \(m_k = A[k] \neq x\), it must be true that \(c_k \leq n_k\). Then, line 14 will add 1 to \(c_k\), so \(c_{k+1} = c_k + 1 < n_k + 1 = n_{k+1}\). Otherwise, if \(m_k \neq A[k]\), then \(m_k\) can either be equal or not equal to \(x\). If \(m_k = x\), the conclusion follows immediately. If not, \(c_k \leq n_k\) and from line 16, \(c_k\) is decremented so \(c_{k+1} = c_k - 1 \leq n_k - 1 \leq n_{k+1}\).
 
-            In all cases, either \(c_{k+1} = 0\) or \(m_{k+1} = x\).
+            Therefore the second implication holds true at the beginning of the \(k+1\)th iteration.
 
-            \item The last 2 elements are equal to \(x\):
+            \item \(A[0:k]\) is a majority list for \(x\).
+            
+            The only situation where this can be true is if \(n_k = 1\) and \(A[k] \neq x\). If this condition is not true, then \(A[0:k+1]\) is a majority list for \(x\). Continuing on, by the induction hypothesis, \(c_k \geq n_k = 1\) and \(m_k = x\). Iterating through the \(k\)th iteration, notice that \(c_k\) is non-zero. Thus lines 11 and 12 are skipped. The value of \(m_k\) remains unchanged, so \(m_{k+1} = m_k = x\), which makes the second implication true.
         \end{enumerate}
         Thus it has been shown that both the implications are true, so \(P(k+1)\) is true at the beginning of the \(k+1\)th iteration.
 
-        By the principle of complete induction, for all \(i \in \{1,...,\texttt{len}(A)\}\), \(P(i)\) holds true at the beginning of the \(i\)th iteration. When \(i = \texttt{len}(A)\), the loop condition is false so the loop terminates. Notice that \(A[0:\texttt{len}(A)] = A\) is a majority list for \(x\), so by \(P(i)\), the program correctly returns \(m = x\), satisfying the postconditions of the program.
+        By the principle of simple induction, for all \(i \in \{1,...,\texttt{len}(A)\}\), \(P(i)\) holds true at the beginning of the \(i\)th iteration. When \(i = \texttt{len}(A)\), the loop condition is false so the loop terminates. Notice that \(A[0:\texttt{len}(A)] = A\) is a majority list for \(x\), so by \(P(i)\), the program correctly returns \(m = x\), satisfying the postconditions of the program.
         
     \end{proof}
     \textit{Question 9.} Studying bubblesort.
