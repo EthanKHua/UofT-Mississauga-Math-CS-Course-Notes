@@ -268,12 +268,67 @@
     \textit{Question 9.} Studying bubblesort.
     \begin{enumerate}[label=(\alph*)]
         \item State and prove an invariant for the inner loop
+        
+        \begin{proof}
+            Let \(L\) be a list of numbers. Define the inner loop invariant to be
+            \[
+                Q(n): \text{For all } j \in \mathbb{N}, j < i \text{, } L[j] \leq L[i]
+            \]
+            Let \(k \in \{0,1,..., \texttt{len}(L) - 1\}\). It will be proven using simple induction that for all \(n \in \{1, 2, ..., \texttt{len}(L) - k + 1\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
+
+            \textbf{Base Case.} Let \(n=1\). At the beginning of the first iteration, \(i = 0\). It follows that \(Q(1)\) is vacuously true because there is no natural number \(j < 0\).
+
+            \textbf{Induction Hypothesis.} Suppose that for some \(n \in \{1, 2,..., \texttt{len}(L)-k\}\), at the beginning of the \(n\)th iteration, \(Q(n)\) is true. The loop condition is always true for this \(n\), so the loop body will be entered. It will be shown that at the start of the \(n+1\)th iteration, \(Q(n+1)\) is true.
+
+            \textbf{Induction Step.} Notice that at the end of every iteration, \(i\) is incremented once. Thus \(i = n - 1\) at the beginning of the \(n\)th iteration. Iterating through the loop, if \(L[n-1] > L[n]\), their positions in the list will be swapped. This guarantees that \(L[n-1] \leq L[n]\) after line 11. Next, \(i\) is incremented by 1, so its new value is \(n\). This marks the end of the \(n\)th iteration and the start of the \(n+1\)th iteration.
+
+            By the induction hypothesis, for all natural \(j < n-1\), \(L[j] \leq L[n-1] \leq L[n]\) if line 11 did not run, or \(L[j] < L[n]\) if it did. Regardless, \(L[j] \leq L[n]\). Additionally, \(L[n-1] \leq L[n]\) is true based on the previous iteration of the loop. It can be concluded that for \(j < n = i\), \(L[j] \leq L[n] = L[i]\), so \(Q(n+1)\) is true.
+
+            By the principle of simple induction, for all \(n \in \{1, 2, ..., \texttt{len}(L) - k + 1\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
+
+        \end{proof}
         \item State and prove an invariant for the outer loop
+        
+        \begin{proof}
+            Define the outer loop invariant to be
+            \[
+                P(m) : \text{The last } m \text{ elements of } L \text{ are sorted.}
+            \]
+            In other words, it is true that \(L[\texttt{len}(L) - m] \leq L[\texttt{len}(L) - m + 1] \leq \cdots \leq L[\texttt{len}(L) - 1]\). It will be proven using simple induction that for \(m \in \{1, 2,..., \texttt{len}(L) + 1\}\), \(P(m)\) is true.
+
+            \textbf{Base Case.} Let \(m=1\). When the loop is first entered, the last element of \(L\) is obviously sorted. Thus \(P(1)\) holds true.
+
+            \textbf{Induction Hypothesis.} Suppose that for some \(m \in \{1,..., \texttt{len}(L)\}\), \(P(m)\) is true at the beginning of the \(m\)th iteration. Notice that \(k\) is initialized to be 0 and is incremented every outer loop iteration. Thus \(k = m-1 < \texttt{len}(L)\), so the loop body is entered.
+
+            \textbf{Induction Step.} Running the \(m\)th iteration, \(i\) is initialized to be 0 and the inner loop runs. By the previous part, \(Q(\texttt{len}(L) - m + 2)\) is true at the beginning of the \((\texttt{len}(L) - m + 2)\)th iteration. Recall that at the beginning of this iteration, \(i = \texttt{len}(L) - m + 1 = \texttt{len}(L) - k\), so the loop terminates. Thus before line 13, \(L[\texttt{len}(L) - m]\leq L[\texttt{len}(L) - m + 1]\), as \(\texttt{len}(L) - m < i\). After line 13, the \(m+1\)th iteration begins.
+
+            By the induction hypothesis, there is a typo lol.
+        \end{proof}
+
         \item Prove that \verb|bubblesort| is correct, according to its specifications
     \end{enumerate}
     \textit{Question 10.} Consider the following generalization of the \verb|min| function.
     \begin{enumerate}[label=(\alph*)]
         \item Prove that this algorithm is correct
+        
+        \begin{proof}
+            This program, given that \(A\) is a non-empty list of numbers and \(k\) is a positive natural less than or equal to \(\texttt{len}(A)\), returns the \(k\)th smallest element. It will be shown using complete induction on \(\texttt{len}(A)\) that this program is correct.
+
+            \textbf{Base Case.} Let \(A\) be a list of numbers such that \(\texttt{len}(A) = 1\). Then \(k=1\). Taking \(A[0]\) as the pivot, line 4 will partition an empty list, so \(\texttt{len}(L) = 0\). Then the condition on line 5 is true, so the program correctly returns the pivot as the smallest element on line 6.
+
+            \textbf{Induction Hypothesis.} Suppose that for any list \(B\) such that \(\texttt{len}(B) \leq n\), \verb|extract(B, k)| correctly returns the \(k\)th smallest element.
+
+            \textbf{Induction Step.} Let \(A\) be a list with \(\texttt{len}(A) = n + 1\). Running through the program, choosing \(A[0]\) as the pivot, line 4 separates \(A\) into two lists \(L,G\), where \(L\) contains all elements in \(A\) such that \(A < \texttt{pivot}\) and \(G\) contains all elements in \(A\) such that \(A \geq \texttt{pivot}\). Continuing on to line 5, if \(\texttt{len}(L) = k - 1\), then \(L\) contains \(k-1\) elements that are smaller than the pivot, so the pivot is the \(k\)th smallest element, which the program returns on line 6.
+
+            Otherwise, notice that \(\texttt{len}(L),\texttt{len}(G) < n+1 \implies \texttt{len}(L),\texttt{len}(G) \leq n\).
+            
+            If \(\texttt{len}(L) \geq k\), the \(k\)th smallest element of \(A\) is contained in \(L\), and is in fact equal to the \(k\)th smallest element of \(L\). The program returns \verb|extract(L, k)|, which by the induction hypothesis, returns the \(k\)th smallest element of \(L\), which is equal to the \(k\)th smallest element of \(A\).
+
+            If neither of the cases above are true, then it must be that the \(k\)th smallest element of \(A\) is inside of \(G\), and is equal to the \((k - \texttt{len}(A) - 1)\)th smallest element of \(G\). Indeed, the program returns \verb|extract(G, k - len(L) - 1)|, which by the induction hypothesis returns the \((k - \texttt{len}(A) - 1)\)th smallest element of \(G\), which is the \(k\)th smallest element of \(A\).
+
+            Thus the program returns the correct output for lists of size \(n+1\), and by the principle of complete induction, the program is correct.
+            
+        \end{proof}
         \item Analyze the worse-case running time of this algorithm.
     \end{enumerate}
     \pagebreak
