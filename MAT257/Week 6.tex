@@ -41,12 +41,6 @@
     \textbf{Exercise 6.33.} Prove that $[0,1]^2$ is homeomorphic to the closed unit ball $\cl{B}(0,1)$ in $\R^2$.
 
     \begin{proof}
-        We begin by proving a lemma that will help us prove the continuity of the inverse.
-
-        \textbf{Lemma.} Let \(X,Y\) be compact metric spaces. If \(f:X\to Y\) is bijective and continuous, then \(f^{-1}\) is continuous.
-
-        Let \(f\) be bijective and continuous. Thus
-
         Now, we continue to the main result. It is pretty easy to see that the closed box \([0,1]^2\) is homeomorphic to \([-1,1]^2\). We define the function \(h:[-1,1]^2 \to \cl{B}(0,1)\) by
         \[
             h(x,y)=\begin{dcases}
@@ -54,6 +48,12 @@
                 (0,0), &\text{ if } (x,y)=(0,0).
             \end{dcases}
         \]
+        We can verify that this function is indeed well defined because for \((x,y) \in [-1,1]^2\),
+        \[
+            \left\lVert h(x,y) \right\rVert _2 \leq \left\lVert \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2}(x, y) \right\rVert _2 = \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2} \left\lVert (x,y) \right\rVert _2 = \|(x,y)\| _{\max} \leq 1
+        \]
+        which implies that \(h(x,y) \in \cl{B}(0,1)\).
+
         We show that this is a homeomorphism by first showing continuity, and then showing that the inverse is continuous.
 
         \textit{Fact!} Norms are continuous. Therefore \(h\) is continuous when \((x,y) \neq 0\). It remains to show continuity at \((0,0)\).
