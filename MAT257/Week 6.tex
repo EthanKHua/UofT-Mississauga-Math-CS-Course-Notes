@@ -50,9 +50,29 @@
         Now, we continue to the main result. It is pretty easy to see that the closed box \([0,1]^2\) is homeomorphic to \([-1,1]^2\). We define the function \(h:[-1,1]^2 \to \cl{B}(0,1)\) by
         \[
             h(x,y)=\begin{dcases}
-                \|(x,y)\| _2 ^{\, -1} \left(\cos \left(\arctan \frac{y}{x}\right), \sin\left(\arctan \frac{y}{x}\right)\right), &\text{ if } x \neq 0 ;\\
-                (0,y), &\text{ if } x=0 ;
+                \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2}(x, y), &\text{ if } (x,y) \neq (0,0) ;\\
+                (0,0), &\text{ if } (x,y)=(0,0).
             \end{dcases}
         \]
+        We show that this is a homeomorphism by first showing continuity, and then showing that the inverse is continuous.
+
+        \textit{Fact!} Norms are continuous. Therefore \(h\) is continuous when \((x,y) \neq 0\). It remains to show continuity at \((0,0)\).
+
+        Let \(\varepsilon > 0\). By the strong equivalence of norms on \(\mathbb{R}^2\), there is an \(M >0\) such that \(\dfrac{\|(x,y)\| _{\max}}{\|(x,y)\| _2} \leq M\) for all \((x,y) \in \mathbb{R}^2\). Let \(\delta = \frac{\varepsilon}{M}\). Let \((x,y) \in \mathbb{R}^2\) such that \(\|(x,y)\| < \delta\).
+        Then
+        \[
+            \left\lVert h(x,y) \right\rVert = \left\lVert \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2}(x, y) \right\rVert = \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2} \left\lVert (x,y) \right\rVert \leq M \left\lVert (x,y) \right\rVert < \varepsilon
+        \]
+        Thus \(h\) is continuous everywhere. We can explicitly define the inverse \(h^{-1}\) as
+        \[
+            h^{-1} (x,y) = \begin{dcases}
+                \frac{\|(x,y)\| _2}{\|(x,y)\| _{\max}} (x,y), &\text{ if } (x,y) \neq 0 ;\\
+                (0,0), &\text{ if } (x,y) = (0,0).
+            \end{dcases}
+        \]
+        By a similar argument, we can prove that \(h^{-1}\) is continuous. Therefore \(h\) is indeed a homeomorphism.
+
+        Since \([0,1]^2 \cong [-1,1]^2 \cong \cl{B}(0,1)\), \([0,1]^2 \cong \cl{B}(0,1)\) by transitivity.
+        
     \end{proof}
 \end{document}
