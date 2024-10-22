@@ -345,15 +345,43 @@
     \textit{Question 6.} Let \(T(n)\) be the number of binary strings of length \(n\) where every 1 is immediately preceded by a 0.
     \begin{enumerate}[label=(\alph*)]
         \item Develop a recurrence for \(T(n)\)
+        
+        \(T(n)=T(n-1)+T(n-2)\).
         \item Find a closed form for \(T(n)\) 
+        
+        \(T(n)=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{n+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right)\) 
         \item Prove that the closed form is correct using induction
     \end{enumerate}
 
     \textit{Question 7.} Let \(T(n)\) denote the number of distinct full binary trees with \(n\) nodes. Give a recurrence for \(T(n)\). Then use induction to prove that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\).
 
+    \begin{proof}
+        Full binary trees can be defined recursively in the following way:
+        \begin{enumerate}
+            \item A leaf node is a full binary tree
+            \item If \(T_1,T_2\) are full binary trees, then the binary tree obtained from attaching \(T_1,T_2\) to the root node is a full binary tree.
+        \end{enumerate}
+        This motivates the recursive definition for \(T(n)\) to be
+        \[
+            T(n) = 1 + 2\sum_{i=1}^{\frac{n-1}{2}} T(n-i-1)
+        \]
+        Now, it will be shown using complete induction that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\) for all \(n \in \mathbb{N}^+\).
+
+        \textbf{Base Case.} Let \(n=1\). Then \(T(n) = 1\) and \(\frac{1}{n}2^{(n-1) / 2} = 1\), thus the base case holds.
+
+        \textbf{Induction Hypothesis.} Let \(k \in \mathbb{N}^+\). Suppose that for all \(i \leq k\), \(T(i) \geq \frac{1}{i}2^{(i-1) / 2}\). The goal is to show that \(T(k+1) \geq \frac{1}{k+1}2^{(k) / 2}\).
+
+        \textbf{Induction Step.} Using the recursive definition for \(T(n)\), as well as the induction hypothesis,
+        \[
+            T(k+1) = 1 + 2\sum_{i=1}^{\frac{n-1}{2}} T(n-i-1) \geq 1 + 2\sum_{i=1}^{\frac{n-1}{2}} \frac{1}{n-i-1}2^{(n-i-2) / 2}
+        \]
+    \end{proof}
+
     \textit{Question 10.} Let \(H(n)\) denote the number of binary strings of length \(n\) that have no odd length blocks of 1's.
 
     Develop a recursive definition for \(H(n)\), and justify why it is correct. Then find a closed form for \(H\) using repeated substitution.
+
+
 
     \textit{Question 12.} Analyze the worse-case runtime of \verb|fast_rec_mult|.
 
