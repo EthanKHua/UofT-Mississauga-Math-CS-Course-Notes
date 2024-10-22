@@ -73,11 +73,26 @@
         Suppose Question 19 is true. Then the result immediately follows.
     \end{question}
     \pagebreak
+    \begin{question}{19}
+        Let $x,y\in \ell^\infty$ be two sequences. Let us say that $y$ is \textbf{dominated} by $x$, denoted $x\geq y$, if $|x_n|\geq |y_n|$ for all $n\in \N$. Let $D_x$ denote the set of all sequences which are dominated by $x$:
+        \[ D_x = \{y\in \ell^\infty: |y_n|\leq |x_n| \text{ for all $n\in \N$}\}. \]
+        Prove that $D_x$ is compact if and only if $x_n\rightarrow 0$.
+
+        \tcblower
+
+        Suppose that \(D_x\) is compact. Suppose for contradiction that \(x_n \nrightarrow 0\). For some \(\varepsilon > 0\), \(|x_{N_k}| \geq \varepsilon\) for an infinite number of \(N_k\). Consider the open cover \(\{B(\vec{y}_i, \frac{\varepsilon}{2})\}_{i\in I}\), which is the collection of \(\frac{\varepsilon}{2}\)-balls centered around every \(\vec{y}_i \in D_x\). By compactness of \(D_x\), there is a finite subcover \(\{B(\vec{y}_i, \frac{\varepsilon}{2})\}_{i \leq m}\). Now, we construct a \(y \in D_x\) as follows:
+
+        For every sequence \(\vec{y}_i\), let
+        \[
+            y_{N_i} = \begin{dcases}
+                \varepsilon, &\text{ if } (\vec{y}_i)_{N_1} < \frac{\varepsilon}{2};\\
+                0, &\text{ if } (\vec{y}_i)_{N_1} \geq \frac{\varepsilon}{2} ;\\
+            \end{dcases}
+        \]
+        For all other terms in \(y\), make it 0.
+
+        Conversely, suppose that \(x_n \rightarrow 0\).
+    \end{question}
     % \question{20}
-    % Let $x,y\in \ell^\infty$ be two sequences. Let us say that $y$ is \textbf{dominated} by $x$, denoted $x\geq y$, if $|x_n|\geq |y_n|$ for all $n\in \N$. Let $D_x$ denote the set of all sequences which are dominated by $x$:
-    %     \[ D_x = \{y\in \ell^\infty: |y_n|\leq |x_n| \text{ for all $n\in \N$}\}. \]
-    % Prove that $D_x$ is compact if and only if $x_n\rightarrow 0$.
-    % \begin{proof}
-    %     Suppose that \(D_x\) is compact. Suppose for contradiction that \(x_n \nrightarrow 0\). For some 
     % \end{proof}
 \end{document}
