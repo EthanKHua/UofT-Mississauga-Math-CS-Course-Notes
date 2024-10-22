@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \setcounter{section}{5}
+    \section{Week 6? i think}
+    \noindent\textbf{Solvers:} Sanchit, Ethan
+    
+    \noindent\textbf{Writeup:} Ethan
+    
+    \textbf{Exercise 6.33.} Prove that $[0,1]^2$ is homeomorphic to the closed unit ball $\cl{B}(0,1)$ in $\R^2$.
+
+    \begin{proof}
+        We begin by proving a lemma that will help us prove the continuity of the inverse.
+
+        \textbf{Lemma.} Let \(X,Y\) be compact metric spaces. If \(f:X\to Y\) is bijective and continuous, then \(f^{-1}\) is continuous.
+
+        Let \(f\) be bijective and continuous. Thus
+
+        Now, we continue to the main result. It is pretty easy to see that the closed box \([0,1]^2\) is homeomorphic to \([-1,1]^2\). We define the function \(h:[-1,1]^2 \to \cl{B}(0,1)\) by
+        \[
+            h(x,y)=\begin{dcases}
+                \|(x,y)\| _2 ^{\, -1} \left(\cos \left(\arctan \frac{y}{x}\right), \sin\left(\arctan \frac{y}{x}\right)\right), &\text{ if } x \neq 0 ;\\
+                (0,y), &\text{ if } x=0 ;
+            \end{dcases}
+        \]
+    \end{proof}
+\end{document}

@@ -85,13 +85,17 @@
         For every sequence \(\vec{y}_i\), let
         \[
             y_{N_i} = \begin{dcases}
-                \varepsilon, &\text{ if } (\vec{y}_i)_{N_1} < \frac{\varepsilon}{2};\\
-                0, &\text{ if } (\vec{y}_i)_{N_1} \geq \frac{\varepsilon}{2} ;\\
+                \varepsilon, &\text{ if } (\vec{y}_i)_{N_i} < \frac{\varepsilon}{2};\\
+                0, &\text{ if } (\vec{y}_i)_{N_i} \geq \frac{\varepsilon}{2} ;\\
             \end{dcases}
         \]
-        For all other terms in \(y\), make it 0.
+        For all other terms in \(y\), make it 0. Notice that for all \(B(\vec{y}_i, \frac{\varepsilon}{2})\),
+        \[
+            \|y-\vec{y}_i\|_\infty \geq |y_{N_i} - (\vec{y}_i)_{N_i}| \geq \frac{\varepsilon}{2} \implies y \notin D_x
+        \]
+        which is a contradiction.
 
-        Conversely, suppose that \(x_n \rightarrow 0\).
+        Conversely, suppose that \(x_n \rightarrow 0\). Let \(\{U_i\}_{i \in I}\) be an open cover of \(D_x\).
     \end{question}
     % \question{20}
     % \end{proof}
