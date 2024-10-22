@@ -306,6 +306,12 @@
         \end{proof}
 
         \item Prove that \verb|bubblesort| is correct, according to its specifications
+        
+        \begin{proof}
+            Let the inner loop variant be \(\texttt{len}(L) - k - i\). This value is natural and decreasing, so the inner loop will terminate. Similarly, let the outer loop variant be \(\texttt{len}(L) - k\). It is easy to see that the same applies to this value as well. Thus the program will eventually terminate.
+
+            From the previous part, it is true that \(P(\texttt{len}(L))\) holds at the beginning of the \(\texttt{len}(L)\)th iteration. At this iteration, \(k=\texttt{len}(L) - 1\), so the loop condition is true and the loop body enters. When this iteration reaches the inner loop, notice that \(i = 0 - \texttt{len}(L) - k - 1\), so the inner loop does not run. Then \(k\) is incremented and the loop returns to the top of the loop, where the loop condition fails and terminates the loop. Since \(L\) remained unchanged throughout the iteration, \(P(\texttt{len}(L))\) is still true, so the last \(\texttt{len}(L)\) elements of the list are sorted, which is the entire list. Thus the program satisfies its post conditions.
+        \end{proof}
     \end{enumerate}
     \textit{Question 10.} Consider the following generalization of the \verb|min| function.
     \begin{enumerate}[label=(\alph*)]
@@ -330,6 +336,8 @@
             
         \end{proof}
         \item Analyze the worse-case running time of this algorithm.
+        
+        The worst-case for this algorithm is \(\mathcal{O} (nk)\), where \(n\) is the size of the list and \(k\) is the number so that the list is trying to find the \(k\)th smallest element. This happens exactly when the original list is sorted in either ascending or descending order, which causes \verb|partition| to return one empty list and a list of \(n-1\) elements, if the original list contained \(n\) elements. This will also happen in each recursive case, as the list is sorted. The recursion goes up to depth \(k\), with each recursive call using \verb|partition|, which is \(\mathcal{O} (n)\). Thus the worst-case runtime of \verb|extract| is \(\mathcal{O} (nk)\).
     \end{enumerate}
     \pagebreak
     \textbf{Q4.} Solve questions 6,7,10,12, and 14 on pages 46 to 48 of the textbook. Only \textbf{two} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
