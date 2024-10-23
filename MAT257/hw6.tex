@@ -70,7 +70,13 @@
             \item Now show that every open set $U\subseteq \R^n$ has a compact exhaustion.
         \end{enumerate}
         \tcblower
-        Suppose Question 19 is true. Then the result immediately follows.
+        (a):
+        
+        Let \(U \subseteq \mathbb{R}^n\) be a bounded open set. Let \(N\) be smallest natural number such that the set \(S = \{x \in U : dist(\{x\}, U^c) \geq \frac{1}{N}\}\) is non-empty. Define the sequence of sets \((S_n)_{n\geq 1}\) by
+        \[
+            S_n = \left\{x \in U : dist(\{x\}, U^c) \geq \frac{1}{n+N}\right\}
+        \]
+        \(S_n\) is closed.
     \end{question}
     \pagebreak
     \begin{question}{19}
@@ -95,7 +101,21 @@
         \]
         which is a contradiction.
 
-        Conversely, suppose that \(x_n \rightarrow 0\). Let \(\{U_i\}_{i \in I}\) be an open cover of \(D_x\). 
+        Conversely, suppose that \(x_n \rightarrow 0\). We will show that \(D_x\) is complete and totally bounded, which is equivalent to compactness.
+
+        To show completeness, notice that the ambient space \(\ell ^{\infty}\) is complete. Thus if we can show that \(D_x\) is closed, it will follow that \(D_x\) is complete.
+
+        Let \(a \notin D_x\). We will show that \(a\) is not a limit point of \(D_x\), which means that \(D_x\) is closed. We know that there is a \(k \in \mathbb{N}\) such that \(|a_k| > |x_k|\). Define \(\varepsilon = |a_k| - |x_k|\). Fix \(y \in D_x\). Then
+        \[
+            \|a_k - y_k\| _{\infty} \geq |a_k - y_k| \geq |a_k| - |y_k| \geq |a_k| - |x_k| = \varepsilon
+        \]
+        which implies that \(y \notin B(a_k, \varepsilon)\), so \(a\) is not a limit point of \(D_x\). Thus \(D_x\) is closed. It follows that \(D_x\) is complete.
+
+        To show that \(D_x\) is totally bounded, first let \(\varepsilon > 0\). Since \(x_n \to 0\), there is a large enough \(N\) such that for \(n >N\), \(|x_n| < \frac{\varepsilon}{2}\). For all \(y \in D_x\), \(|y_n| < |x_n| < \frac{\varepsilon}{2}\). Consider the set of elements in \(D_x\) such that their terms are 0 for \(n > N\). This set is totally bounded, so there is a \(\varepsilon\)-ball cover \(\{B(y_i, \varepsilon)\}_{i \leq n}\). We show that this collection also covers \(D_x\).
+
+        For \(y \in D_x\), there is an open ball \(B(y_i, \varepsilon)\) such that \(\sup_{n\leq N} {|y_n - (y_i)_n|} < \varepsilon\). But also notice that for \(n>N\), \(|(y_i)_n - y_n| \leq |(y_i)_n| + |y_n| < |y_n| < \frac{\varepsilon}{2}\). Thus \(\|y-y_i\| _{\infty} < \varepsilon\) so \(y \in B(y_i, \varepsilon)\). Thus \(D_x\) is totally bounded.
+
+        Since \(D_x\) is both complete and totally bounded, we can conclude that \(D_x\) is compact.
     \end{question}
     % \question{20}
     % \end{proof}
