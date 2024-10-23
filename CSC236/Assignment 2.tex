@@ -373,7 +373,7 @@
 
         \textbf{Induction Step.} Using the recursive definition for \(T(n)\), as well as the induction hypothesis,
         \[
-            T(k+2) = \sum_{i=1}^{\frac{k+1}{2}} T(k+2-2i) \cdot T(2i - 1) \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{1}{k+2-2i}2^{(k+1-2i) / 2}
+            T(k+2) = \sum_{i=1}^{\frac{k+1}{2}} T(k+2-2i) \cdot T(2i - 1) \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k+1-2i) / 2}}{k+2-2i} \cdot \frac{2^{(2i-2) / 2}}{2i-1}
         \]
     \end{proof}
 
@@ -395,6 +395,60 @@
     where \(L\) and \(G\) are the partitions of the list.
     \begin{enumerate}
         \item Suppose the lists are always evenly split; that is, \(|L| = |G| = \frac{n}{2}\) at each recursive call. Find a tight asymptotic bound on the runtime of quicksort using this assumption.
+        
+        \begin{proof}
+            If the lists are evenly split, the recurrence for the runtime of quicksort is
+            \[
+                T(n)=\begin{dcases}
+                    c, &\text{ if } n \leq 1 ;\\
+                    2T\left(\frac{n}{2}\right) + dn, &\text{ if } n >1 .
+                \end{dcases}
+            \]
+            Notice that the non-recurrence part of the function is \(\mathcal{O} (n^1)\). Since \(1 = \log _2(2)\), by the Master Theorem,
+            \[
+                T(n) \in \Theta(n\log n)
+            \]
+        \end{proof}
         \item Now suppose that the lists are always very unevenly split: \(|L| = n-2\) and \(|G| = 1\) at each recursive call. Find a tight asymptotic bound on the runtime of quicksort using this assumption.
+        
+        \begin{proof}
+            When \(|L| = n-2\), \(|G| =1\), the recursive runtime of quicksort is
+            \[
+                T(n)= \begin{dcases}
+                    c, &\text{ if } n \leq 1 ;\\
+                    T(n-2) + dn + c, &\text{ if } n > 1 .
+                \end{dcases}
+            \]
+            A closed form for \(T(n)\) will be found using repeated substitution.
+            \[
+                T(n) = T(n-2) + dn + c = T(n-4) + 2dn + 2c = T(n-6) + 3dn + 3c + \cdots
+            \]
+            It can be conjectured that a possible closed form for \(T(n)\) is \(T(n) = \lfloor \frac{n}{2} \rfloor dn + \left( \lfloor \frac{n}{2} \rfloor + 1 \right) c\).
+
+            \textbf{Base Case.} Let \(n=0\). Then \(T(n) = c\) but also
+            \[
+                \left\lfloor \frac{n}{2} \right\rfloor dn + \left( \left\lfloor \frac{n}{2} \right\rfloor + 1 \right) c = c
+            \]
+            The exact same argument can be used for \(n=1\), so it can be reasoned that the claim holds for both \(n=0\) and \(n=1\).
+
+            \textbf{Induction Hypothesis.} Let \(k\) be a natural number. Suppose that for all naturals \(i \leq k\), the closed form for \(T(i)\) holds. The goal is to show that the closed form works for \(T(k+1)\).
+
+            \textbf{Induction Step.} This can be proven with algebraic manipulations. Utilizing the induction hypothesis,
+            \[
+                T(n+1) = T(n-1) + dn + c = \left\lfloor \frac{n-1}{2} \right\rfloor dn + \left( \left\lfloor \frac{n-1}{2} \right\rfloor + 1 \right) c + dn + c
+            \]
+            It is known that if \(a\) is an integer, then for all real numbers \(x\), \(\lfloor x \rfloor + a = \lfloor x+a \rfloor\). Thus
+            \[
+                T(n+1) = \left\lfloor \frac{n+1}{2} \right\rfloor dn + \left( \left\lfloor \frac{n+1}{2} \right\rfloor + 1 \right) c
+            \]
+            and the claim holds true.
+
+            Therefore the closed form for \(T(n)\) is
+            \[
+                T(n)=\left\lfloor \frac{n}{2} \right\rfloor dn + \left( \left\lfloor \frac{n}{2} \right\rfloor + 1 \right) c
+            \]
+            From this, it is easy to see that the the tight asymptotic bound for \(T(n)\) is \(\Theta(n^2)\).
+
+        \end{proof}
     \end{enumerate}
 \end{document}
