@@ -72,12 +72,32 @@
         \tcblower
         (a):
         
-        Let \(U \subseteq \mathbb{R}^n\) be a bounded open set. Let \(N\) be smallest natural number such that the set \(S = \{x \in U : dist(\{x\}, U^c) \geq \frac{1}{N}\}\) is non-empty. Define the sequence of sets \((S_n)_{n\geq 1}\) by
+        Let \(U \subseteq \mathbb{R}^n\) be a bounded open set. Let \(N\) be smallest natural number such that the set \(S = \{x \in U : \mathrm{dist}(\{x\}, U^c) \geq \frac{1}{N}\}\) is non-empty. Define the sequence of sets \((S_n)_{n\geq 1}\) by
         \[
-            S_n = \left\{x \in U : dist(\{x\}, U^c) \geq \frac{1}{n+N}\right\}
+            S_n = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) \geq \frac{1}{n+N}\right\}
         \]
-        We will show that \(S_n\) is closed. Let \(s\) be limit point of \(S_n\). 
+        We will show that \(S_n\) is closed. Let \(s\) be limit point of \(S_n\). Then for \(y \in U^c\),
+        \[
+            d(s,y) \geq d(x,y) - d(x,s) \implies d(s,y) \geq \sup _{x \in S_n} \left(d(x,y) - d(x,s)\right)
+        \]
+        We will show that \(\sup _{x \in S_n} \left(d(x,y) - d(x,s)\right) = \frac{1}{N+n}\). For all \(\varepsilon > 0\), there is an \(x \in S_n\) such that \(d(x,s) < \varepsilon\). Thus
+        \[
+            d(x,y) - d(x,s) > \frac{1}{N+n} - \varepsilon
+        \]
+        which means that \(\sup _{x \in S_n} \left(d(x,y) - d(x,s)\right) = \frac{1}{N+n}\). Therefore we have that
+        \[
+            d(s,y) \geq \frac{1}{N+n} \implies s \in S_n
+        \]
+        so it follows that \(S_n\) is closed.
 
+        As well, we need to have that \(S_n \subseteq S_{n+1}^{\circ}\). This result is quite quick, as we can notice that
+        \[
+            S_{n+1}^\circ = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) > \frac{1}{N+n}\right\}
+        \]
+        From this, the inclusion follows nicely.
+
+        As \(n\) tends to infinity, \(S_n = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) > 0\right\}\) which is exactly \((U^c)^c = U\). Therefore \(U\) has compact exhaustion.
+        \tcblower
         (b):
     \end{question}
     \pagebreak
