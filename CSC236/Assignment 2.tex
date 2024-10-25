@@ -369,11 +369,14 @@
 
         \textbf{Base Case.} Let \(n=1\). Then \(T(n) = 1\) and \(\frac{1}{n}2^{(n-1) / 2} = 1\), thus the base case holds.
 
-        \textbf{Induction Hypothesis.} Let \(k\) be an odd natural number. Suppose that for all \(i \leq k\), \(T(i) \geq \frac{1}{i}2^{(i-1) / 2}\). The goal is to show that \(T(k+2) \geq \frac{1}{k+1}2^{(k) / 2}\).
+        \textbf{Induction Hypothesis.} Let \(k\) be an odd natural number. Suppose that for all \(i \leq k\), \(T(i) \geq \frac{1}{i}2^{(i-1) / 2}\). The goal is to show that \(T(k+2) \geq \frac{1}{k+2}2^{(k+1) / 2}\).
 
         \textbf{Induction Step.} Using the recursive definition for \(T(n)\), as well as the induction hypothesis,
         \[
-            T(k+2) = \sum_{i=1}^{\frac{k+1}{2}} T(k+2-2i) \cdot T(2i - 1) \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k+1-2i) / 2}}{k+2-2i} \cdot \frac{2^{(2i-2) / 2}}{2i-1}
+            T(k+2) = \sum_{i=1}^{\frac{k+1}{2}} T(k+2-2i) \cdot T(2i - 1) \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k+1-2i) / 2}}{k+2-2i} \cdot \frac{2^{(2i-2) / 2}}{2i-1} = \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k-1) / 2}}{(k+2-2i) (2i-1)}
+        \]
+        \[
+            \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k-1) / 2}}{(k+2) (2(\frac{k+1}{2})-1)} = \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k-1) / 2}}{(k+2) (2(\frac{k+1}{2})-1)}
         \]
     \end{proof}
 

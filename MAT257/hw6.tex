@@ -60,7 +60,7 @@
 	\newtheorem{exercise}[thm]{Exercise} %Exercise
 
 \begin{document}
-    \newtcolorbox{question}[2][]{fonttitle=\Large, fontupper=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \\ \end{proof}, #1, breakable=true}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \\ \end{proof}, #1, breakable=true}
     \setcounter{section}{5}
     \section{HOMEWORK 6 HAAHHAHAHAHAHAA}
     \begin{question}{19}
@@ -88,7 +88,7 @@
         \[
             d(s,y) \geq \frac{1}{N+n} \implies s \in S_n
         \]
-        so it follows that \(S_n\) is closed.
+        so it follows that \(S_n\) is closed. Since \(S_n \subseteq U\), it is also bounded, so because we are working in \(\mathbb{R}^n\), \(S_n\) is compact.
 
         As well, we need to have that \(S_n \subseteq S_{n+1}^{\circ}\). This result is quite quick, as we can notice that
         \[
@@ -96,9 +96,19 @@
         \]
         From this, the inclusion follows nicely.
 
-        As \(n\) tends to infinity, \(S_n = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) > 0\right\}\) which is exactly \((U^c)^c = U\). Therefore \(U\) has compact exhaustion.
-        \tcblower
+        Then, as \(n\) tends to infinity, \(S_n = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) > 0\right\}\) which is exactly \((U^c)^c = U\). Therefore \(U\) has compact exhaustion.
+
         (b):
+
+        Now, let \(U \subseteq \mathbb{R}^n\) be open. Define the sequence of bounded open sets \(A_n = U \cap B(\vec{0},  n)\). As \(n\) tends to infinity, \(\bigcup_{n=1}^{\infty} A_n = U\). By the previous part, \(A_n\) has a compact exhaustion \((K_{nk})_{k\geq 1}\). Take the sequence \((K_k)_{k\geq 1}\) to be \(K_k = \bigcup_{n=1}^{\infty} K_{nk}\). This sequence of sets satisfies the conditions for a compact exhaustion. Now we attempt to prove that the sequence converges to \(U\). We have
+        \[
+            \bigcup_{k=1}^{\infty} K_k = \bigcup_{k=1}^{\infty} \bigcup_{n=1}^{\infty} K_{nk}
+        \]
+        We swap the order of union and get that
+        \[
+            \bigcup_{k=1}^{\infty} \bigcup_{n=1}^{\infty} K_{nk} = \bigcup_{n=1}^{\infty} \bigcup_{k=1}^{\infty} K_{nk} = \bigcup_{n=1}^{\infty} A_n = U
+        \]
+        Thus every open subset of \(\mathbb{R}^n\) has a compact exhaustion.
     \end{question}
     \pagebreak
     \begin{question}{20}
