@@ -114,13 +114,13 @@
         
         \item Show that sometimes this code fails to terminate
         \begin{proof}
-            Let \(x=56\). It wil be shown using simple induction that at the beginning of every iteration, \(a > 0\), which implies that the loop can never terminate.
+            Let \(x=56\). It wil be shown directly that at the beginning of every iteration, \(a > 0\), which implies that the loop can never terminate.
 
             Consider the beginning of an arbitrary \(i\)th iteration. It is known that \(y = 11 - j\). From the loop invariant found in part (a),
             \[
                 a = x + \frac{y(y+1)}{2} - 55 = 56 + \frac{(11-j)(12-j)}{2} - 55 = 1 + \frac{(11-j)(12-j)}{2}
             \]
-            Note that \(\frac{(11-j)(12-j)}{2} < 0\) if and only if \(11 < j\) and \(j < 12\) at the same time, which is impossible for \(j \in \mathbb{N}\). Thus \(\frac{(11-j)(12-j)}{2} \geq 0\) so
+            Note that \(\frac{(11-j)(12-j)}{2} < 0\) if and only if \(11 < j\) and \(j < 12\) at the same time, which is impossible because \(j\) is a natural number. Thus \(\frac{(11-j)(12-j)}{2} \geq 0\) so
             \[
                 a = 1 + \frac{(11-j)(12-j)}{2} \geq 1 > 0
             \]
@@ -142,7 +142,7 @@
 
             \textbf{Induction Hypothesis.} Suppose that the program returns the correct value of \(a^b\) for all \(b \leq n\), for some \(n \in \mathbb{N}\).
 
-            \textbf{Induction Step.} When \(b = n+1\), \(b \geq 1\), so line 3 is not reached. Consider two possible cases:
+            \textbf{Induction Step.} If \(b = n+1\), then \(b \geq 1\), so line 3 is not reached. Consider two possible cases:
             
             If \(b\) is even, line 5 and 6 will be executed. A new variable \(x\) is initialized to be equal to \verb|exp_rec(a, b / 2)|. Since \(\frac{b}{2}\) is natural and less than or equal to \(n\), By the induction hypthesis, the value of \(x\) is \(a^{\frac{b}{2}}\). The program returns \verb|x * x|, which is equal to \(a^{\frac{b}{2}} \cdot a^{\frac{b}{2}} = a^b\) on line 6. 
 
@@ -162,7 +162,7 @@
             \[
                 P(i) : \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = a^b
             \]
-            It will be shown using induction on \(i\) that for \(i \in \{1, 2,..., \lfloor \log _2 (b) \rfloor + 1\}\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
+            It will be shown using induction on \(i\) that for \(i \in \{1, 2,..., \lfloor \log _2 (b) \rfloor + 2\}\), \(P(i)\) is true at the beginning of the \(i\)th iteration.
 
             \textbf{Base Case.} Let \(i=1\). At the start of the very first iteration, \verb|mult = a|, \verb|ans = 1|, and \verb|exp = b|, so it follows that
             \[
@@ -170,10 +170,16 @@
             \]
             Thus the base case holds.
 
-            \textbf{Induction Hypothesis.} Let \(j \in \{1,2,..., \lfloor \log _2(b) \rfloor\}\). Suppose that at the beginning of the \(j\)th iteration, \(P(j)\) is true. That is,
+            \textbf{Induction Hypothesis.} Let \(j \in \{1,2,..., \lfloor \log _2(b) \rfloor + 1\}\). Suppose that at the beginning of the \(j\)th iteration, \(P(j)\) is true. That is,
             \[
                 \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = a^b
             \]
+            At this point, \verb|exp| has been halved \(j-1\) times, so along with the fact that \verb|exp| is intitially equal to \(b\),
+            \[
+                \left\lfloor \frac{b}{2^{j-1}} \right\rfloor \geq \left\lfloor \frac{b}{2^{\lfloor \log _2(b) \rfloor}} \right\rfloor \geq \left\lfloor \frac{b}{2^{\log _2(b)}} \right\rfloor = \left\lfloor \frac{b}{b} \right\rfloor = 1
+            \]
+            Which means that the loop condition holds and the loop body is entered.
+
             \textbf{Induction Step.} Let \(\texttt{mult}_{0},\texttt{exp}_{0},\texttt{ans}_{0}\) be the value of  \(\texttt{mult},\texttt{exp},\texttt{ans}\) at the beginning of the \(j\)th iteration and let \(\texttt{mult}_{1},\texttt{exp}_{1},\texttt{ans}_{1}\) denote the value of the variables at the beginning of the \(j+1\)th iteration.
 
             Now, two cases will be considered for the analysis of the loop execution.
@@ -182,7 +188,7 @@
 
             Line 8 will run and will multiply \verb|mult| by itself, so \(\texttt{mult}_1 = \texttt{mult}_0^{\, 2}\).
             
-            As well, \verb|exp| can be rewritten as \(2n+1\), for some natural \(n\), so line 9 will result in \(\texttt{exp}_1 = \texttt{exp}_0 // 2 = \frac{\texttt{exp}_0 - 1}{2}\)
+            As well, since \verb|exp| is odd, line 9 will result in \(\texttt{exp}_1 = \texttt{exp}_0 // 2 = \frac{\texttt{exp}_0 - 1}{2}\)
 
             After line 9, the current iteration ends and the \(j+1\)th iteration begins. Using algebriac manipulation and the induction hypothesis, \(P(j+1)\) can be verified to be true:
             \[
@@ -194,9 +200,9 @@
 
             Otherwise if \verb|exp| is even, then line 7 will not run, so \(\texttt{ans}_1 = \texttt{ans}_0\).
 
-            Finally, from line 8, it is seen that \(\texttt{mult}_1 = \texttt{mult}_0^2\)
+            From line 8, it is seen that \(\texttt{mult}_1 = \texttt{mult}_0^2\)
 
-            \verb|exp| can be written as \(2k\) for some natural \(k\), so line 9 produces \(\texttt{exp}_1 = \texttt{exp}_0 // 2 = \frac{\texttt{exp}_0}{2}\).
+            \verb|exp| is even, so line 9 produces \(\texttt{exp}_1 = \texttt{exp}_0 // 2 = \frac{\texttt{exp}_0}{2}\).
 
             The execution of line 9 denotes the end of the \(j\)th iteration and the start of the \(j+1\)th iteraton. Similar to the previous case, it is seen that 
             \[
@@ -204,41 +210,48 @@
             \]
             Thus, in either case, \(P(j+1)\) has been shown to hold.
 
-            By the principle of simple induction, it has been shown that \(P(\lfloor \log _2(b) \rfloor + 1)\) is true at the beginning of iteration number \(\lfloor \log _2(b) \rfloor + 1\). Since \verb|exp| was initialized as \(b\) and has been halved \(\lfloor \log _2(b) \rfloor + 1\) times, the value of \verb|exp| at the beginning of the iteration is 0, which means that the loop terminates. Using the fact that \(P(\lfloor \log _2(b) \rfloor + 1)\) holds,
+            By the principle of simple induction, it has been shown that \(P(\lfloor \log _2(b) \rfloor + 2)\) is true at the beginning of iteration number \(\lfloor \log _2(b) \rfloor + 2\). Since \verb|exp| was initialized as \(b\) and has been halved \(\lfloor \log _2(b) \rfloor + 1\) times, the value of \verb|exp| at the beginning of the iteration is 0, which means that the loop terminates. Using the fact that \(P(\lfloor \log _2(b) \rfloor + 1)\) holds,
             \[
                 \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = \texttt{mult}^0 \cdot \texttt{ans} = \texttt{ans} = a^b
             \]
-            The program returns \verb|ans| on line 10, which satisfies its postconditions.
+            Finally, he program returns \verb|ans| on line 10, which satisfies its postconditions, the program is correct.
+
         \end{proof}
     \end{enumerate}
     \textit{Question 8.} Prove that \verb|majority()| is correct.
     \begin{proof}
-        Define the loop variant to be \(\texttt{len}(A) - i\). Notice that it is a natural number and decreases every iteration. Thus the program will terminate eventually.
+        Define the loop variant to be \(\texttt{len}(A) - i\). Notice that it is a natural number and decreases every iteration, but is bounded below by 0. Thus the program will terminate eventually.
 
-        Before continuing to prove correctness, a new definition will be defined to make the proof more concise and clear to read: A list of integers that has more than half of its entries equal to some integer \(x\) is called a \textbf{majority list} for \(x\).
+        Before continuing to prove correctness, a new definition will be defined to make the proof more concise and clear to read:
+        \[
+            \text{A list of integers that has more than half of its entries equal to some integer } x
+        \]
+        \[
+            \text{ is called a \textbf{majority list} for } x \text{.}
+        \]
 
-        Let \(A\) be a list with more than half of its entries equal to each other, and let \(x\) be that value. As well, let \(n_i\) represent the absolute difference between the number of occurences of \(x\) and the other values in \(A[0:i]\). For a positive natural \(i\), define the loop invariant
+        Let \(A\) be a majority list for \(x\). As well, let \(n_i\) represent the absolute difference between the number of occurences of \(x\) and the other values in \(A[0:i]\). For the integer \(i\) in the program, define the loop invariant
         \[
             P(i) : \text{if } A[0:i] \text{ is a majority list for } x \text{, then } m=x \text{ and } c \geq n_i \text{. As well,}
         \]
         \[
             \text{if } A[0:i] \text{ is a not a majority list for } x \text{, then } c\leq n_i \text{ or } m=x
         \]
-        It will be shown using complete induction that for \(i \in \{1,2,...,\texttt{len}(A)\}\), \(P(i)\) is true at the beginning of the \(i\)th loop iteration.
+        It will be shown using simple induction that for \(i \in \{1,2,...,\texttt{len}(A)\}\), \(P(i)\) is true at the beginning of the \(i\)th loop iteration.
 
-        \textbf{Base Case.} Consider two base cases.
+        \textbf{Base Case.} Let \(i = 1\). Suppose that \(A[0:1]\) is a majority list for \(x\). Then it must be that \(A[0]=x\) and \(n_1=1\). Upon entering the loop for the first time, \(m=A[0]\) and \(c=1\geq n_1\), which satisfies the conclusion of the first implication.
         
-        Let \(i = 1\). Suppose that \(A[0:1]\) is a majority list for \(x\). Then it must be that \(A[0]=x\) and \(n_1=1\). Upon entering the loop for the first time, \(m=A[0]\) and \(c=1\geq n_1\), which satisfies the conclusion of the first implication. Secondly, sppose that \(A[0:1]\) is not a majority list for \(x\). Then \(A[0]\neq x\) and \(n_1=1\). The first time entering the loop, \(c=1\leq n_1\), which is sufficient to prove the second statement to be true.
+        Secondly, sppose that \(A[0:1]\) is not a majority list for \(x\). Then \(A[0]\neq x\) and \(n_1=1\). The first time entering the loop, \(c=1\leq n_1\), which is sufficient to prove the second statement to be true.
 
         Thus at the beginning of the 1st iteration, \(P(1)\) is true.
 
-        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(k \in \{1,2,...,\texttt{len}(A) -1\}\). Suppose that at the start of the \(k\)th iteration, \(P(k)\) is true. The end goal is to show that \(P(k+1)\) is true at the beginning of the \(k+1\)th iteration.
+        \textbf{Induction Hypothesis.} Let \(i=k\), for some \(k \in \{1,2,...,\texttt{len}(A) -1\}\). Suppose that at the start of the \(k\)th iteration, \(P(k)\) is true. Since \(k \leq \texttt{len}(A) -1\), the loop body will enter. The end goal is to show that \(P(k+1)\) is true at the beginning of the \(k+1\)th iteration.
 
         \textbf{Induction Step.} Let \(m_i, c_i\) denote the values of \(m\) and \(c\) at the start of the \(i\)th iteration. To prove the first implication, suppose that \(A[0:k+1]\) is a majority list for \(x\). Consider the following two cases:
         \begin{enumerate}
             \item \(A[0:k]\) is a majority list for \(x\):
             
-            By the induction hypothesis, \(P(k)\) is true at the start of the \(k\)th iteration. That is, \(m_k = x\) and \(c_k \geq n_i\). Executing the \(k\)th iteration, it is clear that \(c_k \neq 0\), as \(c_k \geq n_i > 0\). Thus lines 11 and 12 are skipped. Then, if \(A[k]=m_k = x\), by line 14, \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). Also, \(x=m_k=m_{k+1}\). Therefore the first implication holds.
+            By the induction hypothesis, \(P(k)\) is true at the start of the \(k\)th iteration. That is, \(m_k = x\) and \(c_k \geq n_k\). Executing the \(k\)th iteration, it is clear that \(c_k \neq 0\), as \(c_k \geq n_k > 0\). Thus lines 11 and 12 are skipped. Then, if \(A[k]=m_k = x\), \(n_{k+1} = n_k + 1\). By line 14, \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). If \(A[k]\neq x\), then \(n_{k+1} = n_k - 1\). Line 16 instead yields \(c_{k+1} = c_k - 1 \geq n_k - 1 = n_{k+1}\).  Also, \(x=m_k=m_{k+1}\). Therefore the first implication holds.
 
             \item \(A[0:k]\) is not a majority list for \(x\):
             
@@ -265,7 +278,7 @@
         By the principle of simple induction, for all \(i \in \{1,...,\texttt{len}(A)\}\), \(P(i)\) holds true at the beginning of the \(i\)th iteration. When \(i = \texttt{len}(A)\), the loop condition is false so the loop terminates. Notice that \(A[0:\texttt{len}(A)] = A\) is a majority list for \(x\), so by \(P(i)\), the program correctly returns \(m = x\), satisfying the postconditions of the program.
         
     \end{proof}
-    \textit{Question 9.} Studying bubblesort.
+    \textit{Question 9.} Studying bubblesort. (Note: Inner loop condition should be \(i < \texttt{len}(L) -k-1\))
     \begin{enumerate}[label=(\alph*)]
         \item State and prove an invariant for the inner loop
         
@@ -274,17 +287,17 @@
             \[
                 Q(n): \text{For all } j \in \mathbb{N}, j < i \text{, } L[j] \leq L[i]
             \]
-            Let \(k \in \{0,1,..., \texttt{len}(L) - 1\}\). It will be proven using simple induction that for all \(n \in \{1, 2, ..., \texttt{len}(L) - k + 1\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
+            Let \(k \in \{0,1,..., \texttt{len}(L) - 1\}\). It will be proven using simple induction that for all \(n \in \{1, 2, ..., \texttt{len}(L) - k\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
 
             \textbf{Base Case.} Let \(n=1\). At the beginning of the first iteration, \(i = 0\). It follows that \(Q(1)\) is vacuously true because there is no natural number \(j < 0\).
 
-            \textbf{Induction Hypothesis.} Suppose that for some \(n \in \{1, 2,..., \texttt{len}(L)-k\}\), at the beginning of the \(n\)th iteration, \(Q(n)\) is true. The loop condition is always true for this \(n\), so the loop body will be entered. It will be shown that at the start of the \(n+1\)th iteration, \(Q(n+1)\) is true.
+            \textbf{Induction Hypothesis.} Suppose that for some \(n \in \{1, 2,..., \texttt{len}(L)-k-1\}\), at the beginning of the \(n\)th iteration, \(Q(n)\) is true. The loop condition is always true for this \(n\), so the loop body will be entered. It will be shown that at the start of the \(n+1\)th iteration, \(Q(n+1)\) is true.
 
             \textbf{Induction Step.} Notice that at the end of every iteration, \(i\) is incremented once. Thus \(i = n - 1\) at the beginning of the \(n\)th iteration. Iterating through the loop, if \(L[n-1] > L[n]\), their positions in the list will be swapped. This guarantees that \(L[n-1] \leq L[n]\) after line 11. Next, \(i\) is incremented by 1, so its new value is \(n\). This marks the end of the \(n\)th iteration and the start of the \(n+1\)th iteration.
 
             By the induction hypothesis, for all natural \(j < n-1\), \(L[j] \leq L[n-1] \leq L[n]\) if line 11 did not run, or \(L[j] < L[n]\) if it did. Regardless, \(L[j] \leq L[n]\). Additionally, \(L[n-1] \leq L[n]\) is true based on the previous iteration of the loop. It can be concluded that for \(j < n = i\), \(L[j] \leq L[n] = L[i]\), so \(Q(n+1)\) is true.
 
-            By the principle of simple induction, for all \(n \in \{1, 2, ..., \texttt{len}(L) - k + 1\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
+            By the principle of simple induction, for all \(n \in \{1, 2, ..., \texttt{len}(L) - k\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
 
         \end{proof}
         \item State and prove an invariant for the outer loop
@@ -294,15 +307,21 @@
             \[
                 P(m) : \text{The last } m \text{ elements of } L \text{ are sorted.}
             \]
-            In other words, it is true that \(L[\texttt{len}(L) - m] \leq L[\texttt{len}(L) - m + 1] \leq \cdots \leq L[\texttt{len}(L) - 1]\). It will be proven using simple induction that for \(m \in \{1, 2,..., \texttt{len}(L) + 1\}\), \(P(m)\) is true.
+            In other words, it is true that \(L[\texttt{len}(L) - m] \leq L[\texttt{len}(L) - m + 1] \leq \cdots \leq L[\texttt{len}(L) - 1]\). It will be proven using simple induction that for \(m \in \{1, 2,..., \texttt{len}(L)\}\), \(P(m)\) is true at the start of the \(m\)th iteration.
 
-            \textbf{Base Case.} Let \(m=1\). When the loop is first entered, the last element of \(L\) is obviously sorted. Thus \(P(1)\) holds true.
+            \textbf{Base Case.} Let \(m=1\). When the loop is first entered, the last element of \(L\) is obviously sorted relative to itself. Thus \(P(1)\) holds true.
 
-            \textbf{Induction Hypothesis.} Suppose that for some \(m \in \{1,..., \texttt{len}(L)\}\), \(P(m)\) is true at the beginning of the \(m\)th iteration. Notice that \(k\) is initialized to be 0 and is incremented every outer loop iteration. Thus \(k = m-1 < \texttt{len}(L)\), so the loop body is entered.
+            \textbf{Induction Hypothesis.} Suppose that for some \(m \in \{1,..., \texttt{len}(L) - 1\}\), \(P(m)\) is true at the beginning of the \(m\)th iteration. Notice that \(k\) is initialized to be 0 and is incremented every outer loop iteration. Thus \(k = m-1 < \texttt{len}(L)\), so the loop body is entered.
 
-            \textbf{Induction Step.} Running the \(m\)th iteration, \(i\) is initialized to be 0 and the inner loop runs. By the previous part, \(Q(\texttt{len}(L) - m + 2)\) is true at the beginning of the \((\texttt{len}(L) - m + 2)\)th iteration. Recall that at the beginning of this iteration, \(i = \texttt{len}(L) - m + 1 = \texttt{len}(L) - k\), so the loop terminates. Thus before line 13, \(L[\texttt{len}(L) - m]\leq L[\texttt{len}(L) - m + 1]\), as \(\texttt{len}(L) - m < i\). After line 13, the \(m+1\)th iteration begins.
+            \textbf{Induction Step.} Running the \(m\)th iteration, \(i\) is initialized to be 0 and the inner loop runs. By the previous part, \(Q(\texttt{len}(L) - m + 1)\) is true at the beginning of the \((\texttt{len}(L) - m + 1)\)th iteration. Recall that at the beginning of this iteration, \(i = \texttt{len}(L) - m = \texttt{len}(L) - k - 1\), so the loop terminates. Thus before line 13, \(L[\texttt{len}(L) - m - 1]\leq L[\texttt{len}(L) - m]\), as \(\texttt{len}(L) - m - 1 < i\). After line 13, the \(m+1\)th iteration begins.
 
-            By the induction hypothesis, there is a typo lol.
+            By the induction hypothesis, there is the following chain of inequalities:
+            \[
+                L[\texttt{len}(L) - m - 1] \leq L[\texttt{len}(L) - m] \leq L[\texttt{len}(L) -m + 1] \leq \cdots \leq L[\texttt{len}(L) - 1]
+            \]
+            which means the last \(m+1\) elements are sorted, so \(P(m+1)\) is true.
+
+            By the principle of simple induction, for all \(m \in \{1,2,...,\texttt{len}(L)\}\), \(P(m)\) is true at the beginning of the \(m\)th iteration.
         \end{proof}
 
         \item Prove that \verb|bubblesort| is correct, according to its specifications
