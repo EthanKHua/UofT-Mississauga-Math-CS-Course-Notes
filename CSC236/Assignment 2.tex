@@ -339,11 +339,11 @@
         \begin{proof}
             This program, given that \(A\) is a non-empty list of numbers and \(k\) is a positive natural less than or equal to \(\texttt{len}(A)\), returns the \(k\)th smallest element. It will be shown using complete induction on \(\texttt{len}(A)\) that this program is correct.
 
-            \textbf{Base Case.} Let \(A\) be a list of numbers such that \(\texttt{len}(A) = 1\). Then \(k=1\). Taking \(A[0]\) as the pivot, line 4 will partition an empty list, so \(\texttt{len}(L) = 0\). Then the condition on line 5 is true, so the program correctly returns the pivot as the smallest element on line 6.
+            \textbf{Base Case.} Let \(A\) be a list of numbers such that \(\texttt{len}(A) = 1\). Then \(k\) must be equal to 1. Taking \(A[0]\) as the pivot, line 4 will partition an empty list, so \(\texttt{len}(L) = 0\). Then the condition on line 5 is true, so the program correctly returns the pivot as the smallest element on line 6.
 
             \textbf{Induction Hypothesis.} Suppose that for any list \(B\) such that \(\texttt{len}(B) \leq n\), \verb|extract(B, k)| correctly returns the \(k\)th smallest element.
 
-            \textbf{Induction Step.} Let \(A\) be a list with \(\texttt{len}(A) = n + 1\). Running through the program, choosing \(A[0]\) as the pivot, line 4 separates \(A\) into two lists \(L,G\), where \(L\) contains all elements in \(A\) such that \(A < \texttt{pivot}\) and \(G\) contains all elements in \(A\) such that \(A \geq \texttt{pivot}\). Continuing on to line 5, if \(\texttt{len}(L) = k - 1\), then \(L\) contains \(k-1\) elements that are smaller than the pivot, so the pivot is the \(k\)th smallest element, which the program returns on line 6.
+            \textbf{Induction Step.} Let \(A\) be a list with \(\texttt{len}(A) = n + 1\). Running through the program, choosing \(A[0]\) as the pivot, line 4 separates \(A\) into two lists \(L,G\), where \(L\) contains all elements in \(A\) such that they are less than \texttt{pivot} and \(G\) contains all elements in \(A\) such that they are greater than \texttt{pivot}. Continuing on to line 5, if \(\texttt{len}(L) = k - 1\), then \(L\) contains \(k-1\) elements that are smaller than the pivot, so the pivot is the \(k\)th smallest element, which the program returns on line 6.
 
             Otherwise, notice that \(\texttt{len}(L),\texttt{len}(G) < n+1 \implies \texttt{len}(L),\texttt{len}(G) \leq n\).
             
@@ -356,7 +356,7 @@
         \end{proof}
         \item Analyze the worse-case running time of this algorithm.
         
-        The worst-case for this algorithm is \(\mathcal{O} (nk)\), where \(n\) is the size of the list and \(k\) is the number so that the list is trying to find the \(k\)th smallest element. This happens exactly when the original list is sorted in either ascending or descending order, which causes \verb|partition| to return one empty list and a list of \(n-1\) elements, if the original list contained \(n\) elements. This will also happen in each recursive case, as the list is sorted. The recursion goes up to depth \(k\), with each recursive call using \verb|partition|, which is \(\mathcal{O} (n)\). Thus the worst-case runtime of \verb|extract| is \(\mathcal{O} (nk)\).
+        The worst-case for this algorithm is \(\mathcal{O} (nk)\), where \(n\) is the size of the list and \(k\) is the number so that the list is trying to find the \(k\)th smallest element. This happens exactly when the original list is sorted in either ascending order and \(k=\texttt{len}(A)\) or descending order and \(k=1\), which causes \verb|partition| to return one empty list and a list of \(n-1\) elements, if the original list contained \(n\) elements. This will also happen in each recursive case, as the list is sorted. The recursion goes up to depth \(k\), with each recursive call using \verb|partition|, which is \(\mathcal{O} (n)\). Thus the worst-case runtime of \verb|extract| is \(\mathcal{O} (nk)\).
     \end{enumerate}
     \pagebreak
     \textbf{Q4.} Solve questions 6,7,10,12, and 14 on pages 46 to 48 of the textbook. Only \textbf{two} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
@@ -365,11 +365,67 @@
     \begin{enumerate}[label=(\alph*)]
         \item Develop a recurrence for \(T(n)\)
         
-        \(T(n)=T(n-1)+T(n-2)\).
+        The recurrence for \(T(n)\) is
+        \[
+            T(n)=\begin{dcases}
+                1, &\text{ if } n=1 ;\\
+                2, &\text{ if } n=2 ;\\
+                T(n-1) + T(n-2), &\text{ if } n\geq 3.
+            \end{dcases}
+        \]
+        If the binary string is of length 1, it must be '0', since every 1 must be immediately followed by a 0.
+
+        If the binary string is of length 2, it can either be '00' or '10'. Any other string would violate the condition.
+
+        Notice that for any binary string that satisfies the condition above and is length \(n\), where \(n\geq 3\), it can begin with either a 1 or a 0.
+
+        If it begins with a 1, then the subsequent character must be a 0. If the first '10' is taken out of the string, there remains a binary string with length n-2 that satisfies the condition, of which there are \(T(n-2)\) unique possibilities.
+
+        If it begins with a 0, take out the first character. There remains a binary string that follows the conditions above with length \(n-1\), which there are \(T(n-1)\) unique possibilities for.
+
+        Thus the total number of these particular binary strings is \(T(n-1) + T(n-2)\).
+
         \item Find a closed form for \(T(n)\) 
         
-        \(T(n)=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{n+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right)\) 
+        The closed form for \(T(n)\) is \(T(n)=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{n+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right)\), which wil be proven to be correct in the next part.
+
         \item Prove that the closed form is correct using induction
+        
+        \begin{proof}
+            It will be proven that the closed form is correct using complete induction on \(n \in \mathbb{N}^+\).
+
+            \textbf{Base Case.} Let \(n=1\). Then \(T(n) = 1\). As well,
+            \[
+                \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{2} - \left(\frac{1-\sqrt{5}}{2}\right)^{2}\right) = \frac{1}{4\sqrt{5}}((1+2\sqrt{5} +5) - (1-2\sqrt{5} +5))
+            \]
+            \[
+                \frac{1}{4\sqrt{5}}(4\sqrt{5}) = 1
+            \]
+            Thus the closed form is valid for \(n=1\).
+
+            Now, let \(n=2\). Then \(T(n)=2\). As well,
+            \[
+                \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{3} - \left(\frac{1-\sqrt{5}}{2}\right)^{3}\right) = \frac{1}{8\sqrt{5}}((1+3\sqrt{5} + 15 + 5\sqrt{5}) - (1 - 3\sqrt{5} + 15 - 5\sqrt{5}))
+            \]
+            \[
+                = \frac{1}{8\sqrt{5}}(16\sqrt{5}) = 2
+            \]
+            Therefore the closed form holds true for \(n=1\) and \(n=2\).
+
+            \textbf{Induction Hypothesis.} Let \(k \in \mathbb{N}^+\). Suppose that for all \(i \leq k\), the closed form holds true. The goal is to show that the closed form is valid for \(n=k+1\).
+
+            \textbf{Induction Step.} Using the recursive definition for \(T(n)\),
+            \[
+                T(k+1) = T(k) + T(k-1)
+            \]
+            The values of \(k\) and \(k-1\) are covered within our induction hypothesis, so
+            \[
+                T(k) + T(k-1) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{k+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{k+1}\right) + \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{k} - \left(\frac{1-\sqrt{5}}{2}\right)^{k}\right)
+            \]
+            \[
+                = \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k \left( \frac{1+\sqrt{5}}{2} + 1\right)   \right) 
+            \]
+        \end{proof}
     \end{enumerate}
 
     \textit{Question 7.} Let \(T(n)\) denote the number of distinct full binary trees with \(n\) nodes. Give a recurrence for \(T(n)\). Then use induction to prove that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\).
