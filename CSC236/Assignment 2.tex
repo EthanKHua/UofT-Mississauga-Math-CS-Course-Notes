@@ -31,6 +31,7 @@
     Remark 2: Using $j$ as an index in Remark 1 has a different meaning from that which is intended by the author. The author is using indices to differentiate between the values of $\verb|i|$, $\verb|sum|$ at the beginning of an (arbitrary) iteration and
     their values after the iteration is run.
     \medskip
+    
     The end goal is to prove $Q(len(A))$. A proof by induction will show that $$\forall
     j\in\{1,\ldots,len(A)\}, Q(j).$$ Your proof must follow the style used in lectures.
 
@@ -379,7 +380,7 @@
 
         Notice that for any binary string that satisfies the condition above and is length \(n\), where \(n\geq 3\), it can begin with either a 1 or a 0.
 
-        If it begins with a 1, then the subsequent character must be a 0. If the first '10' is taken out of the string, there remains a binary string with length n-2 that satisfies the condition, of which there are \(T(n-2)\) unique possibilities.
+        If it begins with a 1, then the subsequent character must be a 0. If the first '10' is taken out of the string, there remains a binary string with length \(n-2\). that satisfies the condition, of which there are \(T(n-2)\) unique possibilities.
 
         If it begins with a 0, take out the first character. There remains a binary string that follows the conditions above with length \(n-1\), which there are \(T(n-1)\) unique possibilities for.
 
@@ -423,8 +424,21 @@
                 T(k) + T(k-1) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{k+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{k+1}\right) + \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{k} - \left(\frac{1-\sqrt{5}}{2}\right)^{k}\right)
             \]
             \[
-                = \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k \left( \frac{1+\sqrt{5}}{2} + 1\right)   \right) 
+                \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^{k+1} \left( 1 + \frac{2}{1+\sqrt{5}}\right) - \left(\frac{1-\sqrt{5}}{2}\right)^{k+1} \left(1 + \frac{2}{1-\sqrt{5}} \right) \right)
             \]
+            \[
+                = \frac{1}{\sqrt{5}}\left( \left( \frac{1+\sqrt{5}}{2} \right)^{k+1} \left( 1 + \frac{2(1-\sqrt{5})}{-4} \right) - \left( \frac{1-\sqrt{5}}{2} \right)^{k+1} \left( 1 + \frac{2(1+\sqrt{5})}{-4}\right) \right)
+            \]
+            \[
+                \frac{1}{\sqrt{5}}\left( \left( \frac{1+\sqrt{5}}{2} \right)^{k+1} \left(\frac{1+\sqrt{5}}{2} \right) - \left(\frac{1-\sqrt{5}}{2} \right)^{k+1} \left(\frac{1-\sqrt{5}}{2}\right)\right)
+            \]
+            \[
+                \frac{1}{\sqrt{5}}\left( \left( \frac{1+\sqrt{5}}{2} \right)^{k+2} - \left(\frac{1-\sqrt{5}}{2} \right)^{k+2}\right)
+            \]
+            Which is the desired form for \(T(k+1)\).
+
+            By the principle of induction, the closed form is correct for all \(k \in \mathbb{N}^+\).
+
         \end{proof}
     \end{enumerate}
 
@@ -451,17 +465,49 @@
             T(k+2) = \sum_{i=1}^{\frac{k+1}{2}} T(k+2-2i) \cdot T(2i - 1) \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k+1-2i) / 2}}{k+2-2i} \cdot \frac{2^{(2i-2) / 2}}{2i-1} = \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k-1) / 2}}{(k+2-2i) (2i-1)}
         \]
         \[
-            \geq \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k-1) / 2}}{(k+2) (2(\frac{k+1}{2})-1)} = \sum_{i=1}^{\frac{k+1}{2}} \frac{2^{(k-1) / 2}}{(k+2) (2(\frac{k+1}{2})-1)}
+            = 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{1}{(k+2-2i) (2i-1)}
         \]
+        Since \(i\) is between 1 and \(\frac{k+1}{2}\), \(k+2-2i >0\) and \(2i-1 >0\). By the AGM inequality,
+        \[
+            (k+2-2i)(2i-1)\leq \left(\frac{k+1}{2}\right)^2 \leq \frac{(k+1)(k+2)}{4}
+        \]
+        Thus
+        \[
+            \frac{1}{(k+2-2i) (2i-1)} \geq \frac{4}{(k+2)(k+1)}
+        \]
+        Returning back to the sum, it follows that
+        \[
+            T(k_2) \geq 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{1}{(k+2-2i) (2i-1)} \geq 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{4}{(k+2)(k+1)}
+        \]
+        \[
+            = 2^{(k-1) / 2} \left( \frac{k+1}{2} \right) \left(\frac{4}{(k+2)(k+1)}\right) = \frac{2^{(k-1) / 2} \cdot 2}{k+2} = \frac{2^{(k+1) / 2}}{k+2}
+        \]
+        as desired.
+
+        Therefore by the principle of induction, \(T(n) \geq \frac{1}{n}2^{(n-1) / 2}\) for all odd naturals \(n\).
+
     \end{proof}
-
-    \textit{Question 10.} Let \(H(n)\) denote the number of binary strings of length \(n\) that have no odd length blocks of 1's.
-
-    Develop a recursive definition for \(H(n)\), and justify why it is correct. Then find a closed form for \(H\) using repeated substitution.
 
 
 
     \textit{Question 12.} Analyze the worse-case runtime of \verb|fast_rec_mult|.
+
+    Let \(T(n)\) denote the worst-case runtume of \verb|fast_rec_mult| on the inputs \(x\) and \(y\). Let \(n\) denote the number of digits of \(x\) and \(y\).
+
+    The base case of this method is when \(n=1\). In this case the program returns \verb|x*y| on line 4, which runs in constant time because \(x\) and \(y\) are small enough numbers.
+
+    If \(n >1\), lines 6 and below run. Assuming nice input sizes, \(a,b,c,d\) are \(\frac{n}{2}\) digit numbers. The non-recursive steps are just a combination of basic arithmetic, which takes at most linear time.
+
+    Three recursive calls are made on \(\frac{n}{2}\) digit numbers, which in total, has worst-case runtime of \(3T(\frac{n}{2})\).
+
+    Therefore the full definition of \(T\) is
+    \[
+        T(n) = \begin{dcases}
+            c, &\text{ if } n = 1 ;\\
+            3T\left(\frac{n}{2}\right) + dn, &\text{ if } n >1 .
+        \end{dcases}
+    \]
+    The asymptotic upper bound for the extra steps is \(dn = \mathcal{O} (n)\). Since \(1 < \log _2(3)\), by Master Theorem, \(T(n) = \Theta (n^{\log _2(3)})\).
 
     \textit{Question 14.} Recall the recurrence for the worst-case runtime of quicksort:
     \[
@@ -482,7 +528,7 @@
                     2T\left(\frac{n}{2}\right) + dn, &\text{ if } n >1 .
                 \end{dcases}
             \]
-            Notice that the non-recurrence part of the function is \(\mathcal{O} (n^1)\). Since \(1 = \log _2(2)\), by the Master Theorem,
+            Notice that the non-recurrence part of the function is \(\Theta (n)\). Since \(1 = \log _2(2)\), by the Master Theorem,
             \[
                 T(n) \in \Theta(n\log n)
             \]
@@ -525,7 +571,7 @@
             \[
                 T(n)=\left\lfloor \frac{n}{2} \right\rfloor dn + \left( \left\lfloor \frac{n}{2} \right\rfloor + 1 \right) c
             \]
-            From this, it is easy to see that the the tight asymptotic bound for \(T(n)\) is \(\Theta(n^2)\).
+            From this, it is easy to see that \(T(n) \in \Theta(n^2)\).
 
         \end{proof}
     \end{enumerate}
