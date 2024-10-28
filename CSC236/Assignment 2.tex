@@ -81,11 +81,11 @@
     \textit{Question 6.}\begin{enumerate}
         \item Give a loop invariant that characterizes the values of \(a\) and \(y\).
         \begin{proof}
-            Define the loop invariant to be
+            Let \(x\) be a natural number. Define the loop invariant to be
             \[
-                Inv(x, y) : a = x + \frac{y(y+1)}{2} - 55
+                Inv(a, y) : a = x + \frac{y(y+1)}{2} - 55
             \]
-            It will be proven that at the beginning of the \(i\)th iteration of the loop, \(Inv(x,y)\) is true.
+            It will be proven that at the beginning of the \(i\)th iteration of the loop, \(Inv(a,y)\) is true.
 
             \textbf{Base Case.} At the beginning of the first iteration, \(a=x\) and \(y=10\). Thus
             \[
@@ -100,7 +100,7 @@
 
             \textbf{Induction Step.} If \(a \leq 0\), the loop terminates and never reaches the beginning of the \(j+1\)th iteration. Otherwise, on line 6 in the \(j\)th iteration, \(a\) is subtracted by \(y=11-j\). Using the induction hypothesis, the value of \(a\) is now
             \[
-                a = x + \frac{(11-j)(12-j)}{2} - 55 - (11-j) = x + \left(\frac{(11-j)(12-j)}{2} - (11 - j)\right)
+                a = x + \frac{(11-j)(12-j)}{2} - 55 - (11-j) = x + \left(\frac{(11-j)(12-j)}{2} - (11 - j)\right) - 55
             \]
             \[
                 = x+\frac{(11-j)(12-j-2)}{2}-55 = x+\frac{(10-j)(11-j)}{2}-55
@@ -109,7 +109,7 @@
             \[
                 a = x+\frac{(10-j)(11-j)}{2}-55 = x+\frac{y(y+1)}{2}-55
             \]
-            Thus \(Inv(a,y)\) is true at the beginning of the \(j+1\)th iteration. Verifying the validity of the loop invariant.
+            Thus \(Inv(a,y)\) is true at the beginning of the \(j+1\)th iteration, verifying the validity of the loop invariant.
 
         \end{proof}
         
@@ -117,7 +117,7 @@
         \begin{proof}
             Let \(x=56\). It wil be shown directly that at the beginning of every iteration, \(a > 0\), which implies that the loop can never terminate.
 
-            Consider the beginning of an arbitrary \(i\)th iteration. It is known that \(y = 11 - j\). From the loop invariant found in part (a),
+            Consider the beginning of an arbitrary \(i\)th iteration. It is known that \(y = 11 - j\). From the loop invariant found in part (a), it is true that \(Inv(a,y)\) holds, so
             \[
                 a = x + \frac{y(y+1)}{2} - 55 = 56 + \frac{(11-j)(12-j)}{2} - 55 = 1 + \frac{(11-j)(12-j)}{2}
             \]
@@ -175,7 +175,7 @@
             \[
                 \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = a^b
             \]
-            At this point, \verb|exp| has been halved \(j-1\) times, so along with the fact that \verb|exp| is intitially equal to \(b\),
+            At this point, \verb|exp| has been halved \(j-1\) times, so along with the fact that \verb|exp| is initially equal to \(b\),
             \[
                 \left\lfloor \frac{b}{2^{j-1}} \right\rfloor \geq \left\lfloor \frac{b}{2^{\lfloor \log _2(b) \rfloor}} \right\rfloor \geq \left\lfloor \frac{b}{2^{\log _2(b)}} \right\rfloor = \left\lfloor \frac{b}{b} \right\rfloor = 1
             \]
@@ -356,6 +356,25 @@
             
         \end{proof}
         \item Analyze the worse-case running time of this algorithm.
+        
+        Let \(T(n)\) denote the worst-case runtime of \verb|extract|. Let \(n\) denote number of elements in the list \(A\). The base case is when \(n=1\). As outlined in the correctness proof above, \(A\) is partitioned, an if statement is evaluated, and a number is returned; all of which is constant time for input size 1.
+
+        When \(n > 1\), only one recursive call is made. In particular, either \verb|extract(L,k)| or \verb|extract(G,len(L)-k-1)| is called. Other than that, the program also partitions \(A\), evaluates two if statements, and performs subtraction, all of which is done in linear time. The worst-case runtime will occur when the program makes a recursive call to the bigger list between \(L\) and \(G\). Thus the recurrence for the worst-case runtime is
+        \[
+            T(n)= \begin{dcases}
+                c, &\text{ if } n=1 ;\\
+                T(\max \{|L|,|G|\}) + dn + f, &\text{ if } n > 1 .
+            \end{dcases}
+            \text{ , where } c,d,f \text{ are constants.}
+        \]
+        In order to find an asymptotic upper bound for \(T(n)\), make every list partition in a way such that either \(L\) or \(G\) is empty. In this case, \(\max \{|L|,|G|\} = n-1\). Rewrite \(T(n)\) as
+        \[
+            T(n)= \begin{dcases}
+                c, &\text{ if } n=1 ;\\
+                T(n-1) + dn + f, &\text{ if } n > 1 .
+            \end{dcases}
+        \]
+        Now, proceed with finding the closed form for \(T(n)\). 
         
         The worst-case for this algorithm is \(\mathcal{O} (nk)\), where \(n\) is the size of the list and \(k\) is the number so that the list is trying to find the \(k\)th smallest element. This happens exactly when the original list is sorted in either ascending order and \(k=\texttt{len}(A)\) or descending order and \(k=1\), which causes \verb|partition| to return one empty list and a list of \(n-1\) elements, if the original list contained \(n\) elements. This will also happen in each recursive case, as the list is sorted. The recursion goes up to depth \(k\), with each recursive call using \verb|partition|, which is \(\mathcal{O} (n)\). Thus the worst-case runtime of \verb|extract| is \(\mathcal{O} (nk)\).
     \end{enumerate}
