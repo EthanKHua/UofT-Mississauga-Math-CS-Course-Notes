@@ -81,21 +81,25 @@
     \textit{Question 6.}\begin{enumerate}
         \item Give a loop invariant that characterizes the values of \(a\) and \(y\).
         \begin{proof}
-            Let \(x\) be a natural number. Define the loop invariant to be
+            Let \(x\) be a natural number and \(i\) is a positive natural number. Define the loop invariant to be
             \[
-                Inv(a, y) : a = x + \frac{y(y+1)}{2} - 55
+                Inv(i) : y = 11 - i \text{ and } a = x + \frac{y(y+1)}{2} - 55
             \]
             It will be proven that at the beginning of the \(i\)th iteration of the loop, \(Inv(a,y)\) is true.
 
             \textbf{Base Case.} At the beginning of the first iteration, \(a=x\) and \(y=10\). Thus
             \[
+                y = 11 - 1 = 11 - i
+            \]
+            As well,
+            \[
                 x + \frac{y(y+1)}{2} - 55 = x - \frac{10(11)}{2} - 55 = x - 55 + 55 = x = a
             \]
             The base case has been proven to be true.
 
-            \textbf{Induction Hypothesis.} Now suppose that for some positive natural \(j\), \(Inv(a,y)\) holds true at the beginning of the \(j\)th iteration. \(y\) is initially 10 and is decremmented at the end of every iteration, so at the beginning of the \(j\)th iteration, \(y=10-(j-1) = 11 - j\). Then the loop invariant states that 
+            \textbf{Induction Hypothesis.} Now suppose that for some positive natural \(j\), \(Inv(a,y)\) holds true at the beginning of the \(j\)th iteration. Then the loop invariant states that 
             \[
-                a = x +\frac{(11-j)(12-j)}{2}-55
+                y = 11 - j \text{ and } a = x +\frac{(11-j)(12-j)}{2}-55
             \]
 
             \textbf{Induction Step.} If \(a \leq 0\), the loop terminates and never reaches the beginning of the \(j+1\)th iteration. Otherwise, on line 6 in the \(j\)th iteration, \(a\) is subtracted by \(y=11-j\). Using the induction hypothesis, the value of \(a\) is now
@@ -105,9 +109,9 @@
             \[
                 = x+\frac{(11-j)(12-j-2)}{2}-55 = x+\frac{(10-j)(11-j)}{2}-55
             \]
-            Finally, on line 7, the value of \(y\) is decremented by 1 and becomes \(y = 10-j\). The program then arrives at the beginning of the \(j+1\)th iteration. Indeed, it is true that
+            Finally, on line 7, the value of \(y\) is decremented by 1 and becomes \(y = 11-j-1\). The program then arrives at the beginning of the \(j+1\)th iteration. Indeed, it is true that
             \[
-                a = x+\frac{(10-j)(11-j)}{2}-55 = x+\frac{y(y+1)}{2}-55
+                y = 11 - (j+1) \text{ and } a = x+\frac{(10-j)(11-j)}{2}-55 = x+\frac{y(y+1)}{2}-55
             \]
             Thus \(Inv(a,y)\) is true at the beginning of the \(j+1\)th iteration, verifying the validity of the loop invariant.
 
@@ -117,7 +121,7 @@
         \begin{proof}
             Let \(x=56\). It wil be shown directly that at the beginning of every iteration, \(a > 0\), which implies that the loop can never terminate.
 
-            Consider the beginning of an arbitrary \(i\)th iteration. It is known that \(y = 11 - j\). From the loop invariant found in part (a), it is true that \(Inv(a,y)\) holds, so
+            Consider the beginning of an arbitrary \(i\)th iteration. From the loop invariant found in part (a), it is true that \(y = 11 - j\) and \(Inv(a,y)\), so
             \[
                 a = x + \frac{y(y+1)}{2} - 55 = 56 + \frac{(11-j)(12-j)}{2} - 55 = 1 + \frac{(11-j)(12-j)}{2}
             \]
@@ -143,7 +147,7 @@
 
             \textbf{Induction Hypothesis.} Suppose that the program returns the correct value of \(a^b\) for all \(b \leq n\), for some \(n \in \mathbb{N}\).
 
-            \textbf{Induction Step.} If \(b = n+1\), then \(b \geq 1\), so line 3 is not reached. Consider two possible cases:
+            \textbf{Induction Step.} Let \(b = n+1\). Then \(b \geq 1\), so line 3 is not reached. Consider two possible cases:
             
             If \(b\) is even, line 5 and 6 will be executed. A new variable \(x\) is initialized to be equal to \verb|exp_rec(a, b / 2)|. Since \(\frac{b}{2}\) is natural and less than or equal to \(n\), By the induction hypthesis, the value of \(x\) is \(a^{\frac{b}{2}}\). The program returns \verb|x * x|, which is equal to \(a^{\frac{b}{2}} \cdot a^{\frac{b}{2}} = a^b\) on line 6. 
 
@@ -359,7 +363,7 @@
         
         Let \(T(n)\) denote the worst-case runtime of \verb|extract|. Let \(n\) denote number of elements in the list \(A\). The base case is when \(n=1\). As outlined in the correctness proof above, \(A\) is partitioned, an if statement is evaluated, and a number is returned; all of which is constant time for input size 1.
 
-        When \(n > 1\), only one recursive call is made. In particular, either \verb|extract(L,k)| or \verb|extract(G,len(L)-k-1)| is called. Other than that, the program also partitions \(A\), evaluates two if statements, and performs subtraction, all of which is done in linear time. The worst-case runtime will occur when the program makes a recursive call to the bigger list between \(L\) and \(G\). Thus the recurrence for the worst-case runtime is
+        When \(n > 1\), only one recursive call is made. In particular, either \verb|extract(L,k)| or \verb|extract(G,len(L)-k-1)| is called. Other than that, the program also partitions \(A\), which takes linear time, and evaluates two if statements, and performs subtraction, which is done in practically constant time. The worst-case runtime will occur when the program makes a recursive call to the bigger list between \(L\) and \(G\). Thus the recurrence for the worst-case runtime is
         \[
             T(n)= \begin{dcases}
                 c, &\text{ if } n=1 ;\\
@@ -367,16 +371,67 @@
             \end{dcases}
             \text{ , where } c,d,f \text{ are constants.}
         \]
-        In order to find an asymptotic upper bound for \(T(n)\), make every list partition in a way such that either \(L\) or \(G\) is empty. In this case, \(\max \{|L|,|G|\} = n-1\). Rewrite \(T(n)\) as
+        In order to find an asymptotic upper bound for \(T(n)\), each recursive call must be as big as possible. This can be done by making the list partition in a way such that either \(L\) or \(G\) is empty. In this case, \(\max \{|L|,|G|\} = n-1\). Rewrite \(T(n)\) as
         \[
             T(n)= \begin{dcases}
                 c, &\text{ if } n=1 ;\\
                 T(n-1) + dn + f, &\text{ if } n > 1 .
             \end{dcases}
         \]
-        Now, proceed with finding the closed form for \(T(n)\). 
-        
-        The worst-case for this algorithm is \(\mathcal{O} (nk)\), where \(n\) is the size of the list and \(k\) is the number so that the list is trying to find the \(k\)th smallest element. This happens exactly when the original list is sorted in either ascending order and \(k=\texttt{len}(A)\) or descending order and \(k=1\), which causes \verb|partition| to return one empty list and a list of \(n-1\) elements, if the original list contained \(n\) elements. This will also happen in each recursive case, as the list is sorted. The recursion goes up to depth \(k\), with each recursive call using \verb|partition|, which is \(\mathcal{O} (n)\). Thus the worst-case runtime of \verb|extract| is \(\mathcal{O} (nk)\).
+        Now, proceed with finding the closed form for \(T(n)\) using repeated substitution. For some natural \(n>0\),
+        \[
+            T(n) = T(n-1) + dn + f
+        \]
+        \[
+            = T(n-2) + d(n + (n-1)) + 2f
+        \]
+        \[
+            = T(n-3) + d(n + (n-1) + (n-2)) + 3f
+        \]
+        \[
+            \vdots
+        \]
+        \[
+            = T(1) + d\left(\frac{n(n+1)}{2} - 1\right) + (n-1)f
+        \]
+        It will be proven by induction on \(n\) that \(T(n) = \frac{d}{2}n^2 + (\frac{d}{2} + f)n + c-d-f\).
+
+        \textbf{Base Case.} Let \(n=1\). Then
+        \[
+            \frac{d}{2}n^2 + \left(\frac{d}{2} + f\right)n + c-d-f = \frac{d}{2} + \left(\frac{d}{2} + f\right) + c - d - f = c = T(1)
+        \]
+        Thus the closed form is valid for \(n=1\).
+
+        \textbf{Induction Hypothesis.} Suppose that the closed form holds for some \(n=k\). That is,
+        \[
+            T(k) = \frac{d}{2}k^2 + \left(\frac{d}{2} + f\right)k + c-d-f
+        \]
+        The goal is to show that
+        \[
+            T(k+1) = \frac{d}{2}(k+1)^2 + \left(\frac{d}{2} + f\right)(k+1) + c - d - f
+        \]
+
+        \textbf{Induction Step.} Using the recursive definition of \(T(k+1)\),
+        \[
+            T(k+1) = T(k) + d(k+1) + f = \frac{d}{2}k^2 + \left(\frac{d}{2} + f\right)k + c-d-f + d(k+1) + f
+        \]
+        \[
+            = \frac{d}{2}k^2 + \left(\frac{d}{2} + f\right)k + c- d - f + dk+\frac{d}{2} + \frac{d}{2} + f
+        \]
+        Reordering terms yields
+        \[
+            = \left(\frac{d}{2}k^2 + dk + \frac{d}{2}\right) + \left(\left(\frac{d}{2} + f\right)k + \frac{d}{2} + f\right) + c - d - f
+        \]
+        \[
+            = \frac{d}{2}(k+1)^2 + \left(\frac{d}{2} + f\right)(k+1) + c - d - f
+        \]
+        which is equal to the claimed closed form for \(T(k+1)\).
+
+        By the principle of induction, it is true that for all naturals \(n >0\),
+        \[
+            T(n) = \frac{d}{2}n^2 + \left(\frac{d}{2} + f\right)n + c-d-f
+        \]
+        Notice that the \(n^2\) term is the fastest growing term. Thus the worst-case time complexity of this algorithm is \(\mathcal{O} (n^2)\).
     \end{enumerate}
     \pagebreak
     \textbf{Q4.} Solve questions 6,7,10,12, and 14 on pages 46 to 48 of the textbook. Only \textbf{two} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
@@ -385,14 +440,6 @@
     \begin{enumerate}[label=(\alph*)]
         \item Develop a recurrence for \(T(n)\)
         
-        The recurrence for \(T(n)\) is
-        \[
-            T(n)=\begin{dcases}
-                1, &\text{ if } n=1 ;\\
-                2, &\text{ if } n=2 ;\\
-                T(n-1) + T(n-2), &\text{ if } n\geq 3.
-            \end{dcases}
-        \]
         If the binary string is of length 1, it must be '0', since every 1 must be immediately followed by a 0.
 
         If the binary string is of length 2, it can either be '00' or '10'. Any other string would violate the condition.
@@ -403,7 +450,14 @@
 
         If it begins with a 0, take out the first character. There remains a binary string that follows the conditions above with length \(n-1\), which there are \(T(n-1)\) unique possibilities for.
 
-        Thus the total number of these particular binary strings is \(T(n-1) + T(n-2)\).
+        Thus the total number of these particular binary strings is \(T(n-1) + T(n-2)\), and the recurrence for \(T(n)\) is
+        \[
+            T(n)=\begin{dcases}
+                1, &\text{ if } n=1 ;\\
+                2, &\text{ if } n=2 ;\\
+                T(n-1) + T(n-2), &\text{ if } n\geq 3.
+            \end{dcases}
+        \]
 
         \item Find a closed form for \(T(n)\) 
         
@@ -469,9 +523,17 @@
             \item A leaf node is a full binary tree
             \item If \(T_1,T_2\) are full binary trees, then the binary tree obtained from attaching \(T_1,T_2\) to the root node is a full binary tree.
         \end{enumerate}
-        This motivates the recursive definition for \(T(n)\) to be
+        Thus the number of binary trees with \(n\) nodes can be found by considering the number of combinations of smaller full binary trees. This motivates the recurrence for \(T(n)\) to be
         \[
             T(n) = \sum_{i=1}^{\frac{n-1}{2}} T(n-2i) \cdot T(2i - 1)
+        \]
+        Thus \(T(n)\) can be defined as follows:
+        \[
+            T(n) = \begin{dcases}
+                0, &\text{ if } n \text{ is even}  ;\\
+                1, &\text{ if } n=1 ;\\
+                \sum_{i=1}^{\frac{n-1}{2}} T(n-2i) \cdot T(2i - 1), &\text{ otherwise} .
+            \end{dcases}
         \]
         Now, it will be shown using complete induction that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\) for all odd naturals \(n\).
 
