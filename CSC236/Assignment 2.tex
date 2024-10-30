@@ -40,7 +40,7 @@
 
         \textbf{Base Case.} Let \(j = 1\). At the beginning of the first iteration of the loop, \(i=0\) and \(sum=0\). Notice that in the expression \(\sum_{k=0} ^{-1} A[k]\), the lower bound is greater than the upper bound. This results in an empty sum that evaluates to \(0\). Therefore the base case holds.
 
-        \textbf{Induction Hypothesis.} Suppose that for some \(j \in \{1,..., \texttt{len}(A)\}\), \(Q(j)\) is true.
+        \textbf{Induction Hypothesis.} Suppose that for some \(j \in \{1,..., \texttt{len}(A) - 1\}\), \(Q(j)\) is true.
 
         \textbf{Induction Step.} \(i\) increases by 1 at the end of each iteration, so at the beginning of the \(j\)th iteration, \(i = j-1<\texttt{len}(A)\), which means that the loop body is entered. From the induction hypothesis,
         \[
@@ -56,9 +56,7 @@
         \]
         as desired.
 
-        By the principle of simple induction, at the beginning of the \(j\)th iteration, \(Q(j)\) holds for any \(j \in \{1,2,..., \texttt{len}(A), \texttt{len}(A) +1\}\).
-
-        At the beginning of the \(\texttt{len}(A) +1\)th iteration, \(i = \texttt{len}(A)\), so the loop terminates. The program returns \(sum / \texttt{len}(A)\) on line 11, which is exactly the average of the numbers in \(A\).
+        By the principle of simple induction, at the beginning of the \(j\)th iteration, \(Q(j)\) holds for any \(j \in \{1,2,..., \texttt{len}(A)\}\). In particular, \(Q(\texttt{len}(A))\), and the proof is done.
 
     \end{proof}
     \pagebreak
@@ -85,7 +83,7 @@
             \[
                 Inv(i) : y = 11 - i \text{ and } a = x + \frac{y(y+1)}{2} - 55
             \]
-            It will be proven that at the beginning of the \(i\)th iteration of the loop, \(Inv(a,y)\) is true.
+            It will be proven that at the beginning of the \(i\)th iteration of the loop, \(Inv(i)\) is true.
 
             \textbf{Base Case.} At the beginning of the first iteration, \(a=x\) and \(y=10\). Thus
             \[
@@ -97,7 +95,7 @@
             \]
             The base case has been proven to be true.
 
-            \textbf{Induction Hypothesis.} Now suppose that for some positive natural \(j\), \(Inv(a,y)\) holds true at the beginning of the \(j\)th iteration. Then the loop invariant states that 
+            \textbf{Induction Hypothesis.} Now suppose that for some positive natural \(j\), \(Inv(i)\) holds true at the beginning of the \(j\)th iteration. Then the loop invariant states that 
             \[
                 y = 11 - j \text{ and } a = x +\frac{(11-j)(12-j)}{2}-55
             \]
@@ -113,7 +111,7 @@
             \[
                 y = 11 - (j+1) \text{ and } a = x+\frac{(10-j)(11-j)}{2}-55 = x+\frac{y(y+1)}{2}-55
             \]
-            Thus \(Inv(a,y)\) is true at the beginning of the \(j+1\)th iteration, verifying the validity of the loop invariant.
+            Thus \(Inv(i)\) is true at the beginning of the \(j+1\)th iteration, verifying the validity of the loop invariant.
 
         \end{proof}
         
@@ -121,11 +119,11 @@
         \begin{proof}
             Let \(x=56\). It wil be shown directly that at the beginning of every iteration, \(a > 0\), which implies that the loop can never terminate.
 
-            Consider the beginning of an arbitrary \(i\)th iteration. From the loop invariant found in part (a), it is true that \(y = 11 - j\) and \(Inv(a,y)\), so
+            Consider the beginning of an arbitrary \(j\)th iteration. From the loop invariant found in part (a), it is true that \(y = 11 - j\) and \(Inv(i)\), so
             \[
                 a = x + \frac{y(y+1)}{2} - 55 = 56 + \frac{(11-j)(12-j)}{2} - 55 = 1 + \frac{(11-j)(12-j)}{2}
             \]
-            Note that \(\frac{(11-j)(12-j)}{2} < 0\) if and only if \(11 < j\) and \(j < 12\) at the same time, which is impossible because \(j\) is a natural number. Thus \(\frac{(11-j)(12-j)}{2} \geq 0\) so
+            Note that \(\frac{(11-j)(12-j)}{2} < 0\) if and only if \(11 < j < 12\), which is impossible because \(j\) is a natural number. Thus \(\frac{(11-j)(12-j)}{2} \geq 0\) so
             \[
                 a = 1 + \frac{(11-j)(12-j)}{2} \geq 1 > 0
             \]
@@ -215,7 +213,7 @@
             \]
             Thus, in either case, \(P(j+1)\) has been shown to hold.
 
-            By the principle of simple induction, it has been shown that \(P(\lfloor \log _2(b) \rfloor + 2)\) is true at the beginning of iteration number \(\lfloor \log _2(b) \rfloor + 2\). Since \verb|exp| was initialized as \(b\) and has been halved \(\lfloor \log _2(b) \rfloor + 1\) times, the value of \verb|exp| at the beginning of the iteration is 0, which means that the loop terminates. Using the fact that \(P(\lfloor \log _2(b) \rfloor + 1)\) holds,
+            By the principle of simple induction, it has been shown that \(P(\lfloor \log _2(b) \rfloor + 2)\) is true at the beginning of iteration number \(\lfloor \log _2(b) \rfloor + 2\). Since \verb|exp| was initialized as \(b\) and has been halved \(\lfloor \log _2(b) \rfloor + 1\) times, the value of \verb|exp| at the beginning of the iteration is 0, which means that the loop terminates. Using the fact that \(P(\lfloor \log _2(b) \rfloor + 2)\) holds,
             \[
                 \texttt{mult}^\texttt{exp} \cdot \texttt{ans} = \texttt{mult}^0 \cdot \texttt{ans} = \texttt{ans} = a^b
             \]
@@ -235,7 +233,7 @@
             \text{ is called a \textbf{majority list} for } x \text{.}
         \]
 
-        Let \(A\) be a majority list for \(x\). As well, let \(n_i\) represent the absolute difference between the number of occurences of \(x\) and the other values in \(A[0:i]\). For the integer \(i\) in the program, define the loop invariant
+        Let \(A\) be a majority list for \(x\). As well, let \(n_i\) represent the absolute difference between the number of occurences of \(x\) and the other values in \(A[0:i]\). For \(i \in \{1,2,...,\texttt{len}(A)\}\), define the loop invariant
         \[
             P(i) : \text{if } A[0:i] \text{ is a majority list for } x \text{, then } m=x \text{ and } c \geq n_i \text{. As well,}
         \]
@@ -246,21 +244,21 @@
 
         \textbf{Base Case.} Let \(i = 1\). Suppose that \(A[0:1]\) is a majority list for \(x\). Then it must be that \(A[0]=x\) and \(n_1=1\). Upon entering the loop for the first time, \(m=A[0]\) and \(c=1\geq n_1\), which satisfies the conclusion of the first implication.
         
-        Secondly, sppose that \(A[0:1]\) is not a majority list for \(x\). Then \(A[0]\neq x\) and \(n_1=1\). The first time entering the loop, \(c=1\leq n_1\), which is sufficient to prove the second statement to be true.
+        Secondly, suppose that \(A[0:1]\) is not a majority list for \(x\). Then \(A[0]\neq x\) and \(n_1=1\). The first time entering the loop, \(c=1\leq n_1\), which is sufficient to prove the second statement to be true.
 
-        Thus at the beginning of the 1st iteration, \(P(1)\) is true.
+        Thus at the beginning of the first iteration, \(P(1)\) is true.
 
         \textbf{Induction Hypothesis.} Let \(i=k\), for some \(k \in \{1,2,...,\texttt{len}(A) -1\}\). Suppose that at the start of the \(k\)th iteration, \(P(k)\) is true. Since \(k \leq \texttt{len}(A) -1\), the loop body will enter. The end goal is to show that \(P(k+1)\) is true at the beginning of the \(k+1\)th iteration.
 
-        \textbf{Induction Step.} Let \(m_i, c_i\) denote the values of \(m\) and \(c\) at the start of the \(i\)th iteration. To prove the first implication, suppose that \(A[0:k+1]\) is a majority list for \(x\). Consider the following two cases:
+        \textbf{Induction Step.} Let \(m_j, c_j\) denote the values of \(m\) and \(c\) at the start of the \(j\)th iteration. To prove the first implication, suppose that \(A[0:k+1]\) is a majority list for \(x\). Consider the following two cases:
         \begin{enumerate}
             \item \(A[0:k]\) is a majority list for \(x\):
             
-            By the induction hypothesis, \(P(k)\) is true at the start of the \(k\)th iteration. That is, \(m_k = x\) and \(c_k \geq n_k\). Executing the \(k\)th iteration, it is clear that \(c_k \neq 0\), as \(c_k \geq n_k > 0\). Thus lines 11 and 12 are skipped. Then, if \(A[k]=m_k = x\), \(n_{k+1} = n_k + 1\). By line 14, \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). If \(A[k]\neq x\), then \(n_{k+1} = n_k - 1\). Line 16 instead yields \(c_{k+1} = c_k - 1 \geq n_k - 1 = n_{k+1}\).  Also, \(x=m_k=m_{k+1}\). Therefore the first implication holds.
+            By the induction hypothesis, \(m_k = x\) and \(c_k \geq n_k\). Executing the \(k\)th iteration, it is clear that \(c_k \neq 0\), as \(c_k \geq n_k > 0\). Thus lines 11 and 12 are skipped. Then, if \(A[k]=m_k = x\), \(n_{k+1} = n_k + 1\). By line 14, \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). If \(A[k]\neq x\), then \(n_{k+1} = n_k - 1\). Line 16 instead yields \(c_{k+1} = c_k - 1 \geq n_k - 1 = n_{k+1}\).  Also, since \(m\) is unchanged, \(x=m_k=m_{k+1}\). Therefore the first implication holds.
 
             \item \(A[0:k]\) is not a majority list for \(x\):
             
-            The only way for \(A[0:k]\) to not be a majority list for \(x\) at the same time as \(A[0:k+1]\) is if \(A[k]=x\) and \(A[0:k]\) has half its elements equal to \(x\). Since \(n_k=0\), by the induction hypothesis, \(c_k = 0\) or \(m_k=x\). Executing the \(k\)th iteration, if \(c_k=0\), running lines 11 and 12 result in \(m_{k+1} = A[k] = x\) and \(c_{k+1} = 1\). Otherwise, if \(c_k \neq 0\), then \(m_k=x\). \(A[k]=x\), so the condition on line 13 is satisfied, running line 14, so \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). \(m\) remains unchanged so \(x=m_k=m_{k+1}\). In either case, the first implication is still shown to be true.
+            In this case, the only way for \(A[0:k]\) to not be a majority list for \(x\) is if \(A[k]=x\) and \(A[0:k]\) has half its elements equal to \(x\). This means that \(n_k=0\), and by the induction hypothesis, either \(c_k = 0\) or \(m_k=x\). Executing the \(k\)th iteration, if \(c_k=0\), running lines 11 and 12 result in \(m_{k+1} = A[k] = x\) and \(c_{k+1} = 1\). Otherwise, if \(c_k \neq 0\), then it must be true that \(m_k=x\). \(A[k]=x\), so the condition on line 13 is satisfied, running line 14, so \(c_{k+1} = c_k + 1 \geq n_k + 1 = n_{k+1}\). \(m\) remains unchanged so \(x=m_k=m_{k+1}\). In either case, the first implication is still shown to be true.
         \end{enumerate}
         Therefore, the first implication holds true.
 
@@ -268,9 +266,9 @@
         \begin{enumerate}
             \item \(A[0:k]\) is not a majority list for \(x\):
             
-            By the induction hypothesis, \(c_k \leq n_k\) or \(m_k = x\). Consider what happens if \(A[k]= x\). Executing the \(k\)th iteration, if \(c_k=0\), lines 11 results in \(m_{k+1} = A[k]= x\). If not, then the value of \(m\) is unchanged so \(m_{k+1} = m_k\). Next, if the condition on line 13 is true, then \(x = A[k]= m_k= m_{k+1}\). Finally, if line 16 runs, it means that \(m_k = x \neq A[k]\), thus \(c_k \leq n_k\) must be true. Then \(c_{k+1} = c_k - 1 \leq n_k - 1 = n_{k+1}\). In all situations, either \(m_{k+1} = x\) or \(c_{k+1} \leq n_{k+1}\).
+            By the induction hypothesis, either \(c_k \leq n_k\) or \(m_k = x\). Consider what happens if \(A[k]= x\). Executing the \(k\)th iteration, if \(c_k=0\), lines 11 results in \(m_{k+1} = A[k]= x\). If not, then the value of \(m\) is unchanged so \(m_{k+1} = m_k\). Next, if the condition on line 13 is true, then \(x = A[k]= m_k= m_{k+1}\). Finally, if line 16 runs, it means that \(m_k = x \neq A[k]\). From the induction hypothesis, \(c_k \leq n_k\) must be true. Then \(c_{k+1} = c_k - 1 \leq n_k - 1 = n_{k+1}\). In all situations, either \(m_{k+1} = x\) or \(c_{k+1} \leq n_{k+1}\).
 
-            Now, consider what happens when \(A[k]\neq x\). Again, executing the \(k\)th iteration, if \(c_k = 0\), line 12 results in \(c_{k+1} = 1\), but notice that since \(A[0:k]\) is not a majority list, appending a value not equal to \(x\) will increase the value of \(n_{k+1}\). Particularly, \(n_{k+1} = n_k + 1\). Then \(c_{k+1} \leq n_k + 1 = n_{k+1}\). If \(c_k \neq 0\), then similar to the previous case, \(m_{k+1} = m_k\). If \(m_k = A[k] \neq x\), it must be true that \(c_k \leq n_k\). Then, line 14 will add 1 to \(c_k\), so \(c_{k+1} = c_k + 1 < n_k + 1 = n_{k+1}\). Otherwise, if \(m_k \neq A[k]\), then \(m_k\) can either be equal or not equal to \(x\). If \(m_k = x\), the conclusion follows immediately. If not, \(c_k \leq n_k\) and from line 16, \(c_k\) is decremented so \(c_{k+1} = c_k - 1 \leq n_k - 1 \leq n_{k+1}\).
+            Now, consider what happens when \(A[k]\neq x\). Again, executing the \(k\)th iteration, if \(c_k = 0\), line 12 results in \(c_{k+1} = 1\), but notice that since \(A[0:k]\) is not a majority list, appending a value not equal to \(x\) will increase the value of \(n_{k+1}\), so \(n_{k+1} = n_k + 1\). Then \(c_{k+1} = 1 \leq n_k + 1 = n_{k+1}\). If \(c_k \neq 0\), then similar to the previous case, \(m_{k+1} = m_k\). If \(m_k = A[k] \neq x\), it must be true that \(c_k \leq n_k\). Then, line 14 will add 1 to \(c_k\), so \(c_{k+1} = c_k + 1 < n_k + 1 = n_{k+1}\). Otherwise, if \(m_k \neq A[k]\), then \(m_k\) can either be equal or not equal to \(x\). If \(m_k = x\), the conclusion follows immediately. If not, \(c_k \leq n_k\) and from line 16, \(c_k\) is decremented so \(c_{k+1} = c_k - 1 \leq n_k - 1 = n_{k+1}\).
 
             Therefore the second implication holds true at the beginning of the \(k+1\)th iteration.
 
@@ -292,15 +290,15 @@
             \[
                 Q(n): \text{For all } j \in \mathbb{N}, j < i \text{, } L[j] \leq L[i]
             \]
-            Let \(k \in \{0,1,..., \texttt{len}(L) - 1\}\). It will be proven using simple induction that for all \(n \in \{1, 2, ..., \texttt{len}(L) - k\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
+            Let \(k \in \{0,1,..., \texttt{len}(L) - 1\}\). It will be proven using simple induction that for all \(n \in \{1, ..., \texttt{len}(L) - k\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
 
             \textbf{Base Case.} Let \(n=1\). At the beginning of the first iteration, \(i = 0\). It follows that \(Q(1)\) is vacuously true because there is no natural number \(j < 0\).
 
-            \textbf{Induction Hypothesis.} Suppose that for some \(n \in \{1, 2,..., \texttt{len}(L)-k-1\}\), at the beginning of the \(n\)th iteration, \(Q(n)\) is true. The loop condition is always true for this \(n\), so the loop body will be entered. It will be shown that at the start of the \(n+1\)th iteration, \(Q(n+1)\) is true.
+            \textbf{Induction Hypothesis.} Suppose that for some \(n \in \{1, 2,..., \texttt{len}(L)-k-1\}\), at the beginning of the \(n\)th iteration, \(Q(n)\) is true. Notice that at the end of every iteration, \(i\) is incremented once. Thus \(i = n - 1 < \texttt{len}(L) - k - 1\), so the loop body will be entered. It will be shown that at the start of the \(n+1\)th iteration, \(Q(n+1)\) is true.
 
-            \textbf{Induction Step.} Notice that at the end of every iteration, \(i\) is incremented once. Thus \(i = n - 1\) at the beginning of the \(n\)th iteration. Iterating through the loop, if \(L[n-1] > L[n]\), their positions in the list will be swapped. This guarantees that \(L[n-1] \leq L[n]\) after line 11. Next, \(i\) is incremented by 1, so its new value is \(n\). This marks the end of the \(n\)th iteration and the start of the \(n+1\)th iteration.
+            \textbf{Induction Step.} Iterating through the loop, if \(L[n-1] > L[n]\), their positions in the list will be swapped. This guarantees that \(L[n-1] \leq L[n]\) after line 11. Next, \(i\) is incremented by 1, so its new value is \(n\). This marks the end of the \(n\)th iteration and the start of the \(n+1\)th iteration.
 
-            By the induction hypothesis, for all natural \(j < n-1\), \(L[j] \leq L[n-1] \leq L[n]\) if line 11 did not run, or \(L[j] < L[n]\) if it did. Regardless, \(L[j] \leq L[n]\). Additionally, \(L[n-1] \leq L[n]\) is true based on the previous iteration of the loop. It can be concluded that for \(j < n = i\), \(L[j] \leq L[n] = L[i]\), so \(Q(n+1)\) is true.
+            \(L[n-1] \leq L[n]\) is true based on the previous iteration of the loop. Additionally, by the induction hypothesis, for all natural \(j < n-1\), \(L[j] \leq L[n-1] \leq L[n]\) if line 11 did not run, or \(L[j] \leq L[n]\) if it did. Regardless, \(L[j] \leq L[n]\). It can be concluded that for \(j < n = i\), \(L[j] \leq L[n] = L[i]\), so \(Q(n+1)\) is true.
 
             By the principle of simple induction, for all \(n \in \{1, 2, ..., \texttt{len}(L) - k\}\), at the start of the \(n\)th iteration, \(Q(n)\) is true.
 
@@ -308,7 +306,7 @@
         \item State and prove an invariant for the outer loop
         
         \begin{proof}
-            Define the outer loop invariant to be
+            For a positive natural \(m\), define the outer loop invariant to be
             \[
                 P(m) : \text{The last } m \text{ elements of } L \text{ are sorted.}
             \]
@@ -318,7 +316,11 @@
 
             \textbf{Induction Hypothesis.} Suppose that for some \(m \in \{1,..., \texttt{len}(L) - 1\}\), \(P(m)\) is true at the beginning of the \(m\)th iteration. Notice that \(k\) is initialized to be 0 and is incremented every outer loop iteration. Thus \(k = m-1 < \texttt{len}(L)\), so the loop body is entered.
 
-            \textbf{Induction Step.} Running the \(m\)th iteration, \(i\) is initialized to be 0 and the inner loop runs. By the previous part, \(Q(\texttt{len}(L) - m + 1)\) is true at the beginning of the \((\texttt{len}(L) - m + 1)\)th iteration. Recall that at the beginning of this iteration, \(i = \texttt{len}(L) - m = \texttt{len}(L) - k - 1\), so the loop terminates. Thus before line 13, \(L[\texttt{len}(L) - m - 1]\leq L[\texttt{len}(L) - m]\), as \(\texttt{len}(L) - m - 1 < i\). After line 13, the \(m+1\)th iteration begins.
+            \textbf{Induction Step.} Running the \(m\)th iteration, \(i\) is initialized to be 0 and the inner loop runs. First, it will be shown that the inner loop terminates.
+            
+            Let the inner loop variant be \(\texttt{len}(L) - k - i\). This value is natural and decreasing, so the inner loop will terminate.
+            
+            Now, by the previous part, \(Q(\texttt{len}(L) - m + 1)\) is true at the beginning of the \((\texttt{len}(L) - m + 1)\)th iteration. This can be seen by taking \(k=m-1\). Recall that at the beginning of this iteration, \(i = \texttt{len}(L) - m = \texttt{len}(L) - k - 1\), so the loop terminates. Thus before line 13, \(L[\texttt{len}(L) - m - 1]\leq L[\texttt{len}(L) - m]\), as \(\texttt{len}(L) - m - 1 < i\). After line 13, the \(m+1\)th iteration begins.
 
             By the induction hypothesis, there is the following chain of inequalities:
             \[
@@ -332,9 +334,10 @@
         \item Prove that \verb|bubblesort| is correct, according to its specifications
         
         \begin{proof}
-            Let the inner loop variant be \(\texttt{len}(L) - k - i\). This value is natural and decreasing, so the inner loop will terminate. Similarly, let the outer loop variant be \(\texttt{len}(L) - k\). It is easy to see that the same applies to this value as well. Thus the program will eventually terminate.
+            Let the outer loop variant be \(\texttt{len}(L) - k\). It is easy to see that this value is natural and decreasing. Thus the program will eventually terminate.
 
-            From the previous part, it is true that \(P(\texttt{len}(L))\) holds at the beginning of the \(\texttt{len}(L)\)th iteration. At this iteration, \(k=\texttt{len}(L) - 1\), so the loop condition is true and the loop body enters. When this iteration reaches the inner loop, notice that \(i = 0 - \texttt{len}(L) - k - 1\), so the inner loop does not run. Then \(k\) is incremented and the loop returns to the top of the loop, where the loop condition fails and terminates the loop. Since \(L\) remained unchanged throughout the iteration, \(P(\texttt{len}(L))\) is still true, so the last \(\texttt{len}(L)\) elements of the list are sorted, which is the entire list. Thus the program satisfies its post conditions.
+            From the previous part, it is true that \(P(\texttt{len}(L))\) holds at the beginning of the \(\texttt{len}(L)\)th iteration. At this iteration, \(k=\texttt{len}(L) - 1\), so the loop condition is true and the loop body enters. When this iteration reaches the inner loop, notice that \(i = 0 = \texttt{len}(L) - k - 1\), so the inner loop does not run. Then \(k\) is incremented and the loop returns to the top of the loop, where the loop condition fails and terminates the loop. Since \(L\) remained unchanged throughout the iteration, \(P(\texttt{len}(L))\) is still true, so the last \(\texttt{len}(L)\) elements of the list are sorted, which is the entire list. Thus the program satisfies its postconditions.
+        
         \end{proof}
     \end{enumerate}
     \textit{Question 10.} Consider the following generalization of the \verb|min| function.
@@ -348,20 +351,22 @@
 
             \textbf{Induction Hypothesis.} Suppose that for any list \(B\) such that \(\texttt{len}(B) \leq n\), \verb|extract(B, k)| correctly returns the \(k\)th smallest element.
 
-            \textbf{Induction Step.} Let \(A\) be a list with \(\texttt{len}(A) = n + 1\). Running through the program, choosing \(A[0]\) as the pivot, line 4 separates \(A\) into two lists \(L,G\), where \(L\) contains all elements in \(A\) such that they are less than \texttt{pivot} and \(G\) contains all elements in \(A\) such that they are greater than \texttt{pivot}. Continuing on to line 5, if \(\texttt{len}(L) = k - 1\), then \(L\) contains \(k-1\) elements that are smaller than the pivot, so the pivot is the \(k\)th smallest element, which the program returns on line 6.
+            \textbf{Induction Step.} Let \(A\) be a list such that \(\texttt{len}(A) = n + 1\). Running through the program, choosing \(A[0]\) as the pivot, line 4 separates \(A\) into two lists \(L,G\), where \(L\) contains all elements in \(A\) such that they are less than \texttt{pivot} and \(G\) contains all elements in \(A\) such that they are greater than or equal to \texttt{pivot}. Continuing on to line 5, if \(\texttt{len}(L) = k - 1\), then \(L\) contains \(k-1\) elements that are smaller than the pivot, so the pivot is the \(k\)th smallest element, which the program returns on line 6.
 
-            Otherwise, notice that \(\texttt{len}(L),\texttt{len}(G) < n+1 \implies \texttt{len}(L),\texttt{len}(G) \leq n\).
+            Otherwise, notice that \(\texttt{len}(L),\texttt{len}(G) < n+1 \implies \texttt{len}(L),\texttt{len}(G) \leq n\), which means that \(L\) and \(G\) are covered with the induction hypothesis.
             
-            If \(\texttt{len}(L) \geq k\), the \(k\)th smallest element of \(A\) is contained in \(L\), and is in fact equal to the \(k\)th smallest element of \(L\). The program returns \verb|extract(L, k)|, which by the induction hypothesis, returns the \(k\)th smallest element of \(L\), which is equal to the \(k\)th smallest element of \(A\).
+            If \(\texttt{len}(L) \geq k\), the \(k\)th smallest element of \(A\) is contained in \(L\). The program returns \verb|extract(L, k)|, which by the induction hypothesis, returns the \(k\)th smallest element of \(L\), which is equal to the \(k\)th smallest element of \(A\).
 
-            If neither of the cases above are true, then it must be that the \(k\)th smallest element of \(A\) is inside of \(G\), and is equal to the \((k - \texttt{len}(A) - 1)\)th smallest element of \(G\). Indeed, the program returns \verb|extract(G, k - len(L) - 1)|, which by the induction hypothesis returns the \((k - \texttt{len}(A) - 1)\)th smallest element of \(G\), which is the \(k\)th smallest element of \(A\).
+            If not, then it must be that the \(k\)th smallest element of \(A\) is inside of \(G\), and is equal to the \((k - \texttt{len}(A) - 1)\)th smallest element of \(G\).
+            
+            Indeed, the program returns \verb|extract(G, k - len(L) - 1)|, which by the induction hypothesis returns the \((k - \texttt{len}(A) - 1)\)th smallest element of \(G\), which is the \(k\)th smallest element of \(A\).
 
             Thus the program returns the correct output for lists of size \(n+1\), and by the principle of complete induction, the program is correct.
             
         \end{proof}
         \item Analyze the worse-case running time of this algorithm.
         
-        Let \(T(n)\) denote the worst-case runtime of \verb|extract|. Let \(n\) denote number of elements in the list \(A\). The base case is when \(n=1\). As outlined in the correctness proof above, \(A\) is partitioned, an if statement is evaluated, and a number is returned; all of which is constant time for input size 1.
+        Let \(n\) denote number of elements in the list \(A\). Define \(T(n)\) to be the worst-case runtime of \verb|extract|. The base case is when \(n=1\). As outlined in the correctness proof above, an empty list is partitioned, an if statement is evaluated, and a number is returned; all of which is constant time.
 
         When \(n > 1\), only one recursive call is made. In particular, either \verb|extract(L,k)| or \verb|extract(G,len(L)-k-1)| is called. Other than that, the program also partitions \(A\), which takes linear time, and evaluates two if statements, and performs subtraction, which is done in practically constant time. The worst-case runtime will occur when the program makes a recursive call to the bigger list between \(L\) and \(G\). Thus the recurrence for the worst-case runtime is
         \[
@@ -413,7 +418,7 @@
 
         \textbf{Induction Step.} Using the recursive definition of \(T(k+1)\),
         \[
-            T(k+1) = T(k) + d(k+1) + f = \frac{d}{2}k^2 + \left(\frac{d}{2} + f\right)k + c-d-f + d(k+1) + f
+            T(k+1) = T(k) + d(k+1) + f = \left(\frac{d}{2}k^2 + \left(\frac{d}{2} + f\right)k + c-d-f\right) + d(k+1) + f
         \]
         \[
             = \frac{d}{2}k^2 + \left(\frac{d}{2} + f\right)k + c- d - f + dk+\frac{d}{2} + \frac{d}{2} + f
@@ -431,7 +436,16 @@
         \[
             T(n) = \frac{d}{2}n^2 + \left(\frac{d}{2} + f\right)n + c-d-f
         \]
-        Notice that the \(n^2\) term is the fastest growing term. Thus the worst-case time complexity of this algorithm is \(\mathcal{O} (n^2)\).
+        It will be shown that \(T(n) \in \mathcal{O} (n^2)\).
+        
+        Let \(c_0 = c\), \(n_0 = 1\). Notice that for all \(n > 1\),
+        \[
+            T(n) = \frac{d}{2}n^2 + \left(\frac{d}{2} + f\right)n + c-d-f \leq \frac{d}{2}n^2 + \left(\frac{d}{2} + f\right)n^2 + (c-d-f)n^2
+        \]
+        \[
+            = \left(\frac{d}{2} + \frac{d}{2} + f + c - d - f\right)n^2 = c n^2 = c_0 n^2
+        \]
+        Thus the worst-case time complexity of this algorithm is \(\mathcal{O} (n^2)\).
     \end{enumerate}
     \pagebreak
     \textbf{Q4.} Solve questions 6,7,10,12, and 14 on pages 46 to 48 of the textbook. Only \textbf{two} of the five questions will be selected for marking. A serious attempt of all the mentioned questions is a necessary condition for receiving more than 0 points.
@@ -440,7 +454,7 @@
     \begin{enumerate}[label=(\alph*)]
         \item Develop a recurrence for \(T(n)\)
         
-        If the binary string is of length 1, it must be '0', since every 1 must be immediately followed by a 0.
+        If the binary string is of length 1, it must be '0', since every binary string that starts with '1' must be at least length 2.
 
         If the binary string is of length 2, it can either be '00' or '10'. Any other string would violate the condition.
 
@@ -492,7 +506,7 @@
             \[
                 T(k+1) = T(k) + T(k-1)
             \]
-            The values of \(k\) and \(k-1\) are covered within our induction hypothesis, so
+            The values of \(k\) and \(k-1\) are covered within the induction hypothesis, so
             \[
                 T(k) + T(k-1) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{k+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{k+1}\right) + \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{k} - \left(\frac{1-\sqrt{5}}{2}\right)^{k}\right)
             \]
@@ -523,11 +537,13 @@
             \item A leaf node is a full binary tree
             \item If \(T_1,T_2\) are full binary trees, then the binary tree obtained from attaching \(T_1,T_2\) to the root node is a full binary tree.
         \end{enumerate}
-        Thus the number of binary trees with \(n\) nodes can be found by considering the number of combinations of smaller full binary trees. This motivates the recurrence for \(T(n)\) to be
-        \[
-            T(n) = \sum_{i=1}^{\frac{n-1}{2}} T(n-2i) \cdot T(2i - 1)
-        \]
-        Thus \(T(n)\) can be defined as follows:
+        There are no full binary trees that have an even number of nodes, so when \(n\) is even, \(T(n) = 0\).
+
+        When \(n=1\), The only tree is the single root node, which is a full binary tree, so \(T(1)=1\).
+
+        When \(n\) is odd and greater than 1, the root node must have two children. Notice that each of the children must be full binary trees as well. Additionally, the sum of the number of nodes of the left child and the right child must add up to \(n-1\). Suppose that the left child has \(k\) nodes and the right child has \(n-k-1\) nodes. Thus the number of full binary trees with this characteristic is \(T(k)T(n-k-1)\).
+        
+        It can be concluded that the number of binary trees with \(n\) nodes can be found by considering all the combinations of smaller full binary trees. The recurrence for \(T(n)\) is
         \[
             T(n) = \begin{dcases}
                 0, &\text{ if } n \text{ is even}  ;\\
@@ -537,7 +553,7 @@
         \]
         Now, it will be shown using complete induction that \(T(n)\geq \frac{1}{n}2^{(n-1) / 2}\) for all odd naturals \(n\).
 
-        \textbf{Base Case.} Let \(n=1\). Then \(T(n) = 1\) and \(\frac{1}{n}2^{(n-1) / 2} = 1\), thus the base case holds.
+        \textbf{Base Case.} Let \(n=1\). Then \(T(n) = 1\) and \(\frac{1}{n}2^{(n-1) / 2} = 1\), so the base case holds.
 
         \textbf{Induction Hypothesis.} Let \(k\) be an odd natural number. Suppose that for all \(i \leq k\), \(T(i) \geq \frac{1}{i}2^{(i-1) / 2}\). The goal is to show that \(T(k+2) \geq \frac{1}{k+2}2^{(k+1) / 2}\).
 
@@ -558,7 +574,7 @@
         \]
         Returning back to the sum, it follows that
         \[
-            T(k_2) \geq 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{1}{(k+2-2i) (2i-1)} \geq 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{4}{(k+2)(k+1)}
+            T(k+2) \geq 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{1}{(k+2-2i) (2i-1)} \geq 2^{(k-1) / 2}\sum_{i=1}^{\frac{k+1}{2}} \frac{4}{(k+2)(k+1)}
         \]
         \[
             = 2^{(k-1) / 2} \left( \frac{k+1}{2} \right) \left(\frac{4}{(k+2)(k+1)}\right) = \frac{2^{(k-1) / 2} \cdot 2}{k+2} = \frac{2^{(k+1) / 2}}{k+2}
@@ -573,11 +589,11 @@
 
     \textit{Question 12.} Analyze the worse-case runtime of \verb|fast_rec_mult|.
 
-    Let \(T(n)\) denote the worst-case runtume of \verb|fast_rec_mult| on the inputs \(x\) and \(y\). Let \(n\) denote the number of digits of \(x\) and \(y\).
+    Let \(T(n)\) denote the worst-case runtume of \verb|fast_rec_mult| on the inputs \(x\) and \(y\), where \(n\) represents the number of digits of \(x\) and \(y\).
 
     The base case of this method is when \(n=1\). In this case the program returns \verb|x*y| on line 4, which runs in constant time because \(x\) and \(y\) are small enough numbers.
 
-    If \(n >1\), lines 6 and below run. Assuming nice input sizes, \(a,b,c,d\) are \(\frac{n}{2}\) digit numbers. The non-recursive steps are just a combination of basic arithmetic, which takes at most linear time.
+    If \(n >1\), lines 6 and below run. Assuming nice inputs, it can be ensured that \(a,b,c,d\) are \(\frac{n}{2}\) digit numbers. The non-recursive steps are just a combination of basic arithmetic, which takes at most linear time.
 
     Three recursive calls are made on \(\frac{n}{2}\) digit numbers, which in total, has worst-case runtime of \(3T(\frac{n}{2})\).
 
@@ -588,7 +604,7 @@
             3T\left(\frac{n}{2}\right) + dn, &\text{ if } n >1 .
         \end{dcases}
     \]
-    The asymptotic upper bound for the extra steps is \(dn = \mathcal{O} (n)\). Since \(1 < \log _2(3)\), by Master Theorem, \(T(n) = \Theta (n^{\log _2(3)})\).
+    The asymptotic upper bound for the extra steps is \(\mathcal{O} (n)\). Since \(1 < \log _2(3)\), by Master Theorem, \(T(n) = \Theta (n^{\log _2 3})\).
 
     \textit{Question 14.} Recall the recurrence for the worst-case runtime of quicksort:
     \[
@@ -626,33 +642,61 @@
             \]
             A closed form for \(T(n)\) will be found using repeated substitution.
             \[
-                T(n) = T(n-2) + dn + c = T(n-4) + 2dn + 2c = T(n-6) + 3dn + 3c + \cdots
+                T(n) = T(n-2) + dn + c = T(n-4) + d(n-2) + dn + 2c
             \]
-            It can be conjectured that a possible closed form for \(T(n)\) is \(T(n) = \lfloor \frac{n}{2} \rfloor dn + \left( \lfloor \frac{n}{2} \rfloor + 1 \right) c\).
+            \[
+                = T(n-6) + d(n-4) + d(n-2) + dn + 3c = \cdots
+            \]
+            It can be conjectured that a possible closed form for \(T(n)\) is
+            \[
+                T(n) = \left(\sum_{i=0}^{\left\lfloor \frac{n}{2} \right\rfloor - 1} (n-2i)\right) d + \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right) c
+            \]
+            It will be proven that this is indeed true by induction on \(n\).
 
             \textbf{Base Case.} Let \(n=0\). Then \(T(n) = c\) but also
             \[
-                \left\lfloor \frac{n}{2} \right\rfloor dn + \left( \left\lfloor \frac{n}{2} \right\rfloor + 1 \right) c = c
+                \left(\sum_{i=0}^{\left\lfloor \frac{0}{2} \right\rfloor - 1} (0-2i)\right) d + \left(\left\lfloor\frac{0}{2}\right\rfloor + 1\right) c = 0d + c = c
             \]
             The exact same argument can be used for \(n=1\), so it can be reasoned that the claim holds for both \(n=0\) and \(n=1\).
 
-            \textbf{Induction Hypothesis.} Let \(k\) be a natural number. Suppose that for all naturals \(i \leq k\), the closed form for \(T(i)\) holds. The goal is to show that the closed form works for \(T(k+1)\).
+            \textbf{Induction Hypothesis.} Let \(k\) be a natural number. Suppose that the closed form for \(T(k)\) holds. The goal is to show that the closed form works for \(T(k+2)\).
 
             \textbf{Induction Step.} This can be proven with algebraic manipulations. Utilizing the induction hypothesis,
             \[
-                T(n+1) = T(n-1) + dn + c = \left\lfloor \frac{n-1}{2} \right\rfloor dn + \left( \left\lfloor \frac{n-1}{2} \right\rfloor + 1 \right) c + dn + c
+                T(k+2) = T(k) + dn + c = \left(\sum_{i=0}^{\left\lfloor \frac{k}{2} \right\rfloor - 1} (k-2i)\right) d + \left(\left\lfloor\frac{k}{2}\right\rfloor + 1\right) c +d(k+2) + c
             \]
-            It is known that if \(a\) is an integer, then for all real numbers \(x\), \(\lfloor x \rfloor + a = \lfloor x+a \rfloor\). Thus
+            Reindexing the sum,
             \[
-                T(n+1) = \left\lfloor \frac{n+1}{2} \right\rfloor dn + \left( \left\lfloor \frac{n+1}{2} \right\rfloor + 1 \right) c
+                = \left(\sum_{i=1}^{\left\lfloor \frac{k+2}{2} \right\rfloor - 1} (k+2-2i)\right) d + \left(\left\lfloor\frac{k}{2}\right\rfloor + 1\right) c +d(k+2) + c
             \]
-            and the claim holds true.
-
-            Therefore the closed form for \(T(n)\) is
+            Assimilating the terms together yields
             \[
-                T(n)=\left\lfloor \frac{n}{2} \right\rfloor dn + \left( \left\lfloor \frac{n}{2} \right\rfloor + 1 \right) c
+                = \left(\sum_{i=0}^{\left\lfloor \frac{k+2}{2} \right\rfloor - 1} (k+2-2i)\right) d + \left( \left\lfloor \frac{k+2}{2} \right\rfloor + 1\right) c
             \]
-            From this, it is easy to see that \(T(n) \in \Theta(n^2)\).
+            Therefore this expression is a valid closed form for \(T(k+2)\).
+            
+            By the principle of induction, for all natural \(n\), the closed form for \(T(n)\) is
+            \[
+                T(n)=\left(\sum_{i=0}^{\left\lfloor \frac{n}{2} \right\rfloor - 1} (n-2i)\right) d + \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right) c
+            \]
+            By manipulating the expression, it can be reduced to a more explicit form:
+            \[
+                \left(\sum_{i=0}^{\left\lfloor \frac{n}{2} \right\rfloor - 1} (n-2i)\right) d + \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right) c = \left(\sum_{i=0}^{\left\lfloor \frac{n}{2} \right\rfloor - 1} n - \sum_{i=0}^{\left\lfloor \frac{n}{2} \right\rfloor - 1} 2i \right) d + \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right) c
+            \]
+            \[
+                = \left(n\left(\left\lfloor \frac{n}{2} \right\rfloor - 1\right) - \left\lfloor \frac{n}{2} \right\rfloor \left( \left\lfloor \frac{n}{2} \right\rfloor - 1 \right)  \right) d + \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right) c
+            \]
+            \[
+                \implies T(n) = \left(\left\lfloor \frac{n}{2} \right\rfloor - 1\right)\left( n - \left\lfloor \frac{n}{2} \right\rfloor\right) d + \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right) c
+            \]
+            It will be shown that \(T(n) \in \Theta (n^2)\). Since \(\frac{n}{2} - 1 \leq \left\lfloor \frac{n}{2} \right\rfloor \leq \frac{n}{2}\), then
+            \[
+                \left( \frac{n}{2} - 2 \right)\left( \frac{n}{2} \right)d + \frac{n}{2} c \leq T(n) \leq \left( \frac{n}{2} - 1 \right)\left( \frac{n}{2} + 1 \right)d + \left( \frac{n}{2} + 1 \right)c
+            \]
+            \[
+                \implies \frac{d}{4}n^2 + \left( \frac{c}{2} - d \right) n \leq T(n) \leq \frac{d}{4}n^2 + \frac{c}{2}n + c - d
+            \]
+            From this, it can be seen that \(T(n) \in \Theta (n^2)\).
 
         \end{proof}
     \end{enumerate}
