@@ -440,9 +440,9 @@
     \begin{enumerate}[label=(\alph*)]
         \item Develop a recurrence for \(T(n)\)
         
+        If the binary string is of length 0, it must be the empty string, which indeed satisfies the condition.
+        
         If the binary string is of length 1, it must be '0', since every 1 must be immediately followed by a 0.
-
-        If the binary string is of length 2, it can either be '00' or '10'. Any other string would violate the condition.
 
         Notice that for any binary string that satisfies the condition above and is length \(n\), where \(n\geq 3\), it can begin with either a 1 or a 0.
 
@@ -453,8 +453,8 @@
         Thus the total number of these particular binary strings is \(T(n-1) + T(n-2)\), and the recurrence for \(T(n)\) is
         \[
             T(n)=\begin{dcases}
+                1, &\text{ if } n=0 ;\\
                 1, &\text{ if } n=1 ;\\
-                2, &\text{ if } n=2 ;\\
                 T(n-1) + T(n-2), &\text{ if } n\geq 3.
             \end{dcases}
         \]
@@ -468,25 +468,21 @@
         \begin{proof}
             It will be proven that the closed form is correct using complete induction on \(n \in \mathbb{N}^+\).
 
-            \textbf{Base Case.} Let \(n=1\). Then \(T(n) = 1\). As well,
+            \textbf{Base Case.} Let \(n=0\). Then \(T(0) = 1\) and
+            \[
+                \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{0+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{0+1}\right) = \frac{1}{2\sqrt{5}}\left((1+\sqrt{5} - (1-\sqrt{5})) \right) = 1
+            \]
+            
+            Let \(n=1\). Then \(T(n) = 1\). As well,
             \[
                 \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{2} - \left(\frac{1-\sqrt{5}}{2}\right)^{2}\right) = \frac{1}{4\sqrt{5}}((1+2\sqrt{5} +5) - (1-2\sqrt{5} +5))
             \]
             \[
                 \frac{1}{4\sqrt{5}}(4\sqrt{5}) = 1
             \]
-            Thus the closed form is valid for \(n=1\).
+            Thus the closed form is valid for \(n=0\) and \(n=1\).
 
-            Now, let \(n=2\). Then \(T(n)=2\). As well,
-            \[
-                \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{3} - \left(\frac{1-\sqrt{5}}{2}\right)^{3}\right) = \frac{1}{8\sqrt{5}}((1+3\sqrt{5} + 15 + 5\sqrt{5}) - (1 - 3\sqrt{5} + 15 - 5\sqrt{5}))
-            \]
-            \[
-                = \frac{1}{8\sqrt{5}}(16\sqrt{5}) = 2
-            \]
-            Therefore the closed form holds true for \(n=1\) and \(n=2\).
-
-            \textbf{Induction Hypothesis.} Let \(k \in \mathbb{N}^+\). Suppose that for all \(i \leq k\), the closed form holds true. The goal is to show that the closed form is valid for \(n=k+1\).
+            \textbf{Induction Hypothesis.} Let \(k \in \mathbb{N}^+\). Suppose that for all naturals \(i \leq k\), the closed form holds true. The goal is to show that the closed form is valid for \(n=k+1\).
 
             \textbf{Induction Step.} Using the recursive definition for \(T(n)\),
             \[
