@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \\ \end{proof}, #1, breakable=true}
+    
+    \begin{question}{23}
+        Let $S^2$ denote the unit sphere in $\R^3$. Let $N=(0,0,1)$ denote the ``north pole''. In this problem, you will show that $S^2\setminus \{N\}$ is homeomorphic to $\R^2$. To do this, we define a function $\Phi:S^2\setminus \{N\}\rightarrow \R^2$ known as the \textbf{stereographic projection}: given a point $P$ in $S^2\setminus \{N\}$, draw a line between $P$ and $N$, and let $\Phi(P)$ denote the point where this line intersects the $xy$-plane in $\R^3$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Given $P=(x,y,z)$, find an explicit formula for $\Phi(P)$ in terms of $x,y,z$.
+            \item Deduce that $\Phi$ is continuous.
+            \item Prove that $\Phi$ is a bijection; in fact, given $p=(s,t)\in \R^2$, find an explicit formula for $\Phi^{-1}(p)$.
+            \item Deduce that $\Phi$ is a homeomorphism.
+        \end{enumerate}
+        \tcblower
+        (a):
+
+        Let \(P=(x,y,z)\). First, we find the equation of the line that passes \(P\) and \(N\). Consider the equation of the line \(L(t) = (tx, ty, (z-1)t + 1)\). Notice that \(L(0) = N\) and \(L(1) = P\), so \(L\) satisfies what we were looking for. Now we find the point where \(L\) intersects with the \(xy\)-plane. This happens exactly when \((z-1)t+1=0\). Solving for \(t\) gives \(t=\dfrac{1}{1-z}\). This value is always defined as \(z\neq 1\). As a result, it turns out that
+        \[
+            L\left(\frac{1}{1-z}\right) = \left(\frac{x}{1-z}, \frac{y}{1-z}, 0\right) \text{.}
+        \]
+        Thus
+        \[
+            \Phi (P) = \frac{1}{1-z}\left(x,y\right) \text{.}
+        \]
+
+        (b):
+
+        (c):
+
+        Let \((s,t) \in \mathbb{R}^2\). 
+    \end{question}
+    \pagebreak
+    \begin{question}{24}
+        Let $X$ be a normed vector space. Prove that the following statements are equivalent.
+        \begin{enumerate}[label=(\roman*)]
+            \item $X$ is finite-dimensional.
+            \item The unit ball $\cl{B}(\vec{0},1)$ is compact.
+            \item $X$ is \textbf{locally compact}: each point $p\in X$ is contained in some open set $U$ such that $\cl{U}$ is compact.
+        \end{enumerate}
+        \tcblower
+        idk
+    \end{question}
+    
+\end{document}
