@@ -86,7 +86,59 @@
 
         (c):
 
-        Let \((s,t) \in \mathbb{R}^2\). 
+        Let \(p = (s,t) \in \mathbb{R}^2\). Our goal is to find \((x,y,z) \in S^2 \setminus \{N\}\) such that \(\Phi (x,y,z) = \left( \frac{x}{1-z}, \frac{y}{1-z} \right) = (s,t)\). Immediately, we obtain the following system of equations:
+        \[
+            \frac{x}{1-z} = s \text{,} 
+        \]
+        \[
+            \frac{y}{1-z} = t \text{,} 
+        \]
+        \[
+            x^2 + y^2 + z^2 = 1
+        \]
+        We also have the restriction \(z\neq 1\) because \((x,y,z) \neq N\). Isolating for \(x\) and \(y\) yields
+        \[
+            x=s(1-z)
+        \]
+        \[
+            y=t(1-z)
+        \]
+        Then we substitute this into the third equation and get
+        \[
+            s^2(1-z)^2 + t^2(1-z)^2 + z^2 = 1 \implies (s^2 + t^2 + 1)z^2 - 2(s^2 + t^2)z + s^2 + t^2 - 1 = 0
+        \]
+        We can replace the term \(t^2 + s^2\) with \(\|p\| _2 ^2\), and the equation becomes
+        \[
+            (\|p\| _2 ^2 + 1)z^2 - 2\|p\| _2 ^2 z + \|p\| _2 ^2 - 1 = 0
+        \]
+        Using the quadratic formula:
+        \[
+            z = \frac{2(\|p\| _2 ^2) \pm \sqrt{4(\|p\| _2 ^2)^2 - 4(\|p\| _2 ^2 +1)(\|p\| _2 ^2 - 1)}}{2(\|p\| _2 ^2 + 1)}
+        \]
+        \[
+            \implies z = \frac{\|p\| _2 ^2 \pm \sqrt{\|p\| _2 ^4 - (\|p\| _2 ^4 - 1)}}{\|p\| _2 ^2 + 1}
+        \]
+        \[
+            z = \frac{\|p\| _2 ^2 \pm 1}{\|p\| _2 ^2 + 1}
+        \]
+        Notice that we cannot use the positive solution, for then
+        \[
+            z = \frac{\|p\| _2 ^2 + 1}{\|p\| _2 ^2 + 1} = 1
+        \]
+        Thus it must be true that
+        \[
+            z = \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}
+        \]
+        \[
+            x = s(1-z) = \frac{2s}{\|p\| _2 ^2 + 1}
+        \]
+        \[
+            y = \frac{2t}{\|p\| _2 ^2 + 1}
+        \]
+        It can be verified that these values of \(x,y,z\) result in \(\Phi (x,y,z) = (s,t)\). In fact, using this, we obtain that the formula for \(\Phi ^{-1}\) is
+        \[
+            \Phi ^{-1} (s,t) = \left(\frac{2s}{\|p\| _2 ^2 + 1}, \frac{2t}{\|p\| _2 ^2 + 1}, \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}\right) 
+        \]
     \end{question}
     \pagebreak
     \begin{question}{24}
