@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Lemma 6.44}
+    \textbf{Solvers:} Ali, Ethan, Samip
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(X\) be a vector space with finite dimension \(n\) equipped with an arbitrary norm \(\|\cdot\|\). Define the linear isomorphism \(\Phi: X \to \mathbb{R}^n\) by
+    \[
+        \Phi (\vec{x}) = (x_1, ..., x_n) \text{, where } \vec{x} = \sum_{i=1}^n x_i \vec{b_i} \text{, } \{b_1, ..., b_n\} \text{ is a basis for } X \text{.}
+    \]
+    Define \(\|\cdot\| _1\) on \(X\) as
+    \[
+        \|\vec{x}\| _1 = \|\Phi (\vec{x})\| _1
+    \]
+    Note that the norm on the right hand side is the 1-norm in \(\mathbb{R}^n\). Next, we introduce a lemma that has already been proven.
+
+    \noindent\textbf{Lemma 6.43.} The closed unit ball of \((X,\|\cdot\| _1)\) is compact.
+
+    \noindent\textbf{Corollary.} The unit circle in \((X, \|\cdot\| _1)\) is compact.
+
+    This follows from the fact that the unit circle is a closed subset of the closed unit ball.
+    
+    \noindent Now, we prove the following lemma:
+
+    \noindent\textbf{Lemma 6.44.} There exists a constant \(m > 0\) such that \(m\|\vec{x}\| _1 \leq \|\vec{x}\|\) for all \(\vec{x} \in X\).
+
+    \begin{proof}
+        Let \(C'\) denote the unit circle in \((X,\|\cdot\| _1)\). Define a function \(f: C' \to \mathbb{R}\) by
+        \[
+            f(\vec{x}) = \frac{\|\vec{x}\|}{\|\vec{x}\| _1} \text{.}
+        \]
+        Since \(C'\) is compact, by the generalized EVT, \(f\) attains a minimum \(m\). Notice that since norms are positive, \(f(\vec{x}) > 0\), so \(m > 0\). We claim that this \(m\) is the value we are looking for. That is, \(m\|\vec{x}\| _1 \leq \|\vec{x}\|\) is true for all \(\vec{x} \in X\).
+
+        If \(\vec{x} = \vec{0}\), then the inequality follows immediately.
+
+        Otherwise, for \(\vec{x} \in X \setminus \{\vec{0}\}\), notice that \(\dfrac{\vec{x}}{\|x\| _1} \in C'\), so
+        \[
+            f \left( \dfrac{\vec{x}}{\|x\| _1} \right) = \frac{\left\lVert \dfrac{\vec{x}}{\|x\| _1} \right\rVert }{\left\lVert \dfrac{\vec{x}}{\|x\| _1} \right\rVert _1} \geq m \implies \dfrac{\frac{1}{\|\vec{x}\| _1} \|\vec{x}\|}{\frac{1}{\|\vec{x}\| _1}\|\vec{x}\| _1} \geq m \implies \|\vec{x}\| \geq m\|\vec{x}\| _1
+        \]
+        and the proof is complete.
+
+    \end{proof}
+\end{document}
