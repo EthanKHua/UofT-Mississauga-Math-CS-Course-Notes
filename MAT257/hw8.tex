@@ -199,7 +199,13 @@
         \[
             \frac{v}{2\|v\|} \in \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1) \text{, for all } n \in \mathbb{N}
         \]
-        Then we construct a sequence \(\{v_n\}_{n\geq 1}\) in \(\operatorname{span}(\beta)\) by 
+        Then we construct a sequence \(\{v_n\}_{n\geq 1}\) in \(\operatorname{span}(\beta)\) where \(v_n \in \operatorname{span}(\beta)\) such that \(y = v_n + p\), for some \(p \in \frac{1}{2^n}B(0,1)\). Notice that
+        \[
+            \|y - v_n\| = \|p\| < \frac{1}{2^n}
+        \]
+        which can become arbitrarily small. This implies that \(y\) is a limit point for \(\operatorname{span}(\beta)\). However, this set is closed because it is finite dimensional, so we also have that \(y \in \operatorname{span}(\beta)\). Therefore \(X \subseteq \operatorname{span}(\beta)\), and since \(X\) is spanned by a finite set, it is finite dimensional.
+
+        These are sufficient for proving that (i), (ii), (iii) are equivalent.
     \end{question}
     
 \end{document}
