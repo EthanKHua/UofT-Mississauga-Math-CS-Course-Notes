@@ -137,7 +137,7 @@
         \]
         It can be verified that these values of \(x,y,z\) result in \(\Phi (x,y,z) = (s,t)\). In fact, using this, we obtain that the formula for \(\Phi ^{-1}\) is
         \[
-            \Phi ^{-1} (s,t) = \left(\frac{2s}{\|p\| _2 ^2 + 1}, \frac{2t}{\|p\| _2 ^2 + 1}, \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}\right) 
+            \Phi ^{-1} (s,t) = \left(\frac{2s}{\|p\| _2 ^2 + 1}, \frac{2t}{\|p\| _2 ^2 + 1}, \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}\right)
         \]
     \end{question}
     \pagebreak
@@ -153,13 +153,53 @@
 
         (i) \(\implies\)  (ii):
 
-        Suppose that \(X\) has finite dimension \(n\). Consider the linear isomorphism \(\Phi : X \to \mathbb{R}^n\) by mapping elements of an ordered basis for \(X\) to the basis \(\beta = \{e_1, ..., e_n\}\) for \(\mathbb{R}^n\). This is a homeomorphism, 
+        Suppose that \(X\) has finite dimension \(n\). Then there is a continuous linear isomorphism \(\Phi\) between \(X\) and \(\mathbb{R}^n\). Since \(\cl{B}(0,1)\) is closed and bounded, \(\Phi (\cl{B}(0,1))\) is also closed and bounded in \(\mathbb{R}^n\), so the set is compact. Since homeomorphisms preserve compactness, we can conclude that the closed unit ball in \(X\) is compact.
 
         (ii) \(\implies\) (iii):
 
-        Suppose that the unit ball \(\cl{B}(\vec{0}, 1)\) is compact. Let \(p \in X\). We claim that \(U = B(p,1)\). Consider \(\cl{U} = \cl{B}(p,1)\). There is a homeomorphism \(\Phi\) from \(\cl{B}(0,1)\) to \(\cl{B}(p,1)\) defined by \(\Phi (x) = p + x\). Compactness is preserved by the homeomorphism, so it follows that \(\cl{B}(p,1)\) is compact. Thus \(X\) is locally compact.
+        Suppose that the unit ball \(\cl{B}(\vec{0}, 1)\) is compact. Let \(p \in X\). We claim that \(U = B(p,1)\). Consider \(\cl{U} = \cl{B}(p,1)\). There is an isometry \(\Phi\) from \(\cl{B}(0,1)\) to \(\cl{B}(p,1)\) defined by \(\Phi (x) = p + x\). Since the closed unit ball is compact, it follows that \(\cl{B}(p,1)\) is compact. Thus \(X\) is locally compact.
+
+        (iii) \(\implies\) (ii):
+
+        Suppose that \(X\) is locally compact. Then \(\vec{0}\) is contained in an open set \(U\) such that \(\cl{U}\) is compact. Since \(U\) is open, \(B(0, \varepsilon) \subseteq U\) for some \(\varepsilon\)-ball centered around 0. It follows that \(\cl{B}(0,\varepsilon)\) is compact, as it is a closed subset of \(\cl{U}\). Since there is a homeomorphism from this closed ball to \(\cl{B}(0,1)\), the closed unit ball is also compact, as desired.
 
         (iii) \(\implies\) (i):
+
+        Suppose that \(X\) is locally compact. We know previously that this implies that the closed unit ball is compact. Firstly, a quick lemma will be proven.
+
+        \textbf{Lemma 1.} \(\forall x \in X\), \(r > 0\), \(B(x,r) = \{x\} + B(0,r)\).
+
+        Let \(y \in B(x,r)\). Notice that \(y-x \in B(0,r)\). Thus \(y = x + (y-x)\) so \(y \in \{x\} + B(0,r)\).
+
+        Then, let \(y \in \{x\} + B(0,r)\), so \(y = x + s\), for some \(s \in B(0,r)\). Since \(\|y-x\| = \|s\| < r\), it follows that \(y \in B(x,r)\) and we are done.
+        
+        Moving on, we construct a finite set of vectors in the following way:
+
+        Since \(\cl{B}(0,1)\) is totally bounded, we can find a finite set of vectors \(\beta\) such that \(\bigcup_{x \in \beta} B\left(x,\frac{1}{2}\right)\).
+
+        \textbf{Lemma 2.} \(B(0,1) \subseteq \operatorname{span}(\beta) + 2^{-n} B(0,1)\), \(\forall n \in \mathbb{N}\).
+
+        To prove this, let \(n \in \mathbb{N}\) and \(y \in B(0,1)\). It follows that \(y \in B(x_1, \frac{1}{2})\) for some \(x_1 \in \beta\). Using Lemma 1,
+        \[
+            y \in \{x_1\} + B\left(0,\frac{1}{2}\right) = \{x_1\} + \frac{1}{2}B(0,1)
+        \]
+        We can repeatedly use this argument to obtain that
+        \[
+            y \in \left\{x_1 + \frac{1}{2}x_2 + \frac{1}{2^2}x_3 + \dots + \frac{1}{2^{n-1}}x_n\right\} + \frac{1}{2^n}B(0,1)
+        \]
+        Note that \(x_i\) are not necessarily distinct. This simplifies down to
+        \[
+            y \in \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1) \implies B(0,1) \subseteq \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1)
+        \]
+        which is what we wanted.
+
+        Finally, we claim that \(\beta\) is the basis for \(X\).
+
+        Let \(v \in X\). Since \(\dfrac{v}{2\|v\|} \in B(0,1)\), by Lemma 2,
+        \[
+            \frac{v}{2\|v\|} \in \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1) \text{, for all } n \in \mathbb{N}
+        \]
+        Then we construct a sequence \(\{v_n\}_{n\geq 1}\) in \(\operatorname{span}(\beta)\) by 
     \end{question}
     
 \end{document}
