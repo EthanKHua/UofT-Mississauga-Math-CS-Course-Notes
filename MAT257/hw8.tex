@@ -162,7 +162,7 @@
 
         (b):
         
-        To show that \(\Phi\) is continuous, fix \((a,b,c) \in \mathbb{R}^3\). Let \(\varepsilon > 0\). Then let \(\delta = \min \{\frac{1-c}{2}, \frac{(1-c)\varepsilon}{4}, \frac{(1-c)^2 \varepsilon}{4|a|}\}\). For \((x,y,z) \in \mathbb{R}^3\) such that \(\|(x,y,z) - (a,b,c)\| _{\max} < \delta\), notice that
+        To show that \(\Phi\) is continuous, fix \((a,b,c) \in \mathbb{R}^3\). Let \(\varepsilon > 0\). Then let \(\delta = \min \{\frac{1-c}{2}, \frac{(1-c)\varepsilon}{4}, \frac{(1-c)^2 \varepsilon}{4\max \{|a|,|b|\}}\}\). For \((x,y,z) \in \mathbb{R}^3\) such that \(\|(x,y,z) - (a,b,c)\| _{\max} < \delta\), notice that
         \[
             z-c < |z-c| \leq \|(x,y,z) - (a,b,c)\| _{\max} < \frac{1-c}{2}
         \]
@@ -187,6 +187,10 @@
         \[
             = \frac{2|(x-a)(1-c) + a(z-c)|}{(1-c)^2} \leq \frac{2(|x-a||1-c| + |a||z-c|)}{(1-c)^2}
         \]
+        \[
+            < \frac{2 \left(\frac{(1-c)^2}{4}\varepsilon + \frac{|a|(1-c)^2}{4\max \{|a|,|b|\}}\varepsilon\right)}{(1-c)^2} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+        \]
+        Therefore \(\|\Phi (x,y,z) - \Phi (a,b,c)\| _{\max} <\varepsilon\), so \(\Phi\) is continuous.
 
         (c):
 
@@ -239,10 +243,27 @@
         \[
             y = \frac{2t}{\|p\| _2 ^2 + 1}
         \]
-        It can be verified that these values of \(x,y,z\) result in \(\Phi (x,y,z) = (s,t)\). In fact, using this, we obtain that the formula for \(\Phi ^{-1}\) is
+        It can be verified that these values of \(x,y,z\) result in \(\Phi (x,y,z) = (s,t)\), which show that \(\Phi\) is surjective. Additionally, it was also proven that these values are the only ones that work, so \(\Phi\) is bijective. In fact, using this, we obtain that the formula for \(\Phi ^{-1}\) is
         \[
             \Phi ^{-1} (s,t) = \left(\frac{2s}{\|p\| _2 ^2 + 1}, \frac{2t}{\|p\| _2 ^2 + 1}, \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}\right)
         \]
+
+        (d):
+
+        We know that \(\Phi ^{-1}\) is bijective because its inverse exists. It remains to show that it is continuous. This can be done by verifying pointwise continuity.
+
+        Let \((a,b) \in \mathbb{R}^2\). Considering the first component, fix \(\varepsilon > 0\), and let \(\delta = \frac{\varepsilon}{2}\). Let \((s,t) \in \mathbb{R}^2\) so that \(\|(s - a, t - b)\|_2 < \delta\). Consider the case where \(\frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} > 0\). Then
+        \[
+            \left\vert \frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} \right\vert = \frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} < \frac{2s(\|(s,t)\| _2^2 + 1)}{\|(s,t)\| _2 ^2 + 1} - 2a
+        \]
+        \[
+            = 2(s-a) < \varepsilon
+        \]
+        The case when \(\frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} \leq 0\) is the exact same but the variables are swapped. Thus the first component is continuous. We can do the same thing for the second component so we can accept that it is continuous as well.
+
+        Finally, notice that since norms are continuous, so the third component is a composition of continuous functions, making it continuous. Therefore \(\Phi ^{-1}\) is continuous.
+
+        We can conclude that \(\Phi\) is indeed a homeomorphism and we are done.
     \end{question}
     \pagebreak
     \begin{question}{24}
