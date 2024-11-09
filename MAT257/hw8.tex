@@ -67,20 +67,75 @@
 
         Let $c_0$ denote the set of sequences converging to zero. Prove that $c_0^*\equiv \ell^1$.
         \tcblower
-        Equip \(\ell ^1\) with the 1-norm and \(c_0\) with the sup-norm. Define the function \(f: \ell ^1 \to c_0^*\) by \(f(\vec{x})(\vec{a}) = \sum_{i=1}^{\infty} x_i \cdot a_i\). We claim that this is a bijective isometry.
+        Equip \(\ell ^1\) with the 1-norm and \(c_0\) with the sup-norm. Define the function \(f: \ell ^1 \to c_0^*\) by \(f(\vec{x})(\vec{a}) = \sum_{i=1}^{\infty} x_i \cdot a_i\). This sum is convergent because for sufficiently large \(N > 0\), \(|a_n| < 1\) for \(n > N\), so
+        \[
+            \sum_{i=1}^{\infty} x_i \cdot a_i = \sum_{i=1}^{N} x_i \cdot a_i + \sum_{i=N+1}^{\infty} x_i \cdot a_i < \sum_{i=1}^{N} x_i \cdot a_i + \sum_{i=N+1}^{\infty} x_i < \infty
+        \]
+        We claim that this is a bijective isometry.
 
-        Let \(A = \{|f(x)(a) - f(x)(a)| : a \in c_0, \|a\| _{\infty} \leq 1\}\).
-
-        To show that this function is an isometry, let \(x,y \in \ell ^1\). It will be shown that \(\|x-y\| _1 = \sup A\).
+        First, it can be quickly verified that this function is linear. Letting \(a_n \in c_0\), for \(x,y \in \ell ^1\), \(k > 0\),
+        \[
+            f(kx + y)(a_n) = \sum_{i=1}^{\infty} a_i \cdot (kx_i + y_i) = k \sum_{i=1}^{\infty} a_i \cdot x_i + \sum_{i=1}^{\infty} a_i \cdot y_i = kf(x)(a_n) + f(y)(a_n) \text{.} 
+        \]
+        To show that this function is an isometry, let \(x,y \in \ell ^1\).
+        
+        Let \(A = \{|f(x)(a) - f(y)(a)| : a \in c_0, \|a\| _{\infty} \leq 1\}\). It will be shown that \(\|x-y\| _1 = \sup A\).
         
         Let \(a \in c_0\) such that \(\|a\| _{\infty} \leq 1\). Then
         \[
             |f(x)(a)-f(y)(a)| = \left\vert \sum_{i=1}^{\infty} (x_i \cdot a_i - y_i \cdot a_i) \right\vert = \left\vert \sum_{i=1}^{\infty} a_i (x_i - y_i) \right\vert \leq \sum_{i=1}^{\infty} |a_i| |x_i - y_i| \leq \sum_{i=1}^{\infty} |x_i - y_i| 
         \]
         \[
-            \|x-y\| _1 \text{.} 
+            = \|x-y\| _1 \text{.} 
         \]
-        This means that \(\|x-y\| _1\) is an upper bound for \(A\).
+        This means that \(\|x-y\| _1\) is an upper bound for \(A\). To prove that this is the least upper bound, let \(\varepsilon > 0\). There is an \(N > 0\) such that \(\sum_{N+1}^{\infty} |x_i - y_i| < \varepsilon\). Define the sequence \((a_n)\) in \(c_0\) as the sequence of 1's until and including \(n=N\) and 0 afterwards. Then
+        \[
+            |f(x)(a) - f(y)(a)| = \left\vert \sum_{i=1}^{\infty} a_i (x_i - y_i) \right\vert = \left\vert \sum_{i=1}^{\infty} \left(1 - 1 + a_i \right)  (x_i - y_i) \right\vert
+        \]
+        \[
+            \geq \left\vert \sum_{i=1}^{\infty} (x_i - y_i) \right\vert - \left\vert \sum_{i=1}^{\infty} \left( 1 - a_i \right)  (x_i - y_i) \right\vert
+        \]
+        \[
+            =  \left\vert \sum_{i=1}^{\infty} (x_i - y_i) \right\vert - \sum_{i=N+1}^{\infty} |x_i - y_i| > \|x-y\| _1 - \varepsilon
+        \]
+        Thus we have that 
+        \[
+            \|f(x) - f(y)\| _{\op} = \sup {A} = \|x-y\| _1
+        \]
+        so \(f\) is an isometry.
+
+        To prove that \(f\) is bijective, it suffices to show that \(f\) is surjective, since we already have injectivity from the isometry.
+
+        Let \(T \in c_0^*\). Construct a sequence \((x_n)\) in \(\ell ^1\) defined by \(x_n = T(e_n)\), where \((e_n)\) is the sequence with the only non-zero term being \(e_n = 1\).
+
+        First, we need to verify that \((x_n) \in \ell ^1\). To do this, we bound the absolute sum by a finite number. We have that
+        \[
+            \sum_{i=1}^{\infty} |x_i| = \sum_{i=1}^{\infty} |T(e_i)|
+        \]
+        For all non-zero terms, we can rewrite it as \(|T(e_i)| \cdot \dfrac{T(e_i)}{T(e_i)} = T\left(\dfrac{|T(e_i)|}{T(e_i)}e_i\right)\). Define \((b_n)\) to be a sequence defined by
+        \[
+            b_n = \begin{dcases}
+                0, &\text{ if } T(e_i) = 0;\\
+                \frac{|T(e_i)|}{T(e_i)}e_i, &\text{ otherwise} .
+            \end{dcases}
+        \]
+        Then
+        \[
+            \sum_{i=1}^{\infty} |T(e_i)| = T(b_n)
+        \]
+        Notice that \(|b_n| \leq 1\) for all \(n \in \mathbb{N}\). Thus \(\|b_n\| _{\infty} = 1\), so
+        \[
+            \sum_{i=1}^{\infty} |x_i| = T(b_n) \leq \|T\| _{\op}
+        \]
+        By the monotone bounded convergence, \(\sum_{i=1}^{\infty} |x_i|\) converges. Therefore \((x_n) \in \ell ^1\).
+
+        Now, we want to show that \(f(x_n) = T\). For \((a_n) \in c_0\), we have that
+        \[
+            f(x_n)(a_n) = \sum_{i=1}^{\infty} x_i \cdot a_i = \sum_{i=1}^{\infty} T(e_i) \cdot a_i = T\left(\sum_{i=1}^{\infty} a_i (e_i)\right) = T((a_n))
+        \]
+        so \(f\) is surjective.
+
+        Thus \(f\) is a bijective isometry, so \(c_0^* \equiv \ell ^1\).
     \end{question}
     \pagebreak
     \begin{question}{23}
@@ -92,6 +147,8 @@
             \item Deduce that $\Phi$ is a homeomorphism.
         \end{enumerate}
         \tcblower
+        We will work off the assumption that both metric spaces are equipped with the max-norm. We can do this because all norms on \(\mathbb{R}^n\) are equivalent.
+
         (a):
 
         Let \(P=(x,y,z)\). First, we find the equation of the line that passes \(P\) and \(N\). Consider the equation of the line \(L(t) = (tx, ty, (z-1)t + 1)\). Notice that \(L(0) = N\) and \(L(1) = P\), so \(L\) satisfies what we were looking for. Now we find the point where \(L\) intersects with the \(xy\)-plane. This happens exactly when \((z-1)t+1=0\). Solving for \(t\) gives \(t=\dfrac{1}{1-z}\). This value is always defined as \(z\neq 1\). As a result, it turns out that
@@ -104,6 +161,32 @@
         \]
 
         (b):
+        
+        To show that \(\Phi\) is continuous, fix \((a,b,c) \in \mathbb{R}^3\). Let \(\varepsilon > 0\). Then let \(\delta = \min \{\frac{1-c}{2}, \frac{(1-c)\varepsilon}{4}, \frac{(1-c)^2 \varepsilon}{4|a|}\}\). For \((x,y,z) \in \mathbb{R}^3\) such that \(\|(x,y,z) - (a,b,c)\| _{\max} < \delta\), notice that
+        \[
+            z-c < |z-c| \leq \|(x,y,z) - (a,b,c)\| _{\max} < \frac{1-c}{2}
+        \]
+        Manipulating this, we obtain
+        \[
+            z < \frac{1+c}{2} \implies 1 - z > \frac{1-c}{2} \implies \frac{1}{1-z} < \frac{2}{1-c} \text{.} 
+        \]
+        So
+        \[
+            \|\Phi (x,y,z) - \Phi (a,b,c)\| _{\max} = \left\lVert \left(\frac{x}{1-z}, \frac{y}{1-z}\right) - \left(\frac{a}{1-c}, \frac{b}{1-c}\right) \right\rVert _{\max}
+        \]
+        \[
+            =\frac{\|(x(1-c) - a(1-z), y(1-c) - b(1-z))\| _{\max}}{(1-z)(1-c)}
+        \]
+        \[
+            < \frac{2\|(x(1-c) - a(1-z), y(1-c) - b(1-z))\| _{\max}}{(1-c)^2}
+        \]
+        Without loss of generality, suppose that \(|x(1-c) - a(1-z)| \geq |y(1-c) - b(1-z)|\). Then
+        \[
+            \frac{2\|(x(1-c) - a(1-z), y(1-c) - b(1-z))\| _{\max}}{(1-c)^2} = \frac{2|x(1-c) - a(1-z)|}{(1-c)^2}
+        \]
+        \[
+            = \frac{2|(x-a)(1-c) + a(z-c)|}{(1-c)^2} \leq \frac{2(|x-a||1-c| + |a||z-c|)}{(1-c)^2}
+        \]
 
         (c):
 
