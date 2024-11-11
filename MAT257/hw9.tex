@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \\ \end{proof}, #1, breakable=true}
+
+    \begin{question}{25}
+        Let $\varphi:M_n(\R)\rightarrow M_n(\R)$ be the function given by $\varphi(A)=A^2$. For each $A\in M_n(\R)$, find a linear approximation $L_A:M_n(\R)\rightarrow M_n(\R)$ to $\varphi$ at $A$. Give an explicit formula for $L_A(B)$ as a function of $B$, a proof that $L_A$ is a bounded linear mapping, and a proof that $L_A$ is a linear approximation to $\varphi$ at $A$.
+        \tcblower
+        First, we supply a lemma.
+
+        \textbf{Lemma.} For all \(B \in M_n(\mathbb{R})\), \(\|B^2\| \leq K\|B\|^2\), for some positive constant \(K\).
+
+        Define the isomorphism \(\Phi : M_n(\mathbb{R}) \to B(\mathbb{R}^n, \mathbb{R}^n)\) as mapping a matrix representation of a linear mapping to the original linear mapping. We define the operator norm on \(M_n(\mathbb{R})\) by \(\|A\| _{\op} = \|\Phi (A)\| _{\op}\), where the right hand side is the operator norm on \(B(\mathbb{R}^n, \mathbb{R}^n)\).
+
+        Since all norms are equivalent on \(M_n(\mathbb{R})\), there are constants \(M,N >0\) so that for any norm \(\|\cdot\|\),
+        \[
+            M\|A\| \leq \|A\| _{\op} \leq N\|A\|
+        \]
+        From this, using the subnormality of bounded linear operators, it follows that
+        \[
+            \|B^2\| \leq \frac{1}{M}\|\Phi (B^2)\| _{\op}= \frac{1}{M}\|\Phi (B) \circ \Phi (B)\| _{\op} \leq \frac{1}{M}\|\Phi (B)\| _{\op}^2 \leq \frac{N^2}{M}\|B\|
+        \]
+        Since \(M,N > 0\), we have what we wanted.
+        
+        We claim that for \(A \in M_n(\mathbb{R})\), \(L_A(B) = BA + AB\). For \(C,D \in M_n(\mathbb{R})\), \(k \in \mathbb{R}\),
+        \[
+            L_A(kC + D) = (kC+D)A + A(kC+D) = k(CA + AC) + DA + AD = kL_A(C) + L_A(D)
+        \]
+        so \(L_A\) is linear. As well, we get that \(L_A\) is bounded for free because we are working in a finite dimensional vector space. Finally, we have that
+        \[
+            0 \leq \frac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} = \frac{\|(A+B)^2 - A^2 - (BA + AB)\|}{\|B\|}
+        \]
+        \[
+            \frac{\|A^2 + AB + BA + B^2 - A^2 - BA - AB\|}{\|B\|} = \frac{\|B^2\|}{\|B\|} < K\|B\|
+        \]
+        \[
+            \implies 0 \leq \frac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} \leq K\|B\|
+        \]
+        By the Squeeze Theorem, \(\lim_{h \to 0} \dfrac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} = 0\) and we are done.
+    \end{question}
+    \pagebreak
+    \begin{question}{25}
+        Let $X$ be a finite-dimensional normed vector space, let $U$ be an open convex subset of $X$, and let $f:U\rightarrow \R^m$ be a totally differentiable function. (Note: a set $C\subseteq X$ is called \textbf{convex} if $tx+(1-t)y\in C$ for all $x,y\in C$ and $t\in [0,1]$.) Let $f:U\rightarrow \R^m$ be a totally differentiable function.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose that there exists a constant $C\geq 0$ such that $\|f'(p)\|_{\mathrm{op}}\leq C$ for all $p\in U$. Prove that
+            \[ \|f(p)-f(q)\| \leq C\|p-q\| \quad \text{for all $p,q\in U$.}  \]
+        Conclude that $f$ is uniformly continuous.
+        
+        \item Prove that $f'(p)=0$ for all $p\in U$ if and only if $f$ is a constant function.
+
+        \item Assume $U=X$ and suppose that $f$ is \textbf{twice totally differentiable} --- meaning that $f':X\rightarrow B(X,Y)$ itself is differentiable at every point of $X$, with total derivative $f''=(f')'$. Show that $f''=0$ if and only if $f$ is \textbf{affine-linear}: there exists a bounded linear mapping $M:X\rightarrow Y$ and a vector $b\in Y$ such that
+            \[ f(p) = M(p) + b \quad \text{for all $p\in X$.} \]
+        (Compare with the formula $y=mx+b$ from single-variable calculus.)
+    \end{enumerate}
+    \tcblower
+    (a):
+
+    (b):
+    
+    Suppose that \(f'(p) = 0\) for all \(p \in U\). Then \(\|f'(p)\| _{\op} \leq 0 = C\), so by part (a), for all \(a,b \in U\),
+    \[
+        \|f(a) - f(b)\| \leq 0 \implies \|f(a) - f(b)\| = 0 \implies f(a) = f(b)
+    \]
+    so \(f\) is constant.
+
+    Conversely, suppose that \(f\) is a constant function. To show that \(f'(p) = 0\), notice that
+    \[
+        \lim_{h \to 0} \frac{\|f(p + h) - f(p)\|}{\|h\|} = 0
+    \]
+    Thus \(f'(p) = 0\) for all \(p \in U\).
+
+    (c):
+
+    We know that \(X\) is convex because it is a vector space. Suppose that \(f'' = 0\). Then by part (b), \(f'\) is a constant function. We will denote \(f' = L \in B(X,Y)\).
+    \end{question}
+
+
+\end{document}
