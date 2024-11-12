@@ -70,7 +70,9 @@ Then in regular expressions, if $r$ is a regular expression matching $\mathcal{L
 
 Prove that regular expressions that also have access to complement can still only express the same class of languages (i.e., the class of regular languages) as regular expressions without the complement operation. 
 
-
+\begin{proof}
+	It will be proven that any language that can be represented by a regex with the complement operation can be expressed by a regex without it.
+\end{proof}
 
 \item \textbf{(15 pts)}
 
@@ -93,10 +95,42 @@ A known result in formal language theory is that counter-free languages are equi
 		\[
 			= \overline{\{b\} \overline{\varnothing} \cup \overline{\varnothing} \{bb\} \overline{\varnothing} \cup \overline{\varnothing} \{aa\} \overline{\varnothing}} = \overline{\{b\} \Sigma ^* \cup \Sigma ^* \{bb\} \Sigma ^* \cup \Sigma ^* \{aa\} \Sigma ^*}
 		\]
+		\[
+			= \overline{\{b\}\Sigma ^*} \cap \overline{\Sigma ^* \{bb\}\Sigma ^*} \cap \overline{\Sigma ^* \{aa\} \Sigma ^*}
+		\]
+		Let \(w \in (ab)^*\). Then 
 	\end{proof}
 
 	\item \textbf{(5 pts)} Prove that $(ab)^*$ is a counter-free language,  $\Sigma = \{a,b\}$.
+	
+	\begin{proof}
+		Let \(n = 1\). Fix \(x,y,z \in \Sigma ^*\), and let \(m\) be a natural number such that \(m \geq n\).
+
+		Suppose that \(xy^m z \in (ab)^*\). Then \(xy^m z = (ab)^l\), for some \(l \in \mathbb{N}\). Consider the case where \(x\) ends with the symbol \(a\). \(x\) must be in the form \((ab)^i a\) for some \(i \in \mathbb{N}\). Then \(y\) must begin with a \(b\) and alternate symbols, for if not, then \(xy^m z \notin L\). Thus \(y\) can be rewritten as \(y = (ba)^j\), for some natural \(l\). It follows that \(z\) starts with a \(b\), and can be written as \(b(ab)^k\), for some natural \(k\). Therefore
+		\[
+			xy^n z = (ab)^i a (ba)^l b (ab)^k = (ab)^{i+l+k+1} \in L
+		\]
+		Now, consider the case where \(x\) does not end with an \(a\). Using a similar argument to the previous case, \(x = (ab)^i\), \(y = (ab)^j\), and \(z = (ab)^k\), for different constants \(i,j,k \in \mathbb{N}\). Then
+		\[
+			xy^n z = (ab)^i (ab)^j (ab)^k = (ab)^{i+j+k} \in L
+		\]
+		Conversely, suppose that \(xyz = xy^n z \in L\). Again, either \(x = (ab)^i a\), \(y = (ba)^j\), and \(z = b(ab)^k\) or \(x = (ab)^i\), \(y = (ab)^j\), and \(z = (ab)^k\), for naturals \(i,j,k\). Then \(xy^m z\) is equal to either
+		\[
+			xy^m z = (ab)^i a ((ba)^j)^m b(ab)^k = (ab)^{i+jm+k+1}
+		\]
+		or
+		\[
+			(ab)^i ((ab)^j)^m (ab)^k = (ab)^{i+jm+k} \text{.} 
+		\]
+		Regardless, \(xy^m z \in L\). Since both directions have been shown, the proof is complete.
+		
+	\end{proof}
 	\item \textbf{(5 pts)} Prove that  $(aa)^*$ is not a counter-free language, $\Sigma = \{a\}$
+	
+	\begin{proof}
+		First, notice that in order for a string \(w\) to be a member of \(L\), \(w = (ab)^{2k}\) for some natural \(k\). Let \(n \in \mathbb{N}\). Let \(x = \varepsilon\), \(y = a\), \(z = \varepsilon\). Let \(m = n + 1 \geq n\). Then \(xy^m z = a^{n+1} \), and \(xy^n z = a^n\). The goal is to show that either \(a^{n+1} \in L \land a^n \notin L\) or \(a^{n+1} \notin L \land a^n \in L\). Indeed, exactly one of \(n+1\) or \(n\) are even, it must be true that exactly one of \(a^n\) or \(a^{n+1}\) are in \(L\), and the conclusion follows promptly.
+
+	\end{proof}
 
 \end{enumerate}
 
