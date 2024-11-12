@@ -115,6 +115,23 @@
     \tcblower
     (a):
 
+    Fix \(p,q \in U\). If \(p = q\), the inequality is trivially true. Otherwise, construct a function \(\alpha : (-\frac{1}{2}, \frac{3}{2}) \to U\) defined by \(\alpha (t) = tq + (1-t)p\). We will show that \(a'(t)(\varphi) = \varphi (q-p)\):
+    \[
+        \lim_{h \to 0} \frac{\|((t+h)q + (1-t-h)p) - (tq + (1-t)p) - h(q-p)\|}{\|h\|}
+    \]
+    \[
+        = \lim_{h \to 0} \frac{\|hq -hp - h(q-p)\|}{\|h\|} = 0
+    \]
+    Thus \(\alpha '(t)(\varphi) = \varphi (q-p)\). Next, we want to show that \(\alpha\) is uniformly continuous.
+
+    For all \(\varepsilon > 0\), let \(\delta = \frac{\varepsilon}{\|q-p\|}\). Then for all \(s,t \in [0,1]\) such that \(\|s-t\| < \delta \),
+    \[
+        \| \alpha (s) - \alpha (t) \| = \|s q + (1-s)p - (tq + (1-t)p) \| = \|(s-t)q - (s-t)p\|
+    \]
+    \[
+        \|(s-t)(q-p)\| < \varepsilon
+    \]
+
     (b):
     
     Suppose that \(f'(p) = 0\) for all \(p \in U\). Then \(\|f'(p)\| _{\op} \leq 0 = C\), so by part (a), for all \(a,b \in U\),
@@ -131,9 +148,34 @@
 
     (c):
 
-    We know that \(X\) is convex because it is a vector space. Suppose that \(f'' = 0\). Then by part (b), \(f'\) is a constant function. We will denote \(f' = L \in B(X,Y)\). We claim that \(M = L\) and \(b = f(0)\).
+    We know that \(X\) is convex because it is a vector space. Suppose that \(f'' = 0\). Then by part (b), \(f'\) is a constant function. We will denote \(f' = L \in B(X,Y)\). We claim that \(M = L\) and \(b = f(0)\), that is, \(f(p) = L(p) + f(0)\) for all \(p \in U\).
 
-    Let \(p \in U\). Then
+    Define the function \(g: U \to \mathbb{R}^m\) by \(g(p) = f(p) - f(0) - L(p)\). For all \(p \in U\), we have that
+    \[
+        \lim_{h \to 0} \frac{\|g(p + h) - g(p)\|}{\|h\|} = \lim_{h \to 0} \frac{\|(f(p+h) - f(0) - L(p+h)) - (f(p) - f(0) - L(p))}{\|h\|}
+    \]
+    \[
+        = \lim_{h \to 0} \frac{\|f(p+h) - f(p) - L(h)\|}{\|h\|} = 0
+    \]
+    where the last step is from the fact that \(f'(p) = L\). We can see that \(g'(p) = 0\) for all \(p \in U\). From part (b), it follows that \(g\) is a constant function. Finally, notice that
+    \[
+        g(0) = f(0) - f(0) - L(0) = 0 \text{,} 
+    \]
+    so \(g = 0\). Therefore for all \(p \in U\),
+    \[
+        f(p) - f(0) - L(p) = 0 \implies f(p) = L(p) + f(0)
+    \]
+    as desired.
+
+    Conversely, suppose that \(f\) is affline-linear. Then for some \(M \in B(X, \mathbb{R}^m)\), \(b \in \mathbb{R}^m\),
+    \[
+        f(p) = M(p) + b \text{.} 
+    \]
+    We claim that \(f'(p) = M\) using the definition. Immediately, we have that
+    \[
+        \lim_{h \to 0} \frac{\|(M(p+h) + b) - (M(p) + b) - M(h)\|}{\|h\|} = 0
+    \]
+    which verifies our claim. Since \(f'(p) = M\) for all \(p \in U\), \(f'\) is constant, and from part (b), this implies that \(f'' = 0\), which completes the proof.
     \end{question}
 
 
