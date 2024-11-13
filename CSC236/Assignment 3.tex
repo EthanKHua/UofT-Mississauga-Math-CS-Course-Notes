@@ -9,6 +9,10 @@
 \usepackage{braket}
 \usepackage{float} % To allow for H setting in figures.
 
+% to draw dfas
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+
 
 %% header
 \pagestyle{fancy}
@@ -18,6 +22,13 @@
 \setlength{\headheight}{35pt}
 
 \begin{document}
+\tikzset{
+->, % makes the edges directed
+>=stealth', % makes the arrow heads bold
+node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+initial text=$ $, % sets the text that appears on the start arrow
+}
 
 You are not allowed to post the assignment questions anywhere; however, you are allowed to search the internet (just cite your resources if you find any). You are also allowed to bounce ideas off classmates and TAs, but at the end, you must write your own solutions. 
 
@@ -45,14 +56,87 @@ Let $ \Sigma = \{0,1\} $.
 		From the definition of a regular language, \(\{ 0 \} \) and \(\{ 1 \} \) are regular languages. Then \(\{ 0 \} \cup \{ 1 \} = \Sigma\) is a regular language. Finally, it is true that \(\Sigma ^*\) is a regular language.
 
 		For this regular language, define the DFA \(\mathcal{D} = (\{q_0\}, \Sigma, \delta , q_0, \{q_0\})\), where \(\delta : \{q_0\} \times \Sigma \to \{q_0\}\) is a function that always maps to \(q_0\).
+		
+		\begin{figure}[ht]
+			\centering
+			\begin{tikzpicture}
+				\node[state,initial,accepting] (q0) {q0};
+				\draw (q0) edge[loop above] node{0} (q0)
+					  (q0) edge[loop below] node{1} (q0);
+			\end{tikzpicture}
+			\label{fig:DFA for a)}
+		\end{figure}
 
 	\end{proof}
 
 	\item \textbf{(3 pts)} $ \Sigma^*\backslash\{K\}, K =\{01, 101, 010\}$
+	
+	\begin{proof}
+		\begin{figure}
+			\centering
+			\begin{tikzpicture}
+				\node[state,initial,accepting] (q0) {q0};
+				\node[state, right of=q0] (q1) {q1};
+			\end{tikzpicture}
+			\label{DFA for b)}
+		\end{figure}
+	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a palindrome}\} $
+	
+	\begin{proof}
+		This is not regular. Suppose for contradiction that this languages was regular. Then there would be a DFA associated with this language. Let \(q\) be the number of states in this DFA, and let \(q_0\) denote the initial state. Define the following strings:
+		\[
+			w_i = 0^q 1 0^{i} \text{, for } i \in \{0, 1, 2, ..., q\}
+		\]
+		Notice that there are \(q+1\) strings in total. By the pigeonhole principle, at least 2 \(w_i, w_j\) will be in the same state \(q_c\), \(i < j\), that is, \(\delta (q_0, w_i) = \delta (q_0, w_j) = q_c\). It follows that \(\delta (q_0, w_i 0^{q-i}) = \delta (q_0, w_j 0^{q-i})\). But notice that
+		\[
+			w_i = 0^q 1 0^q \text{ and } w_j = 0^q 1 0^{q+j-i} \text{.} 
+		\]
+		It can be seen that \(w_i\) is a palindrome and should be accepted, but because \(q + j - i \neq q\), \(w_j\) is not a palindrome, which contradicts the fact that \(w_i\) and \(w_j\) are in the same state.
+
+	\end{proof}
 	\item \textbf{(3 pts)} $ \{ww \mid w \in \Sigma^*  \} $
 	\item \textbf{(3 pts)} $ \{w \mid ww \in \Sigma^*  \} $
+
+	\begin{proof}
+		Denote the language above as \(A\). It will be shown that the language above is equivalent to \(\Sigma ^*\) using double subset inclusion.
+
+		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language.
+
+	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a binary representation of a multiple of 3}\} $
+	
+	\begin{proof}
+		Consider the following DFA:
+
+		\begin{center}
+			\begin{tikzpicture}
+				\node[state,initial] (qi) {\(q_i\)};
+				\node[state,right of=qi,accepting] (q0) {\(q_0\)};
+				\node[state,right of=q0] (q1) {\(q_1\)};
+				\node[state,right of=q1] (q2) {\(q_2\)};
+				\draw (qi) edge[below] node{0} (q0)
+						(qi) edge[bend left, above] node{1} (q1)
+						(q0) edge[loop below] node{0} (q0)
+						(q0) edge[above, bend left] node{1} (q1)
+						(q1) edge[bend left, above] node{0} (q2)
+						(q1) edge[below, bend left] node{1} (q0)
+						(q2) edge[bend left, below] node{0} (q1)
+						(q2) edge[loop below] node{1} (q2);
+			\end{tikzpicture}
+		\end{center}
+
+		It will be shown that this DFA correctly represents the language above.
+
+		Define the following state invariants:
+		\[
+			\delta (q_i, w) = q_i \iff w = \varepsilon
+		\]
+		\[
+			\delta (q_i, w) = q_k \iff \text{ the binary representation of } w \text{ is } k \ \mathrm{ mod}\ 3
+		\]
+		asd
+	\end{proof}
 \end{enumerate}
 
 
