@@ -90,7 +90,7 @@
             0 \leq \frac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} = \frac{\|(A+B)^2 - A^2 - (BA + AB)\|}{\|B\|}
         \]
         \[
-            \frac{\|A^2 + AB + BA + B^2 - A^2 - BA - AB\|}{\|B\|} = \frac{\|B^2\|}{\|B\|} < K\|B\|
+            \frac{\|A^2 + AB + BA + B^2 - A^2 - BA - AB\|}{\|B\|} = \frac{\|B^2\|}{\|B\|} \leq K\|B\|
         \]
         \[
             \implies 0 \leq \frac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} \leq K\|B\|
@@ -115,21 +115,95 @@
     \tcblower
     (a):
 
-    Fix \(p,q \in U\). If \(p = q\), the inequality is trivially true. Otherwise, construct a function \(\alpha : (-\frac{1}{2}, \frac{3}{2}) \to U\) defined by \(\alpha (t) = tq + (1-t)p\). We will show that \(a'(t)(\varphi) = \varphi (q-p)\):
+    Fix \(p,q \in U\). If \(f(p) = f(q)\), the inequality is trivially true. Otherwise, since \(U\) is open, there is some open ball \(B(p, \varepsilon _1) \subseteq U\) and \(B(q, \varepsilon _2) \subseteq U\). Let \(\delta = \dfrac{\min \{\varepsilon_1 , \varepsilon_2\}}{\|q-p\|}\). For all \(t \in (-\delta , 1 + \delta)\), we have that
+
+    If \(t \in [0,1]\),
+    \[
+        tq + (1-t)p \in U
+    \]
+    since \(U\) is convex. If \(t \in (-\delta , 0)\), then
+    \[
+        \|(tq + (1-t)p) - p\| = \|t(q-p)\| = |t|\|q-p\| < \varepsilon_1
+    \]
+    \[
+        \implies tq + (1-t)p \in B(p, \varepsilon_1) \subseteq U
+    \]
+    If \(t \in (1 + \delta)\), then
+    \[
+        \|(tq + (1-t)p) - q\| = \|(t-1)q - (t-1)p\| = |t-1|\|q-p\| < \varepsilon_2
+    \]
+    \[
+        \implies tq + (1-t)p \in B(q, \varepsilon_2) \subseteq U
+    \]
+    Thus we can construct a function \(\alpha : (-\delta, 1 + \delta) \to U\) defined by \(\alpha (t) = tq + (1-t)p\). We will show that \(\alpha '(t)(\varphi) = \varphi (q-p)\):
     \[
         \lim_{h \to 0} \frac{\|((t+h)q + (1-t-h)p) - (tq + (1-t)p) - h(q-p)\|}{\|h\|}
     \]
     \[
         = \lim_{h \to 0} \frac{\|hq -hp - h(q-p)\|}{\|h\|} = 0
     \]
-    Thus \(\alpha '(t)(\varphi) = \varphi (q-p)\). Next, we want to show that \(\alpha\) is uniformly continuous.
-
-    For all \(\varepsilon > 0\), let \(\delta = \frac{\varepsilon}{\|q-p\|}\). Then for all \(s,t \in [0,1]\) such that \(\|s-t\| < \delta \),
+    Since \(\alpha\) is totally differentiable and \(f\) is totally differentiable, by the chain rule, we can say that
     \[
-        \| \alpha (s) - \alpha (t) \| = \|s q + (1-s)p - (tq + (1-t)p) \| = \|(s-t)q - (s-t)p\|
+        (f \circ \alpha)'(t) = f'(a(t))(h(q-p)) = hf'(a(t))(q-p)
+    \]
+    Now, we construct a function from \((-\delta, 1 + \delta)\) to \(\mathbb{R}\) by
+    \[
+        g(t) = (f(q) - f(p)) \cdot f(\alpha (t))
+    \]
+    Now, we will show that for \(t \in (-\delta , 1 + \delta)\),
+    \[
+        g'(t) = (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)
+    \]
+    First, we see that
+    \[
+        \lim_{h \to 0} \frac{|g(t+h) - g(p) - (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)|}{|h|}
     \]
     \[
-        = \|(s-t)(q-p)\| < \varepsilon
+        = \lim_{h \to 0} \frac{|(f(q) - f(p)) \cdot f(\alpha (t+h)) - (f(q) - f(p)) \cdot f(\alpha (t)) - (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)}{|h|}
+    \]
+    By the linearity of the dot product,
+    \[
+        \lim_{h \to 0} \left\vert (f(q) - f(p)) \cdot \frac{f(\alpha (t+h)) - f(\alpha (t)) - f'(\alpha (t))(q-p)}{|h|} \right\vert = 0
+    \]
+    Using this, consider the limit
+    \[
+        g'(t) = \lim_{h \to 0} \frac{g(t+h) - g(t)}{h} \text{.} 
+    \]
+    Adding and subtracting \(h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)\),
+    \[
+        = \lim_{h \to 0} \frac{[g(t+h) - g(t) - h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)] + h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)}{h}
+    \]
+    The first sum is exactly the limit that was computed above and is equal to zero. The limit then reduces to
+    \[
+        \lim_{h \to 0} \frac{h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)}{h} = (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)
+    \]
+    which shows that \(g\) is differentiable on its domain and is equal to \((f(q) - f(p)) \cdot f'(\alpha (t))(q-p)\). In particular, we have continuity on \([0,1]\) and differentiability on \((0,1)\). Applying the Mean Value Theorem, there is some \(c \in (0,1)\) so that
+    \[
+        g(1) - g(0) = g'(c) \implies (f(q) - f(p)) \cdot f(q) - (f(q) - f(p)) \cdot f(p) = (f(q) - f(p)) \cdot f'(a(c))(q-p)
+    \]
+    \[
+        \implies (f(q) - f(p)) \cdot (f(q) - f(p)) = (f(q) - f(p)) \cdot f'(\alpha(c))(q-p)
+    \]
+    \[
+        \implies \|f(q) - f(p)\|^2 = \|f(q) - f(p)\| \|f'(\alpha (c))(q-p)\| \cos (\theta)
+    \]
+    where \(\theta\) is the angle between the vectors \(f(q) - f(p)\) and \(f'(\alpha (c))(q-p)\). Thus
+    \[
+        \|f(q) - f(p)\|^2 \leq \|f(q) - f(p)\| \|f'(\alpha (c))(q-p)\| \leq \|f(q) - f(p)\| \|f'(\alpha (c))\| _{\op} \|q-p\|
+    \]
+    \[
+        \implies \|f(q) - f(p)\|^2 \leq \|f(q) - f(p)\| C \|q-p\|
+    \]
+    \[
+        \implies \|f(q) - f(p)\| \leq C \|q-p\|
+    \]
+    which is the desired inequality.
+
+    With this, the uniform continuity of \(f\) is easy to show.
+
+    For \(\varepsilon > 0\), let \(\delta = \frac{\varepsilon}{C}\). For all \(p,q \in X\) so that \(\|q-p\| <\delta \),
+    \[
+        \|f(q) - f(p)\| \leq C \|q-p\| < \varepsilon
     \]
 
     (b):
