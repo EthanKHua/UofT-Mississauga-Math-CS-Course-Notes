@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Exercise 8.12 (c) (iii)}
+    \textbf{Solvers:} Alan, Ethan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(U \subseteq \mathbb{R}\) be an open set and let \(f: U \to \mathbb{R}\) be a scalar function. Then if all partial derivatives exist and are continuous on \(U\), then \(f\) is continuously differentiable and \(f'(p)\) is given by \(f'(p)(v) = D_v f(p)\).
+
+    \begin{proof}
+        Let \(L_p = f'(p)\). We will show that \(\dfrac{|f(p+h) - f(p) - L_p(h)|}{\|h\|} \to 0\).
+
+        Let \(\varepsilon > 0\). Utilising part (i), we define a sequence of points \(p_0, ..., p_n \in X\) by
+        \[
+            p_0 = p \text{ and } p_i = p_{i-1} + h_i e_i \text{.} 
+        \]
+        We know that for \(\|h\|\) smaller than some positive \(\gamma\), \(p_i \in U\).
+
+        Let \(\delta = \). Let \(h \in U\) so that \(\|h\| < \delta\). Notice that \(p+h = p_n\) and \(p = p_0\). We have that
+        \[
+            \frac{|f(p+h) - f(p) - L_p(h)}{\|h\|} = \frac{|f(p_n) - f(p_0) - L_p(h)|}{\|h\|}
+        \]
+        We can expand the numerator by adding and subtracting every term of \(p_i\) and substituting
+        \[
+            L_p(h) = D_h f = \sum_{i=1}^n h_i \dfrac{\partial f}{\partial x_i}(p) \text{,} 
+        \]
+        which yields
+        \[
+            \frac{\left\vert \sum\limits_{i=1}^n \left(f(p_i) - f(p_{i-1}) - h_i\dfrac{\partial f}{\partial x_i}(p) \right)\right\vert}{\|h\|} \leq \sum_{i=1}^n \frac{\left\vert f(p_i) - f(p_{i-1}) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert }{\|h\|} \text{.} 
+        \]
+        Now, by part (ii), we can rewrite \(f(p_i) - f(p_{i-1})\) as \(h_i \dfrac{\partial f}{\partial x_i} (q_i)\), for some \(q_i \in U\), so the expression becomes
+        \[
+            \sum_{i=1}^n \frac{\left\vert h_i \dfrac{\partial f}{\partial x_i} (q_i) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert}{\|h\|} = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert
+        \]
+    \end{proof}
+\end{document}
