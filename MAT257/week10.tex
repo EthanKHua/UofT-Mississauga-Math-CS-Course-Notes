@@ -33,28 +33,36 @@
 
 \begin{document}
     \section*{Exercise 8.12 (c) (iii)}
-    \textbf{Solvers:} Alan, Ethan
+    \textbf{Solvers:} Ethan
 
     \noindent\textbf{Writeup:} Ethan
 
-    Let \(U \subseteq \mathbb{R}\) be an open set and let \(f: U \to \mathbb{R}\) be a scalar function. Then if all partial derivatives exist and are continuous on \(U\), then \(f\) is continuously differentiable and \(f'(p)\) is given by \(f'(p)(v) = D_v f(p)\).
+    Let \(U \subseteq \mathbb{R}^n\) be an open set and let \(f: U \to \mathbb{R}\) be a scalar function. Then if all partial derivatives exist and are continuous on \(U\), then \(f\) is continuously differentiable and \(f'(p)\) is given by \(f'(p)(v) = D_v f(p)\).
+
+    \textcolor{red}{Recall the statement in (ii): There exists a point \(q_k \in U\) such that
+    \[
+        \frac{f(p_k) - f(p_{k-1})}{h_k} = \frac{\partial f}{\partial x_k} (q_k)
+    \]
+    We make the additional distinction that \(q_k\) is of the form \(p_{k-1} + \gamma e_k\), where \(|\gamma| < |h_k|\).}
 
     \begin{proof}
+        Define \(\|\cdot\|\) on \(U\) to be the 1-norm.
+
         Let \(L_p = f'(p)\). We will show that \(\dfrac{|f(p+h) - f(p) - L_p(h)|}{\|h\|} \to 0\).
 
         Let \(\varepsilon > 0\). Utilising part (i), we define a sequence of points \(p_0, ..., p_n \in X\) by
         \[
             p_0 = p \text{ and } p_i = p_{i-1} + h_i e_i \text{.} 
         \]
-        We know that for \(\|h\|\) smaller than some positive \(\gamma\), \(p_i \in U\).
+        We know that for \(\|h\|\) smaller than some positive \(\delta _1\), \(p_i \in U\). By the uniform continuity of \(\dfrac{\partial f}{\partial x_i}\) there is also a \(\delta _2\) such that for all \(a,b \in U\) such that \(\|a-b\| <\delta _2\), \(\left\vert\dfrac{\partial f}{\partial x_i} (a-b)\right\vert < \varepsilon\).
 
-        Let \(\delta = \). Let \(h \in U\) so that \(\|h\| < \delta\). Notice that \(p+h = p_n\) and \(p = p_0\). We have that
+        Let \(\delta = \min \{\delta _1, \delta _2 \}\). Let \(h \in U\) so that \(\|h\| < \delta\). Notice that \(p+h = p_n\) and \(p = p_0\). We have that
         \[
             \frac{|f(p+h) - f(p) - L_p(h)}{\|h\|} = \frac{|f(p_n) - f(p_0) - L_p(h)|}{\|h\|}
         \]
-        We can expand the numerator by adding and subtracting every term of \(p_i\) and substituting
+        We can expand the numerator by adding and subtracting every term \(p_i\) and substituting
         \[
-            L_p(h) = D_h f = \sum_{i=1}^n h_i \dfrac{\partial f}{\partial x_i}(p) \text{,} 
+            L_p(h) = D_h f (p) = \sum_{i=1}^n h_i \dfrac{\partial f}{\partial x_i}(p) \text{,} 
         \]
         which yields
         \[
@@ -64,5 +72,19 @@
         \[
             \sum_{i=1}^n \frac{\left\vert h_i \dfrac{\partial f}{\partial x_i} (q_i) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert}{\|h\|} = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert
         \]
+        Note that \(p_i\) can also be written as \(p + \sum_{j=1}^i h_j e_j\). Thus we can say that \(q_i = p_{i-1} + \gamma e_i = p + \gamma e_i + \sum_{j=1}^{i-1} h_j e_j\). We get that
+        \[
+            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert
+        \]
+        We see that the norm of the argument inside the partial derivative is
+        \[
+            \left\lVert \gamma e_i + \sum_{j=1}^{i-1} h_j e_j \right\rVert \leq |\gamma| + \sum_{j=1}^{i-1} |h_j| < \sum_{j=1}^i |h_j| \leq \sum_{j=1}^n |h_j| = \|h\| < \delta _2 \text{,} 
+        \]
+        so by the continuity of \(\dfrac{\partial f}{\partial x_i}\),
+        \[
+            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert < \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \cdot \varepsilon = \frac{\|h\|}{\|h\|} \cdot \varepsilon = \varepsilon
+        \]
+        and the proof is complete.
+
     \end{proof}
 \end{document}
