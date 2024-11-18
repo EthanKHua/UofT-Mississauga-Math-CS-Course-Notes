@@ -126,16 +126,26 @@ Let $ \Sigma = \{0,1\} $.
 			\end{tikzpicture}
 		\end{center}
 
-		It will be shown that this DFA correctly represents the language above.
+		It will be shown that this DFA correctly represents the language above. For all \(w \in \Sigma ^*\), denote \(n_w\) to be the number that \(w\) represents.
 
 		Define the following state invariants:
 		\[
-			\delta (q_i, w) = q_i \iff w = \varepsilon
+			P_i(w) : \delta (q_i, w) = q_i \iff w = \varepsilon
 		\]
 		\[
-			\delta (q_i, w) = q_k \iff \text{ the binary representation of } w \text{ is } k \ \mathrm{mod}\ 3
+			P_k(w) : \delta (q_i, w) = q_k \iff n_w \equiv k \ \mathrm{mod}\ 3
 		\]
-		asd
+		It will be proven that \(P(w) : P_i(w) \land P_k(w)\) for all \(w \in \Sigma ^*\) using structural induction. 
+
+		\textbf{Base Case.} Let \(w = \varepsilon\). Since \(q_i\) is not the end state of any transition from any other state and \(\varepsilon\) does not represent any binary number, \(P_k(w)\) is vacuously true. To show that \(P_i(w)\), it is sufficient to say that \(\delta (q_i, w) = q_i\), which is obviously true. Thus \(P(\varepsilon)\) is true.
+
+		\medskip
+
+		\textbf{Induction Hypothesis.} Suppose that \(P(w)\) is true, for some \(w \in \Sigma ^*\). The goal is to show that \(P(w \sigma)\) is true for all \(\sigma \in \Sigma ^*\).
+
+		\medskip
+
+		\textbf{Induction Step.} Consider the case when \(\sigma = 0\).
 	\end{proof}
 \end{enumerate}
 
