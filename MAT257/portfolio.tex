@@ -1,0 +1,610 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\NA}{\mathbf{N}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \tableofcontents
+    \section{Big List Problems}
+    \subsection{\#1}
+
+    Let $A_1,A_2,A_3,\ldots$ be a sequence of countable sets. Prove that $\bigcup_{i\geq 1} A_i$ is countable.
+
+    \smallskip
+
+    \noindent My previous submission did not take into account the fact that the sets could have been not disjoint. This resubmission should resolve that issue.
+
+
+    \noindent\textbf{Changelog:}\begin{enumerate}
+        \item Fixed the argument to address the non-disjoint case.
+    \end{enumerate}
+
+    \begin{proof}
+        \textcolor{red}{Notice that \[\bigcup_{i \ge 1} A_i = A_1 \cup (A_2 \setminus A_1) \cup (A_3 \setminus (A_1 \cap A_2)) \cup \dots\] We define a new collection of sets \(\{B_i\}\) as follows:}
+        \textcolor{red}{
+            \[
+                B_1 = A_1
+            \] 
+            \[
+                B_k = A_k \setminus \left(\bigcap_{i=1}^{k-1} A_i\right) \text{, } k>1
+            \]
+        }
+        Since \(A_i\) is countable, denote \(A_{ij}\) to be the \(j\)th element of set \(A_i\). \textcolor{red}{Noting that \(\bigcup_{i \ge 1} A_i = \bigcup_{i \ge 1} B_i\), Define \(f: \bigcup_{i \ge 1} B_i \to \mathbb{N}\) as }
+        \[
+            f(A_{ij})=2^{i}3^{j}
+        \]
+        We will show that \(f\) is injective. Let \(A_{pq}, A_{rs} \in \textcolor{red}{\bigcup_{i \geq 1} B_i}\). Suppose that \(f(A_{pq} ) = f(A_{rs} )\). Then
+        \[
+            2^p 3^q = 2^r 3^s
+        \]
+        Since every integer has a unique prime factorisation, it follows that \(p = r\), \(q = s\). Thus \(A_{pq} = A_{rs} \).
+
+        \noindent \\ Now, define the injection \(g: \mathbb{N} \to \bigcup_{i\geq 1} A_i\) to be \(g(n) = A_{1n} \). 
+        
+        \noindent Therefore by the Schröder–Bernstein theorem, \(|\bigcup_{i\geq 1} A_i | = |\mathbb{N} |\). Thus the set is countable.
+
+    \end{proof}
+
+    \subsection{\#2 - Incomplete}
+
+    This problem is incomplete for a variety of reasons. Firstly, I did not show that \(\phi\) is a linear mapping. Secondly, \(\phi\) is not well-defined because based on the supposed codomain of \(\phi\), \(\phi (T)\) should only take in one input, whereas I defined \(\phi (T)\) by inputting two inputs. Finally, the basis argument I made when showing that \(\phi\) is surjective was unnecessary, and I could have just directly defined \(T(x,y) = U(x)(y)\).
+
+    \bigskip
+
+    Let $X,Y,Z$ be three vector spaces. Prove that $L^2(X,Y;Z)$ is isomorphic to $L(X,L(Y,Z))$.
+
+   (For two vector spaces $X,Y$, we use $L(X,Y)$ to denote the space of linear mappings from $X$ to $Y$. For three vector spaces $X,Y,Z$, and a a function $\beta:X\times Y\rightarrow Z$, we let $\beta(\,\cdot\,,y_0)$ denote the function $X\rightarrow Z$ given by $x\mapsto \beta(x,y_0)$, where $y_0\in Y$ is some fixed vector; this is called the \textbf{$y_0$-slice} of $\beta$. The \textbf{$x_0$-slice} $\beta(x_0, \,\cdot\,)$ is defined similarly.)
+
+   \begin{proof}
+        For a bilinear map \(T \in L^2(X,Y;Z)\), \((x,y) \in X \times Y\), Define \(\phi : L^2(X,Y;Z) \to L(X,L(Y,Z))\) such that
+        \[
+            \phi (T)(x,y) = T(x, \cdot)(y)
+        \]  
+        where \(T(x,\cdot)\) is the \(x\)-slice of \(T\). We claim that this transformation is an isomorphism.
+
+        First, let \(\phi (T) = 0\). Then \(\forall x \in X \text{,} T(x, \cdot)(y) = 0\), from which it follows that \(T(x, y) = 0\), meaning \(\phi\) is injective. 
+        
+        Next, fix \(U \in L(X,L(Y,Z))\). Let \(\beta \) be the basis for \(X\). Let \(T \in L^2(X,Y;Z)\) be the linear transformation such that \(T(x, \cdot) = U(x) \text{, for all } x \in \beta \). We see that \(\forall x,y \in X \times Y\),
+        \[
+            \phi (T)(x,y) = T(x, \cdot)(y) = U(x)(y)
+        \]
+        making \(\phi \) surjective.
+
+        Thus \(\phi \) is an isomorphism, and we get that \(L^2(X,Y;Z) \cong L(X,L(Y,Z))\) as desired.
+   \end{proof}
+
+   \subsection{\#3}
+
+   Let $I=(a,b)$ and $J=(c,d)$ be two open intervals on the real line. Let $f:I\rightarrow J$ be an increasing function such that $f(I)$ is dense in $J$. Prove that $f$ is continuous.
+
+    (For two sets $D,S\subseteq \R$ we say that $D$ is \textbf{dense} in $S$ if $D\cap (s-\varepsilon,s+\varepsilon)\neq\varnothing$ for all $s\in S$ and all $\varepsilon>0$.)
+    \begin{proof}
+        Fixing an \(a \in I\), let \(\varepsilon > 0\). We can assume without loss of generality that \(\varepsilon \) is small enough that \((f(a) - \varepsilon , f(a) + \varepsilon ) \subseteq J\). Since \(f(I)\) is dense in \(J\), we can always find an \(y_1 \in (f(a) - \varepsilon , f(a)) \text{ and } y_2 \in (f(a), f(a) + \varepsilon )\) such that \(y_1 , y_2 \in f(I)\), which means \(y_1 = f(x_1) \text{ and } y_2 = f(x_2)\) for some \(x_1, x_2 \in I\).
+
+        Take \(\delta = \min \{\lvert a - x_1 \rvert , \lvert a - x_2 \rvert \}\). Let \(x \in I\). Suppose that \(\lvert x - a \rvert\leq \delta \). If \(x = a\), clearly \(\lvert f(x) - f(a) \rvert < \varepsilon \). Consider when \(x < a\).
+
+        We see that due to the choice of \(\delta \), we have that \(x_1 < x < a\). Using the fact that \(f\) is increasing, we obtain
+        \[
+            f(a) - \varepsilon < y_1 = f(x_1) < f(x) < f(a) \implies - \varepsilon < f(x) - f(a) < 0 \implies f(a) - f(x) = \lvert f(x) - f(a) \rvert < \varepsilon 
+        \] 
+        The argument for the case when \(x < a\) is almost the exact same, except for the use of \(x_2 \text{ and } y_2\) instead of \(x_1\) and \(y_1\), as well as the inequalities being swapped.
+
+        With this, we can conclude that \(f\) is continuous.
+
+    \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+    \section{Handout Exercises}
+    \subsection{Written by Me}
+    \subsubsection{Exercise 8.12 (c) (iii)}
+    \textbf{Solvers:} Ethan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(U \subseteq \mathbb{R}^n\) be an open set and let \(f: U \to \mathbb{R}\) be a scalar function. Then if all partial derivatives exist and are continuous on \(U\), then \(f\) is continuously differentiable and \(f'(p)\) is given by \(f'(p)(v) = D_v f(p)\).
+
+    \textcolor{red}{Recall the statement in (ii): There exists a point \(q_k \in U\) such that
+    \[
+        \frac{f(p_k) - f(p_{k-1})}{h_k} = \frac{\partial f}{\partial x_k} (q_k)
+    \]
+    We make the additional distinction that \(q_k\) is of the form \(p_{k-1} + \gamma e_k\), where \(|\gamma| < |h_k|\).}
+
+    \begin{proof}
+        Define \(\|\cdot\|\) on \(U\) to be the 1-norm.
+
+        Let \(L_p = f'(p)\). We will show that \(\dfrac{|f(p+h) - f(p) - L_p(h)|}{\|h\|} \to 0\).
+
+        Let \(\varepsilon > 0\). Utilising part (i), we define a sequence of points \(p_0, ..., p_n \in X\) by
+        \[
+            p_0 = p \text{ and } p_i = p_{i-1} + h_i e_i \text{.} 
+        \]
+        We know that for \(\|h\|\) smaller than some positive \(\delta _1\), \(p_i \in U\). By the uniform continuity of \(\dfrac{\partial f}{\partial x_i}\) there is also a \(\delta _2\) such that for all \(a,b \in U\) such that \(\|a-b\| <\delta _2\), \(\left\vert\dfrac{\partial f}{\partial x_i} (a-b)\right\vert < \varepsilon\).
+
+        Let \(\delta = \min \{\delta _1, \delta _2 \}\). Let \(h \in U\) so that \(\|h\| < \delta\). Notice that \(p+h = p_n\) and \(p = p_0\). We have that
+        \[
+            \frac{|f(p+h) - f(p) - L_p(h)}{\|h\|} = \frac{|f(p_n) - f(p_0) - L_p(h)|}{\|h\|}
+        \]
+        We can expand the numerator by adding and subtracting every term \(p_i\) and substituting
+        \[
+            L_p(h) = D_h f (p) = \sum_{i=1}^n h_i \dfrac{\partial f}{\partial x_i}(p) \text{,} 
+        \]
+        which yields
+        \[
+            \frac{\left\vert \sum\limits_{i=1}^n \left(f(p_i) - f(p_{i-1}) - h_i\dfrac{\partial f}{\partial x_i}(p) \right)\right\vert}{\|h\|} \leq \sum_{i=1}^n \frac{\left\vert f(p_i) - f(p_{i-1}) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert }{\|h\|} \text{.} 
+        \]
+        Now, by part (ii), we can rewrite \(f(p_i) - f(p_{i-1})\) as \(h_i \dfrac{\partial f}{\partial x_i} (q_i)\), for some \(q_i \in U\), so the expression becomes
+        \[
+            \sum_{i=1}^n \frac{\left\vert h_i \dfrac{\partial f}{\partial x_i} (q_i) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert}{\|h\|} = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert
+        \]
+        Note that \(p_i\) can also be written as \(p + \sum_{j=1}^i h_j e_j\). Thus we can say that \(q_i = p_{i-1} + \gamma e_i = p + \gamma e_i + \sum_{j=1}^{i-1} h_j e_j\). We get that
+        \[
+            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert
+        \]
+        We see that the norm of the argument inside the partial derivative is
+        \[
+            \left\lVert \gamma e_i + \sum_{j=1}^{i-1} h_j e_j \right\rVert \leq |\gamma| + \sum_{j=1}^{i-1} |h_j| < \sum_{j=1}^i |h_j| \leq \sum_{j=1}^n |h_j| = \|h\| < \delta _2 \text{,} 
+        \]
+        so by the continuity of \(\dfrac{\partial f}{\partial x_i}\),
+        \[
+            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert < \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \cdot \varepsilon = \frac{\|h\|}{\|h\|} \cdot \varepsilon = \varepsilon
+        \]
+        and the proof is complete.
+
+    \end{proof}
+
+    \subsubsection{Exercise 4.10.}
+    
+    \noindent\textbf{Solvers:} Sanchit, Ethan, Udo
+    
+    \noindent\textbf{Writeup:} Ethan
+
+    Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces, and let $f:X\rightarrow Y$ be a function. Prove that if \(f\) is continuous, then $f^{-1}(U)$ is an open subset of $X$ if $U$ is an open subset of $Y$.
+
+    \begin{proof}
+        Suppose that \(f\) is continuous. Let \(U\) be an open subset of \(Y\). We will now show that \(f^{-1} (U)\) is an open subset of \(X\). Let \(x_0 \in f^{-1} (U)\). It follows that \(f(x_0) \in U\). We need to find an open ball centered around \(x_0\) such that it is a subset of \(f^{-1} (U)\).
+        
+        Since \(U\) is open, there exists an \(\varepsilon > 0\) such that \(B_Y(f(x_0), \varepsilon) \subseteq U\). By the continuity of \(f\), there is a \(\delta > 0\) such that \(d_X (x_0, x) < \delta \implies d_Y (f(x_0), f(x)) < \varepsilon\).
+        
+        Take the open ball \(B_X(x_0, \delta)\) in \(X\). We want to show that \(B_X (x_0, \delta) \subseteq f^{-1} (U)\).
+
+        Let \(x \in B_X (x_0, \delta)\). Then \(d_X(x_0, x) < \delta\), which implies that \(d_Y (f(x_0), f(x)) < \varepsilon\) from continuity. It follows that \(f(x) \in B_Y (f(x_0), \varepsilon) \subseteq U\). By definition, this means that \(x \in f^{-1} (U)\). Thus \(B_X (x_0, \delta) \subseteq f^{-1} (U)\), which means that \(f^{-1} (U)\) is an open subset of \(X\).
+
+    \end{proof}
+
+    \subsubsection{Exercise 6.33.}
+
+    \noindent\textbf{Solvers:} Sanchit, Ethan
+    
+    \noindent\textbf{Writeup:} Ethan
+
+    Prove that $[0,1]^2$ is homeomorphic to the closed unit ball $\cl{B}(0,1)$ in $\R^2$.
+
+    \begin{proof}
+        It is pretty easy to see that the closed box \([0,1]^2\) is homeomorphic to \([-1,1]^2\). We define the function \(h:[-1,1]^2 \to \cl{B}(0,1)\) by
+        \[
+            h(x,y)=\begin{dcases}
+                \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2}(x, y), &\text{ if } (x,y) \neq (0,0) ;\\
+                (0,0), &\text{ if } (x,y)=(0,0).
+            \end{dcases}
+        \]
+        We can verify that this function is indeed well defined because for \((x,y) \in [-1,1]^2\),
+        \[
+            \left\lVert h(x,y) \right\rVert _2 \leq \left\lVert \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2}(x, y) \right\rVert _2 = \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2} \left\lVert (x,y) \right\rVert _2 = \|(x,y)\| _{\max} \leq 1
+        \]
+        which implies that \(h(x,y) \in \cl{B}(0,1)\).
+
+        We show that this is a homeomorphism by first showing continuity, and then showing that the inverse is continuous.
+
+        \textit{Fact!} Norms are continuous. Therefore \(h\) is continuous when \((x,y) \neq 0\). It remains to show continuity at \((0,0)\).
+
+        Let \(\varepsilon > 0\). By the strong equivalence of norms on \(\mathbb{R}^2\), there is an \(M >0\) such that \(\dfrac{\|(x,y)\| _{\max}}{\|(x,y)\| _2} \leq M\) for all \((x,y) \in \mathbb{R}^2\). Let \(\delta = \frac{\varepsilon}{M}\). Let \((x,y) \in \mathbb{R}^2\) such that \(\|(x,y)\| < \delta\).
+        Then
+        \[
+            \left\lVert h(x,y) \right\rVert = \left\lVert \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2}(x, y) \right\rVert = \frac{\|(x,y)\| _{\max}}{\|(x,y)\| _2} \left\lVert (x,y) \right\rVert \leq M \left\lVert (x,y) \right\rVert < \varepsilon
+        \]
+        Thus \(h\) is continuous everywhere. We can explicitly define the inverse \(h^{-1}\) as
+        \[
+            h^{-1} (x,y) = \begin{dcases}
+                \frac{\|(x,y)\| _2}{\|(x,y)\| _{\max}} (x,y), &\text{ if } (x,y) \neq 0 ;\\
+                (0,0), &\text{ if } (x,y) = (0,0).
+            \end{dcases}
+        \]
+        By a similar argument, we can prove that \(h^{-1}\) is continuous. Therefore \(h\) is indeed a homeomorphism.
+
+        Since \([0,1]^2 \cong [-1,1]^2 \cong \cl{B}(0,1)\), \([0,1]^2 \cong \cl{B}(0,1)\) by transitivity.
+        
+    \end{proof}
+
+    \subsubsection{Lemma 6.44}
+
+    \textbf{Solvers:} Ali, Ethan, Samip
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(X\) be a vector space with finite dimension \(n\) equipped with an arbitrary norm \(\|\cdot\|\). Define the linear isomorphism \(\Phi: X \to \mathbb{R}^n\) by
+    \[
+        \Phi (\vec{x}) = (x_1, ..., x_n) \text{, where } \vec{x} = \sum_{i=1}^n x_i \vec{b_i} \text{, } \{b_1, ..., b_n\} \text{ is a basis for } X \text{.}
+    \]
+    Define \(\|\cdot\| _1\) on \(X\) as
+    \[
+        \|\vec{x}\| _1 = \|\Phi (\vec{x})\| _1
+    \]
+    Note that the norm on the right hand side is the 1-norm in \(\mathbb{R}^n\). Next, we introduce a lemma that has already been proven.
+
+    \noindent\textbf{Lemma 6.43.} The closed unit ball of \((X,\|\cdot\| _1)\) is compact.
+
+    \noindent\textbf{Corollary.} The unit circle in \((X, \|\cdot\| _1)\) is compact.
+
+    This follows from the fact that the unit circle is a closed subset of the closed unit ball.
+    
+    \noindent Now, we prove the following lemma:
+
+    \noindent\textbf{Lemma 6.44.} There exists a constant \(m > 0\) such that \(m\|\vec{x}\| _1 \leq \|\vec{x}\|\) for all \(\vec{x} \in X\).
+
+    \begin{proof}
+        Let \(C'\) denote the unit circle in \((X,\|\cdot\| _1)\). Define a function \(f: C' \to \mathbb{R}\) by
+        \[
+            f(\vec{x}) = \frac{\|\vec{x}\|}{\|\vec{x}\| _1} \text{.}
+        \]
+        Since \(C'\) is compact, by the generalized EVT, \(f\) attains a minimum \(m\). Notice that since norms are positive, \(f(\vec{x}) > 0\), so \(m > 0\). We claim that this \(m\) is the value we are looking for. That is, \(m\|\vec{x}\| _1 \leq \|\vec{x}\|\) is true for all \(\vec{x} \in X\).
+
+        If \(\vec{x} = \vec{0}\), then the inequality follows immediately.
+
+        Otherwise, for \(\vec{x} \in X \setminus \{\vec{0}\}\), notice that \(\dfrac{\vec{x}}{\|x\| _1} \in C'\), so
+        \[
+            f \left( \dfrac{\vec{x}}{\|x\| _1} \right) = \frac{\left\lVert \dfrac{\vec{x}}{\|x\| _1} \right\rVert }{\left\lVert \dfrac{\vec{x}}{\|x\| _1} \right\rVert _1} \geq m \implies \dfrac{\frac{1}{\|\vec{x}\| _1} \|\vec{x}\|}{\frac{1}{\|\vec{x}\| _1}\|\vec{x}\| _1} \geq m \implies \|\vec{x}\| \geq m\|\vec{x}\| _1
+        \]
+        and the proof is complete.
+
+    \end{proof}
+
+    \subsubsection{Exercise 7.16. Chain Rule}
+
+    \textbf{Solvers:} Ali, Ethan, Ryan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(X,Y,Z\) be normed vector spaces, and \(g: X \to Y\), \(f: Y \to Z\) be functions. For some \(p \in X\), suppose that \(g\) is totally differentiable at \(p\) and \(f\) is totally differentiable at \(g(p)\). Then the function \(f \circ g\) is totally differentiable at \(p\), and \((f \circ g)' = f'(g(p)) \circ g'(p)\).
+
+	\begin{proof}
+		Let \(L_f = f'(g(p))\) and \(L_g = g'(p)\). First, let's prove that \(L_f \circ L_g\) is a linear bounded operator. For \(a,b \in X\), \(c \in \mathbb{R}\),
+		\[
+			L_f(L_g(ca + b)) = L_f(cL_g(a) + L_g(b)) = cL_f(L_g(a)) + L_f(L_g(b))
+		\]
+		Thus \(L_f \circ L_g\) is linear. Now, since \(L_f, L_g\) are bounded linear operators, there exist constants \(M_f, M_g > 0\) such that for all \(x \in X\), \(y \in Y\),
+		\[
+			\|L_f(y)\| _Z \leq M_f \|y\| _Y \text{ and } \|L_g(x)\| _Y \leq M_g \|x\| _X
+		\]
+		Then we have that for all \(x \in X\),
+		\[
+			\|L_f(L_g(x))\| _Z \leq M_f\|L_g(x)\| _Y \leq M_f \cdot M_g \|x\| _X
+		\]
+		so it is bounded as well. Now we can move on to the long part of the proof.
+  
+		Let \(\varepsilon > 0\). By our assumption, there exists positive numbers \(\delta _f , \delta _g\) such that for \(h_f, h_g\) with \(\|h_f\| _X < \delta _f\), \(\|h_g\| _X < \delta _g\),
+		\[
+			\|f(g(p) + h_f) - f(g(p)) - L_f(h_f)\| _Z \leq \min \left\{\sqrt{\varepsilon}, \frac{\varepsilon}{4M_g}\right\} \|h_f\| _X \tag{1}
+		\]
+		and
+		\[
+			\|g(p+h_g) - g(p) - L_g(h_g)\| _Y \leq \min \left\{\frac{\sqrt{\varepsilon}}{4}, \frac{\varepsilon}{2M_f}\right\} \|h_g\| _X \tag{2}
+		\]
+		As well, since \(g\) being totally differentiable at \(p\) implies continuity at \(p\), then for all \(\|h_c\| _X < \delta _c\),
+		\[
+			\|g(p + h_c) - g(p)\| < \delta _f \tag{3}
+		\]
+		Define \(\varepsilon _f = \min \left\{\sqrt{\varepsilon}, \frac{\varepsilon}{4M_g}\right\}\) and \(\varepsilon _g = \min \left\{\frac{\sqrt{\varepsilon}}{4}, \frac{\varepsilon}{2M_f}\right\}\), and let \(\delta = \min \{\delta_g, \delta_c, r\}\). For \(h \in X\) with \(\|h\| _X < \delta\),
+		\[
+			\frac{\|f(g(p+h)) - f(g(p)) - L_f(L_g(h))\| _Z}{\|h\| _X}
+		\]	
+		\[
+			\leq \frac{\|f(g(p+h)) - f(g(p)) - L_f(g(p + h) - g(p))\| _Z + \|L_f(g(p+h) - g(p) - L_g(h))\| _Z}{\|h\| _X}
+		\]
+		Consider the first term. Because of (3), we can apply (1) with \(h_f = g(p + h) - g(p)\) and get that
+		\[
+			\frac{\|f(g(p+h)) - f(g(p)) - L_f(g(p + h) - g(p))\| _Z}{\|h\| _X} < \frac{\|g(p+h) - g(p)\|}{\|h\| _X}\varepsilon _f
+		\]
+		Then applying (2) with \(h_g = h\),
+		\[
+			\leq \frac{\|g(p+h) - g(p) - L_g(h)\| _Y + \|L_g(h)\| _Y}{\|h\| _X}\varepsilon _f \leq \frac{\sqrt{\varepsilon}}{4}\varepsilon _f + M_g \varepsilon _f \leq \frac{\sqrt{\varepsilon}}{4}\sqrt{\varepsilon} + M_g \frac{\varepsilon}{4 M_g}
+		\]
+		\[
+			= \frac{\varepsilon}{2}
+		\]
+		Now, we examine the second term. Using the fact that \(L_f\) is a bounded linear operator and (2),
+		\[
+			\frac{\|L_f(g(p+h) - g(p) - L_g(h))\| _Z}{\|h\| _X} \leq \frac{M_f \|g(p+h) - g(p) - L_g(h)\| _Y}{\|h\| _X} < \frac{M_f \varepsilon}{2M_f} = \frac{\varepsilon}{2}
+		\]
+		Adding the two together we conclude that
+		\[
+			\frac{\|f(g(p+h)) - f(g(p)) - L_f(g(p + h) - g(p))\| _Z + \|L_f(g(p+h) - g(p) - L_g(h))\| _Z}{\|h\| _X}
+		\] 
+		\[
+			< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+		\]
+		and we are done.
+
+	\end{proof}
+
+    \subsubsection{Exercise 8.12 (c) (iii)}
+
+    \textbf{Solvers:} Ethan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(U \subseteq \mathbb{R}^n\) be an open set and let \(f: U \to \mathbb{R}\) be a scalar function. Then if all partial derivatives exist and are continuous on \(U\), then \(f\) is continuously differentiable and \(f'(p)\) is given by \(f'(p)(v) = D_v f(p)\).
+
+    \textcolor{red}{Recall the statement in (ii): There exists a point \(q_k \in U\) such that
+    \[
+        \frac{f(p_k) - f(p_{k-1})}{h_k} = \frac{\partial f}{\partial x_k} (q_k)
+    \]
+    We make the additional distinction that \(q_k\) is of the form \(p_{k-1} + \gamma e_k\), where \(|\gamma| < |h_k|\).}
+
+    \begin{proof}
+        Define \(\|\cdot\|\) on \(U\) to be the 1-norm.
+
+        Let \(L_p = f'(p)\). We will show that \(\dfrac{|f(p+h) - f(p) - L_p(h)|}{\|h\|} \to 0\).
+
+        Let \(\varepsilon > 0\). Utilising part (i), we define a sequence of points \(p_0, ..., p_n \in X\) by
+        \[
+            p_0 = p \text{ and } p_i = p_{i-1} + h_i e_i \text{.} 
+        \]
+        We know that for \(\|h\|\) smaller than some positive \(\delta _1\), \(p_i \in U\). By the uniform continuity of \(\dfrac{\partial f}{\partial x_i}\) there is also a \(\delta _2\) such that for all \(a,b \in U\) such that \(\|a-b\| <\delta _2\), \(\left\vert\dfrac{\partial f}{\partial x_i} (a-b)\right\vert < \varepsilon\).
+
+        Let \(\delta = \min \{\delta _1, \delta _2 \}\). Let \(h \in U\) so that \(\|h\| < \delta\). Notice that \(p+h = p_n\) and \(p = p_0\). We have that
+        \[
+            \frac{|f(p+h) - f(p) - L_p(h)}{\|h\|} = \frac{|f(p_n) - f(p_0) - L_p(h)|}{\|h\|}
+        \]
+        We can expand the numerator by adding and subtracting every term \(p_i\) and substituting
+        \[
+            L_p(h) = D_h f (p) = \sum_{i=1}^n h_i \dfrac{\partial f}{\partial x_i}(p) \text{,} 
+        \]
+        which yields
+        \[
+            \frac{\left\vert \sum\limits_{i=1}^n \left(f(p_i) - f(p_{i-1}) - h_i\dfrac{\partial f}{\partial x_i}(p) \right)\right\vert}{\|h\|} \leq \sum_{i=1}^n \frac{\left\vert f(p_i) - f(p_{i-1}) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert }{\|h\|} \text{.} 
+        \]
+        Now, by part (ii), we can rewrite \(f(p_i) - f(p_{i-1})\) as \(h_i \dfrac{\partial f}{\partial x_i} (q_i)\), for some \(q_i \in U\), so the expression becomes
+        \[
+            \sum_{i=1}^n \frac{\left\vert h_i \dfrac{\partial f}{\partial x_i} (q_i) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert}{\|h\|} = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert
+        \]
+        Note that \(p_i\) can also be written as \(p + \sum_{j=1}^i h_j e_j\). Thus we can say that \(q_i = p_{i-1} + \gamma e_i = p + \gamma e_i + \sum_{j=1}^{i-1} h_j e_j\). We get that
+        \[
+            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert
+        \]
+        We see that the norm of the argument inside the partial derivative is
+        \[
+            \left\lVert \gamma e_i + \sum_{j=1}^{i-1} h_j e_j \right\rVert \leq |\gamma| + \sum_{j=1}^{i-1} |h_j| < \sum_{j=1}^i |h_j| \leq \sum_{j=1}^n |h_j| = \|h\| < \delta _2 \text{,} 
+        \]
+        so by the continuity of \(\dfrac{\partial f}{\partial x_i}\),
+        \[
+            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert < \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \cdot \varepsilon = \frac{\|h\|}{\|h\|} \cdot \varepsilon = \varepsilon
+        \]
+        and the proof is complete.
+
+    \end{proof}
+
+
+
+
+    \subsection{Not Written by Me}
+    \subsubsection{Exercise 0.6.}
+
+    \textbf{Solvers:} Ethan, Hana, Ryan
+
+    \textbf{Writeup:} Ryan
+
+    Let \(K=[a,b]\) be a closed, bounded interval and let \(f:K\rightarrow \R\) be a continuous function. Prove that \(f(K)\) is also a closed, bounded interval.
+
+    \begin{proof}
+        To show that \(f(K)\) is a bounded interval, recall that for an interval to be bounded, \(\forall x\in K\), there must exist some \(c,d\in\real\) such that \(c\leq f(x)\leq d\).
+        
+        As the function \(f\) is a continuous function on \(K\) from the question statement, we use the Extreme Value Theorem, and determine that \(f\) has a minimum \(m\) and a maximum \(M\) on \(K\).
+        Thus, we have it that \(\forall x \in K, m \leq f(x)\leq M\). Thus, \(f(K)\) is bounded.
+        \\\\
+        % For \(f(K)\) to be a closed interval, all points within the interval of \(f(K)\) must be included within \(f(K)\), endpoints included.\\
+        % As established previously, \(f(k)\) has both a max and a min, \(m\) and \(M\) respectively. Define \(x_\text{min}, x_\text{max}\) such that \(f(x_\text{min}) = m\) and \(f(x_\text{max}) = M\).
+        % Let \(y\in f(K)\). Since we know that \(f(K)\) is continuous and \(f(x_\text{min}) \leq y \leq f(x_\text{max})\), we can use Intermediate Value Theorem (IVT) and conclude that \(\exists x\in K\) such that \(f(x) = y\).\\
+        % As such, \(f(K)\) is closed.
+        To prove that \(f(K)\) is a closed interval, begin by assuming that \(f(K)\) is an open interval.
+        This means that there is no \(y\in f(K)\) such that either \(f(a) = y\) or \(f(b) = y\). (Note that the \(y\) value specified can be different for \(f(a),f(b)\), respectively).
+        Since \(f(K)\) is bounded, we know that \(f(K)\) has both a minimum and a maximum. Call the minimum \(m\) and the maximum \(M\). Define \(x_\text{min}, x_\text{max}\) such that \(f(x_\text{min}) = m\) and \(f(x_\text{max}) = M\).\\
+        \\\\
+        Let \(y\in f(\left[a,b\right])\) (or \(f(K)\)). Since we know that \(f(K)\) is continuous and \(f(x_\text{min}) \leq y \leq f(x_\text{max})\), we can use Intermediate Value Theorem (IVT) and conclude that \(\exists x\in K\) such that \(f(x) = y\). This indicates that every y value in \(f(K)\) has atleast one associated \(x\) such that \(f(x) = y\).
+        \\\\
+        This means, that for some \(y_a, y_b \in f(K)\), \(f(a) = y_a\) and \(f(b) = y_b\). This contradicts our earlier statement, of which there was no \(y\) value in \(f(K)\) such that \(f(a) = y\) or \(f(b) = y\).
+        \\\\
+        Thus, \(f(K)\) must be a closed interval.
+    \end{proof}
+
+    \subsubsection{Exercise 2.21}
+
+    \noindent\textbf{Solvers:} Sanchit, Udo, Ethan
+
+    \noindent\textbf{Writeup:} Sanchit
+
+    What can be said about $\overline{A \cup B}$?
+
+    \noindent \textbf{Note:} For notation we denote $\{1,\ldots,n\} = [n]$
+
+    \textbf{Claim 1.} Let $(X,d)$ be a metric space, then for $X_i \subseteq X$ for $i \in \N$ we have $\overline{\bigcup\limits_{i \in \N} X_i} = \bigcup\limits_{i \in \N} \overline{X_i}$.
+
+    \begin{proof}
+        First we show $\overline{\bigcup\limits_{i \in \N} X_i} \subseteq \bigcup\limits_{i \in \N} \overline{X_i}$.\\
+        Let $x \in \overline{\bigcup\limits_{i \in \N} X_i}$ be arbitrary, then for all $\varepsilon > 0$, $B(x,\varepsilon) \cap \bigcup\limits_{i \in \N} X_i \neq \varnothing$. Then we see that for all $\varepsilon > 0$, $\bigcup\limits_{i \in \N} B(x,\varepsilon) \cap X_i \neq \varnothing$ as intersection distributes over union. However this implies there exists an $k \in \N$ such that for all $\varepsilon > 0$, $B(x,\varepsilon) \cap X_k \neq \varnothing$ and thus $x \in \overline{X_k}$ and so $x \in \bigcup\limits_{i \in \N} \overline{X_i}$. Thus $\overline{\bigcup\limits_{i \in \N} X_i} \subseteq \bigcup\limits_{i \in \N} \overline{X_i}$.
+
+        \bigskip
+
+        \noindent Next we show $\bigcup\limits_{i \in \N} \overline{X_i} \subseteq \overline{\bigcup\limits_{i \in \N} X_i}$.\\
+        Let $x \in \bigcup\limits_{i \in \N} \overline{X_i}$ be arbitrary, then there exists $k \in \N$ such that $x \in \overline{X_k}$. Then by definition we see that for all $\varepsilon > 0$, $B(x,\varepsilon) \cap X_k \neq \varnothing$. However this implies that for all $\varepsilon > 0$, $B(x,\varepsilon) \cap \bigcup\limits_{i \in \N} X_i \neq \varnothing$. However this implies $x \in \overline{\bigcup\limits_{i \in \N} X_i}$. Thus $\bigcup\limits_{i \in \N} \overline{X_i} \subseteq \overline{\bigcup\limits_{i \in \N} X_i}$.
+
+        \bigskip
+
+        \noindent By double subset inclusion we conclude that $\overline{\bigcup\limits_{i \in \N} X_i} = \bigcup\limits_{i \in \N} \overline{X_i}$.
+    \end{proof}
+
+    \textbf{Claim 2.} Let $(X,d)$ be a metric space and let $\Omega \subseteq \mathcal{P}(X)$ be a collection of subsets of $X$. Then we have $\bigcup\limits_{X' \in \Omega} \overline{X'} \subseteq \overline{\bigcup\limits_{X' \in \Omega} X'}$.
+
+    The difference between this claim and the result from the previous claim is that the previous claim only holds for finitely many sets. However this claim holds for an arbitrary amount of sets.
+
+    \begin{proof}
+        Let $x \in \bigcup\limits_{X' \in \Omega} \overline{X'}$ be arbitrary, then there exists $X' \in \Omega$ such that $x \in \overline{X'}$. Then by definition we see that for all $\varepsilon > 0$, $B(x,\varepsilon) \cap X' \neq \varnothing$. However this implies that for all $\varepsilon > 0$, $B(x,\varepsilon) \cap \bigcup\limits_{X' \in \Omega} X' \neq \varnothing$. However this implies $x \in \overline{\bigcup\limits_{X' \in \Omega} X'}$. Thus $\bigcup\limits_{X' \in \Omega} \overline{X'} \subseteq \overline{\bigcup\limits_{X' \in \Omega} X'}$.
+    \end{proof}
+
+    \textbf{Claim 3.} Let $(X,d)$ be a metric space, then for $X_i \subseteq X$ for $i \in \NA$ we do \textbf{NOT} have $\overline{\bigcup\limits_{i \in \NA} X_i} \subseteq \bigcup\limits_{i \in \NA} \overline{X_i}$.
+
+    \begin{proof}
+        Consider the following counter example:\\
+        Let $(X,d) = (\R, |\cdot|)$ and define $X_i = \left[0, 1-\frac{1}{i}\right]$.
+        Now we see that $\overline{X_i} = \left[0, 1-\frac{1}{i}\right]$ and thus $$\bigcup\limits_{i \in \NA} \overline{X_i} = \bigcup\limits_{i \in \NA} X_i = [0,1)$$
+        However then one sees that $$\overline{\bigcup\limits_{i \in \NA} X_i} = \overline{[0,1)} = [0,1]$$
+        One trivially verifies $[0,1] \not\subseteq [0,1)$.
+    \end{proof}
+
+    \subsubsection{Exercise 3.12.}
+
+    \noindent\textbf{Solvers:} Ethan, Jaohar, Ali.
+
+    \noindent\textbf{Writeup:} Ali.
+
+    \bigskip
+    \noindent \textbf{Lemma:} $\Q^n$ is dense in $\R^n$ (with respect to $||\cdot||_2$), for any $n\in\Z^+$.
+    \begin{proof}
+        Let $n\in\Z^+$ be arbitrary. To show that $\Q^n$ is dense in $\R^n$, it is sufficient to show that $\forall \vec{x}\in \R^n, \forall \epsilon>0, B(x, \epsilon)\cap\Q^n\neq\emptyset$. Let $\vec{x}\in\R^n$ be arbitrary\\\\
+        We can express $\vec{x}$ as an n-tuple $(x_1,\ldots,x_n)$. For every $i\in\N$ with $1\leq i\leq n$, let $q_i\in (x_i-\epsilon/\sqrt{n}, x_i+\epsilon/\sqrt{n})\cap\Q$ be arbitrary, by the density of $\Q$ in $\R$. Let $\vec{q} = (q_1,\ldots,q_n)$. $\vec{q}\in\Q^n$. Then $||\vec{q}-\vec{x}||_2 = \sqrt{\sum_{i=1}^n (q_i-x_i)^2} < \sqrt{\sum_{i=1}^n \frac{\epsilon^2}{n}} = \sqrt{n\cdot\frac{\epsilon^2}{n}}=\epsilon$. Therefore $\vec{q}\in B(x,\epsilon)\cap\Q^n$, as needed.\\
+        $\Q^n$ is dense in $\R^n$ (with respect to $||\cdot||_2$)
+    \end{proof}
+    Let $x\in\R^d$. Prove that there exists a sequence $(q_n)$ of points in $\Q^d$ such that $q_n\to x$ (with respect to $||\cdot||_2$).
+    \begin{proof}
+        Let $x\in\R^d$ be arbitrary. By the lemma, we know that $B(x,1/n)\cap\Q^d$ is non empty, for any point $x\in\R^d$ and any positive real number $n$. Define $q_n$ as any arbitrary element in the non-empty set $B(x,1/n)\cap\Q^d$.\\\\
+        Now, we show that $(q_n)$ converges to $x$.\\
+        Let $\epsilon>0$ be arbitrary. Let $N\in \N$ be chosen such that $1/N<\epsilon$. Then $\forall n\geq N$, $q_n\in B(x,1/n)$. Thus $||q_n - x||_2<1/n\leq 1/N< \epsilon$, as needed.\\
+        We have shown that $\forall\epsilon>0,\exists N\in\N, \forall n\in\N, (n\geq N)\implies(||q_n-x||_2<\epsilon)$. Therefore $q_n\to x$.
+    \end{proof}
+
+    \subsubsection{Exercise 4.24.}
+
+    \textbf{Solvers:} Sanchit, Ethan
+
+    \textbf{Writeup:} Sanchit
+
+    Let $X,Y$ be metric spaces and let $f:X\rightarrow Y$ be a continuous function. If $A\subseteq X$ is compact, does it follow that $f(A)$ is also compact? If $B\subseteq Y$ is compact, does it follow that $f^{-1}(B)$ is also compact?
+
+    \bigskip
+
+    $f(A)$ is also compact.
+    \begin{proof}
+        Let $\{U_n\}_{n \in \N}$ be an open cover of $f(A)$. We see as $f$ is continuous we have that the preimage of an open set must be open and so the preimage of $U_n$ must be open for each $n \in \N$. We then see that $\{f^{-1}(U_n)\}_{n \in \N}$ forms a collection of open sets. Now as for each $x \in A$ we have $f(x) \in f(A) \subseteq \bigcup\limits_{n \in \N} U_n$, we then have $f(x) \in U_k$ for some $k \in \N$ and so $x \in f^{-1} (U_k)$. We then have $A \subseteq \bigcup\limits_{n \in \N} f^{-1}(U_n)$ and so $\{f^{-1}(U_n)\}_{n \in \N}$ is an open cover of $A$. Now we have by the compactness of $A$ that it permits a finite subcover $\{f^{-1}(U_n)\}_{n \in I}$ where $I \subseteq \N$ is a finite set. We then see that $f(A) \subseteq \bigcup\limits_{n \in I} U_n$ and so $\{(U_n)\}_{n \in I}$ is a finite subcover of $f(A)$.
+    \end{proof}
+
+    $f^{-1}(B)$ is not compact. Consider the following counter example.
+    \begin{proof}[Counter Example]
+        Consider $f: \R \to \R$ defined by $f(x) = \sin (x)$
+
+        It is known that $[-1, 1]$ is compact and we have that $f^{-1}([-1,1]) = \R$, however $\R$ is not compact as it is unbounded in $\R$.
+    \end{proof}
+
+    Unfortunately we see that even if we restrict $f$ to being uniformly continuous the above counter example still holds.
+
+    \bigskip
+
+    Consider the follow up where we restrict $X$ to be compact.
+
+    \begin{proof}
+        Let $B$ be compact in $Y$, then we see that $B$ is closed. Now as $f$ is continuous we have $f^{-1}(B)$ is closed in $X$. Now by the theorem that a closed subset of a compact space is compact we have that $f^{-1}(B)$ is compact.
+    \end{proof}
+
+    \subsubsection{Exercise 6.28}
+    
+    \textbf{Solvers:} Sanchit, Ethan, Udo
+
+    \textbf{Writeup:} Sanchit
+
+    Show that if $X$ is a finite set, then any two metrics on $X$ are topologically equivalent.
+
+    \begin{proof}
+        Let $d_1$ and $d_2$ be two metrics on $X$. Now let $U$ be an open set in $(X,d_1)$, we show it is open in $(X,d_2)$. We have that for all $x \in U$, there exists $\varepsilon > 0$ such that $B_1(x, \varepsilon) \subseteq U$. Fix $k = \min\{d_2(x,y) \mid y \in X \setminus \{x\}\}$. We see that $k$ exists by the finiteness of $X$, moreover it is non zero. Now we see that $B_2(x,k) = \{x\}$. We see that $\{x\}$ is open as $B_2(x,k) \subseteq \{x\}$ and so its only point $x$ is an interior point. We see then that $B_2(x,k) \subseteq B_1(x,\varepsilon) \subseteq U$. Thus $x$ is an interior point of $U$ in $(X,d_1)$. Thus we see that if $U$ is open in $(X,d_1)$ then it is open in $(X,d_2)$. The proof for the reverse direction follows similarly. Thus we see that any two metrics on $X$ are topologically equivalent.
+    \end{proof}
+
+
+
+
+
+
+    \section{Original Work}
+    \begin{thm}
+        Let \((X, d)\) be a separable metric space. Then \(A \subseteq X\) is separable with respect to the metric \(d\).
+    \end{thm}
+    \begin{proof}
+        Since \(X\) is separable, it is pre-totally bounded. We will show that a metric subspace \(A\) is separable by showing that it is pre-totally bounded.
+
+        Let \(\varepsilon > 0\). Since \(X\) is pre-totally bounded, there exists a finite collection of open balls \(\{ B(x_i, \frac{\varepsilon}{2})\}_{i\leq n}\) that covers \(X\). We define the desired collection of open balls in \(A\) with the following method:
+
+        If \(B(x_i, \frac{\varepsilon}{2})\) contains some element \(a_i \in A\), we add \(B_A(a_i, \varepsilon)\) to the collection. Notice for \(a \in B(x_i, \frac{\varepsilon}{2}) \cap A\),
+        \[
+            d(a,a_i) \leq d(x, a) + d(x,a_i) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \text{,} 
+        \]
+        which implies that \(B(x_i, \frac{\varepsilon}{2}) \subseteq B_A(a_i, \varepsilon)\).
+
+        Continuing on, the number of open balls in this collection is at most the number of open balls in the original collection in \(X\), so \(\{B_A(a_i, \varepsilon)\}\) is finite.
+
+        It remains to show that the collection covers \(A\). Let \(a \in A\). Then \(a \in B(x_i, \frac{\varepsilon}{2})\) for some \(i\). It follows that \(a \in B(x_i,\frac{\varepsilon}{2})\cap A \subseteq B_A(a_i, \varepsilon)\). Thus \(A\) is covered by this collection, so \(A\) is pre-totally bounded.
+
+        Thus we can conclude that \(A\) is separable.
+
+    \end{proof}
+
+    \begin{thm}
+        Let \(X,Y\) be metric spaces let and \(f \colon C \to X\) be a continuous function. If \(A \subseteq X\) is seperable, then \(f(A)\) is seperable.
+    \end{thm}
+    \begin{proof}
+        Define \(d_X\) and \(d_Y\) to be metrics on \(X\) and \(Y\) respectively. Suppose that \(A\) is seperable. We will show that \(f(A)\) is seperable by equivalently showing that it is pre-totally bounded.
+
+        Let \(\varepsilon > 0\). By the continuity of \(f\), for every \(a \in A\), there exists \(\delta > 0\) such that for all \(x \in A\), \(d_X(x, a) < \delta \implies d_Y(f(x), f(a)) < \varepsilon\). Keep this value of \(\delta\).
+
+        Since \(A\) is seperable, \(A\) is pre-totally bounded. By definition, \(A\) is covered by a countable subcover \(\{B_X(a_i, \delta)\}_{i\in\mathbb{N}}\).
+
+        Consider the countable collection \(\{B_Y(f(a_i), \varepsilon)\}_{i\in\mathbb{N}}\). We will show that this collection covers \(f(A)\). Let \(y \in f(A)\). Then \(y = f(x)\) for some \(x \in A \subseteq \{B_X(a_i, \delta)\}_{i\in\mathbb{N}}\). This implies that \(x\) is an some open ball \(B_X(a_k, \delta) \implies d_X(x, a_k) < \delta\). By the continuity of \(f\), this implies that \(d_Y(y, f(a_k)) = d_Y(f(x), f(a_k)) < \varepsilon \implies y \in B_Y(f(a_k), \varepsilon) \subseteq \{B_Y(f(a_i), \varepsilon)\}_{i\in\mathbb{N}}\).
+
+        We see that \(f(A)\) is pre-totally bounded, which implies that \(f(A)\) is seperable.
+        
+    \end{proof}
+\end{document}

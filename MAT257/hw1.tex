@@ -65,7 +65,7 @@
 \exercise \due{9/13}
     Let $X,Y,Z$ be three vector spaces. Prove that $L^2(X,Y;Z)$ is isomorphic to $L(X,L(Y,Z))$.
 
-   (For two vector spaces $X,Y$, we use $L(X,Y)$ to denote the space of linear mappings from $X$ to $Y$. For three vector spaces $X,Y,Z$, and a a function $\beta:X\times Y\rightarrow Z$, we let $\beta(\,\cdot\,,y_0)$ denote the function $X\rightarrow Z$ given by $x\mapsto \beta(x,y_0)$, where $y_0\in Y$ is some fixed vector; this is called the \textbf{$y_0$-slice} of $\beta$. The \textbf{$x_0$-slice} $\beta(x_0, \,\cdot\,)$ is defined similarly.
+   (For two vector spaces $X,Y$, we use $L(X,Y)$ to denote the space of linear mappings from $X$ to $Y$. For three vector spaces $X,Y,Z$, and a a function $\beta:X\times Y\rightarrow Z$, we let $\beta(\,\cdot\,,y_0)$ denote the function $X\rightarrow Z$ given by $x\mapsto \beta(x,y_0)$, where $y_0\in Y$ is some fixed vector; this is called the \textbf{$y_0$-slice} of $\beta$. The \textbf{$x_0$-slice} $\beta(x_0, \,\cdot\,)$ is defined similarly.)
 
    \begin{proof}
         For a bilinear map \(T \in L^2(X,Y;Z)\), \((x,y) \in X \times Y\), Define \(\phi : L^2(X,Y;Z) \to L(X,L(Y,Z))\) such that
@@ -89,18 +89,18 @@
     Let $I=(a,b)$ and $J=(c,d)$ be two open intervals on the real line. Let $f:I\rightarrow J$ be an increasing function such that $f(I)$ is dense in $J$. Prove that $f$ is continuous.
 
     (For two sets $D,S\subseteq \R$ we say that $D$ is \textbf{dense} in $S$ if $D\cap (s-\varepsilon,s+\varepsilon)\neq\varnothing$ for all $s\in S$ and all $\varepsilon>0$.)
-\begin{proof}
-    Fixing an \(a \in I\), let \(\varepsilon > 0\). We can assume without loss of generality that \(\varepsilon \) is small enough that \((f(a) - \varepsilon , f(a) + \varepsilon ) \subseteq J\). Since \(f(I)\) is dense in \(J\), we can always find an \(y_1 \in (f(a) - \varepsilon , f(a)) \text{ and } y_2 \in (f(a), f(a) + \varepsilon )\) such that \(y_1 , y_2 \in f(I)\), which means \(y_1 = f(x_1) \text{ and } y_2 = f(x_2)\) for some \(x_1, x_2 \in I\).
+    \begin{proof}
+        Fixing an \(a \in I\), let \(\varepsilon > 0\). We can assume without loss of generality that \(\varepsilon \) is small enough that \((f(a) - \varepsilon , f(a) + \varepsilon ) \subseteq J\). Since \(f(I)\) is dense in \(J\), we can always find an \(y_1 \in (f(a) - \varepsilon , f(a)) \text{ and } y_2 \in (f(a), f(a) + \varepsilon )\) such that \(y_1 , y_2 \in f(I)\), which means \(y_1 = f(x_1) \text{ and } y_2 = f(x_2)\) for some \(x_1, x_2 \in I\).
 
-    Take \(\delta = \min \{\lvert a - x_1 \rvert , \lvert a - x_2 \rvert \}\). Let \(x \in I\). Suppose that \(\lvert x - a \rvert\leq \delta \). If \(x = a\), clearly \(\lvert f(x) - f(a) \rvert < \varepsilon \). Consider when \(x < a\).
+        Take \(\delta = \min \{\lvert a - x_1 \rvert , \lvert a - x_2 \rvert \}\). Let \(x \in I\). Suppose that \(\lvert x - a \rvert\leq \delta \). If \(x = a\), clearly \(\lvert f(x) - f(a) \rvert < \varepsilon \). Consider when \(x < a\).
 
-    We see that due to the choice of \(\delta \), we have that \(x_1 < x < a\). Using the fact that \(f\) is increasing, we obtain
-    \[
-        f(a) - \varepsilon < y_1 = f(x_1) < f(x) < f(a) \implies - \varepsilon < f(x) - f(a) < 0 \implies f(a) - f(x) = \lvert f(x) - f(a) \rvert < \varepsilon 
-    \] 
-    The argument for the case when \(x < a\) is almost the exact same, except for the use of \(x_2 \text{ and } y_2\) instead of \(x_1\) and \(y_1\), as well as the inequalities being swapped.
+        We see that due to the choice of \(\delta \), we have that \(x_1 < x < a\). Using the fact that \(f\) is increasing, we obtain
+        \[
+            f(a) - \varepsilon < y_1 = f(x_1) < f(x) < f(a) \implies - \varepsilon < f(x) - f(a) < 0 \implies f(a) - f(x) = \lvert f(x) - f(a) \rvert < \varepsilon 
+        \] 
+        The argument for the case when \(x < a\) is almost the exact same, except for the use of \(x_2 \text{ and } y_2\) instead of \(x_1\) and \(y_1\), as well as the inequalities being swapped.
 
-    With this, we can conclude that \(f\) is continuous.
+        With this, we can conclude that \(f\) is continuous.
 
-\end{proof}
+    \end{proof}
 \end{document}
