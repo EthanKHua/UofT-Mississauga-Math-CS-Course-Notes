@@ -100,7 +100,7 @@
         \leq \frac{1}{|h|} \int _a^b \left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x} (x_0,t) \right\vert dt
     \]
     \[
-        < \frac{1}{|h|}\int _a^b \frac{|h|\varepsilon}{b-a}dt <\varepsilon
+        < \frac{1}{|h|}\int _a^b \frac{|h|\varepsilon}{b-a}dt =\varepsilon
     \]
     as desired. Thus we have found an expression for \(\varphi ' (x_0)\).
 
@@ -174,17 +174,80 @@
         \tcblower
         (a):
 
-        We claim that \(f''(2,-1) : \mathbb{R}^2 \to B(\mathbb{R}^2,\mathbb{R})\) is a bounded linear map which is represented by the matrix
+        We claim that \(f''(2,-1) : \mathbb{R}^2 \to B(\mathbb{R}^2,\mathbb{R})\) is a bounded linear map given by
         \[
-            [f''] = \begin{bmatrix}
-                2 & -1 \\
-                -1 & 2 \\
-            \end{bmatrix}
+            f''(2,-1)(p,q)(x,y) = (2p - q)x - (p - 2q)y
         \]
+        Let \((p,q), (r,s) \in \mathbb{R}^2\) and \(c \in \mathbb{R}\). Then for all \((x,y) \in \mathbb{R}^2\),
+        \[
+            f''(2,-1)(cp + r, cq + s)(x,y) = [2(cp + r) - (cq + s)]x - [(cp + r) - 2(cq + s)]y
+        \]
+        \[
+            = c[(2p - q)x - (p - 2q)y] + [(2r - s)x - (r - 2s)y] = cf''(2,-1)(p,q)(x,y) + f''(2,-1)(r,s)
+        \]
+        so \(f''(2,-1)\) is linear.
+
+        Recall that \(f'(p,q)(x,y) = (2p - q)x - (p - 2q)y\). In particular, for \((p,q) = (2,-1)\), \(f'(2,-1)(x,y) = 5x - 4y\).
+        
+        Fix \((x,y) \in \mathbb{R}^2\). Then
+        \[
+            \lim_{h \to 0} \frac{f'(2 + h_1, -1 + h_2)(x,y) - f'(2,-1)(x,y) - L_p(h)}{\|h\|}
+        \]
+        \[
+            = \lim_{h \to 0} \frac{[(5 + 2h_1 - h_2)x - (4 + h_1 - 2h_2)y] - [5x - 4y] - L_p(h)}{\|h\|}
+        \]
+        \[
+            = \lim_{h \to 0} \frac{(2h_1 - h_2)x - (h_1 - 2h_2)y - L_p(h)}{\|h\|} = 0
+        \]
+        which verifies that \(f''(2,-1)(p,q)(x,y) = (2p - q)x - (p - 2q)y\).
+
+        (b):
+
+        Let \(f : U \to \mathbb{R}\) be a function, where \(U\) is open in \(\mathbb{R}^n\).
 
         (b)(i):
 
+        Suppose that \(f\) is twice continuously differentiable. This implies that all its partial derivatives exist.
+
+        Consider an arbitrary partial derivative \(\dfrac{\partial f}{\partial x_i}\) for \(i \in \{1, ..., n\}\). It will be shown that each are continuously totally differentiable.
+
+
+        
+        Conversely, suppose that all second partial derivatives of \(f\) exist and are continuous. Since all first partial derivatives will exist and are continuous, then \(f\) is continuously differentiable, meaning that \(f'\) exists.
+
+        Let \(i \in \{1, ..., n\}\). We claim that \(\dfrac{\partial f'}{\partial x_i}\) exists and is continuous, where \(x_i\) represents the \(i\)th standard ordered basis vector of \(\mathbb{R}^n\).
+
+        Fix \(p \in \mathbb{R}^n\). Recall that \(f'(p)(\vec{v}) = \sum_{j=1} ^n v_j \frac{\partial f}{\partial x_j}(p)\) from the differentiability theorem. For \(\vec{v} \in \mathbb{R}^n\), we have that
+        \[
+            \lim_{h \to 0} \frac{f'(p + hx_i)(\vec{v}) - f'(p)(\vec{v})}{h} = \lim_{h \to 0} \sum_{j=1} ^n \frac{v_i}{h}\left( \frac{\partial f}{\partial x_j} (p + hx_i) - \frac{\partial f}{\partial x_j} (p) \right)
+        \]
+        Since all second partial derivatives exist, the limit evaluates to
+        \[
+            \sum_{j=1} ^n v_i \frac{\partial ^2 f}{\partial x_i \partial x_j} (p)
+        \]
+        By definition, this is the \(i\)th partial derivative of \(f'\).
+
+        Notice that it is also continuous, as it is a finite linear combination of second partial derivatives, which are continuous by assumption.
+        
+        Since we have that all partial derivatives of \(f'\) exist and are continuous, by the differentiability theorem, \(f'\) is continuously differentiable, which implies that \(f\) is twice continuously differentiable.
+
+        Therefore we can conclude that twice continuously differentiable is equivalent to having all second partial derivatives exist and continuous.
+
+        \medskip
+
         (b)(ii):
+
+        Suppose that \(f\) is twice continuously differentiabe. Consider the directional derivative \(D_v f\). We will show that for all \(p\in U\), \(D_v f(p) = f'(p)(v)\).
+
+        We can assume that \(p + v \in U\) by making \(\|v\|\) small enough. Define a function \(\alpha : [0,1] \to U\) by \(\alpha (t) = p + tv\). The derivative is given by \(\alpha '(t) = v\). Now, construct a new function \(g : \mathbb{R} \to \mathbb{R}\) defined by \(g(t) = (f \circ \alpha) (t)\). By the chain rule, we see that \(g'(t) = f'(\alpha (t)) (v)\).
+
+        Now, recall that
+        \[
+            D_v(p) = \lim_{h \to 0} \frac{f(p + hv) - f(p)}{h} = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = f'(\alpha (0))(v) = f'(p)(v),
+        \]
+        but we know by that \(f\) is twice continuously differentiable, so \(f'(p)(v) = D_v f\) is continuously differentiable.
+
+        \medskip
 
         (b)(iii):
 
