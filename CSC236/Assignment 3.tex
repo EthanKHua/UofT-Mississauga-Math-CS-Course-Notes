@@ -72,14 +72,16 @@ Let $ \Sigma = \{0,1\} $.
 	\item \textbf{(3 pts)} $ \Sigma^*\backslash\{K\}, K =\{01, 101, 010\}$
 	
 	\begin{proof}
-		\begin{figure}
-			\centering
-			\begin{tikzpicture}
-				\node[state,initial,accepting] (q0) {q0};
-				\node[state, right of=q0] (q1) {q1};
-			\end{tikzpicture}
-			\label{DFA for b)}
-		\end{figure}
+		Denote this language as \(L\). Define the regex \(r = 1+0+10+00\Sigma ^*+011\Sigma ^*+11\Sigma ^*+100\Sigma ^*\). It will be shown that \(\mathcal{L} (r) = L\).
+
+		Let \(w \in L\). Consider the case where \(|w| \leq 3\). Then the possible strings can be enumerated:
+		\[w \in \{0, 1, 00, 10, 11, 000, 001, 011, 100, 110, 111\}\]
+		It is quite clear that \(w \in \mathcal{L} (r)\).
+
+		\begin{tikzpicture}
+			\node[state,initial,accepting] (q0) {q0};
+			\node[state, right of=q0] (q1) {q1};
+		\end{tikzpicture}
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a palindrome}\} $
 	
@@ -101,7 +103,7 @@ Let $ \Sigma = \{0,1\} $.
 	\begin{proof}
 		Denote the language above as \(A\). It will be shown that the language above is equivalent to \(\Sigma ^*\) using double subset inclusion.
 
-		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language.
+		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then, since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language. The DFA that accepts \(A\) is the same DFA that accepts \(\Sigma ^*\) in part a).
 
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a binary representation of a multiple of 3}\} $
@@ -126,26 +128,59 @@ Let $ \Sigma = \{0,1\} $.
 			\end{tikzpicture}
 		\end{center}
 
-		It will be shown that this DFA correctly represents the language above. For all \(w \in \Sigma ^*\), denote \(n_w\) to be the number that \(w\) represents.
+		It will be shown that this DFA correctly represents the language above.
 
-		Define the following state invariants:
+		For \(k \in \{0, 1, 2\}\), define the following state invariants:
 		\[
-			P_i(w) : \delta (q_i, w) = q_i \iff w = \varepsilon
+			P_{q_i}(w) : \delta (q_i, w) = q_i \iff w = \varepsilon
 		\]
 		\[
-			P_k(w) : \delta (q_i, w) = q_k \iff n_w \equiv k \ \mathrm{mod}\ 3
+			P_{q_k}(w) : \delta (q_i, w) = q_k \iff w \equiv k \ \mathrm{mod}\ 3
 		\]
-		It will be proven that \(P(w) : P_i(w) \land P_k(w)\) for all \(w \in \Sigma ^*\) using structural induction. 
+		Trivially, these are exhaustive and mutually exclusive. It will be proven that these are valid state invariants.
 
-		\textbf{Base Case.} Let \(w = \varepsilon\). Since \(q_i\) is not the end state of any transition from any other state and \(\varepsilon\) does not represent any binary number, \(P_k(w)\) is vacuously true. To show that \(P_i(w)\), it is sufficient to say that \(\delta (q_i, w) = q_i\), which is obviously true. Thus \(P(\varepsilon)\) is true.
+		\textbf{Base Case.} Let \(w = \varepsilon\). To show that \(P_{q_i}(w)\), it is sufficient to say that \(\delta (q_i, w) = q_i\), which is obviously true. Thus \(P(\varepsilon)\) is true.
 
 		\medskip
 
-		\textbf{Induction Hypothesis.} Suppose that \(P(w)\) is true, for some \(w \in \Sigma ^*\). The goal is to show that \(P(w \sigma)\) is true for all \(\sigma \in \Sigma ^*\).
+		\textbf{Induction Hypothesis.} Let \(q \in \{q_i , q_0, q_1, q_2\}\), \(w \in \Sigma ^*\), \(\sigma \in \Sigma\). Suppose that \(P_q(w)\) is true. The goal is to show that \(P_{\delta (q,\sigma)}(w \sigma)\) is true.
 
 		\medskip
 
-		\textbf{Induction Step.} Consider the case when \(\sigma = 0\).
+		\textbf{Induction Step.} Case 1: Consider the case when \(q = q_i\). By the induction hypothesis, \(P_{q_i}(w)\) is true, which means that \(w = \varepsilon\).
+
+		First, suppose that \(\sigma = 0\). By definition, \(\delta (q_i,0) = q_0\). As well, \(w \sigma = 0\), which is 0 mod 3, verifying \(P_{q_0}(w0)\).
+
+		Second, suppose that \(\sigma = 1\). Then \(\delta (q_i, 1) = q_1\) and \(w \sigma = 1\), which is 1 mod 3, so \(P_{q_1}(w1)\) is true.
+
+		Case 2: Consider when \(q = q_0\). By the induction hypothesis, \(w \equiv 0 \ \mathrm{mod} \ 3\).
+
+		First, suppose that \(\sigma = 0\), so \(\delta (q_0, 0) = q_0\). Notice that concatenating 0 to \(w\) is the same as performing a multiplication by 2 on \(w\), so it remains true that \(w0 \equiv 0\ \mathrm{mod} \ 3\). Thus \(P_{q_0}(w0)\) is true.
+
+		Second, suppose that \(\sigma = 1\), so \(\delta (q_0, 1) = q_1\). Concatenating 1 to \(w\) is the same as multiplication by 2 followed by addition by 1. It follows that \(w1 \equiv 1\ \mathrm{mod} \ 3\). Thus \(P_{q_1}(w1)\) is true.
+
+		Case 3: Consider when \(q = q_1\). By the induction hypothesis, \(w \equiv 1\ \mathrm{mod} \ 3\).
+
+		First, suppose that \(\sigma = 0\), so \(\delta (q_1, 0) = q_2\). Notice that concatenating 0 to \(w\) is the same as performing a multiplication by 2 on \(w\), so it follows that \(w0 \equiv 2\ \mathrm{mod} \ 3\). Thus \(P_{q_0}(w0)\) is true.
+
+		Second, suppose that \(\sigma = 1\), so \(\delta (q_1, 1) = q_0\). Concatenating 1 to \(w\) is the same as multiplication by 2 followed by addition by 1. It follows that \(w1 \equiv 0\ \mathrm{mod} \ 3\). Thus \(P_{q_1}(w1)\) is true.
+
+		Case 3: Consider when \(q = q_2\). By the induction hypothesis, \(w \equiv 2\ \mathrm{mod} \ 3\).
+
+		First, suppose that \(\sigma = 0\), so \(\delta (q_2, 0) = q_1\). Notice that concatenating 0 to \(w\) is the same as performing a multiplication by 2 on \(w\), so it follows that \(w0 \equiv 1\ \mathrm{mod} \ 3\). Thus \(P_{q_1}(w0)\) is true.
+
+		Second, suppose that \(\sigma = 1\), so \(\delta (q_2, 1) = q_2\). Concatenating 1 to \(w\) is the same as multiplication by 2 followed by addition by 1. It follows that \(w1 \equiv 2\ \mathrm{mod} \ 3\). Thus \(P_{q_2}(w1)\) is true.
+
+		All cases have been considered, so it can be concluded that these state invariants are correct.
+
+		Finally, it will be proven that this DFA accepts the language above, which will be denoted as \(L\).
+
+		Let \(w \in L\). By definition, \(w\) is a multiple of 3, which means that \(w \equiv 0\ \mathrm{mod} \ 3\). From \(P_{q_0}(w)\), it follows that \(\delta (q_i, w) = q_0\), which is an accepting state. Therefore, the DFA accepts \(w\).
+
+		Now, let \(w \notin L\). Then \(w\) is either \(\varepsilon\) or not a multiple of 3, meaning that \(w \not\equiv 0\ \mathrm{mod} \ 3\). In this case, then \(w \in q_i\) or \(w \in q_k\), where \(k\neq 0\) respectively, none of which are accepting states. Therefore, the DFA rejects \(w\).
+
+		Therefore, since this DFA accepts exactly \(L\), it is correct and the proof is done.
+
 	\end{proof}
 \end{enumerate}
 
@@ -251,7 +286,7 @@ Prove that for any $k\in \mathbb{N}$, the language $L = \{ w \mid \text{the } k\
 	Since \(\mathcal{D}\) has less than \(2^k\) states, at least two strings \(w,x \in M\) end in the same state. Since these strings are distinct, they differ at some index \(i\). Namely, one string contains a 0 in the \(i\)th index and the other contains a 1 in the \(i\)th index. Note that the \(i\)th index is the same as the \(k-i\)th last index.
 
 	Consider the strings \(w0^i\) and \(x0^i\). Notice that in both in these strings, the \(k\)th last character is exactly the character in the \(i\)th index. Since \(w\) and \(x\) were in the same state, it follows that \(w0^i\) and \(x0^i\) should also be in the same state and should both be accepted or both be rejected, but the character in the \(k\)th index is different, so only one of them would be accepted. This is a contradiction. A DFA that accepts \(L\) must have at least \(2^k\) number of states.
-	
+
 \end{proof}
 
 \item \textbf{(5 pts)} The smallest NFA that accepts $L$ has to have exactly $k$ number of states.
