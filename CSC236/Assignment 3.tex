@@ -101,7 +101,7 @@ Let $ \Sigma = \{0,1\} $.
 	\begin{proof}
 		Denote the language above as \(A\). It will be shown that the language above is equivalent to \(\Sigma ^*\) using double subset inclusion.
 
-		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language.
+		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language. The same DFA given in part a) accepts \(A\).
 
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a binary representation of a multiple of 3}\} $
@@ -222,7 +222,7 @@ A known result in formal language theory is that counter-free languages are equi
 	\item \textbf{(5 pts)} Prove that  $(aa)^*$ is not a counter-free language, $\Sigma = \{a\}$
 	
 	\begin{proof}
-		First, notice that in order for a string \(w\) to be a member of \(L\), \(w = (ab)^{2k}\) for some natural \(k\). Let \(n \in \mathbb{N}\). Let \(x = \varepsilon\), \(y = a\), \(z = \varepsilon\). Let \(m = n + 1 \geq n\). Then \(xy^m z = a^{n+1} \), and \(xy^n z = a^n\). The goal is to show that either \(a^{n+1} \in L \land a^n \notin L\) or \(a^{n+1} \notin L \land a^n \in L\). Indeed, exactly one of \(n+1\) or \(n\) are even, it must be true that exactly one of \(a^n\) or \(a^{n+1}\) are in \(L\), and the conclusion follows promptly.
+		First, notice that in order for a string \(w\) to be a member of \(\mathcal{L} ((aa)^*)\), \(w = (a)^{2k}\) for some natural \(k\). Let \(n \in \mathbb{N}\). Let \(x = \varepsilon\), \(y = a\), \(z = \varepsilon\). Let \(m = n + 1 \geq n\). Then \(xy^m z = a^{n+1} \), and \(xy^n z = a^n\). The goal is to show that either \(a^{n+1} \in L \land a^n \notin L\) or \(a^{n+1} \notin L \land a^n \in L\). Indeed, exactly one of \(n+1\) or \(n\) are even, it must be true that exactly one of \(a^n\) or \(a^{n+1}\) are in \(\mathcal{L} ((aa)^*)\), and the conclusion follows promptly.
 
 	\end{proof}
 
