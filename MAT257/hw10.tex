@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \\ \end{proof}, #1, breakable=true}
+
+    \begin{question}{27}
+        Let $f:\R^2\rightarrow \R$ be a continuously differentiable function.
+    \begin{enumerate}[label=(\alph*)]
+        \item  Show that the partial function $\R\rightarrow \R$, $t\mapsto f(x,t)$ is integrable (over any bounded interval in $\R$).
+        
+        \item By (a), we can define a function $\varphi:\R\rightarrow \R$ by
+            \[ \varphi(x) = \int_a^b f(x,t) \ dt. \]
+        Show that $\varphi$ is differentiable, and that its (classical) derivative is given by
+            \[ \dfrac{d\varphi}{dx}(x_0) = \int_a^b \dfrac{\partial f}{\partial x}(x_0,t) \ dt. \]
+        This formula is known as \textbf{differentiation under the integral sign}, or \textbf{Feynmann's trick}.
+    
+        \item Use Feynmann's trick to solve the single-variable integral:
+            \[ \int_0^\infty e^{- t^2} \ dt \]
+    \end{enumerate}
+    \tcblower
+    (a):
+
+    Since \(f\) is continuous, it follows immediately that its partial function is continuous, which implies that it is integrable.
+
+    (b):
+
+    Let \(x_0 \in \mathbb{R}\). We will show that as \(h\to 0\), \[\frac{1}{h} \left(\int _a^b f(x_0 + h,t)dt - \int _a^b f(x_0, t)dt - h\int _a^b \frac{\partial f}{\partial x} (x_0,t)dt\right) \to 0,\] which is equivalent to saying
+    \[
+        \dfrac{d\varphi}{dx}(x_0) = \int_a^b \dfrac{\partial f}{\partial x}(x_0,t) \ dt.
+    \]
+    Let \(\varepsilon > 0\). By the partial differentiability of \(f\), we obtain a \(\delta\) so that \[\left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x}(x_0, t) \right\vert < \dfrac{|h|\varepsilon}{b-a}\] for all \(0 < |h| <\delta\).
+    
+    Fix \(h \in \mathbb{R}\) so that \(0 < |h| <\delta\). By the linearity of the integral,
+    \[
+        \left\vert \frac{1}{h} \left(\int _a^b f(x_0 + h,t)dt - \int _a^b f(x_0, t)dt - h\int _a^b \frac{\partial f}{\partial x} (x_0,t)dt\right) \right\vert
+    \]
+    \[
+        = \left\vert\frac{1}{h}\int _a^b (f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x} (x_0,t))dt\right\vert 
+    \]
+    \[
+        \leq \frac{1}{|h|} \int _a^b \left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x} (x_0,t) \right\vert dt
+    \]
+    \[
+        < \frac{1}{|h|}\int _a^b \frac{|h|\varepsilon}{b-a}dt <\varepsilon
+    \]
+    as desired. Thus we have found an expression for \(\varphi ' (x_0)\).
+
+    (c):
+
+    Let \(I = \int _0^{\infty} e^{-t^2}\). Define \(\varphi : \mathbb{R} \to  \mathbb{R}\) by
+    \[
+        \varphi (x) = \int _0^{\infty} \frac{e^{-x^2(t^2 + 1)}}{t^{2} +1}dt
+    \]
+    From part (b), we see that
+    \[
+        \varphi '(x) = -2x\int _0^{\infty} e^{-x^2 (t^2 + 1)}dt = -2xe^{-x^2}\int _0^{\infty} e^{-x^2 t^2}dt
+    \]
+    We perform the substitution \(u = xt\). Changing \(u\) back to \(t\) gives us
+    \[
+        \varphi '(x) = -2e^{-x^2}\int _0^{\infty} e^{-t^2}dt
+    \]
+    Thus we have that
+    \[
+        \varphi '(x) = -2e^{-x^2}I
+    \]
+    We can take the definite integral of both sides with respect to \(x\):
+    \[
+        \int _0 ^{\infty} \varphi '(x) dx = \int _0^{\infty} -2e^{-x^2}I dx \implies \lim_{n \to \infty} \varphi (n) - \varphi (0) = -2I^2
+    \]
+    Now we will analyse \(\lim_{n \to \infty} \varphi (n)\) and \(\varphi (0)\) separately.
+
+    First, we will show that \(\lim_{n \to \infty} \varphi (n) = 0\). Let \(\varepsilon > 0\). For \(n > N\), where \(N\) is a fixed number, we have that \(e^{-n^2(t^2 +1)} < \dfrac{2\varepsilon}{\pi}\), so
+    \[
+        |\varphi (n)| = \left\vert \int _0^{\infty} \frac{e^{-n^2(t^2 + 1)}}{t^{2} +1}\ dt \right\vert \leq \int _0^{\infty} \left\vert \frac{e^{-n^2(t^2 + 1)}}{t^{2} +1}\ dt \right\vert < \frac{2}{\pi} \int _0^{\infty} \frac{\varepsilon}{t^2 + 1}\ dt
+    \]
+    \[
+        \implies \frac{2\varepsilon}{\pi} \arctan (t) \Big| _0^{\infty} = \varepsilon.
+    \]
+    Thus we can conclude that \(\lim_{n \to \infty} \varphi (n) = 0\).
+
+    Now, notice that
+    \[
+        \varphi (0) = \int _0^{\infty} \frac{1}{t^2 + 1} \ dt = \arctan (t) \ \Big|_0^{\infty} = \frac{\pi}{2}
+    \]
+
+    Applying this to our original equation,
+    \[
+        0 - \frac{\pi}{2} = -2I^2 \implies 2I^2 = \frac{\pi}{2} \implies I^2 = \frac{\pi}{4}
+    \]
+    Finally, taking the squareroot of both sides gives us the result:
+    \[
+        \int_0^\infty e^{- t^2} \ dt = I = \frac{\sqrt{\pi}}{2}
+    \]
+    \end{question}
+    \newpage
+    \begin{question}{28}
+        Let $U$ be an open set in a normed vector space $X$ and let $f:U\rightarrow Y$ be a \textbf{twice continuously differentiable} function, meaning that the second derivative $f'':U\rightarrow B(X,B(X,Y))$ exists and is continuous on $U$. We also say that $f$ is a \textbf{$C^2$-function}.
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $f:\R^2\rightarrow \R$ be given by $f(x,y)=x^2-xy+y^2$. Find, with proof, an explicit formula for the linear mapping $f''(2,-1)$. Also, write down the matrix that represents this linear mapping with respect to a suitable ``standard'' basis.
+            
+            \item Now we investigate the case $X=\R^n$ and $Y=\R$, and let $f:U\rightarrow \R$ be some function defined on an open set $U\subseteq \R^n$. We use the notation $\dfrac{\partial^2 f}{\partial x_i\partial x_j}$ to refer to the \textbf{$(i,j)$th second partial derivative} of $f$: this is the $i$th partial derivative of the $j$th partial derivative $\dfrac{\partial f}{\partial x_j}$.
+    
+
+            \begin{enumerate}[label=(\roman*)]
+                \item Show that $f$ is twice continuously differentiable if and only if all second partial derivatives exist and are continuous.
+
+                \item Let $f$ be twice continuously differentiable Let $v\in \R^n$ and let $D_vf:U\rightarrow \R$ be the directional derivative of $f$ along $v$. Show that $D_vf$ is continuously differentiable.
+
+                \item Let $f$ be twice continuously differentiable and let $v\in \R^n$. By (ii), we know that $D_vf$ is $C^1$, hence differentiable in every direction $\in \R^n$. Show that the directional derivatives commute:
+                    \[ D_v(D_wf) = D_w(D_vf) \quad \text{for all $v,w\in \R^n$.} \]
+                \item Deduce \textbf{Clairaut's Theorem}: that the second partial derivatives commute.
+                \[ \dfrac{\partial^2 f}{\partial x_i\partial x_j} = \dfrac{\partial^2 f}{\partial x_j\partial x_i} \quad \text{for all $i,j\in \{1,\ldots,n\}$.} \]
+            \end{enumerate}
+        \end{enumerate}
+        \tcblower
+        (a):
+
+        We claim that \(f''(2,-1) : \mathbb{R}^2 \to B(\mathbb{R}^2,\mathbb{R})\) is a bounded linear map which is represented by the matrix
+        \[
+            [f''] = \begin{bmatrix}
+                2 & -1 \\
+                -1 & 2 \\
+            \end{bmatrix}
+        \]
+
+        (b)(i):
+
+        (b)(ii):
+
+        (b)(iii):
+
+        (b)(iv):
+    \end{question}
+\end{document}
