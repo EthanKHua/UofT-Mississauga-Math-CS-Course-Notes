@@ -86,7 +86,7 @@ Let $ \Sigma = \{0,1\} $.
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a palindrome}\} $
 	
 	\begin{proof}
-		This is not regular. Suppose for contradiction that this languages was regular. Then there would be a DFA associated with this language. Let \(q\) be the number of states in this DFA, and let \(q_0\) denote the initial state. Define the following strings:
+		This is not regular. Suppose for contradiction that this language was regular. Then there would be a DFA associated with this language. Let \(q\) be the number of states in this DFA, and let \(q_0\) denote the initial state. Define the following strings:
 		\[
 			w_i = 0^q 1 0^{i} \text{, for } i \in \{0, 1, 2, ..., q\}
 		\]
@@ -200,7 +200,18 @@ Then in regular expressions, if $r$ is a regular expression matching $\mathcal{L
 Prove that regular expressions that also have access to complement can still only express the same class of languages (i.e., the class of regular languages) as regular expressions without the complement operation. 
 
 \begin{proof}
-	It will be proven that any language that can be represented by a regex with the complement operation can be expressed by a regex without it.
+	It suffices to show that if \(r\) is a regex, then \(\overline{r}\) is a regex as well, meaning that \(\mathcal{L} (\overline{r})\) matches a regular language.
+
+	Let \(\Sigma\) represent the alphabet. Suppose that \(\mathcal{L} (r)\) matches a regular language. Then there exists a DFA \(D = (\Sigma, \delta, \mathcal{Q}, s, F)\) that accepts \(\mathcal{L} (r)\), where \(\delta\) is the transition function, \(\mathcal{Q}\) is the set of states, \(s \in \mathcal{Q}\) is the starting state, and \(F \subseteq Q\) is the set of accepting states.
+
+	Construct a new DFA \(D' = (\Sigma , \delta , \mathcal{Q} , s, \mathcal{Q} \setminus F)\). It will be shown that \(D'\) accepts the language \(\mathcal{L} (\overline{r}) = \overline{\mathcal{L}(r)}\).
+
+	Let \(w \in \overline{\mathcal{L} (r)}\). This is equivalent to saying that \(w \in \Sigma^* \setminus \mathcal{L} (r)\). It follows that \(D\) rejects \(w\), that is, \(\delta (s,w) \notin F \implies \delta (s,w) \in \mathcal{Q} \setminus F\). However, by construction, when \(D'\) reads \(w\), it will end on the state \(\delta (s,w)\). This is an accepting state in \(D'\), so \(w\) is accepted by \(D'\).
+
+	Conversely, suppose that \(w \in \mathcal{L}(r)\). This implies that \(D\) accepts \(w\), so \(\delta (s,w) \in F \implies \delta (s,w) \notin \mathcal{Q} \setminus F\). Similar to the previous case, when \(w\) is ran through \(D'\), the ending state is \(\delta (s,w)\), which is not an accepting state. Thus \(w\) is rejected by \(D'\).
+
+	It has been proven that \(D'\) accepts \(\mathcal{L} (\overline{r})\), which shows that \(r\) is a regex, completing the proof.
+	\smallbreak
 \end{proof}
 
 \item \textbf{(15 pts)}
@@ -214,20 +225,25 @@ A known result in formal language theory is that counter-free languages are equi
 	\item \textbf{(5 pts)} Prove that $(ab)^*$ can be matched with a star-free regular expression, $\Sigma = \{a,b\}$
 	
 	\begin{proof}
-		Define the regex \(r = \overline{(b\overline{\varnothing}) + (\overline{\varnothing}bb\overline{\varnothing}) + (\overline{\varnothing}aa\overline{\varnothing})}\). Then
+		Define the regex \(r = \overline{(b\overline{\varnothing}) + (\overline{\varnothing}bb\overline{\varnothing}) + (\overline{\varnothing}aa\overline{\varnothing}) + (\overline{\varnothing}a)}\). Simplifying,
 		\[
-			\mathcal{L} (r) = \mathcal{L} \left(\overline{(b\overline{\varnothing}) + (\overline{\varnothing}bb\overline{\varnothing}) + (\overline{\varnothing}aa\overline{\varnothing})}\right) = \overline{\mathcal{L}((b\overline{\varnothing}) + (\overline{\varnothing}bb\overline{\varnothing}) + (\overline{\varnothing}aa\overline{\varnothing}))}
+			\mathcal{L} (r) = \mathcal{L} \left(\overline{(b\overline{\varnothing}) + (\overline{\varnothing}bb\overline{\varnothing}) + (\overline{\varnothing}aa\overline{\varnothing}) + (\overline{\varnothing}a)}\right) = \overline{\mathcal{L}((b\overline{\varnothing}) + (\overline{\varnothing}bb\overline{\varnothing}) + (\overline{\varnothing}aa\overline{\varnothing}) + (\overline{\varnothing}a))}
 		\]
 		\[
-			= \overline{\mathcal{L} (b\overline{\varnothing}) \cup \mathcal{L} (\overline{\varnothing}bb\overline{\varnothing}) \cup \mathcal{L} (\overline{\varnothing}aa\overline{\varnothing})} = \overline{\mathcal{L} (b) \overline{\mathcal{L} (\varnothing)} \cup \overline{\mathcal{L} (\varnothing)} \mathcal{L} (bb) \overline{\mathcal{L} (\varnothing)} \cup \overline{\mathcal{L} (\varnothing)} \mathcal{L} (aa) \overline{\mathcal{L} (\varnothing)}}
+			= \overline{\mathcal{L} (b\overline{\varnothing}) \cup \mathcal{L} (\overline{\varnothing}bb\overline{\varnothing}) \cup \mathcal{L} (\overline{\varnothing}aa\overline{\varnothing}) \cup \mathcal{L} (\overline{\varnothing}a)}
 		\]
 		\[
-			= \overline{\{b\} \overline{\varnothing} \cup \overline{\varnothing} \{bb\} \overline{\varnothing} \cup \overline{\varnothing} \{aa\} \overline{\varnothing}} = \overline{\{b\} \Sigma ^* \cup \Sigma ^* \{bb\} \Sigma ^* \cup \Sigma ^* \{aa\} \Sigma ^*}
+			= \overline{\mathcal{L} (b) \overline{\mathcal{L} (\varnothing)} \cup \overline{\mathcal{L} (\varnothing)} \mathcal{L} (bb) \overline{\mathcal{L} (\varnothing)} \cup \overline{\mathcal{L} (\varnothing)} \mathcal{L} (aa) \overline{\mathcal{L} (\varnothing)} \cup \overline{\mathcal{L} (\varnothing)}\mathcal{L} (a)}
 		\]
 		\[
-			= \overline{\{b\}\Sigma ^*} \cap \overline{\Sigma ^* \{bb\}\Sigma ^*} \cap \overline{\Sigma ^* \{aa\} \Sigma ^*}
+			= \overline{\{b\} \overline{\varnothing} \cup \overline{\varnothing} \{bb\} \overline{\varnothing} \cup \overline{\varnothing} \{aa\} \overline{\varnothing} \cup \overline{\varnothing}\{a\}} = \overline{\{b\} \Sigma ^* \cup \Sigma ^* \{bb\} \Sigma ^* \cup \Sigma ^* \{aa\} \Sigma ^* \cup \Sigma ^* \{a\}}
 		\]
-		Let \(w \in (ab)^*\). Then 
+		\[
+			= \overline{\{b\}\Sigma ^*} \cap \overline{\Sigma ^* \{bb\}\Sigma ^*} \cap \overline{\Sigma ^* \{aa\} \Sigma ^*} \cap \overline{\Sigma ^* \{a\}}
+		\]
+		Let \(w \in (ab)^*\). Then \(w = (ab)^k\), where \(k \in \mathbb{N}\). Notice that \(w\) can never start with a \(b\), nor contain two identical consecutive symbols, so \(w \in \overline{\{b\}\Sigma ^*}\), \(w \in \overline{\Sigma ^* \{bb\}\Sigma ^*}\), and \(\overline{\Sigma ^* \{aa\} \Sigma ^*}\). Thus \(w \in \mathcal{L} (r)\).
+
+		Now, suppose that \(w \in \mathcal{L} (r)\). 
 	\end{proof}
 
 	\item \textbf{(5 pts)} Prove that $(ab)^*$ is a counter-free language,  $\Sigma = \{a,b\}$.
