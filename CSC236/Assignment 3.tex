@@ -206,9 +206,20 @@ A known result in formal language theory is that counter-free languages are equi
 		\[
 			= \overline{\{b\}\Sigma ^*} \cap \overline{\Sigma ^* \{bb\}\Sigma ^*} \cap \overline{\Sigma ^* \{aa\} \Sigma ^*} \cap \overline{\Sigma ^* \{a\}}
 		\]
-		Let \(w \in (ab)^*\). Then \(w = (ab)^k\), where \(k \in \mathbb{N}\). Notice that \(w\) can never start with a \(b\), nor contain two identical consecutive symbols, so \(w \in \overline{\{b\}\Sigma ^*}\), \(w \in \overline{\Sigma ^* \{bb\}\Sigma ^*}\), and \(\overline{\Sigma ^* \{aa\} \Sigma ^*}\). Thus \(w \in \mathcal{L} (r)\).
+		Let \(w \in (ab)^*\). Then \(w = (ab)^k\), where \(k \in \mathbb{N}\). Notice that \(w\) can never start with a \(b\), contain two identical consecutive symbols, nor end with an \(a\), so \(w \in \overline{\{b\}\Sigma ^*}\), \(w \in \overline{\Sigma ^* \{bb\}\Sigma ^*}\), \(w \in \overline{\Sigma ^* \{aa\} \Sigma ^*}\), and \(w \in \overline{\Sigma ^* \{a\}}\) . Thus \(w \in \mathcal{L} (r)\).
 
-		Now, suppose that \(w \in \mathcal{L} (r)\). 
+		Now, suppose that \(w \in \mathcal{L} (r)\). First, consider the case when \(w = \varepsilon\). Since \(\varepsilon = (ab)^0\), then \(w \in (ab)*\).
+		
+		If \(|w| > 0\), note the following observations:
+
+		\(w\) must start with an \(a\), because if not then \(w \in \{b\}\Sigma ^*\).
+
+		Also, \(w\) must alternate. Otherwise, \(w \in \overline{\Sigma ^* \{bb\}\Sigma ^*}\) or \(w \in \overline{\Sigma ^* \{aa\} \Sigma ^*}\).
+
+		Finally, \(w\) must end in a \(b\) because \(w \in \overline{\Sigma ^*\{a\}}\).
+
+		This means that \(w = ab...ab\). It is obvious that \(w = (ab)^n\) for some \(n \in \mathbb{N}^+\). Thus \(w \in (ab)*\), proving that \((ab)^*\) can be matched by a star-free expression.
+		\smallbreak
 	\end{proof}
 
 	\item \textbf{(5 pts)} Prove that $(ab)^*$ is a counter-free language,  $\Sigma = \{a,b\}$.
