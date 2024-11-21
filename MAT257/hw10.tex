@@ -106,10 +106,22 @@
 
     (c):
 
-    Let \(I = \int _0^{\infty} e^{-t^2}\). Define \(\varphi : \mathbb{R} \to  \mathbb{R}\) by
+    Let \(I = \int _0^{\infty} e^{-t^2}\ dt\). We will first show that this integral converges. We make the observation that the integrand is continuous and positive. Splitting the integral in two, we see that
     \[
-        \varphi (x) = \int _0^{\infty} \frac{e^{-x^2(t^2 + 1)}}{t^{2} +1}dt
+        \int _0^{\infty} e^{-t^2}\ dt = \int _0^{1} e^{-t^2}\ dt + \int _1^{\infty} e^{-t^2}\ dt
     \]
+    The first integral has finite bounds so it is convergent. For \(t \geq 1\), \(-t^2 \leq -t\). Since \(\exp (t)\) is an increasing function,
+    \[
+        e^{-t^2} \leq e^{-t} \implies \int _1^{\infty} e^{-t}\ dt \leq \int _1^{\infty} e^{-t}\ dt = 1
+    \]
+    Therefore \(I\) converges by the basic comparison test.
+    
+    Define \(\varphi : [0,\infty) \to  \mathbb{R}\) by
+    \[
+        \varphi (x) = \int _0^{\infty} \frac{e^{-x^2(t^2 + 1)}}{t^{2} +1}\ dt
+    \]
+    Notice that \(\int _0^{\infty} \frac{e^{-x^2(t^2 + 1)}}{t^{2} +1}\ dt \leq \int _0^{\infty} e^{-x^2(t^2 + 1)}\ dt\), so \(\varphi\) always converges for similar reasons.
+
     From part (b), we see that
     \[
         \varphi '(x) = -2x\int _0^{\infty} e^{-x^2 (t^2 + 1)}dt = -2xe^{-x^2}\int _0^{\infty} e^{-x^2 t^2}dt
@@ -209,9 +221,21 @@
 
         Suppose that \(f\) is twice continuously differentiable. This implies that all its partial derivatives exist.
 
-        Consider an arbitrary partial derivative \(\dfrac{\partial f}{\partial x_i}\) for \(i \in \{1, ..., n\}\). It will be shown that each are continuously totally differentiable.
+        Consider an arbitrary partial derivative \(\dfrac{\partial f}{\partial x_j}\) for \(i \in \{1, ..., n\}\). It will be shown that their directional derivatives all exist and are continuous.
 
-
+        Let \(v \in \mathbb{R}^n\). We see that
+        \[
+            \lim_{t \to 0} \frac{1}{t}\left( \frac{\partial f}{\partial x_j} (p+tv) - \frac{\partial f}{\partial x_j} (p) \right) 
+        \]
+        Recall that \(f'(q)(v) = \sum_{i=1} ^n v_i \frac{\partial f}{\partial x_i} (q)\). Now, notice that
+        \[
+            \frac{\partial f}{\partial x_j} (p+tv) = f'(p+tv)(x_j) \text{ and } \frac{\partial f}{\partial x_j} (p) = f'(p)(x_j)
+        \]
+        We make this substitution in the limit expression, so it becomes
+        \[
+            \lim_{t \to 0} \frac{1}{t}(f'(p+tv)(x_j) - f'(p)(x_j)) = D_v f'(p)(x_j)
+        \]
+        by definition. Thus \(D_v \left( \frac{\partial f}{\partial x_j} (p)\right) = D_v f'(p)(x_j)\). This is continuous because every directional derivative of \(f'\) is continuous by our assumption. Taking \(v = x_i\), we conclude that all the second partial derivatives of \(f\) exist and are continuous.
         
         Conversely, suppose that all second partial derivatives of \(f\) exist and are continuous. Since all first partial derivatives will exist and are continuous, then \(f\) is continuously differentiable, meaning that \(f'\) exists.
 
@@ -241,17 +265,44 @@
 
         We can assume that \(p + v \in U\) by making \(\|v\|\) small enough. Define a function \(\alpha : [0,1] \to U\) by \(\alpha (t) = p + tv\). The derivative is given by \(\alpha '(t) = v\). Now, construct a new function \(g : \mathbb{R} \to \mathbb{R}\) defined by \(g(t) = (f \circ \alpha) (t)\). By the chain rule, we see that \(g'(t) = f'(\alpha (t)) (v)\).
 
-        Now, recall that
+        Thus we get that
         \[
-            D_v(p) = \lim_{h \to 0} \frac{f(p + hv) - f(p)}{h} = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = f'(\alpha (0))(v) = f'(p)(v),
+            D_v f(p) = \lim_{h \to 0} \frac{f(p + hv) - f(p)}{h} = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = f'(\alpha (0))(v) = f'(p)(v),
         \]
-        but we know by that \(f\) is twice continuously differentiable, so \(f'(p)(v) = D_v f\) is continuously differentiable.
+        Now, we can compute the derivative of \(D_{v} f\) directly and obtain that \((D_v f)'(p) = (f')'(p)(v)\). But we know by that \(f\) is twice continuously differentiable, so \((D_v f)'\) is continuous.
 
+        Thus \(D_v f\) is continuously differentiable.
         \medskip
 
         (b)(iii):
 
+        We will evaluate \(D_v (D_w f)\) from the definition and show that it is equal to \(D_w (D_v f)\).
+
+        Fix \(p \in U\). There exists \(\delta > 0\) so that \(p + \delta v \in U\). For any such \(h\), construct a function \(g : [0,\delta] \to \mathbb{R}\) defined as
+        \[
+            g(t) = D_w f(p + tv)
+        \]
+        \(g\) is differentiable on its domain because it is a composition of differentiable functions. By the chain rule, we see that
+        \[
+            g'(t) = (D_w f)'(p+tv)(v)
+        \]
+        Using the fact that for all continuously differentiable functions, \(D_v h (q) = h'(q)(v)\), we get
+        \[
+            g'(t) = D_v (D_w f) (p+tv)
+        \]
+        Now we compute \(D_v (D_w f)\):
+        \[
+            \lim_{h \to 0} \frac{D_w f(p+hv) - D_w f(p)}{h}
+        \]
+        For \(|h| < \delta\), the limit becomes
+        \[
+            D_w (D_v f) (p) = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = D_v (D_w f) (p)
+        \]
+        Therefore the directional derivatives commute.
+        \medbreak
         (b)(iv):
+
+        From the previous part, simply take \(v = x_i\) and \(w = x_j\) and the result follows immediately.
     \end{question}
     \newpage
     \begin{question}{29}
