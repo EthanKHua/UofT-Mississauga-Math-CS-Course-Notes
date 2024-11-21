@@ -253,4 +253,65 @@
 
         (b)(iv):
     \end{question}
+    \newpage
+    \begin{question}{29}
+        Let $U\subseteq \R^2$ be an open set, and let $f:U\rightarrow \R$ be some differentiable function. This data defines an \textbf{explicit surface} in $\R^3$, also known as the \textbf{graph} of $f$:
+        \[ S = S(f) = \{(x,y,z)\in \R^3 : (x,y)\in U, z=f(x,y)\}. \]
+        Colloquially, we often say ``Let $z=f(x,y)$ be a surface in $\R^3$.''
+        
+        \begin{enumerate}[label=(\alph*)]
+            \item Find the equation of the tangent plane to the surface $z=x+xy^2-y^3$ at the point $p=(2,1,3)$, as follows.
+            \begin{enumerate}[label=(\roman*)]
+                \item First, fix $x=2$ and set $y=1+t$; write $z$ as a function of $t$, and find $z'(0)$. This is the ``slope in the $x$ direction.''
+                \item Similarly, find the ``slope in the $y$ direction.''
+                \item Now you have two slopes in orthogonal directions. This gives you two vectors which span a plane. Shift this plane so that it becomes tangent at $p$. Write the equation of this plane in the form $Ax+By+Cz=D$, where $A,B,C,D\in \R$.
+            \end{enumerate}
+            
+            \item Find --- with proof! --- the equations of all planes in $\R^3$ which (i) are tangent to the surface $z=x+xy^2-y^3$; (ii) are parallel to the vector $\vec{v}=\begin{bmatrix} 3 \\ 1 \\ 1\end{bmatrix}$; and (iii) pass through the point $p=(-1,-2,3)$.
+            
+            \item Let $f:\R^2\rightarrow \R$ be a continuously differentiable function, and define a new function $g:\R^2\rightarrow \R$ by
+                \[ g(x,y) = f(f(xy,x),f(y,xy)). \]
+            You are given the following information about $f$ and $g$:
+                \begin{itemize}
+                    \item $f(3,1)=5$ and $\nabla f(3,1)=(1,2)$
+                    \item $f(3,3)=2$ and $\nabla f(3,3)=(0,-1)$
+                    \item $g(1,3)=6$ and $\nabla g(1,3)=(3,4)$
+                \end{itemize}
+            Find $\nabla f(5,2)$.
+        \end{enumerate}
+        \tcblower
+        (a)(i):
+
+        Fix \(x = 2\) and set \(y = 1+t\). Then
+        \[
+            z(t) = 2 + 2(1+t)^2 - (1+t)^3 \implies z'(t) = 4(1+t) - 3(1+t)^2
+        \]
+        \[
+            \implies z'(0) = 1
+        \]
+
+        \medskip
+
+        (a)(ii):
+
+        Fix \(y = 1\) and set \(x = 2 + t\). Then
+        \[
+            z(t) = (2+t) + (2+t) - 1 = 2t + 3 \implies z'(0) = 2
+        \]
+
+        \medskip
+
+        (a)(iii):
+
+        (b)
+
+        (c):
+
+        Let \(x = 1\), \(y = 3\).
+        \[
+            \nabla f (5, 2) = \begin{bmatrix}
+                \dfrac{\partial f}{\partial x_1} (5,2) & \dfrac{\partial f}{\partial x_2} (5,2) \\
+            \end{bmatrix}
+        \]
+    \end{question}
 \end{document}
