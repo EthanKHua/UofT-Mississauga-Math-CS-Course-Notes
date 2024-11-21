@@ -335,10 +335,10 @@
 
         Fix \(x = 2\) and set \(y = 1+t\). Then
         \[
-            z(t) = 2 + 2(1+t)^2 - (1+t)^3 \implies z'(t) = 4(1+t) - 3(1+t)^2
+            z_y(t) = 2 + 2(1+t)^2 - (1+t)^3 \implies z'(t) = 4(1+t) - 3(1+t)^2
         \]
         \[
-            \implies z'(0) = 1
+            \implies z_y'(0) = 1
         \]
 
         \medskip
@@ -347,14 +347,87 @@
 
         Fix \(y = 1\) and set \(x = 2 + t\). Then
         \[
-            z(t) = (2+t) + (2+t) - 1 = 2t + 3 \implies z'(0) = 2
+            z_x(t) = (2+t) + (2+t) - 1 = 2t + 3 \implies z_x'(0) = 2
         \]
 
         \medskip
 
         (a)(iii):
 
-        (b)
+        From the previous two parts gave us two vectors \((1,0,2)\) and \((0,1,1)\). This spans the plane given by the equation \(2x+y-z = 0\). Translate this plane by the vector \((2,1,3)\) which yields the equation
+        \[
+            2(x-2)+(y-1)-(z-3) = 0 \implies 2x+y-z=2
+        \]
+        \medbreak
+
+        (b):
+
+        Let \((p,q) \in \mathbb{R}^n\) to be constants. We find the plane tangent to \(z = p + pq^2 - q^3\) like the previous part.
+
+        Fix \(x = p\) and set \(y = q + t\). Then
+        \[
+            z_y(t) = p + p(q+t)^2 - (q+t)^3 \implies z_y'(t) = 2p(q+t) - 3(q+t)^2
+        \]
+        \[
+            \implies z_y'(0) = 2pq - 3q^2
+        \]
+
+        Next, fix \(y = q\) and set \(x = p + t\). Then
+        \[
+            z_x(t) = (x+t) + (x+t)q^2 - q^3 \implies z_x'(t) = q^2 + 1
+        \]
+
+        This gives two vectors \((0, 1, 2pq - 3q^2)\) and \((1,0,q^2 + 1)\) that span a plane given by the equation \((q^2 + 1)x + (2pq - 3q^2)y - z = 0\). Translating this plane by \((p,q,p+pq^2 - q^3)\) gives another plane with the equation
+        \[
+            (q^2 + 1)(x-p) + (2pq - 3q^2)(y-q) - (z + q^3 - pq^2 - p) = 0
+        \]
+        \[
+            \implies (q^2 + 1)x + (2pq - 3q^2)y - z = p(q^2 + 1) + q(2pq - 3q^2) + (q^3 - pq^2 - p)
+        \]
+        \[
+            \implies (q^2 + 1)x + (2pq - 3q^2)y - z = 2pq^2 - 2q^3
+        \]
+
+        Now, take the initial vectors \((0, 1, 2pq - 3q^2)\) and \((1,0,q^2 + 1)\) and compute their cross product to find the normal vector \(\vec{n}\):
+        \[
+            \vec{n} = (0,1,2pq-3q^2) \times (1,0,q^2+1) = (q^2 + 1, 2pq - 3q^2, -1)
+        \]
+        This vector is normal to the plane. We only want planes that are parallel to \(\vec{v}\), which means that this normal vector should be normal to \(\vec{v}\) as well. We calculate the dot product of this normal vector and \(\vec{v}\):
+        \[
+            \vec{n} \cdot \vec{v} = 3(q^2 + 1) + (2pq - 3q^2) - 1
+        \]
+        Set this equal to 0. Simplifying, we have that
+        \[
+            3(q^2 + 1) + (2pq - 3q^2) - 1 = 0 \implies 2pq = -2
+        \]
+        \[
+            \implies pq = -1
+        \]
+        We see that \(p,q \neq 0\) and get the relationship \(p = -\dfrac{1}{q}\). Substitute this into our plane equation and we get that
+        \[
+            (q^2 + 1)x + (2pq - 3q^2)y - z = 2pq^2 - 2q^3
+        \]
+        \[
+            \implies (q^2 + 1)x + (-2 - 3q^2)y - z = -2q - 2q^3
+        \]
+        \[
+            \implies (q^2 + 1)x - (3q^2 + 2)y - z = -2q(q^2 + 1)
+        \]
+        Finally, recall that our plane should pass through the point \(p = (-1,-2,3)\). Substituting \((x,y,z) = (-1,-2,3)\), we can solve for \(q\) and obtain our answer:
+        \[
+            -(q^2 + 1) + 2(3q^2 + 2) - 3 = -2q(q^2 + 1)
+        \]
+        \[
+            \implies 2q^3 + 5q^2 + 2q = 0
+        \]
+        We disregard the case where \(q=0\) and end up with the quadratic equation
+        \[
+            2q^2 + 5q^2 + 2 = 0 \implies q = \frac{-5 \pm \sqrt{25 - 16}}{4} \implies q_1 = -2, q_2 = -\frac{1}{2}
+        \]
+        Thus we have two planes that satisfy the above properties:
+        \[
+            5x - 14y - z = 20 \text{ and } 5x - 11y - z = 5
+        \]
 
         (c):
 
