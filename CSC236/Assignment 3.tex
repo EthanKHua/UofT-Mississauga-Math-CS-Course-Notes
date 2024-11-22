@@ -119,8 +119,42 @@ Let $ \Sigma = \{0,1\} $.
 	\begin{proof}
 		Denote the language above as \(A\). It will be shown that the language above is equivalent to \(\Sigma ^*\) using double subset inclusion.
 
-		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language. The same DFA given in part a) accepts \(A\).
+		Trivially, \(A \subseteq \Sigma ^*\). Conversely, let \(w \in \Sigma ^*\). Then since \(ww \in \Sigma ^*\), \(w \in A\), proving the claim. Therefore, from part a), it can be concluded that \(A = \Sigma ^*\) is a regular language. The same DFA given in part a) accepts \(A\). The same proof in part a) is listed here.
 
+		For this language, define the DFA \(\mathcal{D} = (\{q_0\}, \Sigma, \delta , q_0, \{q_0\})\), where \(\delta : \{q_0\} \times \Sigma \to \{q_0\}\) is a function that always maps to \(q_0\).
+		\begin{center}
+			\begin{tikzpicture}
+				\node[state,initial,accepting] (q0) {q0};
+				\draw (q0) edge[loop above] node{0} (q0)
+						(q0) edge[loop below] node{1} (q0);
+			\end{tikzpicture}
+		\end{center}
+		It will be shown that \(\mathcal{D}\) is correct. For \(w \in \Sigma ^*\), define the state invariant
+		\[
+			P_{q_0}(w) : \delta (q_0, w) = q_0 \iff w \in \Sigma ^*
+		\]
+		It will be shown using induction that for all \(w \in \Sigma ^*\), \(P_{q_0}(w)\) is true.
+
+		\medskip
+
+		\textbf{Base Case.} Let \(w = \varepsilon\). Both \(\delta (q_0, \varepsilon) = q_0\) and \(\varepsilon \in \Sigma ^*\) are true, so \(P_{q_0}(\varepsilon)\) is true.
+
+		\medskip
+
+		\textbf{Induction Hypothesis.} Let \(q \in \mathcal{Q}\), \(w \in \Sigma ^*\), and \(\sigma \in \Sigma\). Since \(\mathcal{Q} = \{q_0\}\), \(q = q_0\). Suppose that \(P_{q_0}(w)\) is true.
+
+		\medskip
+
+		\textbf{Induction Step.} For all \(\sigma\), \(\delta (q_0, \sigma) = q_0\). It is obvious that \(wz \in \Sigma ^*\), so \(P_{q_0}(wz)\) holds true.
+		
+		Thus the state invariants are correct.
+
+		Now, let \(w \in \Sigma ^*\). Then by the state invariant, \(\delta (q_0, w) = q_0\), which is an accepting state, so \(w\) is accepted.
+
+		A string that is not in \(\Sigma ^*\) cannot be found so the backwards direction is vacuously true.
+
+		Therefore \(\mathcal{D}\) is correct.
+		\smallbreak
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a binary representation of a multiple of 3}\} $
 	
