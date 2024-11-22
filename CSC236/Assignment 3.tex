@@ -264,16 +264,47 @@ A known result in formal language theory is that counter-free languages are equi
 
 The textbook introduces non-determinism on page 78 by highlighting the difference in DFAs and NFAs for language $L = \{w \mid \text{ the third last character of } w \text{ is } 1\}$ . 
 
-Prove that for any $k\in \mathbb{N}$, the language $L = \{ w \mid \text{the } k\text{th to last character of } w \text{ is } 1\}$ has the following attributes:
+Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } k\text{th to last character of } w \text{ is } 1\}$ has the following attributes:
 
 
 \begin{enumerate}[label=\textit{\alph*)}]
 \item \textbf{(5 pts)} A DFA that accepts $L$ has to have at least $2^k$ number of states.
 \begin{proof}
-	Let \(k \in \mathbb{N}\). Suppose for contradiction that there is a DFA \(\mathcal{D}\) with less than \(2^k\) states that accepts \(L\). Consider all the strings of length \(k+1\) in \(\Sigma ^*\). Notice that there are exactly \(2^{k+1}\) of these strings; this can be seen by considering all the combinations of 1's and 0's in every position. Since there are \(2^{k+1}\) of these strings and the number of states is strictly less than \(2^k\), by the pigeonhole principle, at least three strings will end in the same state
+	Suppose for contradiction that there is a DFA \(\mathcal{D}\) with less than \(2^k\) states that accepts \(L\).
+
+	Consider the language \(M = \{w \in \Sigma ^* : |w| = k\}\). Notice that \(|M| = 2^k\) because each index can be either a 0 or a 1.
+
+	Since \(\mathcal{D}\) has less than \(2^k\) states, at least two strings \(w,x \in M\) end in the same state. Since these strings are distinct, they differ at some index \(i\). Namely, one string contains a 0 in the \(i\)th index and the other contains a 1 in the \(i\)th index. Note that the \(i\)th index is the same as the \(k-i\)th last index.
+
+	Consider the strings \(w0^i\) and \(x0^i\). Notice that in both in these strings, the \(k\)th last character is exactly the character in the \(i\)th index. Since \(w\) and \(x\) were in the same state, it follows that \(w0^i\) and \(x0^i\) should also be in the same state and should both be accepted or both be rejected, but the character in the \(k\)th index is different, so only one of them would be accepted. This is a contradiction. A DFA that accepts \(L\) must have at least \(2^k\) number of states.
+	\smallbreak
 \end{proof}
 
-\item \textbf{(5 pts)} The smallest NFA that accepts $L$ has to have exactly $k$ number of states.
+\item \textbf{(5 pts)} The smallest NFA that accepts $L$ has to have exactly $k + 1$ number of states.
+\begin{proof}
+	First, it will be shown that there is no NFA that accepts \(L\) in less than \(k+1\) states. Then, an NFA with \(k+1\) states that accepts \(L\) will be provided.
+	
+	Suppose for contradiction that there is an NFA that accepts \(L\) with less than \(k + 1\) states. Let \(w = 10^{k-2}\). For \(i \in \{1, ..., k\}\), define
+	\[
+		sdfsdf
+	\]
+	Notice that \(w0\) is a string that should be accepted.
+
+	Now, define an NFA \(\mathcal{N}\) as follows. Let \(\mathcal{Q} = \{q_0, ..., q_k\}\), \(s = q_0\), \(F = \{q_k\}\). Define \(\delta : \mathcal{Q} \times \Sigma \to \mathcal{P} (\mathcal{Q})\) by
+	\[
+		\delta (q_0, 0) = \{ q_0 \} 
+	\]
+	\[
+		\delta (q_0, 1) = \{ q_0,q_1 \} 
+	\]
+	\[
+		\delta (q_i, \sigma ) = \{ q_{i+1} \} \ ,\ \forall \sigma \in \Sigma,\ 0 < i < k
+	\]
+	\[
+		\delta (q_k, \sigma) = \{q_0\}
+	\]
+
+\end{proof}
 
 \item \textbf{(3 pts)} \textit{Bonus}: The smallest DFA that accepts $L$ has to have exactly $2^{k+1}-1$ number of states.
 \end{enumerate}
