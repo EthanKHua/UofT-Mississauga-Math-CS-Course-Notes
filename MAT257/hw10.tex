@@ -362,7 +362,12 @@
 
         (b):
 
-        Let \((p,q) \in \mathbb{R}^n\) to be constants. We find the plane tangent to \(z = p + pq^2 - q^3\) like the previous part.
+        We claim that there are only two planes that satisfy all three conditions:
+        \[
+            5x - 14y - z = 20 \text{ and } 5x - 11y - 4z = 5
+        \]
+
+        Let \((p,q) \in \mathbb{R}^n\) and suppose that the plane tangent to the surface \(z\) at this point has the properties above. We find the equation of this tangent plane like the previous part.
 
         Fix \(x = p\) and set \(y = q + t\). Then
         \[
@@ -424,18 +429,165 @@
         \[
             2q^2 + 5q^2 + 2 = 0 \implies q = \frac{-5 \pm \sqrt{25 - 16}}{4} \implies q_1 = -2, q_2 = -\frac{1}{2}
         \]
-        Thus we have two planes that satisfy the above properties:
+        Substituting these values into our plane equation, we see that there are two planes that satisfy the above properties:
         \[
-            5x - 14y - z = 20 \text{ and } 5x - 11y - z = 5
+            5x - 14y - z = 20 \text{ and } 5x - 11y - 4z = 5
         \]
 
         (c):
 
-        Let \(x = 1\), \(y = 3\).
+        In general,
         \[
-            \nabla f (5, 2) = \begin{bmatrix}
-                \dfrac{\partial f}{\partial x_1} (5,2) & \dfrac{\partial f}{\partial x_2} (5,2) \\
+            \nabla g(p,q) = \left( \frac{\partial g}{\partial x} (p,q) , \frac{\partial g}{\partial y} (p,q) \right) 
+        \]
+        
+        For \(a(x,y) = xy\), \(b(x,y) = x\), and \(c(x,y) = y\), we make the quick note that
+        \[
+            \begin{bmatrix}
+                 a'(x,y) \\
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                y &  x \\
+            \end{bmatrix}
+            \text{, } 
+            \begin{bmatrix}
+                 b'(x,y) \\
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                1 &  0 \\
+            \end{bmatrix}
+            \text{, and } 
+            \begin{bmatrix}
+                 c'(x,y) \\
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                0 &  1 \\
             \end{bmatrix}
         \]
+
+        Differentiating \(g\) at \((1,3)\), by multiple applications of the chain rule, we get
+        \[
+            \begin{bmatrix}
+                 g'(1,3) \\
+            \end{bmatrix}
+            = \begin{bmatrix}
+                 f'(f(3,1),f(3,3)) \\
+            \end{bmatrix}
+            \times \begin{bmatrix}
+                 \begin{bmatrix}
+                     f'(3,1) \\
+                 \end{bmatrix}
+                 \times 
+                 \begin{bmatrix}
+                     \begin{bmatrix}
+                         a'(1,3) \\
+                     \end{bmatrix} \\
+                     \begin{bmatrix}
+                         b'(1,3) \\
+                     \end{bmatrix}\\
+                 \end{bmatrix} \\
+                  \\
+                \begin{bmatrix}
+                    f'(3, 3) \\
+                \end{bmatrix}
+                \times 
+                \begin{bmatrix}
+                    \begin{bmatrix}
+                        c'(1,3) \\
+                    \end{bmatrix} \\
+                    \begin{bmatrix}
+                        a'(1,3) \\
+                    \end{bmatrix} \\
+                \end{bmatrix} \\
+            \end{bmatrix}
+        \]
+        \[
+            = \begin{bmatrix}
+                 f'(5,2) \\
+            \end{bmatrix}
+            \times 
+            \begin{bmatrix}
+                \begin{bmatrix}
+                    1 & 2 \\
+                \end{bmatrix}
+                \times 
+                \begin{bmatrix}
+                    3 & 1 \\
+                    1 & 0 \\
+                \end{bmatrix} \\
+                 \\
+               \begin{bmatrix}
+                   0 & -1 \\
+               \end{bmatrix}
+               \times 
+               \begin{bmatrix}
+                    0 & 1 \\
+                    3 & 1 \\
+               \end{bmatrix} \\
+           \end{bmatrix}
+        \]
+        \[
+            = \begin{bmatrix}
+                f'(5,2) \\
+           \end{bmatrix}
+           \times 
+           \begin{bmatrix}
+               5  & 1 \\
+               -3  & -1 \\
+          \end{bmatrix}
+        \]
+        Suppose that \(\begin{bmatrix}
+             f'(5,2) \\
+        \end{bmatrix} = \begin{bmatrix}
+            r  &  s \\
+        \end{bmatrix}\), for some \(r,s \in \mathbb{R}\). Then
+        \[
+            \begin{bmatrix}
+                 g'(1,3) \\
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                 f'(5,2) \\
+            \end{bmatrix}
+            \times 
+            \begin{bmatrix}
+                5 &  1 \\
+                -3 &  -1 \\
+            \end{bmatrix}
+        \]
+        \[
+            \implies \begin{bmatrix}
+                3 &  4 \\
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+                r &  s \\
+            \end{bmatrix}
+            \times 
+            \begin{bmatrix}
+                5 &  1 \\
+                -3 &  -1 \\
+            \end{bmatrix}
+        \]
+        \[
+            \implies \begin{bmatrix}
+                3 &  4 \\
+            \end{bmatrix}
+            = 
+            \begin{bmatrix}
+                5r-3s &  r-s \\
+            \end{bmatrix}
+        \]
+        \[
+            \implies 5r - 3s = 3 \text{ and } r - s = 4
+        \]
+        Solving the system of equations gives
+        \[
+            r = -\frac{9}{2} \text{ and } s = -\frac{17}{2}
+        \]
+        Therefore \(\nabla f(5,2) = \left( -\dfrac{9}{2}, -\dfrac{17}{2} \right)\).
     \end{question}
 \end{document}
