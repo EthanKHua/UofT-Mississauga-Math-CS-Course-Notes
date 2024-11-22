@@ -303,6 +303,11 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 	\[
 		\delta (q_k, \sigma) = \{q_0\}
 	\]
+	It will be shown that \(\mathcal{N} = (\Sigma , \delta , Q, s, F)\) is correct.
+
+	For a positive integer \(i\), define \(q(i)\) to be the state of the machine before reading the \(i\)th symbol.
+
+	Let \(w \in L\). Then the \(k\)th last symbol is a 1. The correct path is to first transition to \(q_0\) for every symbol before the \(th\) last symbol. Thus before \(\mathcal{N}\) reads the \(k\)th last symbol, the machine is in state \(q_0\). 
 
 \end{proof}
 
