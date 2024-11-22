@@ -53,33 +53,51 @@ Let $ \Sigma = \{0,1\} $.
 	\item \textbf{(3 pts)} $ \Sigma^* $
 	
 	\begin{proof}
-		From the definition of a regular language, \(\{ 0 \} \) and \(\{ 1 \} \) are regular languages. Then \(\{ 0 \} \cup \{ 1 \} = \Sigma\) is a regular language. Finally, it is true that \(\Sigma ^*\) is a regular language.
-
-		For this regular language, define the DFA \(\mathcal{D} = (\{q_0\}, \Sigma, \delta , q_0, \{q_0\})\), where \(\delta : \{q_0\} \times \Sigma \to \{q_0\}\) is a function that always maps to \(q_0\).
-		
-		\begin{figure}[ht]
-			\centering
+		For this language, define the DFA \(\mathcal{D} = (\{q_0\}, \Sigma, \delta , q_0, \{q_0\})\), where \(\delta : \{q_0\} \times \Sigma \to \{q_0\}\) is a function that always maps to \(q_0\).
+		\begin{center}
 			\begin{tikzpicture}
 				\node[state,initial,accepting] (q0) {q0};
 				\draw (q0) edge[loop above] node{0} (q0)
-					  (q0) edge[loop below] node{1} (q0);
+						(q0) edge[loop below] node{1} (q0);
 			\end{tikzpicture}
-			\label{fig:DFA for a)}
-		\end{figure}
+		\end{center}
+		It will be shown that \(\mathcal{D}\) is correct. For \(w \in \Sigma ^*\), define the state invariant
+		\[
+			P_{q_0}(w) : \delta (q_0, w) = q_0 \iff w \in \Sigma ^*
+		\]
+		It will be shown using induction that for all \(w \in \Sigma ^*\), \(P_{q_0}(w)\) is true.
 
+		\medskip
+
+		\textbf{Base Case.} Let \(w = \varepsilon\). Both \(\delta (q_0, \varepsilon) = q_0\) and \(\varepsilon \in \Sigma ^*\) are true, so \(P_{q_0}(\varepsilon)\) is true.
+
+		\medskip
+
+		\textbf{Induction Hypothesis.} Let \(q \in \mathcal{Q}\), \(w \in \Sigma ^*\), and \(\sigma \in \Sigma\). Since \(\mathcal{Q} = \{q_0\}\), \(q = q_0\). Suppose that \(P_{q_0}(w)\) is true.
+
+		\medskip
+
+		\textbf{Induction Step.} For all \(\sigma\), \(\delta (q_0, \sigma) = q_0\). It is obvious that \(wz \in \Sigma ^*\), so \(P_{q_0}(wz)\) holds true.
+		
+		Thus the state invariants are correct.
+
+		Now, let \(w \in \Sigma ^*\). Then by the state invariant, \(\delta (q_0, w) = q_0\), which is an accepting state, so \(w\) is accepted.
+
+		A string that is not in \(\Sigma ^*\) cannot be found so the backwards direction is vacuously true.
+
+		Therefore \(\mathcal{D}\) is correct.
+		\smallbreak
 	\end{proof}
 
-	\item \textbf{(3 pts)} $ \Sigma^*\backslash\{K\}, K =\{01, 101, 010\}$
+	\item \textbf{(3 pts)} $ \Sigma^*\backslash K, K =\{01, 101, 010\}$
 	
 	\begin{proof}
-		\begin{figure}
-			\centering
+		\begin{center}
 			\begin{tikzpicture}
 				\node[state,initial,accepting] (q0) {q0};
 				\node[state, right of=q0] (q1) {q1};
 			\end{tikzpicture}
-			\label{DFA for b)}
-		\end{figure}
+		\end{center}
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a palindrome}\} $
 	
@@ -298,20 +316,59 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 		\delta (q_0, 1) = \{ q_0,q_1 \} 
 	\]
 	\[
-		\delta (q_i, \sigma ) = \{ q_{i+1} \} \ ,\ \forall \sigma \in \Sigma,\ 0 < i < k
+		\delta (q_i, \sigma ) = \{ q_{i+1} \} ,\ \forall \sigma \in \Sigma,\ 0 < i < k
 	\]
 	\[
-		\delta (q_k, \sigma) = \{q_0\}
+		\delta (q_k, \sigma) = \{q_0\},\ \forall \sigma \in \Sigma 
 	\]
 	It will be shown that \(\mathcal{N} = (\Sigma , \delta , Q, s, F)\) is correct.
 
 	For a positive integer \(i\), define \(q(i)\) to be the state of the machine before reading the \(i\)th symbol.
 
-	Let \(w \in L\). Then the \(k\)th last symbol is a 1. The correct path is to first transition to \(q_0\) for every symbol before the \(th\) last symbol. Thus before \(\mathcal{N}\) reads the \(k\)th last symbol, the machine is in state \(q_0\). 
+	Let \(w \in L\). Then the \(k\)th last symbol is a 1. The correct path is to first transition to \(q_0\) for every symbol before the \(th\) last symbol. Thus before \(\mathcal{N}\) reads the \(k\)th last symbol, the machine is in state \(q_0\). Then, transition to \(q_1\) when reading the \(k\)th last symbol. After this, the machine will always transition to the next state. Specifically, this means that for \(i \in \{1, ..., k-1 \},\), if \(\mathcal{N}\) is in state \(q_i\) before reading a symbol, it will transition to \(q_{i+1}\) after reading it.
 
+	Since there are \(k-1\) symbols remaining to be read after the \(k\)th last symbol was read, then after the very last symbol is read, \(\mathcal{N}\) will be in state \(q_k\), which is an accepting state. Therefore \(\mathcal{N}\) accepts \(w\).
+
+	Conversely, suppose that \(w \notin L\). Every path that \(w\) can take will be examined more closely. However, since there is only one transition that leads to multiple states, that is the only place that needs to be considered.
+
+	Firstly, if the machine always chooses the transition \(q_0 \xrightarrow[]{1} q_0\), it will never reach the accepting state \(q_k\). This case can be disregarded.
+
+	Now, let \(A\) be the set of indices such that \(i \in A\) implies that \(w(i) = 1\). Notice that \(|w| - k \notin A\). As well, \(A\) is a finite set, so its elements can be enumerated in increasing order as
+	\[
+		i_1 < i_2 < ... < i_m, \text{ for some } m \in \mathbb{N}
+	\]
+	It will be proven using backwards induction on \(n\) that there is no path where \(\mathcal{N}\) accepts \(w\). In particular, the goal is to show that for all integers \(n\) so that \(1 \leq n \leq m\), taking the transition \(q_0 \xrightarrow{1} q_1\) when reading the \(i_n\)th symbol will result in \(w\) being rejected.
+
+	\medskip
+
+	\textbf{Base Case.} Let \(n = m\). Suppose the machine chooses the path that always transitions to \(q_0\) until \(\mathcal{N}\) reads \(w(n)\), where it chooses \(q_0 \xrightarrow{1} q_1\). Here, there are two cases to consider.
+
+	Case 1: \(i_n > |w| - k + 1\).
+
+	Since \(k - 1 > |w| - i_n\), there are less than \(k - 1\) symbols that remain to be read after transitioning to \(q_1\). Thus the machine will end up in the state \(q_{|w| - i_n}\), which is not an accepting state.
+
+	Case 2: \(i_n < |w| - k + 1\).
+
+	On the other hand, now there are more than \(k - 1\) symbols to be read. After reading \(k-1\) symbols, the machine will be in state \(q_k\). Reading one more character will transition back to \(q_0\). Since \(i_m\) is the maximal element in \(A\), there are no more 1's to read, so \(w\) is rejected.
+
+	\medskip
+
+	\textbf{Induction Hypothesis.} Let \(l \in \mathbb{Z}\) such that \(1 < l \leq m\), and suppose that for all \(l \leq n \leq m\), the machine rejects \(w\) when it chooses to transition \(q_0 \xrightarrow{1} q_1\) when reading \(w(i_n)\). It will be shown that the same applies when the machine transitions \(q_0 \xrightarrow{1} q_1\) when reading \(w(i_{l-1})\).
+
+	\medskip
+
+	\textbf{Induction Step.} Choosing the transition \(q_0 \xrightarrow{1}q_1\), the two cases from the base case apply in the same way. The only difference is that in case 2, there are more 1's to be read. However, the index \(i_j\) of those 1's is an element of \(A\) and \(l < j\), so it is covered by the induction hypothesis.
+
+	If the transition \(q_0 \xrightarrow{1}q_0\) is taken, \(w\) can never be accepted. On the other hand, if the transition \(q_0 \xrightarrow{1}q_1\) is taken for some \(w(i_j)\), then \(w\) is rejected by the induction hypothesis.
+
+	By the principle of complete induction, it can be concluded that there is no path where \(\mathcal{N}\) accepts \(w \notin L\).
+
+	Therefore, the NFA \(\mathcal{N}\) correctly accepts \(L\), completing the proof.
+	\medbreak
 \end{proof}
 
 \item \textbf{(3 pts)} \textit{Bonus}: The smallest DFA that accepts $L$ has to have exactly $2^{k+1}-1$ number of states.
+lol
 \end{enumerate}
 
 \item \textbf{(10 pts)} Solve question 4 on page 83 in the textbook.
