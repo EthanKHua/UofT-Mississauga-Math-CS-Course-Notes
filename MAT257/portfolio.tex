@@ -14,6 +14,7 @@
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Tr}{\mathrm{Tr}}
 
 \newcommand{\cl}[1]{\overline{#1}}
@@ -64,6 +65,12 @@
             \hline
             \#12 & Complete \\
             \hline
+            \#13 & Unfinished \\
+            \hline
+            \#14 & Unattempted \\
+            \hline
+            \#15 & Unattempted \\
+            \hline
             \#16 & Complete \\
             \hline
             \#17 & Complete \\
@@ -73,6 +80,8 @@
             \#19 & Incomplete \\
             \hline
             \#20 & Complete \\
+            \hline
+            \#21 & Unattempted \\
             \hline
             \#22 & Complete \\
             \hline
@@ -179,6 +188,1966 @@
 
     \end{proof}
 
+    \subsection{\#4}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that there exists an infinitely differentiable function $\alpha:\R\rightarrow \R$ such that $\alpha(t)=0$ for all $t\leq 0$, and $\alpha(t)>0$ for all $t>0$.
+
+        \begin{proof}
+            We define \(\alpha (t) =
+            \begin{dcases}
+                0, &\text{ if } t \leq 0 ;\\
+                e^{-\frac{1}{t}} , &\text{ if } t > 0.\\
+            \end{dcases}\) 
+            
+            Trivially \(\alpha (t) = 0 \text{ if } t \leq 0\) and \(\alpha (t) > 0 \text{ if }t > 0\). It remains to show that \(\alpha \) is infinitely differentiable.
+
+            Since \(0\) is infinitely differentiable, and \(e^{-\frac{1}{x}}\) is infinitely differentiable for \(x > 0\), it suffices to show that derivatives of all orders of \(\alpha \) are continuous at \(t = 0\).
+
+            We will continue by proving a lemma.
+
+            \textbf{Lemma.} \(\forall n \in \mathbb{N}, \text{ for } t > 0 \text{, } \alpha^{(n)} (t) = Q(t)\alpha (t)\), where \(Q(x)\) is a linear combination of nonpositive integer powers of \(t\).
+
+            We will show this using induction.
+            \begin{proof}
+                When \(n=1\), fixing \(t > 0\), we have
+                \[
+                    \alpha ^\prime(t) = \frac{1}{t^2}e^\frac{-1}{t} = \frac{1}{t^2}\alpha (t)
+                \]
+                We let \(Q(t) = t^{-2}\) and we are done.
+
+                Now suppose that the lemma holds for all \(i \leq k\), for some \(k \in \mathbb{N}\).
+
+                Then for \(t > 0\),
+                \[
+                    \alpha ^{(k)}(t) = P(t)\alpha (t). \text{ where } P(t) \text{ is a linear combination of nonpositive integer powers of t}
+                \]
+                Taking the derivative of both sides with respect to \(t\), we obtain
+                \[
+                    \alpha ^{(k+1)}(t) = P^\prime(t)\alpha (t) + P(t)\alpha ^\prime (t)
+                \]
+                The lemma holds for \(i = 1\), therefore for some \(R(t)\),
+                \[
+                    P^\prime(t)\alpha (t) + P(t)\alpha ^\prime (t) = P^\prime(t)\alpha (t) + P(t)R(t)\alpha (t) = (P^\prime(t) + P(t)R(t))\alpha (t)
+                \]
+                \(P^\prime(t) + P(t)R(t)\) is a linear conbination of nonpositive integer powers of \(t\), therefore letting \(Q(t) = P^\prime(t) + P(t)R(t)\), we get our desired conclusion.
+
+                By the principle of induction, the lemma holds true for all \(n \in \mathbb{N}\).
+
+            \end{proof}
+
+            We now continue in proving that derivatives of all orders of \(\alpha\) are continuous at 0. We show this by proving that
+            \[
+                \lim_{t \to 0} \alpha ^{(n)}(t) = 0 \text{, where } n \in \mathbb{N}
+            \]
+            We will only worry about the right hand limit, as the left hand limit always evaluates to \(0\).
+
+            Let \(n \in \mathbb{N}\). Since we only deal with positive \(t\), by our lemma,
+            \[
+                \alpha ^{(n)}(t) = Q(t)\alpha (t)
+            \]
+            Where \(Q(t)\) is a linear combination of nonpositive integer powers of \(t\). So
+            \[
+                \lim_{t \to 0^+} \alpha ^{(n)}(t) = \lim_{t \to 0^+} Q(t)\alpha (t) = \lim_{t \to 0^+} \sum_{i=0}^k a_i t^{-i} \alpha (t)
+            \]
+            Where \(a_i\) are real constants and \(k \in \mathbb{N}\).
+
+            Consider an arbitrary term \(a_i t^{-i} \alpha (t) = a_i t^{-i} e^\frac{-1}{t}\). We want to show that \(\lim_{t \to 0^+}a_i t^{-i} e^\frac{-1}{t}\) exists and is equal to 0.
+
+            First, we will perform the substitution \(x = \frac{1}{t}\). Then the limit becomes
+            \[
+                \lim_{x \to \infty} a_i x^i e^{-x} = 0
+            \]
+            The proof for this fact is omitted, but applying L'Hopital's rule \(i\) times produces the same result. Thus,
+            \[
+                \lim_{t \to 0^+} \alpha ^{(n)}(t) = \lim_{t \to 0^+} \sum_{i=0}^k a_i t^{-i} \alpha (t) = \sum_{i=0} ^k \lim_{t \to 0^+} a_i t^{-i} \alpha (t) = \sum_{i=0} ^k 0 = 0
+            \]
+            Thus \(\alpha \) is infinitely differentiable everywhere.
+
+        \end{proof}
+
+        \item Prove that there exists an infinitely differentiable function $\beta:\R\rightarrow \R$ such that $\beta(t)=1$ for all $t\geq 1$, and $\beta(t)=0$ for all $t\leq 0$.
+
+        \begin{proof}
+            Define
+            \[
+                \beta (t) = \frac{\alpha (t)}{\alpha (t) + \alpha (1-t)}
+            \] 
+            If \(t\geq 1\), we also have \(1-t \leq 0\). Then
+            \[
+                \beta (t) = \frac{\alpha (t)}{\alpha (t)} = 1
+            \]
+            As well, if \(t \leq 0\), we have
+            \[
+                \beta (t) = 0
+            \]
+
+            Since \(\alpha(t)\) is infinitely differentiable and \(\beta\) is composed of \(\alpha \), it follows that \(\beta\) is also infinitely differentiable.
+
+        \end{proof}
+
+        \item Prove that there exists an infinitely differentiable function $\varphi:\R\rightarrow \R$ such that $\varphi(t)=1$ for all $t\in [2,3]$, and $\varphi(t)=0$ for $t\in \R\setminus (1,4)$.
+
+        \begin{proof}
+            Define \(\phi (t) = \beta (t-1) \beta (4-t)\).
+            Since \(\beta\) is infinitely differentiable, \(\phi\) is as well. For \(t \in [2,3]\), \(t-1 \geq 1\) and \(4-t \geq 1\). Thus
+            \[
+                \phi (t) = \beta(t-1) \beta (4-t) = 1
+            \]
+            If \(t \in \mathbb{R} \setminus (1,4)\), then \(t-1 \leq 0\) or \(4-t \leq 0\). In each case \(\beta(t-1) = 0\) or \(\beta (4-t) = 0\), respectively, thus we have
+            \[
+                \phi (t) = \beta (t-1) \beta (4-t) = 0
+            \]
+
+        \end{proof}
+    \end{enumerate}
+
+    \subsection{\#5}
+
+    Let $S\subseteq \R^n$. Consider the following three statements:
+        \begin{itemize}
+            \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_1)$.
+            \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_2)$.
+            \item $S$ is a bounded subset of $(\R^n,\|\cdot\|_{\max})$.
+        \end{itemize}
+        Among these statements, determine which implications are true and which are false. There are six implications to investigate. Supply proof or counterexample as appropriate. Include pictures.
+        \\\\
+        \noindent\textbf{\textcolor{red}{Note.}} My previous submission did not consider when \(d(x,y) = 0\) when proving symmetry. As well, I made a typo when writing the max-norm. Finally, the last paragraph was not written out mathematically. This resubmission should fix those issues.
+    
+        \noindent\textbf{Changelog.}
+        \begin{enumerate}
+            \item Added an argument when proving symmetry to address division by 0
+            \item Fixed max-norm typo
+            \item Rewrote last explanation in a more mathematical fashion
+        \end{enumerate}
+
+        \noindent\textbf{Claim.} Each statement implies all the other statements.
+        \begin{proof}
+            \textbf{Lemma.} Strong equivalence is an equivalence relation.
+            \begin{proof}
+                Let \(d_1, d_2, d_3\) be metrics on some set \(X\). We proceed by proving each property of equivalence relations.
+                \begin{enumerate}
+                    \item Reflexivity:
+                    Let \(\alpha = \beta = 1\). Clearly \(d_1(x,y) \leq d_1(x,y) \leq d_1(x,y)\). Thus the relation is reflexive.
+
+                    \item Symmetry:
+                    Suppose \(\hat{\alpha} d_1(x,y) \leq d_2(x,y) \leq \hat{\beta} d_1(x,y)\). Let \(\alpha = \frac{1}{\hat{\beta}}, \beta = \frac{1}{\hat{\alpha}}\). \textcolor{red}{If \(x=y\), then \(d_1(x,y) = d_2(x,y) = 0\), so the inequality trivially holds.} \textcolor{red}{Otherwise, \(d_1(x,y) > 0, d_2(x,y) > 0\)}, so we see that
+                    \[
+                        \hat{\alpha} \leq \frac{d_2(x,y)}{d_1(x,y)} \leq \hat{\beta} \implies \frac{1}{\hat{\beta}} \leq \frac{d_1(x,y)}{d_2(x,y)} \leq \frac{1}{\hat{\alpha}} \implies \alpha d_2(x,y) \leq d_1(x,y) \leq \beta d_2(x,y)
+                    \]
+                    Thus the relation is symmetric.
+
+                    \item Transitivity:
+                    Suppose that \(\hat{\alpha} d_1(x,y) \leq d_2(x,y) \leq \hat{\beta} d_1(x,y)\) and \(\tilde{\alpha} d_2(x,y) \leq d_3(x,y) \leq \tilde{\beta} d_2(x,y)\). Let \(\alpha = \hat{\alpha}\tilde{\alpha}, \beta = \hat{\beta}\tilde{\beta}\). We have
+                    \[
+                        \alpha d_1(x,y) = \hat{\alpha}\tilde{\alpha} \leq \tilde{\alpha}d_2(x,y) \leq d_3(x,y) \leq \tilde{\beta}d_2(x,y) \leq \hat{\beta}\tilde{\beta}d_1(x,y) = \beta d_1(x,y)
+                    \]
+                    \[
+                        \implies \alpha d_1(x,y) \leq d_3(x,y) \leq \beta d_1(x,y)
+                    \]
+                    Thus the relation is transitive.
+                \end{enumerate}
+                Therefore, the relation is an equivalence relation.
+            \end{proof}
+            
+            We want to show that \(\|\cdot\|_1, \|\cdot\|_2, \|\cdot\|_{\max}\) are strongly equivalent to each other. First, we will show that \(\|\cdot\|_1 \sim \|\cdot\|_{\max}\) and \(\|\cdot\|_2 \sim \|\cdot\|_{\max}\). We have that
+            \[
+                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{\textcolor{red}{|x_i - y_i|}\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \sum_{i=1}^n |x_i - y_i|
+            \]
+            From this, we have the inequalities
+            \[
+                \frac{1}{n} \sqrt{\sum_{i=1}^n |x_i - y_i|} \leq \max _{1\leq i\leq n} \{\textcolor{red}{|x_i - y_i|}\} \leq \sqrt{\sum_{i=1}^n |x_i - y_i|} \text{ and } \frac{1}{n} \sum_{i=1}^n |x_i - y_i| \leq \max _{1\leq i\leq n} \{\textcolor{red}{|x_i - y_i|}\} \leq \sum_{i=1}^n |x_i - y_i|
+            \]
+            \[
+                \implies \frac{1}{n} \|x - y\|_2 \leq \|x - y\|_{\max} \leq \|x - y\|_2 \text{ and } \frac{1}{n} \|x - y\|_1 \leq \|x - y\|_{\max} \leq \|x - y\|_1
+            \]
+            \[
+                \implies \|\cdot\|_2 \sim \|\cdot\|_{\max} \text{ and } \|\cdot\|_1 \sim \|\cdot\|_{\max}
+            \]
+            Using transitivity and symmetry we can also conclude that \(\|\cdot\|_1 \sim \|\cdot\|_2\). Thus every metric is strongly equivalent to one another. \textcolor{red}{It follows that for any \(i,j \in \{1, 2, \max\}\), there exists \(c_{ij} > 0\) such that for all \(x,y \in \mathbb{R}^n\), \(d_i(x,y) \leq c_{ij} \cdot d_j(x,y)\), meaning that for \(S \subseteq \mathbb{R}^n\), if \(S\) is bounded with respect to the 1-norm, 2-norm, or the max-norm, it is bounded with respect to the other norms as well,} from which our claim follows immediately after.
+
+        \end{proof}
+
+        \subsection{\#6}
+
+        Let $(X,\|\cdot\|_X)$ and $(Y,\|\cdot\|_Y)$ be two normed vector spaces. A linear mapping $T:X\rightarrow Y$ is called \textbf{bounded} if there exists a constant $M\geq 0$ such that
+        \[ \|T(x)\|_Y \leq M \|x\|_X \quad \text{for all $x\in X$.}  \]
+        Let $B(X,Y)$ denote the set of these bounded linear operators. The \textbf{operator norm} on $B(X,Y)$, denoted by $\|\cdot\|_{\mathrm{op}}$, is defined as follows:
+            \[ \|T\|_{\mathrm{op}} = \sup\{ \|T(x)\|_Y : x\in X \text{ and } \|x\|_X\leq 1 \}. \]
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $B(X,Y)$ is a linear subspace of $L(X,Y)$.
+            
+            \begin{proof}
+                The 0-transformation \(\left\lVert Z(x) \right\rVert  = 0 \leq \left\lVert x \right\rVert _X \text{, } \forall x \in X\), because of the definition of a norm. Thus \(0 \in B(X,Y)\).
+                Let \(T, U \in B(X,Y) \text{, } c \in \mathbb{R}\). Then for all \(x \in X\), there exist \(M, N \geq 0\) such that
+                \[
+                    T(x) \leq M \left\lVert x \right\rVert _X \text{ and } U(x) \leq N \left\lVert x \right\rVert _X \implies T(x) + U(x) \leq (M+N) \left\lVert x \right\rVert _X
+                \] 
+                Which implies that \(T+U\) is a member of \(B(X,Y)\). As well, from the first inequality, depending on if \(c \) is positive or negative, we have
+                \[
+                    T(x) \leq M \left\lVert x \right\rVert _X \implies cT(x) \leq  cM \left\lVert x \right\rVert _X \text{ or } -cT(x) \leq  -cM \left\lVert x \right\rVert
+                \]
+                Note that if \(c=0\), \(cT = 0\). Regardless, this implies that \(cT\) is a member of \(B(X,Y)\).
+
+                Since \(0 \in B(X,Y)\)and \(B(X,Y)\) is closed under addition and scalar multiplication, \(B(X,Y)\) is a subspace of \(L(X,Y)\).
+
+            \end{proof}
+            \item Prove that $\|\cdot\|_{\mathrm{op}}$ is a norm on $B(X,Y)$.
+        
+            \begin{proof}
+                To prove that the operator norm is a norm, we first verify that \(\left\lVert T \right\rVert _{op} = 0 \iff T = 0\).
+
+                We denote the set of elements \(x\) in \(X\) such that \(\left\lVert x \right\rVert _X \leq 1\) as \(X^\prime\).
+
+                Fix \(T \in B(X,Y)\) and suppose that \(T = 0\). Then for all \(x \in X^\prime \text{, } \left\lVert T(x) \right\rVert _Y = \left\lVert 0 \right\rVert _Y = 0\). Thus \(\left\lVert T \right\rVert _{op} = 0\).  
+                
+                Now suppose the converse, that \(\left\lVert T \right\rVert _{op} = 0\). Then 
+                \[
+                    \forall x \in X^\prime, \left\lVert T(x) \right\rVert _Y \leq \left\lVert T \right\rVert _{op} = 0.
+                \]
+                But by the definition of the norm in Y,
+                \[
+                    0 \leq \left\lVert T(x) \right\rVert _Y
+                \]
+                It follows that \(\left\lVert T(x) \right\rVert  = 0 \implies T(x) = 0\).
+
+                To show nonnegativity, we note that for \(x \in X^\prime\),
+                \[
+                    \left\lVert T \right\rVert _{op} \geq \left\lVert T(x) \right\rVert _Y \geq 0
+                \]
+
+                To show homogeity, let \(T \in G(X,Y), c \in \mathbb{R}\). Then
+                \[
+                    \left\lVert cT \right\rVert _{op} = \sup \{ \left\lVert cT(x) \right\rVert _Y : x \in X^\prime\} = \sup \{ |c|\left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = |c|\sup \{ \left\lVert T(x) \right\rVert _Y : x \in X^\prime\} = |c| \left\lVert T \right\rVert _{op}
+                \] 
+
+                Now we show that the triangle inequality holds with respect to the operator norm.
+
+                Fix \(T, U \in B(X,Y)\). Let \(x \in X^\prime\). By definition,
+                \[
+                    T(x) \leq \sup T(X^\prime) \text{ and } U(x) \leq \sup U(X^\prime)
+                \]
+                Adding both together obtains
+                \[
+                    T(x) + U(x) \leq \sup T(X^\prime) + \sup U(X^\prime)
+                \]
+                We see that \(\sup T(X^\prime) + \sup U(X^\prime)\) is an upper bound for \(T(x) + U(x)\). By the definition of the least upper bound,
+                \[
+                    \sup \{T(X^\prime)+U(X^\prime)\} \leq  \sup T(X^\prime) + \sup U(X^\prime) \implies \left\lVert T+U \right\rVert _{op} \leq \left\lVert T \right\rVert _{op} + \left\lVert U \right\rVert _{op}
+                \]
+                Thus the operator norm is, indeed, a norm.
+
+            \end{proof}
+            \item Let $T:\R^2\rightarrow \R^2$ be the linear mapping given by $T(x,y)=(x+y,x)$. Find, with proof, the exact value of $\|T\|_{\mathrm{op}}$. (Here, $\R^2$ is equipped with the usual norm.)
+            
+            \textbf{Claim.} \(\left\lVert T \right\rVert _{op} = \sqrt{\frac{3+\sqrt{5}}{2}} \)
+
+            \begin{proof}
+                We will show that \(\|T(x,y)\| _2\) is bounded above by this value, and that equality is possible.
+                
+                Let \((x,y) \in \mathbb{R} ^2\) such that \(\sqrt{x^2 + y^2} \leq 1 \implies y \leq \pm \sqrt{1-x^2} \leq \sqrt{1-x^2}\).
+                For such \((x,y)\),
+                \[
+                    \left\lVert T(x,y) \right\rVert _2 = \left\lVert (x+y, x) \right\rVert _2 = \sqrt{(x+y)^2 + x^2} = \sqrt{2x^2 + 2xy + y^2} 
+                \]
+                By the monotonicity of the squareroot,
+                \[
+                    \sqrt{2x^2 + 2xy + y^2} \leq \sqrt{x^2 + 2x\sqrt{1-x^2} + 1}
+                \]
+                We attempt to maximize this function for \(x \in [0,1]\) (The interval is the set of all \(x\) that satisfy the constraint \(x^2 + y^2 \leq 1\)). Maximizing this function is synonymous to maximizing \(f(x) = x^2 + 2x\sqrt{1-x^2} + 1\) on the interval \([0,1]\). Taking the derivative, we get
+                \[
+                    f^\prime(x) = 2x + 2\sqrt{1-x^2} -\frac{2x^2}{\sqrt{1-x^2}} = \frac{2x\sqrt{1-x^2} + 2 - 4x^2}{\sqrt{1-x^2}}
+                \]
+                Now, we find every critical point. When \(f^\prime\) is undefined, \(x = 1\).
+                Now, let \(f^\prime(x) = 0\), \(x\neq 1\) . Then through a series of calculations I really don't want to type out,
+                \[
+                    \frac{2x\sqrt{1-x^2} + 2 - 4x^2}{\sqrt{1-x^2}} = 0 \implies 5x^4 - 5x^2 + 1 = 0 \implies x^2 = \frac{1}{2}\pm\frac{1}{2\sqrt{5}} \implies x = \sqrt{\frac{1}{2}\pm\frac{1}{2\sqrt{5}}} 
+                \]
+                We disregard the negative solution since we want \(x \in [0,1]\).
+                Now we evaluate \(f\) at the endpoints, as well as at every point we found:
+                \[
+                    f(0) = 1
+                \]
+                \[
+                    f(1) = 2
+                \]
+                \[
+                    f\left(\sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\right) = \frac{3+\sqrt{5}}{2}
+                \]
+                \[
+                    f\left(\sqrt{\frac{1}{2}-\frac{1}{2\sqrt{5}}}\right) = \frac{3}{2}+\frac{3}{2\sqrt{5}}
+                \]
+                It is not too hard to see that \(f\) acheives the maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\). Then \(\sqrt{x^2 + 2x\sqrt{1-x^2} + 1}\) also acheives a maximum at \(x = \sqrt{\frac{1}{2}+\frac{1}{2\sqrt{5}}}\), which is \(\sqrt{\frac{3+\sqrt{5}}{2}}\).
+
+                In summary, we have for all \((x,y) \in \mathbb{R} ^2\),
+                \[
+                    \left\lVert T(x,y) \right\rVert _2 \leq \sqrt{\frac{3+\sqrt{5}}{2}}
+                \]
+                Thus \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is an upper bound for \(\left\lVert T(x,y) \right\rVert _2\).
+
+                To show that \(\sqrt{\frac{3+\sqrt{5}}{2}}\) is the least upper bound, it suffices to show that \(\left\lVert T(x,y) \right\rVert _2\) can acheive that value. Indeed, if we let \(x=\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)},y= \sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)}\) we see that
+                \[
+                    \left\lVert T(x,y) \right\rVert = \sqrt{\left(\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)} + \sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)}\right)^2 + \left(\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)}\right)^2}
+                \]
+                \[
+                    = \sqrt{2\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right) + 2\sqrt{\left(\frac{1}{2}+\frac{1}{2\sqrt{5}}\right)}\sqrt{\left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)} + \left(\frac{1}{2}-\frac{1}{2\sqrt{5}}\right)} = \sqrt{\frac{3+\sqrt{5}}{2}} 
+                \]
+                Thus \(\left\lVert T \right\rVert _{op} = \sup \{ \left\lVert T(x,y) \right\rVert _2 : \left\lVert (x,y) \right\rVert _2 \leq 1\} = \sqrt{\frac{3+\sqrt{5}}{2}}\)
+
+            \end{proof}
+
+            \item Find, with proof, an example of an unbounded linear operator.
+            
+            \begin{proof}
+                Define \(\ell ^0\) to be the set of all sequences that are eventually 0. Consider the metric spaces \((\ell^{0}, \left\lVert \cdot \right\rVert _{\ell \infty})\) and \((C[0, 1], \left\lVert \cdot \right\rVert _{C\infty} )\). Here, we denote \(\left\lVert \cdot \right\rVert _{\ell \infty}\) as the sup norm on \(\ell ^{\infty} \) and \(\left\lVert \cdot \right\rVert _{C\infty}\) as the sup norm on \(C[0,1]\)..
+                
+                Let \(T: \ell^{0} \to C[0,1]\) be defined by
+                \[
+                    T((a_n)_n) = \sum_{i=0}^k a_i i^x \text{, where } k \text{ is the last index where } a_k \neq 0
+                \]
+                First, we will show that \(T\) is a linear transformation. Fix \((a_n)_n, (b_n)_n \in \ell ^0, c \in \mathbb{R}\). Let \(k = \max \{ k_a, k_b \} \), where \(k_a, k_b\) are the last index where \(a_{k_a}\) and \(b_{k_b}\) are non-zero, respectively. Then
+                \[
+                    T(c(a_n)+(b_n)) = \sum_{i=0}^k (ca_i + b_i) i^x = c\sum_{i=0}^k a_i i^x + \sum_{i=0}^k b_i i^x = c\sum_{i=0}^{k_a} a_i i^x + \sum_{i=0}^{k_b} b_i i^x = cT((a_n)) + T((b_n))
+                \]
+                This verifies that \(T\) is a linear transformation.
+
+                Now we show that \(T\) is unbounded. Fix \(M \geq 0\). Let \((a_n)_n \in \ell ^0\) such that \(a_i = 1\) if \(i=M+1\) and 0 otherwise. We have that
+                \[
+                    \left\lVert T((a_n)) \right\rVert _{C\infty} = \left\lVert (M+1)^x \right\rVert _{C\infty} = M+1 > M = M \left\lVert (a_n) \right\rVert _{\ell \infty}
+                \]
+                Thus \(T\) is an unbounded linear operator.
+
+            \end{proof}
+        \end{enumerate}
+
+        \subsection{\#7}
+
+        Let $S\subseteq C[0,1]$. Consider the following two statements:
+
+        \begin{itemize}
+            \item $S$ is an open subset of $(C[0,1],\|\cdot\|_1)$.
+            \item $S$ is an open subset of $(C[0,1],\|\cdot\|_\infty)$.
+        \end{itemize}
+        Determine if the first statement implies the second, and vice-versa. Supply proof or counterexample as appropriate.
+    
+        \begin{proof}
+            We claim that the first statement implies the second, but not the converse.
+    
+            Suppose that \(S\) is an open subset of \((C[0,1], \|\cdot\|_1)\). For any \(g \in S\), there is an open ball with respect to the 1-norm centered around \(g\) with radius \(\varepsilon\) such that \(B_1 (g, \varepsilon)\subseteq S\). We proceed to show that \(B_\infty (g, \varepsilon) \subseteq B_1 (g, \varepsilon)\). Let \(f \in B_\infty (g, \varepsilon)\). Then \(\|f-g\| _\infty < \varepsilon\). Thus we have
+            \[
+                \|f-g\| _1 = \int _0^1 \left\vert f-g \right\vert \leq \int _0^1 \sup \{ \left\vert f-g \right\vert \} = \|f-g\| _\infty < \varepsilon 
+            \]
+            Thus \(B_\infty (g, \varepsilon) \subseteq B_1 (g, \varepsilon) \subseteq S\). Thus \(S\) is an open subset of \((C[0,1], \|\cdot \| _1)\).
+    
+            Now we show that the converse is not necessarily true. Let \(S = B_\infty (0, 1)\). This is an open subset of \((C[0,1],\|\cdot\|_\infty)\). Consider \(f(x) = 0 \in B_\infty (0, 1)\). For every \(\varepsilon > 0\), we can always find \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon}\). Let \(g(x) = x^{n-1}\). Since \(\int _0^1 g(x)dx = \frac{1}{n} < \varepsilon\), \(g(x) \in B_1(0, \varepsilon)\). But \(g(1) = 1\), which means that \(g(x) \notin B_\infty (0, 1)\). Thus \(f\) is not an interior point of \(B_\infty (0, 1)\) with respect to the 1-norm, which means that \(B_\infty (0, 1)\) is not an open subset of \((C[0,1],\|\cdot\|_1)\).
+            
+        \end{proof}
+
+        \subsection{\#8}
+
+        Let $X$ be any set. The \textbf{diagonal} of $X\times X$ is the following set:
+        \[ \Delta = \{(x,x) : x \in X\}. \]
+        Prove that if $(X,d)$ is a metric space, then $\Delta$ is a closed subset of $X\times X$ (with respect to the product metric).
+
+        \begin{proof}
+            We define \(d\) as the metric in \(X\) and \(d_X\) to be the product metric of \(X \times X\). Suppose that \((X,d)\) is a metric space. We want to show that every limit point of \(\Delta\) is a member of \(\Delta\).
+
+            Let \((a,b) \in X\times X\) be a limit point of \(\Delta\) and suppose for contradiction that \((a,b)\) is not an element of \(X\). This implies that \(d(a,b) > 0\). Let \(r = d(a,b)\), and consider the open ball \(B((a,b), r)\). For all \((x,x) \in X\), by the triangle inequality,
+            \[
+                d_X((a,b), (x,x)) = d(a,x) + d(b,x) \geq r
+            \]
+            This means that no element lies within this open ball centered around \((a,b)\), contradicting the fact that \((a,b)\) is a limit point of \(X\). Thus \((a,b) \in X\).
+
+        \end{proof}
+
+        \subsection{\#9}
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $C^\infty[0,1]$ denote the set of infinitely differentiably functions $f:[0,1]\rightarrow \R$. Prove that $C^\infty[0,1]$ is \textit{not} a closed subset of $(C[0,1],\|\cdot\|_\infty)$.
+    
+            \begin{proof}
+                To show that this set is not closed, we just need to find a limit point that is not an element of the set. Let \(f(x) = |x-\frac{1}{2}|\). Clearly \(f \notin C^{\infty} [0,1]\). To prove \(f\) is a limit point of \(C^{\infty} [0,1]\), first let \(\varepsilon > 0\) and consider the open ball \(B(f, \varepsilon)\). There exists an \(n \in \mathbb{N}\) such that \(n > \frac{1}{\varepsilon^2} \implies \frac{1}{\sqrt{n}} < \varepsilon\).
+    
+                Let \(g_n(x) = \sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}\). Since \(x^2 + \frac{1}{n}\) is always positive and the squareroot function is infinitely differentiable for all positive real numbers, \(g_n\) is infinitely differentiable for all \(x \in [0,1]\). Our goal is to find an upper bound for \(|f - g_n|\). For convenience, we perform the change of variables \(t = x - \frac{1}{2}\). Define a new function in \(C[-\frac{1}{2},\frac{1}{2}]\) as \(h(t) = f(t) - g_n(t)\). We find the global maximum and minimum of \(h\). Taking the derivative with respect to \(t\), we obtain
+                \[
+                    h^\prime (t) = \frac{|t|}{t} - \frac{t}{\sqrt{t^2 + \frac{1}{n}}}
+                \]
+                We see that \(h\) has a critical point at \(t = 0\) since \(h^\prime(0)\) is undefined.
+                Note that \(\pm t \leq  |t| \leq \sqrt{t^2 + \frac{1}{n}} \implies \sqrt{t^2 + \frac{1}{n}} \pm t > 0\). If \(t > 0\),
+                \[
+                    h^\prime (t) = 1 - \frac{t}{\sqrt{t^2 + \frac{1}{n}}} = \frac{\sqrt{t^2 + \frac{1}{n}} - t}{\sqrt{t^2 + \frac{1}{n}}} > 0
+                \]
+                If \(t < 0\),
+                \[
+                    h^\prime (t) = -1 - \frac{t}{\sqrt{t^2 + \frac{1}{n}}} = \frac{-\sqrt{t^2 + \frac{1}{n}} - t}{\sqrt{t^2 + \frac{1}{n}}} < 0
+                \]
+                Therefore \(h\) acheives a local minimum at \(t = 0\).
+                We evaluate \(h\) at its critical points and endpoints:
+                \[
+                    h\left(-\frac{1}{2}\right) = \frac{1}{2} - \sqrt{\frac{1}{4}+\frac{1}{n}}
+                \]
+                \[
+                    h(0) = -\frac{1}{\sqrt{n}}
+                \]
+                \[
+                    h\left(\frac{1}{2}\right) = \frac{1}{2} - \sqrt{\frac{1}{4}+\frac{1}{n}}
+                \]
+                By the monotonicity of the squareroot, \(-\frac{1}{\sqrt{n}} < \sqrt{\frac{1}{4} + \frac{1}{n}} < \frac{1}{2} - \sqrt{\frac{1}{4} + \frac{1}{n}} < 0\). Thus \(-\frac{1}{\sqrt{n}}\) is the global minimum of \(h\) and \(\frac{1}{2} - \sqrt{\frac{1}{4} + \frac{1}{n}}\) is the global maximum of \(h\). Note that \(|h(0)| > |h(\frac{1}{2})|\). Thus
+                \[
+                    \|f-g_n\| _\infty = \sup_{0\leq x\leq 1}\{|f(x)-g_n(x)|\} = \sup_{-\frac{1}{2} \leq t \leq \frac{1}{2}} \{|h(t)\} = \frac{1}{\sqrt{n}} < \varepsilon
+                \]
+                Thus \(f\) is a limit point of \(C^{\infty}\), but is not a member of the set. Thus \(C^{\infty}\) is not closed.
+    
+            \end{proof}
+    
+            \item Let $C$ be the set of \textbf{convergent} sequences of real numbers. Prove that $C$ is a closed subset of $(\ell^\infty,\|\cdot\|_\infty)$.
+    
+            \begin{proof}
+                Let \((a_n)_{n\geq1}\) be a limit point of \(C\). We want to show to \((a_n)\) is convergent. We will do this by showing that \((a_n)\) is a Cauchy sequence.
+    
+                Let \(\varepsilon > 0\). Using the fact that \((a_n)\) is a limit point of \(C\), there exists a convergent sequence \(b_n \in B((a_n), \frac{\varepsilon}{3}) \implies \forall k \in \mathbb{N}, |a_k - b_k| < \|(b_n) - (a_n)\| _\infty < \frac{\varepsilon}{3}\). Since \((b_n)\) converges, there is a \(N^\prime \in \mathbb{N}\) such that \(m,n \geq N \implies |b_m - b_n| < \frac{\varepsilon}{3}\).
+                
+                Let \(N = N^\prime\). Then for all \(m,n \geq N\), we have
+                \[
+                    |a_m - a_n| = |(a_m - b_m) + (b_m - b_n) + (b_n - a_n)| \leq |(a_m - b_m)| + |b_m - b_n| + |b_n - a_n| < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon
+                \]
+                Thus \((a_n)\) is a Cauchy sequence, and therefore converges, which means that \((a_n) \in C\). Thus \(C\) is closed.
+    
+            \end{proof}
+            \item Let $(X,\|\cdot\|)$ be a normed vector space, and let $M$ be a \textcolor{red}{linear subspace} of $X$. Prove that $M$ is an open set if and only if $M=X$.
+            
+            \begin{proof}
+                First, suppose that \(M=X\). Then for every \(x \in X\), any open ball centered around \(x\) is obviously a subset of \(X\). Thus \(M\) is open.
+    
+                Next, suppose that \(M\) is an open. To show that \(X=M\), it suffices to show that \(X \subseteq M\), since we already have \(M \subseteq X\) from \(M\) being a subspace of \(X\).
+    
+                Since \(M\) is a subspace, we know that \(0 \in M\). Thus there exists \(\varepsilon > 0\) such that \(B(0, \varepsilon) \subseteq M\).
+                
+                For every \(\vec{x} \in X\), \(\left\lVert \frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \right\rVert = \frac{\varepsilon\|\vec{x}\|}{2\|\vec{x}\|} = \frac{\varepsilon}{2} < \varepsilon\), which means that \(\frac{\varepsilon \vec{x}}{2\|\vec{x}\|} \in M\). Since \(M\) is a subspace, it follows that \(\vec{x} \in M \implies X \subseteq M\). Thus \(M=X\) and we are done.
+    
+            \end{proof}
+        \end{enumerate}
+
+        \subsection{\#10}
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that every bounded sequence in $(\R^d,\|\cdot\|_2)$ has a convergent subsequence.
+            
+            \begin{proof}
+                We take the Bolzano-Weierstrass Theorem in \(\mathbb{R}\) for granted and use this to prove it for \(\mathbb{R}^d\). We will do this using induction on \(d\). When \(d=1\), it follows trivially from the theorem in \(\mathbb{R}\).
+    
+                Now suppose that the claim is true for some \(d = k-1\), for some \(k \in \mathbb{N}\). Let \((a_n)_{n\geq1} \) be a bounded sequence in \((\R^k,\|\cdot\|_2)\). Define another sequence \((b_n)_{n\geq 1}\) in \(\mathbb{R}^{k-1}\) such that \(b_i\) is the first \(k-1\) components of \(a_i\). Since \((a_n)\) is bounded, \((b_n)\) is also bounded. From our assumption, \(b_i\) has a convergent subsequence \((b_{n_i})_{i\geq1}\). Consider another sequence \((c_{n_i})_{i\geq0}\) in \(\mathbb{R}\) , where \(c_{n_i}\) is equal to the last component of \(a_{n_i}\). By the Theorem in \(\mathbb{R}\), \((c_{n_i})_{i\geq1}\) has a convergent subsequence \((c_{n_{m_i}})_{i\geq1}\). Since \((b_{n_i})_{i\geq1}\) converges, we know that \((b_{n_{m_i}})_{i\geq1}\) converges to the same value as well. Suppose that \((b_{n_{m_i}})_{i\geq1}\) converges to \(B = (B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converges to \(C\). We claim that \((a_{n_{m_i}})_{i\geq1}\) is our desired subsequence, which converges to \((B_1, B_2, \dots, B_{k-1}, C)\).
+    
+                Let \(\varepsilon > 0\). Since \((B_1, B_2, \dots, B_{k-1})\) and \((c_{n_{m_i}})_{i\geq1}\) converge,
+                \[
+                    \exists N_b , N_c > 0 \text{ such that } n_b > N_b \implies \| b_{n_b} - B \| _2 < \frac{\varepsilon}{2}\text{ and } n_c > N_c \implies | c_{n_c} - C | < \frac{\varepsilon}{2}
+                \]
+                Let \(N = \max \{N_b, N_c\}\). Let \(n \in \mathbb{N}\), \(n > N\). Then
+                \[
+                    \|a_n - (B_1, B_2, \dots, B_{k-1}, C) \| _2 = \sqrt{(a_1 - B_1)^2 + (a_2 - B_2)^2 + \dots + (a_{k-1} - B_{k-1})^2 + (a_k - C)^2} 
+                \]
+                Using an inequality that I don't know the name of, we have
+                \[
+                    \sqrt{(a_1 - B_1)^2 + (a_2 - B_2)^2 + \dots + (a_{k-1} - B_{k-1})^2 + (a_k - C)^2}
+                \]
+                \[
+                    \leq \sqrt{(a_1 - B_1)^2 + (a_2 - B_2)^2 + \dots + (a_{k-1} - B_{k-1})^2} + \sqrt{(a_k - C)^2} = \| b_n - B \| _2 + | c_n - C | _2
+                \]
+                \[
+                    < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+                \]
+                Thus \((a_{n_{m_i}})_{i\geq1}\) converges, which means that \((a_n)_{n\geq1}\) does indeed have a convergent subsequence. By the principle of induction, the Bolzano-Weierstrass Theorem holds in \((\mathbb{R}^d, \|\cdot\|_2)\) and we are done.
+    
+            \end{proof}
+            \item Give an example of a normed vector space $(X,\|\cdot\|)$ containing a \textcolor{red}{(bounded?)} sequence $(x_n)$ which has no convergent subsequences.
+            
+            \begin{proof}
+                Consider the normed vector space \((\ell^{\infty}, \| \cdot \| _\infty)\). Let \((\vec{x_n})_{n\geq1}\) be a sequence in \((\ell^{\infty}, \| \cdot \| _\infty)\) defined by \(\vec{x_i}_k = \begin{dcases}
+                    1, &\text{ if } k=i ;\\
+                    0, &\text{ otherwise} .
+                \end{dcases}\)
+    
+                Clearly \((\vec{x_n})_{n\geq1}\) is bounded. Let \((\vec{x_{n_i}})_{i\geq1}\) be a subsequence of \((\vec{x_n})_{n\geq1}\). We will show that \((\vec{x_{n_i}})_{i\geq1}\) diverges.
+    
+                For any \((L_k)_{k\geq1} \in \ell^{\infty}\) Let \(\varepsilon = \frac{1}{2}\). Let \(N \in \mathbb{N}\). If there are no values of \(p \geq N\) so that \(\|(\vec{x_p})_k - L_{k}\| _\infty < \varepsilon\), we are done. Now suppose the opposite, that there is a \(p \geq N\) such that \(\|(\vec{x_{p}})_k - L_{k}\|_\infty < \varepsilon\). Let \(n = p + 1\). By the reverse triangle inequality,
+                \[
+                    \| (\vec{x_n})_k - L_k \|_\infty = \|(\vec{x_n})_k - (\vec{x_{p}})_k + (\vec{x_{p}})_k - L_k \| _\infty \geq \left|\|(\vec{x_n})_k - (\vec{x_{p}})_k \| _\infty - \|(\vec{x_{p}})_k - L_k \| _\infty \right| 
+                \]
+                \[
+                    = \left| 1 - \|(\vec{x_{p}})_k - L_k \| _\infty \right| \geq  1 - \varepsilon = \frac{1}{2}
+                \]
+                Thus \((\vec{x_{n_i}})_{i\geq1}\) diverges.
+    
+            \end{proof}
+        \end{enumerate}
+
+        \subsection{\#11}
+
+        Let $(X,d)$ be a metric space. A function $f:X\rightarrow X$ is called a \textbf{contraction mapping} if there exists a constant $M\in (0,1)$ such that
+        \[ d(f(x),f(y))\leq M d(x,y) \quad \text{for all $x,y\in X$.} \]
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose that $(X,d)$ is a complete metric space, and that $f:X\rightarrow X$ is a contraction mapping. Prove that $f$ has a unique fixed point; \textit{i.e.} there exists a unique point $x_0\in X$ such that $f(x_0)=x_0$.
+            
+            \begin{proof}
+                Let \((X, d)\) be a complete metric space and \(f\) be a contraction mapping. In this proof, for \(n \in \mathbb{N}\), we denote \(f^n\) to be a composition of \(f\) \(n\) times.
+
+                Let \(x \in X\). Define the sequence \((x_i)_{i\in \mathbb{N}}\) by \(x_i = f^i(x)\). We show that this is a Cauchy sequence.
+
+                Let \(\varepsilon > 0\). There exists an \(N > 0\) such that \(\dfrac{M^N\cdot d(x,f(x))}{1-M} < \varepsilon\), since \(\dfrac{d(x,f(x))}{1-M}\) is constant. Then for all \(m,n \geq N, m<n\),
+                \[
+                    d(x_m,x_n) = d(f^m(x), f^n(x)) \leq M^m d(x, f^{n-m}(x))
+                \]
+                By the triangle inequality,
+                \[
+                    M^m d(x, f^{n-m}(x)) \leq M^m \left(d(x,f(x))+d(f(x), f^2(x))+d(f^2(x), f^3(x))+\cdots+d(f^{n-m-1} (x), f^{n-m} (x))\right)
+                \]
+                \[
+                    \leq M^m \left(d(x, f(x)) + Md(x,f(x)) + M^2d(x,f(x)) + \cdots + M^{n-m-1}d(x,f(x))\right)
+                \]
+                \[
+                    = M^m d(x,f(x)) (1 + M + \cdots + M^{n-m-1}) = \frac{M^m(1-M^{n-m})}{1-M}d(x,f(x)) < \frac{M^m}{1-M}d(x,f(x))
+                \]
+                Since \(0 < M < 1\) and \(M \geq N\), \(M^m < M^N\). Thus
+                \[
+                    \frac{M^m}{1-M}d(x,f(x)) < \frac{M^N}{1-M}d(x,f(x)) < \varepsilon
+                \]
+                All in all, we have that
+                \[
+                    d(x_m, x_n) < \varepsilon
+                \]
+                which shows that \((x_i)\) is a Cauchy sequence. By the completeness of \(X\), \((x_n)\) converges to some value which will be denoted as \(x_0\). In fact, \(x_0\) is the fixed point we want. To prove this, we will show that if \((x_n)\) converges to \(x_0\), then it also converges to \(f(x_0)\).
+
+                Suppose \((x_n) \to x_0\). Letting \(\varepsilon > 0\), there exists an \(N^\prime > 0\) such that \(d(f^n(x), x_0) < \varepsilon\) for all \(n \geq N^\prime\). Let \(N = N^\prime + 1\).  For all \(n \geq N\),
+                \[
+                    d(f^n(x), f(x_0)) \leq Md(f^{n-1} (x), x_0)
+                \]
+                \(n-1 \geq N^\prime\) so
+                \[
+                    Md(f^{n-1} (x), x_0) < \varepsilon
+                \]
+                We have shown that \((x_0)\) converges to both \(x_0\) and \(f(x_0)\). By the uniqueness of limits, we have \(x_0 = f(x_0)\).
+
+                To show uniqueness, suppose that \(x_0, x_1\) are two distinct fixed points of \(f\). Then using the definition of contraction mapping, we have that
+                \[
+                    d(f(x_0), f(x_1)) \leq Md(x_0, x_1)
+                \]
+                but because \(x_0, x_1\) are fixed points, this implies that
+                \[
+                    d(x_0, x_1) \leq Md(x_0, x_1)
+                \]
+                Since they are distinct, \(d(x_0, x_1) \neq 0\), so
+                \[
+                    1 \leq M
+                \]
+                which is a contradiction. Thus there is only one fixed point.
+
+            \end{proof}
+
+            \item Give an example of a normed vector space $(X,\|\cdot\|)$ and a contraction mapping $f:X\rightarrow X$ such that $f$ does \textbf{not} have a fixed point.
+            
+            \begin{proof}
+                Let \(f: \mathbb{R}\setminus \{0\} \to \mathbb{R}\setminus \{0\}\) be defined by \(f(x) = \frac{x}{2}\), where \(\mathbb{R}\setminus \{0\}\) is endowed with the usual metric in \(\mathbb{R}\) . First we verify that \(f\) is a contraction mapping. Let \(M = \frac{2}{3}\) and \(x,y \in \mathbb{R}\setminus\{0\}\). Then indeed,
+                \[
+                    \left|f(x)-f(y)\right| = \left|\frac{x}{2} - \frac{y}{2}\right| = \frac{1}{2} \left|x - y\right| \leq \frac{2}{3} \left|x-y\right| = M\left|x-y\right|
+                \]
+                Suppose for contradiction that \(f\) has a fixed point \(x_0 \in \mathbb{R}\setminus\{0\}\).  Then
+                \[
+                    x_0 = f(x_0) \implies x_0 = \frac{x_0}{2} \implies \frac{x_0}{2} = 0 \implies x_0 = 0
+                \]
+                But \(0 \notin \mathbb{R}\setminus\{0\}\). There is a contradiction. Thus \(f\) has no fixed point.
+
+            \end{proof}
+        \end{enumerate}
+
+        \subsection{\#12}
+
+        \begin{enumerate}[label=(\alph*)]
+            \item A subset $I\subseteq \R$ is called an \textbf{interval} if $a,b\in I$ implies $[a,b]\subseteq I$.
+    
+            Let $I\subseteq \R$. Prove that $I$ is connected (with respect to the usual metric on $\R$) if and only if $I$ is an interval.
+            
+            \begin{proof}
+                We prove the equivalent statement \(I\) is disconnected if and only if \(I\) is not an interval.
+    
+                Suppose \(I\) is disconnected. Then there exist disjoint, relatively open, non-empty sets \(A,B \subseteq I\) such that \(A \cup B = I\). Take any \(a \in A\) and \(b \in B\). We can assume without loss of generality that \(a<b\).
+    
+                Let \(S = [a,b]\cap A\). Notice that for all elements \(x \in S\), \(x \leq b\). Thus \(b\) is an upper bound for \(S\). Since \(\mathbb{R}\) possesses the least upper bound property, this set has a supremum \(m \in \mathbb{R}\). By the definition of least upper bound, we see that \(a \leq m \leq b\), so \(m \in [a,b]\). Now, we consider two cases.
+    
+                If \(m \notin A\), it suffices to show that \(m \notin B\). Since \(m\) is the supremem of \(S\), we can always find an element in \(S\) that is greater than \(m - \varepsilon\), so there is always an element in \(A\) that is within the \(\varepsilon\) ball surrounding \(m\). Thus \(m\) is a limit point of \(A\), which means that it is impossible for \(m\) to be an element of \(B\), which is an open set. Thus we have that \(m \notin A \cup B = I\) as desired.
+    
+                If \(m \in A\), then since \(A\) is an open subset of \(I\), \(m\) is an interior point of \(A\). But we also know that \(m\) is greater than or equal to any other element in \(A\). It must be that for some \(\varepsilon > 0\), the interval \((m, m + \varepsilon)\) is disjoint from \(I\). Otherwise, it contradicts the fact that \(A\) is open in \(I\). Then take any value \(x\) from the set \((m,\varepsilon) \cap [a, b]\) and notice that \(x \notin I\) but \(x \in [a,b]\).
+    
+                In both cases, we have shown that \(I\) is not an interval.
+    
+                Conversely, suppose that \(I\) is not an interval. Then for \(p<q \in I\), there is a \(c \in [p,q]\) such that \(c \notin I\). Define subsets \(A\) and \(B\) in \(I\) as \(A = \{x\in I \colon x < c\}\) and \(B = \{x\in I \colon x > c\}\). \(A\) and \(B\) are non-empty because \(p \in A\) and \(q \in B\). The sets are also disjoint by construction.
+                
+                To show that \(A\) is open, first take any \(a \in A\). For this value of \(a\), take \(\varepsilon = c - a > 0\). For all \(x \in B_I(a, \varepsilon)\), note that \(x \in I\). As well, if \(x < a\), immediately we have \(x < a < c \implies x \in A\). If \(x >a\), since \(x\) is within the open ball surrounding \(a\), \(x-a = |x-a| < c-a \implies x<c \implies x\in A\). Thus every element of \(A\) is an interior point, so \(A\) is open.
+    
+                We can use a very similar argument for the set \(B\), so the proof is omitted. We conclude that \(B\) is open as well. Therefore \(I\) is disconnected.
+    
+            \end{proof}
+    
+            \item Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces, and let $f:X\rightarrow Y$ be a continuous function. Prove that if $C$ is a connected subset of $X$, then $f(C)$ is a connected subset of $Y$.
+            
+            \begin{proof}
+                We examine the contrapositive: if \(f(C)\) is a disconnnected subset of \(Y\), then \(C\) is a disconnected subset of \(X\).
+    
+                Suppose that \(f(C)\) is a disconnected subset of \(Y\). Then there exist non-empty, disjoint, relatively open subsets \(A,B \subseteq f(C)\) such that \(A \cup B = f(C)\). Consider the sets \(f^{-1} (A), f^{-1} (B) \subseteq C\). Notice that if \(x \in f^{-1} (A)\), \(f(x) \in A\). Since \(A,B\) are disjoint, \(f(x) \notin B\), so \(x \notin f^{-1} (B)\). It follows that \(f^{-1} (A)\) and \(f^{-1} (B)\) are disjoint.
+                
+                Now, we will show that \(f^{-1} (A)\) is non-empty and open.
+                
+                We know that \(A\) is non-empty, so there exists an element \(y \in A\). By the definition of image, \(y=f(x)\) for some \(x \in C\). it follows that \(x \in f^{-1} (A)\). Thus \(f^{-1} (A)\) is non-empty.
+                
+                To show that \(f^{-1} (A)\) is open, we use the topological definition of continuity of \(f\) to conclude that since \(A\) is open, \(f^{-1} (A)\) is open as well.
+    
+                We can apply the same argument for \(f^{-1} (B)\), so \(B\) is non-empty and open as well.
+    
+                Thus \(f^{-1} (A), f^{-1} (B)\) are non-empty, disjoint, and open. It remains to show that \(f^{-1} (A) \cup f^{-1} (B) = C\). Immediately, we know that \(f^{-1} (A) \subseteq C\) and \(f^{-1} (B) \subseteq C\), so \(f^{-1} (A) \cup f^{-1} (B) \subseteq C\).
+    
+                For the other direction, let \(x \in C\). We know that \(f(x) \in f(C)\), which means that either \(f(x) \in A\) or \(f(x) \in B\). It follows that \(x \in f^{-1} (A)\) or \(x \in f^{-1} (B) \implies x \in f^{-1} (A) \cup f^{-1} (B)\). Thus \(f^{-1} (A) \cup f^{-1} (B) = C\).
+    
+                We conclude that \(C\) is a disconnected subset of \(X\), which shows that the contrapositive of the original statement is true, completing the proof.
+                
+            \end{proof}
+            
+            \item Recall the \textbf{Intermediate Value Theorem} from single-variable calculus. \textit{``Let $I\subseteq \R$ be an open interval and $f:I\rightarrow \R$ be a continuous function. Suppose that $a,b\in f(I)$ are two numbers such that $a<b$, and suppose that $a<y_0<b$. Then there exists $x_0\in I$ such that $f(x_0)=y_0$.''}
+    
+            Prove that this theorem immediately follows from (a) and (b). Thus, (b) is a generalization of the Intermediate Value Theorem.
+    
+            \begin{proof}
+                Let \(a,b,y_0 \in f(I)\) and suppose that \(a<y_0<b\). Since \(I\) is an interval, by part (a) \(I\) is connected. As well, by continuity of \(f\), it follows from the result of (b) that \(f(I)\) is a connected subset of \(\mathbb{R}\). By (a) once again, \(f(I)\) is an interval. Thus \([a,b] \subseteq f(I)\). Since \(a<y_0<b\), \(y_0 \in [a,b] \subseteq f(I)\) which implies that \(y_0 = f(x_0)\) for some \(x_0 \in I\), which is what we were looking for.
+            \end{proof}
+        \end{enumerate}
+
+        \subsection{\#13}
+
+        Let $(X,\|\cdot\|_X)$, $(Y,\|\cdot\|_Y)$ be two normed vector spaces and let $T:X\rightarrow Y$ be a linear mapping. %\due{10/4}
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $T$ is continuous if and only if $T$ is a bounded linear mapping.
+            
+            \begin{proof}
+                Suppose that \(T\) is continuous. Then at \(x_0 = 0\), there exists a \(\delta >0\) such that
+                \[
+                    \|x\| _X < \delta \implies \|T(x)\| _2 \leq 1
+                \]
+                We claim that our \(M = \frac{2}{\delta}\).Let \(x \in X\). Notice that \(\left\lVert\dfrac{\delta \cdot x}{2\|x\| _X}\right\rVert _X <= \delta\). By the continuity of \(T\) we have that
+                \[
+                    \left\lVert T\left(\dfrac{\delta \cdot x}{2\|x\| _X} \right)\right\rVert _Y \leq 1 \implies \dfrac{\delta}{2\cdot \|x\| _X}\left\lVert T\left(x\right) \right\rVert _Y \leq 1 \implies \left\lVert T\left(x\right) \right\rVert _Y\leq \dfrac{2}{\delta}\|x\| _X
+                \]
+                Thus \(T\) is a bounded linear mapping.
+
+                Next, suppose that \(T\) is a bounded linear mapping. Then there is an \(M > 0\) such that for all \(x \in X\),
+                \[
+                    \|T(x)\|_Y \leq M\|x\| _X
+                \]
+                We will show that \(T\) is continuous everywhere. Fix \(a \in X\). Let \(\varepsilon > 0\). Let \(\delta = \dfrac{\varepsilon}{M}\). Let \(x \in X\) and suppose that \(\|x - a\| _X < \delta\). Then
+                \[
+                    \|T(x) - T(a)\| _Y = \|T(x-a)\| _Y \leq M\|x-a\| _X < \varepsilon
+                \]
+                and we are done. 
+            \end{proof}
+            
+            \item Suppose that $(Y,\|\cdot\|_Y)=(\R^n,\|\cdot\|_2)$. Prove that $T$ is continuous if and only if $\ker(T)$ is closed.
+            \begin{proof}
+                Suppose that \(T\) is continuous. Let \(a\) be a limit point for \(\ker (T)\). We want to show that \(T(a)=0\). 
+                
+                By definition, \(T\) being continuous implies that
+                \[
+                    \lim_{x \to a} T(x) = T(a)
+                \]
+                or more formally, letting \(\varepsilon\) be arbitrary, there exists a \(\delta\) such that
+                \[
+                    \|x - a\| _X < \delta \implies \|T(x) - T(a)\| _2
+                \]
+
+                Since \(a\) is a limit point of \(\ker (T)\), there exists \(x \in \ker (T)\) such that
+                \[
+                    x \in B(a, \delta) \implies \|x -a\| _X \implies \|T(x)-T(a)\| _2 < \varepsilon \implies \|T(a)\| _2 < \varepsilon
+                \]
+                By properties of norms \(\|T(a)\| _2 \geq 0\), so we must have that \(T(a) = 0 \implies a \in \ker (T)\). Thus \(\ker(T)\) is closed.
+
+                I have no clue how to prove the converse so yeah.
+
+            \end{proof}
+        \end{enumerate}
+
+        \subsection{\#16}
+
+        Let $(X,\|\cdot\|)$ be a normed vector space, let $B(X)=B(X,X)$ be the space of bounded linear operators on $X$, and equip $B(X)$ with the operator norm $\|\cdot\|_{\op}$. Let $\GL(X)$ be the set of invertible bounded linear operators:
+        \[ \GL(X) = \{T\in B(X) : \text{$T$ is invertible}\}. \]
+        (The notation $\GL$ means ``general linear group.'')
+        
+        Prove that if $(X,\|\cdot\|)$ is complete, then $\GL(X)$ is an open subset of $(B(X),\|\cdot\|_{\mathrm{op}})$.
+        
+        \begin{proof}
+            First, we prove a couple lemmas.
+
+            \noindent\textbf{Lemma 1.}
+                For all \(S\), \(T \in B(X,X)\),
+                \[
+                    \|ST\| _{\op} \leq \|S\| _{\op} \|T\| _{\op}
+                \]
+                To prove this, let \(x \in X\). If \(x = 0\) the result is immediate, so suppose that \(0 < \|x\| _X \leq 1\). Then
+                \[
+                    \|S(T(x))\| _X = \left\lVert S\left(\dfrac{\|T(x)\| _X}{\|T(x)\| _X} T(x)\right)\right\rVert _X= \|T(x)\| _X \left\lVert S\left(\dfrac{T(x)}{\|T(x)\| _X}\right)\right\rVert _X
+                \]
+                Notice that \(\left\lVert\dfrac{T(x)}{\|T(x)\| _X}\right\rVert _X = 1\). We obtain that
+                \[
+                    \|S(T(x))\| _X = \|T(x)\| _X \left\lVert S\left(\dfrac{T(x)}{\|T(x)\| _X}\right)\right\rVert _X \leq \|T\| _{\op} \|S\| _{\op}
+                \]
+                Since \(\|T\| _{\op} \|S\| _{\op}\) is an upper bound for \(\|S(T(x))\| _X\) when \(\|x\| _X \leq 1\), by definition of supremum we can conclude that \(\|ST\| _{\op} \leq \|S\| _{\op} \|T\| _{\op}\), proving the first lemma.
+
+                Next, the following lemma will help in proving Lemma 3.
+
+                \noindent\textbf{Lemma 2.} If \(T,U \in B(X)\), then for \(x \in X\), \(\|T(x)-U(x)\| _X \leq \|x\| _X \|T-U\| _{\op}\).
+
+                Let \(T,U \in B(X)\). Then
+                \[
+                    \|(T-U)(x)\| _X = \left\lVert \|x\| _X (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert = \|x\| _X \left\lVert (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert 
+                \]
+                Since \(\dfrac{x}{\|x\| _X} =1\),
+                \[
+                    \|x\| _X \left\lVert (T-U)\left( \dfrac{x}{\|x\| _X} \right)  \right\rVert \leq \|x\| _X \|T-U\| _{\op}
+                \]
+                which is what we wanted. 
+
+                We will use the proceeding lemma to help us prove Lemma 4.
+
+                \noindent\textbf{Lemma 3.} If \(X\) is complete then \(B(X,X)\) is complete.
+
+                For every Cauchy sequence \((T_n)\) in \(B(X,X)\), the sequence \((T_n (x_i))\), where \(x_i\) is an arbitrary element in \(X\), is a Cauchy sequence in \(X\). By the completeness of \(X\), \((T_n(x_i))\) converges to some \(L_i\). Let \(T\) be a linear operator on \(X\) defined by \(T(x_i) = L_i\). We can see that this is indeed a linear operator because
+                \[
+                    cT(x_i) + T(x_j) = cL_i + L_j = c \lim_{n \to \infty} T_n(x_i) + \lim_{n \to \infty} T_n(x_j) = \lim_{n \to \infty} cT_n(x_i) + T_n(x_j) = \lim_{n \to \infty} T_n(cx_i + x_j)
+                \]
+                \(X\) is closed, so \(cx_i + x_j\) is equal to some \(x_k \in X\). Thus
+                \[
+                    cT(x_i) + T(x_j) = \lim_{n \to \infty} T_n(cx_i + x_j) = \lim_{n \to \infty} T_n(x_k) = L_k = T(x_k)
+                \]
+                which implies that \(T\) is a linear operator.
+
+                To show that \(T\) is bounded, we know that \(T_n\) is bounded, so \(\|T_n(x)\| _X < M_n \|x\| _X\), for some \(M_n > 0\). As well, we have that \(T_n\) is uniformly continuous. Thus for a sufficiently large \(n \in \mathbb{N}\), for all \(x \in X\), using Lemma 2,
+                \[
+                    \|T(x)\| _X = \lim_{m \to \infty} \|T_m(x)\| _X \leq \lim_{m \to \infty} \|T_m(x) - T_n(x)\| _X + \|T_n(x)\| _X < \lim_{m \to \infty} \|T_n-T_m\| _{\op} \|x\| _X + \|T_n(x)\| _X
+                \]
+                \[
+                    \leq \|x\| _X + M_n \|x\| _X
+                \]
+                We get the last inequality because \(T_n\) is Cauchy and bounded as well. Thus \(T \in B(X)\). To show that \(T_n\) converges to \(T\), fix \(\varepsilon > 0\). For all \(x\in X\) such that \(\|x\| _X \leq 1\), there exists a sufficiently large \(N\) such that for all \(x \in X\), if \(n > N\) then
+                \[
+                    \|T(x) - T_n(x)\| _X < \varepsilon \implies \|T-T_n\| _{\op} < \varepsilon
+                \]
+                Thus we can conclude that \(B(X,X)\) is complete.
+
+                \noindent\textbf{Lemma 4.} If \(T \in B(X,X)\) such that \(\|I - T\| _{\op} < 1\), then \(T\) is invertible and
+                \[
+                    T^{-1} = \sum_{i=0}^{\infty}(I-T)^i
+                \]
+                Suppose that \(T \in B(X,X)\) and \(\|I - T\| _{\op} < 1\). Let \((a_n)_{n\geq1}\) be a Cauchy sequence in \(B(X,X)\) defined by
+                \[
+                    a_n = \sum_{i=0}^n (I-T)^i
+                \]
+                We verify that this sequence is Cauchy. Let \(\varepsilon > 0\). Since \(\|I - T\| _{\op} < 1\), there exists natural \(N\) such that
+                \[
+                    \frac{\|I-T\| _{\op} ^N}{1-\|I-T\| _{\op}} < \varepsilon
+                \]
+                Let \(m,n > N\) and suppose that \(m < n\). Then
+                \[
+                    \left\lVert a_n - a_m\right\rVert _{\op} = \left\lVert\sum_{i=0}^{n} (I-T)^i - \sum_{i=0}^{m} (I-T)^i \right\rVert _{\op} = \left\lVert\sum_{i=m+1}^n (I-T)^i \right\rVert _{\op}
+                \]
+                By the triangle inequality and Lemma 1,
+                \[
+                    \left\lVert\sum_{i=m+1}^n (I-T)^i \right\rVert \leq \sum_{i=m+1}^n \left\lVert (I-T)^i \right\rVert \leq \sum_{i=m+1}^n \left\lVert I-T \right\rVert ^i = \left\lVert I-T \right\rVert ^{m+1} \sum_{i=0}^{n-m-1} \left\lVert I-T \right\rVert ^i
+                \]
+                \[
+                    = \left\lVert I-T \right\rVert ^{m+1} \dfrac{1-\|I-T\|^{n-m}}{1-\|I-T\|}
+                \]
+                \(1-\|I-T\|^{n-m}<1\), so
+                \[
+                    \left\lVert I-T \right\rVert ^{m+1} \dfrac{1-\|I-T\|^{n-m}}{1-\|I-T\|} < \dfrac{\|I-T\|^{m+1}}{1-\|I-T\|} < \dfrac{\|I-T\|^{N}}{1-\|I-T\|} < \varepsilon
+                \]
+                We see that \((a_n)\) is indeed a Cauchy sequence.
+
+                By Lemma 4, \(B(X,X)\) is complete, so \((a_n)\) converges, meaning that \(\sum_{i=0}^{\infty}(I-T)^i\) exists. Now, notice that
+                \[
+                    T\left( \sum_{i=0}^{\infty}(I-T)^i \right) = (I - (I-T))\left( \sum_{i=0} ^{\infty} (I-T)^i \right) = \sum_{i=0} ^{\infty} (I-T)^i - \sum_{i=0} ^{\infty} (I-T)^{i+1} = \sum_{i=0} ^{\infty} \left( (I-T)^i - (I-T)^{i+1} \right)
+                \]
+                This is a telescoping series. As \(i \to \infty\), \((I-T)^i \to 0\). Thus
+                \[
+                    T\left( \sum_{i=0}^{\infty}(I-T)^i \right) = \sum_{i=0} ^{\infty} \left( (I-T)^i - (I-T)^{i+1} \right) = I
+                \]
+                Thus \(\sum_{i=0}^{\infty}(I-T)^i\) is the inverse of \(T\), which implies that \(T^{-1}\) exists.
+                \\\\
+                Now we can show that \(B(X)\) is open.
+
+                Let \(T \in B(X)\). Consider the open ball \(B(T, \frac{1}{\|T^{-1}\| _{\op}})\). For all \(S \in B(T, \frac{1}{\|T^{-1}\| _{\op}})\),
+                \[
+                    \|T - S\| _{\op} < \frac{1}{\|T^{-1}\| _{\op}} \implies \|T-S\| _{\op} \|T^{-1}\| _{\op} < 1
+                \]
+                By Lemma 1, we have that
+                \[
+                    1 > \|T-S\| _{\op} \|T^{-1}\| _{\op} \geq \|(T-S)T^{-1}\| _{\op} = \|I - ST^{-1}\| _{\op}
+                \]
+                By Lemma 4, \(ST^{-1}\) is invertible. If we let \(S^{-1} = T^{-1}(ST^{-1})^{-1}\), we see that
+                \[
+                    S S^{-1} = S (T^{-1} (ST^{-1})^{-1}) = (ST^{-1})(ST^{-1})^{-1} = I
+                \]
+                Thus \(S\) is invertible, which means that \(S \in B(X)\). Therefore \(B(X)\) is open.
+
+        \end{proof}
+
+        \subsection{\#17}
+
+        Let $(X,d)$ be a metric space and let $\{U_i\}_{i\in I}$ be an open cover of $X$; this means that each $U_i$ is an open subset of $X$, and that $X=\bigcup_{i\in I} U_i$. A \textbf{magic number} for $\{U_i\}_{i\in I}$ is a number $\delta>0$ with the following property: if $A\subseteq X$ is a set with $\diam(A)<\delta$, then $A\subseteq U_i$ for at least one index $i\in I$.
+
+        Suppose that $(X,d)$ is a clustering metric space. Prove that every open cover has a magic number.
+
+        \begin{proof}
+            Suppose that \((X,d)\) is a clustering metric space. Suppose for the sake of contradiction that there exists an open cover \(\{U_i\}_{i\in I}\) that doesnt have a magic number.
+
+            For \(n \in \mathbb{N}\), there is \(A_n \subseteq X\) with \(\diam A_n < \frac{1}{n}\) so that \(A_n \nsubseteq U_i\) for all indices \(i \in I\). Since \(\diam A_n < \frac{1}{n}\), we can cover \(A_n\) with an open ball \(B(a_n, \frac{1}{n})\), where \(a_n\) is some element in \(X\).
+
+            Define a sequence \((a_n)_{n\in \mathbb{N}}\) in \(X\) such that \(a_n\) is equal to the one above.
+
+            By the clustering property of \(X\), \((a_n)\) has a convergent subsequence \((b_n)\). Denote the limit of \((b_n)\) as \(p\).
+
+            \(p\) is an element of \(X\), so it is contained in some \(U_i\) in the open cover. Since \(U_i\) is open, we can find \(\varepsilon > 0\) such that \(B(p, \varepsilon) \subseteq U_i\). As well, since \((b_n)\) converges to \(p\) we can find infinitely many entries of the sequence within the open ball \(B(p, \frac{\varepsilon}{2})\). Thus we can find a large enough \(n\) such that \(n > \frac{2}{\varepsilon}\), which gives \(\frac{1}{n} < \frac{\varepsilon}{2}\), and still have that \(b_n\) is \(\frac{\varepsilon}{2}\)-close to \(p\).
+
+            Now, consider the open ball \(B(b_n, \frac{1}{n})\). We will show that \(B(b_n, \frac{1}{n}) \subseteq B(p, \varepsilon)\).
+
+            Let \(x \in B(b_n, \frac{1}{n})\). Then \(d(x, b_n) < \frac{1}{n} < \frac{\varepsilon}{2}\), so we have
+            \[
+                d(x,p) \leq d(x,b_n) + d(b_n,p) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \implies x \in B(p, \varepsilon)
+            \]
+            which is what we wanted.
+
+            Recall that the set \(A_n\) is covered by \(B(b_n, \frac{1}{n})\). Then we have
+            \[
+                A_n \subseteq B(b_n, \frac{1}{n}) \subseteq B(p, \varepsilon) \subseteq U_i
+            \]
+            contradicting the fact that \(A_n \nsubseteq U_i\). Thus every open cover has a magic number.
+
+        \end{proof}
+
+        \subsection{\#18}
+
+        The sequence space $\ell^1$ has two norms: the $1$-norm $\|\cdot\|_1$, and the sup norm $\|\cdot\|_\infty$ inherited from $\ell^\infty$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Is $(\ell^1,\|\cdot\|_\infty)$ separable?
+            \item Is $(\ell^1,\|\cdot\|_1)$ separable?
+            \begin{proof}
+                Yes to both. We will show part (b) first and notice that part (a) follows right after.
+
+                Let \(D\) be the set of all sequences of rational numbers that are eventually 0. This set is obviously a subset of \(\ell ^1\). We can write \(D\) as the countable union of rational sequences that terminate after the \(n\)th term, which countable since there is a bijection to \(\mathbb{Q}^n\). It follows that \(D\) is countable. It remains to show that \(D\) is dense in \(\ell ^1\) with respect to the 1-norm.
+
+                Let \(x \in \ell ^1\) and \(\varepsilon > 0\). Since \(x\) is absolutely summable, every partial sum is strictly less than the limit of the series, denoted as \(L\). Also, for all \(n\) greater than some \(N > 0\),
+                \[
+                    \sum_{i=N+1} ^{n} |x_i| = \sum_{i=0} ^{n} |x_i| - \sum_{i=0} ^{N} |x_i| < L - \sum_{i=0} ^{N} |x_i| < L - \left(L - \frac{\varepsilon}{2}\right) = \frac{\varepsilon}{2}
+                \]
+                When \(1\leq i\leq N\), by the density of \(\mathbb{Q}\) in \(\mathbb{R}\), we can find a \(q_i \in \mathbb{Q}\) such that \(\|x_i - q_i\| < \frac{\varepsilon}{2N}\).
+                
+                Let \(q = \begin{dcases}
+                    q_i, &\text{ if } 1\leq i\leq N ;\\
+                    0, &\text{ otherwise} .
+                \end{dcases}\). 
+                We see that
+                \[
+                    \|x-q\| _1 = \sum_{i=0} ^{\infty} |x_i - q_i| = \sum_{i=0} ^N |x_i - q_i| + \sum_{i=N+1}^{\infty} |x_i| < \frac{N\varepsilon}{2N} + \frac{\varepsilon}{2} = \varepsilon
+                \]
+                Thus \(D\) is dense, implying that \(\ell ^1\) is separable with respect to the 1-norm.
+
+                Note that for all \(x \in \ell ^1\), \(\|x\| _\infty \leq \|x\| _1\). it follows immediately that \((\ell ^1, \|\cdot\| _\infty)\) is separable as well.
+
+            \end{proof}
+        \end{enumerate}
+        
+        \subsection{\#19}
+
+        This question is incomplete because when I argued that \((K_n)\) is a compact exhaustion, I did not properly verify that it satisfied the conditions to be a compact exhaustion (i.e., I simply claimed that \(K_n \subseteq (K_n)^\circ\) without proving it).
+
+        Let $X$ be a metric space and let $A\subseteq X$. A \textbf{compact exhaustion} for $A$ is a sequence of compact sets $K_1,K_2,K_3,\ldots$ such that $U=\bigcup_{i\geq 1}K_i$ and $K_i\subseteq K_{i+1}^\circ$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $U\subseteq \R^n$ be a bounded open set. Show that $U$ has a compact exhaustion.
+            \item Now show that every open set $U\subseteq \R^n$ has a compact exhaustion.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+            
+            Let \(U \subseteq \mathbb{R}^n\) be a bounded open set. Let \(N\) be smallest natural number such that the set \(S = \{x \in U : \mathrm{dist}(\{x\}, U^c) \geq \frac{1}{N}\}\) is non-empty. Define the sequence of sets \((S_n)_{n\geq 1}\) by
+            \[
+                S_n = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) \geq \frac{1}{n+N}\right\}
+            \]
+            We will show that \(S_n\) is closed. Let \(s\) be limit point of \(S_n\). Then for \(y \in U^c\),
+            \[
+                d(s,y) \geq d(x,y) - d(x,s) \implies d(s,y) \geq \sup _{x \in S_n} \left(d(x,y) - d(x,s)\right)
+            \]
+            We will show that \(\sup _{x \in S_n} \left(d(x,y) - d(x,s)\right) = \frac{1}{N+n}\). For all \(\varepsilon > 0\), there is an \(x \in S_n\) such that \(d(x,s) < \varepsilon\). Thus
+            \[
+                d(x,y) - d(x,s) > \frac{1}{N+n} - \varepsilon
+            \]
+            which means that \(\sup _{x \in S_n} \left(d(x,y) - d(x,s)\right) = \frac{1}{N+n}\). Therefore we have that
+            \[
+                d(s,y) \geq \frac{1}{N+n} \implies s \in S_n
+            \]
+            so it follows that \(S_n\) is closed. Since \(S_n \subseteq U\), it is also bounded, so because we are working in \(\mathbb{R}^n\), \(S_n\) is compact.
+
+            As well, we need to have that \(S_n \subseteq S_{n+1}^{\circ}\). This result is quite quick, as we can notice that
+            \[
+                S_{n+1}^\circ = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) > \frac{1}{N+n}\right\}
+            \]
+            From this, the inclusion follows nicely.
+
+            Then, as \(n\) tends to infinity, \(S_n = \left\{x \in U : \mathrm{dist}(\{x\}, U^c) > 0\right\}\) which is exactly \((U^c)^c = U\). Therefore \(U\) has compact exhaustion.
+
+            (b):
+
+            Now, let \(U \subseteq \mathbb{R}^n\) be open. Define the sequence of bounded open sets \(A_n = U \cap B(\vec{0},  n)\). As \(n\) tends to infinity, \(\bigcup_{n=1}^{\infty} A_n = U\). By the previous part, \(A_n\) has a compact exhaustion \((K_{nk})_{k\geq 1}\). Take the sequence \((K_k)_{k\geq 1}\) to be \(K_k = \bigcup_{n=1}^{\infty} K_{nk}\). This sequence of sets satisfies the conditions for a compact exhaustion. Now we attempt to prove that the sequence converges to \(U\). We have
+            \[
+                \bigcup_{k=1}^{\infty} K_k = \bigcup_{k=1}^{\infty} \bigcup_{n=1}^{\infty} K_{nk}
+            \]
+            We swap the order of union and get that
+            \[
+                \bigcup_{k=1}^{\infty} \bigcup_{n=1}^{\infty} K_{nk} = \bigcup_{n=1}^{\infty} \bigcup_{k=1}^{\infty} K_{nk} = \bigcup_{n=1}^{\infty} A_n = U
+            \]
+            Thus every open subset of \(\mathbb{R}^n\) has a compact exhaustion.
+        \end{proof}
+
+        \subsection{\#20}
+
+        Let $x,y\in \ell^\infty$ be two sequences. Let us say that $y$ is \textbf{dominated} by $x$, denoted $x\geq y$, if $|x_n|\geq |y_n|$ for all $n\in \N$. Let $D_x$ denote the set of all sequences which are dominated by $x$:
+        \[ D_x = \{y\in \ell^\infty: |y_n|\leq |x_n| \text{ for all $n\in \N$}\}. \]
+        Prove that $D_x$ is compact if and only if $x_n\rightarrow 0$.
+
+        \begin{proof}
+            Suppose that \(D_x\) is compact. Suppose for contradiction that \(x_n \nrightarrow 0\). For some \(\varepsilon > 0\), \(|x_{N_k}| \geq \varepsilon\) for an infinite number of \(N_k\). Consider the open cover \(\{B(\vec{y}_i, \frac{\varepsilon}{2})\}_{i\in I}\), which is the collection of \(\frac{\varepsilon}{2}\)-balls centered around every \(\vec{y}_i \in D_x\). By compactness of \(D_x\), there is a finite subcover \(\{B(\vec{y}_i, \frac{\varepsilon}{2})\}_{i \leq m}\). Now, we construct a \(y \in D_x\) as follows:
+
+            For every sequence \(\vec{y}_i\), let
+            \[
+                y_{N_i} = \begin{dcases}
+                    \varepsilon, &\text{ if } (\vec{y}_i)_{N_i} < \frac{\varepsilon}{2};\\
+                    0, &\text{ if } (\vec{y}_i)_{N_i} \geq \frac{\varepsilon}{2} ;\\
+                \end{dcases}
+            \]
+            For all other terms in \(y\), make it 0. Notice that for all \(B(\vec{y}_i, \frac{\varepsilon}{2})\),
+            \[
+                \|y-\vec{y}_i\|_\infty \geq |y_{N_i} - (\vec{y}_i)_{N_i}| \geq \frac{\varepsilon}{2} \implies y \notin D_x
+            \]
+            which is a contradiction.
+
+            Conversely, suppose that \(x_n \rightarrow 0\). We will show that \(D_x\) is complete and totally bounded, which is equivalent to compactness.
+
+            To show completeness, notice that the ambient space \(\ell ^{\infty}\) is complete. Thus if we can show that \(D_x\) is closed, it will follow that \(D_x\) is complete.
+
+            Let \(a \notin D_x\). We will show that \(a\) is not a limit point of \(D_x\), which means that \(D_x\) is closed. We know that there is a \(k \in \mathbb{N}\) such that \(|a_k| > |x_k|\). Define \(\varepsilon = |a_k| - |x_k|\). Fix \(y \in D_x\). Then
+            \[
+                \|a_k - y_k\| _{\infty} \geq |a_k - y_k| \geq |a_k| - |y_k| \geq |a_k| - |x_k| = \varepsilon
+            \]
+            which implies that \(y \notin B(a_k, \varepsilon)\), so \(a\) is not a limit point of \(D_x\). Thus \(D_x\) is closed. It follows that \(D_x\) is complete.
+
+            To show that \(D_x\) is totally bounded, first let \(\varepsilon > 0\). Since \(x_n \to 0\), there is a large enough \(N\) such that for \(n >N\), \(|x_n| < \frac{\varepsilon}{2}\). For all \(y \in D_x\), \(|y_n| < |x_n| < \frac{\varepsilon}{2}\). Consider the set of elements in \(D_x\) such that their terms are 0 for \(n > N\). This set is totally bounded, so there is a \(\varepsilon\)-ball cover \(\{B(y_i, \varepsilon)\}_{i \leq n}\). We show that this collection also covers \(D_x\).
+
+            For \(y \in D_x\), there is an open ball \(B(y_i, \varepsilon)\) such that \(\sup_{n\leq N} {|y_n - (y_i)_n|} < \varepsilon\). But also notice that for \(n>N\), \(|(y_i)_n - y_n| \leq |(y_i)_n| + |y_n| < |y_n| < \frac{\varepsilon}{2}\). Thus \(\|y-y_i\| _{\infty} < \varepsilon\) so \(y \in B(y_i, \varepsilon)\). Thus \(D_x\) is totally bounded.
+
+            Since \(D_x\) is both complete and totally bounded, we can conclude that \(D_x\) is compact.
+        \end{proof}
+
+        \subsection{\#22}
+
+        For a normed vector space $(X,\|\cdot\|)$, let $X^*=B(X,\R)$ denote the set of bounded linear mappings from $X$ to $\R$. Here $X^*$ is equipped with the operator norm $\|\cdot\|_{\mathrm{op}}$, and the normed vector space $(X^*,\|\cdot\|_{\mathrm{op}})$ is called the \textbf{topological dual} of $X$.
+
+        Let $c_0$ denote the set of sequences converging to zero. Prove that $c_0^*\equiv \ell^1$.
+        \begin{proof}
+            Equip \(\ell ^1\) with the 1-norm and \(c_0\) with the sup-norm. Define the function \(f: \ell ^1 \to c_0^*\) by \(f(\vec{x})(\vec{a}) = \sum_{i=1}^{\infty} x_i \cdot a_i\). This sum is convergent because for sufficiently large \(N > 0\), \(|a_n| < 1\) for \(n > N\), so
+            \[
+                \sum_{i=1}^{\infty} x_i \cdot a_i = \sum_{i=1}^{N} x_i \cdot a_i + \sum_{i=N+1}^{\infty} x_i \cdot a_i < \sum_{i=1}^{N} x_i \cdot a_i + \sum_{i=N+1}^{\infty} x_i < \infty
+            \]
+            We claim that this is a bijective isometry.
+
+            First, it can be quickly verified that this function is linear. Letting \(a_n \in c_0\), for \(x,y \in \ell ^1\), \(k > 0\),
+            \[
+                f(kx + y)(a_n) = \sum_{i=1}^{\infty} a_i \cdot (kx_i + y_i) = k \sum_{i=1}^{\infty} a_i \cdot x_i + \sum_{i=1}^{\infty} a_i \cdot y_i = kf(x)(a_n) + f(y)(a_n) \text{.} 
+            \]
+            To show that this function is an isometry, let \(x,y \in \ell ^1\).
+            
+            Let \(A = \{|f(x)(a) - f(y)(a)| : a \in c_0, \|a\| _{\infty} \leq 1\}\). It will be shown that \(\|x-y\| _1 = \sup A\).
+            
+            Let \(a \in c_0\) such that \(\|a\| _{\infty} \leq 1\). Then
+            \[
+                |f(x)(a)-f(y)(a)| = \left\vert \sum_{i=1}^{\infty} (x_i \cdot a_i - y_i \cdot a_i) \right\vert = \left\vert \sum_{i=1}^{\infty} a_i (x_i - y_i) \right\vert \leq \sum_{i=1}^{\infty} |a_i| |x_i - y_i| \leq \sum_{i=1}^{\infty} |x_i - y_i| 
+            \]
+            \[
+                = \|x-y\| _1 \text{.} 
+            \]
+            This means that \(\|x-y\| _1\) is an upper bound for \(A\). To prove that this is the least upper bound, let \(\varepsilon > 0\). There is an \(N > 0\) such that \(\sum_{N+1}^{\infty} |x_i - y_i| < \varepsilon\). Define the sequence \((a_n)\) in \(c_0\) as the sequence of 1's until and including \(n=N\) and 0 afterwards. Then
+            \[
+                |f(x)(a) - f(y)(a)| = \left\vert \sum_{i=1}^{\infty} a_i (x_i - y_i) \right\vert = \left\vert \sum_{i=1}^{\infty} \left(1 - 1 + a_i \right)  (x_i - y_i) \right\vert
+            \]
+            \[
+                \geq \left\vert \sum_{i=1}^{\infty} (x_i - y_i) \right\vert - \left\vert \sum_{i=1}^{\infty} \left( 1 - a_i \right)  (x_i - y_i) \right\vert
+            \]
+            \[
+                =  \left\vert \sum_{i=1}^{\infty} (x_i - y_i) \right\vert - \sum_{i=N+1}^{\infty} |x_i - y_i| > \|x-y\| _1 - \varepsilon
+            \]
+            Thus we have that 
+            \[
+                \|f(x) - f(y)\| _{\op} = \sup {A} = \|x-y\| _1
+            \]
+            so \(f\) is an isometry.
+
+            To prove that \(f\) is bijective, it suffices to show that \(f\) is surjective, since we already have injectivity from the isometry.
+
+            Let \(T \in c_0^*\). Construct a sequence \((x_n)\) in \(\ell ^1\) defined by \(x_n = T(e_n)\), where \((e_n)\) is the sequence with the only non-zero term being \(e_n = 1\).
+
+            First, we need to verify that \((x_n) \in \ell ^1\). To do this, we bound the absolute sum by a finite number. We have that
+            \[
+                \sum_{i=1}^{\infty} |x_i| = \sum_{i=1}^{\infty} |T(e_i)|
+            \]
+            For all non-zero terms, we can rewrite it as \(|T(e_i)| \cdot \dfrac{T(e_i)}{T(e_i)} = T\left(\dfrac{|T(e_i)|}{T(e_i)}e_i\right)\). Define \((b_n)\) to be a sequence defined by
+            \[
+                b_n = \begin{dcases}
+                    0, &\text{ if } T(e_i) = 0;\\
+                    \frac{|T(e_i)|}{T(e_i)}e_i, &\text{ otherwise} .
+                \end{dcases}
+            \]
+            Then
+            \[
+                \sum_{i=1}^{\infty} |T(e_i)| = T(b_n)
+            \]
+            Notice that \(|b_n| \leq 1\) for all \(n \in \mathbb{N}\). Thus \(\|b_n\| _{\infty} = 1\), so
+            \[
+                \sum_{i=1}^{\infty} |x_i| = T(b_n) \leq \|T\| _{\op}
+            \]
+            By monotone bounded convergence, \(\sum_{i=1}^{\infty} |x_i|\) converges. Therefore \((x_n) \in \ell ^1\).
+
+            Now, we want to show that \(f(x_n) = T\). For \((a_n) \in c_0\), we have that
+            \[
+                f(x_n)(a_n) = \sum_{i=1}^{\infty} x_i \cdot a_i = \sum_{i=1}^{\infty} T(e_i) \cdot a_i = T\left(\sum_{i=1}^{\infty} a_i (e_i)\right) = T((a_n))
+            \]
+            so \(f\) is surjective.
+
+            Thus \(f\) is a bijective isometry, so \(c_0^* \equiv \ell ^1\).
+        \end{proof}
+
+        \subsection{\#23}
+
+        Let $S^2$ denote the unit sphere in $\R^3$. Let $N=(0,0,1)$ denote the ``north pole''. In this problem, you will show that $S^2\setminus \{N\}$ is homeomorphic to $\R^2$. To do this, we define a function $\Phi:S^2\setminus \{N\}\rightarrow \R^2$ known as the \textbf{stereographic projection}: given a point $P$ in $S^2\setminus \{N\}$, draw a line between $P$ and $N$, and let $\Phi(P)$ denote the point where this line intersects the $xy$-plane in $\R^3$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Given $P=(x,y,z)$, find an explicit formula for $\Phi(P)$ in terms of $x,y,z$.
+            \item Deduce that $\Phi$ is continuous.
+            \item Prove that $\Phi$ is a bijection; in fact, given $p=(s,t)\in \R^2$, find an explicit formula for $\Phi^{-1}(p)$.
+            \item Deduce that $\Phi$ is a homeomorphism.
+        \end{enumerate}
+        \begin{proof}
+            We will work off the assumption that both metric spaces are equipped with the max-norm. We can do this because all norms on \(\mathbb{R}^n\) are equivalent.
+
+            (a):
+
+            Let \(P=(x,y,z)\). First, we find the equation of the line that passes \(P\) and \(N\). Consider the equation of the line \(L(t) = (tx, ty, (z-1)t + 1)\). Notice that \(L(0) = N\) and \(L(1) = P\), so \(L\) satisfies what we were looking for. Now we find the point where \(L\) intersects with the \(xy\)-plane. This happens exactly when \((z-1)t+1=0\). Solving for \(t\) gives \(t=\dfrac{1}{1-z}\). This value is always defined as \(z\neq 1\). As a result, it turns out that
+            \[
+                L\left(\frac{1}{1-z}\right) = \left(\frac{x}{1-z}, \frac{y}{1-z}, 0\right) \text{.}
+            \]
+            Thus
+            \[
+                \Phi (P) = \frac{1}{1-z}\left(x,y\right) \text{.}
+            \]
+
+            (b):
+            
+            To show that \(\Phi\) is continuous, fix \((a,b,c) \in \mathbb{R}^3\). Let \(\varepsilon > 0\). Then let \(\delta = \min \{\frac{1-c}{2}, \frac{(1-c)\varepsilon}{4}, \frac{(1-c)^2 \varepsilon}{4\max \{|a|,|b|\}}\}\). For \((x,y,z) \in \mathbb{R}^3\) such that \(\|(x,y,z) - (a,b,c)\| _{\max} < \delta\), notice that
+            \[
+                z-c < |z-c| \leq \|(x,y,z) - (a,b,c)\| _{\max} < \frac{1-c}{2}
+            \]
+            Manipulating this, we obtain
+            \[
+                z < \frac{1+c}{2} \implies 1 - z > \frac{1-c}{2} \implies \frac{1}{1-z} < \frac{2}{1-c} \text{.} 
+            \]
+            So
+            \[
+                \|\Phi (x,y,z) - \Phi (a,b,c)\| _{\max} = \left\lVert \left(\frac{x}{1-z}, \frac{y}{1-z}\right) - \left(\frac{a}{1-c}, \frac{b}{1-c}\right) \right\rVert _{\max}
+            \]
+            \[
+                =\frac{\|(x(1-c) - a(1-z), y(1-c) - b(1-z))\| _{\max}}{(1-z)(1-c)}
+            \]
+            \[
+                < \frac{2\|(x(1-c) - a(1-z), y(1-c) - b(1-z))\| _{\max}}{(1-c)^2}
+            \]
+            Without loss of generality, suppose that \(|x(1-c) - a(1-z)| \geq |y(1-c) - b(1-z)|\). Then
+            \[
+                \frac{2\|(x(1-c) - a(1-z), y(1-c) - b(1-z))\| _{\max}}{(1-c)^2} = \frac{2|x(1-c) - a(1-z)|}{(1-c)^2}
+            \]
+            \[
+                = \frac{2|(x-a)(1-c) + a(z-c)|}{(1-c)^2} \leq \frac{2(|x-a||1-c| + |a||z-c|)}{(1-c)^2}
+            \]
+            \[
+                < \frac{2 \left(\frac{(1-c)^2}{4}\varepsilon + \frac{|a|(1-c)^2}{4\max \{|a|,|b|\}}\varepsilon\right)}{(1-c)^2} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+            \]
+            Therefore \(\|\Phi (x,y,z) - \Phi (a,b,c)\| _{\max} <\varepsilon\), so \(\Phi\) is continuous.
+
+            (c):
+
+            Let \(p = (s,t) \in \mathbb{R}^2\). Our goal is to find \((x,y,z) \in S^2 \setminus \{N\}\) such that \(\Phi (x,y,z) = \left( \frac{x}{1-z}, \frac{y}{1-z} \right) = (s,t)\). Immediately, we obtain the following system of equations:
+            \[
+                \frac{x}{1-z} = s \text{,} 
+            \]
+            \[
+                \frac{y}{1-z} = t \text{,} 
+            \]
+            \[
+                x^2 + y^2 + z^2 = 1
+            \]
+            We also have the restriction \(z\neq 1\) because \((x,y,z) \neq N\). Isolating for \(x\) and \(y\) yields
+            \[
+                x=s(1-z)
+            \]
+            \[
+                y=t(1-z)
+            \]
+            Then we substitute this into the third equation and get
+            \[
+                s^2(1-z)^2 + t^2(1-z)^2 + z^2 = 1 \implies (s^2 + t^2 + 1)z^2 - 2(s^2 + t^2)z + s^2 + t^2 - 1 = 0
+            \]
+            We can replace the term \(t^2 + s^2\) with \(\|p\| _2 ^2\), and the equation becomes
+            \[
+                (\|p\| _2 ^2 + 1)z^2 - 2\|p\| _2 ^2 z + \|p\| _2 ^2 - 1 = 0
+            \]
+            Using the quadratic formula:
+            \[
+                z = \frac{2(\|p\| _2 ^2) \pm \sqrt{4(\|p\| _2 ^2)^2 - 4(\|p\| _2 ^2 +1)(\|p\| _2 ^2 - 1)}}{2(\|p\| _2 ^2 + 1)}
+            \]
+            \[
+                \implies z = \frac{\|p\| _2 ^2 \pm \sqrt{\|p\| _2 ^4 - (\|p\| _2 ^4 - 1)}}{\|p\| _2 ^2 + 1}
+            \]
+            \[
+                z = \frac{\|p\| _2 ^2 \pm 1}{\|p\| _2 ^2 + 1}
+            \]
+            Notice that we cannot use the positive solution, for then
+            \[
+                z = \frac{\|p\| _2 ^2 + 1}{\|p\| _2 ^2 + 1} = 1
+            \]
+            Thus it must be true that
+            \[
+                z = \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}
+            \]
+            \[
+                x = s(1-z) = \frac{2s}{\|p\| _2 ^2 + 1}
+            \]
+            \[
+                y = \frac{2t}{\|p\| _2 ^2 + 1}
+            \]
+            It can be verified that these values of \(x,y,z\) result in \(\Phi (x,y,z) = (s,t)\), which show that \(\Phi\) is surjective. Additionally, it was also proven that these values are the only ones that work, so \(\Phi\) is bijective. In fact, using this, we obtain that the formula for \(\Phi ^{-1}\) is
+            \[
+                \Phi ^{-1} (s,t) = \left(\frac{2s}{\|p\| _2 ^2 + 1}, \frac{2t}{\|p\| _2 ^2 + 1}, \frac{\|p\| _2 ^2 - 1}{\|p\| _2 ^2 + 1}\right)
+            \]
+
+            (d):
+
+            We know that \(\Phi ^{-1}\) is bijective because its inverse exists. It remains to show that it is continuous. This can be done by verifying pointwise continuity.
+
+            Let \((a,b) \in \mathbb{R}^2\). Considering the first component, fix \(\varepsilon > 0\), and let \(\delta = \frac{\varepsilon}{2}\). Let \((s,t) \in \mathbb{R}^2\) so that \(\|(s - a, t - b)\|_2 < \delta\). Consider the case where \(\frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} > 0\). Then
+            \[
+                \left\vert \frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} \right\vert = \frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} < \frac{2s(\|(s,t)\| _2^2 + 1)}{\|(s,t)\| _2 ^2 + 1} - 2a
+            \]
+            \[
+                = 2(s-a) < \varepsilon
+            \]
+            The case when \(\frac{2s}{\|(s,t)\| _2 ^2 + 1} - \frac{2a}{\|(a,b)\| _2 ^2 + 1} \leq 0\) is the exact same but the variables are swapped. Thus the first component is continuous. We can do the same thing for the second component so we can accept that it is continuous as well.
+
+            Finally, notice that since norms are continuous, so the third component is a composition of continuous functions, making it continuous. Therefore \(\Phi ^{-1}\) is continuous.
+
+            We can conclude that \(\Phi\) is indeed a homeomorphism and we are done.
+        \end{proof}
+
+        \subsection{\#24}
+
+        Let $X$ be a normed vector space. Prove that the following statements are equivalent.
+        \begin{enumerate}[label=(\roman*)]
+            \item $X$ is finite-dimensional.
+            \item The unit ball $\cl{B}(\vec{0},1)$ is compact.
+            \item $X$ is \textbf{locally compact}: each point $p\in X$ is contained in some open set $U$ such that $\cl{U}$ is compact.
+        \end{enumerate}
+        \begin{proof}
+            It will be proven that (i) \(\implies\) (ii) \(\iff\) (iii) \(\implies\) (i).
+
+            (i) \(\implies\)  (ii):
+
+            Suppose that \(X\) has finite dimension \(n\). Then there is a continuous linear isomorphism \(\Phi\) between \(X\) and \(\mathbb{R}^n\). Since \(\cl{B}(0,1)\) is closed and bounded, \(\Phi (\cl{B}(0,1))\) is also closed and bounded in \(\mathbb{R}^n\), so the set is compact. Since homeomorphisms preserve compactness, we can conclude that the closed unit ball in \(X\) is compact.
+
+            (ii) \(\implies\) (iii):
+
+            Suppose that the unit ball \(\cl{B}(\vec{0}, 1)\) is compact. Let \(p \in X\). We claim that \(U = B(p,1)\). Consider \(\cl{U} = \cl{B}(p,1)\). There is an isometry \(\Phi\) from \(\cl{B}(0,1)\) to \(\cl{B}(p,1)\) defined by \(\Phi (x) = p + x\). Since the closed unit ball is compact, it follows that \(\cl{B}(p,1)\) is compact. Thus \(X\) is locally compact.
+
+            (iii) \(\implies\) (ii):
+
+            Suppose that \(X\) is locally compact. Then \(\vec{0}\) is contained in an open set \(U\) such that \(\cl{U}\) is compact. Since \(U\) is open, \(B(0, \varepsilon) \subseteq U\) for some \(\varepsilon\)-ball centered around 0. It follows that \(\cl{B}(0,\varepsilon)\) is compact, as it is a closed subset of \(\cl{U}\). Since there is a homeomorphism from this closed ball to \(\cl{B}(0,1)\), the closed unit ball is also compact, as desired.
+
+            (iii) \(\implies\) (i):
+
+            Suppose that \(X\) is locally compact. We know previously that this implies that the closed unit ball is compact. Firstly, a quick lemma will be proven.
+
+            \textbf{Lemma 1.} \(\forall x \in X\), \(r > 0\), \(B(x,r) = \{x\} + rB(0,1)\).
+
+            Let \(y \in B(x,r)\). Notice that \(y-x \in B(0,r)\). Thus \(y = x + (y-x)\) so \(y \in \{x\} + rB(0,1)\).
+
+            Then, let \(y \in \{x\} + B(0,r)\), so \(y = x + s\), for some \(s \in B(0,r)\). Since \(\|y-x\| = \|s\| < r\), it follows that \(y \in B(x,r)\) and we are done.
+            
+            Moving on, we construct a finite set of vectors in the following way:
+
+            Since \(\cl{B}(0,1)\) is totally bounded, we can find a finite set of vectors \(\beta\) such that \(\bigcup_{x \in \beta} B\left(x,\frac{1}{2}\right)\).
+
+            \textbf{Lemma 2.} \(B(0,1) \subseteq \operatorname{span}(\beta) + 2^{-n} B(0,1)\), \(\forall n \in \mathbb{N}\).
+
+            To prove this, let \(n \in \mathbb{N}\) and \(y \in B(0,1)\). It follows that \(y \in B(x_1, \frac{1}{2})\) for some \(x_1 \in \beta\). Using Lemma 1,
+            \[
+                y \in \{x_1\} + B\left(0,\frac{1}{2}\right) = \{x_1\} + \frac{1}{2}B(0,1)
+            \]
+            We can repeatedly use this argument to obtain that
+            \[
+                y \in \left\{x_1 + \frac{1}{2}x_2 + \frac{1}{2^2}x_3 + \dots + \frac{1}{2^{n-1}}x_n\right\} + \frac{1}{2^n}B(0,1)
+            \]
+            Note that \(x_i\) are not necessarily distinct. This simplifies down to
+            \[
+                y \in \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1) \implies B(0,1) \subseteq \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1)
+            \]
+            which is what we wanted.
+
+            Finally, we claim that \(\beta\) is the basis for \(X\).
+
+            Let \(v \in X\). Since \(\dfrac{v}{2\|v\|} \in B(0,1)\), by Lemma 2,
+            \[
+                \frac{v}{2\|v\|} \in \operatorname{span}(\beta) + \frac{1}{2^n}B(0,1) \text{, for all } n \in \mathbb{N}
+            \]
+            Then we construct a sequence \(\{v_n\}_{n\geq 1}\) in \(\operatorname{span}(\beta)\) where \(v_n \in \operatorname{span}(\beta)\) such that \(y = v_n + p\), for some \(p \in \frac{1}{2^n}B(0,1)\). Notice that
+            \[
+                \|y - v_n\| = \|p\| < \frac{1}{2^n}
+            \]
+            which can become arbitrarily small. This implies that \(y\) is a limit point for \(\operatorname{span}(\beta)\). However, this set is closed because it is finite dimensional, so we also have that \(y \in \operatorname{span}(\beta)\). Therefore \(X \subseteq \operatorname{span}(\beta)\), and since \(X\) is spanned by a finite set, it is finite dimensional.
+
+            These implications are sufficient for proving that (i), (ii), (iii) are equivalent.
+        \end{proof}
+
+        \subsection{\#25}
+
+        Let $\varphi:M_n(\R)\rightarrow M_n(\R)$ be the function given by $\varphi(A)=A^2$. For each $A\in M_n(\R)$, find a linear approximation $L_A:M_n(\R)\rightarrow M_n(\R)$ to $\varphi$ at $A$. Give an explicit formula for $L_A(B)$ as a function of $B$, a proof that $L_A$ is a bounded linear mapping, and a proof that $L_A$ is a linear approximation to $\varphi$ at $A$.
+        \begin{proof}
+            First, we supply a lemma.
+
+            \textbf{Lemma.} For all \(B \in M_n(\mathbb{R})\), \(\|B^2\| \leq K\|B\|^2\), for some positive constant \(K\).
+
+            Define the isomorphism \(\Phi : M_n(\mathbb{R}) \to B(\mathbb{R}^n, \mathbb{R}^n)\) as mapping a matrix representation of a linear mapping to the original linear mapping. We define the operator norm on \(M_n(\mathbb{R})\) by \(\|A\| _{\op} = \|\Phi (A)\| _{\op}\), where the right hand side is the operator norm on \(B(\mathbb{R}^n, \mathbb{R}^n)\).
+
+            Since all norms are equivalent on \(M_n(\mathbb{R})\), there are constants \(M,N >0\) so that for any norm \(\|\cdot\|\),
+            \[
+                M\|A\| \leq \|A\| _{\op} \leq N\|A\|
+            \]
+            From this, using the subnormality of bounded linear operators, it follows that
+            \[
+                \|B^2\| \leq \frac{1}{M}\|\Phi (B^2)\| _{\op}= \frac{1}{M}\|\Phi (B) \circ \Phi (B)\| _{\op} \leq \frac{1}{M}\|\Phi (B)\| _{\op}^2 \leq \frac{N^2}{M}\|B\|
+            \]
+            Since \(M,N > 0\), we have what we wanted.
+            
+            We claim that for \(A \in M_n(\mathbb{R})\), \(L_A(B) = BA + AB\). For \(C,D \in M_n(\mathbb{R})\), \(k \in \mathbb{R}\),
+            \[
+                L_A(kC + D) = (kC+D)A + A(kC+D) = k(CA + AC) + DA + AD = kL_A(C) + L_A(D)
+            \]
+            so \(L_A\) is linear. As well, we get that \(L_A\) is bounded for free because we are working in a finite dimensional vector space. Finally, we have that
+            \[
+                0 \leq \frac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} = \frac{\|(A+B)^2 - A^2 - (BA + AB)\|}{\|B\|}
+            \]
+            \[
+                \frac{\|A^2 + AB + BA + B^2 - A^2 - BA - AB\|}{\|B\|} = \frac{\|B^2\|}{\|B\|} \leq K\|B\|
+            \]
+            \[
+                \implies 0 \leq \frac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} \leq K\|B\|
+            \]
+            By the Squeeze Theorem, \(\lim_{h \to 0} \dfrac{\|\varphi (A + B) - \varphi (A) - L_A(B)\|}{\|B\|} = 0\) and we are done.
+        \end{proof}
+
+        \subsection{\#26}
+
+        Let $X$ be a finite-dimensional normed vector space, let $U$ be an open convex subset of $X$, and let $f:U\rightarrow \R^m$ be a totally differentiable function. (Note: a set $C\subseteq X$ is called \textbf{convex} if $tx+(1-t)y\in C$ for all $x,y\in C$ and $t\in [0,1]$.) Let $f:U\rightarrow \R^m$ be a totally differentiable function.
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose that there exists a constant $C\geq 0$ such that $\|f'(p)\|_{\mathrm{op}}\leq C$ for all $p\in U$. Prove that
+                \[ \|f(p)-f(q)\| \leq C\|p-q\| \quad \text{for all $p,q\in U$.}  \]
+            Conclude that $f$ is uniformly continuous.
+            
+            \item Prove that $f'(p)=0$ for all $p\in U$ if and only if $f$ is a constant function.
+
+            \item Assume $U=X$ and suppose that $f$ is \textbf{twice totally differentiable} --- meaning that $f':X\rightarrow B(X,Y)$ itself is differentiable at every point of $X$, with total derivative $f''=(f')'$. Show that $f''=0$ if and only if $f$ is \textbf{affine-linear}: there exists a bounded linear mapping $M:X\rightarrow Y$ and a vector $b\in Y$ such that
+                \[ f(p) = M(p) + b \quad \text{for all $p\in X$.} \]
+            (Compare with the formula $y=mx+b$ from single-variable calculus.)
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+            Fix \(p,q \in U\). If \(f(p) = f(q)\), the inequality is trivially true. Otherwise, since \(U\) is open, there is some open ball \(B(p, \varepsilon _1) \subseteq U\) and \(B(q, \varepsilon _2) \subseteq U\). Let \(\delta = \dfrac{\min \{\varepsilon_1 , \varepsilon_2\}}{\|q-p\|}\). For all \(t \in (-\delta , 1 + \delta)\), we have that
+
+            If \(t \in [0,1]\),
+            \[
+                tq + (1-t)p \in U
+            \]
+            since \(U\) is convex. If \(t \in (-\delta , 0)\), then
+            \[
+                \|(tq + (1-t)p) - p\| = \|t(q-p)\| = |t|\|q-p\| < \varepsilon_1
+            \]
+            \[
+                \implies tq + (1-t)p \in B(p, \varepsilon_1) \subseteq U
+            \]
+            If \(t \in (1 + \delta)\), then
+            \[
+                \|(tq + (1-t)p) - q\| = \|(t-1)q - (t-1)p\| = |t-1|\|q-p\| < \varepsilon_2
+            \]
+            \[
+                \implies tq + (1-t)p \in B(q, \varepsilon_2) \subseteq U
+            \]
+            Thus we can construct a function \(\alpha : (-\delta, 1 + \delta) \to U\) defined by \(\alpha (t) = tq + (1-t)p\). We will show that \(\alpha '(t)(\varphi) = \varphi (q-p)\):
+            \[
+                \lim_{h \to 0} \frac{\|((t+h)q + (1-t-h)p) - (tq + (1-t)p) - h(q-p)\|}{\|h\|}
+            \]
+            \[
+                = \lim_{h \to 0} \frac{\|hq -hp - h(q-p)\|}{\|h\|} = 0
+            \]
+            Since \(\alpha\) is totally differentiable and \(f\) is totally differentiable, by the chain rule, we can say that
+            \[
+                (f \circ \alpha)'(t) = f'(a(t))(h(q-p)) = hf'(a(t))(q-p)
+            \]
+            Now, we construct a function from \((-\delta, 1 + \delta)\) to \(\mathbb{R}\) by
+            \[
+                g(t) = (f(q) - f(p)) \cdot f(\alpha (t))
+            \]
+            Now, we will show that for \(t \in (-\delta , 1 + \delta)\),
+            \[
+                g'(t) = (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)
+            \]
+            First, we see that
+            \[
+                \lim_{h \to 0} \frac{|g(t+h) - g(p) - (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)|}{|h|}
+            \]
+            \[
+                = \lim_{h \to 0} \frac{|(f(q) - f(p)) \cdot f(\alpha (t+h)) - (f(q) - f(p)) \cdot f(\alpha (t)) - (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)}{|h|}
+            \]
+            By the linearity of the dot product,
+            \[
+                \lim_{h \to 0} \left\vert (f(q) - f(p)) \cdot \frac{f(\alpha (t+h)) - f(\alpha (t)) - f'(\alpha (t))(q-p)}{|h|} \right\vert = 0
+            \]
+            Using this, consider the limit
+            \[
+                g'(t) = \lim_{h \to 0} \frac{g(t+h) - g(t)}{h} \text{.} 
+            \]
+            Adding and subtracting \(h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)\),
+            \[
+                = \lim_{h \to 0} \frac{[g(t+h) - g(t) - h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)] + h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)}{h}
+            \]
+            The first sum is exactly the limit that was computed above and is equal to zero. The limit then reduces to
+            \[
+                \lim_{h \to 0} \frac{h(f(q) - f(p)) \cdot f'(\alpha (t))(q-p)}{h} = (f(q) - f(p)) \cdot f'(\alpha (t))(q-p)
+            \]
+            which shows that \(g\) is differentiable on its domain and is equal to \((f(q) - f(p)) \cdot f'(\alpha (t))(q-p)\). In particular, we have continuity on \([0,1]\) and differentiability on \((0,1)\). Applying the Mean Value Theorem, there is some \(c \in (0,1)\) so that
+            \[
+                g(1) - g(0) = g'(c) \implies (f(q) - f(p)) \cdot f(q) - (f(q) - f(p)) \cdot f(p) = (f(q) - f(p)) \cdot f'(a(c))(q-p)
+            \]
+            \[
+                \implies (f(q) - f(p)) \cdot (f(q) - f(p)) = (f(q) - f(p)) \cdot f'(\alpha(c))(q-p)
+            \]
+            \[
+                \implies \|f(q) - f(p)\|^2 = \|f(q) - f(p)\| \|f'(\alpha (c))(q-p)\| \cos (\theta)
+            \]
+            where \(\theta\) is the angle between the vectors \(f(q) - f(p)\) and \(f'(\alpha (c))(q-p)\). Thus
+            \[
+                \|f(q) - f(p)\|^2 \leq \|f(q) - f(p)\| \|f'(\alpha (c))(q-p)\| \leq \|f(q) - f(p)\| \|f'(\alpha (c))\| _{\op} \|q-p\|
+            \]
+            \[
+                \implies \|f(q) - f(p)\|^2 \leq \|f(q) - f(p)\| C \|q-p\|
+            \]
+            \[
+                \implies \|f(q) - f(p)\| \leq C \|q-p\|
+            \]
+            which is the desired inequality.
+
+            With this, the uniform continuity of \(f\) is easy to show.
+
+            For \(\varepsilon > 0\), let \(\delta = \frac{\varepsilon}{C}\). For all \(p,q \in X\) so that \(\|q-p\| <\delta \),
+            \[
+                \|f(q) - f(p)\| \leq C \|q-p\| < \varepsilon
+            \]
+
+            (b):
+            
+            Suppose that \(f'(p) = 0\) for all \(p \in U\). Then \(\|f'(p)\| _{\op} \leq 0 = C\), so by part (a), for all \(a,b \in U\),
+            \[
+                \|f(a) - f(b)\| \leq 0 \implies \|f(a) - f(b)\| = 0 \implies f(a) = f(b)
+            \]
+            so \(f\) is constant.
+
+            Conversely, suppose that \(f\) is a constant function. To show that \(f'(p) = 0\), notice that
+            \[
+                \lim_{h \to 0} \frac{\|f(p + h) - f(p)\|}{\|h\|} = 0
+            \]
+            Thus \(f'(p) = 0\) for all \(p \in U\).
+
+            (c):
+
+            We know that \(X\) is convex because it is a vector space. Suppose that \(f'' = 0\). Then by part (b), \(f'\) is a constant function. We will denote \(f' = L \in B(X,Y)\). We claim that \(M = L\) and \(b = f(0)\), that is, \(f(p) = L(p) + f(0)\) for all \(p \in U\).
+
+            Define the function \(g: U \to \mathbb{R}^m\) by \(g(p) = f(p) - f(0) - L(p)\). For all \(p \in U\), we have that
+            \[
+                \lim_{h \to 0} \frac{\|g(p + h) - g(p)\|}{\|h\|} = \lim_{h \to 0} \frac{\|(f(p+h) - f(0) - L(p+h)) - (f(p) - f(0) - L(p))}{\|h\|}
+            \]
+            \[
+                = \lim_{h \to 0} \frac{\|f(p+h) - f(p) - L(h)\|}{\|h\|} = 0
+            \]
+            where the last step is from the fact that \(f'(p) = L\). We can see that \(g'(p) = 0\) for all \(p \in U\). From part (b), it follows that \(g\) is a constant function. Finally, notice that
+            \[
+                g(0) = f(0) - f(0) - L(0) = 0 \text{,} 
+            \]
+            so \(g = 0\). Therefore for all \(p \in U\),
+            \[
+                f(p) - f(0) - L(p) = 0 \implies f(p) = L(p) + f(0)
+            \]
+            as desired.
+
+            Conversely, suppose that \(f\) is affline-linear. Then for some \(M \in B(X, \mathbb{R}^m)\), \(b \in \mathbb{R}^m\),
+            \[
+                f(p) = M(p) + b \text{.} 
+            \]
+            We claim that \(f'(p) = M\) using the definition. Immediately, we have that
+            \[
+                \lim_{h \to 0} \frac{\|(M(p+h) + b) - (M(p) + b) - M(h)\|}{\|h\|} = 0
+            \]
+            which verifies our claim. Since \(f'(p) = M\) for all \(p \in U\), \(f'\) is constant, and from part (b), this implies that \(f'' = 0\), which completes the proof.
+        \end{proof}
+
+        \subsection{\#27}
+
+        Let $f:\R^2\rightarrow \R$ be a continuously differentiable function.
+        \begin{enumerate}[label=(\alph*)]
+            \item  Show that the partial function $\R\rightarrow \R$, $t\mapsto f(x,t)$ is integrable (over any bounded interval in $\R$).
+            
+            \item By (a), we can define a function $\varphi:\R\rightarrow \R$ by
+                \[ \varphi(x) = \int_a^b f(x,t) \ dt. \]
+            Show that $\varphi$ is differentiable, and that its (classical) derivative is given by
+                \[ \dfrac{d\varphi}{dx}(x_0) = \int_a^b \dfrac{\partial f}{\partial x}(x_0,t) \ dt. \]
+            This formula is known as \textbf{differentiation under the integral sign}, or \textbf{Feynmann's trick}.
+        
+            \item Use Feynmann's trick to solve the single-variable integral:
+                \[ \int_0^\infty e^{- t^2} \ dt \]
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+            Since \(f\) is continuous, it follows immediately that its partial function is continuous, which implies that it is integrable.
+
+            (b):
+
+            Let \(x_0 \in \mathbb{R}\). We will show that as \(h\to 0\), \[\frac{1}{h} \left(\int _a^b f(x_0 + h,t)dt - \int _a^b f(x_0, t)dt - h\int _a^b \frac{\partial f}{\partial x} (x_0,t)dt\right) \to 0,\] which is equivalent to saying
+            \[
+                \dfrac{d\varphi}{dx}(x_0) = \int_a^b \dfrac{\partial f}{\partial x}(x_0,t) \ dt.
+            \]
+            Let \(\varepsilon > 0\). By the partial differentiability of \(f\), we obtain a \(\delta\) so that \[\left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x}(x_0, t) \right\vert < \dfrac{|h|\varepsilon}{b-a}\] for all \(0 < |h| <\delta\).
+            
+            Fix \(h \in \mathbb{R}\) so that \(0 < |h| <\delta\). By the linearity of the integral,
+            \[
+                \left\vert \frac{1}{h} \left(\int _a^b f(x_0 + h,t)dt - \int _a^b f(x_0, t)dt - h\int _a^b \frac{\partial f}{\partial x} (x_0,t)dt\right) \right\vert
+            \]
+            \[
+                = \left\vert\frac{1}{h}\int _a^b (f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x} (x_0,t))dt\right\vert 
+            \]
+            \[
+                \leq \frac{1}{|h|} \int _a^b \left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x} (x_0,t) \right\vert dt
+            \]
+            \[
+                < \frac{1}{|h|}\int _a^b \frac{|h|\varepsilon}{b-a}dt =\varepsilon
+            \]
+            as desired. Thus we have found an expression for \(\varphi ' (x_0)\).
+
+            (c):
+
+            Let \(I = \int _0^{\infty} e^{-t^2}\ dt\). We will first show that this integral converges. We make the observation that the integrand is continuous and positive. Splitting the integral in two, we see that
+            \[
+                \int _0^{\infty} e^{-t^2}\ dt = \int _0^{1} e^{-t^2}\ dt + \int _1^{\infty} e^{-t^2}\ dt
+            \]
+            The first integral has finite bounds so it is convergent. For \(t \geq 1\), \(-t^2 \leq -t\). Since \(\exp (t)\) is an increasing function,
+            \[
+                e^{-t^2} \leq e^{-t} \implies \int _1^{\infty} e^{-t}\ dt \leq \int _1^{\infty} e^{-t}\ dt = 1
+            \]
+            Therefore \(I\) converges by the basic comparison test.
+            
+            Define \(\varphi : [0,\infty) \to  \mathbb{R}\) by
+            \[
+                \varphi (x) = \int _0^{\infty} \frac{e^{-x^2(t^2 + 1)}}{t^{2} +1}\ dt
+            \]
+            Notice that \(\int _0^{\infty} \frac{e^{-x^2(t^2 + 1)}}{t^{2} +1}\ dt \leq \int _0^{\infty} e^{-x^2(t^2 + 1)}\ dt\), so \(\varphi\) always converges for similar reasons.
+
+            From part (b), we see that
+            \[
+                \varphi '(x) = -2x\int _0^{\infty} e^{-x^2 (t^2 + 1)}dt = -2xe^{-x^2}\int _0^{\infty} e^{-x^2 t^2}dt
+            \]
+            We perform the substitution \(u = xt\). Changing \(u\) back to \(t\) gives us
+            \[
+                \varphi '(x) = -2e^{-x^2}\int _0^{\infty} e^{-t^2}dt
+            \]
+            Thus we have that
+            \[
+                \varphi '(x) = -2e^{-x^2}I
+            \]
+            We can take the definite integral of both sides with respect to \(x\):
+            \[
+                \int _0 ^{\infty} \varphi '(x) dx = \int _0^{\infty} -2e^{-x^2}I dx \implies \lim_{n \to \infty} \varphi (n) - \varphi (0) = -2I^2
+            \]
+            Now we will analyse \(\lim_{n \to \infty} \varphi (n)\) and \(\varphi (0)\) separately.
+
+            First, we will show that \(\lim_{n \to \infty} \varphi (n) = 0\). Let \(\varepsilon > 0\). For \(n > N\), where \(N\) is a fixed number, we have that \(e^{-n^2(t^2 +1)} < \dfrac{2\varepsilon}{\pi}\), so
+            \[
+                |\varphi (n)| = \left\vert \int _0^{\infty} \frac{e^{-n^2(t^2 + 1)}}{t^{2} +1}\ dt \right\vert \leq \int _0^{\infty} \left\vert \frac{e^{-n^2(t^2 + 1)}}{t^{2} +1}\ dt \right\vert < \frac{2}{\pi} \int _0^{\infty} \frac{\varepsilon}{t^2 + 1}\ dt
+            \]
+            \[
+                \implies \frac{2\varepsilon}{\pi} \arctan (t) \Big| _0^{\infty} = \varepsilon.
+            \]
+            Thus we can conclude that \(\lim_{n \to \infty} \varphi (n) = 0\).
+
+            Now, notice that
+            \[
+                \varphi (0) = \int _0^{\infty} \frac{1}{t^2 + 1} \ dt = \arctan (t) \ \Big|_0^{\infty} = \frac{\pi}{2}
+            \]
+
+            Applying this to our original equation,
+            \[
+                0 - \frac{\pi}{2} = -2I^2 \implies 2I^2 = \frac{\pi}{2} \implies I^2 = \frac{\pi}{4}
+            \]
+            Finally, taking the squareroot of both sides gives us the result:
+            \[
+                \int_0^\infty e^{- t^2} \ dt = I = \frac{\sqrt{\pi}}{2}
+            \]
+        \end{proof}
+        
+        \subsection{\#28}
+
+        Let $U$ be an open set in a normed vector space $X$ and let $f:U\rightarrow Y$ be a \textbf{twice continuously differentiable} function, meaning that the second derivative $f'':U\rightarrow B(X,B(X,Y))$ exists and is continuous on $U$. We also say that $f$ is a \textbf{$C^2$-function}.
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $f:\R^2\rightarrow \R$ be given by $f(x,y)=x^2-xy+y^2$. Find, with proof, an explicit formula for the linear mapping $f''(2,-1)$. Also, write down the matrix that represents this linear mapping with respect to a suitable ``standard'' basis.
+            
+            \item Now we investigate the case $X=\R^n$ and $Y=\R$, and let $f:U\rightarrow \R$ be some function defined on an open set $U\subseteq \R^n$. We use the notation $\dfrac{\partial^2 f}{\partial x_i\partial x_j}$ to refer to the \textbf{$(i,j)$th second partial derivative} of $f$: this is the $i$th partial derivative of the $j$th partial derivative $\dfrac{\partial f}{\partial x_j}$.
+    
+
+            \begin{enumerate}[label=(\roman*)]
+                \item Show that $f$ is twice continuously differentiable if and only if all second partial derivatives exist and are continuous.
+
+                \item Let $f$ be twice continuously differentiable Let $v\in \R^n$ and let $D_vf:U\rightarrow \R$ be the directional derivative of $f$ along $v$. Show that $D_vf$ is continuously differentiable.
+
+                \item Let $f$ be twice continuously differentiable and let $v\in \R^n$. By (ii), we know that $D_vf$ is $C^1$, hence differentiable in every direction $\in \R^n$. Show that the directional derivatives commute:
+                    \[ D_v(D_wf) = D_w(D_vf) \quad \text{for all $v,w\in \R^n$.} \]
+                \item Deduce \textbf{Clairaut's Theorem}: that the second partial derivatives commute.
+                \[ \dfrac{\partial^2 f}{\partial x_i\partial x_j} = \dfrac{\partial^2 f}{\partial x_j\partial x_i} \quad \text{for all $i,j\in \{1,\ldots,n\}$.} \]
+            \end{enumerate}
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+            We claim that \(f''(2,-1) : \mathbb{R}^2 \to B(\mathbb{R}^2,\mathbb{R})\) is a bounded linear map given by
+            \[
+                f''(2,-1)(p,q)(x,y) = (2p - q)x - (p - 2q)y
+            \]
+            Let \((p,q), (r,s) \in \mathbb{R}^2\) and \(c \in \mathbb{R}\). Then for all \((x,y) \in \mathbb{R}^2\),
+            \[
+                f''(2,-1)(cp + r, cq + s)(x,y) = [2(cp + r) - (cq + s)]x - [(cp + r) - 2(cq + s)]y
+            \]
+            \[
+                = c[(2p - q)x - (p - 2q)y] + [(2r - s)x - (r - 2s)y] = cf''(2,-1)(p,q)(x,y) + f''(2,-1)(r,s)
+            \]
+            so \(f''(2,-1)\) is linear.
+
+            Recall that \(f'(p,q)(x,y) = (2p - q)x - (p - 2q)y\). In particular, for \((p,q) = (2,-1)\), \(f'(2,-1)(x,y) = 5x - 4y\).
+            
+            Fix \((x,y) \in \mathbb{R}^2\). Then
+            \[
+                \lim_{h \to 0} \frac{f'(2 + h_1, -1 + h_2)(x,y) - f'(2,-1)(x,y) - L_p(h)}{\|h\|}
+            \]
+            \[
+                = \lim_{h \to 0} \frac{[(5 + 2h_1 - h_2)x - (4 + h_1 - 2h_2)y] - [5x - 4y] - L_p(h)}{\|h\|}
+            \]
+            \[
+                = \lim_{h \to 0} \frac{(2h_1 - h_2)x - (h_1 - 2h_2)y - L_p(h)}{\|h\|} = 0
+            \]
+            which verifies that \(f''(2,-1)(p,q)(x,y) = (2p - q)x - (p - 2q)y\).
+
+            (b):
+
+            Let \(f : U \to \mathbb{R}\) be a function, where \(U\) is open in \(\mathbb{R}^n\).
+
+            (b)(i):
+
+            Suppose that \(f\) is twice continuously differentiable. This implies that all its partial derivatives exist.
+
+            Consider an arbitrary partial derivative \(\dfrac{\partial f}{\partial x_j}\) for \(i \in \{1, ..., n\}\). It will be shown that their directional derivatives all exist and are continuous.
+
+            Let \(v \in \mathbb{R}^n\). We see that
+            \[
+                \lim_{t \to 0} \frac{1}{t}\left( \frac{\partial f}{\partial x_j} (p+tv) - \frac{\partial f}{\partial x_j} (p) \right) 
+            \]
+            Recall that \(f'(q)(v) = \sum_{i=1} ^n v_i \frac{\partial f}{\partial x_i} (q)\). Now, notice that
+            \[
+                \frac{\partial f}{\partial x_j} (p+tv) = f'(p+tv)(x_j) \text{ and } \frac{\partial f}{\partial x_j} (p) = f'(p)(x_j)
+            \]
+            We make this substitution in the limit expression, so it becomes
+            \[
+                \lim_{t \to 0} \frac{1}{t}(f'(p+tv)(x_j) - f'(p)(x_j)) = D_v f'(p)(x_j)
+            \]
+            by definition. Thus \(D_v \left( \frac{\partial f}{\partial x_j} (p)\right) = D_v f'(p)(x_j)\). This is continuous because every directional derivative of \(f'\) is continuous by our assumption. Taking \(v = x_i\), we conclude that all the second partial derivatives of \(f\) exist and are continuous.
+            
+            Conversely, suppose that all second partial derivatives of \(f\) exist and are continuous. Since all first partial derivatives will exist and are continuous, then \(f\) is continuously differentiable, meaning that \(f'\) exists.
+
+            Let \(i \in \{1, ..., n\}\). We claim that \(\dfrac{\partial f'}{\partial x_i}\) exists and is continuous, where \(x_i\) represents the \(i\)th standard ordered basis vector of \(\mathbb{R}^n\).
+
+            Fix \(p \in \mathbb{R}^n\). Recall that \(f'(p)(\vec{v}) = \sum_{j=1} ^n v_j \frac{\partial f}{\partial x_j}(p)\) from the differentiability theorem. For \(\vec{v} \in \mathbb{R}^n\), we have that
+            \[
+                \lim_{h \to 0} \frac{f'(p + hx_i)(\vec{v}) - f'(p)(\vec{v})}{h} = \lim_{h \to 0} \sum_{j=1} ^n \frac{v_i}{h}\left( \frac{\partial f}{\partial x_j} (p + hx_i) - \frac{\partial f}{\partial x_j} (p) \right)
+            \]
+            Since all second partial derivatives exist, the limit evaluates to
+            \[
+                \sum_{j=1} ^n v_i \frac{\partial ^2 f}{\partial x_i \partial x_j} (p)
+            \]
+            By definition, this is the \(i\)th partial derivative of \(f'\).
+
+            Notice that it is also continuous, as it is a finite linear combination of second partial derivatives, which are continuous by assumption.
+            
+            Since we have that all partial derivatives of \(f'\) exist and are continuous, by the differentiability theorem, \(f'\) is continuously differentiable, which implies that \(f\) is twice continuously differentiable.
+
+            Therefore we can conclude that twice continuously differentiable is equivalent to having all second partial derivatives exist and continuous.
+
+            \medskip
+
+            (b)(ii):
+
+            Suppose that \(f\) is twice continuously differentiabe. Consider the directional derivative \(D_v f\). We will show that for all \(p\in U\), \(D_v f(p) = f'(p)(v)\).
+
+            We can assume that \(p + v \in U\) by making \(\|v\|\) small enough. Define a function \(\alpha : [0,1] \to U\) by \(\alpha (t) = p + tv\). The derivative is given by \(\alpha '(t) = v\). Now, construct a new function \(g : \mathbb{R} \to \mathbb{R}\) defined by \(g(t) = (f \circ \alpha) (t)\). By the chain rule, we see that \(g'(t) = f'(\alpha (t)) (v)\).
+
+            Thus we get that
+            \[
+                D_v f(p) = \lim_{h \to 0} \frac{f(p + hv) - f(p)}{h} = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = f'(\alpha (0))(v) = f'(p)(v),
+            \]
+            Now, we can compute the derivative of \(D_{v} f\) directly and obtain that \((D_v f)'(p) = (f')'(p)(v)\). But we know by that \(f\) is twice continuously differentiable, so \((D_v f)'\) is continuous.
+
+            Thus \(D_v f\) is continuously differentiable.
+            \medskip
+
+            (b)(iii):
+
+            We will evaluate \(D_v (D_w f)\) from the definition and show that it is equal to \(D_w (D_v f)\).
+
+            Fix \(p \in U\). There exists \(\delta > 0\) so that \(p + \delta v \in U\). For any such \(h\), construct a function \(g : [0,\delta] \to \mathbb{R}\) defined as
+            \[
+                g(t) = D_w f(p + tv)
+            \]
+            \(g\) is differentiable on its domain because it is a composition of differentiable functions. By the chain rule, we see that
+            \[
+                g'(t) = (D_w f)'(p+tv)(v)
+            \]
+            Using the fact that for all continuously differentiable functions, \(D_v h (q) = h'(q)(v)\), we get
+            \[
+                g'(t) = D_v (D_w f) (p+tv)
+            \]
+            Now we compute \(D_v (D_w f)\):
+            \[
+                \lim_{h \to 0} \frac{D_w f(p+hv) - D_w f(p)}{h}
+            \]
+            For \(|h| < \delta\), the limit becomes
+            \[
+                D_w (D_v f) (p) = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = D_v (D_w f) (p)
+            \]
+            Therefore the directional derivatives commute.
+            \medbreak
+            (b)(iv):
+
+            From the previous part, simply take \(v = x_i\) and \(w = x_j\) and the result follows immediately.
+        \end{proof}
+
+        \subsection{\#29}
+
+        Let $U\subseteq \R^2$ be an open set, and let $f:U\rightarrow \R$ be some differentiable function. This data defines an \textbf{explicit surface} in $\R^3$, also known as the \textbf{graph} of $f$:
+        \[ S = S(f) = \{(x,y,z)\in \R^3 : (x,y)\in U, z=f(x,y)\}. \]
+        Colloquially, we often say ``Let $z=f(x,y)$ be a surface in $\R^3$.''
+        
+        \begin{enumerate}[label=(\alph*)]
+            \item Find the equation of the tangent plane to the surface $z=x+xy^2-y^3$ at the point $p=(2,1,3)$, as follows.
+            \begin{enumerate}[label=(\roman*)]
+                \item First, fix $x=2$ and set $y=1+t$; write $z$ as a function of $t$, and find $z'(0)$. This is the ``slope in the $x$ direction.''
+                \item Similarly, find the ``slope in the $y$ direction.''
+                \item Now you have two slopes in orthogonal directions. This gives you two vectors which span a plane. Shift this plane so that it becomes tangent at $p$. Write the equation of this plane in the form $Ax+By+Cz=D$, where $A,B,C,D\in \R$.
+            \end{enumerate}
+            
+            \item Find --- with proof! --- the equations of all planes in $\R^3$ which (i) are tangent to the surface $z=x+xy^2-y^3$; (ii) are parallel to the vector $\vec{v}=\begin{bmatrix} 3 \\ 1 \\ 1\end{bmatrix}$; and (iii) pass through the point $p=(-1,-2,3)$.
+            
+            \item Let $f:\R^2\rightarrow \R$ be a continuously differentiable function, and define a new function $g:\R^2\rightarrow \R$ by
+                \[ g(x,y) = f(f(xy,x),f(y,xy)). \]
+            You are given the following information about $f$ and $g$:
+                \begin{itemize}
+                    \item $f(3,1)=5$ and $\nabla f(3,1)=(1,2)$
+                    \item $f(3,3)=2$ and $\nabla f(3,3)=(0,-1)$
+                    \item $g(1,3)=6$ and $\nabla g(1,3)=(3,4)$
+                \end{itemize}
+            Find $\nabla f(5,2)$.
+        \end{enumerate}
+        \begin{proof}
+            (a)(i):
+
+            Fix \(x = 2\) and set \(y = 1+t\). Then
+            \[
+                z_y(t) = 2 + 2(1+t)^2 - (1+t)^3 \implies z'(t) = 4(1+t) - 3(1+t)^2
+            \]
+            \[
+                \implies z_y'(0) = 1
+            \]
+
+            \medskip
+
+            (a)(ii):
+
+            Fix \(y = 1\) and set \(x = 2 + t\). Then
+            \[
+                z_x(t) = (2+t) + (2+t) - 1 = 2t + 3 \implies z_x'(0) = 2
+            \]
+
+            \medskip
+
+            (a)(iii):
+
+            From the previous two parts gave us two vectors \((1,0,2)\) and \((0,1,1)\). This spans the plane given by the equation \(2x+y-z = 0\). Translate this plane by the vector \((2,1,3)\) which yields the equation
+            \[
+                2(x-2)+(y-1)-(z-3) = 0 \implies 2x+y-z=2
+            \]
+            \medbreak
+
+            (b):
+
+            We claim that there are only two planes that satisfy all three conditions:
+            \[
+                5x - 14y - z = 20 \text{ and } 5x - 11y - 4z = 5
+            \]
+
+            Let \((p,q) \in \mathbb{R}^n\) and suppose that the plane tangent to the surface \(z\) at this point has the properties above. We find the equation of this tangent plane like the previous part.
+
+            Fix \(x = p\) and set \(y = q + t\). Then
+            \[
+                z_y(t) = p + p(q+t)^2 - (q+t)^3 \implies z_y'(t) = 2p(q+t) - 3(q+t)^2
+            \]
+            \[
+                \implies z_y'(0) = 2pq - 3q^2
+            \]
+
+            Next, fix \(y = q\) and set \(x = p + t\). Then
+            \[
+                z_x(t) = (x+t) + (x+t)q^2 - q^3 \implies z_x'(t) = q^2 + 1
+            \]
+
+            This gives two vectors \((0, 1, 2pq - 3q^2)\) and \((1,0,q^2 + 1)\) that span a plane given by the equation \((q^2 + 1)x + (2pq - 3q^2)y - z = 0\). Translating this plane by \((p,q,p+pq^2 - q^3)\) gives another plane with the equation
+            \[
+                (q^2 + 1)(x-p) + (2pq - 3q^2)(y-q) - (z + q^3 - pq^2 - p) = 0
+            \]
+            \[
+                \implies (q^2 + 1)x + (2pq - 3q^2)y - z = p(q^2 + 1) + q(2pq - 3q^2) + (q^3 - pq^2 - p)
+            \]
+            \[
+                \implies (q^2 + 1)x + (2pq - 3q^2)y - z = 2pq^2 - 2q^3
+            \]
+
+            Now, take the initial vectors \((0, 1, 2pq - 3q^2)\) and \((1,0,q^2 + 1)\) and compute their cross product to find the normal vector \(\vec{n}\):
+            \[
+                \vec{n} = (0,1,2pq-3q^2) \times (1,0,q^2+1) = (q^2 + 1, 2pq - 3q^2, -1)
+            \]
+            This vector is normal to the plane. We only want planes that are parallel to \(\vec{v}\), which means that this normal vector should be normal to \(\vec{v}\) as well. We calculate the dot product of this normal vector and \(\vec{v}\):
+            \[
+                \vec{n} \cdot \vec{v} = 3(q^2 + 1) + (2pq - 3q^2) - 1
+            \]
+            Set this equal to 0. Simplifying, we have that
+            \[
+                3(q^2 + 1) + (2pq - 3q^2) - 1 = 0 \implies 2pq = -2
+            \]
+            \[
+                \implies pq = -1
+            \]
+            We see that \(p,q \neq 0\) and get the relationship \(p = -\dfrac{1}{q}\). Substitute this into our plane equation and we get that
+            \[
+                (q^2 + 1)x + (2pq - 3q^2)y - z = 2pq^2 - 2q^3
+            \]
+            \[
+                \implies (q^2 + 1)x + (-2 - 3q^2)y - z = -2q - 2q^3
+            \]
+            \[
+                \implies (q^2 + 1)x - (3q^2 + 2)y - z = -2q(q^2 + 1)
+            \]
+            Finally, recall that our plane should pass through the point \(p = (-1,-2,3)\). Substituting \((x,y,z) = (-1,-2,3)\), we can solve for \(q\) and obtain our answer:
+            \[
+                -(q^2 + 1) + 2(3q^2 + 2) - 3 = -2q(q^2 + 1)
+            \]
+            \[
+                \implies 2q^3 + 5q^2 + 2q = 0
+            \]
+            We disregard the case where \(q=0\) and end up with the quadratic equation
+            \[
+                2q^2 + 5q^2 + 2 = 0 \implies q = \frac{-5 \pm \sqrt{25 - 16}}{4} \implies q_1 = -2, q_2 = -\frac{1}{2}
+            \]
+            Substituting these values into our plane equation, we see that there are two planes that satisfy the above properties:
+            \[
+                5x - 14y - z = 20 \text{ and } 5x - 11y - 4z = 5
+            \]
+
+            (c):
+
+            In general,
+            \[
+                \nabla g(p,q) = \left( \frac{\partial g}{\partial x} (p,q) , \frac{\partial g}{\partial y} (p,q) \right) 
+            \]
+            
+            For \(a(x,y) = xy\), \(b(x,y) = x\), and \(c(x,y) = y\), we make the quick note that
+            \[
+                \begin{bmatrix}
+                    a'(x,y) \\
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    y &  x \\
+                \end{bmatrix}
+                \text{, } 
+                \begin{bmatrix}
+                    b'(x,y) \\
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    1 &  0 \\
+                \end{bmatrix}
+                \text{, and } 
+                \begin{bmatrix}
+                    c'(x,y) \\
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    0 &  1 \\
+                \end{bmatrix}
+            \]
+
+            Differentiating \(g\) at \((1,3)\), by multiple applications of the chain rule, we get
+            \[
+                \begin{bmatrix}
+                    g'(1,3) \\
+                \end{bmatrix}
+                = \begin{bmatrix}
+                    f'(f(3,1),f(3,3)) \\
+                \end{bmatrix}
+                \times \begin{bmatrix}
+                    \begin{bmatrix}
+                        f'(3,1) \\
+                    \end{bmatrix}
+                    \times 
+                    \begin{bmatrix}
+                        \begin{bmatrix}
+                            a'(1,3) \\
+                        \end{bmatrix} \\
+                        \begin{bmatrix}
+                            b'(1,3) \\
+                        \end{bmatrix}\\
+                    \end{bmatrix} \\
+                    \\
+                    \begin{bmatrix}
+                        f'(3, 3) \\
+                    \end{bmatrix}
+                    \times 
+                    \begin{bmatrix}
+                        \begin{bmatrix}
+                            c'(1,3) \\
+                        \end{bmatrix} \\
+                        \begin{bmatrix}
+                            a'(1,3) \\
+                        \end{bmatrix} \\
+                    \end{bmatrix} \\
+                \end{bmatrix}
+            \]
+            \[
+                = \begin{bmatrix}
+                    f'(5,2) \\
+                \end{bmatrix}
+                \times 
+                \begin{bmatrix}
+                    \begin{bmatrix}
+                        1 & 2 \\
+                    \end{bmatrix}
+                    \times 
+                    \begin{bmatrix}
+                        3 & 1 \\
+                        1 & 0 \\
+                    \end{bmatrix} \\
+                    \\
+                \begin{bmatrix}
+                    0 & -1 \\
+                \end{bmatrix}
+                \times 
+                \begin{bmatrix}
+                        0 & 1 \\
+                        3 & 1 \\
+                \end{bmatrix} \\
+            \end{bmatrix}
+            \]
+            \[
+                = \begin{bmatrix}
+                    f'(5,2) \\
+            \end{bmatrix}
+            \times 
+            \begin{bmatrix}
+                5  & 1 \\
+                -3  & -1 \\
+            \end{bmatrix}
+            \]
+            Suppose that \(\begin{bmatrix}
+                f'(5,2) \\
+            \end{bmatrix} = \begin{bmatrix}
+                r  &  s \\
+            \end{bmatrix}\), for some \(r,s \in \mathbb{R}\). Then
+            \[
+                \begin{bmatrix}
+                    g'(1,3) \\
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    f'(5,2) \\
+                \end{bmatrix}
+                \times 
+                \begin{bmatrix}
+                    5 &  1 \\
+                    -3 &  -1 \\
+                \end{bmatrix}
+            \]
+            \[
+                \implies \begin{bmatrix}
+                    3 &  4 \\
+                \end{bmatrix}
+                = 
+                \begin{bmatrix}
+                    r &  s \\
+                \end{bmatrix}
+                \times 
+                \begin{bmatrix}
+                    5 &  1 \\
+                    -3 &  -1 \\
+                \end{bmatrix}
+            \]
+            \[
+                \implies \begin{bmatrix}
+                    3 &  4 \\
+                \end{bmatrix}
+                = 
+                \begin{bmatrix}
+                    5r-3s &  r-s \\
+                \end{bmatrix}
+            \]
+            \[
+                \implies 5r - 3s = 3 \text{ and } r - s = 4
+            \]
+            Solving the system of equations gives
+            \[
+                r = -\frac{9}{2} \text{ and } s = -\frac{17}{2}
+            \]
+            Therefore \(\nabla f(5,2) = \left( -\dfrac{9}{2}, -\dfrac{17}{2} \right)\).
+        \end{proof}
+
 
 
 
@@ -192,61 +2161,6 @@
 
     \section{Handout Exercises}
     \subsection{Written by Me}
-    \subsubsection{Exercise 8.12 (c) (iii)}
-    \textbf{Solvers:} Ethan
-
-    \noindent\textbf{Writeup:} Ethan
-
-    Let \(U \subseteq \mathbb{R}^n\) be an open set and let \(f: U \to \mathbb{R}\) be a scalar function. Then if all partial derivatives exist and are continuous on \(U\), then \(f\) is continuously differentiable and \(f'(p)\) is given by \(f'(p)(v) = D_v f(p)\).
-
-    \textcolor{red}{Recall the statement in (ii): There exists a point \(q_k \in U\) such that
-    \[
-        \frac{f(p_k) - f(p_{k-1})}{h_k} = \frac{\partial f}{\partial x_k} (q_k)
-    \]
-    We make the additional distinction that \(q_k\) is of the form \(p_{k-1} + \gamma e_k\), where \(|\gamma| < |h_k|\).}
-
-    \begin{proof}
-        Define \(\|\cdot\|\) on \(U\) to be the 1-norm.
-
-        Let \(L_p = f'(p)\). We will show that \(\dfrac{|f(p+h) - f(p) - L_p(h)|}{\|h\|} \to 0\).
-
-        Let \(\varepsilon > 0\). Utilising part (i), we define a sequence of points \(p_0, ..., p_n \in X\) by
-        \[
-            p_0 = p \text{ and } p_i = p_{i-1} + h_i e_i \text{.} 
-        \]
-        We know that for \(\|h\|\) smaller than some positive \(\delta _1\), \(p_i \in U\). By the uniform continuity of \(\dfrac{\partial f}{\partial x_i}\) there is also a \(\delta _2\) such that for all \(a,b \in U\) such that \(\|a-b\| <\delta _2\), \(\left\vert\dfrac{\partial f}{\partial x_i} (a-b)\right\vert < \varepsilon\).
-
-        Let \(\delta = \min \{\delta _1, \delta _2 \}\). Let \(h \in U\) so that \(\|h\| < \delta\). Notice that \(p+h = p_n\) and \(p = p_0\). We have that
-        \[
-            \frac{|f(p+h) - f(p) - L_p(h)}{\|h\|} = \frac{|f(p_n) - f(p_0) - L_p(h)|}{\|h\|}
-        \]
-        We can expand the numerator by adding and subtracting every term \(p_i\) and substituting
-        \[
-            L_p(h) = D_h f (p) = \sum_{i=1}^n h_i \dfrac{\partial f}{\partial x_i}(p) \text{,} 
-        \]
-        which yields
-        \[
-            \frac{\left\vert \sum\limits_{i=1}^n \left(f(p_i) - f(p_{i-1}) - h_i\dfrac{\partial f}{\partial x_i}(p) \right)\right\vert}{\|h\|} \leq \sum_{i=1}^n \frac{\left\vert f(p_i) - f(p_{i-1}) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert }{\|h\|} \text{.} 
-        \]
-        Now, by part (ii), we can rewrite \(f(p_i) - f(p_{i-1})\) as \(h_i \dfrac{\partial f}{\partial x_i} (q_i)\), for some \(q_i \in U\), so the expression becomes
-        \[
-            \sum_{i=1}^n \frac{\left\vert h_i \dfrac{\partial f}{\partial x_i} (q_i) - h_i \dfrac{\partial f}{\partial x_i} (p) \right\vert}{\|h\|} = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert
-        \]
-        Note that \(p_i\) can also be written as \(p + \sum_{j=1}^i h_j e_j\). Thus we can say that \(q_i = p_{i-1} + \gamma e_i = p + \gamma e_i + \sum_{j=1}^{i-1} h_j e_j\). We get that
-        \[
-            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} (q_i - p)\right\vert = \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert
-        \]
-        We see that the norm of the argument inside the partial derivative is
-        \[
-            \left\lVert \gamma e_i + \sum_{j=1}^{i-1} h_j e_j \right\rVert \leq |\gamma| + \sum_{j=1}^{i-1} |h_j| < \sum_{j=1}^i |h_j| \leq \sum_{j=1}^n |h_j| = \|h\| < \delta _2 \text{,} 
-        \]
-        so by the continuity of \(\dfrac{\partial f}{\partial x_i}\),
-        \[
-            \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \left\vert\dfrac{\partial f}{\partial x_i} \left(\gamma e_i + \sum_{j=1}^{i-1} h_j e_j\right)\right\vert < \frac{1}{\|h\|}\sum_{i=1}^n |h_i| \cdot \varepsilon = \frac{\|h\|}{\|h\|} \cdot \varepsilon = \varepsilon
-        \]
-        and the proof is complete.
-
-    \end{proof}
 
     \subsubsection{Exercise 4.10.}
     
