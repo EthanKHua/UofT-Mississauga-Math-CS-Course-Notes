@@ -504,11 +504,9 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 \begin{proof}
 	First, it will be shown that there is no NFA that accepts \(L\) in less than \(k+1\) states. Then, an NFA with \(k+1\) states that accepts \(L\) will be provided.
 	
-	Suppose for contradiction that there is an NFA that accepts \(L\) with less than \(k + 1\) states. Let \(w = 10^{k-2}\). For \(i \in \{1, ..., k\}\), define
-	\[
-		sdfsdf
-	\]
-	Notice that \(w0\) is a string that should be accepted.
+	Suppose for contradiction that there is an NFA that accepts \(L\) with less than \(k + 1\) states. Consider the string \(w = 01^k \in L\). By the assumption there is a path that accepts \(w\). There are \(k+1\) symbols in this string, but there are at most \(k\) states in this NFA. By the pigeonhole principle, the correct path must revisit the same state at least once.
+	
+	Namely, the strings \(01^n\) and \(01^m\), where \(0 < n < m < k\), are in the same state at some point in the path. This means that there is a path where \(01^{n+k-m}\) and \(01^{m+k-m} = w\) are both accepted, but \(n - m < 0\), so \(n + k - m < k\), which means that \(|01^{n+k-m}| < k+1\). However, this string should not be accepted because if \(|01^{n+k-m}| < k\), there is no \(k\)th last element, and if \(|01^{n+k-m}| = k\), the \(k\)th last element is not 1. This is a contradiction. Thus there is no NFA with less than \(k+1\) states that accepts \(L\).
 
 	Now, define an NFA \(\mathcal{N}\) as follows. Let \(\mathcal{Q} = \{q_0, ..., q_k\}\), \(s = q_0\), \(F = \{q_k\}\). Define \(\delta : \mathcal{Q} \times \Sigma \to \mathcal{P} (\mathcal{Q})\) by
 	\[
@@ -525,7 +523,7 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 	\]
 	It will be shown that \(\mathcal{N} = (\Sigma , \delta , Q, s, F)\) is correct.
 
-	Let \(w \in L\). Then the \(k\)th last symbol is a 1. The correct path is to first transition to \(q_0\) for every symbol before the \(th\) last symbol. Thus before \(\mathcal{N}\) reads the \(k\)th last symbol, the machine is in state \(q_0\). Then, transition to \(q_1\) when reading the \(k\)th last symbol. After this, the machine will always transition to the next state. Specifically, this means that for \(i \in \{1, ..., k-1 \},\), if \(\mathcal{N}\) is in state \(q_i\) before reading a symbol, it will transition to \(q_{i+1}\) after reading it.
+	Let \(w \in L\). Then the \(k\)th last symbol is a 1. The correct path is to first transition to \(q_0\) for every symbol before the \(k\)th last symbol. Thus before \(\mathcal{N}\) reads the \(k\)th last symbol, the machine is in state \(q_0\). Then, transition to \(q_1\) when reading the \(k\)th last symbol. After this, the machine will always transition to the next state. Specifically, this means that for \(i \in \{1, ..., k-1 \},\), if \(\mathcal{N}\) is in state \(q_i\) before reading a symbol, it will transition to \(q_{i+1}\) after reading it.
 
 	Since there are \(k-1\) symbols remaining to be read after the \(k\)th last symbol was read, then after the very last symbol is read, \(\mathcal{N}\) will be in state \(q_k\), which is an accepting state. Therefore \(\mathcal{N}\) accepts \(w\).
 
@@ -533,15 +531,16 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 
 	Firstly, if the machine always chooses the transition \(q_0 \xrightarrow{1} q_0\), it will never reach the accepting state \(q_k\). This case can be disregarded.
 
-	Now, let \(A\) be the set of indices such that \(i \in A\) implies that \(w(i) = 1\). Notice that \(|w| - k \notin A\). As well, \(A\) is a finite set, so its elements can be enumerated in increasing order as
+	Now, define the set \(A = \{i \in \mathbb{N} : w(i) = 1\}\). Since \(w \notin L\), it is true that \(|w| - k \notin A\). As well, \(A\) is a finite set, so its elements can be enumerated in increasing order as
 	\[
 		i_1 < i_2 < ... < i_m, \text{ for some } m \in \mathbb{N}
 	\]
-	It will be proven using backwards induction on \(n\) that there is no path where \(\mathcal{N}\) accepts \(w\). In particular, the goal is to show that for all integers \(n\) so that \(1 \leq n \leq m\), taking the transition \(q_0 \xrightarrow{1} q_1\) when reading the \(i_n\)th symbol will result in \(w\) being rejected.
+	
+	The goal is to show that that there is no path where \(\mathcal{N}\) accepts \(w\). In particular, for all integers \(n\) so that \(1 \leq n \leq m\), taking the transition \(q_0 \xrightarrow{1} q_1\) when reading the \(i_n\)th symbol will result in \(w\) being rejected. This will be proven by backwards induction on \(n\).
 
 	\medskip
 
-	\textbf{Base Case.} Let \(n = m\). Suppose the machine chooses the path that always transitions to \(q_0\) until \(\mathcal{N}\) reads \(w(n)\), where it chooses \(q_0 \xrightarrow{1} q_1\). Here, there are two cases to consider.
+	\textbf{Base Case.} Let \(n = m\). Suppose the machine chooses the path that always transitions to \(q_0\) until \(\mathcal{N}\) reads \(w(i_n)\), where it chooses \(q_0 \xrightarrow{1} q_1\). Here, there are two cases to consider.
 
 	Case 1: \(i_n > |w| - k + 1\).
 
@@ -549,7 +548,7 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 
 	Case 2: \(i_n < |w| - k + 1\).
 
-	On the other hand, now there are more than \(k - 1\) symbols to be read. After reading \(k-1\) symbols, the machine will be in state \(q_k\). Reading one more character will transition back to \(q_0\). Since \(i_m\) is the maximal element in \(A\), there are no more 1's to read, so \(w\) is rejected.
+	On the other hand, now there are more than \(k - 1\) symbols to be read. After reading \(k-1\) symbols, the machine will be in state \(q_k\). Reading one more character will transition back to \(q_0\). Since \(i_m\) is the maximal element in \(A\), there are no more 1's to read, so \(q_k\) cannot be entered again and \(w\) is rejected.
 
 	\medskip
 
@@ -559,7 +558,7 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 
 	\textbf{Induction Step.} Choosing the transition \(q_0 \xrightarrow{1}q_1\), the two cases from the base case apply in the same way. The only difference is that in case 2, there are more 1's to be read. However, the index \(i_j\) of those 1's is an element of \(A\) and \(l < j\), so it is covered by the induction hypothesis.
 
-	If the transition \(q_0 \xrightarrow{1}q_0\) is taken, \(w\) can never be accepted. On the other hand, if the transition \(q_0 \xrightarrow{1}q_1\) is taken for some \(w(i_j)\), then \(w\) is rejected by the induction hypothesis.
+	If the transition \(q_0 \xrightarrow{1}q_0\) is always taken, \(w\) can never be accepted. On the other hand, if the transition \(q_0 \xrightarrow{1}q_1\) is taken for some \(w(i_j)\), then \(w\) is rejected by the induction hypothesis.
 
 	By the principle of complete induction, it can be concluded that there is no path where \(\mathcal{N}\) accepts \(w \notin L\).
 
