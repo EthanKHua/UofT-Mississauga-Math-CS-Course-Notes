@@ -92,12 +92,141 @@ Let $ \Sigma = \{0,1\} $.
 	\item \textbf{(3 pts)} $ \Sigma^*\backslash K, K =\{01, 101, 010\}$
 	
 	\begin{proof}
+		Consider the following DFA \(\mathcal{D}\) for this language:
 		\begin{center}
 			\begin{tikzpicture}
-				\node[state,initial,accepting] (q0) {q0};
-				\node[state, right of=q0] (q1) {q1};
+				\node[state,initial,accepting] (q0) {\(q_0\)};
+				\node[state,above right of=q0, accepting] (q1) {\(q_1\)};
+				\node[state,below right of=q0, accepting] (q2) {\(q_2\)};
+				\node[state,above right of=q1] (q3) {\(q_3\)};
+				\node[state,below right of=q1, accepting] (q4) {\(q_4\)};
+				\node[state,right of=q2, accepting] (q5) {\(q_5\)};
+				\node[state,right of=q3] (q6) {\(q_6\)};
+				\draw (q0) edge[above left] node{0} (q1)
+					  (q0) edge[below left] node{1} (q2)
+					  (q1) edge[above left] node{1} (q3)
+					  (q1) edge[below left] node{0} (q4)
+					  (q2) edge[below] node{0} (q5)
+					  (q2) edge[above left] node{1} (q4)
+					  (q3) edge[left] node{1} (q4)
+					  (q3) edge[above] node{0} (q6)
+					  (q4) edge[loop right] node{0,1} (q4)
+					  (q5) edge[left] node{0} (q4)
+					  (q5) edge[bend right, below right] node{1} (q6)
+					  (q6) edge[above left] node{0,1} (q4);
 			\end{tikzpicture}
 		\end{center}
+		To prove that this DFA is correct, for \(w\) define the state invariants
+		\[
+			P_{q_0}(w) : \delta (q_0, w) = q_0 \iff w = \varepsilon
+		\]
+		\[
+			P_{q_1}(w) : \delta (q_0, w) = q_1 \iff w = 0
+		\]
+		\[
+			P_{q_2}(w) : \delta (q_0, w) = q_2 \iff w = 1
+		\]
+		\[
+			P_{q_3}(w) : \delta (q_0, w) = q_3 \iff w = 01
+		\]
+		\[
+			P_{q_4}(w) : \delta (q_0, w) = q_4 \iff w \neq 0,1,01,10,010,101
+		\]
+		\[
+			P_{q_5}(w) : \delta (q_0, w) = q_5 \iff w = 10
+		\]
+		\[
+			P_{q_6}(w) : \delta (q_0, w) = q_6 \iff w = 010 \text{ or } w = 101
+		\]
+		These are obviously mutually exclusive and exhaustive. Now, it will be proven that these state invariants are correct using induction.
+
+		\medskip
+
+		\textbf{Base Case.} It is easy to see that \(P_{q_0}(\varepsilon)\) is true.
+
+		\medskip
+
+		\textbf{Induction Hypothesis.} Let \(q \in \{q_0, ..., q_6\}\), \(w \in \Sigma ^*\), and \(\sigma \in \Sigma ^*\). Suppose that \(P_{q}(w)\) is true.
+
+		\medskip
+
+		\textbf{Induction Step.} Consider cases on \(q\).
+
+		Case 1: \(q=q_0\)
+
+		From the induction hypothesis, \(w = \varepsilon\).
+		
+		Suppose that \(\sigma = 0\). Then \(\delta (q_0, w \sigma ) = \delta (q_0, 0) = q_1\). \(w \sigma = 0\), so \(P_{q_1}(w \sigma)\) is true.
+
+		Now, suppose that \(\sigma = 1\). Then \(\delta (q_0, w \sigma) = \delta (q_0, 1) = q_2\). \(w \sigma = 1\), so \(P_{q_2}(w \sigma)\) is true.
+
+		\smallskip
+
+		Case 2: \(q=q_1\)
+
+		From the induction hypothesis, \(w = 0\).
+		
+		Suppose that \(\sigma = 0\). Then \(\delta (q_0, w \sigma ) = \delta (q_0, 00) = q_4\). \(w \sigma = 00\), so \(P_{q_4}(w \sigma)\) is true.
+
+		Now, suppose that \(\sigma = 1\). Then \(\delta (q_0, w \sigma) = \delta (q_0, 01) = q_3\). \(w \sigma = 01\), so \(P_{q_3}(w \sigma)\) is true.
+
+		\smallskip
+
+		Case 3: \(q=q_2\)
+
+		From the induction hypothesis, \(w = 1\).
+		
+		Suppose that \(\sigma = 0\). Then \(\delta (q_0, w \sigma ) = \delta (q_0, 10) = q_5\). \(w \sigma = 10\), so \(P_{q_5}(w \sigma)\) is true.
+
+		Now, suppose that \(\sigma = 1\). Then \(\delta (q_0, w \sigma) = \delta (q_0, 11) = q_4\). \(w \sigma = 11\), so \(P_{q_4}(w \sigma)\) is true.
+
+		\smallskip
+
+		Case 4: \(q=q_3\)
+
+		From the induction hypothesis, \(w = 01\).
+		
+		Suppose that \(\sigma = 0\). Then \(\delta (q_0, w \sigma ) = \delta (q_0, 010) = q_6\). \(w \sigma = 010\), so \(P_{q_6}(w \sigma)\) is true.
+
+		Now, suppose that \(\sigma = 1\). Then \(\delta (q_0, w \sigma) = \delta (q_0, 011) = q_4\). \(w \sigma = 011\), so \(P_{q_4}(w \sigma)\) is true.
+
+		\smallskip
+
+		Case 5: \(q=q_4\)
+
+		From the induction hypothesis, \(w \neq 0,1,01,10,010,101\). Then \(\delta (q_0, w \sigma) = q_4\).
+
+		If \(|w| \geq 3\), then \(|w \sigma| \geq 4\), so \(w \neq 0, 1, 01, 10, 010, 101\), so \(P_{q_4}(w \sigma)\) is true.
+
+		Otherwise, \(w \in \{00, 11\}\), so \(w \sigma \in \{000, 001, 110, 111 \}\), so \(P_{q_4}(w \sigma)\) is true.
+
+		\smallskip
+
+		Case 6: \(q=q_5\)
+
+		From the induction hypothesis, \(w = 10\).
+		
+		Suppose that \(\sigma = 0\). Then \(\delta (q_0, w \sigma ) = \delta (q_0, 100) = q_4\). \(w \sigma = 100\), so \(P_{q_4}(w \sigma)\) is true.
+
+		Now, suppose that \(\sigma = 1\). Then \(\delta (q_0, w \sigma) = \delta (q_0, 101) = q_4\). \(w \sigma = 101\), so \(P_{q_4}(w \sigma)\) is true.
+
+		\smallskip
+
+		Case 7: \(q=q_6\)
+
+		From the induction hypothesis, \(w = 010\) or \(w = 101\). Then \(\delta (q_0, w \sigma) = q_4\). Since \(|w \sigma| > 3\), \(w \sigma \neq 0, 1, 01, 10, 010, 101\), so \(P_{q_4}(w \sigma)\) is true.
+
+		Thus the state invariants are correct.
+
+		\smallskip
+
+		Let \(w \in \Sigma ^* \setminus K\). Then \(w \notin \{01, 101, 010\}\). By the state invariants, it follows that \(\delta (q_0, w) \in \{q_0, q_1, q_2, q_4, q_5\}\), which are all accepting states, so \(w\) is accepted by this DFA.
+
+		Conversely, let \(w \in K\). Then using the state invariants, \(\delta (q_0, w) \in \{q_3, q_6\}\), which are not accepting states. Thus \(w\) is rejected by this DFA.
+
+		Therefore this DFA accepts this language, so it is regular.
+
+		\smallbreak
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{w \mid w \text{ is a palindrome}\} $
 	
@@ -249,7 +378,7 @@ Then in regular expressions, if $r$ is a regular expression matching $\mathcal{L
 Prove that regular expressions that also have access to complement can still only express the same class of languages (i.e., the class of regular languages) as regular expressions without the complement operation. 
 
 \begin{proof}
-	It suffices to show that if \(r\) is a regex, then \(\overline{r}\) is a regex as well, meaning that \(\mathcal{L} (\overline{r})\) matches a regular language.
+	First, it will be shown that if \(r\) is a regex, then \(\overline{r}\) is a regex as well, meaning that \(\mathcal{L} (\overline{r})\) matches a regular language.
 
 	Let \(\Sigma\) represent the alphabet. Suppose that \(\mathcal{L} (r)\) matches a regular language. Then there exists a DFA \(D = (\Sigma, \delta, \mathcal{Q}, s, F)\) that accepts \(\mathcal{L} (r)\), where \(\delta\) is the transition function, \(\mathcal{Q}\) is the set of states, \(s \in \mathcal{Q}\) is the starting state, and \(F \subseteq Q\) is the set of accepting states.
 
@@ -259,7 +388,9 @@ Prove that regular expressions that also have access to complement can still onl
 
 	Conversely, suppose that \(w \in \mathcal{L}(r)\). This implies that \(D\) accepts \(w\), so \(\delta (s,w) \in F \implies \delta (s,w) \notin \mathcal{Q} \setminus F\). Similar to the previous case, when \(w\) is ran through \(D'\), the ending state is \(\delta (s,w)\), which is not an accepting state. Thus \(w\) is rejected by \(D'\).
 
-	It has been proven that \(D'\) accepts \(\mathcal{L} (\overline{r})\), which shows that \(r\) is a regex, completing the proof.
+	It has been proven that \(D'\) accepts \(\mathcal{L} (\overline{r})\), which shows that \(\overline{r}\) is a standard regex.
+
+	Therefore, all regexes with access to the complement operation can be expressed as a regex without complementation, which shows that they can still only express the set of regular languages.
 	\smallbreak
 \end{proof}
 
@@ -389,15 +520,13 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 	\]
 	It will be shown that \(\mathcal{N} = (\Sigma , \delta , Q, s, F)\) is correct.
 
-	For a positive integer \(i\), define \(q(i)\) to be the state of the machine before reading the \(i\)th symbol.
-
 	Let \(w \in L\). Then the \(k\)th last symbol is a 1. The correct path is to first transition to \(q_0\) for every symbol before the \(th\) last symbol. Thus before \(\mathcal{N}\) reads the \(k\)th last symbol, the machine is in state \(q_0\). Then, transition to \(q_1\) when reading the \(k\)th last symbol. After this, the machine will always transition to the next state. Specifically, this means that for \(i \in \{1, ..., k-1 \},\), if \(\mathcal{N}\) is in state \(q_i\) before reading a symbol, it will transition to \(q_{i+1}\) after reading it.
 
 	Since there are \(k-1\) symbols remaining to be read after the \(k\)th last symbol was read, then after the very last symbol is read, \(\mathcal{N}\) will be in state \(q_k\), which is an accepting state. Therefore \(\mathcal{N}\) accepts \(w\).
 
 	Conversely, suppose that \(w \notin L\). Every path that \(w\) can take will be examined more closely. However, since there is only one transition that leads to multiple states, that is the only place that needs to be considered.
 
-	Firstly, if the machine always chooses the transition \(q_0 \xrightarrow[]{1} q_0\), it will never reach the accepting state \(q_k\). This case can be disregarded.
+	Firstly, if the machine always chooses the transition \(q_0 \xrightarrow{1} q_0\), it will never reach the accepting state \(q_k\). This case can be disregarded.
 
 	Now, let \(A\) be the set of indices such that \(i \in A\) implies that \(w(i) = 1\). Notice that \(|w| - k \notin A\). As well, \(A\) is a finite set, so its elements can be enumerated in increasing order as
 	\[
