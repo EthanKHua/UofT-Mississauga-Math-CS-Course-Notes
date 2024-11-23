@@ -2579,6 +2579,22 @@
         
     \end{proof}
 
+    \begin{prop}
+        All finite dimensional normed vector spaces are complete.
+    \end{prop}
+    \begin{proof}
+        Let \(X\) be a finite dimensional normed vector space. Let \(\beta = \{x_1, ..., x_n\}\) denote a basis of \(X\). Suppose there is a Cauchy sequence \((a_k)_{k\geq 1}\) in \(X\). Every term in the sequence can be rewritten as
+        \[
+            a_i = \sum_{j=1}^n a_{ij}x_j
+        \]
+        For each \(j \in \{1, ..., n\}\), construct the sequence \((a_{kj})_{k\geq 1}\), which is the sequence of the coeffecient of the \(j\)th component of \(a_k\).
+
+        For all \(\varepsilon > 0\), there exists \(N > 0\) such that for \(l > m > N\),
+        \[
+            \|a_l - a_m\| < \varepsilon
+        \]
+    \end{proof}
+
     \begin{lemma}
         \(\forall x \in X\), \(r > 0\), \(\cl{B}(0, 1) \simeq \cl{B}(x, r)\).
     \end{lemma}
@@ -2605,9 +2621,9 @@
         \smallbreak
     \end{proof}
 
-    \begin{thm}
+    \begin{prop}
         Let \(X\) be a normed vector space. Then \(\cl{B}(0, 1)\) is compact if and only if \(X\) has a compact exhaustion.
-    \end{thm}
+    \end{prop}
     \begin{proof}
         Suppose that the closed unit ball is compact. Then we can construct the compact exhaustion \(K_n = \cl{B}(\vec{0}, n)\). These sets are compact because they are homeomorphic to the closed unit ball. Notice that \((K_n)^\circ \subseteq K_{n+1}\), as
         \[
@@ -2622,4 +2638,11 @@
     \begin{cor}
         Let \(X\) be a normed vector space. Then \(X\) has a compact exhaustion if and only if \(X\) is finite dimensional.
     \end{cor}
+
+    \begin{defn}
+        Let \(p > 0\). For \(x = (x_1, ..., x_n) \in \mathbb{R}^n\), the \textbf{p-norm} of \(x\) is defined by
+        \[
+            \|x\| _p = \sqrt[p]{\sum_{i=1}^n |x_i|^p}
+        \]
+    \end{defn}
 \end{document}
