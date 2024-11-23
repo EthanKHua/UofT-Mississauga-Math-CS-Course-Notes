@@ -243,6 +243,11 @@ Let $ \Sigma = \{0,1\} $.
 
 	\end{proof}
 	\item \textbf{(3 pts)} $ \{ww \mid w \in \Sigma^*  \} $
+	
+	\begin{proof}
+		This is not
+	\end{proof}
+
 	\item \textbf{(3 pts)} $ \{w \mid ww \in \Sigma^*  \} $
 
 	\begin{proof}
@@ -491,7 +496,7 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 
 	Since \(\mathcal{D}\) has less than \(2^k\) states, at least two strings \(w,x \in M\) end in the same state. Since these strings are distinct, they differ at some index \(i\). Namely, one string contains a 0 in the \(i\)th index and the other contains a 1 in the \(i\)th index. Note that the \(i\)th index is the same as the \(k-i\)th last index.
 
-	Consider the strings \(w0^i\) and \(x0^i\). Notice that in both in these strings, the \(k\)th last character is exactly the character in the \(i\)th index. Since \(w\) and \(x\) were in the same state, it follows that \(w0^i\) and \(x0^i\) should also be in the same state and should both be accepted or both be rejected, but the character in the \(k\)th index is different, so only one of them would be accepted. This is a contradiction. A DFA that accepts \(L\) must have at least \(2^k\) number of states.
+	Consider the strings \(w0^i\) and \(x0^i\). Notice that in both in these strings, the \(k\)th last character is exactly the character in the \(i\)th index. Since \(w\) and \(x\) were in the same state, it follows that \(w0^i\) and \(x0^i\) should also be in the same state and should both be accepted or both be rejected, but the character in the \(k\)th index is different, so only one of them would be accepted. This is a contradiction. Thus a DFA that accepts \(L\) must have at least \(2^k\) number of states.
 	\smallbreak
 \end{proof}
 
