@@ -35,6 +35,63 @@
 \begin{document}
     \tableofcontents
     \section{Big List Problems}
+    \begin{center}
+        \begin{tabular}{ | c | c |}
+            \hline
+            \textbf{Problem Number} & \textbf{Completed?} \\
+            \hline
+            \#1 & Complete \\
+            \hline
+            \#2 & Incomplete \\
+            \hline
+            \#3 & Complete \\
+            \hline
+            \#4 & Complete \\
+            \hline
+            \#5 & Complete \\
+            \hline
+            \#6 & Complete \\
+            \hline
+            \#7 & Complete \\
+            \hline
+            \#8 & Complete \\
+            \hline
+            \#9 & Complete \\
+            \hline
+            \#10 & Complete \\
+            \hline
+            \#11 & Complete \\
+            \hline
+            \#12 & Complete \\
+            \hline
+            \#16 & Complete \\
+            \hline
+            \#17 & Complete \\
+            \hline
+            \#18 & Complete \\
+            \hline
+            \#19 & Incomplete \\
+            \hline
+            \#20 & Complete \\
+            \hline
+            \#22 & Complete \\
+            \hline
+            \#23 & Complete \\
+            \hline
+            \#24 & Complete \\
+            \hline
+            \#25 & Complete \\
+            \hline
+            \#26 & Complete \\
+            \hline
+            \#27 & NA \\
+            \hline
+            \#28 & NA \\
+            \hline
+            \#29 & NA \\
+            \hline
+        \end{tabular}
+    \end{center}
     \subsection{\#1}
 
     Let $A_1,A_2,A_3,\ldots$ be a sequence of countable sets. Prove that $\bigcup_{i\geq 1} A_i$ is countable.
@@ -607,4 +664,48 @@
         We see that \(f(A)\) is pre-totally bounded, which implies that \(f(A)\) is seperable.
         
     \end{proof}
+
+    \begin{lemma}
+        \(\forall x \in X\), \(r > 0\), \(\cl{B}(0, 1) \simeq \cl{B}(x, r)\).
+    \end{lemma}
+    \begin{proof}
+        Let \(x \in X\), \(r >0\). Define the homeomorphism \(f: \cl{B}(0, 1) \to \cl{B}(x, r)\) by
+        \[
+            f(y) = ry + x
+        \]
+        First, we will show continuity. Let \(p \in \cl{B}(0,1)\). Let \(\varepsilon > 0\). Let \(\delta = \frac{\varepsilon}{|r|}\). Let \(y \in \cl{B}(0,1)\) such that \(\|y - p\| < \delta\). Then
+        \[
+            \|f(y) - f(p)\| = \|ry-rp\| = |r|\|y-p\| < \varepsilon
+        \]
+        We can show that \(f\) is bijective by showing it has a left and right inverse.
+        
+        Let \(f^{-1}(z) = \frac{1}{r}(z - x)\). Notice that
+        \[
+            f^{-1}(f(y)) = \frac{1}{r}(f(y) - x) = y
+        \]
+        and
+        \[
+            f(f^{-1} (z)) = rf^{-1} (z) - x = z
+        \]
+        Thus \(f\) is bijective and its inverse is given by \(f^{-1}\), which is continuous, which shows that \(f\) is a homeomorphism.
+        \smallbreak
+    \end{proof}
+
+    \begin{thm}
+        Let \(X\) be a normed vector space. Then \(\cl{B}(0, 1)\) is compact if and only if \(X\) has a compact exhaustion.
+    \end{thm}
+    \begin{proof}
+        Suppose that the closed unit ball is compact. Then we can construct the compact exhaustion \(K_n = \cl{B}(\vec{0}, n)\). These sets are compact because they are homeomorphic to the closed unit ball. Notice that \((K_n)^\circ \subseteq K_{n+1}\), as
+        \[
+            x \in (K_n)^\circ \implies \|x\| < n \leq n+1 \implies x \in K_{n+1}
+        \]
+        Trivally, \(\bigcup_{i=1}^{\infty} K_i \subseteq X\). Now, let \(x \in X\). Then there exists \(j \in \mathbb{N}\) such that \(\|x\| \leq j \implies x \in K_j \subseteq \bigcup_{i=1}^{\infty} K_i\). Thus \(X = \bigcup_{i=1}^{\infty} K_i\), so \(X\) has a compact exhaustion.
+
+        Conversely, assume that \(X\) has a compact exhaustion \((K_n)_{n\geq 1}\). Take the first non-empty set \(K_j\). Since \(K_j \subseteq (K_{j+1})^\circ\), then for \(v \in K_j\), there exists an open ball such that \(B(v, \varepsilon) \subseteq (K_{j+1})^\circ\). It follows that \(\cl{B}(v, \varepsilon) \subseteq K_{j+1}\). By the lemma, it follows that \(\cl{B}(v, \varepsilon) \simeq \cl{B}(0, 1)\), which implies that \(\cl{B}(0,1)\) is compact.
+        \smallbreak
+    \end{proof}
+
+    \begin{cor}
+        Let \(X\) be a normed vector space. Then \(X\) has a compact exhaustion if and only if \(X\) is finite dimensional.
+    \end{cor}
 \end{document}
