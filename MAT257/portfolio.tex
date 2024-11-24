@@ -2579,22 +2579,6 @@
         
     \end{proof}
 
-    \begin{prop}
-        All finite dimensional normed vector spaces are complete.
-    \end{prop}
-    \begin{proof}
-        Let \(X\) be a finite dimensional normed vector space. Let \(\beta = \{x_1, ..., x_n\}\) denote a basis of \(X\). Suppose there is a Cauchy sequence \((a_k)_{k\geq 1}\) in \(X\). Every term in the sequence can be rewritten as
-        \[
-            a_i = \sum_{j=1}^n a_{ij}x_j
-        \]
-        For each \(j \in \{1, ..., n\}\), construct the sequence \((a_{kj})_{k\geq 1}\), which is the sequence of the coeffecient of the \(j\)th component of \(a_k\).
-
-        For all \(\varepsilon > 0\), there exists \(N > 0\) such that for \(l > m > N\),
-        \[
-            \|a_l - a_m\| < \varepsilon
-        \]
-    \end{proof}
-
     \begin{lemma}
         \(\forall x \in X\), \(r > 0\), \(\cl{B}(0, 1) \simeq \cl{B}(x, r)\).
     \end{lemma}
@@ -2625,7 +2609,7 @@
         Let \(X\) be a normed vector space. Then \(\cl{B}(0, 1)\) is compact if and only if \(X\) has a compact exhaustion.
     \end{prop}
     \begin{proof}
-        Suppose that the closed unit ball is compact. Then we can construct the compact exhaustion \(K_n = \cl{B}(\vec{0}, n)\). These sets are compact because they are homeomorphic to the closed unit ball. Notice that \((K_n)^\circ \subseteq K_{n+1}\), as
+        Suppose that the closed unit ball is compact. Then we can construct the compact exhaustion \(K_n = \cl{B}(\vec{0}, n)\). These sets are compact because compactness is preserved by the homeomorphism in the lemma. Notice that \((K_n)^\circ \subseteq K_{n+1}\), as
         \[
             x \in (K_n)^\circ \implies \|x\| < n \leq n+1 \implies x \in K_{n+1}
         \]
@@ -2645,4 +2629,73 @@
             \|x\| _p = \sqrt[p]{\sum_{i=1}^n |x_i|^p}
         \]
     \end{defn}
+
+    \begin{prop}
+        Equip \(\mathbb{R}^n\) with any norm \(\|\cdot\| _a\). Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a function given by \(f(x) = \|x\|\), for any norm \(\|\cdot\|\) on \(\mathbb{R}^n\). Then \(f\) is not differentiable at \(x=0\).
+    \end{prop}
+    \begin{proof}
+        Suppose for contradiction that \(f\) is differentiable at \(x=0\). Then it has a linear approximation at \(0\). That is, for some \(L \in B(\mathbb{R}^n, \mathbb{R})\),
+        \[
+            \lim_{h \to 0} \frac{f(h) - f(0) - L(h)}{\|h\| _a} = 0 \implies \lim_{h \to 0} \frac{\|h\| - L(h)}{\|h\| _a} = 0
+        \]
+        Since norms are equivalent in \(\mathbb{R}^n\), there exists an \(N > 0\) such that
+        \[
+            N\|h\| _a \leq \|h\| \text{, for all } h \in \mathbb{R}^n
+        \]
+        Using the limit definition, for \(h \in \mathbb{R}^n\) such that \(\|h\|\) is smaller than some \(\delta\),
+        \[
+            \left\vert \|h\| - L(h) \right\vert < N\|h\| _a
+        \]
+        We can also take the negative of this \(h\) and use the linearity of \(L\) to see that
+        \[
+            \left\vert \|h\| + L(h) \right\vert < N\|h\| _a
+        \]
+        We see that for all \(h\), \(\|h\| <\delta\),
+        \[
+            \|h\| = \frac{1}{2} \|(h + L(h)) + (h - L(h))\| \leq \frac{1}{2} \left(\|h + L(h)\| + \|h - L(h)\|\right) < \frac{1}{2} (N \|h\| _a + N \|h\| _a)
+        \]
+        \[
+            \implies \|h\| < N\|h\| _a
+        \]
+        which is a contradiction.
+        \smallbreak
+    \end{proof}
+
+    \begin{defn}
+        A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree.
+    \end{defn}
+
+    \begin{prop}
+        All polynomials in \(n\) variables are infinitely differentiable.
+    \end{prop}
+    \begin{proof}
+        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial. It suffices to show 
+    \end{proof}
+
+    \begin{lemma}
+        Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables. For each \(i \in \{1, ..., n\}\), there exists \(k_i \in \mathbb{N}\) such that \(\dfrac{\partial ^{k_i} g}{\partial x_i ^{k_i}} = 0\).
+    \end{lemma}
+    \begin{proof}
+        Fix \(p = (p_1, ..., p_n) \in \mathbb{R}^n\). Let \(i \in \{1, ..., n\}\). Define a \(g_i : \mathbb{R} \to \mathbb{R}\) by
+        \[
+            g_i(x) = g(p_1, ..., p_{i-1}, x, ..., p_n) = p_1^{d_1}\cdots p_{i-1}^{d_{i-1}} p_{i+1}^{d_{i+1}} \cdots x^{d_i}.
+        \]
+        This is a monomial in 1 variable of degree \(d_i\). Thus \(g_i^{(d_i + 1)} = 0\).
+
+        Notice that
+        \[
+            \frac{\partial g}{\partial x_i} (p) = \lim_{t \to 0} \frac{g(p+tx_i) - g(p)}{t} = \lim_{t \to 0} \frac{g_i(p_i + t) - g_i(p_i)}{t} = g_i'(p_i)
+        \]
+        We can observe that this pattern continues for all \(i\)th partial derivatives, so we can conclude that
+        \[
+            \dfrac{\partial ^{d_i + 1} g}{\partial x_i ^{d_i + 1}}(p) = g_i^{(d_i + 1)}(p_i) = 0
+        \]
+        which was what we wanted.
+        \smallbreak
+    \end{proof}
+
+
+    \begin{thm}
+        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\).
+    \end{thm}
 \end{document}
