@@ -11,16 +11,16 @@
 \contentsline {subsection}{\numberline {1.10}\#10}{12}{}%
 \contentsline {subsection}{\numberline {1.11}\#11}{13}{}%
 \contentsline {subsection}{\numberline {1.12}\#12}{14}{}%
-\contentsline {subsection}{\numberline {1.13}\#13}{16}{}%
+\contentsline {subsection}{\numberline {1.13}\#13 - Unfinished}{16}{}%
 \contentsline {subsection}{\numberline {1.14}\#16}{16}{}%
-\contentsline {subsection}{\numberline {1.15}\#17}{19}{}%
+\contentsline {subsection}{\numberline {1.15}\#17*}{19}{}%
 \contentsline {subsection}{\numberline {1.16}\#18}{19}{}%
-\contentsline {subsection}{\numberline {1.17}\#19}{20}{}%
+\contentsline {subsection}{\numberline {1.17}\#19 - Incomplete}{20}{}%
 \contentsline {subsection}{\numberline {1.18}\#20}{21}{}%
-\contentsline {subsection}{\numberline {1.19}\#22}{21}{}%
+\contentsline {subsection}{\numberline {1.19}\#22*}{22}{}%
 \contentsline {subsection}{\numberline {1.20}\#23}{23}{}%
 \contentsline {subsection}{\numberline {1.21}\#24}{25}{}%
-\contentsline {subsection}{\numberline {1.22}\#25}{26}{}%
+\contentsline {subsection}{\numberline {1.22}\#25}{27}{}%
 \contentsline {subsection}{\numberline {1.23}\#26}{27}{}%
 \contentsline {subsection}{\numberline {1.24}\#27}{30}{}%
 \contentsline {subsection}{\numberline {1.25}\#28}{32}{}%
@@ -34,8 +34,8 @@
 \contentsline {subsubsection}{\numberline {2.1.5}Exercise 8.12 (c) (iii)}{40}{}%
 \contentsline {subsection}{\numberline {2.2}Not Written by Me}{41}{}%
 \contentsline {subsubsection}{\numberline {2.2.1}Exercise 0.6.}{41}{}%
-\contentsline {subsubsection}{\numberline {2.2.2}Exercise 2.21}{41}{}%
-\contentsline {subsubsection}{\numberline {2.2.3}Exercise 3.12.}{42}{}%
+\contentsline {subsubsection}{\numberline {2.2.2}Exercise 2.21}{42}{}%
+\contentsline {subsubsection}{\numberline {2.2.3}Exercise 3.12.}{43}{}%
 \contentsline {subsubsection}{\numberline {2.2.4}Exercise 4.24.}{43}{}%
 \contentsline {subsubsection}{\numberline {2.2.5}Exercise 6.28}{44}{}%
 \contentsline {section}{\numberline {3}Original Work}{44}{}%
