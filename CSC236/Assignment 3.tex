@@ -350,11 +350,11 @@ Let $ \Sigma = \{0,1\} $.
 
 		Case 3: Consider when \(q = q_1\). By the induction hypothesis, \(w \equiv 1\ \mathrm{mod} \ 3\).
 
-		First, suppose that \(\sigma = 0\), so \(\delta (q_1, 0) = q_2\). Notice that concatenating 0 to \(w\) is the same as performing a multiplication by 2 on \(w\), so it follows that \(w0 \equiv 2\ \mathrm{mod} \ 3\). Thus \(P_{q_0}(w0)\) is true.
+		First, suppose that \(\sigma = 0\), so \(\delta (q_1, 0) = q_2\). Notice that concatenating 0 to \(w\) is the same as performing a multiplication by 2 on \(w\), so it follows that \(w0 \equiv 2\ \mathrm{mod} \ 3\). Thus \(P_{q_2}(w0)\) is true.
 
 		Second, suppose that \(\sigma = 1\), so \(\delta (q_1, 1) = q_0\). Concatenating 1 to \(w\) is the same as multiplication by 2 followed by addition by 1. It follows that \(w1 \equiv 0\ \mathrm{mod} \ 3\). Thus \(P_{q_1}(w1)\) is true.
 
-		Case 3: Consider when \(q = q_2\). By the induction hypothesis, \(w \equiv 2\ \mathrm{mod} \ 3\).
+		Case 4: Consider when \(q = q_2\). By the induction hypothesis, \(w \equiv 2\ \mathrm{mod} \ 3\).
 
 		First, suppose that \(\sigma = 0\), so \(\delta (q_2, 0) = q_1\). Notice that concatenating 0 to \(w\) is the same as performing a multiplication by 2 on \(w\), so it follows that \(w0 \equiv 1\ \mathrm{mod} \ 3\). Thus \(P_{q_1}(w0)\) is true.
 
@@ -366,7 +366,7 @@ Let $ \Sigma = \{0,1\} $.
 
 		Let \(w \in L\). By definition, \(w\) is a multiple of 3, which means that \(w \equiv 0\ \mathrm{mod} \ 3\). From \(P_{q_0}(w)\), it follows that \(\delta (q_i, w) = q_0\), which is an accepting state. Therefore, the DFA accepts \(w\).
 
-		Now, let \(w \notin L\). Then \(w\) is either \(\varepsilon\) or not a multiple of 3, meaning that \(w \not\equiv 0\ \mathrm{mod} \ 3\). In this case, then \(w \in q_i\) or \(w \in q_k\), where \(k\neq 0\) respectively, none of which are accepting states. Therefore, the DFA rejects \(w\).
+		Now, let \(w \notin L\). Then \(w\) is not a multiple of 3, meaning that either \(w = \varepsilon\) or \(w \not\equiv 0\ \mathrm{mod} \ 3\). In this case, then \(w \in q_i\) or \(w \in q_k\), where \(k\neq 0\) respectively, none of which are accepting states. Therefore, the DFA rejects \(w\).
 
 		Therefore, since this DFA accepts exactly \(L\), it is correct and the proof is done.
 	\end{proof}
@@ -398,9 +398,15 @@ Prove that regular expressions that also have access to complement can still onl
 
 	Conversely, suppose that \(w \in \mathcal{L}(r)\). This implies that \(D\) accepts \(w\), so \(\delta (s,w) \in F \implies \delta (s,w) \notin \mathcal{Q} \setminus F\). Similar to the previous case, when \(w\) is ran through \(D'\), the ending state is \(\delta (s,w)\), which is not an accepting state. Thus \(w\) is rejected by \(D'\).
 
-	It has been proven that \(D'\) accepts \(\mathcal{L} (\overline{r})\), which shows that \(\overline{r}\) is a standard regex.
+	It has been proven that \(D'\) accepts \(\mathcal{L} (\overline{r})\), which shows that \(\overline{r}\) is a standard regex. Now, it will be shown using structural induction that all regex with access to complement match a regular language.
 
-	Therefore, all regexes with access to the complement operation can be expressed as a regex without complementation, which shows that they can still only express the set of regular languages.
+	\textbf{Base Case.} Let \(a \in \Sigma \). The regexes \(\varnothing, \varepsilon, a\) match regular languages.
+
+	\textbf{Induction Hypothesis.} Suppose that \(r_1, r_2\) are regexes with access to complement such that they represent a regular language.
+
+	\textbf{Induction Step.} By the induction hypothesis, \(\mathcal{L} (r_1)\) and \(\mathcal{L} (r_2)\) are regular. It follows that \(\mathcal{L} (r_1 + r_2)\), \(\mathcal{L} (r_1 r_2)\), and \(\mathcal{L} (r_1 ^*)\) are regular. As well, it is also true that \(\mathcal{L} (\overline{r_1})\) is regular.
+
+	By the principle of structural induction, every regex with access to complement matches a regular language, and the proof is complete.
 	\smallbreak
 \end{proof}
 
@@ -503,7 +509,7 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 
 	Since \(\mathcal{D}\) has less than \(2^k\) states, at least two strings \(w,x \in M\) end in the same state. Since these strings are distinct, they differ at some index \(i\). Namely, one string contains a 0 in the \(i\)th index and the other contains a 1 in the \(i\)th index. Note that the \(i\)th index is the same as the \(k-i\)th last index.
 
-	Consider the strings \(w0^i\) and \(x0^i\). Notice that in both in these strings, the \(k\)th last character is exactly the character in the \(i\)th index. Since \(w\) and \(x\) were in the same state, it follows that \(w0^i\) and \(x0^i\) should also be in the same state and should both be accepted or both be rejected, but the character in the \(k\)th index is different, so only one of them would be accepted. This is a contradiction. Thus a DFA that accepts \(L\) must have at least \(2^k\) number of states.
+	Consider the strings \(w0^i\) and \(x0^i\). Notice that in both in these strings, the \(k\)th last character is exactly the character in the \(i\)th index. Since \(w\) and \(x\) were in the same state, it follows that \(w0^i\) and \(x0^i\) should also be in the same state and should both be accepted or both be rejected, but the \(k\)th last character is different, so only one of them would be accepted. This is a contradiction. Thus a DFA that accepts \(L\) must have at least \(2^k\) number of states.
 	\smallbreak
 \end{proof}
 
