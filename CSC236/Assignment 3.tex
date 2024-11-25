@@ -450,7 +450,7 @@ A known result in formal language theory is that counter-free languages are equi
 	\item \textbf{(5 pts)} Prove that $(ab)^*$ is a counter-free language,  $\Sigma = \{a,b\}$.
 	
 	\begin{proof}
-		Let \(n = 1\). Fix \(x,y,z \in \Sigma ^*\), and let \(m\) be a natural number such that \(m \geq n\).
+		Let \(n = 2\). Fix \(x,y,z \in \Sigma ^*\), and let \(m\) be a natural number such that \(m \geq n\).
 
 		Suppose that \(xy^m z \in (ab)^*\). Then \(xy^m z = (ab)^l\), for some \(l \in \mathbb{N}\). Consider the case where \(x\) ends with the symbol \(a\). \(x\) must be in the form \((ab)^i a\) for some \(i \in \mathbb{N}\). Then \(y\) must begin with a \(b\) and alternate symbols, for if not, then \(xy^m z \notin L\). Thus \(y\) can be rewritten as \(y = (ba)^j\), for some natural \(j\). It follows that \(z\) starts with a \(b\), and can be written as \(b(ab)^k\), for some natural \(k\). Therefore
 		\[
