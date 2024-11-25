@@ -572,7 +572,34 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 \end{proof}
 
 \item \textbf{(3 pts)} \textit{Bonus}: The smallest DFA that accepts $L$ has to have at most $2^{k+1}-1$ number of states.
-lol
+
+\begin{proof}
+	It will be shown that a DFA with \(2^{k+1} - 1\) states exists. By definition, the smallest DFA should have less than or exactly \(2^{k+1} - 1\) states, which proves the statement.
+
+	Let \(Q = \{q_x : x \in \Sigma ^*, |x| \leq k \}\). Notice that for each length \(n\), there are \(2^n\) different strings. It can be quickly verified that the number of strings of length less than or equal to \(k\) is
+	\[
+		\sum_{n=0}^k 2^n = 2^{k+1} - 1,
+	\]
+	so \(|Q| = 2^{k+1} - 1\). For each \(q_x \in Q\), \(z \in \Sigma\), define the transition function \(\delta : Q \times \Sigma \to Q\) by
+	\[
+		\delta (q_x, z) = q_{(xz)'}
+	\]
+	where \((xz)'\) is the string of length at most \(k\) obtained from \(xz\) by cutting off the first symbol if \(|xz| > k\). Let \(F = \{ y \in \Sigma ^* : |y| = k \text{ and } y(0) = 1\}\). With this information, define the DFA \(\mathcal{D} = (\Sigma , \delta , Q, q_{\varepsilon}, F)\) 
+	
+	To prove that \(\mathcal{D}\) correctly accepts \(L\), for \(x \in \Sigma ^*\), \(|x| \leq k\) and \(w \in \Sigma^*\), define the state invariants
+	\[
+		P_{q_x}(w) : \text{if } |x| < k \text{, } w=x \text{. Otherwise, the last} k \text{ characters of } w \text{ are } x
+	\]
+	For \(|w| <k\), the predicate means \(w = x\). Now, it will be shown that these invariants are mutually exclusive and exhaustive. Suppose that some string \(z \in \Sigma ^*\) satisfies one of the predicates. \(z\) cannot satisfy any other invariant because the last \(k\) characters cannot be two different strings. Additionally, these invariants are exhaustive because every string has some ending, which are described in the invariants.
+
+	These state invariants will be proven to hold using induction.
+	
+	\medskip
+
+	\textbf{Base Case.} It is obvious that \(P_{\varepsilon}(\varepsilon)\) is true.
+
+	\textbf{Induction Hypothesis.} For some string \(x\) of length less than or equal to \(k\), let \(q_x \in Q\). Let \(w \in \Sigma ^*\) and \(z \in \Sigma\). Suppose that \(P_{q_x}(w)\) holds true, that is, the \(k\) last characters of \(w\) end in \(x\).
+\end{proof}
 \end{enumerate}
 
 \item \textbf{(10 pts)} Solve question 4 on page 83 in the textbook.
