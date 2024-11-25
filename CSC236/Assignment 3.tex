@@ -584,21 +584,38 @@ Prove that for any $k\in \mathbb{N}^+$, the language $L = \{ w \mid \text{the } 
 	\[
 		\delta (q_x, z) = q_{(xz)'}
 	\]
-	where \((xz)'\) is the string of length at most \(k\) obtained from \(xz\) by cutting off the first symbol if \(|xz| > k\). Let \(F = \{ y \in \Sigma ^* : |y| = k \text{ and } y(0) = 1\}\). With this information, define the DFA \(\mathcal{D} = (\Sigma , \delta , Q, q_{\varepsilon}, F)\) 
+	where \((xz)'\) is the string of length at most \(k\) obtained from \(xz\) by cutting off the first symbol if \(|xz| > k\). Let \(F = \{ y \in \Sigma ^* : |y| = k \text{ and } y(0) = 1\}\), and define \(q_F = \{q_x : x \in F\}\). With this information, define the DFA \(\mathcal{D} = (\Sigma , \delta , Q, q_{\varepsilon}, q_F)\) 
 	
 	To prove that \(\mathcal{D}\) correctly accepts \(L\), for \(x \in \Sigma ^*\), \(|x| \leq k\) and \(w \in \Sigma^*\), define the state invariants
 	\[
-		P_{q_x}(w) : \text{if } |x| < k \text{, } w=x \text{. Otherwise, the last} k \text{ characters of } w \text{ are } x
+		P_{q_x}(w) : \text{if } |x| < k \text{, } w=x \text{. Otherwise, the last } k \text{ characters of } w \text{ are } x
 	\]
-	For \(|w| <k\), the predicate means \(w = x\). Now, it will be shown that these invariants are mutually exclusive and exhaustive. Suppose that some string \(z \in \Sigma ^*\) satisfies one of the predicates. \(z\) cannot satisfy any other invariant because the last \(k\) characters cannot be two different strings. Additionally, these invariants are exhaustive because every string has some ending, which are described in the invariants.
+	Now, it will be shown that these invariants are mutually exclusive and exhaustive. Suppose that some string \(z \in \Sigma ^*\) satisfies one of the predicates. \(z\) cannot satisfy any other invariant because the last \(k\) characters cannot be two different strings. Additionally, these invariants are exhaustive because every string has some ending, which are described in the invariants.
 
 	These state invariants will be proven to hold using induction.
 	
 	\medskip
 
-	\textbf{Base Case.} It is obvious that \(P_{\varepsilon}(\varepsilon)\) is true.
+	\textbf{Base Case.} It is obvious that \(P_{q_\varepsilon}(\varepsilon)\) is true.
 
-	\textbf{Induction Hypothesis.} For some string \(x\) of length less than or equal to \(k\), let \(q_x \in Q\). Let \(w \in \Sigma ^*\) and \(z \in \Sigma\). Suppose that \(P_{q_x}(w)\) holds true, that is, the \(k\) last characters of \(w\) end in \(x\).
+	\textbf{Induction Hypothesis.} For some string \(x\) of length less than or equal to \(k\), let \(q_x \in Q\). Let \(w \in \Sigma ^*\). Suppose that \(P_{q_x}(w)\) holds true, that is, if \(|x| < k\), then \(w=x\), or otherwise the \(k\) last characters of \(w\) are exactly \(x\).
+
+	\textbf{Induction Step.} For all \(z \in \Sigma\), \(\delta (q_x, z) = q_{(xz)'}\).
+	
+	Consider the case where \(|x| < k\). Then \((xz)' = xz\). By the induction hypothesis, \(w = x\), which implies that \(wz = xz\). This means that \(P_{q_{(xz)'}(wz)}\) is true.
+
+	Then, consider the case where \(|x| = k\). By the induction hypothesis, the last \(k\) characters of \(w\) are \(x\), but by concatenating \(z\), the last \(k+1\) characters of \(wz\) become \(xz\). It follows that the last \(k\) characters of \(wz\) are \((xz)'\), which means that \(P_{q_{(xz)'}}(w)\) is true.
+
+	Thus all state invariants are correct.
+
+	Now, for \(w \in \Sigma ^*\), define \(w_k\) to be the string made of the last \(k\) characters of \(w\). It will be shown that \(\mathcal{D}\) accepts \(L\).
+
+	Let \(w \in L\). Then the \(k\)th last character is a 1. By the induction hypothesis, \(\delta (q_{\varepsilon}, w) = q_{w_k}\). The first character of \(w_k\) is a 1, so \(w_k \in F\) and \(q_{w_k} \in q_F\), so \(w\) is accepted.
+
+	Conversely, suppose that \(w \notin L\). Then the \(k\)th last character of \(w\) is not a 1. By the induction hypothesis, \(\delta (q_{\varepsilon}, w) = q_{w_k}\), but the first character of \(w_k\) is not 1, so \(w_k \notin F\), which means that \(q_{w_k} \notin q_F\), so \(w\) gets rejected.
+
+	Therefore \(\mathcal{D}\) accepts \(L\). Since \(\mathcal{D}\) has \(2^{k+1}\) states, the smallest DFA that accepts \(L\) must have less than that, which completes the proof.
+	\smallbreak
 \end{proof}
 \end{enumerate}
 
