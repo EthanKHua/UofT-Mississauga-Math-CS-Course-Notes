@@ -10,13 +10,13 @@
 \contentsline {subsection}{\numberline {1.9}\#9}{10}{}%
 \contentsline {subsection}{\numberline {1.10}\#10}{12}{}%
 \contentsline {subsection}{\numberline {1.11}\#11}{13}{}%
-\contentsline {subsection}{\numberline {1.12}\#12}{14}{}%
+\contentsline {subsection}{\numberline {1.12}\#12*}{14}{}%
 \contentsline {subsection}{\numberline {1.13}\#13 - Unfinished}{16}{}%
 \contentsline {subsection}{\numberline {1.14}\#16*}{16}{}%
 \contentsline {subsection}{\numberline {1.15}\#17*}{19}{}%
 \contentsline {subsection}{\numberline {1.16}\#18}{19}{}%
 \contentsline {subsection}{\numberline {1.17}\#19 - Incomplete}{20}{}%
-\contentsline {subsection}{\numberline {1.18}\#20}{21}{}%
+\contentsline {subsection}{\numberline {1.18}\#20*}{21}{}%
 \contentsline {subsection}{\numberline {1.19}\#22*}{22}{}%
 \contentsline {subsection}{\numberline {1.20}\#23}{23}{}%
 \contentsline {subsection}{\numberline {1.21}\#24}{25}{}%
