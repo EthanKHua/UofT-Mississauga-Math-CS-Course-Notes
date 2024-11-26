@@ -14,3 +14,88 @@
     % Prove that the language a^{n^2} is not regular
 % Hellish loop correctness (idk yet)
     % Shortest length subarray that has a sum greater than or equal to M
+\documentclass{article}
+\usepackage{CJKutf8}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
+\usepackage[left=3.5cm, right=3.5cm, top=1.5cm, includehead, includefoot]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[d]{esvect}
+\usepackage{listings}
+\usepackage{enumitem} % To allow for alph in enumerate
+\usepackage[normalem]{ulem}
+\usepackage{braket}
+\usepackage{float} % To allow for H setting in figures.
+
+% to draw dfas
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+
+\begin{document}
+    \tikzset{
+        ->, % makes the edges directed
+        >=stealth', % makes the arrow heads bold
+        node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+        every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+        initial text=$ $, % sets the text that appears on the start arrow
+    }
+    {\Large NAME (PRINT): \enspace\hrulefill}
+
+    \bigskip
+
+    {\Large STUDENT NUMBER (PRINT): \enspace\hrulefill}
+
+    \bigskip
+
+    \begin{center}
+        \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{
+            \center
+            \textbf{\Large University of Toronto Mississauga} \\
+
+            \textbf{\Large FALL 2024 MOCK FINAL EXAMINATION} \\
+
+            \textbf{\Large Introduction to Theory Computation} \\
+
+            \textbf{\huge M\Large acho \huge M\Large an (m\^{}2)} \\
+
+            \textbf{\Large Duration - \sout{3 hours} 10 minutes} \\
+
+            \textbf{\Large Aids : \begin{CJK}{UTF8}{min}お前のお母さん\end{CJK}} \\
+            \smallbreak
+        }}
+    \end{center}
+
+
+
+    \newpage
+
+    \textbf{Q1. (4 points)}
+    \smallskip
+    \begin{enumerate}[label=\alph*)]
+        \item (1 point) Describe the language accepted by the following DFA.
+        \begin{center}
+            \begin{tikzpicture}
+                \node[state, initial] (q0) {\(q_0\)};
+                \node[state, above right of=q0] (q1) {\(q_1\)};
+                \node[state, below right of=q0] (q2) {\(q_2\)};
+                \node[state, accepting, right of=q1] (q3) {\(q_3\)};
+                \node[state, right of=q2] (q4) {\(q_4\)};
+                \node[state, accepting, below right of=q3] (q5) {\(q_5\)};
+    
+                \draw (q0) edge[bend left, above left] node{1} (q1)
+                      (q0) edge[bend right, below left] node{0} (q2)
+                      (q1) edge[above] node{0} (q3)
+                      (q1) edge[above right] node{1} (q4)
+                      (q2) edge[below] node{0,1} (q4)
+                      (q3) edge[bend left, above right] node{0,1} (q5)
+                      (q4) edge[bend right, below right] node{0,1} (q5)
+                      (q5) edge[loop right] node{0,1} (q5);
+            \end{tikzpicture}
+        \end{center}
+
+        \bigskip
+
+        \item (3 points) Convert this DFA into a minimal NFA (i.e., there is no smaller NFA that accepts this language). Give a brief justification.
+    \end{enumerate}
+
+\end{document}
