@@ -3,6 +3,7 @@
 % Mininum segment tree (recursive correctness)
 % Runtime analysis
     % Prove that Big Theta is an equivalence relation
+    % Interpolation
 % Closed form for recursive functions
 % Master theorem
     % Definition
@@ -16,7 +17,7 @@
     % Shortest length subarray that has a sum greater than or equal to M
 \documentclass{article}
 \usepackage{CJKutf8}
-\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox,mathtools}
 \hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
 \usepackage[left=3.5cm, right=3.5cm, top=1.5cm, includehead, includefoot]{geometry}
 \usepackage[dvipsnames]{xcolor}
@@ -69,33 +70,53 @@
 
     \newpage
 
-    \textbf{Q1. (4 points)}
+    \textbf{Q1. (9 points)}
     \smallskip
+    Consider the DFA below:
+    \begin{center}
+        \begin{tikzpicture}
+            \node[state, initial] (q0) {\(q_0\)};
+            \node[state, above right of=q0] (q1) {\(q_1\)};
+            \node[state, below right of=q0] (q2) {\(q_2\)};
+            \node[state, accepting, right of=q1] (q3) {\(q_3\)};
+            \node[state, right of=q2] (q4) {\(q_4\)};
+            \node[state, accepting, below right of=q3] (q5) {\(q_5\)};
+
+            \draw (q0) edge[bend left, above left] node{1} (q1)
+                  (q0) edge[bend right, below left] node{0} (q2)
+                  (q1) edge[above] node{0} (q3)
+                  (q1) edge[above right] node{1} (q4)
+                  (q2) edge[below] node{0,1} (q4)
+                  (q3) edge[bend left, above right] node{0,1} (q5)
+                  (q4) edge[bend right, below right] node{0,1} (q5)
+                  (q5) edge[loop right] node{0,1} (q5);
+        \end{tikzpicture}
+    \end{center}
     \begin{enumerate}[label=\alph*)]
         \item (1 point) Describe the language accepted by the following DFA.
-        \begin{center}
-            \begin{tikzpicture}
-                \node[state, initial] (q0) {\(q_0\)};
-                \node[state, above right of=q0] (q1) {\(q_1\)};
-                \node[state, below right of=q0] (q2) {\(q_2\)};
-                \node[state, accepting, right of=q1] (q3) {\(q_3\)};
-                \node[state, right of=q2] (q4) {\(q_4\)};
-                \node[state, accepting, below right of=q3] (q5) {\(q_5\)};
-    
-                \draw (q0) edge[bend left, above left] node{1} (q1)
-                      (q0) edge[bend right, below left] node{0} (q2)
-                      (q1) edge[above] node{0} (q3)
-                      (q1) edge[above right] node{1} (q4)
-                      (q2) edge[below] node{0,1} (q4)
-                      (q3) edge[bend left, above right] node{0,1} (q5)
-                      (q4) edge[bend right, below right] node{0,1} (q5)
-                      (q5) edge[loop right] node{0,1} (q5);
-            \end{tikzpicture}
-        \end{center}
-
-        \bigskip
 
         \item (3 points) Convert this DFA into a minimal NFA (i.e., there is no smaller NFA that accepts this language). Give a brief justification.
+        
+        \newpage
+
+        \item  (5 points) Provide a DFA that accepts the language matched by \((a+ab)^*\). Prove its correctness.
     \end{enumerate}
 
+    \newpage
+
+    \textbf{Q2. (6 points)}
+    \begin{enumerate}[label=\alph*)]
+        \item (2 points) State the CLRS version of master theorem. Define all variables and state their conditions.
+        \vfill
+        \item (2 points) Let \(f: \mathbb{N} \to \mathbb{R}\) be a nonnegative function. Prove that if \(f \in \Theta (n^k)\) for some \(k > 0\), then the regularity condition holds true.
+        \vfill
+        \item (2 points) Find the time complexity of a recursive function \(T\) defined by
+        \[
+            T(n) = \begin{dcases}
+                4, &\text{ if }  n \leq 1;\\
+                3T\left(\frac{n}{2}\right) + n^{2} \log n, &\text{ if } n > 1.
+            \end{dcases}
+        \]
+        \vfill
+    \end{enumerate}
 \end{document}
