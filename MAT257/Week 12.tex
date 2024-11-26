@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Exercise 9.10}
+    \textbf{Solvers:} Ethan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Suppose that $D=\mathrm{diag}(\lambda_1,\ldots,\lambda_n)$ is a diagonal matrix, and let $Q_D$ be the corresponding quadratic form. \textit{$Q_D$ achieves a minimum at the origin if and only if \(\lambda _i \geq 0\) for all \(i \in \{1, ..., n\}\).}
+
+    \begin{proof}
+        First note that \(Q_D(x) = x^T D x = \begin{pmatrix}
+            x_1 & \cdots &  x_n \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda _1 & 0 & \cdots & 0 \\
+            0 & \lambda_2 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots  \\
+            0 & 0 & \cdots & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}
+             x_1 \\
+             \vdots \\
+             x_n \\
+        \end{pmatrix}
+        = \sum\limits_{i=1}^n \lambda_i x_i^2\).
+        
+        Suppose that every \(\lambda _i \geq 0\). It follows that \(\lambda _i x_i^2 \geq 0\). Thus
+        \[
+            Q_D(x) = \sum_{i=1}^n \lambda_i x_i^2 \geq 0
+        \]
+        Since \(Q_D(0) = 0\), \(Q_D\) achieves a minimum at the origin.
+
+        Conversely, suppose that \(\lambda_j < 0\), for some \(j \in \{1, ..., n\}\). \(Q_D(0) = 0\), but \(Q_D(e_j) = \lambda_j < 0\), so the origin is not a minimum.
+        \smallbreak
+    \end{proof}
+\end{document}
