@@ -71,7 +71,7 @@
             \hline
             \#15 & Unattempted \\
             \hline
-            \#16 & Complete \\
+            \#16 & Complete (Specially Selected) \\
             \hline
             \#17 & Complete (Specially Selected) \\
             \hline
@@ -871,7 +871,9 @@
             \end{proof}
         \end{enumerate}
 
-        \subsection{\#16}
+        \subsection{\#16*}
+
+        \textit{I specially selected this problem because the proof for this was very unorthodox and unintuitive, which I find pretty cool. This problem has inspired me to try and find creative ways to approach other problems in case I get stumped using conventional methods.}
 
         Let $(X,\|\cdot\|)$ be a normed vector space, let $B(X)=B(X,X)$ be the space of bounded linear operators on $X$, and equip $B(X)$ with the operator norm $\|\cdot\|_{\op}$. Let $\GL(X)$ be the set of invertible bounded linear operators:
         \[ \GL(X) = \{T\in B(X) : \text{$T$ is invertible}\}. \]
@@ -2397,6 +2399,40 @@
 
     \end{proof}
 
+    \subsubsection{Exercise 9.10}
+    \textbf{Solvers:} Ethan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Suppose that $D=\mathrm{diag}(\lambda_1,\ldots,\lambda_n)$ is a diagonal matrix, and let $Q_D$ be the corresponding quadratic form. \textit{$Q_D$ achieves a minimum at the origin if and only if \(\lambda _i \geq 0\) for all \(i \in \{1, ..., n\}\).}
+
+    \begin{proof}
+        First note that \(Q_D(x) = x^T D x = \begin{pmatrix}
+            x_1 & \cdots &  x_n \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda _1 & 0 & \cdots & 0 \\
+            0 & \lambda_2 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots  \\
+            0 & 0 & \cdots & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}
+             x_1 \\
+             \vdots \\
+             x_n \\
+        \end{pmatrix}
+        = \sum\limits_{i=1}^n \lambda_i x_i^2\).
+        
+        Suppose that every \(\lambda _i \geq 0\). It follows that \(\lambda _i x_i^2 \geq 0\). Thus
+        \[
+            Q_D(x) = \sum_{i=1}^n \lambda_i x_i^2 \geq 0
+        \]
+        Since \(Q_D(0) = 0\), \(Q_D\) achieves a minimum at the origin.
+
+        Conversely, suppose that \(\lambda_j < 0\), for some \(j \in \{1, ..., n\}\). \(Q_D(0) = 0\), but \(Q_D(e_j) = \lambda_j < 0\), so the origin is not a minimum.
+        \smallbreak
+    \end{proof}
+
 
 
 
@@ -2669,12 +2705,12 @@
         A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree.
     \end{defn}
 
-    \begin{prop}
-        All polynomials in \(n\) variables are infinitely differentiable.
-    \end{prop}
-    \begin{proof}
-        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial. It suffices to show 
-    \end{proof}
+    % \begin{prop}
+    %     All polynomials in \(n\) variables are infinitely differentiable.
+    % \end{prop}
+    % \begin{proof}
+    %     Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial. It suffices to show 
+    % \end{proof}
 
     \begin{lemma}
         Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables. For each \(i \in \{1, ..., n\}\), there exists \(k_i \in \mathbb{N}\) such that \(\dfrac{\partial ^{k_i} g}{\partial x_i ^{k_i}} = 0\).
