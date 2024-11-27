@@ -68,7 +68,9 @@
 
             \textbf{\Large Duration - \sout{3 hours} 10 minutes} \\
 
-            \textbf{\Large Aids : \begin{CJK}{UTF8}{min}お前のお母さん\end{CJK}} \\
+            \textbf{\Large Aids : \begin{CJK}{UTF8}{min}お前のお母さん\end{CJK}:} \\
+
+            \textbf{\Large and \url{https://youtu.be/3UHR_XWrGhc?si=kO03tfL7xwKDE3-o}}
             \smallbreak
         }}
     \end{center}
@@ -203,7 +205,7 @@
 
     \medskip
 
-    As an example, consider the following pseudocode for \texttt{update}, which updates the segment tree to match \texttt{lst} after setting \texttt{lst[i] = x}:
+    As an example, consider the following pseudocode for \texttt{update}, which updates the segment tree to correctly return queries about \texttt{lst} after setting \texttt{lst[i] = x}:
 
     \begin{lstlisting}[language=Python]
         def update(root: Node, x: int, i: int):
@@ -215,6 +217,11 @@
             root.val = min(root.l.val, root.r.val)
     \end{lstlisting}
     \begin{enumerate}[label=\alph*)]
-        \item (3 points) Prove that this method is correct.
+        \item (4 points) Prove that this method is correct.
+        \pagebreak
+        \item (3 points) Find the recursive worst-case runtime of \texttt{update}.
+        \vfill
+        \item (2 points) Find the tight asymptotic bound for the runtime of \texttt{update}.
+        \vfill
     \end{enumerate}
 \end{document}
