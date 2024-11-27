@@ -40,6 +40,13 @@
         every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
         initial text=$ $, % sets the text that appears on the start arrow
     }
+    \lstset{
+        numbers=left,
+        mathescape=true,
+        literate=
+               {=}{$\leftarrow{}$}{1}
+               {==}{$={}$}{1},
+    }
     {\Large NAME (PRINT): \enspace\hrulefill}
 
     \bigskip
@@ -68,15 +75,11 @@
 
     This is a mock exam designed for studying CSC236. Any and all similarities with the Fall 2024 CSC236 final examination are purely coincidence.
 
-    If you finish this exam in under 3 hours, you are fully prepared for the final examination.
+    This examination is meant to be done in 3 hours, but it is a little bit long, so do not worry about finishing. Part marks are very easy to get!
 
+    \pagebreak
 
-
-    \newpage
-
-    \textbf{Q1. (9 points)}
-    \smallskip
-    Consider the DFA below:
+    \noindent\textbf{Q1. (9 points)} Consider the DFA below:
     \begin{center}
         \begin{tikzpicture}
             \node[state, initial] (q0) {\(q_0\)};
@@ -101,67 +104,44 @@
 
         \item (3 points) Convert this DFA into a minimal NFA (i.e., there is no smaller NFA that accepts this language). Give a brief justification.
         
-        \newpage
+        \pagebreak
 
-        \item  (5 points) Provide a DFA that accepts the language matched by \((a+ab)^*\). Prove its correctness.
+        \item  (2 points) Provide a DFA that accepts the language matched by \((a+ab)^*\).
+        \vfill
+        \item (3 points) Prove the correctness of the DFA you provided.
     \end{enumerate}
 
-    \newpage
+    \pagebreak
 
-    \textbf{Q2. (6 points)}
+    \noindent\textbf{Q2. (10 points)} For each of the statements below, decide whether it is \textbf{true or false} and provide a proof justifying your answer.
+
+    \begin{enumerate}[label=\alph*)]
+        \item (2 points) Let \(\Sigma = \{0, 1\}\). The language \(L = \{w \in \Sigma ^* : |w| = 3\}\) is regular.
+        \vfill
+        \item (2 points) Let \(\Sigma = \{0, 1\}\). \(L = \{1^{n^2} : n \in \mathbb{N}\}\) is a regular language.
+        \vfill
+        \item (2 points) Let \(L, M\) be regular languages. The language \(L \cap M\) is regular.
+        \vfill
+        \pagebreak
+        \item (2 points) Let \(\Sigma = \{a, b, c\}\). The language of all strings whose characters are alphabetically ordered is regular.
+        \vfill
+        \item (2 points) Let \(L, M\) be languages. If \(L\) is not regular, then \(L \cup M\) is not regular.
+        \vfill
+    \end{enumerate}
+
+    \pagebreak
+
+    \noindent\textbf{Q3. (6 points)}
     \begin{enumerate}[label=\alph*)]
         \item (2 points) State the CLRS version of master theorem. Define all variables and state their conditions.
         \vfill
-        \item (2 points) Let \(f: \mathbb{N} \to \mathbb{R}\) be a nonnegative function. Prove that if \(f \in \Theta (n^k)\) for some \(k > 0\), then the regularity condition holds true.
-        \vfill
-        \item (2 points) Find the time complexity of a recursive function \(T\) defined by
-        \[
-            T(n) = \begin{dcases}
-                4, &\text{ if }  n \leq 1;\\
-                3T\left(\frac{n}{2}\right) + n^{2} \log n, &\text{ if } n > 1.
-            \end{dcases}
-        \]
+        \item (4 points) Let \(f: \mathbb{N} \to \mathbb{R}\) be a nonnegative function. Prove that if \(f \in \Theta (n^k)\) for some \(k > 0\), then the regularity condition holds true.
         \vfill
     \end{enumerate}
 
-    \newpage
+    \pagebreak
 
-    \textbf{Q3. (6 points)}
-
-    \begin{enumerate}[label=\alph*)]
-        \item (3 points) Let \(\Sigma = \{0, 1\}\). Let \(L\) be a language on \(\Sigma\) defined by \(L = \{1^{n^2} : n \in \mathbb{N}\}\). Prove that \(L\) is not a regular language.
-        \vfill
-        \item (3 points) Let \(L, M\) be regular languages. Prove that the language \(L \cap M\) is regular.
-        \vfill
-    \end{enumerate}
-
-    \newpage
-
-    \textbf{Q4. (6 points)}
-
-    Let \(A\) be a set of functions defined recursively as follows:
-    \begin{itemize}
-        \item \(\sqrt{x} \in A\) 
-        \item If \(f \in A\), then \(\frac{1}{f} - f \in A\) 
-    \end{itemize}
-    
-    \begin{enumerate}[label=\alph*)]
-        \item (4 points) Let \(P(f)\) be a predicate on \(A\) and suppose you have managed to prove that
-        \begin{itemize}
-            \item \(P(\sqrt{x})\) is true,
-            \item \(P(f) \implies P(\frac{1}{f} - f)\) for all \(f \in A\).
-        \end{itemize}
-        Prove that \(\forall f \in A, P(f)\). You may only assume that the principle of induction holds for the natural numbers, NOT the set \(A\).
-        \vfill
-        \item (2 points) Prove that \(\forall f \in A\), \(f \left( \frac{1}{2} \right) = \frac{1}{\sqrt{2}}\).
-        \vfill
-    \end{enumerate}
-
-    \newpage
-
-    \textbf{Q5. (7 points)}
-
-    Consider the program below:
+    \noindent\textbf{Q4. (7 points)} Consider the program below:
     \begin{lstlisting}[language=Python]
     def binary_search(x: int, lst: list[int]):
         l = 0, r = len(lst) - 1
@@ -180,5 +160,61 @@
         \bigskip
         \item (5 points) Prove that this program is correct.
     \end{enumerate}
-    \newpage
+    
+    \pagebreak
+
+    \noindent\textbf{Q5. (6 points)} Let \(A\) be a set of functions defined recursively as follows:
+    \begin{itemize}
+        \item \(\sqrt{x} \in A\) 
+        \item If \(f \in A\), then \(\frac{1}{f} - f \in A\) 
+    \end{itemize}
+    
+    \begin{enumerate}[label=\alph*)]
+        \item (4 points) Let \(P(f)\) be a predicate on \(A\) and suppose you have managed to prove that
+        \begin{itemize}
+            \item \(P(\sqrt{x})\) is true,
+            \item \(P(f) \implies P(\frac{1}{f} - f)\) for all \(f \in A\).
+        \end{itemize}
+        Prove that \(\forall f \in A, P(f)\). You may only assume that the principle of induction holds for the natural numbers, NOT the set \(A\).
+        \vfill
+        \item (2 points) Prove that \(\forall f \in A\), \(f \left( \frac{1}{2} \right) = \frac{1}{\sqrt{2}}\).
+        \vfill
+    \end{enumerate}
+
+    \pagebreak
+
+    \noindent\textbf{Q6. (7 points)} Let \(\Sigma = \{0, 1\}\). For any language \(L \in \Sigma ^*\), define
+    \[
+        S = \{w \in \Sigma ^* : 0w1 \in L\}
+    \]
+    Given that \(L\) is a regular language, prove that \(S\) is a regular language.
+
+    \pagebreak
+
+    Now, this is where a normal exam would end. However, this is not a normal exam.
+
+    \bigskip
+
+    \noindent\textbf{Q7. (20 points)} Recall that a segment tree is a data structure effective for querying and updating information about a range of values in a list, such as the minimum element in a provided range. In fact, we will examine an implementation of a segment tree that does this.
+
+    \medskip
+
+    Suppose that we have a list of numbers \texttt{lst}. In this implementation, the segment tree can be thought of as a binary tree, with each node storing a range of indices \texttt{[l, r]}, a value which represents the minimum number in \texttt{lst[l:r]} (inclusive of \texttt{l}, exclusive of \texttt{r}), and pointers to a left and right child. \textbf{Note that a node does not have a left and right child if and only if it is true that} \texttt{l = r}. Otherwise, the left child will keep track the range \texttt{[l, \(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\)]} and the right child will track \texttt{[\(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\) + 1, r]}
+
+    \medskip
+
+    As an example, consider the following pseudocode for \texttt{update}, which updates the segment tree to match \texttt{lst} after setting \texttt{lst[i] = x}:
+
+    \begin{lstlisting}[language=Python]
+        def update(root: Node, x: int, i: int):
+            if i not in [root.l, root.r] then return
+            else if root.l == i == root.r
+                then root.val = min(x, root.val)
+            update(root.l, x, i)
+            update(root.r, x, i)
+            root.val = min(root.l.val, root.r.val)
+    \end{lstlisting}
+    \begin{enumerate}[label=\alph*)]
+        \item (3 points) Prove that this method is correct.
+    \end{enumerate}
 \end{document}
