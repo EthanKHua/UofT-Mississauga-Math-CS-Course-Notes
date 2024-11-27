@@ -1,42 +1,42 @@
-\contentsline {section}{\numberline {1}Big List Problems}{2}{}%
-\contentsline {subsection}{\numberline {1.1}\#1}{2}{}%
-\contentsline {subsection}{\numberline {1.2}\#2 - Incomplete}{3}{}%
-\contentsline {subsection}{\numberline {1.3}\#3}{3}{}%
-\contentsline {subsection}{\numberline {1.4}\#4}{4}{}%
-\contentsline {subsection}{\numberline {1.5}\#5}{5}{}%
-\contentsline {subsection}{\numberline {1.6}\#6}{7}{}%
-\contentsline {subsection}{\numberline {1.7}\#7}{9}{}%
-\contentsline {subsection}{\numberline {1.8}\#8}{10}{}%
-\contentsline {subsection}{\numberline {1.9}\#9}{10}{}%
-\contentsline {subsection}{\numberline {1.10}\#10}{12}{}%
-\contentsline {subsection}{\numberline {1.11}\#11}{13}{}%
-\contentsline {subsection}{\numberline {1.12}\#12*}{14}{}%
-\contentsline {subsection}{\numberline {1.13}\#13 - Unfinished}{16}{}%
-\contentsline {subsection}{\numberline {1.14}\#16*}{16}{}%
-\contentsline {subsection}{\numberline {1.15}\#17*}{19}{}%
-\contentsline {subsection}{\numberline {1.16}\#18}{19}{}%
-\contentsline {subsection}{\numberline {1.17}\#19 - Incomplete}{20}{}%
-\contentsline {subsection}{\numberline {1.18}\#20*}{21}{}%
-\contentsline {subsection}{\numberline {1.19}\#22*}{22}{}%
-\contentsline {subsection}{\numberline {1.20}\#23}{23}{}%
-\contentsline {subsection}{\numberline {1.21}\#24}{25}{}%
-\contentsline {subsection}{\numberline {1.22}\#25}{27}{}%
-\contentsline {subsection}{\numberline {1.23}\#26}{27}{}%
-\contentsline {subsection}{\numberline {1.24}\#27}{30}{}%
-\contentsline {subsection}{\numberline {1.25}\#28}{32}{}%
-\contentsline {subsection}{\numberline {1.26}\#29}{34}{}%
-\contentsline {section}{\numberline {2}Handout Exercises}{37}{}%
-\contentsline {subsection}{\numberline {2.1}Written by Me}{37}{}%
-\contentsline {subsubsection}{\numberline {2.1.1}Exercise 4.10.}{37}{}%
-\contentsline {subsubsection}{\numberline {2.1.2}Exercise 6.33.}{37}{}%
-\contentsline {subsubsection}{\numberline {2.1.3}Lemma 6.44}{38}{}%
-\contentsline {subsubsection}{\numberline {2.1.4}Exercise 7.16. Chain Rule}{39}{}%
-\contentsline {subsubsection}{\numberline {2.1.5}Exercise 8.12 (c) (iii)}{40}{}%
-\contentsline {subsubsection}{\numberline {2.1.6}Exercise 9.10}{41}{}%
-\contentsline {subsection}{\numberline {2.2}Not Written by Me}{42}{}%
-\contentsline {subsubsection}{\numberline {2.2.1}Exercise 0.6.}{42}{}%
-\contentsline {subsubsection}{\numberline {2.2.2}Exercise 2.21}{42}{}%
-\contentsline {subsubsection}{\numberline {2.2.3}Exercise 3.12.}{43}{}%
-\contentsline {subsubsection}{\numberline {2.2.4}Exercise 4.24.}{44}{}%
-\contentsline {subsubsection}{\numberline {2.2.5}Exercise 6.28}{44}{}%
-\contentsline {section}{\numberline {3}Original Work}{44}{}%
+\contentsline {section}{\numberline {1}Big List Problems}{3}{}%
+\contentsline {subsection}{\numberline {1.1}\#1}{3}{}%
+\contentsline {subsection}{\numberline {1.2}\#2 - Incomplete}{4}{}%
+\contentsline {subsection}{\numberline {1.3}\#3}{4}{}%
+\contentsline {subsection}{\numberline {1.4}\#4}{5}{}%
+\contentsline {subsection}{\numberline {1.5}\#5}{6}{}%
+\contentsline {subsection}{\numberline {1.6}\#6}{8}{}%
+\contentsline {subsection}{\numberline {1.7}\#7}{10}{}%
+\contentsline {subsection}{\numberline {1.8}\#8}{11}{}%
+\contentsline {subsection}{\numberline {1.9}\#9}{11}{}%
+\contentsline {subsection}{\numberline {1.10}\#10}{13}{}%
+\contentsline {subsection}{\numberline {1.11}\#11}{14}{}%
+\contentsline {subsection}{\numberline {1.12}\#12*}{15}{}%
+\contentsline {subsection}{\numberline {1.13}\#13 - Unfinished}{17}{}%
+\contentsline {subsection}{\numberline {1.14}\#16*}{17}{}%
+\contentsline {subsection}{\numberline {1.15}\#17*}{20}{}%
+\contentsline {subsection}{\numberline {1.16}\#18}{20}{}%
+\contentsline {subsection}{\numberline {1.17}\#19 - Incomplete}{21}{}%
+\contentsline {subsection}{\numberline {1.18}\#20*}{22}{}%
+\contentsline {subsection}{\numberline {1.19}\#22*}{23}{}%
+\contentsline {subsection}{\numberline {1.20}\#23}{24}{}%
+\contentsline {subsection}{\numberline {1.21}\#24}{26}{}%
+\contentsline {subsection}{\numberline {1.22}\#25}{28}{}%
+\contentsline {subsection}{\numberline {1.23}\#26}{28}{}%
+\contentsline {subsection}{\numberline {1.24}\#27}{31}{}%
+\contentsline {subsection}{\numberline {1.25}\#28}{33}{}%
+\contentsline {subsection}{\numberline {1.26}\#29}{35}{}%
+\contentsline {section}{\numberline {2}Handout Exercises}{38}{}%
+\contentsline {subsection}{\numberline {2.1}Written by Me}{38}{}%
+\contentsline {subsubsection}{\numberline {2.1.1}Exercise 4.10.}{38}{}%
+\contentsline {subsubsection}{\numberline {2.1.2}Exercise 6.33.}{38}{}%
+\contentsline {subsubsection}{\numberline {2.1.3}Lemma 6.44}{39}{}%
+\contentsline {subsubsection}{\numberline {2.1.4}Exercise 7.16. Chain Rule}{40}{}%
+\contentsline {subsubsection}{\numberline {2.1.5}Exercise 8.12 (c) (iii)}{41}{}%
+\contentsline {subsubsection}{\numberline {2.1.6}Exercise 9.10}{42}{}%
+\contentsline {subsection}{\numberline {2.2}Not Written by Me}{43}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}Exercise 0.6.}{43}{}%
+\contentsline {subsubsection}{\numberline {2.2.2}Exercise 2.21}{43}{}%
+\contentsline {subsubsection}{\numberline {2.2.3}Exercise 3.12.}{44}{}%
+\contentsline {subsubsection}{\numberline {2.2.4}Exercise 4.24.}{45}{}%
+\contentsline {subsubsection}{\numberline {2.2.5}Exercise 6.28}{45}{}%
+\contentsline {section}{\numberline {3}Original Work}{45}{}%
