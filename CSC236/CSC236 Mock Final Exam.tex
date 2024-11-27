@@ -201,7 +201,7 @@
 
     \medskip
 
-    Suppose that we have a list of numbers \texttt{lst}. In this implementation, the segment tree can be thought of as a binary tree, with each node storing a range of indices \texttt{[l, r]}, a value which represents the minimum number in \texttt{lst[l:r]} (inclusive of \texttt{l}, exclusive of \texttt{r}), and pointers to a left and right child. \textbf{Note that a node does not have a left and right child if and only if it is true that} \texttt{l = r}. Otherwise, the left child will keep track the range \texttt{[l, \(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\)]} and the right child will track \texttt{[\(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\) + 1, r]}
+    Suppose that we have a list of numbers \texttt{lst}. In this implementation, the segment tree can be thought of as a binary tree, with each node storing a range of indices \texttt{[l, r]}, a value which represents the minimum number in \texttt{lst[l:r]} (inclusive of \texttt{l}, exclusive of \texttt{r}), and pointers to a left and right child. \textbf{Note that a node does not have a left and right child if and only if it is true that} \texttt{l = r}. Otherwise, the left child will keep track of the range \texttt{[l, \(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\)]} and the right child will track \texttt{[\(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\) + 1, r]}
 
     \medskip
 
@@ -211,7 +211,7 @@
         def update(root: Node, x: int, i: int):
             if i not in [root.l, root.r] then return
             else if root.l == i == root.r
-                then root.val = min(x, root.val)
+                then root.val = x
             update(root.l, x, i)
             update(root.r, x, i)
             root.val = min(root.l.val, root.r.val)
@@ -227,5 +227,5 @@
 
     \pagebreak
 
-    
+
 \end{document}
