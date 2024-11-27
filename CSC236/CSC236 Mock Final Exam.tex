@@ -212,9 +212,9 @@
             if i not in [root.l, root.r] then return
             else if root.l == i == root.r
                 then root.val = x
-            update(root.l, x, i)
-            update(root.r, x, i)
-            root.val = min(root.l.val, root.r.val)
+            update(root.left_child, x, i)
+            update(root.right_child, x, i)
+            root.val = min(root.left_child.val, root.right_child.val)
     \end{lstlisting}
     \begin{enumerate}[label=\alph*)]
         \item (4 points) Prove that this method is correct.
@@ -227,5 +227,34 @@
 
     \pagebreak
 
+    \textbf{Q8. (15 points)} Recall the statement of the \textit{pumping lemma:}
 
+    \smallskip
+
+    \noindent Let \(L\) be a regular language associated with some alphabet \(\Sigma\). Then \(\exists p \in \mathbb{N} ^+, \forall w \in L\), where \(|w| \geq p\), \(\exists x,y,z \in \Sigma ^*\) so that
+    \begin{itemize}
+        \item \(|y| \geq 1\)
+        \item \(|xy| \leq p\)
+        \item \(\forall n \in \mathbb{N}, xy^nz \in L\) 
+    \end{itemize}
+
+    \begin{enumerate}[label=\alph*)]
+        \item (2 points) Show why the statement must have the condition \(|xy| \leq p\). (Hint: Consider the language \(\{w \in \{a, b\}^* : w = a^i b^j , i \leq j\}\))
+        \vfill
+        \item (2 points) Find with proof the value of \(p\) for the language \(\mathcal{L}(((ab)^*a)^*)\) 
+        \vfill
+        \item (1 point) Explain why every finite language can be pumped.
+        \vfill
+        \pagebreak
+        Now, assume that \(L,M\) are regular languages that satisfy the pumping lemma, that is, they each have a value \(p_L\) and \(p_M\) that make the statement of the pumping lemma true.
+        \item (2 points) Prove that \(L \cup M\) can be pumped.
+        \vfill
+        \item (2 points) Prove that \(M^*\) can be pumped (You would want to consider when \(M\) is finite or when \(M\) is infinite).
+        \vfill
+        \pagebreak
+        \item (3 points) Prove that \(LM\) can be pumped.
+        \vfill
+        \item (3 points) Prove the pumping lemma.
+        \vfill
+    \end{enumerate}
 \end{document}
