@@ -120,7 +120,7 @@
     \begin{enumerate}[label=\alph*)]
         \item (2 points) Let \(\Sigma = \{0, 1\}\). The language \(L = \{w \in \Sigma ^* : |w| = 3\}\) is regular.
         \vfill
-        \item (2 points) Let \(\Sigma = \{0, 1\}\). \(L = \{1^{n^2} : n \in \mathbb{N}\}\) is a regular language.
+        \item (2 points) Let \(\Sigma = \{0, 1\}\). \(L = \{1^{i}0^j : i,j \in \mathbb{N}, i \geq j\}\) is a regular language.
         \vfill
         \item (2 points) Let \(L, M\) be regular languages. The language \(L \cap M\) is regular.
         \vfill
@@ -246,8 +246,9 @@
         \item (1 point) Explain why every finite language can be pumped.
         \vfill
         \pagebreak
-        Now, assume that \(L,M\) are regular languages that satisfy the pumping lemma, that is, they each have a value \(p_L\) and \(p_M\) that make the statement of the pumping lemma true.
-        \item (2 points) Prove that \(L \cup M\) can be pumped.
+        Now, assume that \(L,M\) are regular languages that satisfy the pumping lemma, that is, they each have a value \(p_L\) and \(p_M\) that make the statement of the pumping lemma true. We say that a language can be \textbf{pumped} if it satisfies this property.
+        
+        \item (2 points) Prove that \(L \cup M\) can also be pumped.
         \vfill
         \item (2 points) Prove that \(M^*\) can be pumped (You would want to consider when \(M\) is finite or when \(M\) is infinite).
         \vfill
@@ -257,4 +258,28 @@
         \item (3 points) Prove the pumping lemma.
         \vfill
     \end{enumerate}
+
+    \pagebreak
+
+    \textbf{Q9.} Given two bits of either 0 or 1, the XOR operator returns 1 if and only if exactly one of the bits is 1. This operator can be generalised to be used with binary strings by comparing each individual bit. It is denoted by the symbol \^{}. When given integer inputs, the operator will automaticall convert them to binary, perform the operation, and output the result as a decimal number. This operator can be quite useful, as it will be illustrated in this question.
+
+    Consider a list with with the property that there is only one number whose number of occurences in the list is odd. You can also think of it as every number having an even number of occurences except for one number. Take a look at the method below:
+
+    \begin{lstlisting}[language=Python]
+        def find_odd_number(A):
+            '''
+            Pre: A is a list with x being the only number having an
+            odd number of occurences
+            Post: Returns the odd element x
+            '''
+            m = 0
+            i = 0
+            while i < len(lst):
+                m = m^lst[i]
+                i = i + 1
+            return m
+    \end{lstlisting}
+
+    \noindent Prove the correctness of this program.
+    \vfill
 \end{document}
