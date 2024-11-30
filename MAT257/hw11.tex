@@ -67,5 +67,37 @@
 
         (For a function $f:U\rightarrow Y$, the \textbf{$n$th total derivative} $f^{(n)}$ is defined as follows: for $n=0$, we set $f^{(0)}=f$; for $n\geq 1$, if $f^{(n-1)}$ is totally differentiable, we set $f^{(n)} = (f^{(n-1)})'$. We say that $f$ is \textbf{infinitely differentiable} if $f^{(n)}$ exists for all $n\geq 0$.)
 
+		\tcblower
+		First, we notice that the bump function in Big List \#4 can be generalised to arbitrary intervals by simply performing horizontal translations. Now, we show that bump functions for closed rectangles within open rectangles in \(\mathbb{R}^n\) can be constructed.
+
+		Let \(R = \prod _{i=1}^n [a_i, b_i]\) be a closed rectangle in \(\mathbb{R}^n\).
+
     \end{question}
+	\newpage
+	\begin{question}{31}
+		\begin{enumerate}[label=(\alph*)]
+			\item Let $A\in M_n(\R)$ be a symmetric matrix and let $Q(\vec{x})=\vec{x}^TA\vec{x}$ be the correpsonding quadratic form. Prove that the following two statements are equivalent:
+			\begin{enumerate}[label=(\roman*)]
+				\item $Q(\vec{x})> 0$ for all $\vec{x}\neq \vec{0}$.
+		
+				\item All eigenvalues of $A$ are strictly positive.
+			\end{enumerate}
+		
+			In this case, we say that $Q$ is a \textbf{positive definite} quadratic form, and that $A$ is a \textbf{positive definite} matrix.
+		
+			\item Prove the following ``stay away'' lemma, which you will need for part (c): if $Q:\R^n\rightarrow \R$ is a positive definite quadratic form, then there exists a constant $\eta>0$ such that $Q(\vec{x})\geq \eta \|\vec{x}\|^2$ for all $\vec{x}\in \R^n$.
+		
+			\item Let $U\subseteq\R^n$ be an open set, let $f:U\rightarrow \R$ be a twice continuously differentiable function, and let $p_0\in U$ be a point at which $\nabla f(p_0)=\vec{0}$. Prove that if the Hessian matrix $Hf(p_0)$ is positive definite, then $f$ achieves a \textbf{local minimum} at $p_0$; \textit{i.e.} $p_0$ has an open neighborhood $U_0$, contained in $U$, such that $f(p)\geq f(p_0)$ for all $p\in U_0$.
+		\end{enumerate}
+		\tcblower
+		(a):
+
+		Suppose that \(Q(\vec{x}) > 0\) for all \(\vec{x} \neq 0\). Since \(A\) is symmetric, it is orthogonally diagonalizable, so there exists an orthogonal matrix \(P \in M_n(\mathbb{R})\) such that \(B = P^{\top} A P\) is diagonal. Letting \(Q_B(\vec{x}) = \vec{x}^{\top} B \vec{x}\), we have that
+		\[
+			Q(\vec{x}) = Q_B \circ P (\vec{x})
+		\]
+		We will show that \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\).
+
+		Let \(\vec{x} \in \mathbb{R}^n\) so that \(\vec{x} \neq 0\). Since \(Q(\vec{x}) > 0\), it follows that \(Q_B(\vec{x}) > 0\) as well, which implies that its eigenvalues are strictly positive. Since \(A\) and \(B\) share the same eigenvalues, we are done with this direction.
+	\end{question}
 \end{document}
