@@ -57,27 +57,37 @@
 
     \begin{center}
         \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{
-            \center
-            \textbf{\Large University of Toronto Mississauga} \\
+            \begin{center}
+                \textbf{\Large University of Toronto Mississauga} \\
 
-            \textbf{\Large FALL 2024 MOCK FINAL EXAMINATION} \\
+                \textbf{\Large FALL 2024 MOCK FINAL EXAMINATION} \\
 
-            \textbf{\Large Introduction to Theory Computation} \\
+                \textbf{\Large Introduction to Theory Computation} \\
 
-            \textbf{\huge M\Large acho \huge M\Large an (m\^{}2)} \\
+                \textbf{\huge M\Large acho \huge M\Large an (m\^{}2)} \\
 
-            \textbf{\Large Duration - \sout{3 hours} 10 minutes} \\
+                \textbf{\Large Duration - \sout{3 hours} 10 minutes} \\
 
-            \textbf{\Large Aids : \begin{CJK}{UTF8}{min}お前のお母さん\end{CJK}:} \\
+                \textbf{\Large Aids : \begin{CJK}{UTF8}{min}お前のお母さん\end{CJK}:} \\
 
-            \textbf{\Large\url{https://youtu.be/3UHR_XWrGhc?si=kO03tfL7xwKDE3-o}}
-            \smallbreak
+                \textbf{\Large\url{https://youtu.be/3UHR_XWrGhc}}
+            \end{center}
+
+            \textit{\large The University of Toronto Mississauga and you, as a student, share a commitment to academic integrity. You are reminded that you may be charged with an academic offence for possessing any unauthorized aids during the writing of an exam. Clear, sealable, plastic bags have been provided for all electronic devices with storage, including but not limited to: cell phones, smart watches, SMART devices, tablets, laptops, and calculators. Please turn off all devices, seal them in the bag provided, and place the bag under your desk for the duration of the examination. You will not be able to touch the bag or its contents until the exam is over.}
+
+            \medskip
+
+            \textit{\large If, during an exam, any of these items are found on your person or in the area of your desk other than in the clear, sealable, plastic bag, you may be charged with an academic offence. A typical penalty for an academic offence may cause you to fail the course.}
+
+            \medskip
+
+            \textit{\large Please note, once this exam has begun, you \textbf{CANNOT} re-write it.}
         }}
     \end{center}
 
-    This is a mock exam designed for studying CSC236. Any and all similarities with the Fall 2024 CSC236 final examination are purely coincidence.
+    \noindent This is a mock exam designed for studying CSC236. Any and all similarities with the Fall 2024 CSC236 final examination are purely coincidence.
 
-    This examination is meant to be done in 3 hours, but it is a little bit long, so do not worry about finishing. Part marks are very easy to get!
+    \noindent This examination is meant to be done in 3 hours, but it is a little bit long, so do not worry about finishing. Part marks are very easy to get! :))))))))))))) There are a total of 9 questions worth a total of 78 points. Answer the questions in the space provided. If you require extra space for a question, use the extra pages at the end of the exam and clearly label on the said question's page that you are using the extra pages.
 
     \pagebreak
 
@@ -104,13 +114,14 @@
     \begin{enumerate}[label=\alph*)]
         \item (1 point) Describe the language accepted by the following DFA.
 
-        \item (3 points) Convert this DFA into a minimal NFA (i.e., there is no smaller NFA that accepts this language). Give a brief justification.
+        \item (3 points) Convert this DFA into a minimal NFA (i.e., there is no smaller NFA that accepts this language). Give a brief justification for why it works.
         
         \pagebreak
 
         \item  (2 points) Provide a DFA that accepts the language matched by \((a+ab)^*\).
         \vfill
         \item (3 points) Prove the correctness of the DFA you provided.
+        \vfill
     \end{enumerate}
 
     \pagebreak
@@ -155,11 +166,12 @@
                 r = mid
             else:
                 l = mid + 1
-        return l
+        if(lst[l] == x):
+            return l
+        return -1
     \end{lstlisting}
     \begin{enumerate}[label=\alph*)]
         \item (2 points) State the preconditions and postconditions of this program.
-        \bigskip
         \item (5 points) Prove that this program is correct.
     \end{enumerate}
     
@@ -197,11 +209,11 @@
 
     \bigskip
 
-    \noindent\textbf{Q7. (9 points)} Recall that a segment tree is a data structure effective for querying and updating information about a range of values in a list, such as the minimum element in a provided range. In fact, we will examine an implementation of a segment tree that does this.
+    \noindent\textbf{Q7. (8 points)} Recall that a segment tree is a data structure effective for querying and updating information about a range of values in a list, such as the minimum element in a provided range. In fact, we will examine an implementation of a segment tree that does this.
 
     \medskip
 
-    Suppose that we have a list of numbers \texttt{lst}. In this implementation, the segment tree can be thought of as a binary tree, with each node storing a range of indices \texttt{[l, r]}, a value which represents the minimum number in \texttt{lst[l:r]} (inclusive of \texttt{l}, exclusive of \texttt{r}), and pointers to a left and right child. \textbf{Note that a node does not have a left and right child if and only if it is true that} \texttt{l = r}. Otherwise, the left child will keep track of the range \texttt{[l, \(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\)]} and the right child will track \texttt{[\(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\) + 1, r]}
+    Suppose that we have a list of numbers \texttt{lst}. In this implementation, the segment tree can be thought of as a binary tree, with each node storing a range of indices \texttt{[l, r]}, a value which represents the minimum number in \texttt{lst[l:r]} (inclusive of both sides), and pointers to a left and right child. \textbf{Note that a node does not have a left and right child if and only if it is true that} \texttt{l = r}. Otherwise, the left child will keep track of the range \texttt{[l, \(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\)]} and the right child will track \texttt{[\(\left\lfloor \frac{\texttt{l + r}}{2} \right\rfloor\) + 1, r]}
 
     \medskip
 
@@ -210,14 +222,15 @@
     \begin{lstlisting}[language=Python]
         def update(root: Node, x: int, i: int):
             if i not in [root.l, root.r] then return
-            else if root.l == i == root.r
-                then root.val = x
+            else if root.l == i == root.r then
+                root.val = x
+                return
             update(root.left_child, x, i)
             update(root.right_child, x, i)
             root.val = min(root.left_child.val, root.right_child.val)
     \end{lstlisting}
     \begin{enumerate}[label=\alph*)]
-        \item (4 points) Prove that this method is correct.
+        \item (3 points) Prove that this method is correct.
         \pagebreak
         \item (3 points) Find the recursive worst-case runtime of \texttt{update}.
         \vfill
@@ -239,7 +252,7 @@
     \end{itemize}
 
     \begin{enumerate}[label=\alph*)]
-        \item (2 points) Show why the statement must have the condition \(|xy| \leq p\). (Hint: Consider the language \(\{w \in \{a, b\}^* : w = a^i b^j , i \leq j\}\))
+        \item (3 points) Show why the statement must have the condition \(|xy| \leq p\). (Hint: Consider the language \(\{w \in \{a, b\}^* : w = a^i b^j , i \leq j\}\))
         \vfill
         \item (2 points) Find with proof the value of \(p\) for the language \(\mathcal{L}(((ab)^*a)^*)\) 
         \vfill
@@ -255,13 +268,13 @@
         \pagebreak
         \item (3 points) Prove that \(LM\) can be pumped.
         \vfill
-        \item (3 points) Prove the pumping lemma.
+        \item (2 points) Prove the pumping lemma.
         \vfill
     \end{enumerate}
 
     \pagebreak
 
-    \textbf{Q9.} Given two bits of either 0 or 1, the XOR operator returns 1 if and only if exactly one of the bits is 1. This operator can be generalised to be used with binary strings by comparing each individual bit. It is denoted by the symbol \^{}. When given integer inputs, the operator will automaticall convert them to binary, perform the operation, and output the result as a decimal number. This operator can be quite useful, as it will be illustrated in this question.
+    \textbf{Q9. (10 points)} Given two bits of either 0 or 1, the XOR operator returns 1 if and only if exactly one of the bits is 1. This operator can be generalised to be used with binary strings by comparing each individual bit. It is denoted by the symbol \^{}. When given integer inputs, the operator will automaticall convert them to binary, perform the operation, and output the result as a decimal number. This operator can be quite useful, as it will be illustrated in this question.
 
     Consider a list with with the property that there is only one number whose number of occurences in the list is odd. You can also think of it as every number having an even number of occurences except for one number. Take a look at the method below:
 
@@ -280,6 +293,10 @@
             return m
     \end{lstlisting}
 
-    \noindent Prove the correctness of this program.
+    \noindent Prove the correctness of this program. You may use the fact that the XOR operator is commutative.
     \vfill
+    \pagebreak
+    Extra page 1
+    \pagebreak
+    Extra page 2
 \end{document}

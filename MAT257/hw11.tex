@@ -70,8 +70,21 @@
 		\tcblower
 		First, we notice that the bump function in Big List \#4 can be generalised to arbitrary intervals by simply performing horizontal translations. Now, we show that bump functions for closed rectangles within open rectangles in \(\mathbb{R}^n\) can be constructed.
 
-		Let \(R = \prod _{i=1}^n [a_i, b_i]\) be a closed rectangle in \(\mathbb{R}^n\).
+		Let \(R = \prod _{i=1}^n [a_i, b_i]\) be a closed rectangle that is inside an open rectangle \(S = \prod _{i=1}^n (c_i, d_i)\) in \(\mathbb{R}^n\). This implies that for all \(i\), \(c_i < a_i \leq b_i < d_i\). Considering this as an interval in \(\mathbb{R}\), we can find a bump function \(\varphi _i\) such that \(\varphi _i([a_i, b_i]) = \{1\}\) and \(\varphi _i(\mathbb{R}\setminus (c_i, d_i)) = \{0\}\). Notice that this is a function from \(\mathbb{R}\) to \(\mathbb{R}\). We define \(\alpha _i : \mathbb{R}^n \to \mathbb{R}\) by \(\alpha _i (x) = \varphi _i (x_i)\). It will be shown that the bump function supported in \(S\) is
+		\[
+			\beta (x) = \prod _{i=1}^n \alpha _i(x)
+		\]
+		If \(p = (p_1, ..., p_n) \in R\), then for all \(i \in \{1, ..., n\}\), \(p_i \in [a_i, b_i]\), so \(\alpha _i (p) = 1\). We have
+		\[
+			\beta (p) = \prod _{i=1}^n \alpha _i(p) = 1
+		\]
+		Using a similar argument, if \(p \in \mathbb{R}^n \setminus S\), there is at least one component of \(p\) such that \(p_i \notin (c_i, d_i)\), and so \(\alpha _i(p) = 0\), which implies that
+		\[
+			\beta (p) = 0
+		\]
+		as desired. Now, we can proceed proving the main result.
 
+		Let \(U\) be an open subset of \(\mathbb{R}^n\), and let \(K \subseteq U\) be compact. For every \(y \in K\), there exists an open ball centered around \(y\) so that \(B(y, \delta) \subseteq U\).
     \end{question}
 	\newpage
 	\begin{question}{31}
