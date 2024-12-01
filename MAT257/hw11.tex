@@ -82,9 +82,22 @@
 		\[
 			\beta (p) = 0
 		\]
-		as desired. Now, we can proceed proving the main result.
+		as desired.
 
-		Let \(U\) be an open subset of \(\mathbb{R}^n\), and let \(K \subseteq U\) be compact. For every \(y \in K\), there exists an open ball centered around \(y\) so that \(B(y, \delta) \subseteq U\).
+		Next, let \(\mathbb{R}^n\) be equipped with the max-norm. We claim that \(\prod _{i=1}^n (p-r,p+r) \subseteq B(p,r)\), for \(p \in \mathbb{R}^n\) and \(r > 0\).
+
+		Let \(x \in \prod _{i=1}^n (p-r,p+r)\). For all \(i\), \(|p_i - x_i| < r\), so \(\|x - p\| _{\max} < r\). Hence \(x \in B(p, r)\).
+
+		Thus \(\prod _{i=1}^n (p-r,p+r) \subseteq B(p,r)\), and moreover by taking the closure of both sets,
+		
+		\(\prod _{i=1}^n [p-r,p+r] \subseteq \cl{B}(p,r)\).
+		
+		Now, we can proceed proving the main result.
+
+		Let \(U\) be an open subset of \(\mathbb{R}^n\), and let \(K \subseteq U\) be compact. For every \(y \in K\), there exists an open ball centered around \(y\) so that \(B(y, \delta) \subseteq U\). Furthermore, we have that
+		\[
+			\prod _{i=1}^n \left[y - \frac{\delta}{2}, y + \frac{\delta}{2}\right] \subseteq \prod _{i=1}^n (y - \delta , y + \delta) \subseteq B(y, \delta) \subseteq U
+		\]
     \end{question}
 	\newpage
 	\begin{question}{31}
