@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Exercise 10.9}
+    \textbf{Solvers:} Ethan
+
+    \noindent\textbf{Writeup:} Ethan
+
+    Let \(U \subseteq \mathbb{R}^n\) be open, and let \(\Phi : \mathbb{R}^n \to \mathbb{R}^n\) be a \(C^1\) mapping. Suppose that there is a point \(p_0 \in U\) such that \(\Phi '(p_0) : \mathbb{R}^n \to \mathbb{R}^n\) is an isomorphism.
+
+    \medskip
+
+    Define the function \(\Psi = \Phi ^{-1}\). From the previous exercises, we know that \(\Psi '(q) = \Phi '(\Psi (q)) ^{-1}\). It remains to show that \(\Psi '\) is continuous.
+
+    \noindent\textbf{Exercise 10.9} \(\Psi '\) is continuous.
+
+    \begin{proof}
+        Consider the inversion map \(T : \GL(\mathbb{R}^n) \to \GL(\mathbb{R}^n)\). That is, for an invertible linear mapping \(A\) in \(\mathbb{R}^n\), \(T(A) = A^{-1}\). It will be shown that \(T\) is continuous.
+
+        Fix \(A \in \GL{\mathbb{R}^n}\) and let \(\varepsilon > 0\). Let \(\delta = \). For \(h \in \GL(\mathbb{R}^n)\) so that \(\|h\| _{\op} < \delta\), we have that
+        \[
+            \|T(A + h) - T(A)\|_{\op} = \|(A+h)^{-1} \circ (A+h) \circ ((A+h)^{-1} - A^{-1})\|_{\op}
+        \]
+        \[
+            = \|(A+h)^{-1} \circ ((A+h)\circ (A+h)^{-1} - (A+h) \circ A^{-1})\|_{\op} = \|(A+h)^{-1} \circ (- h \circ A^{-1})\|_{\op}
+        \]
+        \[
+            \leq \|(A+h)^{-1}\|_{\op} \|h\|_{\op} \|A^{-1}\|_{\op}
+        \]
+    \end{proof}
+\end{document}
