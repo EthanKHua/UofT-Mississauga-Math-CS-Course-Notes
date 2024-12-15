@@ -143,6 +143,32 @@
 		\]
 		We will show that \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\).
 
-		Let \(\vec{x} \in \mathbb{R}^n\) so that \(\vec{x} \neq 0\). Since \(Q(\vec{x}) > 0\), it follows that \(Q_B(\vec{x}) > 0\) as well, which implies that its eigenvalues are strictly positive. Since \(A\) and \(B\) share the same eigenvalues, we are done with this direction.
+		Let \(\vec{x} \in \mathbb{R}^n\) so that \(\vec{x} \neq 0\). Since \(Q(\vec{x}) > 0\), it follows that \(Q_B(\vec{x}) > 0\) as well, which implies that its eigenvalues are strictly positive. Since \(A\) and \(B\) share the same eigenvalues, we are done.
+
+		Conversely, suppose that all the eigenvalues of \(A\) are strictly positive. By a similar argument as before, the eigenvalues of \(B\) are positive, so \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\). The same applies to \(Q\) and we are done.
+
+		\medskip
+
+		(b):
+
+		First, equip \(\mathbb{R}^n\) with the 2-norm.
+
+		Let \(Q\) be a positive definite quadratic form, so \(Q(\vec{x}) = \vec{x}^{\top}A\vec{x}\), for some diagonalizable matrix \(A\), where all its eigenvalues \(\lambda _i\) are strictly positive.
+		
+		Let \(\eta = \min_{1 \leq i \leq n} \{\lambda _i\}\). Let \(B\) be the diagonal matrix such that \(A = P^{\top} B P\) for an orthogonal matrix \(P\). Denote \(P(\vec{x}) = (p_1, ..., p_n)\). We have
+		\[
+			Q(\vec{x}) = Q_B \circ P(\vec{x}) = (P(\vec{x}))^{\top}B(P(\vec{x})) = \sum_{i=1}^{n} \lambda_i \cdot p_i^2 \geq \eta \sum_{i=1}^{n} p_i^2 = \eta \lVert P(\vec{x}) \rVert _2
+		\]
+		Since \(P\) preserves distance, we have that
+		\[
+			Q(\vec{x}) \geq \eta \lVert P(\vec{x}) \rVert _2^2 = \eta \lVert \vec{x} \rVert _2^2
+		\]
+		as desired.
+
+		\medskip
+
+		(c):
+
+		Let \(U \subseteq \mathbb{R}^n\) be an open set, let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Suppose that \(Hf(p_0)\) is positive definite.
 	\end{question}
 \end{document}
