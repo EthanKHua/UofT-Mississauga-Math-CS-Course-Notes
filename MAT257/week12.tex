@@ -49,9 +49,13 @@
     \begin{proof}
         Consider the inversion map \(T : \GL(\mathbb{R}^n) \to \GL(\mathbb{R}^n)\). That is, for an invertible linear mapping \(A\) in \(\mathbb{R}^n\), \(T(A) = A^{-1}\). It will be shown that \(T\) is continuous.
 
-        Fix \(A \in \GL(\mathbb{R}^n)\) and let \(\varepsilon > 0\). Since \(\GL(\mathbb{R}^n)\) is open, for some \(\delta _0\), \(B(A, \delta _0) \subseteq \GL(\mathbb{R}^n)\). Let \(\delta = \min \{\delta _0, \|A\|^{-2}\}\). Let \(h \in \GL(\mathbb{R}^n)\) so that \(\|h\| _{\op} < \delta\). Fix \(x \in \mathbb{R}^n\) such that \(\|x\| = 1\). Since \((A + h)^{-1}\) is surjective, we have \(x = (A+h)^{-1} (y)\), for some \(y \in \mathbb{R}^n\). We see that
+        Fix \(A \in \GL(\mathbb{R}^n)\) and let \(\varepsilon > 0\). Since \(\GL(\mathbb{R}^n)\) is open, for some \(\delta _0\), \(B(A, \delta _0) \subseteq \GL(\mathbb{R}^n)\). Let \(\delta = \min \{\delta _0, \|A^{-1}\| _{\op}^{-2}\}\). Let \(h \in \GL(\mathbb{R}^n)\) so that \(\|h\| _{\op} < \delta\). Fix \(x \in \mathbb{R}^n\) such that \(\|x\| = 1\). Since \((A + h)^{-1}\) is surjective, we have \(x = (A+h) (y)\), for some \(y \in \mathbb{R}^n\). We see that
         \[
-            fasdfg
+            \|(A + h)^{-1} (x) - A^{-1} (x)\| = \|y - (y + A^{-1}(h(y)))\| = \|A^{-1} \circ h (y)\| \leq \|A^{-1}\| _{\op} \|h\| _{\op} \|y\|
+        \]
+        Since \(A\) is a bounded linear operator,
+        \[
+            \|y\| = \|A^{-1}(A (y))\| \leq \|A^{-1}\| _{\op} \|A(y)\| = \|A^{-1}\| _{\op} \|x - h(y)\| \leq \|A^{-1}\| _{\op} \left( \|x\| + \|h(y) \right)
         \]
         \[
             \|T(A + h) - T(A)\|_{\op} = \|(A+h)^{-1} \circ (A+h) \circ ((A+h)^{-1} - A^{-1})\|_{\op}
