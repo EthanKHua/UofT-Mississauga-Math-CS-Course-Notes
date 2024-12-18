@@ -49,7 +49,10 @@
     \begin{proof}
         Consider the inversion map \(T : \GL(\mathbb{R}^n) \to \GL(\mathbb{R}^n)\). That is, for an invertible linear mapping \(A\) in \(\mathbb{R}^n\), \(T(A) = A^{-1}\). It will be shown that \(T\) is continuous.
 
-        Fix \(A \in \GL{\mathbb{R}^n}\) and let \(\varepsilon > 0\). Let \(\delta = \). For \(h \in \GL(\mathbb{R}^n)\) so that \(\|h\| _{\op} < \delta\), we have that
+        Fix \(A \in \GL(\mathbb{R}^n)\) and let \(\varepsilon > 0\). Since \(\GL(\mathbb{R}^n)\) is open, for some \(\delta _0\), \(B(A, \delta _0) \subseteq \GL(\mathbb{R}^n)\). Let \(\delta = \min \{\delta _0, \|A\|^{-2}\}\). Let \(h \in \GL(\mathbb{R}^n)\) so that \(\|h\| _{\op} < \delta\). Fix \(x \in \mathbb{R}^n\) such that \(\|x\| = 1\). Since \((A + h)^{-1}\) is surjective, we have \(x = (A+h)^{-1} (y)\), for some \(y \in \mathbb{R}^n\). We see that
+        \[
+            fasdfg
+        \]
         \[
             \|T(A + h) - T(A)\|_{\op} = \|(A+h)^{-1} \circ (A+h) \circ ((A+h)^{-1} - A^{-1})\|_{\op}
         \]
