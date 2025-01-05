@@ -169,6 +169,49 @@
 
 		(c):
 
-		Let \(U \subseteq \mathbb{R}^n\) be an open set, let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Suppose that \(Hf(p_0)\) is positive definite.
+		Let \(U \subseteq \mathbb{R}^n\) be an open set, let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Let \(p_0 \in U\) be a point such that \(\nabla f(p_0) = 0\). Suppose that \(Hf(p_0)\) is positive definite. We will show that \(Q(x) = \frac{1}{2}x^T Hf(p_0) x\) is a quadratic approximation to \(f\) at \(p_0\). That is,
+		\[
+			\lim_{h \to 0} \frac{f(p_0 + h) - f(p_0) - Q(h)}{\|h\|^2} = 0
+		\]
+		Let \(\varepsilon > 0\). Since \(U\) is open, there is a \(\delta _o\) so that \(p_0 + h \in U\), where \(\|h\| < \delta _o\). Additionally, by the continuity of \(Hf\), there exists \(\delta _c\) so that for \(\|h\| < \delta _c\), \(|Hf(p_0 + h) - Hf(p_0) < 2\varepsilon\). Let \(\delta = \min \{ \delta _o, \delta _c \}\). Fix \(h \in \mathbb{R}^n\) such that \(0 < \|h\| < \delta\).
+		
+		Since \(U\) is open, there exists \(r > 0\) so that \(p_0 + th \in U\) for \(t \in (-r, 1 + r)\). Define \(g(t) = f(p_0 + th)\).
+		Applying Taylor's quadratic remainder formula to \(g\), there exists \(\theta \in (0, 1)\) so that
+		\[
+			g(1) = g(0) + g'(0) + \frac{1}{2}g''(\theta) \implies f(p_0 + h) = f(p_0) + f'(p_0)h + \frac{1}{2}f''(p_0 + \theta h)(h)h
+		\]
+		Since \(\nabla f(p_0) = 0\), we have
+		\[
+			f(p_0 + h) = f(p_0) + \frac{1}{2}h^T Hf(p_0 + \theta h)h
+		\]
+		Thus we have
+		\[
+			|f(p_0 + h) - f(p_0) - Q(h)| = \left\vert \frac{1}{2}h^T Hf(p_0 + \theta h)h - \frac{1}{2}h^T Hf(p_0)h\right\vert
+		\]
+		\[
+			\leq \frac{1}{2}\|h^T\| _c \|Hf(p_0 + \theta h) - Hf(p_0)\| \|h\|
+		\]
+		where \(\|\cdot\| _c\) is a norm on row vectors defined by \(\|x\| _c = \|x^T\|\). Automatically we have that 
+		\[
+			|f(p_0 + h) - f(p_0) - Q(h)| \leq \frac{1}{2}\|Hf(p_0 + \theta h) - Hf(p_0)\| \|h\|^2 < \varepsilon \|h\|^2
+		\]
+		\[
+			\implies \frac{f(p_0 + h) - f(p_0) - Q(h)}{\|h\|^2} < \varepsilon
+		\]
+		as desired. Thus \(Q\) is indeed a quadratic approximation for \(f\) at \(p_0\). It remains to show that \(f\) attains a local minimum at \(p_0\). Suppose that this is not the case. In particular, for every open neighborhood around \(p_0\) there is a point \(q\) where \(f(q) < f(p_0)\). We write \(q = p_0 + s\), where \(s = q - p_0\). Since \(Hf(p_0)\) is positive definite, \(Q\) is positive definite. Using the quadratic approximation, there is a \(\delta > 0\) so that for all \(0 < \|h\| < \delta\),
+		\[
+			|f(p_0 + h) - f(p_0) - Q(h)| < \eta\|h\|^2,
+		\]
+		where \(\eta\) comes from part (b) applied to \(Q\). Find a suitable \(s\) such that \(f(p_0 + s) < f(p_0)\). By part (a), \(Q(s) > 0\). This implies that \(f(p_0 + s) - f(p_0) - Q(s) < 0\), so
+		\[
+			f(p_0) - f(p_0 + s) + Q(s) < \eta \|h\|^2 \implies f(p_0) + Q(s) - \eta \|h\|^2 < f(p_0 + s).
+		\]
+		From part (b), we know that \(Q(s) - \eta \|h\|^2 \geq 0\), so
+		\[
+			f(p_0) < f(p_0 + s)
+		\]
+		which is a contradiction.
+
+		Therefore we have shown that \(f\) attains a local minimum at \(p_0\) and we are done.
 	\end{question}
 \end{document}
