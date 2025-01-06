@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+
+    \begin{question}{32}
+        Let $M$ be a subset of $\R^n$, let $p_0\in M$ be a point, and let $\vec{v}\in \R^n$ be a vector. We say that $\vec{v}$ is a \textbf{tangent vector} to $M$ at $p_0$ if there exists $\delta>0$ and a $C^1$ function $\alpha:(-\delta,\delta)\rightarrow M$ such that $\alpha(0)=p_0$ and $\alpha'(0)=\vec{v}$. In other words, $\vec{v}$ is the velocity vector of a curve through $M$.
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose now that $M$ is the \textit{zero set} of some $C^1$ function $f:U\rightarrow \R$, where $U$ is an open set in $\R^n$: thus
+                \[ M = \{p\in U : f(p)=0\}. \]
+            Suppose that $p_0\in M$ is a point such that $\nabla f(p_0)\neq \vec{0}$, and let $\vec{v}\in \R^n$ be a vector. Show that $\vec{v}$ is a tangent vector to $M$ at $p_0$ if and only if $\nabla f(p_0)\cdot \vec{v}=0$.
+
+            \item Let $E$ be the ellipsoid in $\R^3$ defined by the following equation:
+                \[ x^2 + yz + y^2 - xy - xz + z^2 = 3. \]
+            Find the equation of the tangent plane to $M$ at the point $p_0=(1,2,3)$.
+
+            \textcolor{blue}{Hint: Define an appropriate function $f$, then find two vectors which are orthogonal to $\nabla f(p_0)$. By (a), these two vectors span the tangent plane. I recommend using graphing software to confirm your result.}
+        \end{enumerate}
+        \tcblower
+        (a):
+
+        Suppose that \(\vec{v}\) is a tangent vector to \(M\) at \(p_0\). Then there exists a function \(\alpha : (-\delta , \delta ) \to M\) so that \(\alpha (0) = p_0\) and \(\alpha '(0) = \vec{v}\). Define \(g: (-\delta , \delta ) \to \mathbb{R}\) by \(g(t) = f(\alpha(t))\). For all \(t \in (-\delta ,\delta)\), \(\alpha (t) \in M\), so \(g(t) = 0\). It follows that
+        \[
+            0 = g'(t) = \nabla f(\alpha (t)) \cdot \alpha '(t)
+        \]
+        Substituting \(t = 0\) yields
+        \[
+            f(p_0) \cdot \vec{v} = 0
+        \]
+        as needed.
+
+        \medskip
+
+        Conversely, suppose that \(\nabla f(p_0) \cdot \vec{v} = 0\).
+    \end{question}
+	\newpage
+	\begin{question}{33}
+		Let $f(x)=\sum_{i=0}^n a_ix^i$ be a \textbf{monic} polynomial with \textbf{no repeated real roots}. This means that $a_n=1$ and that all real roots of $f$ have multiplicity $1$.
+        \begin{enumerate}[label=(\alph*)]
+            \item 
+            
+            Let $r$ be a root of $f(x)$. Prove that for all $\varepsilon>0$, there exists $\delta>0$ such that: if $g(x)=\sum_{i=0}^n b_ix^i$ is a monic polynomial with coefficients $b_i$ satisfying $|a_i-b_i|<\delta$, then $g(x)$ has at least one root in the interval $(r-\varepsilon,r+\varepsilon)$.
+
+            This shows that slight perturbations of the coefficients results in slight perturbations of the roots.
+
+            \textcolor{blue}{Hint: You will need the Implicit Function Theorem.}
+            
+            \item Suppose that $f$ has fewer than $n$ real roots. Prove that number of real roots of $f$ does not change under small perturbation of the coefficients.
+        \end{enumerate}
+	\end{question}
+\end{document}
