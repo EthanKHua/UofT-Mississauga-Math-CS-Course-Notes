@@ -92,20 +92,39 @@
         \medskip
 
         Conversely, suppose that \(\nabla f(p_0) \cdot \vec{v} = 0\).
+
+        \medskip
+
+        \noindent(b):
+
+        Let \(f: \mathbb{R}^3 \to \mathbb{R}\) be a function defined by
+        \[
+            f(x,y,z) = x^2 + yz + y^2 - xy -xz + z^2 - 3
+        \]
+        The gradient of \(f\) is
+        \[
+            \nabla f(x,y,z) = (2x - y - z, z + 2y - x, y - x + 2z)
+        \]
+        and its zero set is exactly defined by the set of solutions of the equation
+        \[
+            M
+        \]
+        Substituting \(p_0\) into this gradient, we have
+        \[
+            \nabla f(1,2,3) = (-3, 6, 7)
+        \]
+        Let \(\vec{v}_1 = (2, 1, 0)\), \(\vec{v}_2 = (-7, 14, -15)\). Notice that \(\nabla f(1,2,3) \cdot \vec{v}_1 = \nabla f(1,2,3) \cdot \vec{v}_2 = \vec{v}_1 \cdot \vec{v}_2 = 0\). By part (a), \(\vec{v}_1\) and \(\vec{v}_2\) are tangent vectors to 
     \end{question}
 	\newpage
 	\begin{question}{33}
-		Let $f(x)=\sum_{i=0}^n a_ix^i$ be a \textbf{monic} polynomial with \textbf{no repeated real roots}. This means that $a_n=1$ and that all real roots of $f$ have multiplicity $1$.
-        \begin{enumerate}[label=(\alph*)]
-            \item 
-            
-            Let $r$ be a root of $f(x)$. Prove that for all $\varepsilon>0$, there exists $\delta>0$ such that: if $g(x)=\sum_{i=0}^n b_ix^i$ is a monic polynomial with coefficients $b_i$ satisfying $|a_i-b_i|<\delta$, then $g(x)$ has at least one root in the interval $(r-\varepsilon,r+\varepsilon)$.
-
-            This shows that slight perturbations of the coefficients results in slight perturbations of the roots.
-
-            \textcolor{blue}{Hint: You will need the Implicit Function Theorem.}
-            
-            \item Suppose that $f$ has fewer than $n$ real roots. Prove that number of real roots of $f$ does not change under small perturbation of the coefficients.
+		\begin{enumerate}[label=(\alph*)]
+            \item Let $g:U\rightarrow \R$ be a $C^1$ function defined on an open set $U\subseteq \R^n$, and let $M$ be its zero set:
+                \[ M = \{ p\in U : g(p)=0 \}. \]
+            Suppose that we have a $C^1$ function $f:U\rightarrow \R$, defined on an open set $U\subseteq \R^n$ which contains $M$, and we wish to find the maximum of $f$ on $M$. Assume that $M$ is compact, and that $f$ achieves its maximum on $M$ at some point $p_0\in M$. Prove that there exists a real number $\lambda \in \R$ such that
+                \[ \nabla f(p_0) = \lambda \nabla g(p_0). \]
+            This number $\lambda$ is known as the \textbf{Lagrange multiplier}.
+    
+            \item Use Lagrange multipliers to solve the following optimization problem: \textit{Find the point(s) on the ellipsoid $x^2 + yz + y^2 - xy - xz + z^2 = 3$ which are \textbf{closest} and \textbf{furthest} from the origin.}
         \end{enumerate}
 	\end{question}
 \end{document}
