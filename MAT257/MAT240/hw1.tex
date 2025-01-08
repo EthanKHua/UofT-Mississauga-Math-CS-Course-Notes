@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+
+    \begin{question}{1}
+        Find all solutions to the following complex equations.
+
+        \tcblower
+        \ 
+        \begin{enumerate}
+            \item \((1+i)\cl{z} = i(2 + 8i)\).
+            
+            Suppose that \(z\) is of the form \(z = a + bi\), for \(a,b \in \mathbb{R}\). Then the equation becomes
+            \[
+                (1+i)(a - bi) = i(2 + 8i) \implies a + b + (a - b)i = -8 + 2i.
+            \]
+            Equating coefficients, we get
+            \[
+                a + b = -8 \text{ and } a - b = 2.
+            \]
+            Solving the system of equations gives us \(a = -3\) and \(b = -5\), so \(z = -3 - 5i\).
+
+            \item \(z^3 = -8i\).
+            
+            Suppose that \(z\) is of the form \(z = re^{i \theta}\), for \(r, \theta \in \mathbb{R}\). Then the equation becomes
+            \[
+                r^3 e^{3i \theta} = -8i \implies r^3 e^{3i \theta} = 8e^{-i \left( \frac{\pi}{2} + 2n\pi  \right)} \text{, for } n \in \mathbb{Z}
+            \]
+            Equating the coefficient and exponent gives us
+            \[
+                r^3 = 8 \text{ and } 3\theta = \frac{\pi}{2} + 2n \pi \implies r = 2,\ \theta = \frac{\pi}{6} + \frac{2n \pi}{3}
+            \]
+            \item \(e^{\cl{z}} = -2 + 2i\).
+        \end{enumerate}
+    \end{question}
+\end{document}
