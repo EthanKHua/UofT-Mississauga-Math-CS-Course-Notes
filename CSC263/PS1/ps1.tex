@@ -1,0 +1,216 @@
+\documentclass{assignment-263}
+\usepackage{mathtools}
+
+\anum{1}
+\course{CSC263}
+\duedate{Jan 23, 2025}
+\filename{ps1.pdf, ps1.tex, ps1.py}
+
+\begin{document}
+\think
+\begin{enumerate}
+\item \textbf{[12 points]}
+Consider the following algorithm, where \texttt{locations} is a list of geographic coordinates, and \texttt{radius} specifies the range of interest in kilometers.
+
+\begin{python}
+ProximityCheck(locations, x_q, y_q, radius = 10):
+  for (x, y) in locations:
+    d = \sqrt{(x - x_q)^2 + (y - y_q)^2} 
+    if d < radius:
+      print("Within range!")
+    else:
+      print ("Out of range!")
+\end{python}
+
+Suppose the input list \texttt{locations} contains $n$ points distributed uniformly and independently over a square region of side length $L$. The query point $(x_q, y_q)$ is fixed at the center of the square. Each location is equally likely to fall anywhere within the square.
+
+\begin{enumerate}
+    \item (1 point) What is the probability that \texttt{ProximityCheck} prints ``Out of range!'' for every point in \texttt{locations}? Assume the default value \texttt{radius = 10}. Justify your answer carefully: show your work and explain your calculation.
+    
+    Define the random variables \(X,Y\) to be the coordinates of a point inside this square region. That is, the support of \(X\) is
+    \[
+      D_X = \left\{x \in \left[x_q - \frac{L}{2}, x_q + \frac{L}{2}\right]\right\}.
+    \]
+    and the support of \(Y\) is
+    \[
+      D_Y = \left\{ y \in \left[y_q - \frac{L}{2}, y_q + \frac{L}{2}\right] \right\} 
+    \]
+    Since \(X,Y\) are uniformly distributed, the joint probability density function is \(f_{X,Y}(x, y) = \dfrac{1}{L^2}\). One can quickly verify that this is well-defined, as \(\dfrac{1}{L^2} > 0\) and
+    \[
+      \int\limits_{y_q - \frac{L}{2}}^{y_q + \frac{L}{2}} \int\limits_{x_q - \frac{L}{2}}^{x_q + \frac{L}{2}} f_X(x)\ dx\ dy = 1
+    \]
+    For an individual point uniformly distributed inside a square, the probability that the point is within another shape is the ratio between the area of the shape that overlaps with the square and the area of the square itself. Notice that in the algorithm, ``Out of range!'' is printed when the distance between the points \((x,y)\) and \((x_q, y_q)\) is less than 10, in other words, when \((x,y)\) lies within the circle centerd at \((x_q,y_q)\) with radius 10. Denote the probability of this happening as \(p\). To find \(p\), we must consider three cases.
+    
+    \smallskip
+
+    Case 1 (\(L \leq 10\sqrt{2}\)):
+
+    In this case, the square is covered by the circle, so \(p = 1\).
+
+    \smallskip
+
+    Case 2 (\(10\sqrt{2} < L < 20\)):
+
+    For this case, the circle does not completely cover the square, leaving parts of its corners. To find \(p\), we need to calculate the area where the circle overlaps with the square, which can be found by subtracting the four protruding circular segments from the original area of the circle. The distance between the segment's vertices and center is 10, and the line originating from the circle center that bisects the square's sidelength has a length of \(\dfrac{L}{2}\). The distance between the two vertices of the segment can be found using the Pythagorean theorem and is
+    \[
+      2\sqrt{10^2 - \left( \frac{L}{2} \right)^2} = \sqrt{400 - L^2}
+    \]
+    Lastly, the angle between the lines connecting the circle center and segment vertices is \(2\sin ^{-1}\left( \frac{\frac{L}{2}}{10} \right) = 2\sin^{-1} \left( \frac{L}{20} \right)\). Using all this information, the area of a protruding segment is
+    \[
+      \frac{2\sin^{-1}\left( \frac{L}{20} \right)}{2}\cdot 10^2 - \frac{1}{2} \cdot \sqrt{400 - L^2} \cdot \frac{L}{2} = 100\sin^{-1} \left( \frac{L}{20} \right) - \frac{L}{4}\sqrt{400 - L^2}.
+    \]
+    Thus the area of the circle that overlaps with the square is
+    \[
+      10^2 \pi - 4\left( 100\sin^{-1} \left( \frac{L}{20} \right) - \frac{L}{4}\sqrt{400 - L^2} \right) = 100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}
+    \]
+    and \(p = \dfrac{100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}}{L^2}\) 
+
+    \smallskip
+
+    Case 3 (\(L \geq 20\)):
+
+    In the last case, the square entirely contains the circle, so \(p\) can simply computed to be \(\dfrac{100\pi}{L^2}\).
+
+    In conclusion,
+    \[
+      p = \begin{dcases}
+        1, &\text{ if } L \leq 10\sqrt{2} ;\\
+        \dfrac{100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}}{L^2}, &\text{ if } 10\sqrt{2} < L < 20 ;\\
+        0, &\text{ if } L \geq 20.
+      \end{dcases}
+    \]
+    For \(n\) points, the location of each of the points is independent from each other, so the probability that ``Out of range!'' will be printed for all \(n\) points is \(p^n\).
+    
+    \item (1 point) What is the probability that \texttt{ProximityCheck} prints ``Within range!'' for all $n$ points? Assume the default value \texttt{radius = 10}. Justify your answer carefully: show your work and explain your calculation.
+    
+    \item (2 points) What is the expected number of times ``Within range!'' is printed for $n=5$ locations? Assume the default value \texttt{radius = 10}. Justify your answer carefully: show your work and explain your calculation.
+    
+    \item (4 points) Consider the following modified algorithm. Please calculate the worst-case and best-case runtime, as well as their probability.
+    
+    \begin{python}
+ProximityCheck(locations, x_q, y_q, radius):
+  total_distance = 0
+  for (x, y) in locations:
+    d = \sqrt{(x - x_q)^2 + (y - y_q)^2} 
+    if d < radius:
+      total_distance += d
+    elif d >= radius:
+      print("Terminating...")
+      return total_distance
+  return total_distance
+\end{python}
+
+    \item (4 points) What is the expected number of times the for loop runs in the modified algorithm? Show your work and explain your calculation. You don't have to simplify your final answer.
+    
+\end{enumerate}
+
+\end{enumerate}
+
+\bigskip
+
+\noindent \textbf{Hint:} The probability that a single point is within the circular region of radius $r$ centered at $(x_q, y_q)$ is proportional to the ratio of the circle's area to the square's area:
+\[
+p = \frac{\pi r^2}{L^2}.
+\]
+For multiple independent points, probabilities combine according to the binomial distribution.
+
+\program
+
+\begin{enumerate}
+\item[2.] \textbf{(12 points)}
+    In this question, we will solve a problem that we call {\bf spy263}.
+    The function \verb|spy263| takes a list of commands that
+    operate on the current collection of data.
+    Your task is to process the commands in order and return the required list of results.
+    There are two kinds of commands: \verb|insert| commands and \verb|find_spy| commands.
+
+    An \verb|insert| command is a string of the form \verb|insert x|,
+    where \verb|x| is an integer. (Note the space between \verb|insert| and \verb|x|.)
+    This command adds \verb|x| to the collection.
+
+    A \verb|find_spy| command is simply the string \verb|find_spy|.
+    It retrieves the $\ceil{\phi\times n}$-th smallest element in the collection, where 
+    $\phi=0.263$ is a position where a spy chooses to hide,
+    and $n$ is the current size of the collection.
+
+    Your goal is to implement \verb|insert| in $O(\lg n)$ time worst-case, and 
+    \verb|find_spy| in $O(1)$ time worst-case.
+    Your algorithm should also have $O(n)$ space complexity.
+    Here, $n$ is the number of elements currently in the collection.
+    The list returned by \verb|spy263| consists of the results, in order,
+    from each \verb|find_spy| command.
+
+    Let's go through an example. Here is a sample call of \verb|spy_263|:
+    \begin{verbatim}
+    spy263(
+      ['insert 15',
+       'find_spy',
+       'insert 6',
+       'insert 2',
+       'insert 8',
+       'find_spy',
+       'insert -5'
+       'insert -8'
+       'insert 3'
+       'insert 20'
+       'find_spy',
+      ])
+    \end{verbatim}
+    These commands corresponds to the following steps:
+    \begin{itemize}
+    \item The collection begins empty, with no elements.
+    \item We insert 15. The collection contains just the integer 15.
+    \item We then have our first \verb|find_spy| command. The result is the $\ceil{\phi\times 1} = \ceil{0.263} = 1$st
+          smallest element currently in the collection, which is 15.
+    \item We insert 6. The collection now contains 15 and 6.
+    \item We insert 2. The collection now contains 15, 6, and 2.
+    \item We insert 8. The collection now contains 15, 6, 2, and 8.
+    \item Now we have our second \verb|find_spy| command. The result is the $\ceil{\phi\times 4}  = \ceil{1.052} = 2$nd
+          smallest element currently in the collection, which is 6.
+    \item We insert -5. The collection now contains 15, 6, 2, 8, and -5.
+    \item We insert -8. The collection now contains 15, 6, 2, 8, -5, and -8.
+    \item We insert 3. The collection now contains 15, 6, 2, 8, -5, -8 and 3.
+    \item We insert 20. The collection now contains 15, 6, 2, 8, -5, -8, 3 and 20.
+    \item Now we have our third and final \verb|find_spy| command. The result is the $\ceil{\phi\times 8} = \ceil{2.104} = 3$rd
+          smallest element currently in the collection, which is 2.
+    \end{itemize}
+
+    So, the above call \verb|spy263| returns \verb|[15, 6, 2]|, which
+    are the three values produced by the \verb|find_spy| commands.
+  
+\textbf{Requirements}:
+\begin{itemize}
+\item Your code must be written in Python 3, and the filename must be \verb|ps1.py|.
+\item We will grade only the \verb|spy263| function;
+      please do not change its signature in the starter code.
+      Include as many helper functions as you wish.
+\item All code that you submit must be your own, including any helper functions.
+\item Your code must compile and otherwise be testable in order to earn credit
+      for the auto-graded portion of this question.
+\item Your written explanation and runtime analyses must be reasonable to earn points
+      on the coding components of this question, regardless of your autotest result.
+\item You can earn up to 12 points if you \textbf{only use materials from weeks 1-2, and previous data structures covered in CSC148}
+\item You can earn up to 6 points if you use other materials.
+\item For each test-case that your code is tested on, your code must run within
+10x the time taken by our solution. Otherwise, your code will be considered to have timed out.
+\end{itemize}
+
+\textbf{Write-up}: in your \verb|ps1.pdf/ps1.tex| files, briefly 
+but clearly describe the main ideas behind your algorithms (3 points).
+Informally argue why your code is correct, and has the desired runtime (3 points).
+Your code will be tested via unit tests (6 points)---however, 
+\textbf{your written explanation and runtime analyses must be reasonable to earn points
+on the coding components of this question, regardless of your autotest result.}
+
+\textbf{Hint}: It is up to you to decide what data structure or
+\textit{combination of data structures} you wish to use to store the collection.
+
+
+\end{enumerate}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
