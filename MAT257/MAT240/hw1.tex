@@ -64,7 +64,11 @@
 
     \begin{question}{1}
         Find all solutions to the following complex equations.
-
+        \begin{enumerate}
+            \item \((1 + i)\cl{z} = i(2 + 8i)\)
+            \item \(z^3 = -8i\)
+            \item \(e^{\cl{z}} = -2 + 2i\)
+        \end{enumerate}
         \tcblower
         \ 
         \begin{enumerate}
@@ -88,9 +92,190 @@
             \]
             Equating the coefficient and exponent gives us
             \[
-                r^3 = 8 \text{ and } 3\theta = \frac{\pi}{2} + 2n \pi \implies r = 2,\ \theta = \frac{\pi}{6} + \frac{2n \pi}{3}
+                r^3 = 8 \text{ and } 3\theta = \frac{\pi}{2} + 2n \pi \implies r = 2,\ \theta = \frac{\pi}{6} + \frac{2n \pi}{3}.
             \]
+            Therefore
+            \[
+                z = 2e^{i\left( \frac{\pi}{6} + \frac{2n \pi}{3}\right)} = 2\cos \left( \frac{\pi}{6} + \frac{2n \pi}{3} \right) + 2i\sin \left( \frac{\pi}{6} + \frac{2n \pi}{3} \right).
+            \]
+            We can convert this into the standard form by considering cases when \(n = 0,1,2\), as any other value will give us a value of \(z\) that is already accounted for. Therefore
+            \[
+                z = \sqrt{3} + i, -\sqrt{3} + i, -2i
+            \]
+
+
+
             \item \(e^{\cl{z}} = -2 + 2i\).
+            
+            Let \(z = a + bi\), for \(a,b \in \mathbb{R}\). Converting the right hand side of the equation into polar form, we get
+            \[
+                e^a e^{bi} = 2\sqrt{2} e^{i \left(\frac{3\pi} {4} + 2n \pi \right)}, \text{ where } n \in \mathbb{Z}.
+            \]
+            We can equate real and complex parts to get that
+            \[
+                e^a = 2\sqrt{2} \text{ and } b = \frac{3\pi}{4} + 2n \pi
+            \]
+            so
+            \[
+                z = \frac{3}{2}\ln (2) + i\left( \frac{3\pi}{2} + 2n \pi\right).
+            \]
         \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{2}
+        Find all solutions to the following equations in \( \mathbb{Z}_9 \), or show that they have no solution.
+
+        \begin{enumerate}
+            \item[(a)] \([4]x + [3] = [1]\)
+            \item[(b)] \([6]x + [3] = [5]\)
+            \item[(c)] \(x^2 = [0]\).
+        \end{enumerate}
+        \tcblower
+        \begin{enumerate}
+            \item[(a)] \([4]x + [3] = [1]\)
+            
+            Adding \([6]\) to both sides of the equation yields
+            \[
+                [4]x = [7].
+            \]
+            Multiplying both sides by \([7]\), we get
+            \[
+                [28]x = [49]
+            \]
+            \[
+                \implies x = [4].
+            \]
+            
+            \item[(b)] \([6]x + [3] = [5]\)
+            
+            This equation has no solution. We can simply substitute \(x = [0], ..., [8]\) into the left hand side and see that it does not equal the right hand side.
+
+            \item[(c)] \(x^2 = [0]\)
+            
+
+
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{3}
+        Let \( \mathbb{Z}_3[i] = \{ a + bi \mid a, b \in \mathbb{Z}_3 \} \), where we define operations \( +, \cdot \) by:
+
+        \[
+        (a + bi) + (c + di) = (a + c) + (b + d)i
+        \]
+
+        \[
+        (a + bi) \cdot (c + di) = (ac - bd) + (ad + bc)i.
+        \]
+
+        Set \( 1 = [1] + [0]i \) and \( 0 = [0] + [0]i \).
+
+        \begin{enumerate}
+            \item[(a)] Using only the definition of the operations above, and the fact that \( \mathbb{Z}_3 \) is a field, show that \( \mathbb{Z}_3[i] \) satisfies Axioms 1-4, as well as the existence of additive inverses.
+            
+            \item[(b)] Compute the multiplication table for \( \mathbb{Z}_3[i] \) to verify that multiplicative inverses exist, and hence conclude that \( \mathbb{Z}_3[i] \) is a field.
+            
+            \item[(c)] What is the characteristic of \( \mathbb{Z}_3[i] \)? (See question \#6 for the definition of characteristic of a field.)
+        \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        To show closure under addition and multiplication, let \(a,b,c,d \in \mathbb{Z}_3\). Then \(a + bi, c + di \in \mathbb{Z}_3[i]\), but notice that since \(a + c \in \mathbb{Z}_3\) and \(b + d \in \mathbb{Z}_3\), it follows that \((a + c) + (b + d)i \in \mathbb{Z}_3[i]\).
+
+
+    \end{question}
+    \newpage
+    \begin{question}{4}
+        We introduce a new definition in this question:
+
+        \textbf{Definition:} Let \( \mathbb{F} \) be a field. We say a subset \( \mathbb{K} \subseteq \mathbb{F} \) is a \textbf{subfield} of \( \mathbb{F} \) if \( \mathbb{K} \) is also a field, using the same operations as \( \mathbb{F} \).
+
+        For example: \( \mathbb{Q} \) is a subfield of \( \mathbb{R} \). \( \mathbb{R} \) is a subfield of \( \mathbb{C} \). \( \mathbb{Z}_3 \) is not a subfield of \( \mathbb{Q} \), since \( \mathbb{Z}_3 \) is not a subset of \( \mathbb{Q} \).
+
+        \begin{enumerate}
+            \item[(a)] Let \( \mathbb{K} \subseteq \mathbb{F} \) be a subfield. Let \( 0_{\mathbb{F}}, 1_{\mathbb{F}} \) denote the additive and multiplicative identities in \( \mathbb{F} \). Similarly, we denote by \( 0_{\mathbb{K}}, 1_{\mathbb{K}} \) the identities in \( \mathbb{K} \). Prove that \( 0_{\mathbb{F}} = 0_{\mathbb{K}} \) and \( 1_{\mathbb{F}} = 1_{\mathbb{K}} \). 
+            (Hint: Prove that in a field, the only solution to the equation \( x^2 = x \) are \( x = 0, x = 1 \).)
+            
+            \item[(b)] Let \( \mathbb{K} \subseteq \mathbb{F} \) be a subfield. Prove that for all \( x \in \mathbb{K} \), we have \( -x \in \mathbb{K} \), and that for all \( x \in \mathbb{K} \setminus \{0\} \) we have \( x^{-1} \in \mathbb{K} \). (Here \( -x \) is the additive inverse of \( x \) \textbf{treated as an element of} \( \mathbb{F} \) and \( x^{-1} \) is the multiplicative inverse of \( x \) \textbf{treated as an element of} \( \mathbb{F} \).)
+            
+            \item[(c)] Prove that a subset \( \mathbb{K} \subseteq \mathbb{F} \) is a subfield if and only if the following conditions are met:
+            
+            \begin{enumerate}
+                \item[(i)] \( 0,1 \in \mathbb{K} \).
+                \item[(ii)] For all \( x, y \in \mathbb{K} \), we have \( x + y, x \cdot y \in \mathbb{K} \).
+                \item[(iii)] For all \( x \in \mathbb{K} \), we have \( -x \in \mathbb{K} \).
+                \item[(iv)] For all \( x \in \mathbb{K} \setminus \{ 0 \} \), we have \( x^{-1} \in \mathbb{K} \).
+            \end{enumerate}
+            
+            (Hints: For the \( \implies \) direction: this is ``part c'' for a reason. For the \( \impliedby \) direction, you only need one or two short sentences to argue why addition and multiplication in \( \mathbb{K} \) satisfy Axioms 1-3. Axioms 4 and 5 should also have fairly short proofs. If you find yourself with a very long argument, you should rethink your argument.)
+            
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{5}
+        Let \(\mathbb{Q}[\sqrt{-2}] = \{a + b\sqrt{-2} | a,b \in \mathbb{Q}\}\). Prove that if \(\mathbb{K}\) is a subfield of \(\mathbb{C}\) and \(\sqrt{-2} \in \mathbb{K}\), then \(\mathbb{Q}[\sqrt{-2}] \subseteq \mathbb{K}\).
+    \end{question}
+    \newpage
+    \begin{question}{6}
+        In this exercise we introduce a new definition:
+
+        **Definition:** Let \(\mathbb{F}\) be a field. The smallest non-negative integer \(n\) so that 
+        \(\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = 0\)
+        is called the characteristic of \(\mathbb{F}\). If no such \(n\) exists, then we say \(\mathbb{F}\) has characteristic 0.
+
+        We denote this non-negative integer by \(\text{char}(\mathbb{F})\).
+
+        For example: \(\mathbb{Z}_3\) has characteristic 3 because \(1 + 1 + 1 = 0\) in \(\mathbb{Z}_3\), but \(1 + 1 \neq 0\) in \(\mathbb{Z}_3\).
+        So \(n = 3\) is the smallest integer so that 
+        \(\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = 0\)
+        in \(\mathbb{Z}_3\).
+
+        However, \(\mathbb{Q}\) has characteristic 0, because for any \(n\) we have 
+        \(\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = n \neq 0\)
+        in \(\mathbb{Q}\).
+
+        (a) Prove that \(\text{char}(\mathbb{Z}_p) = p\).
+
+        (b) Prove that \(\text{char}(\mathbb{F})\) must either be prime or 0. (Hint: For the case that \(\text{char}(\mathbb{F})\) is non-zero, use contradiction.)
+    \end{question}
+    \newpage
+    \begin{question}{7}
+        In this question we introduce a new definition:
+
+        **Definition:** Let \(f, g \in \mathbb{P}(\mathbb{F})\). We say that a polynomial \(d \in \mathbb{P}(\mathbb{F})\) is a **greatest common divisor** of \(f\) and \(g\) if:
+
+        \begin{itemize}
+            \item \(d\) is a divisor of both \(f\) and \(g\), and;
+            \item for any other divisor \(d'\) of \(f\) and \(g\), we have \(\deg d \geq \deg d'\).
+        \end{itemize}
+
+        (a) Prove that if \(d\) is a common divisor of \(f\) and \(g\), then for all \(a \in \mathbb{F}\), the polynomial \(ad\) is also a common divisor for \(f\) and \(g\). Explain why this shows that there is no "unique" greatest common divisor for \(f\) and \(g\) like there is for integers.
+
+        (b) Prove that if \(d_1, d_2\) are both greatest common divisors for \(f\) and \(g\), then \(d_1 = ad_2\) for some non-zero field element \(a\).
+
+        (c) Prove that we can compute a greatest common divisor for \(f\) and \(g\) like we do for integers: repeatedly apply long division until the remainder is 0, then the last non-zero remainder is a greatest common divisor for \(f\) and \(g\).
+
+        (d) Deduce from (c) that if \(d\) is a greatest common division for \(f\) and \(g\), then we can write \(d = pf + qg\) for some polynomials \(p, q\).
+
+    \end{question}
+    \newpage
+    \begin{question}{8}
+        Apply the procedures in Question 8 to compute a greatest common divisor for the polynomials
+        \(f(x) = x^4 + x^2 + 1\), \(g(x) = x^4 + 2x^3 + x^2 + 1 \in \mathbb{P}(\mathbb{Q})\), and express this divisor as a combination
+        of \(f\) and \(g\).
+
+        (In particular, you should not try to factor \(f\), \(g\) to find the greatest common divisor, and doing
+        so will not receive any credit.)
+    \end{question}
+    \newpage
+    \begin{question}{9}
+        Let $p \in \mathbb{P}(\mathbb{C})$ be a polynomial with real coefficients. Prove that if $a$ is a root of $p$, then $\bar{a}$ is a root of $p$. (Hint: Write down an equation that means "$a$ is a root of $p$". Conjugate this equation.)
+    \end{question}
+    \newpage
+    \begin{question}{10}
+        Using Question 9 and the Fundamental Theorem of Algebra, prove that the only irreducible 
+        polynomials over $\mathbb{R}$ are linear and quadratics with no real roots. Use this to deduce our Theorem from class (Week 2) about the factorization of real polynomials.
     \end{question}
 \end{document}
