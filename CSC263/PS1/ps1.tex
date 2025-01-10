@@ -39,19 +39,19 @@ Suppose the input list \texttt{locations} contains $n$ points distributed unifor
     \[
       \int\limits_{y_q - \frac{L}{2}}^{y_q + \frac{L}{2}} \int\limits_{x_q - \frac{L}{2}}^{x_q + \frac{L}{2}} f_X(x)\ dx\ dy = 1
     \]
-    For an individual point uniformly distributed inside a square, the probability that the point is within another shape is the ratio between the area of the shape that overlaps with the square and the area of the square itself. Notice that in the algorithm, ``Out of range!'' is printed when the distance between the points \((x,y)\) and \((x_q, y_q)\) is less than 10, in other words, when \((x,y)\) lies within the circle centerd at \((x_q,y_q)\) with radius 10. Denote the probability of this happening as \(p\). To find \(p\), we must consider three cases.
+    For an individual point uniformly distributed inside a square, the probability that the point is within another shape is the ratio between the area of the shape that overlaps with the square and the area of the square itself. Notice that in the algorithm, ``Out of range!'' is printed when the distance between the points \((x,y)\) and \((x_q, y_q)\) is greater than or equal to 10, in other words, when \((x,y)\) lies outside the circle centered at \((x_q,y_q)\) with radius 10. Denote the probability of this happening as \(p\). To find \(p\), we will find \(1 - p\), which is the probability that the chosen point lies inside the circle. Consider three cases.
     
     \smallskip
 
     Case 1 (\(L \leq 10\sqrt{2}\)):
 
-    In this case, the square is covered by the circle, so \(p = 1\).
+    In this case, the square is covered by the circle, so any point inside the square will also be within the circle. Thus \(1 - p = 1\).
 
     \smallskip
 
     Case 2 (\(10\sqrt{2} < L < 20\)):
 
-    For this case, the circle does not completely cover the square, leaving parts of its corners. To find \(p\), we need to calculate the area where the circle overlaps with the square, which can be found by subtracting the four protruding circular segments from the original area of the circle. The distance between the segment's vertices and center is 10, and the line originating from the circle center that bisects the square's sidelength has a length of \(\dfrac{L}{2}\). The distance between the two vertices of the segment can be found using the Pythagorean theorem and is
+    For this case, the circle does not completely cover the square, leaving parts of its corners. To find \(1 - p\), we need to calculate the area where the circle overlaps with the square, which can be found by subtracting the four protruding circular segments from the original area of the circle. The distance between the segment's vertices and center is 10, and the line originating from the circle center that bisects the square's sidelength has a length of \(\dfrac{L}{2}\). The distance between the two vertices of the segment can be found using the Pythagorean theorem and is
     \[
       2\sqrt{10^2 - \left( \frac{L}{2} \right)^2} = \sqrt{400 - L^2}
     \]
@@ -63,44 +63,77 @@ Suppose the input list \texttt{locations} contains $n$ points distributed unifor
     \[
       10^2 \pi - 4\left( 100\sin^{-1} \left( \frac{L}{20} \right) - \frac{L}{4}\sqrt{400 - L^2} \right) = 100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}
     \]
-    and \(p = \dfrac{100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}}{L^2}\) 
+    and \(1 - p = \dfrac{100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}}{L^2}\) 
 
     \smallskip
 
     Case 3 (\(L \geq 20\)):
 
-    In the last case, the square entirely contains the circle, so \(p\) can simply computed to be \(\dfrac{100\pi}{L^2}\).
+    In the last case, the square entirely contains the circle, so \(1 - p\) can simply computed to be \(\dfrac{100\pi}{L^2}\).
 
     In conclusion,
     \[
       p = \begin{dcases}
-        1, &\text{ if } L \leq 10\sqrt{2} ;\\
-        \dfrac{100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}}{L^2}, &\text{ if } 10\sqrt{2} < L < 20 ;\\
-        0, &\text{ if } L \geq 20.
+        0, &\text{ if } L \leq 10\sqrt{2} ;\\
+        1 - \dfrac{100\pi - 400\sin^{-1}\left( \frac{L}{20} \right) - L\sqrt{400 - L^2}}{L^2}, &\text{ if } 10\sqrt{2} < L < 20 ;\\
+        1 - \dfrac{100\pi}{L^2}, &\text{ if } L \geq 20.
       \end{dcases}
     \]
     For \(n\) points, the location of each of the points is independent from each other, so the probability that ``Out of range!'' will be printed for all \(n\) points is \(p^n\).
     
     \item (1 point) What is the probability that \texttt{ProximityCheck} prints ``Within range!'' for all $n$ points? Assume the default value \texttt{radius = 10}. Justify your answer carefully: show your work and explain your calculation.
     
+    The probability that ``Within range!'' is printed for any singular point was calculated in the previous part to be \(1-p\). Using the independence of the location of each point, the probability that all points are within range is \((1-p)^n\).
+    
     \item (2 points) What is the expected number of times ``Within range!'' is printed for $n=5$ locations? Assume the default value \texttt{radius = 10}. Justify your answer carefully: show your work and explain your calculation.
+    
+    Let \(X\) be the number of times that ``Within range!'' is printed for \(n = 5\). Then since each point is chosen independently from each other, \(X ~ Bin(5, 1 - p)\), where \(p\) was computed in part (a). Thus
+    \[
+      E[X] = 5(1-p)
+    \]
     
     \item (4 points) Consider the following modified algorithm. Please calculate the worst-case and best-case runtime, as well as their probability.
     
     \begin{python}
-ProximityCheck(locations, x_q, y_q, radius):
-  total_distance = 0
-  for (x, y) in locations:
-    d = \sqrt{(x - x_q)^2 + (y - y_q)^2} 
-    if d < radius:
-      total_distance += d
-    elif d >= radius:
-      print("Terminating...")
+    ProximityCheck(locations, x_q, y_q, radius):
+      total_distance = 0
+      for (x, y) in locations:
+        d = \sqrt{(x - x_q)^2 + (y - y_q)^2} 
+        if d < radius:
+          total_distance += d
+        elif d >= radius:
+          print("Terminating...")
+          return total_distance
       return total_distance
-  return total_distance
-\end{python}
+    \end{python}
+    
+    The worst-case occurs when every point in \verb|locations| is within the circle centered around \((x_q, y_q)\) with radius \verb|radius|.
+
+    The best-case occurs when the first point in \verb|locations| is outside the circle.
+
 
     \item (4 points) What is the expected number of times the for loop runs in the modified algorithm? Show your work and explain your calculation. You don't have to simplify your final answer.
+    
+    Let \(p\) be as defined in part (a). Let \(X\) be the number of times the loop runs in the algorithm. The support of \(X\) is \(1, ..., n\), where \(n\) is the size of \verb|locations|.
+
+    Note that \(X\) is entirely dependent on the position of the first point in \verb|locations| that is outside of the circle. We define this as the random variable \(I\), whose distribution is given by
+    \[
+      f_I(i) = \begin{dcases}
+        (1 - p)^i p, &\text{ if } i = 1, ..., n ;\\
+        0, &\text{ otherwise} ,
+      \end{dcases}
+    \]
+    Additionally, we define the Bernoulli random variable \(J\) which represents whether there is no point that is outside the range, where the distribution is
+    \[
+      f_J(j) = \begin{dcases}
+        (1-p)^n, &\text{ if } j = 1 ;\\
+        1 - (1-p)^n, &\text{ if } j = 0 .
+      \end{dcases}
+    \]
+    We note that \(X = I + nJ\). By the linearity of expectation,
+    \[
+      E[X] = E[I] + nE[J] = \sum_{i=1}^{n} i(1 - p)^i p + n (1-p)^n
+    \]
     
 \end{enumerate}
 
