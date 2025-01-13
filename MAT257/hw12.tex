@@ -95,11 +95,49 @@
         \[
             g(x_1, ..., x_n) = f(x_1, ..., x_{i-1}, x_n, x_{i+1}, ..., x_i)
         \]
-        Notice that \(\dfrac{\partial g}{\partial x_n}(p_0) = \dfrac{\partial f}{\partial x_i}(p_0) \neq 0\). Let \(x' = \pi_{\mathbb{R}^{n-1}}(x)\). Applying the Implicit Function Theorem with \(k = 1\), there exists an open set \(W\) and a function \(\psi : W \subseteq \mathbb{R}^{n-1} \to \mathbb{R}\) such that
+        Let \(p'\) be the vector in \(\mathbb{R}^{n-1}\) whose components are the same as \(p_0\) except that its \(i\)th component is \(p_n\). In particular,
         \[
-            g(x', \psi(x')) = 0
+            p' = (p_1, ..., p_{i-1}, p_n, p_{i+1}, ..., p_{n-1}).
         \]
-        Since \(W\) is open, there exists \(\delta > 0\) so that for all \(\|t\| < \delta\),
+        Notice that \(\dfrac{\partial g}{\partial x_n}(p', p_i) = \dfrac{\partial f}{\partial x_i}(p_0) \neq 0\). Applying the Implicit Function Theorem with \(k = 1\), there exists an open set \(W \subseteq \mathbb{R}^{n-1}\) that contains \(p'\) and a continuously differentiable function \(\psi : W \to \mathbb{R}\) such that for all \(x' \in W\), \(\psi (p') = p_i\) and
+        \[
+            g(x', \psi(x')) = f(x_1, ..., x_{i-1} , \psi (x'), x_{i+1}, ..., x_{n-1}) = 0
+        \]
+        Since \(W\) is open, there exists \(\delta > 0\) so that for all \(\|t\| < \delta\), \(p' + t \pi _{\mathbb{R}^{n-1}}(\vec{v}) \in W\).
+
+        Let \(\hat{v}\) be \(\vec{v}\) with swapped \(i\)th and \(n\)th components. Let \(\alpha : (-\delta ,\delta) \to M\) be defined by
+        \[
+            \alpha (t) = (p_1 + tv_1, ..., p_{i-1} + tv_{i-1}, \psi (p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)), p_{i+1} + tv_{i+1}, ..., p_n + tv_n).
+        \]
+        We can see that \(\alpha (0) = p_0\). Next, we want to show that \(\alpha '(0) = \vec{v}\). We first find the total derivative of \(\psi (p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1))\). For \(j \in \{1, ..., n-1 \}\), we know that the \(j\)th partial derivative is given by
+        \[
+            \dfrac{\frac{\partial g}{\partial x_j}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)) \cdot v_i \cdot \hat{v}_j}{\frac{\partial g}{\partial x_n}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)) \cdot (-v_i)} = -\dfrac{\frac{\partial g}{\partial x_j}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)) \cdot \hat{v}_j}{\frac{\partial g}{\partial x_n}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1))}
+        \]
+        substituting \(t=0\) into this expression gives us
+        \[
+            -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial g}{\partial x_n}(p')} = -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial f}{\partial x_i}(p_0)}
+        \]
+        For \(j \neq i\),
+        \[
+            -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial f}{\partial x_i}(p_0)} = -\dfrac{\frac{\partial f}{\partial x_j}(p_0) \cdot v_j}{\frac{\partial f}{\partial x_i}(p_0)}.
+        \]
+        For \(j = i\),
+        \[
+            -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial f}{\partial x_i}(p_0)} = -\dfrac{\frac{\partial f}{\partial x_n}(p_0 ) \cdot v_n}{\frac{\partial f}{\partial x_i}(p_0)}
+        \]
+        Thus the total derivative is given by
+        \[
+            - \frac{1}{\frac{\partial f}{\partial x_i}(p_0)}\sum_{j \in \{1, ..., i-1, i+1, ..., n\}}\frac{\partial f}{\partial x_j}(p_0) \cdot v_j
+        \]
+        Recall that \(\sum\limits_{j=1}^n \dfrac{\partial f}{\partial x_j}(p_0) \cdot v_j = \nabla f(p_0) \cdot \vec{v} = 0\). Using this, our expression for the total derivative at \(t = 0\) becomes
+        \[
+            - \frac{1}{\frac{\partial f}{\partial x_i}(p_0)} \cdot \left( -\frac{\partial f}{\partial x_i} (p_0) \cdot v_i \right) = v_i
+        \]
+        Therefore, we conclude that
+        \[
+            \alpha' (0) = (v_1, ..., v_{i-1}, v_i, v_{i+1}, ..., v_n) = \vec{v},
+        \]
+        Which verifies that \(\vec{v}\) is indeed a tangent vector to \(M\) at \(p_0\), finishing the proof.
 
         \medskip
 
@@ -113,15 +151,8 @@
         \[
             \nabla f(x,y,z) = (2x - y - z, z + 2y - x, y - x + 2z)
         \]
-        and its zero set is exactly defined by the set of solutions of the equation
-        \[
-            M
-        \]
-        Substituting \(p_0\) into this gradient, we have
-        \[
-            \nabla f(1,2,3) = (-3, 6, 7)
-        \]
-        Let \(\vec{v}_1 = (2, 1, 0)\), \(\vec{v}_2 = (-7, 14, -15)\). Notice that \(\nabla f(1,2,3) \cdot \vec{v}_1 = \nabla f(1,2,3) \cdot \vec{v}_2 = \vec{v}_1 \cdot \vec{v}_2 = 0\). By part (a), \(\vec{v}_1\) and \(\vec{v}_2\) are tangent vectors to 
+        and its zero set is exactly \(M\).
+        
     \end{question}
 	\newpage
 	\begin{question}{33}

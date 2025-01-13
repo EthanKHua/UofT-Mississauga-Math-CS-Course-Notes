@@ -6,11 +6,17 @@ University of Toronto Mississauga
 
 # Do NOT add any "import" statements
 
+class Collection:
+  PHI = 0.263
+  
+
 def spy263(commands):
   '''
   Pre: commands is a list of commands
   Post: return list of find_spy results
   '''
+  
+
   pass # TODO: implement this function
 
 # You may add additional test case below. HOWEVER, your code must
