@@ -91,7 +91,15 @@
 
         \medskip
 
-        Conversely, suppose that \(\nabla f(p_0) \cdot \vec{v} = 0\).
+        Conversely, suppose that \(\nabla f(p_0) \cdot \vec{v} = 0\). Since \(\nabla f(p_0) \neq 0\), \(\dfrac{\partial f}{\partial x_i}(p_0) \neq 0\) for some \(i \in \{0, ..., n\}\). Define the \(C^1\) function \(g: \mathbb{R}^n \to \mathbb{R}\) as the function that swaps the \(i\)th and \(n\)th coordinate. That is,
+        \[
+            g(x_1, ..., x_n) = f(x_1, ..., x_{i-1}, x_n, x_{i+1}, ..., x_i)
+        \]
+        Notice that \(\dfrac{\partial g}{\partial x_n}(p_0) = \dfrac{\partial f}{\partial x_i}(p_0) \neq 0\). Let \(x' = \pi_{\mathbb{R}^{n-1}}(x)\). Applying the Implicit Function Theorem with \(k = 1\), there exists an open set \(W\) and a function \(\psi : W \subseteq \mathbb{R}^{n-1} \to \mathbb{R}\) such that
+        \[
+            g(x', \psi(x')) = 0
+        \]
+        Since \(W\) is open, there exists \(\delta > 0\) so that for all \(\|t\| < \delta\),
 
         \medskip
 
@@ -127,4 +135,19 @@
             \item Use Lagrange multipliers to solve the following optimization problem: \textit{Find the point(s) on the ellipsoid $x^2 + yz + y^2 - xy - xz + z^2 = 3$ which are \textbf{closest} and \textbf{furthest} from the origin.}
         \end{enumerate}
 	\end{question}
+    \newpage
+    \begin{question}{34}
+        Let $\Phi:\R^n\rightarrow\R^m$ be a $C^1$ mapping.
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose that $n>m$. Show that $\Phi$ cannot be injective.
+            
+            \item Suppose that $n<m$. Show that if $K\subseteq\R^n$ is a compact set, then $\Phi(K)$ is a Jordan measurable set, and has Jordan measure zero.
+        \end{enumerate}
+        \tcblower
+        \ 
+        
+        (a):
+
+        
+    \end{question}
 \end{document}
