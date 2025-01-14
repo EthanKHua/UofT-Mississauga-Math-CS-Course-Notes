@@ -1,0 +1,5 @@
+[alias]
+	ci = commit -m
+[user]
+	email = ethan.hua@mail.utoronto.ca
+	name = huaethan

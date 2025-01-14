@@ -72,7 +72,7 @@
 
             \item Let $E$ be the ellipsoid in $\R^3$ defined by the following equation:
                 \[ x^2 + yz + y^2 - xy - xz + z^2 = 3. \]
-            Find the equation of the tangent plane to $M$ at the point $p_0=(1,2,3)$.
+            Find the equation of the tangent plane to $M$ at the point $p_0=(1,2,0)$.
 
             \textcolor{blue}{Hint: Define an appropriate function $f$, then find two vectors which are orthogonal to $\nabla f(p_0)$. By (a), these two vectors span the tangent plane. I recommend using graphing software to confirm your result.}
         \end{enumerate}
@@ -165,6 +165,35 @@
     
             \item Use Lagrange multipliers to solve the following optimization problem: \textit{Find the point(s) on the ellipsoid $x^2 + yz + y^2 - xy - xz + z^2 = 3$ which are \textbf{closest} and \textbf{furthest} from the origin.}
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+        
+        Let \(h: U \times \mathbb{R} \to \mathbb{R}\) be the \(C^1\) function defined by
+        \[
+            h(x, y) = yg(x) + y - f(x)
+        \]
+        Notice that \(h(p_0, f(p_0)) = f(p_0) \cdot g(p_0) + f(p_0) - f(p_0) = 0\) and \(\dfrac{\partial h}{\partial y} (p_0, f(p_0)) = g(p_0) + 1 = 1 \neq 0\). By the implicit function theorem, there exists an open set \(W \subseteq \mathbb{R}^n\) and \(C^1\) function \(\psi : W \to \mathbb{R}\) such that for all \(x \in W\),
+        \[
+            h(x, \psi (x)) = \psi (x) g(x) + \psi (x) - f(x) = 0
+        \]
+        Taking the derivative of both sides at \(p_0\) with respect to \(x\), we see that
+        \[
+            g(p_0) \nabla \psi (p_0) + \psi (p_0) \nabla g(p_0) + \nabla \psi (p_0) - \nabla f(p_0) = 0
+        \]
+        \[
+            \implies \psi (p_0) \nabla g(p_0) + \nabla \psi (p_0) - \nabla f(p_0) = 0
+        \]
+        Also note that \(\dfrac{\partial \psi}{\partial x_i}(p_0) = \dfrac{\frac{\partial h}{\partial x_i}(p_0, f(p_0))}{\frac{\partial h}{\partial y}(p_0, f(p_0))} = \dfrac{\partial g}{\partial x_i}(p_0) - \dfrac{\partial f}{\partial x_i}(p_0)\). Thus our equation becomes
+        \[
+            (\psi (p_0) + 1)\nabla g(p_0) - 2 \nabla f(p_0) = 0 \implies \nabla f(p_0) = \frac{\psi (p_0) + 1}{2} g(p_0)
+        \]
+        Therefore the value \(\lambda = \dfrac{\psi (p_0) + 1}{2}\) is the one that we needed.
+
+        \medskip
+
+        (b):
 	\end{question}
     \newpage
     \begin{question}{34}
