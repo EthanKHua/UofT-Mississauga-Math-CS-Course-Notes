@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+    \begin{question}{1}
+        Suppose \(\widetilde{p}\) must approximate \(p\) with relative error at most \(10^{-3}\). Find the largest interval in which \(\widetilde{p}\) must lie if \(p = 900\).
+
+        \tcblower
+
+        Since we want the relative error to be at most \(10^{-3}\), we set
+        \[
+            \frac{|\widetilde{p} - p|}{|p|} \leq 10^{-3}
+        \]
+        Substitute \(p = 900\) to get
+        \[
+            \frac{|\widetilde{p} - 900|}{900} \leq 10^{-3} \implies |\widetilde{p} - 900| \leq \frac{9}{10} \implies 900-\frac{9}{10} \leq \widetilde{p} \leq 900 + \frac{9}{10}.
+        \]
+        Thus \(\widetilde{p}\) lies within the interval \(\left[ 900 - \frac{9}{10}, 900 + \frac{9}{10}\right]\).
+    \end{question}
+    \newpage
+    \begin{question}{2}
+        Compute the absolute error and relative error of the following approximation of \(e\):
+        \[
+            \sum_{n=0}^{5} \frac{1}{n!}
+        \]
+    \end{question}
+    \newpage
+    \begin{question}{3}
+        Find the second Taylor polynomial, \(P_2(x)\), \(f(x) = e^x \cos (x)\) about \(x_0 = 0\).
+        \begin{enumerate}[label=(\alph*)]
+            \item Use \(P_2(0.5)\) to approximate \(f(0.5)\). Find an upper bound on the error \(|f(0.5) - P_2(0.5)|\) using the remainder term and compare it to the actual error.
+            \item Find a bound on the error \(|f(x) - P_2(x)|\) good on the interval \([0,1]\).
+            \item Approximate \(\int _0^1 f(x)\ dx\) by calculating \(\int _0^1 P_2(x)\ dx\) instead.
+            \item Find an upper bound for the error in (c) using \(\int _0^1 |R(x)|\ dx\) and compare the bound to the actual error.
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{4}
+        Find a theoretical upper bound, as a function of \(x\), for the absolute error in using \(T_4(x)\) to approximate \(f(x) = \frac{10}{x} + \sin(10x)\); \(x_0 = \pi\).
+    \end{question}
+    \newpage
+    \begin{question}{5}
+        Let \((p_n) = \left\langle \frac{3n^5 - 5n}{1 - n^5} \right\rangle \to -3\) Find the (fastest) rate of convergence of the form \(\mathcal{O}\left(\frac{1}{n^p}\right)\) or \(\mathcal{O}\left(\frac{1}{a^n}\right)\) for each. If this is not possible, suggest a reasonable rate of convergence.
+    \end{question}
+    \newpage
+    \begin{question}{6}
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose you are trying to find the root of \(f(x) = x - e^{-x}\) using the bisection method. Find an integer \(a\) such that the interval \([a, a+2]\) is an appropriate one in which to start the search.
+            \item Use the bisection method to find the root in your interval in (a), accurate to \(10^{-4}\). Provide the Octave code you used to produce your result.
+        \end{enumerate}
+    \end{question}
+\end{document}
