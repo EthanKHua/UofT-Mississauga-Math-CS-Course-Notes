@@ -4,6 +4,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{mathtools}
+\usepackage{systeme}
 
 % My boxes
 \usepackage[breakable]{tcolorbox}
@@ -206,6 +207,29 @@
         We will attempt to minimize and maximize \(f(x,y,z) = x^2 + y^2 + z^2\) on \(M\). By part (a), there exists \(\lambda \in \mathbb{R}\) so that
         \[
             \nabla f(p_0) = \lambda \nabla g(p_0) \implies (2x, 2y, 2z) = \lambda (2x - y - z, z + 2y - x, y - x + 2z)
+        \]
+        Thus we end up with the system of equations
+        \begin{equation*}
+            \sysdelim..
+            \systeme{
+                {2(1 - \lambda)}x + y + z = 0,
+                x + {2(1 - \lambda)}y - z = 0,
+                x - y + {2(1 - \lambda)}z = 0
+            }
+        \end{equation*}
+        We take the first and second equation and add them together to obtain
+        \[
+            (2(1 - \lambda) + 1)x + (2(1 - \lambda) + 1)y = 0
+        \]
+        \[
+            \implies (2(1 - \lambda) + 1)(x + y) = 0 \tag{1}
+        \]
+        Likewise, we can subtract the third equation from the second to get
+        \[
+            (2(1 - \lambda) + 1)y - (2(1 - \lambda) + 1)z = 0
+        \]
+        \[
+            (2(1 - \lambda) + 1)(y - z) = 0
         \]
 	\end{question}
     \newpage
