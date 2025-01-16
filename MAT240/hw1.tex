@@ -148,12 +148,25 @@
             
             \item[(b)] \([6]x + [3] = [5]\)
             
-            This equation has no solution. We can simply substitute \(x = [0], ..., [8]\) into the left hand side and see that it does not equal the right hand side.
+            This equation has no solution. To show this, we first simplify the equation to \([6]x = [2]\) by adding \([6]\) to both sides. We can substitute \(x = [0], ..., [8]\) into the left hand side and see that it does not equal the right hand side:
+            \[
+                [6][1] = [6],\ [6][2] = [3],\ [6][3] = [0],\ [6][4] = [6],\ [6][5] = [3],\ [6][6] = [0],\ 
+            \]
+            \[
+                [6][7] = [6],\ [6][8] = [3],\ 
+            \]
+            As shown, the left hand side can never equal \([5]\), so the equation has no solution.
 
             \item[(c)] \(x^2 = [0]\)
             
-
-
+            We can solve this by substituting every element in \(\mathbb{Z}_9\) into the left hand side. We see that
+            \[
+                [0]^2 = [0],\ [1]^2 = [1],\ [2]^2 = [4],\ [3]^2 = [0],\ [4]^2 = [7],\ 
+            \]
+            \[
+                [5]^2 = [7],\ [6]^2 = [0],\ [7]^2 = [4],\ [8]^2 = [1].
+            \]
+            Thus the solutions to this equation are \(x = [0], [3], [6]\).
         \end{enumerate}
     \end{question}
     \newpage
@@ -182,9 +195,45 @@
 
         (a):
 
-        To show closure under addition and multiplication, let \(a,b,c,d \in \mathbb{Z}_3\). Then \(a + bi, c + di \in \mathbb{Z}_3[i]\), but notice that since \(a + c \in \mathbb{Z}_3\) and \(b + d \in \mathbb{Z}_3\), it follows that \((a + c) + (b + d)i \in \mathbb{Z}_3[i]\).
+        Let \(a,b,c,d,p,q \in \mathbb{Z}_3\), so \(z = a + bi\), \(w = c + di\), and \(x = p + qi\) are elements of \(\mathbb{Z}_3[i]\).
 
-        As well, we also have that \(ac - bd, ad + bc \in \mathbb{Z}_3\), so \((ac - bd) + (ad  +bc)i \in \mathbb{Z}_3[i]\).
+        \smallbreak
+
+        To show closure under addition and multiplication, we use the closure of \(\mathbb{Z}_3\) to see that \(a + c \in \mathbb{Z}_3\) and \(b + d \in \mathbb{Z}_3\). It follows that \(z + w = (a + c) + (b + d)i \in \mathbb{Z}_3[i]\).
+
+        As well, we also have that \(ac - bd, ad + bc \in \mathbb{Z}_3\), so \(zw = (ac - bd) + (ad  +bc)i \in \mathbb{Z}_3[i]\).
+
+        \smallbreak
+
+        To show the commutativity of addition and multiplication, we note that \(a + c = c + a\) and \(b + d = d + b\), so
+        \[
+            z + w = (a + c) + (b + d)i = (c + a) + (d + b)i = w + z
+        \]
+        Likewise, since \(ac = ca\), \(bd = db\), \(ad = da\), and \(bc = cb\),
+        \[
+            zw = (ac - bd) + (ad + bc)i = (ca - db) + (da + cb)i = wz
+        \]
+
+        \smallbreak
+
+        To show associativity, we again use the field properties of \(\mathbb{Z}_3\) to see that
+        \begin{align*}
+            (z + w) + x &= ((a + c) + (b + d)i) + p + qi \\
+            &= ((a + c) + p) + ((b + d) + q)i \\
+            &= (a + (c + p)) + (b + (d + q))i \tag{associativity of \(\mathbb{Z}_3\)} \\
+            &= a + bi + (c + p) + (d + q)i \\
+            &= z + (w + x)
+        \end{align*}
+
+        \smallbreak
+
+        Finally, showing distributivity, we have
+        \begin{align*}
+            x \cdot (z + w) &= (p + qi) \cdot ((a + c) + (b + d)i) \\
+            &= p(a + c) - q(b + d) + (p(b + d) + q(a + c))i \\
+            &= pa + pc - qb - qd + (pb + pd + qa + qc)i \tag{distributivity of \(\mathbb{Z}_3\)} \\
+            &= 
+        \end{align*}
 
         \medskip
 

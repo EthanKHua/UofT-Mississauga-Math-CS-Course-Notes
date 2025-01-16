@@ -116,25 +116,18 @@ Suppose the input list \texttt{locations} contains $n$ points distributed unifor
     
     Let \(p\) be as defined in part (a). Let \(X\) be the number of times the loop runs in the algorithm. The support of \(X\) is \(1, ..., n\), where \(n\) is the size of \verb|locations|.
 
-    Note that \(X\) is entirely dependent on the position of the first point in \verb|locations| that is outside of the circle. We define this as the random variable \(I\), whose distribution is given by
+    Note that \(X\) is entirely dependent on the position of the first point in \verb|locations| that is outside of the circle. Thus the distribution of \(X\) is given by
     \[
-      f_I(i) = \begin{dcases}
-        (1 - p)^i p, &\text{ if } i = 1, ..., n ;\\
+      f_X(x) = \begin{dcases}
+        (1 - p)^x p, &\text{ if } x = 1, ..., n ;\\
+        (1 - p)^{n+1} &\text{ if } x = n + 1 \\
         0, &\text{ otherwise} ,
       \end{dcases}
     \]
-    Additionally, we define the Bernoulli random variable \(J\) which represents whether there is no point that is outside the range, where the distribution is
+    Now, we compute the expected value of \(X\):
     \[
-      f_J(j) = \begin{dcases}
-        (1-p)^n, &\text{ if } j = 1 ;\\
-        1 - (1-p)^n, &\text{ if } j = 0 .
-      \end{dcases}
+      E[X] = \sum_{x=1}^{n+1} x f_X(x) = (n + 1)(1 - p)^{n + 1} + p\sum_{x=1}^{n} x(1 - p)^x
     \]
-    We note that \(X = I + nJ\). By the linearity of expectation,
-    \[
-      E[X] = E[I] + nE[J] = \sum_{i=1}^{n} i(1 - p)^i p + n (1-p)^n
-    \]
-    
 \end{enumerate}
 
 \end{enumerate}

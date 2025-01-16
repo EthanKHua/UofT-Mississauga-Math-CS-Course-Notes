@@ -229,3 +229,106 @@ gcc -Wall -g -o digits digits.c
 ./digits 10
 ./digits 1023012312312
 vim digits.c
+pwd
+pwd
+cd documents
+cd uni
+cd csc209
+cd huaethan
+git pull
+ls
+cd mab2
+cd lab2
+ls
+vim digits.c
+gcc -Wall -g -o digits digits.c
+./digits 10
+cat digits.c
+vim digits.c
+gcc -Wall -g -o digits digits.c
+./digits 10
+vim digits.c
+gcc -Wall -g -o digits digits.c
+./digits 10
+vim digits.c
+gcc -Wall -g -o digits digits.c
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+./digits 1313
+vim digits.c
+./digits 1
+./digits 0
+vim digits.c
+gcc -Wall -g -o digits digits.c
+./digits 0
+cat digits.c
+./digits 01
+./digits 1
+vim digits.c
+gcc -Wall -g -o digits digits.c
+./digits 1
+vim digits.c
+./digits "1"
+git add digits.c
+git ci "digits.c progress"
+git push
+exit
+cd documents
+cd uni
+cd csc209
+cd huaethan
+cd lab2
+git pull
+vim phone.c
+gcc -Wall -g -o phone phone.c
+./phone 9051234567 0
+./phone qwertyuiop 0
+vim phone.c
+./phone
+vim phone.c
+gcc -Wall -g -o phone phone.c
+./phone
+vim phone.c
+gcc -Wall -g -o phone phone.c
+./phone
+vim phone.c
+gcc -Wall -g -o phone phone.c
+./phone
+git add .
+git rm .
+git rm -r .
+git rm -f .
+git rm -f -r .
+git status
+git add .gitkeep digits.c invest.c phone.c score_card.c
+git ci "lab2 complete frfr"
+git push
+git status
+git log
+git help revert
+git revert a051caf02820ca7d6c7184a041a8ac61973f6d65
+git status
+vim phone.c
+gcc -Wall -g -o phone phone.c
+./phone
+git add phone.c
+git ci "lab2 complete frfr"
+git push
