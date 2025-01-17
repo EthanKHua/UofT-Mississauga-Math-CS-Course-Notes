@@ -332,3 +332,10 @@ gcc -Wall -g -o phone phone.c
 git add phone.c
 git ci "lab2 complete frfr"
 git push
+gcc -Wall -g -o test test.c
+vim test.c
+gcc -Wall -g -o test test.c
+ls
+gcc -Wall -g -o test1 test.c
+./test1
+./test1
