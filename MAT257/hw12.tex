@@ -266,7 +266,11 @@
         \[
             x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 3 \implies x = \frac{1}{\sqrt{2}},\ y = z = -\frac{1}{\sqrt{2}}
         \]
-
+        so
+        \[
+            f \left( \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}} \right) = \frac{3}{2}
+        \]
+        Thus the points on the ellipsoid that are furthest from the origin satisfy the equation \(x = y + z\), and the point that is closest to the origin is \(\left( \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}} \right)\).
 	\end{question}
     \newpage
     \begin{question}{34}
@@ -281,7 +285,15 @@
         
         (a):
 
-        Suppose for contradiction that \(n > m = 1\) and \(\Phi\) is an injective function.
+        Suppose for contradiction that \(n > m = 1\) and \(\Phi\) is a \(C^1\) injective function. Since \(\Phi\) cannot be a constant function, by the results of Big List \#26, there is a \(p \in \mathbb{R}^n\) so that \(\nabla \Phi(p) \neq 0\). In particular, we will say that \(\dfrac{\partial \Phi}{\partial x_j} \neq 0\). Define \(\alpha (x) = \Phi (x) - \Phi (p)\). Injectivity is translation-invariant, so \(\alpha\) is injective. Notice that \(\alpha (p) = 0\). We can apply the implicit function theorem to obtain an open set \(W \subseteq \mathbb{R}^{n-1}\) that contains \(p' = (p_1, ..., p_{j-1}, p_{j+1}, ..., p_n)\) and a \(C^1\) function \(\Psi : W \to \mathbb{R}\) such that for all \(x = (x_1, ..., x_{n-1}) \in W\),
+        \[
+            \alpha (x_1, ..., x_{j-1}, \Psi (x), x_{j+1}, ..., x_{n-1}) = 0
+        \]
+        Then, since \(W\) is open and contains \(p'\), we can find another distinct point \(q \in W\). We have
+        \[
+            \alpha (p_1, ..., p_{j-1}, \Psi (p'), p_{j+1}, ..., p_n) = 0 = \alpha (q_1, ..., q_{j-1}, \Psi (q), q_{j+1}, ..., q_{n-1})
+        \]
+        which contradicts the fact that \(\alpha\) is injective.
 
         \medskip
 
