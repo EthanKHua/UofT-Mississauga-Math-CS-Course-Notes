@@ -1,9 +1,26 @@
 \documentclass{article}
 \usepackage[margin=1.0in]{geometry}
 \usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{listings}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{mathtools}
+
+\lstset{
+      language=Octave,
+      basicstyle=\color{offwhite},
+      breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{pastelblue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{offwhite},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{pastelgreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{offwhite}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+   }
 
 % My boxes
 \usepackage[breakable]{tcolorbox}
@@ -24,6 +41,8 @@
 \definecolor{darkgray}{RGB}{60, 60, 60}
 \definecolor{lightgray}{RGB}{180, 180, 180}
 \definecolor{offwhite}{RGB}{225, 225, 245}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
 
 
 \pagecolor{darkgray}
@@ -160,12 +179,57 @@
     \newpage
     \begin{question}{5}
         Let \((p_n) = \left\langle \frac{3n^5 - 5n}{1 - n^5} \right\rangle \to -3\) Find the (fastest) rate of convergence of the form \(\mathcal{O}\left(\frac{1}{n^p}\right)\) or \(\mathcal{O}\left(\frac{1}{a^n}\right)\) for each. If this is not possible, suggest a reasonable rate of convergence.
+
+        We claim that \((p_n)\) converges to \(p = 3\) with rate of convergence \(\mathcal{O} \left(\frac{1}{n^4}\right)\). To prove this, first let \(n_0 = 1\) and \(\lambda = 7\). We see that for all \(n > n_0\),
+        \[
+            |p_n - p| = \left\vert \frac{3n^5 - 5n}{1 - n^5} + 3 \right\vert = \left\vert \frac{3 - 5n}{(1 - n)(1 + n + n^2 + n^3 + n^4)} \right\vert
+        \]
+        \[
+            = \left\vert \frac{5 - 5n - 2}{(1 - n)(1 + n + n^2 + n^3 + n^4)} \right\vert = \left\vert \frac{5}{1 + n + n^2 + n^3 + n^4} + \frac{2}{(n - 1)(1 + n + n^2 + n^3 + n^4)} \right\vert
+        \]
+        We can remove the absolute values because the term inside is positive. Since \(n - 1 > 1\), we get
+        \[
+            \frac{5}{1 + n + n^2 + n^3 + n^4} + \frac{2}{(n - 1)(1 + n + n^2 + n^3 + n^4)} \leq \frac{5}{n^4} + \frac{2}{n^4} = \frac{7}{n^4}
+        \]
+        which is what we wanted.
+
+        To show that this is indeed the fastest rate of convergence, we can show that the sequence \(\left( \frac{1}{n^4} \right)\) converges to 0 with rate of convergence \(\mathcal{O} \left( p_n + 3 \right)\).
     \end{question}
     \newpage
     \begin{question}{6}
         \begin{enumerate}[label=(\alph*)]
             \item Suppose you are trying to find the root of \(f(x) = x - e^{-x}\) using the bisection method. Find an integer \(a\) such that the interval \([a, a+2]\) is an appropriate one in which to start the search.
+            
+            Let \(a = 0\). We see that \(f(0) = -1 < 0\), \(f(2) = 2 - \frac{1}{e^2} > 0\), so the interval [0,2] satisfies the conditions to use the bisection method.
+
             \item Use the bisection method to find the root in your interval in (a), accurate to \(10^{-4}\). Provide the Octave code you used to produce your result.
+            
+            Using the method, the root was found at \(x \approx 0.5672\).
+
+            Below is the Octave code used, along with the command used in command line:
+            \begin{lstlisting}
+function [m,M,i]=bisection(a,b,f,tol)
+N=ceil((log(b-a)-log(tol))/log(2));
+L=f(a);
+for i=1:N
+m=(a+b)/2;
+M=f(m);
+if (M==0)
+return;
+end%if
+if (L*M<0)
+b=m;
+else
+a=m;
+L=M;
+end%if
+end%for
+i=N;
+end%function
+            \end{lstlisting}
+            \begin{lstlisting}[numbers=none]
+>> [m,M,i] = bisection(0, 2, @(x) x-e^(-x), 0.0001)
+            \end{lstlisting}
         \end{enumerate}
     \end{question}
 \end{document}
