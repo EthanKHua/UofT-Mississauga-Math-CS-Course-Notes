@@ -98,11 +98,59 @@
             \item Use \(P_2(0.5)\) to approximate \(f(0.5)\). Find an upper bound on the error \(|f(0.5) - P_2(0.5)|\) using the remainder term and compare it to the actual error.
             
             First, we find \(P_2(x)\). We calculate that
-            
+            \begin{align*}
+                f(x_0) &= 1 \\
+                f'(x_0) &= e^{x_0}(\cos (x_0) - \sin (x_0)) = 1 \\
+                f''(x_0) &= -2e^{x_0}\sin (x_0) = 0 \\
+                f^{(3)}(x) &= -2e^{x} (\sin (x) - \cos (x))
+            \end{align*}
+            Thus \(P_2(x) = 1 + x\), so \(f(0.5) \approx P_2(0.5) = 1.5\). The error term is
+            \[
+                |R_2(0.5)| = \left\vert \dfrac{f^{(3)}(\xi)}{3!}(0.5)^{3} \right\vert = \left\vert \dfrac{e^{\xi } (\sin (\xi ) - \cos (\xi ))}{24} \right\vert \text{, for } \xi \in (0, 0.5).
+            \]
+            Since \(e^{\xi} < e^{0.5}\), \(\sin (\xi), \cos (\xi) \leq 1\), we get that
+            \[
+                |R_2(0.5)| < \frac{e^{0.5}}{12} \approx 0.1374.
+            \]
+            and the actual absolute error is
+            \[
+                \left\vert e^{0.5} \cos (0.5) - 1.5 \right\vert \approx 0.053111
+            \]
 
             \item Find a bound on the error \(|f(x) - P_2(x)|\) good on the interval \([0,1]\).
+            
+            Similar to the previous part, the error term is
+            \[
+                |R_2(x)| = \left\vert \frac{e^{\xi}(\sin (\xi ) - \cos (\xi ))}{3}x^3 \right\vert \text{, for } \xi  \in (0, x)
+            \]
+            We know that \(e^{\xi} < e^x\), so
+            \[
+                |R_2(x)| < \frac{2}{3} x^3e^x.
+            \]
+
             \item Approximate \(\int _0^1 f(x)\ dx\) by calculating \(\int _0^1 P_2(x)\ dx\) instead.
+            
+            We have that
+            \[
+                \int _0^1 f(x)\ dx \approx \int _0^1 P_2(x)\ dx = \int _0^1 1 + x\ dx = x + \frac{x^2}{2} \Big|_0^1 = 1.5
+            \]
+
             \item Find an upper bound for the error in (c) using \(\int _0^1 |R(x)|\ dx\) and compare the bound to the actual error.
+            
+            From part (b), the error term \(|R_2(x)\) is bounded above by \(\dfrac{2}{3}x^3 e^x\). Thus the error for the computation is
+            \[
+                \int _0^1 |R_2(x)|\ dx < \int _0^1 \dfrac{2}{3}x^3 e^x\ dx = \frac{2}{3}\left( x^3e^x - 3x^2e^x + 6xe^x - 6e^x \right) \Big|_0^1
+            \]
+            \[
+                = \frac{2}{3}(-2e + 6) \approx 0.3756.
+            \]
+            and the actual error is
+            \[
+                \left\vert \int _0^1 f(x)\ dx - 1.5 \right\vert = \left\vert \int _0^1 e^x \cos (x)\ dx - 1.5 \right\vert = \left\vert \frac{1}{2}e^x(\cos (x) + \sin (x))\Big|_0^1 - 1.5 \right\vert
+            \]
+            \[
+                = \left\vert \frac{e(\cos (1) + \sin (1))}{2} - \frac{1}{2} - 1.5 \right\vert \approx 0.1220.
+            \]
         \end{enumerate}
     \end{question}
     \newpage
