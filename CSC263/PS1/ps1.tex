@@ -234,6 +234,19 @@ on the coding components of this question, regardless of your autotest result.}
 
 \end{enumerate}
 
+The idea behind the algorithm is to store the values inserted into the collection in two heaps: one max heap for all the elements that are less than the \(\lceil \phi \times n \rceil\)th element and including the the \(\lceil \phi \times n \rceil\)th element, and one min heap for all the other elements. By doing this, the spy is guaranteed to be at the root of the first heap, and the next element in magnitude is in the root of the min heap. In general, the number of nodes in the first heap is exactly \(\lceil \phi \times n \rceil\).
+
+\smallbreak
+
+Each time an insert operation is called, we check whether the position of the spy changes. If it does, then the old max heap does not contain the right number of elements anymore and the spy is not necessarily at the root anymore. To fix this, we need to insert a new element into the first heap. Particularly, we need to insert the next least element after the old spy. The possible candidates are the root of the second heap, or the new element to be inserted, so we simply take the lower one. If we take the element from the second heap, we remove it from its original position in the second heap and re-insert it into the first heap. If we take the new element, just insert it into the first heap.
+
+\smallbreak
+
+If the position of the spy does not change, the size of the first heap should stay the same. Then all we need to do is check if the new element is ordered before or after the spy. If it is after, there is no problem and we insert the element into the second heap. If it is before, we need to insert it into the first heap. In order to keep the size of the heap the same, we "kick" the spy out of the first heap and insert it into the second heap.
+
+\smallbreak
+
+In terms of time complexity, the insersion operation utilizes heap insertion/deletion along with constant time comparisons, so the worse-case runtime ends up being logarithmic. Finding the spy is done in constant time, as we only need to access and return the value at the top of the first heap.
 \end{document}
 
 %%% Local Variables:
