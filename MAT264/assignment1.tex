@@ -74,7 +74,7 @@
         \[
             \frac{|\widetilde{p} - 900|}{900} \leq 10^{-3} \implies |\widetilde{p} - 900| \leq \frac{9}{10} \implies 900-\frac{9}{10} \leq \widetilde{p} \leq 900 + \frac{9}{10}.
         \]
-        Thus \(\widetilde{p}\) lies within the interval \(\left[ 900 - \frac{9}{10}, 900 + \frac{9}{10}\right]\).
+        Thus \(\widetilde{p}\) lies within the interval \(\left[ 900 - \dfrac{9}{10}, 900 + \dfrac{9}{10}\right]\).
     \end{question}
     \newpage
     \begin{question}{2}
@@ -82,12 +82,24 @@
         \[
             \sum_{n=0}^{5} \frac{1}{n!}
         \]
+        Using Octave, we find that the absolute error is
+        \[
+            \left\vert e - \sum_{n=0}^{5} \frac{1}{n!} \right\vert = \left\vert e - \left(1 + 1 + \frac{1}{2} + \frac{1}{6} + \frac{1}{24} + \frac{1}{120}\right) \right\vert = \left\vert e - \frac{326}{120} \right\vert \approx \texttt{1.615161792378306e-03}
+        \]
+        and the relative error is
+        \[
+            \left\vert \frac{e - \sum_{n=0}^{5} \frac{1}{n!}}{e} \right\vert = \left\vert \frac{e - \frac{326}{120}}{e} \right\vert \approx \texttt{5.941848175815963e-04}
+        \]
     \end{question}
     \newpage
     \begin{question}{3}
         Find the second Taylor polynomial, \(P_2(x)\), \(f(x) = e^x \cos (x)\) about \(x_0 = 0\).
         \begin{enumerate}[label=(\alph*)]
             \item Use \(P_2(0.5)\) to approximate \(f(0.5)\). Find an upper bound on the error \(|f(0.5) - P_2(0.5)|\) using the remainder term and compare it to the actual error.
+            
+            First, we find \(P_2(x)\). We calculate that
+            
+
             \item Find a bound on the error \(|f(x) - P_2(x)|\) good on the interval \([0,1]\).
             \item Approximate \(\int _0^1 f(x)\ dx\) by calculating \(\int _0^1 P_2(x)\ dx\) instead.
             \item Find an upper bound for the error in (c) using \(\int _0^1 |R(x)|\ dx\) and compare the bound to the actual error.
