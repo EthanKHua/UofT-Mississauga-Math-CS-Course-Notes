@@ -362,6 +362,26 @@
     \newpage
     \begin{question}{5}
         Let \(\mathbb{Q}[\sqrt{-2}] = \{a + b\sqrt{-2} | a,b \in \mathbb{Q}\}\). Prove that if \(\mathbb{K}\) is a subfield of \(\mathbb{C}\) and \(\sqrt{-2} \in \mathbb{K}\), then \(\mathbb{Q}[\sqrt{-2}] \subseteq \mathbb{K}\).
+
+        \tcblower
+
+        Suppose that \(\mathbb{K}\) is a subfield of \(\mathbb{C}\) and \(\sqrt{2} \in \mathbb{K}\). Fix \(z \in \mathbb{Q} [\sqrt{-2}]\). Then \(z = a + b\sqrt{-2}\), for some \(a,b \in \mathbb{Q}\). First, we will show that for all \(c \in \mathbb{Q}\), \(c \in \mathbb{K}\).
+
+        \smallbreak
+
+        Letting \(c \in \mathbb{Q}\), we can write \(c = \dfrac{p}{q}\), where \(p \in \mathbb{Z}\) and \(q \in \mathbb{N}\). By the existence of the additive identity, we have that \(1 \in \mathbb{K}\), and we can repeatedly use the closure of addition to see that
+        \[
+            \underbrace{1 + ... + 1}_{q \text{  times}} = q \in \mathbb{K} \text{ and } \underbrace{1 + ... + 1}_{p \text{  times}} = p \in \mathbb{K}.
+        \]
+        By the existence of inverses in \(\mathbb{K}\), we know that \(\dfrac{1}{q} \in \mathbb{K}\), and by closure under multiplication, we have that
+        \[
+            p \cdot \frac{1}{q} = c \in \mathbb{K}
+        \]
+        as needed.
+
+        \smallbreak
+
+        This implies that \(a,b \in \mathbb{K}\) as well. Since \(\sqrt{-2} \in \mathbb{K}\), we use closure again to conclude that \(b\sqrt{-2} \in \mathbb{K}\), and therefore \(z = a + b\sqrt{-2} \in \mathbb{K}\), so \(\mathbb{Q}[\sqrt{-2}] \subseteq \mathbb{K}\), proving the statement.
     \end{question}
     \newpage
     \begin{question}{6}
