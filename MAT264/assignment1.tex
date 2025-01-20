@@ -175,6 +175,11 @@
     \newpage
     \begin{question}{4}
         Find a theoretical upper bound, as a function of \(x\), for the absolute error in using \(T_4(x)\) to approximate \(f(x) = \frac{10}{x} + \sin(10x)\); \(x_0 = \pi\).
+
+        We can find the series expansion for \(\sin (10x)\) quite easily by noticing that
+        \[
+            \sin (10x) = \sin (10x - 10\pi) = \sin (10(x - \pi)) = \sum_{i=0}^{\infty} 
+        \]
     \end{question}
     \newpage
     \begin{question}{5}
@@ -193,7 +198,15 @@
         \]
         which is what we wanted.
 
-        To show that this is indeed the fastest rate of convergence, we can show that the sequence \(\left( \frac{1}{n^4} \right)\) converges to 0 with rate of convergence \(\mathcal{O} \left( p_n + 3 \right)\).
+        To show that this is indeed the fastest rate of convergence, we can show that the sequence \(\left( \frac{1}{n^4} \right)\) converges to 0 with rate of convergence \(\mathcal{O} \left( p_n + 3 \right)\). To do this, let \(n_0 = 1\), \(\lambda = 1\). Let \(n > n_0\). From the work we did in the previous part, we know that
+        \[
+            |p_n - p| = \frac{5}{1 + n + n^2 + n^3 + n^4} + \frac{2}{(n - 1)(1 + n + n^2 + n^3 + n^4)}
+        \]
+        Since \(\dfrac{2}{(n-1)(1 + n + n^2 + n^3 + n^4)} > 0\) and \(1 < n < n^2 < n^3 < n^4\), we get
+        \[
+            |p_n - p| > \frac{5}{1 + n + n^2 + n^3 + n^4} > \frac{5}{n^4 + n^4 + n^4 + n^4 + n^4} = \frac{1}{n^4}
+        \]
+        as needed.
     \end{question}
     \newpage
     \begin{question}{6}
