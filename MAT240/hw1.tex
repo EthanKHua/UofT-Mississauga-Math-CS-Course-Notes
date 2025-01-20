@@ -387,7 +387,7 @@
     \begin{question}{6}
         In this exercise we introduce a new definition:
 
-        **Definition:** Let \(\mathbb{F}\) be a field. The smallest non-negative integer \(n\) so that 
+        \textbf{Definition:} Let \(\mathbb{F}\) be a field. The smallest non-negative integer \(n\) so that 
         \(\underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = 0\)
         is called the characteristic of \(\mathbb{F}\). If no such \(n\) exists, then we say \(\mathbb{F}\) has characteristic 0.
 
@@ -405,12 +405,44 @@
         (a) Prove that \(\text{char}(\mathbb{Z}_p) = p\).
 
         (b) Prove that \(\text{char}(\mathbb{F})\) must either be prime or 0. (Hint: For the case that \(\text{char}(\mathbb{F})\) is non-zero, use contradiction.)
+
+        \tcblower
+        \ 
+
+        (a):
+
+        This result is quite fast, as we can add \([1]\) to itself \(p\) times to check:
+        \[
+            \underbrace{[1] + [1] + ... + [1]}_{p \text{ times}} = [p] = [0]
+        \]
+
+        \medskip
+
+        (b):
+
+        Assume seeking contradiction that \(\mathbb{F}\) is a field and \(\mathrm{char} (\mathbb{F})\) is non-zero and non-prime. We disregard the case where \(\mathrm{char} (\mathbb{F}) = 1\), because that means that \(1 = 0\), which is impossible. It follows that \(\mathrm{char} (\mathbb{F})\) can be written as a product of two integers \(a \cdot b\), where \(1 < a,b < \mathrm{char} (\mathbb{F})\). By definition, we see that
+        \[
+            \underbrace{1 + 1 + ... + 1}_{a\cdot b \text{ times}} = 0
+        \]
+        Group the \(1\)'s into groups of \(a\) like so:
+        \[
+            \underbrace{\underbrace{(1 + ... + 1)}_{a \text{ times}} + ... + \underbrace{(1 + ... + 1)}_{a \text{ times}}}_{b \text{ times}} = 0
+        \]
+        Denote each term as \(x_a\). We can repeatedly use the axiom of distributivity to see that
+        \[
+            x_a \cdot \underbrace{(1 + ... + 1)}_{b \text{ times}} = \underbrace{x_a + ... + x_a}_{b \text{ times}} = 0
+        \]
+        Let \(x_b = \underbrace{(1 + ... + 1)}_{b \text{ times}}\), so
+        \[
+            x_a \cdot x_b = 0
+        \]
+        This means that we must have either \(x_a = 0\) or \(x_b = 0\). Regardless, we have found a value \(p < \mathrm{char} (\mathbb{F})\) such that repeated addition of 1 up to \(p\) times results in 0, which is a contradiction.
     \end{question}
     \newpage
     \begin{question}{7}
         In this question we introduce a new definition:
 
-        **Definition:** Let \(f, g \in \mathbb{P}(\mathbb{F})\). We say that a polynomial \(d \in \mathbb{P}(\mathbb{F})\) is a **greatest common divisor** of \(f\) and \(g\) if:
+        \textbf{Definition:} Let \(f, g \in \mathbb{P}(\mathbb{F})\). We say that a polynomial \(d \in \mathbb{P}(\mathbb{F})\) is a **greatest common divisor** of \(f\) and \(g\) if:
 
         \begin{itemize}
             \item \(d\) is a divisor of both \(f\) and \(g\), and;
@@ -425,6 +457,15 @@
 
         (d) Deduce from (c) that if \(d\) is a greatest common division for \(f\) and \(g\), then we can write \(d = pf + qg\) for some polynomials \(p, q\).
 
+        \tcblower
+        \ 
+
+        (a):
+
+        Suppose that \(d\) is a common divisor of \(f\) and \(g\). By definition,
+        \[
+            f = dp \text{ and } g = dq, \text{ for some } p, q \in \mathbb{P} (\mathbb{F})
+        \]
     \end{question}
     \newpage
     \begin{question}{8}
