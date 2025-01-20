@@ -297,9 +297,10 @@
 
         (b):
 
-        Let \(R\) be a closed rectangle. \(\Phi (R)\) is compact. Claim that \(\Phi (R)\subseteq \cl{\Phi (R)^C}\).
-
-        Let \(x \in \Phi (R)\).
-
+        We claim that \(\Phi (K)\) has an empty interior (idk how to prove this). This being the case, then we know that every element is a limit point of \(\Phi (K) ^c\). But we also know that \(\Phi (K)\) is compact and therefore closed, so it contains all its limit points, so \(\Phi (K) = \partial \Phi (K)\). Compactness of \(\Phi (K)\) implies that the set is Jordan measurable, and additionally, we have that
+        \[
+            \mu (\Phi (K)) = \mu (\partial \Phi (K)) = 0
+        \]
+        as desired.
     \end{question}
 \end{document}
