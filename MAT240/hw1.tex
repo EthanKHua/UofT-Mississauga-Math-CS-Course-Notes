@@ -449,7 +449,7 @@
             \item for any other divisor \(d'\) of \(f\) and \(g\), we have \(\deg d \geq \deg d'\).
         \end{itemize}
 
-        (a) Prove that if \(d\) is a common divisor of \(f\) and \(g\), then for all \(a \in \mathbb{F}\), the polynomial \(ad\) is also a common divisor for \(f\) and \(g\). Explain why this shows that there is no "unique" greatest common divisor for \(f\) and \(g\) like there is for integers.
+        (a) Prove that if \(d\) is a common divisor of \(f\) and \(g\), then for all \(a \in \mathbb{F}\setminus \{ 0 \}\), the polynomial \(ad\) is also a common divisor for \(f\) and \(g\). Explain why this shows that there is no "unique" greatest common divisor for \(f\) and \(g\) like there is for integers.
 
         (b) Prove that if \(d_1, d_2\) are both greatest common divisors for \(f\) and \(g\), then \(d_1 = ad_2\) for some non-zero field element \(a\).
 
@@ -466,7 +466,24 @@
         \[
             f = dp \text{ and } g = dq, \text{ for some } p, q \in \mathbb{P} (\mathbb{F}).
         \]
-        
+        Let \(a \in \mathbb{F} \setminus \{0\}\). We know that \(a ^{-1}\) exists because \(\mathbb{F}\) is a field. It follows that
+        \begin{align*}
+            f &= dp \\
+            &= 1 \cdot dp \tag{additive identity} \\
+            &= (a \cdot a ^{-1})dp \\
+            &= a (a^{-1}d) p \tag{associativity} \\
+            &= a(d a^{-1}) p \tag{commutativity} \\
+            &= (ad)(a^{-1} p) \tag{associativity} 
+        \end{align*}
+        Likewise for \(g\),
+        \begin{align*}
+            g &= dq \\
+            &= 1 \cdot dq \tag{additive identity} \\
+            &= (a \cdot a ^{-1})dq \\
+            &= a (a^{-1}d) q \tag{associativity} \\
+            &= a(d a^{-1}) q \tag{commutativity} \\
+            &= (ad)(a^{-1} q) \tag{associativity}
+        \end{align*}
     \end{question}
     \newpage
     \begin{question}{8}
