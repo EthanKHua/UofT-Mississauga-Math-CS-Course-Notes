@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Fubini's Theorem + Exercise 12.15}
+    \textbf{Solvers:} Ethan
+    Let \(E\) be a closed rectangle in \(\mathbb{R}^2\), so \(E = [a,b]\times [c,d]\). Let \(f: E \to \mathbb{R}\) be a continuous function. Then
+    \[
+        \int _E f = \int _c^d \int _a^b f(x,y)\ dx\ dy
+    \]
+    \begin{proof}
+        We make the quick note that \(f(\cdot,y)\) is integrable because it is continuous. Moreover, it is uniformly continuous because it is defined on the closed interval \([a,b]\). Define \(g: [c,d] \to \mathbb{R}\) by
+        \[
+            g(y) = \int _a^b f(x,y)\ dx.
+        \]
+        We can argue that \(g\) is continuous because for any \(y\),
+        \[
+            |g(y + h) - g(y)| = \left\vert \int _a^b f(x,y + h)\ dx - \int _a^b f(x,y)\ dx\right\vert < \int _a^b |f(x, y + h) - f(x,y)|\ dx,
+        \]
+        which we can make arbitrarily small using the uniform continuity of \(f\).
+
+        Let \(P\) partition \([a,b]\) and \(Q\) partition \([c,d]\), and let \(n,m\) represent the number of intervals in \(P\) and \(Q\) respectively. Define
+        \[
+            M_{ij} = \sup \{f(x,y) : (x,y) \in [p_{i-1}, p_i] \times [q_{j-1}, q_j]\}.
+        \]
+        We claim that for all \(j\), \(y \in [q_{j-1}, q_j]\),
+        \[
+            \sum_{i=1}^{n} M_{ij} (p_i - p_{i-1}) \geq U(f(\cdot,y), P).
+        \]
+        Define \(M_{iy} = \sup \{f(x,y) : x \in [p_{i-1}, p_i]\}\). We notice that the set in \(M_{iy}\) is a subset of the one in \(M_{ij}\), so we immediately have that \(M_{iy} < M_{ij}\). Thus
+        \[
+            U(f(\cdot, y), P) = \sum_{i=1}^{n} M_{iy} (p_{i-1}, p_i) \leq \sum_{i=1}^{n} M_{ij} (p_{i-1}, p_i).
+        \]
+        From this, we get that for any \(j\),
+        \[
+            g(y_j) = \int _a^b f(x,y)\ dx \leq \sum_{i=1}^{n} M_{ij} (p_{i-1}, p_i), \text{ where } y_j \in [q_{j-1}, q_j],
+        \]
+        which implies that
+        \[
+            \sum_{i=1}^{n} M_{ij} (p_{i-1}, p_i) \geq M_j \coloneqq \sup \{g(y) : y \in [q_{j-1}, q_j]\}.
+        \]
+
+        It follows that
+        \[
+            U(f,(P,Q)) = \sum_{j=1}^{m} \sum_{i=1}^{n} M_{ij} (p_i - p_{i-1})(q_j - q_{j-1}) \geq \sum_{j=1}^{m} M_j (q_j - q_{j-1}) = U(g, Q) \geq \int _c^d g(y)\ dy,
+        \]
+        \[
+            \implies U(f,(P,Q)) \geq \int _c^d \int _a^b f(x,y)\ dx\ dy.
+        \]
+        We can follow the same steps from above but reversing the inequality signs to get that
+        \[
+            L(f,(P,Q)) \leq \int _c^d \int _a^b f(x,y)\ dx\ dy.
+        \]
+        Since we did this with arbitrary partitions \(P,Q\), we actually know that
+        \[
+            L(f) \leq \int _c^d \int _a^b f(x,y)\ dx\ dy \leq U(f),
+        \]
+        but \(L(f) = U(f)\) because of the integrability of \(f\), so we conclude that
+        \[
+            \int _E f = \int _c^d \int _a^b f(x,y)\ dx\ dy.
+        \]
+    \end{proof}
+    \textbf{Example:} Integrate \(f(x,y) = x^y\) on \(E = [0,1]^2\).
+
+    Note that \(f\) is undefined at \((0,0)\), but we can construct a function \(g\) that is the same as \(f\) but with \(g(0,0) = 1\) to solve this issue. It is also continuous, which I invite you to do as an exercise.
+
+    Using Fubini's Theorem, we have that
+    \[
+        \int _E f = \int _0^1 \int _0^1 x^y\ dx\ dy = \int _0^1 \frac{x^{y+1}}{y + 1}\Big| _0^1\ dy = \int _0^1 \frac{1}{y + 1}\ dy = \ln |y + 1| \Big| _0^1 = \ln 2.
+    \]
+    Doing this from the definition is kind of painful, so having Fubini in your closet is quite useful.
+\end{document}

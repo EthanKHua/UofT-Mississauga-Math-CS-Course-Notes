@@ -176,9 +176,9 @@
     \begin{question}{4}
         Find a theoretical upper bound, as a function of \(x\), for the absolute error in using \(T_4(x)\) to approximate \(f(x) = \frac{10}{x} + \sin(10x)\); \(x_0 = \pi\).
 
-        We can find the series expansion for \(\sin (10x)\) quite easily by noticing that
+        We can find the series expansion for \(\sin (10x)\) around \(x_0 = \pi\) quite easily by noticing that
         \[
-            \sin (10x) = \sin (10x - 10\pi) = \sin (10(x - \pi)) = \sum_{i=0}^{\infty} 
+            \sin (10x) = \sin (10x - 10\pi) = \sin (10(x - \pi)) = \sum_{n=0}^{\infty} \frac{(-1)^n 10^{2n + 1}(x - \pi)^{2n + 1}}{(2n + 1 )!}
         \]
     \end{question}
     \newpage
