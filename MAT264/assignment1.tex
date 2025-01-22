@@ -176,10 +176,26 @@
     \begin{question}{4}
         Find a theoretical upper bound, as a function of \(x\), for the absolute error in using \(T_4(x)\) to approximate \(f(x) = \frac{10}{x} + \sin(10x)\); \(x_0 = \pi\).
 
-        We can find the series expansion for \(\sin (10x)\) around \(x_0 = \pi\) quite easily by noticing that
+        \medskip
+        
+        We only need to find the remainder term \(R_4(x)\), so we will just compute the 5th derivative of \(f\) by hand:
+        \begin{align*}
+            f'(x) &= -\frac{10}{x^2} + 10\cos (10x) \\
+            f''(x) &= \frac{20}{x^3} - 100\sin (10x) \\
+            f'''(x) &= -\frac{60}{x^4} - 1000\cos (10x)\\
+            f^{(4)}(x) &= \frac{240}{x^5} + 10000\sin (10x) \\
+            f^{(5)}(x) &= \frac{1200}{x^6} + 100000\cos (10x)
+        \end{align*}
+        Thus we have that
+        \begin{align*}
+            R_4(x) &= \frac{f^{(5)}(\xi)}{5!}(x - \pi)^{5} = \frac{\dfrac{1200}{\xi^5} + 100000\cos (10\xi)}{120}(x - \pi)^5 \\
+            &= \left( \frac{10}{\xi ^5} + \frac{2500}{3}\cos (10\xi)\right) (x - \pi)^5
+        \end{align*}
+        where \(\xi\) is a number between \(\pi\) and \(x\). Let \(m(x) = \min \{\pi , x\}\). Then
         \[
-            \sin (10x) = \sin (10x - 10\pi) = \sin (10(x - \pi)) = \sum_{n=0}^{\infty} \frac{(-1)^n 10^{2n + 1}(x - \pi)^{2n + 1}}{(2n + 1 )!}
+            R_4(x) \leq \left( \frac{10}{m(x)} + \frac{2500}{3}\right)(x - \pi)^5
         \]
+        which is a desired upper bound.
     \end{question}
     \newpage
     \begin{question}{5}
