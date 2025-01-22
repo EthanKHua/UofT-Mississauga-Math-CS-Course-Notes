@@ -473,7 +473,7 @@
             &= (a \cdot a ^{-1})dp \\
             &= a (a^{-1}d) p \tag{associativity} \\
             &= a(d a^{-1}) p \tag{commutativity} \\
-            &= (ad)(a^{-1} p) \tag{associativity} 
+            &= (ad)(a^{-1} p) \tag{associativity}
         \end{align*}
         Likewise for \(g\),
         \begin{align*}
@@ -484,6 +484,20 @@
             &= a(d a^{-1}) q \tag{commutativity} \\
             &= (ad)(a^{-1} q) \tag{associativity}
         \end{align*}
+        The equations above imply that \(ad\) divides both \(f\) and \(g\), so \(ad\) is a common divisor.
+
+        This means that if \(d\) is greatest common divisor for \(f\) and \(g\), then if \(\mathbb{F}\) contains an element \(a \neq 0, 1\), then \(ad\) is distinct from \(d\), but is also a common divisor, and since \(\mathrm{deg} (d) = \mathrm{deg} (ad)\), it follows that \(ad\) is also a greatest common divisor of \(f\) and \(g\).
+
+        \medskip
+
+        (b):
+
+        Suppose for contradiction that there exists two greatest common divisors \(d_1, d_2\) to \(f\) and \(g\) such that for all \(a \in \mathbb{F}\setminus \{0\}\), \(d_1 \neq ad_2\).
+
+        Let \(c\) be a greatest common divisor for \(d_1\) and \(d_2\), so
+        \[
+            d_1 = c p_1 \text{ and } d_2 = c p_2, \text{ for some } p_1, p_2 \in \mathbb{P} (\mathbb{F}).
+        \]
     \end{question}
     \newpage
     \begin{question}{8}
