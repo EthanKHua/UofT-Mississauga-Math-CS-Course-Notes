@@ -76,9 +76,12 @@
 
         \smallbreak
 
-        First, we pick our 5 distinct ranks, which there are \({13\choose 5}\) different ways to do so. After picking the 5 ranks, we want to choose 3 red cards and 2 black cards. For each rank, there are 2 ways to choose a red card and 2 ways to choose a black card. Since we are choosing a total of 5 cards, no matter if we are choosing 3, 4, or 5 red cards, the number of ways turns out to be \(2^5\). For each case, the number of ways comes out to be \({13 \choose 5}2^5\), and there are 3 cases in total. Thus we can add all the cases together to get that the answer is
+        First, we pick our 5 distinct ranks, which there are \({13\choose 5}\) different ways to do so. After picking the 5 ranks, we want to assign each colored card a rank. For 3, 4, and 5 red cards, there are \({5 \choose 3},{5 \choose 4},{5 \choose 5}\) ways respectively to assign each red card to a different rank. For each rank, there are 2 ways to choose a red card and 2 ways to choose a black card. Since we are choosing a total of 5 cards, no matter if we are choosing 3, 4, or 5 red cards, the number of ways turns out to be \(2^5\). We can add all the cases together to get that the answer is
         \[
-            {13 \choose 5} \cdot 3 \cdot 2^5
+            {13 \choose 5} \cdot {5 \choose 3} \cdot 2^5 + {13 \choose 5} \cdot {5 \choose 4} \cdot 2^5 + {13 \choose 5} \cdot {5 \choose 5} \cdot 2^5
+        \]
+        \[
+            = {13 \choose 5} \cdot 2^5 \cdot (10 + 5 + 1) = {13 \choose 5} \cdot 2^9
         \]
     \end{question}
     \newpage
