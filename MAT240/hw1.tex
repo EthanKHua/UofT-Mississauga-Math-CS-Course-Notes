@@ -511,10 +511,46 @@
     \newpage
     \begin{question}{9}
         Let $p \in \mathbb{P}(\mathbb{C})$ be a polynomial with real coefficients. Prove that if $a$ is a root of $p$, then $\bar{a}$ is a root of $p$. (Hint: Write down an equation that means "$a$ is a root of $p$". Conjugate this equation.)
+
+        \tcblower
+
+        Suppose that \(a\) is a root of \(p\). This means that
+        \[
+            p(x) = (x - a)q(x), \text{ for some polynomial } q \in \mathbb{P}(\mathbb{C})
+        \]
+        Conjugating both sides, we get
+        \[
+            p(\overline{x}) = (\overline{x} - \overline{a})\cdot \overline{q}(\overline{x}), \text{ where } \overline{q} \text{ is the polynomial with the coefficients of } q \text{ but conjugated.}
+        \]
+        Recall that \(p\) has real coefficients, so the only thing that can change is \(x\). Now, we make the substitution \(t = \overline{x}\), and see that
+        \[
+            p(t) = (t - \overline{a}) \cdot \overline{q}(t)
+        \]
+        which means that \(\overline{a}\) is a root of \(p\) as needed.
     \end{question}
     \newpage
     \begin{question}{10}
         Using Question 9 and the Fundamental Theorem of Algebra, prove that the only irreducible 
         polynomials over $\mathbb{R}$ are linear and quadratics with no real roots. Use this to deduce our Theorem from class (Week 2) about the factorization of real polynomials.
+
+        \tcblower
+
+        Suppose that \(p \in \mathbb{P}(\mathbb{R})\) is neither linear nor a quadratic with no roots. By the Fundamental Theorem of Algebra, \(p\) has \(n\) complex roots, not necessarily distinct. We will pick one root \(r \in \mathbb{C}\). Consider the case where \(r \in \mathbb{R}\), that is, when \(r\) has no imaginary part. It follows that
+        \[
+            p(x) = (x - r)q(x), \text{ where } q \in \mathbb{P} (\mathbb{R}).
+        \]
+        We make the quick note that the degree of \(q\) is at least 1 since the degree of \(p\) is at least 2. Therefore \(p\) is reducible.
+        
+        Next, consider the case when \(r\) has a non-zero imaginary part. By the results of Question 9, \(\overline{r}\) is also a root, and additionally, \(r \neq \overline{r}\), so we can write
+        \[
+            p(x) = (x - r)(x - \overline{r})\cdot s(x), \text{ for } s \in \mathbb{P}(\mathbb{C})
+        \]
+        We denote \(r = a + bi\). We have that
+        \[
+            (x - r)(x - \overline{r}) = (x - a - bi)(x - a + bi) = (x - a)^2 + (x - a)bi - (x - a)bi + b^2
+        \]
+        \[
+            = x^2 - 2ax + a^2 + b^2
+        \]
     \end{question}
 \end{document}
