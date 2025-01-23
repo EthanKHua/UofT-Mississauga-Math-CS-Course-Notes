@@ -115,7 +115,8 @@
     \begin{align*}
         p(x) &= \sum_{i=0}^{m} \left( \frac{c_i}{i+2}x^{i+2} - \frac{c_i}{i + 2}r^{i+2} + \frac{c_i}{i+1}r^{i+2} - r\frac{c_i}{i + 1}x^{i+1} \right) \\
         &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i+2} \right)(x^{i+2} - r^{i+2}) - \left( \frac{c_i r}{i + 1} \right)(x^{i+1} - r^{i+1})\right) \\
-        &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i + 2} \right)(x - r) \sum_{j=0}^{i+1} x^j r^{i - j + 1} - \left( \frac{c_i}{i + 1} \right)(x - r)\sum_{j=0}^{i} x^j r^{i-j} \right) 
+        &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i + 2} \right)(x - r) \sum_{j=0}^{i+1} x^j r^{i - j + 1} - \left( \frac{c_i}{i + 1} \right)(x - r)\sum_{j=0}^{i} x^j r^{i-j} \right) \\
+        &= (x - r)\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)} \left( (i + 1)\left(x^{i+1} + \sum_{j=0}^{i} x^j r^{i-j+1} \right) - (i + 2)\sum_{j=0}^{i} x^j r^{i-j} \right) \right) 
     \end{align*}
 
     Define \(\Phi : \mathbb{R}^{n+2} \to \mathbb{R}\) 
