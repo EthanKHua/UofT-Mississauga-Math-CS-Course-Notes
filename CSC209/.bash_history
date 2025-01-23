@@ -339,3 +339,66 @@ ls
 gcc -Wall -g -o test1 test.c
 ./test1
 ./test1
+ls
+cd a1
+ls
+cat compute_parity.c parity.c
+vim compute_parity.c
+vim parity.c
+vim compute_parity.c
+vim parity.c
+gcc -Wall -g -o compute_parity compute_parity.c parity.c
+./compute_parity
+./compute_parity 4 64 "quotes.txt"
+vim parity.c
+vim parity.c
+gcc -Wall -g -o compute_parity compute_parity.c parity.c
+vim parity.c
+gcc -Wall -g -o compute_parity compute_parity.c parity.c
+./compute_parity 4 64 "quotes.txt"
+vim parity.c
+vim parity.c
+gcc -Wall -g -o compute_parity compute_parity.c parity.c
+./compute_parity 4 64 "quotes.txt"
+ls
+vim restore_block.c
+gcc -Wall -g -o restore_block restore_block.c parity.c
+./restore_block
+./restore_block 4 64 "quotes.txt" 0
+vim restore_block.c
+vim parity.c
+gcc -Wall -g -o restore_block restore_block.c parity.c
+vim parity.c
+gcc -Wall -g -o restore_block restore_block.c parity.c
+./restore_block 4 64 "quotes.txt" 0
+ls
+touch testing.txt
+ls
+vim testing.txt
+ls
+gcc -Wall -g -o split_array split_array.c
+./split_array 1 2 3
+./split_array 1 2 3 4 5 6 
+./split_array 1 2 3 4 5 6 7
+./split_array 1 2 3 4 5 6 7 8
+./split_array 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+./split_array 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+./split_array 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+cd ..
+cd a1
+ls
+git add compute_parity.c parity.c restore_block.c
+git ci "a1 minus testing complete"
+pwd
+cd ..
+ls
+cd A1
+pqs
+pqs
+pqd
+pwd
+ls
+git add compute_parity.c parity.c restore_block.c
+git status
+git ci "a1 minus testing complete"
+git push

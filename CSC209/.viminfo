@@ -12,9 +12,13 @@
 ~h
 # Command Line History (newest to oldest):
 :x
-|2,0,1737145114,,"x"
+|2,0,1737589798,,"x"
 :q
-|2,0,1736974828,,"q"
+|2,0,1737589561,,"q"
+:w
+|2,0,1737589189,,"w"
+:filetype indent on
+|2,0,1737587617,,"filetype indent on"
 :X
 |2,0,1736888144,,"X"
 
@@ -30,262 +34,327 @@
 "0	LINE	0
 			count[digit]++;
 |3,0,0,1,1,0,1736886753,"		count[digit]++;"
-"1	LINE	0
-		scanf("%d", &n);
-|3,0,1,1,1,0,1736975535,"	scanf(\"%d\", &n);"
+""1	LINE	0
+	    // TODO: Implement this function
+|3,1,1,1,1,0,1737588820,"    // TODO: Implement this function"
 "2	LINE	0
-		scanf("%d", &n);
-|3,0,2,1,1,0,1736974921,"	scanf(\"%d\", &n);"
+	    // TODO: Implement this function
+|3,0,2,1,1,0,1737588001,"    // TODO: Implement this function"
 "3	LINE	0
-	    // TODO complete the function according to its description
-|3,0,3,1,1,0,1736972900,"    // TODO complete the function according to its description"
+		for(int i = 0; i < num_blocks; i++) {
+			
+|3,0,3,1,2,0,1737587332,"	for(int i = 0; i < num_blocks; i++) {","		"
 "4	LINE	0
-	    // TODO: write the body of sum_card according to its description.
-|3,0,4,1,1,0,1736887522,"    // TODO: write the body of sum_card according to its description."
+		for(int i = 0; i < num_blocks; i++) {
+			
+|3,0,4,1,2,0,1737587317,"	for(int i = 0; i < num_blocks; i++) {","		"
 "5	LINE	0
-		return -9;
-|3,0,5,1,1,0,1736887026,"	return -9;"
+			*parity_block ^= data[i];
+|3,0,5,1,1,0,1737587306,"		*parity_block ^= data[i];"
 "6	LINE	0
-		return -9;
-|3,0,6,1,1,0,1736887015,"	return -9;"
+	    // TODO: Implement this function
+|3,0,6,1,1,0,1737586771,"    // TODO: Implement this function"
 "7	LINE	0
-	
-|3,0,7,1,1,0,1736887010,""
+	    // TODO: Implement this function
+|3,0,7,1,1,0,1737586180,"    // TODO: Implement this function"
 "8	LINE	0
-			count[digit]++;
-|3,0,8,1,1,0,1736886760,"		count[digit]++;"
+	    // TODO: Implement this function   
+|3,0,8,1,1,0,1737586059,"    // TODO: Implement this function   "
 "9	LINE	0
-	    // remember to change the return value.
-|3,0,9,1,1,0,1736886108,"    // remember to change the return value."
-""-	CHAR	0
-	false
-|3,1,36,0,1,0,1737145105,"false"
+		scanf("%d", &n);
+|3,0,9,1,1,0,1736975535,"	scanf(\"%d\", &n);"
+"-	CHAR	0
+	 
+|3,0,36,0,1,0,1737586054," "
 
 # File marks:
-'0  6  14  /mnt/c/Users/night/Documents/Progwams/test.c
-|4,48,6,14,1737145114,"/mnt/c/Users/night/Documents/Progwams/test.c"
-'1  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,49,18,1,1736975537,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'2  17  8  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,50,17,8,1736975235,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'3  17  8  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,51,17,8,1736975235,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'4  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,52,15,9,1736975092,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'5  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,53,15,9,1736975092,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'6  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,54,15,9,1736975092,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'7  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,55,15,9,1736975092,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'8  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,56,18,1,1736974922,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
-'9  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,57,18,1,1736974922,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
+'0  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/testing.txt
+|4,48,1,0,1737590269,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/testing.txt"
+'1  135  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,49,135,0,1737589798,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+'2  131  31  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,50,131,31,1737589781,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+'3  131  31  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,51,131,31,1737589781,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+'4  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,52,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+'5  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,53,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+'6  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,54,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+'7  136  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,55,136,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+'8  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,56,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+'9  135  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,57,135,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
 
 # Jumplist (newest first):
--'  6  14  /mnt/c/Users/night/Documents/Progwams/test.c
-|4,39,6,14,1737145114,"/mnt/c/Users/night/Documents/Progwams/test.c"
--'  1  0  /mnt/c/Users/night/Documents/Progwams/test.c
-|4,39,1,0,1737145091,"/mnt/c/Users/night/Documents/Progwams/test.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736975537,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736975537,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  17  8  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,17,8,1736975519,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  17  8  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,17,8,1736975519,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  17  8  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,17,8,1736975235,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  17  8  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,17,8,1736975235,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,15,9,1736975100,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,15,9,1736975100,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,15,9,1736975100,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,15,9,1736975100,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,15,9,1736975092,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  15  9  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,15,9,1736975092,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736974968,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736974968,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736974968,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736974968,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736974922,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  18  1  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,18,1,1736974922,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974876,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974828,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974828,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974775,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  1  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c
-|4,39,1,0,1736974775,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/phone.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
--'  114  0  /mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c
-|4,39,114,0,1736973777,"/mnt/c/Users/night/documents/uni/csc209/huaethan/lab2/digits.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/testing.txt
+|4,39,1,0,1737590269,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/testing.txt"
+-'  135  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,135,0,1737589798,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  135  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,135,0,1737589798,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  131  31  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,131,31,1737589790,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  131  31  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,131,31,1737589790,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  131  31  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,131,31,1737589781,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  131  31  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,131,31,1737589781,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  136  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,136,0,1737589566,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  135  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,135,0,1737589566,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  136  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,136,0,1737589566,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  135  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,135,0,1737589566,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589561,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589544,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  62  4  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,62,4,1737589322,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  83  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,83,0,1737589225,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  1  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+|4,39,1,0,1737589223,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  134  0  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,134,0,1737589194,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588813,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  113  27  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,113,27,1737588093,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
+-'  90  1  /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+|4,39,90,1,1737587984,"/mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c"
 
 # History of marks within files (newest to oldest):
+
+> /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/testing.txt
+	*	1737590267	0
+	"	1	0
+
+> /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/parity.c
+	*	1737589797	0
+	"	135	0
+	^	135	1
+	.	135	0
+	+	59	38
+	+	61	0
+	+	60	33
+	+	62	13
+	+	71	38
+	+	73	0
+	+	72	39
+	+	73	2
+	+	86	39
+	+	86	38
+	+	90	0
+	+	90	26
+	+	90	2
+	+	91	0
+	+	90	2
+	+	100	0
+	+	90	1
+	+	90	0
+	+	87	0
+	+	86	32
+	+	87	19
+	+	86	29
+	+	87	38
+	+	87	39
+	+	89	0
+	+	88	36
+	+	91	0
+	+	112	38
+	+	113	1
+	+	114	0
+	+	113	28
+	+	127	107
+	+	130	1
+	+	134	0
+	+	130	43
+	+	133	0
+	+	132	2
+	+	128	0
+	+	128	38
+	+	129	43
+	+	132	36
+	+	136	0
+	+	130	39
+	+	131	31
+	+	135	0
+
+> /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/restore_block.c
+	*	1737589545	0
+	"	83	0
+
+> /mnt/c/Users/night/Documents/Uni/CSC209/huaethan/a1/compute_parity.c
+	*	1737586347	0
+	"	25	8
 
 > /mnt/c/Users/night/Documents/Progwams/test.c
 	*	1737145113	0

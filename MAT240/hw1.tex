@@ -498,6 +498,24 @@
         \[
             d_1 = c p_1 \text{ and } d_2 = c p_2, \text{ for some } p_1, p_2 \in \mathbb{P} (\mathbb{F}).
         \]
+        \(p_1\) and \(p_2\) cannot be constant, as that would contradict our assumption that \(d_1\) is not a scalar multiple of \(d_2\). Additionally, notice that the greatest common divisor of \(p_1\) and \(p_2\) is 1, because otherwise \(c\) would not be the greatest common divisor of \(d_1\) and \(d_2\).
+
+        Since \(d_1\) and \(d_2\) divides \(f\),
+        \[
+            f = d_1 \cdot q = d_2 \cdot r \implies c p_1 q = c p_2 r
+        \]
+
+        \medskip
+
+        (c):
+
+
+
+        \medskip
+
+        (d):
+
+
     \end{question}
     \newpage
     \begin{question}{8}
@@ -535,7 +553,13 @@
 
         \tcblower
 
-        Suppose that \(p \in \mathbb{P}(\mathbb{R})\) is neither linear nor a quadratic with no roots. By the Fundamental Theorem of Algebra, \(p\) has \(n\) complex roots, not necessarily distinct. We will pick one root \(r \in \mathbb{C}\). Consider the case where \(r \in \mathbb{R}\), that is, when \(r\) has no imaginary part. It follows that
+        First, we will show that linear and quadratics with no real roots are irreducible.
+
+        In order for a linear polynomial to be irreducible, it is necessary for it to be able to be factored into two non-constant polynomials of strictly lower degree. However, this is not possible as a polynomial with degree strictly less than a linear is constant.
+
+        In the case for quadratics with no real roots, we assume seeking contradiction that it is indeed reducible. The only way to factor it is to separate it into two linear polynomials with real coefficients. However, these polynomials always have one real root, contradicting the fact that the quadratic has no real roots.
+
+        Now, suppose that \(p \in \mathbb{P}(\mathbb{R})\) is neither linear nor a quadratic with no roots. By the Fundamental Theorem of Algebra, \(p\) has \(n\) complex roots, not necessarily distinct. We will pick one root \(r \in \mathbb{C}\). Consider the case where \(r \in \mathbb{R}\), that is, when \(r\) has no imaginary part. It follows that
         \[
             p(x) = (x - r)q(x), \text{ where } q \in \mathbb{P} (\mathbb{R}).
         \]
@@ -550,7 +574,8 @@
             (x - r)(x - \overline{r}) = (x - a - bi)(x - a + bi) = (x - a)^2 + (x - a)bi - (x - a)bi + b^2
         \]
         \[
-            = x^2 - 2ax + a^2 + b^2
+            = x^2 - 2ax + a^2 + b^2 
         \]
+        This means that \(p(x) = (x^2 - 2ax + a^2 + b^2)s(x)\). Notice that \(s\) must have real coefficients, for if not, then \(p\) will not have real coefficients. Since \(p\) can be factored into two polynomials with real coefficients, then we can conclude that it is reducible.
     \end{question}
 \end{document}
