@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{systeme}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+
+    \begin{question}{35}
+        \textit{Perturbing the roots of a polynomial.}
+    
+    Let $f(x)=\sum_{i=0}^n a_ix^i$ be a \textbf{monic} polynomial with \textbf{no repeated real roots}. This means that $a_n=1$, and that all real roots of $f$ have multiplicity $1$.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        
+        Let $r$ be a root of $f(x)$. Prove that for all $\varepsilon>0$, there exists $\delta>0$ such that: if $g(x)=\sum_{i=0}^n b_ix^i$ is a monic polynomial with coefficients $b_i$ satisfying $|a_i-b_i|<\delta$, then $g(x)$ has at least one root in the interval $(r-\varepsilon,r+\varepsilon)$.
+
+        This shows that slight perturbations of the coefficients results in slight perturbations of the roots.
+        
+        \item Suppose that $f$ has fewer than $n$ real roots. Prove that number of real roots of $f$ does not change under small perturbation of the coefficients.
+    \end{enumerate}
+
+    \tcblower
+    \ 
+
+    (a):
+
+    First, we prove the following lemma:
+
+    \textbf{Lemma.} Let \(r \in \mathbb{R}\) be a root of a polynomial \(p\). Then \(r\) is a repeated root if and only if \(p'(r) = 0\).
+
+    Suppose that \(p\) has a repeated root. Then we can factor \(p\) as \((x - r)^k q(x)\), for some \(k > 1\) and \(q \in \mathbb{P} (\mathbb{R})\). We can take the derivative of this and get that
+    \[
+        p'(x) = k(x - r)^{k-1} q(x) + (x - r)^k q'(x)
+    \]
+    \[
+        \implies p'(r) = 0
+    \]
+    Conversely, suppose that \(p'(r) = 0\), for some \(r \in \mathbb{R}\). We can write
+    \[
+        p'(x) = (x - r)\sum_{i=0}^{m} c_i x^i, \text{ for constants } c_0, ..., c_m
+    \]
+    We can integrate both sides to get that
+    \[
+        p(x) = \int (x - r) \sum_{i=0}^{m} c_i x_i\ dx = \int x\sum_{i=0}^{m} c_i x_i - r\sum_{i=0}^{m} c_i x_i\ dx
+    \]
+    \[
+        = \sum_{i=0}^{m} \frac{c_i}{i+2}x^{i+2} - r \sum_{i=0}^{m} \frac{c_i}{i+1}x^{i+1} + C
+    \]
+    In order for \(r\) to be a root of \(p\), we must have that
+    \[
+        p(r) = \sum_{i=0}^{m} \left(\frac{c_i}{i+2}r^{i+2} - \frac{c_i}{i+1}r^{i+2}\right) + C = 0
+    \]
+    \[
+        \implies C = \sum_{i=0}^{m} \left(\frac{c_i}{i+1}r^{i+2} - \frac{c_i}{i+2}r^{i+2}\right)
+    \]
+    Therefore
+    \begin{align*}
+        p(x) &= \sum_{i=0}^{m} \left( \frac{c_i}{i+2}x^{i+2} - \frac{c_i}{i + 2}r^{i+2} + \frac{c_i}{i+1}r^{i+2} - r\frac{c_i}{i + 1}x^{i+1} \right) \\
+        &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i+2} \right)(x^{i+2} - r^{i+2}) - \left( \frac{c_i r}{i + 1} \right)(x^{i+1} - r^{i+1})\right) \\
+        &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i + 2} \right)(x - r) \sum_{j=0}^{i+1} x^j r^{i - j + 1} - \left( \frac{c_i}{i + 1} \right)(x - r)\sum_{j=0}^{i} x^j r^{i-j} \right) 
+    \end{align*}
+
+    Define \(\Phi : \mathbb{R}^{n+2} \to \mathbb{R}\) 
+    \end{question}
+\end{document}
