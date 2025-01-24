@@ -129,9 +129,22 @@
     \[
         \Phi (b, \Psi (b)) = 0, \text{ for all } b \in W.
     \]
-    Now, let \(\varepsilon > 0\). by the continuity of \(\Psi\) at \(a\), there exists a \(\delta > 0\) so that for all \(b \in W\) with \(\|b - a\| < \delta\), \(|\Psi (b) - r| < \varepsilon\), so \(\Psi (b) \in (r - \varepsilon, r + \varepsilon)\). For any \(b\) that satisfies the condition above, consider the polynomial
+    Now, let \(\varepsilon > 0\). by the continuity of \(\Psi\) at \(a\), there exists a \(\delta > 0\) so that for all \(b \in W\) with \(\|b - a\| < (n+1)\delta\), \(|\Psi (b) - r| < \varepsilon\), so \(\Psi (b) \in (r - \varepsilon, r + \varepsilon)\). Consider the polynomial
     \[
         g(x) = \sum_{i=0}^{n} b_i x^i = \Phi (b,x)
     \]
+    Where \(|a_i - b_i| < \delta\). It follows that
+    \[
+        (n+1)\delta > \sum_{i=0}^{n} |a_i - b_i| > \|a - b\|
+    \]
+    which implies that \(\Psi (b) \in (r - \varepsilon, r + \varepsilon)\). But notice that \(\Psi (b)\) is actually a root of \(g(x)\), as desired.
+
+    \medskip
+
+    (b):
+
+    From part (a), we know that the number of roots can never decrease under small perturbations. Thus, it suffices to show that it will never increase, either.
+
+    Suppose for contradiction that there is some monic polynomial \(f\) with no repeated roots so that under any perturbation of the coefficients, its number of roots increase.
     \end{question}
 \end{document}
