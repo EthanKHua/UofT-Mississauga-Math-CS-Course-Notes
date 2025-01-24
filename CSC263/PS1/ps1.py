@@ -7,11 +7,19 @@ University of Toronto Mississauga
 # Do NOT add any "import" statements
 
 class Heap:
+  '''
+  initializes a min/max heap depending on the value of minimum
+  A heap is an almost complete binary tree with the property that every node is either
+  greater or less than its children
+  '''
   def __init__(self, minimum: bool):
     self.min = 2 * int(not minimum) - 1
     self.lst = []
     self.size = 0
 
+  '''
+  Inserts x into the heap 
+  '''
   def insert(self, x: int):
     self.lst.append(x)
     self.size += 1
@@ -25,6 +33,9 @@ class Heap:
       i = (i - 1) // 2
     pass
 
+  '''
+  Removes the root from the heap
+  '''
   def remove(self) -> int:
     i = 0
     self.lst[0], self.lst[-1] = self.lst[-1], self.lst[0]

@@ -122,15 +122,38 @@ Suppose the input list \texttt{locations} contains $n$ points distributed unifor
     Note that \(X\) is entirely dependent on the position of the first point in \verb|locations| that is outside of the circle. Thus the distribution of \(X\) is given by
     \[
       p_X(x) = \begin{dcases}
-        \left( \dfrac{\pi r^2}{L^2} \right)^{x-1} \left( 1 - \dfrac{\pi r^2}{L^2} \right), &\text{ if } x = 1, ..., n ;\\
-        \left( \dfrac{\pi r^2}{L^2} \right)^{n} &\text{ if } x = n + 1 \\
+        \left( \dfrac{\pi r^2}{L^2} \right)^{x-1} \left( 1 - \dfrac{\pi r^2}{L^2} \right), &\text{ if } x = 1, ..., n - 1 \\
+        \left( \dfrac{\pi r^2}{L^2} \right)^{n-1} &\text{ if } x = n \\
         0, &\text{ otherwise} .
       \end{dcases}
     \]
-    Now, we compute the expected value of \(X\):
+    We make the quick note that the \(x = n\) case represents when either only the last element is out of range or when no element is out of range, as the probability of this happening is
     \[
-      E[X] = \sum_{x=1}^{n+1} x p_X(x) = (n + 1)\left( \dfrac{\pi r^2}{L^2} \right)^{n} + \left( 1 - \dfrac{\pi r^2}{L^2} \right)\sum_{x=1}^{n} x\left( \dfrac{\pi r^2}{L^2} \right)^{x - 1}
+      \left( \dfrac{\pi r^2}{L^2} \right)^{n-1} \left( 1 - \dfrac{\pi r^2}{L^2} \right) + \left( \dfrac{\pi r^2}{L^2} \right)^{n} = \left( \dfrac{\pi r^2}{L^2} \right)^{n-1}
     \]
+
+    Now using the formula for the closed form of the sum (whose explanation is below), we compute the expected value of \(X\):
+    \[
+      E[X] = \sum_{x=1}^{n} x p_X(x) = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \left( 1 - \dfrac{\pi r^2}{L^2} \right)\sum_{x=1}^{n} x\left( \dfrac{\pi r^2}{L^2} \right)^{x - 1}
+    \]
+    \[
+      = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \left( 1 - \dfrac{\pi r^2}{L^2} \right) \left( \frac{ 1 - \left( \dfrac{\pi r^2}{L^2} \right)^n}{\left( 1 - \dfrac{\pi r^2}{L^2} \right)^2} - \frac{n\left( \dfrac{\pi r^2}{L^2} \right)^n}{1 - \dfrac{\pi r^2}{L^2}} \right) 
+    \]
+    \[
+      E[X] = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1}\left( 1 - \dfrac{\pi r^2}{L^2} \right) + \frac{ 1 - \left( \dfrac{\pi r^2}{L^2} \right)^n}{1 - \dfrac{\pi r^2}{L^2}}
+    \]
+    \bigskip
+
+    \textbf{Explanation for Sum:}
+
+    Denote \(S = \sum_{x=1}^{n} xr^{x - 1}\), for some \(r \neq 1\). We have that
+    \begin{alignat*}{2}
+      S &= 1 + 2r + 3r^2 + 4r^3 + \cdots + nr^{n-1} \\
+      rS &= \qquad r + 2r^2 + 3r^3 + \cdots + {(n-1)r^{n-1}} + nr^n \\
+      (1 - r)S &= 1 + r + r^2 + r^3 + \cdots + r^{n-1} - nr^n \\
+      (1 - r)S &= \frac{1 - r^n}{1 - r} - nr^n \\
+      S &= \frac{1 - r^n}{(1-r)^2} - \frac{nr^n}{1-r}
+    \end{alignat*}
 \end{enumerate}
 
 \end{enumerate}
