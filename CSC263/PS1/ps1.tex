@@ -107,7 +107,7 @@ Suppose the input list \texttt{locations} contains $n$ points distributed unifor
     Let \(n\) be the number of points in \verb|locations|. Let \(X\) be the position of the first point is out of range of the circle. For convenience, \(X = n + 1\) represents a list where all its elements are in range. To find the probability of the worse-case occuring, we find \(P(X = n + 1)\). Likewise, the probability of the the best-case occuring is \(P(X = 1)\). The distribution of \(X\) is given by
     \[
       p_X(x) = \begin{dcases}
-        \left( \dfrac{\pi r^2}{L^2} \right)^{x-1} \left( 1 - \dfrac{100\pi}{L^2} \right), &\text{ if } x = 1, ..., n ;\\
+        \left( \dfrac{\pi r^2}{L^2} \right)^{x-1} \left( 1 - \dfrac{\pi r^2}{L^2} \right), &\text{ if } x = 1, ..., n ;\\
         \left( \dfrac{\pi r^2}{L^2} \right)^{n} &\text{ if } x = n + 1 \\
         0, &\text{ otherwise} .
       \end{dcases}
@@ -134,19 +134,19 @@ Suppose the input list \texttt{locations} contains $n$ points distributed unifor
 
     Now using the formula for the closed form of the sum (whose explanation is below), we compute the expected value of \(X\):
     \[
-      E[X] = \sum_{x=1}^{n} x p_X(x) = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \left( 1 - \dfrac{\pi r^2}{L^2} \right)\sum_{x=1}^{n} x\left( \dfrac{\pi r^2}{L^2} \right)^{x - 1}
+      E[X] = \sum_{x=1}^{n} x p_X(x) = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \left( 1 - \dfrac{\pi r^2}{L^2} \right)\sum_{x=1}^{n-1} x\left( \dfrac{\pi r^2}{L^2} \right)^{x - 1}
     \]
     \[
-      = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \left( 1 - \dfrac{\pi r^2}{L^2} \right) \left( \frac{ 1 - \left( \dfrac{\pi r^2}{L^2} \right)^n}{\left( 1 - \dfrac{\pi r^2}{L^2} \right)^2} - \frac{n\left( \dfrac{\pi r^2}{L^2} \right)^n}{1 - \dfrac{\pi r^2}{L^2}} \right) 
+      = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \left( 1 - \dfrac{\pi r^2}{L^2} \right) \left( \frac{ 1 - \left( \dfrac{\pi r^2}{L^2} \right)^{n-1}}{\left( 1 - \dfrac{\pi r^2}{L^2} \right)^2} - \frac{(n-1)\left( \dfrac{\pi r^2}{L^2} \right)^{n-1}}{1 - \dfrac{\pi r^2}{L^2}} \right) 
     \]
     \[
-      E[X] = n\left( \dfrac{\pi r^2}{L^2} \right)^{n-1}\left( 1 - \dfrac{\pi r^2}{L^2} \right) + \frac{ 1 - \left( \dfrac{\pi r^2}{L^2} \right)^n}{1 - \dfrac{\pi r^2}{L^2}}
+      E[X] = \left( \dfrac{\pi r^2}{L^2} \right)^{n-1} + \frac{ 1 - \left( \dfrac{\pi r^2}{L^2} \right)^{n-1}}{1 - \dfrac{\pi r^2}{L^2}}
     \]
     \bigskip
 
     \textbf{Explanation for Sum:}
 
-    Denote \(S = \sum_{x=1}^{n} xr^{x - 1}\), for some \(r \neq 1\). We have that
+    Denote \(S = \sum_{x=1}^{n} xr^{x - 1}\), for some \(n \in \mathbb{N}\) and \(r \neq 1\). We have that
     \begin{alignat*}{2}
       S &= 1 + 2r + 3r^2 + 4r^3 + \cdots + nr^{n-1} \\
       rS &= \qquad r + 2r^2 + 3r^3 + \cdots + {(n-1)r^{n-1}} + nr^n \\
