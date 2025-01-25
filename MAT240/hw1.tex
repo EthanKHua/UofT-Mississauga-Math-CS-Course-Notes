@@ -66,13 +66,6 @@
     \begin{question}{1}
         Find all solutions to the following complex equations.
         \begin{enumerate}
-            \item \((1 + i)\cl{z} = i(2 + 8i)\)
-            \item \(z^3 = -8i\)
-            \item \(e^{\cl{z}} = -2 + 2i\)
-        \end{enumerate}
-        \tcblower
-        \ 
-        \begin{enumerate}
             \item \((1+i)\cl{z} = i(2 + 8i)\).
             
             Suppose that \(z\) is of the form \(z = a + bi\), for \(a,b \in \mathbb{R}\). Then the equation becomes
@@ -529,15 +522,59 @@
         \end{align*}
         For \(n > 1\), we let \(r_n\) be the polynomial such that
         \[
-            r_{n-2} = qr_{n-1} + r_n
+            r_{n-2} = q_n r_{n-1} + r_n
         \]
-        This is well-defined, as the choices for \(q\) and \(r_n\) are unique. As well, this sequence is eventually strictly decreasing. That is, for \(n > 0\), \(r_n > r_{n+1}\), so we see that this sequence eventually reaches 0. 
+        This is well-defined, as the choices for \(q\) and \(r_n\) are unique. As well, this sequence is eventually strictly decreasing. That is, for \(n > 0\), \(r_n > r_{n+1}\), so we see that this sequence eventually reaches 0, say, at \(n = k\).
 
+        Now, we will show with induction that for all non-negative integers \(n < k\), we have that a greatest common divisor of \(r_0\) and \(r_1\) is also a greatest common divisor of \(r_n\) and \(r_{n+1}\).
+
+        Let \(n = 0\). It is obvious that the claim is true.
+        
+        Now, suppose that a greatest common divisor of \(r_0\) and \(r_1\) is also a greatest common divisor of \(r_{n-1}\) and \(r_n\), for some \(n < k\). Let \(d\) be a greatest common divisor of \(r_0\) and \(r_1\). By our induction hypothesis, since \(d\) divides both \(r_{n-1}\) and \(r_n\), for some \(p_{n-1}, p_n \in \mathbb{P} (\mathbb{F})\), we have that
+        \[
+            r_{n-1} = dp_{n-1} \implies q_{n+1} r_n + r_{n+1} = dp_{n-1}
+        \]
+        \[
+            \implies d q_{n+1} p_n + r_{n+1} = dp_{n-1}
+        \]
+        \[
+            \implies r_{n+1} = d(p_{n-1} - q_{n+1} p_n),
+        \]
+        so \(d\) also divides \(r_{n+1}\). To show that \(d\) is indeed a greatest common divisor of \(r_n\) and \(r_{n+1}\), we let \(d'\) be a divisor of \(r_n\) and \(r_{n+1}\). Then for some polynomial \(p'_n, p'_{n+1}\), we have that
+        \begin{align*}
+            r_{n+1} = d' p'_{n+1} &\implies r_{n-1} - q_{n+1} r_n = d' p'_{n+1} \\
+            &\implies r_{n-1} - q_{n+1} d' p'_n = d'p'_{n+1} \\
+            &\implies r_{n-1} = d' (q_{n+1} p'_n + p'_{n+1})
+        \end{align*}
+        which shows that \(d'\) also divides \(r_{n-1}\). But this means that it is a common divisor of \(r_{n-1}\) and \(r_n\). By definition, it must be true that \(\mathrm{deg} (d') \leq \mathrm{deg} (d)\), which proves that \(d\) is indeed a greatest common divisor of \(r_n\) and \(r_{n+1}\), thus proving our claim.
+
+        Let \(n = k - 1\). Then it follows that a greatest common divisor of \(r_0\) and \(r_1\) is a greatest common divisor of \(r_{k-1}\) and \(r_k = 0\), which must be a scalar multiple of \(r_{k-1}\): exactly the last non-zero remainder when performing long division.
+        
         \medskip
 
         (d):
 
-
+        Let \(d\) be a greatest common divisor for \(f\) and \(g\). We define the same sequence \((r_n)\) in part (c), and say that it becomes 0 at \(n = k\). Let \(d\) be a greatest common divisor of \(f = r_0\) and \(g = r_1\). We can now use another induction argument to show that for all \(0 \leq n < k\), there exists \(p_n, s_n \in \mathbb{P} (\mathbb{F})\) such that
+        \[
+            d = p_n r_n + s_{n} r_{n+1}.
+        \]
+        Let \(n = k - 1\). We know from part (c) that \(d\) is a scalar multiple of \(r_{k-1}\), so we immediately get that
+        \[
+            d = ar_{k-1} + 0 = ar_{k-1} + r_k, \text{ for some } a \in \mathbb{F}.
+        \]
+        Now, suppose that this holds for some \(n\), \(0 \leq n <k\). That is,
+        \[
+            d = p_n r_n + s_{n} r_{n+1}
+        \]
+        We want to show that this is the case for \(n - 1\) as well. By definition of \((r_n)\), we get that
+        \[
+            d = p_n r_n + s_{n} (r_{n-1} - q_{n+1} r_n) = s_{n} r_{n+1} + (p_n - q_{n+1})r_n
+        \]
+        as desired. Thus for \(n = 0\), for some polynomials \(p_0, s_0\), we get that
+        \[
+            d = p_0 r_0 + s_0 r_1 = p_0 f + s_0 g
+        \]
+        which was what we wanted to show.
     \end{question}
     \newpage
     \begin{question}{8}
@@ -568,6 +605,7 @@
             &= \left( 1 - x^2 \right) \cdot g(x) + \left( 1 - x^2 - \frac{1}{2}x^3 \right)(f(x) - g(x)) \\
             1 &= \left( 1 - x^2 - \frac{1}{2}x^3 \right)\cdot f(x) + \frac{1}{2}x^3 \cdot g(x)
         \end{align*}
+        as needed.
     \end{question}
     \newpage
     \begin{question}{9}
