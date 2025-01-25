@@ -531,7 +531,7 @@
         \[
             r_{n-2} = qr_{n-1} + r_n
         \]
-        This is well-defined, as the choices for \(q\) and \(r_n\) are unique. 
+        This is well-defined, as the choices for \(q\) and \(r_n\) are unique. As well, this sequence is eventually strictly decreasing. That is, for \(n > 0\), \(r_n > r_{n+1}\), so we see that this sequence eventually reaches 0. 
 
         \medskip
 
@@ -562,8 +562,11 @@
         \begin{align*}
             1 &= (x^2 + 1) - \frac{1}{2}x \cdot (2x) \\
             &= (x^2 + 1) - \frac{1}{2}x \cdot (2x \cdot (x^2 + 1) - 2x^3) \\
-            &= \left(x^4 + 2x^3 + x^2 + 1 + \left( \frac{1}{2}x + 1 \right)\cdot (-2x^3)\right) - \frac{1}{2}x \cdot (2x \cdot (x^2 + 1 - 2x^3))\\
-            &= 
+            &= \left( 1 - x^2 \right) (x^2 + 1) - \frac{1}{2}x \cdot (-2x^3) \\
+            &= \left( 1 - x^2 \right) \cdot \left(x^4 + 2x^3 + x^2 + 1 + \left( \frac{1}{2}x + 1 \right)\cdot (-2x^3)\right) - \frac{1}{2}x \cdot (-2x^3) \\
+            &= \left( 1 - x^2 \right) \cdot (x^4 + 2x^3 + x^2 + 1) + \left( 1 - x^2 - \frac{1}{2}x^3 \right) \cdot (-2x^3) \\
+            &= \left( 1 - x^2 \right) \cdot g(x) + \left( 1 - x^2 - \frac{1}{2}x^3 \right)(f(x) - g(x)) \\
+            1 &= \left( 1 - x^2 - \frac{1}{2}x^3 \right)\cdot f(x) + \frac{1}{2}x^3 \cdot g(x)
         \end{align*}
     \end{question}
     \newpage
