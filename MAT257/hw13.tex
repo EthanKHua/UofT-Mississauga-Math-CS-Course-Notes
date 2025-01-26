@@ -151,13 +151,22 @@
 
     From part (a), we know that the number of roots can never decrease under small perturbations. Thus, it suffices to show that it will never increase, either.
 
-    First, we will show that there exists \(\xi > 0\) so that for any polynomial \(g\) with coefficients \(b_i\) and \(\|a_i - b_i\| < \xi\), \(g\) has no repeated roots.
-
-    Recall the \(\delta\) we got from part (a). We claim that if we shrink it down to \(\eta = \min \{\frac{\delta}{2}, \xi \}\), the number of roots does not change. Let \(g\) be a polynomial with coefficients \(b_i\) such that \(|a_i - b_i| < \eta\). For any \(h(x) = \sum_{i=0}^{n} c_i x^i\) such that \(|b_i - c_i| < \dfrac{\delta}{2}\), we have that
+    First, we will strengthen the statement in part (a) so that for small enough \(\varepsilon\), there is exactly one root in the interval \((r - \varepsilon, r + \varepsilon)\). By the continuity of \(\dfrac{\partial \Phi}{\partial x}\), we obtain \(\xi > 0\) so that for \((c,s) \in \mathbb{R}^{n+1} \times \mathbb{R}\) such that \(\|(c,s) - (a,r)\| < \xi\),
     \[
-        |a_i - c_i| \leq |a_i - b_i| + |b_i - c_i| < \frac{\delta}{2} + \frac{\delta}{2} = \delta,
+        \left\vert \dfrac{\partial \Phi}{\partial x}(c,s) - \dfrac{\partial \Phi}{\partial x}(a,r) \right\vert < \frac{1}{2}\dfrac{\partial \Phi}{\partial x}(a,r)
     \]
-    so by part (a), 
+    \[
+        \implies \frac{1}{2}\dfrac{\partial \Phi}{\partial x} < \dfrac{\partial \Phi}{\partial x}(c,s) < \frac{3}{2}\dfrac{\partial \Phi}{\partial x}(a,r)
+    \]
+    Since \(\dfrac{\partial \Phi}{\partial x}(a,r) \neq 0\), it follows that \(\dfrac{\partial \Phi}{\partial x}(c,s) \neq 0\) as well. Let \(\varepsilon < \frac{\xi}{2}\). Define \(\delta _a\) as the value we found in part (a) for this value of \(\varepsilon\). Let \(g\) be a polynomial with coefficients \(b_i\) such that \(|a_i - b_i| < \min \left\{\delta_a, \dfrac{\xi}{2(n+1)}\right\}\). Then \(g(x) = \Phi (b, x)\) and \(g'(x) = \dfrac{\partial \Phi}{\partial x}(b,x)\). But notice that for \(|x - r| < \varepsilon = \frac{\xi}{2}\), we have that
+    \[
+        \|(b,x) - (a,r)\| \leq \sum_{i=0}^{n} |a_i - b_i| + |x - r| < \frac{(n+1)\xi}{2(n+1)} + \frac{\xi}{2} = \xi,
+    \]
+    so \(g'(x) = \dfrac{\partial \Phi}{\partial x}(b,x) \neq 0\), which implies that \(g\) is injective on the interval \((r - \varepsilon, r + \varepsilon)\). We already knew that \(g(\Psi (b)) = 0\), now we know that this is the only root in the interval.
 
+    For every root \(r\), we have an associated interval \((r - \varepsilon _r, r + \varepsilon _r)\) such that \(g\) contains exactly one root within them. Finally, we must show that outside of all these intervals, \(g\) does not gain any new roots. To do this, we have to shrink \(\delta\) even further. Let \(R\) be the finite set of all the roots of \(f\). Consider the set
+    \[
+        S = \left\{ |f(x)| : x \in \mathbb{R}\setminus \bigcup_{r \in R} (r - \varepsilon_r, r + \varepsilon _r) \right\} 
+    \]
     \end{question}
 \end{document}
