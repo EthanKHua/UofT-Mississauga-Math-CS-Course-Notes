@@ -168,17 +168,30 @@
     \[
         S = |f(V)|
     \]
-    Notice that \(\inf S > 0\).
+    Notice that \(\inf S > 0\). We use the fact that \(f \in \Omega (x^n)\) to claim that for all \(|x| > x_0\), we have
+    \[
+        |f(x)| \geq \eta |x|^n, \text{ for some } \eta > 0.
+    \]
+    Let \(m = \max \{1, x_0\}\). Let \(\delta = \min \left\{ \delta_a, \dfrac{\xi}{2(n+1)}, \dfrac{\eta}{2(n+1)}, \dfrac{\inf S}{2m^n(n+1)} \right\}\). Let \(x \in V\). We have that
+    \[
+        ||f(x)| - |g(x)|| \leq |f(x) - g(x)| = \left\vert \sum_{i=0}^{n} a_i x^i - \sum_{i=0}^{n} b_i x^i \right\vert \leq \sum_{i=0}^{n} |a_i - b_i| |x|^i
+    \]
+    Consider the case where \(|x| > m\). We get
+    \[
+        | |f(x) - |g(x)| | \leq \sum_{i=0}^{n} |a_i - b_i| |x|^i < \sum_{i=0}^{n} \frac{\eta}{2(n+1)} |x|^n = \frac{\eta}{2}|x|^n
+    \]
+    \[
+        \implies |g(x)| > |f(x)| - \frac{\eta}{2}|x|^n \geq \eta |x|^n - \frac{\eta}{2}|x|^n > 0
+    \]
+    Otherwise, if \(|x| \leq m\),
+    \[
+        | |f(x)| - |g(x)| | \leq \sum_{i=0}^{n} |a_i - b_i| |x|^i \leq \sum_{i=0}^{n} \frac{\inf S}{2m^n(n+1)}m^i \geq \sum_{i=0}^{n} \frac{\inf S}{2m^n(n+1)}m^n
+    \]
+    \[
+        \implies |g(x)| > |f(x)| - \frac{\inf S}{2} \geq \inf S - \frac{\inf S}{2} = \frac{\inf S}{2} > 0
+    \]
+    In either case, we see that \(g\) has no roots in \(V\).
 
-    \[
-        ||f(x)| - |g(x)|| \leq |f(x) - g(x)| = \left\vert \sum_{i=0}^{n} a_i x^i - \sum_{i=0}^{n} b_i x^i \right\vert \leq \sum_{i=0}^{n} |a_i - b_i| |x_i| < \frac{\inf S}{2m} \cdot m = \frac{\inf S}{2}
-    \]
-    \[
-        \implies |f(x)| - \frac{\inf S}{2} < |g(x)| < |f(x)| + \frac{\inf S}{2}
-    \]
-    \[
-        \implies |g(x)| > \frac{\inf S}{2} > 0
-    \]
-    which means that \(g\) never attains a root outside of \(V\).
+    Therefore, we see that any \(g\) with coefficients \(\delta\)-close to \(f\) has exactly one root close to each root of \(f\), and no other roots, so we can conclude that \(g\) exactly the same number of roots as \(f\).
     \end{question}
 \end{document}
