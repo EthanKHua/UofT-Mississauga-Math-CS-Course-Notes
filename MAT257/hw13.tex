@@ -153,7 +153,11 @@
 
     First, we will show that there exists \(\xi > 0\) so that for any polynomial \(g\) with coefficients \(b_i\) and \(\|a_i - b_i\| < \xi\), \(g\) has no repeated roots.
 
-    Recall the \(\delta\) we got from part (a). We claim that if we shrink it down to \(\eta = \min \{\frac{\delta}{2}, \xi \}\), the number of roots does not change. Let \(g\) be a polynomial with coefficients \(b_i\) such that \(|a_i - b_i| < m\) 
+    Recall the \(\delta\) we got from part (a). We claim that if we shrink it down to \(\eta = \min \{\frac{\delta}{2}, \xi \}\), the number of roots does not change. Let \(g\) be a polynomial with coefficients \(b_i\) such that \(|a_i - b_i| < \eta\). For any \(h(x) = \sum_{i=0}^{n} c_i x^i\) such that \(|b_i - c_i| < \dfrac{\delta}{2}\), we have that
+    \[
+        |a_i - c_i| \leq |a_i - b_i| + |b_i - c_i| < \frac{\delta}{2} + \frac{\delta}{2} = \delta,
+    \]
+    so by part (a), 
 
     \end{question}
 \end{document}
