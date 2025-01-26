@@ -164,9 +164,22 @@
     \]
     so \(g'(x) = \dfrac{\partial \Phi}{\partial x}(b,x) \neq 0\), which implies that \(g\) is injective on the interval \((r - \varepsilon, r + \varepsilon)\). We already knew that \(g(\Psi (b)) = 0\), now we know that this is the only root in the interval.
 
-    For every root \(r\), we have an associated interval \((r - \varepsilon _r, r + \varepsilon _r)\) such that \(g\) contains exactly one root within them. Finally, we must show that outside of all these intervals, \(g\) does not gain any new roots. To do this, we have to shrink \(\delta\) even further. Let \(R\) be the finite set of all the roots of \(f\). Consider the set
+    For every root \(r\), we have an associated interval \((r - \varepsilon _r, r + \varepsilon _r)\) such that \(g\) contains exactly one root within them. Finally, we must show that outside of all these intervals, \(g\) does not gain any new roots. To do this, we have to shrink \(\delta\) even further. Let \(R\) be the finite set of all the roots of \(f\). Let \(V = \mathbb{R}\setminus \bigcup_{r \in R} (r - \varepsilon_r, r + \varepsilon _r)\). Consider the set
     \[
-        S = \left\{ |f(x)| : x \in \mathbb{R}\setminus \bigcup_{r \in R} (r - \varepsilon_r, r + \varepsilon _r) \right\} 
+        S = |f(V)|
     \]
+    Notice that \(\inf S > 0\).
+
+    \[
+        ||f(x)| - |g(x)|| \leq |f(x) - g(x)| = \left\vert \sum_{i=0}^{n} a_i x^i - \sum_{i=0}^{n} b_i x^i \right\vert \leq \sum_{i=0}^{n} |a_i - b_i| |x_i| < \frac{\inf S}{2m} \cdot m = \frac{\inf S}{2}
+    \]
+    \[
+        \implies |f(x)| - \frac{\inf S}{2} < |g(x)| < |f(x)| + \frac{\inf S}{2}
+    \]
+    \[
+        \implies |g(x)| > \frac{\inf S}{2} > 0
+    \]
+    which means that \(g\) never attains a root outside of \(V\).
+
     \end{question}
 \end{document}
