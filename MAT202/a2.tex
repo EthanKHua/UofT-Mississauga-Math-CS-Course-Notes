@@ -74,7 +74,18 @@
 
         \tcblower
 
-        
+        We claim that both sides count the number of combinations of \(n\) students that are in math, computer science, both, or neither, with the additional restriction that there has to be at least one person that is not in math and another person, not necessarily distinct from the previous person, that is not in computer science.
 
+        \medskip
+
+        For the left hand side, each term \(\binom{n}{i}\binom{n}{j}\) assigns \(i\) people to be in math and \(j\) people to be in computer science. Notice that \(i\) and \(j\) can never be \(n\) based on how the sum is written, so it is impossible for every student to be in math or every student to be in computer science. All the combinations of \(i\) and \(j\) are added up to obtain the number we are looking for.
+
+        \medskip
+
+        For the right hand side, for every term in the sum, \(\binom{n}{k}\) picks \(k\) people to be in both math and computer science. The remaining \(n - k\) people can be in only math, only computer science, or neither, which there are \(3^{n-k}\) possibilities of. However, we do not want all remaining students to be in only math or only computer science, so we must subtract the case where all the remaining students are in math or all the remaining students are in computer science, of which there are 2 ways to achieve that. Finally, all the terms are added up from \(k=0\) to \(k=n-1\), guaranteeing that we avoid the case where every student is in both math and computer science.
+
+        \medskip
+
+        Thus both sides of the equation count the same thing, and the proof is complete.
     \end{question}
 \end{document}
