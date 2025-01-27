@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{systeme}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+
+    \begin{question}{37}
+        The following set is called the \textbf{$n$-simplex}:
+        \[ \Delta_n := \{ \vec{x}=(x_1,\ldots,x_n)\in \R^n : x_1,\ldots,x_n\geq 0 \text{ and } x_1+\cdots+x_n\leq 1\}. \]
+        You can assume, without proof, that $\Delta_n$ is Jordan measurable.
+        
+        Find, with proof, an explicit formula for $\mu(\Delta_n)$ in terms of $n$.
+
+        \tcblower
+
+        
+    \end{question}
+\end{document}
