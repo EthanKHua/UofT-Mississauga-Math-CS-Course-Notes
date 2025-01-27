@@ -16,7 +16,19 @@
     the [low, high] range. 
     Your algorithm must have $O(n)$ worst-case running time.
     Write your algorithm in pseudocode and justify why your algorithm is correct and why it runs 
-    in $O(n)$ time. Please also complete the programming question at the end. 
+    in $O(n)$ time. Please also complete the programming question at the end.
+
+	Below is the pseudocode for the algorithm:
+	\begin{lstlisting}[language=Python]
+def range_sum(node, int low, int high):
+	if node is NULL return 0
+	if node.value < low return range_sum(node.right, low, high)
+	else if node.value > high return range_sum(node.left, low, high)
+	count = node.value
+	count += range_sum(node.left, low, high) + range_sum(node.right, low, high)
+	return count
+	\end{lstlisting}
+
 
 \item \textbf{[12]}
     Consider the following abstract data type that we will call a

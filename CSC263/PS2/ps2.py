@@ -27,6 +27,7 @@ class Node(object):
 example_bst = Node(5)
 example_bst.left = Node(2)
 example_bst.left.left = Node(1)
+example_bst.left.right = Node(3)
 example_bst.right = Node(9)
 
 
@@ -35,7 +36,13 @@ def range_sum_bst(root, low, high):
     Return the sum of the node values within the specified range.
     
     """
-    # todo
+    if root is None:
+        return 0
+    if root.key < low:
+        return range_sum_bst(root.right, low, high)
+    if root.key > high:
+        return range_sum_bst(root.left, low, high)
+    return root.key + range_sum_bst(root.left, low, high) + range_sum_bst(root.right, low, high)
 
 
 if __name__ == "__main__":
@@ -48,5 +55,7 @@ if __name__ == "__main__":
     #   1   3
 
     # Calling range_sum_bst(root, 3, 9) should return the sum of the values 3, 5, and 9
+    print(range_sum_bst(example_bst, 3, 9))
+    pass
 
    
