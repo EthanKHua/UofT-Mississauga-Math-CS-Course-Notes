@@ -83,7 +83,30 @@
 
         % \smallbreak
 
-        Conversely, 
+        Conversely, suppose that \(f\) is differentiable at every point of \(A\). For all \(p_a \in A\), there exists an open neighborhood \(U_a\) of \(p_a\) and a function \(f_a : U_a \to \mathbb{R}\) that is differentiable at \(p_a\) and \(f_a \vert _{U_a \cap A} = f \vert U \cap A\). Notice that \(U = \{U_a\}_{a \in I}\) forms an open cover of \(A\). Thus we can find a partition of unity \(\{ \phi _a : \mathbb{R}^n \to [0,1]\}_{a\in I}\). In particular,
+        \begin{itemize}
+            \item \(\phi _a \in C^{\infty}\),
+            \item \(\mathop{\mathrm{supp}}(\phi _a)\cap U \subseteq U_a\),
+            \item \(\{\mathop{\mathrm{supp}}(\phi_a)\}\) is locally finite,
+            \item \(\sum\limits_{a \in I} \phi _a = 1\).
+        \end{itemize}
+        We claim that \(\hat{f} = \sum_{a \in I} \phi _a \cdot f_a\) is the function that extends \(f\) to \(\{ U_a \} _{a \in I}\). First, note that this sum is well defined because the partition of unity is locally finite, so the sum is finite at every point, and as well, any point outside the domain of \(f_a\) implies that \(\phi _a = 0\), so \(\phi _a \cdot f_a = 0\).
+
+        Moreover, for all \(x \in U\), since \(\{ \phi _a \}_{a \in I}\) is locally finite, for some open neighborhood \(V\) of \(x\), for some finite sequence of \(a_n \in I\),
+        \[
+            \hat{f}(y) = \sum_{n=1}^{N} \phi _{a_n} (y) \cdot f_{a_n}(y), \text{ where } y \in V.
+        \]
+        Since each term is differentiable, \(\hat{f}\) is differentiable at \(x\). Thus \(\hat{f}\) is differentiable on the entirety of \(U\). Additionally, for each \(a_n\), \(x \in U_{a_n}\), so by our initial assumption,
+        \[
+            \sum_{n=1}^{N} \phi _{a_n} (x) \cdot f_{a_n}(x) = f(x) \cdot \sum_{n=1}^{N} \phi _{a_n} (x) = f(x)
+        \]
+        which shows that \(\hat{f}\vert _A = f\) as needed.
+
+        \medskip
+
+        (b):
+
+        
     \end{question}
     \newpage
     \begin{question}{37}
