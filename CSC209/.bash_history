@@ -1,54 +1,3 @@
-pwd
-cd ~
-pwd
-ls
-octave
-logout
-git
-git clone https://markus.teach.cs.toronto.edu/markus/courses/39/assignments/316#
-ls
-cd documents
-cd uni
-cd csc209
-git clone https://markus.teach.cs.toronto.edu/git/markus/csc209-2025-01/huaethan
-git clone https://markus.teach.cs.toronto.edu/git/markus/csc209-2025-01/huaethan
-git clone https://markus.teach.cs.toronto.edu/git/markus/csc209-2025-01/huaethan
-git clone https://markus.teach.cs.toronto.edu/git/markus/csc209-2025-01/huaethan
-ls
-cd huaethan
-ls
-cd lab1
-ls
-man ls
-ls -l
-ls
-cd ..
-ls
-cd lab1
-git pull
-git pull
-ls
-ls
-ls
-cd ..
-ls -l
-ls -l --authors
-man ls
-ls lab1
-ls -l --author
-ls -author
-man ls
-ls -a
-lab1
-ls -a
-cd lab1
-ls -a
-logout
-cd documents/uni
-cd csc209
-git pull
-ls
-cd huaethan
 git pull
 ls
 cd lab1
@@ -402,3 +351,150 @@ git add compute_parity.c parity.c restore_block.c
 git status
 git ci "a1 minus testing complete"
 git push
+./compute_parity 3 7 "test1.txt"
+cd documents
+cd uno
+cd ui
+cd uni
+cd csc209
+cd huaethan
+cd lab4
+ls
+git pull
+git pull
+make
+./Makefile
+vim compare.c
+ls
+vim greeting.c
+vim strip.c
+vim truncate.c
+make
+sudo apt install make
+sudo apt install make
+make
+vim strip.c
+make
+vim greeting.c
+make
+./compare
+./compare a a
+./compare a ab
+./compare 12312 12311
+./compare 12312 12312
+./truncate
+./truncate 5 hello
+./truncate 4 hello
+vim truncate.c
+make
+./truncate 4 hello
+./truncate 3 hello
+./truncate 1 hello
+./ 6 hello
+./truncate 6 hello
+./strip
+./strip hello??????
+./strip he?helo???
+he?.
+he?.
+./strip he?helo.?.
+./greeting hi jake
+./greeting "good morning" "emmanuel"
+./greeting "top of the morning" "paul"
+git add *.c
+git status
+git ci "lab4 complete"
+git push
+cd ..
+cd a1
+ls
+git pull
+cat testing.txt~
+cat testing.txt
+rm testing.txt~
+ls
+git status
+./compute_parity
+./compute_parity 4 64 "quotes.txt"
+cat quotes.txt
+./compute_parity 4 4 "quotes.txt"
+cat test1.txt
+vim test1.txt
+./compute_parity 4 3 test1.txt
+./compute_parity 3 3 test1.txt
+./compute_parity 3 5 test1.txt
+ls
+./restore_block
+./restore_block 3 6 test1.txt 3
+./restore_block 3 6 test1.txt 2
+./restore_block 3 6 test1.txt 1
+./restore_block 3 6 test1.txt 0
+vim restore_block.c
+cat test1.txt
+vim restore_block.c
+vim parity.c
+exit
+cd documents
+cd uni
+cd csc209
+cd huaethan
+cd a1
+ls
+./compute_parity 4 64 quotes.txt
+./compute_parity 4 8 quotes.txt
+./restore_block 4 64 quotes.txt 1
+./compute_parity_block 3 4 test1.txt
+./compute_parity 3 4 test1.txt
+./compute_parity 3 3 test1.txt
+vim testing.txt
+Data blocks:
+asd
+qwe
+zxc
+Parity block:
+vim testing.txt
+cd ..
+cd mab4
+cd lab4
+ls
+pwd
+cd /mnt/c/Users/night/documents/uni/csc209/huaethan/lab4
+ls
+nvim greeting.c
+sudo apt install neovim
+nvim greeting.c
+make
+./greeting hi bob
+./greeting good morning richarddddd
+./greeting "good morning" "richardddddd"
+./greeting "top of the morning" "lad"
+git add greeting.c
+git ci "made greeting.c safer"
+git push
+cd ..
+cd a1
+ls
+nvim testing.txt
+nvim help
+ls
+nvim
+cd /mnt/c/Users/night/documents/uni/csc209/huaethan/lab4
+cd ..
+cd a1
+ls
+touch test2.txt
+nvim test2.txt
+nvim test1.txt
+./compute_parity 3 4 test1.txt
+nvim test2.txt
+./compute_parity 4 4 test2.txt
+cat test2.txt
+cat parity.c
+gdb
+sudo apt innstall gdb
+sudo apt install gdb
+gdb
+gdb
+cat parity.
+cat parity.c
+cat compute_parity.c

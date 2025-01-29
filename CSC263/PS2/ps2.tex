@@ -28,7 +28,9 @@ def range_sum(node, int low, int high):
 	count += range_sum(node.left, low, high) + range_sum(node.right, low, high)
 	return count
 	\end{lstlisting}
+	The algorithm above starts at the root node and compares the value of the node to the lower and upper range to determine which child to explore. For example, if the value at the root node is strictly less than the lower range, then the BST property tells us that every node in its left subtree will also be out of range, so there is no need to check it. Likewise, if the value at the root node is strictly greater than the upper range, we only need to check the left subtree. Otherwise, when the value is in the middle,  we should check both children as they can possibly contain values in the range we are querying for.
 
+	Since each node is visited at most once, worst-case running time is \(\mathcal{O} (n)\), where \(n\) is the number of nodes in the BST.
 
 \item \textbf{[12]}
     Consider the following abstract data type that we will call a
