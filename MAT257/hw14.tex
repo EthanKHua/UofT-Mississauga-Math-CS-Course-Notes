@@ -63,6 +63,18 @@
 \begin{document}
     \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
 
+    \begin{question}{36}
+        In Handout \#7, we defined differentiability for functions on open sets. Now we give a definition that works over arbitrary sets. \textcolor{blue}{For this problem, you will need to read Piazza Post @274 and use Theorem 1.1.}
+    
+        Let $A\subseteq \R^n$ be an arbitrary set, let $f:A\rightarrow \R$ be a function, and let $p\in A$ be a point. We say that $f$ is \textbf{differentiable} at $p$ if there exists an open neighborhood $U$ of $p$ and a function $\widehat{f}:U\rightarrow \R$ such that $\widehat{f}$ is differentiable at $p$ (in the sense of Handout \#7) and $\widehat{f}\vert_{U\cap A}=f\vert_{U\cap A}$.
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $f$ is differentiable at every point of $A$ if and only if $f$ extends to a differentiable function defined on an open set containing $A$.
+
+            \item Suppose further that $A$ is closed. Prove that $f$ is differentiable at every point of $A$ if and only if $f$ extends to a differentiable function on $\R^n$.
+        \end{enumerate}
+    \end{question}
+
     \begin{question}{37}
         The following set is called the \textbf{$n$-simplex}:
         \[ \Delta_n := \{ \vec{x}=(x_1,\ldots,x_n)\in \R^n : x_1,\ldots,x_n\geq 0 \text{ and } x_1+\cdots+x_n\leq 1\}. \]
