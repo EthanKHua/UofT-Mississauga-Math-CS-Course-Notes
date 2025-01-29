@@ -84,6 +84,57 @@
 
         \tcblower
 
-        
+        First, we show that \(\Delta _n\) is the same as the set
+        \[
+            S = \left\{ (x_1, ..., x_n) \in \mathbb{R}^n : 0\leq x_1 \leq 1, 0 \leq x_2 \leq 1 - x_1, ..., 0 \leq x_n \leq 1 - \sum_{i=1}^{n-1} x_i \right\}
+        \]
+        Let \(x \in \Delta _n\). We want to show that \(0 \leq x_i \leq 1 - \sum_{j=1}^{i - 1} x_j\). We get that \(x_i \geq 0\) immediately. As well, since \(\sum_{j=1}^{n} x_j \leq 1\) and every component is non-negative, we have that
+        \[
+            x_i \leq 1 - \sum_{j=1}^{i - 1} x_j - \sum_{j=i+1}^{n} x_j \leq 1 - \sum_{j=1}^{i - 1} x_j
+        \]
+        which shows that \(\Delta _n \subseteq S\).
+
+        Now, let \(x \in S\). We know every \(x_i\) is non-negative and additionally
+        \[
+            x_n \leq 1 - \sum_{i=1}^{n-1} x_i \implies \sum_{i=1}^{n} x_i \leq 1
+        \]
+        so \(S \subseteq \Delta _n\).
+
+        Now, we proceed to find \(\mu (S) = \mu (\Delta _n)\). Using Fubini's Theorem, we get
+        \[
+            \mu (S) = \int _S 1 = \int _0^1 \int _0^{1-x_1} \cdots \int _0^{1 - \sum_{i=1}^{n-1} x_i} 1\ dx_n \cdots dx_2\ dx_1
+        \]
+        Let \(I: \mathbb{N} \times [0,1] \to \mathbb{R}\) be defined recursively as follows:
+        % \[
+        %     \begin{dcases*}
+        %         I(1, \alpha) = \int _0^{1-\alpha} 1\ dt,\\
+        %         I(n, \alpha) = \int _0^{1-\alpha} I(n-1, \alpha + t)\ dt, &\text{ for } n > 1 .
+        %     \end{dcases*}
+        % \]
+        \begin{align*}
+            I(1, \alpha) &= \int _0^{1-\alpha} 1\ dt &\ \\
+            I(k, \alpha) &= \int _0^{1-\alpha} I(k-1, \alpha + t)\ dt, &\text{ for } > 1.
+        \end{align*}
+        Notice that if we continue applying the definition, we get that
+        \[
+            I(n, 0) = \mu (S)
+        \]
+        Now, we will prove using induction on \(n\) that for all \(\alpha \in [0,1]\), \(I(n, \alpha) = \dfrac{1}{n!}(1 - \alpha)^n\).
+
+        Let \(n = 1\). Then
+        \[
+            I(1, \alpha) = \int _0^{1- \alpha}1\ dt = 1 - \alpha
+        \]
+        Now, suppose that \(I(k, \alpha) = \dfrac{1}{k!}(1 - \alpha)^k\) holds for all \(\alpha \in [0,1]\) and some \(k \in \mathbb{N}\). We want to show that the same holds for \(k + 1\) as well. For an arbitrary \(\alpha\), we get
+        \begin{align*}
+            I(k+1, \alpha ) &= \int _0^{1 - \alpha} I(k, \alpha + t)\ dt \\
+            &= \int _0^{1-\alpha} \frac{1}{k!}(1 - \alpha - t)^k\ dt \\
+            &= -\frac{1}{(k+1)!}(1 - \alpha - t)^{k+1} \Big| _0^{1-\alpha} \\
+            &= \frac{1}{(k+1)!}(1 - \alpha)^{k+1}
+        \end{align*}
+        as desired. Thus we get that
+        \[
+            \mu (S) = I(n, 0) = \frac{1}{n!}
+        \]
     \end{question}
 \end{document}
