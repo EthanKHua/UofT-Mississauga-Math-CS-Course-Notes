@@ -227,7 +227,31 @@
                         0 \\
                         1 \\
                       \end{pmatrix*}\right\} \).
-        Since both vectors are solutions to the homogeneous equation in \(W\), \(S \subseteq W\).
+        Let \(\vec{v} \in \mathrm{span} S\). It follows that
+        \[
+            \vec{v} = s\begin{pmatrix*}[r]
+                2 \\
+                -3 \\
+                1 \\
+                0 \\
+           \end{pmatrix*}
+           +t
+           \begin{pmatrix*}[r]
+                -1 \\
+                4 \\
+                0 \\
+                1 \\
+           \end{pmatrix*}
+        \]
+        for some \(s,t \in \mathbb{Q}\). But notice that this is actually a solution to the system in \(W\), so \(\vec{v} \in W\).
+
+        Now let \(\vec{w} \in W\), so \(\vec{w}\) solves the system of equations in \(W\), but this means that we can write \(\vec{w}\) as a linear combination of the vectors in \(S\), so \(\vec{w} \in \mathrm{span} S\), so \(W = \mathrm{span} S\).
+
+        \medskip
+
+        (d):
+
+        By the previous part, \(W\) is actually a spanning set, and we know that all spanning sets are subspaces, so we conclude that \(W\) is a subspace of \(\mathbb{Q}^4\).
     \end{question}
     \newpage
     \begin{question}{3}
@@ -246,7 +270,7 @@
         
         Let \( W \) be the set of solutions to this system.
         
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Prove that \( W = \text{span} \, S \) for some set \( S \), and hence that \( W \) is a subspace of \( \mathbb{F}^n \).
             \item Prove that the set \(\{x_1, x_2, \ldots, x_k\}\) is linearly independent.
             
@@ -254,6 +278,13 @@
             
             \item Find a basis for \( W \).
         \end{enumerate}
+
+        \tcblower
+        \ 
+
+        (a):
+
+
     \end{question}
     \newpage
     \begin{question}{4}
@@ -327,7 +358,7 @@
     \end{question}
     \newpage
     \begin{question}{8}
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Prove that if \( W_1, W_2 \subseteq V \) are subspaces, then \( W_1 + W_2 \) is a subspace.
             \item Let \( W_1 = \{(x, y, x + y) \in \mathbb{F}^3 \mid x, y \in \mathbb{F} \} \). Find two subspaces \( W_2, W_3 \) so that:
             
@@ -338,6 +369,29 @@
             
             \item Find another subspace \( U \subseteq \mathbb{F}^3 \) so that \( W_1 \oplus U = \mathbb{F}^3 \).
         \end{enumerate}
+
+        \tcblower
+        \ 
+
+        (a):
+
+        Let \(W_1, W_2\) be subspaces of \(V\). We verify that \(W_1 + W_2\) is also a subspace of \(V\).
+
+        First, note that \(0 \in W_1, W_2\), so \(0 + 0 = 0 \in W_1 + W_2\). Next, let \(c \in \mathbb{F}\), \(\vec{v} , \vec{w} \in W_1 + W_2\). Then \(\vec{v} = \vec{v}_1 + \vec{v}_2\) and \(\vec{w} = \vec{w}_1 + \vec{w}_2\), for some \(\vec{v}_1, \vec{w}_1 \in W_1\) and \(\vec{v}_2, \vec{w}_2 \in W_2\). Since \(W_1, W_2\) are subspaces, it is true that
+        \[
+            c\vec{v}_1 + \vec{w}_1 \in W_1 \text{ and } c\vec{v}_2 + \vec{w}_2 \in W_2
+        \]
+        which implies that
+        \[
+            \vec{v} + \vec{w} = (c\vec{v}_1 + \vec{w}_1) + (c\vec{v}_2 + \vec{w}_2) \in W_1 + W_2,
+        \]
+        verifying that \(W_1 + W_2\) is indeed a subspace.
+
+        \medskip
+
+        (b):
+
+        Let \(W_2 = \mathbb{F}^3\), \(W_3 = \mathrm{span} \{e_3\}\).
     \end{question}
     \newpage
     \begin{question}{9}
@@ -345,7 +399,7 @@
     \end{question}
     \newpage
     \begin{question}{10}
-        Let \( J = \left( \begin{array}{c|c} O & -I_2 \\ I_2 & O \end{array} \right) \) and \( \mathbb{F} = \mathbb{C} \).
+        Let \( J = \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) \) and \( \mathbb{F} = \mathbb{C} \).
         
         \begin{enumerate}
             \item Verify that \( J^2 = -I_4 \).
@@ -353,18 +407,12 @@
             \item Show that \( sp_4 = \{ X \in \mathcal{M}_{4\times 4}(\mathbb{F}) | XJ = JX \} \) is a subspace of \( \mathcal{M}_{4\times 4}(\mathbb{F}) \).
             \item Find dim \( sp_4 \) by finding a basis for \( sp_4 \).
         \end{enumerate}
-        
-        For Question 10, you may use the following fact about block matrices without proof (you will prove it in the future):
-        
-        \[
-        \left( \begin{array}{cc} A & B \\ C & D \end{array} \right) \left( \begin{array}{cc} K & L \\ M & N \end{array} \right) = \left( \begin{array}{cc} AK + BM & AL + BN \\ CK + DM & CL + DN \end{array} \right).
-        \]
     \end{question}
     \newpage
     \begin{question}{11}
         Determine if the statements below are true or false. If true, give a proof. If false, explain why, and/or provide a counterexample.
         
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( I \subseteq V \) is a linearly independent set so that for any \( x \in V \setminus I \), the set \( I \cup \{ x \} \) is linearly dependent, then \( I \) is a basis for \( V \).
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( S \subseteq V \) is a spanning set so that \( |S| = \dim V \), then \( S \) is a basis for \( V \).
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( W \subseteq V \) a subspace, then there exists a unique subspace \( U \subseteq V \) so that \( V = W \oplus V \).
