@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Exercise 13.14}
+    \textbf{Solvers:} Ethan
+
+    Recall the statement of Theorem 13.6 and the definition of a simple mapping:
+
+    \textbf{Theorem 13.6.} Let $U,V\subseteq\R^n$ be two open sets and let $\Phi:U\rightarrow V$ be a diffeomorphism. Let $E\subseteq \R^n$ be a measurable set. Then $\Phi(E)$ is also measurable, and its measure is
+        \[ \mu(\Phi(E)) = \int_E |\det J\Phi|. \]
+
+    \textbf{Definition 13.12.} Let $\Phi:U\rightarrow \R^n$ be a function defined on some set $U\subseteq \R^n$, and let $\varphi_1,\ldots,\varphi_n$ be the component functions of $\Phi$:
+        \[ \Phi(p) = (\varphi_1(p), \ldots, \varphi_n(p)) \quad \text{for all $p\in U$.} \]
+    If the $i$th component function is just $x_i$ --- \textit{i.e.} $\varphi_i(x_1,\ldots,x_n)=x_i$ for some $i$ --- then we say that $\Phi$ is \textbf{$x_i$-simple}. We say that $\Phi$ is \textbf{simple} if it is $x_i$-simple for all but one $i$.
+
+    \textbf{Exercise 13.14.} Show that Theorem 13.6 holds if \(\Phi\) is simple.
+
+    \begin{proof}
+        Let \(U,V \subseteq \mathbb{R}^n\) be open, and let \(\Phi : U \to V\) be a simple diffeomorphism. Without loss of generality, let the only non-simple component of \(\Phi\) be \(\varphi _n\), and let \(E = \prod_{i=1}^n [a_i, b_i] \subseteq U\) be a closed box. Since \(\Phi\) is a diffeomorphism, this implies that \(\Phi (E)\) is measurable, and as well, because \(\Phi\) is simple,
+        \[
+            \Phi (E) = \left\{ (x_1, ..., x_{n-1}, \varphi (x)) \in V : x = (x_1, ..., x_n) \in \prod_{i=1}^{n} [a_i, b_i] \right\} 
+        \]
+        Let \(E' = \prod_{i=1}^{n-1} [a_i, b_i]\), and define \(\Psi : E' \to \mathbb{R}\) by
+        \[
+            \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n.
+        \]
+        \(\Phi\) is a diffeomorphism, so the restriction \(\varphi(x', \cdot)\) is also a diffeomorphism. It follows that the image \(\varphi(x', [a_n, b_n])\) is an interval. Now, we want to apply single-variable change of variables with \(\varphi (x', u) = x_n\). Notice that
+        \[
+            dx_n = \frac{\partial \varphi }{\partial u}(x', u) du
+        \]
+        and
+        \[
+            \det J \Phi = \begin{array}{|cccc|}
+                1 & 0 & \cdots &  0 \\
+                0 & 1 & \cdots &  0 \\
+                \vdots & \vdots & \ddots &  \vdots \\
+                0 & 0 & \cdots & \dfrac{\partial \varphi }{\partial u}(x', u) \\
+            \end{array} = \frac{\partial \varphi }{\partial u}(x', u)
+        \]
+        so it follows that
+        \[
+            \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n = \int _{a_n}^{b_n} |\det J \Phi |
+        \]
+        Finally, using Fubini's Theorem, we get that
+        \[
+            \mu (\Phi (E)) = \int _{\Phi (E)} 1 = \int _{E'} \Psi = \int _{E'} \int_{a_n}^{b_n} |\det J \Phi | = \int _E |\det J \Phi |
+        \]
+        as needed.
+    \end{proof}
+\end{document}

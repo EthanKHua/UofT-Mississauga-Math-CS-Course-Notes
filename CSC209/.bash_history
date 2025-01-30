@@ -1,70 +1,3 @@
-git pull
-ls
-cd lab1
-ls
-gcc
-sudo apt install gcc
-sudo apt install gcc
-apt-get update
-exit
-sudo apt-get update
-sudo apt-get upgrade -y
-gcc
-sudo apt autoremove -y
-sudo apt install gcc
-gcc -v
-cd documents
-cd uni
-cd csc209
-cd huaethan
-ls
-cd lab1
-ls
-gcc -Wall -g count.c
-cat count.c
-cat count.c 1 2
-gcc -Wall -g count.c 1 2
-gcc -Wall -g count.c 1
-ls
-ls -a
-gcc -Wall -g count.c
-ls
-gcc count
-count
-gcc -Wall -g count.c
-ls
-gcc -Wall -g hello.c
-./count
-,.count.c
-./count.c
-./hello
-gcc -Wall -g hello.c -o hello
-./hello
-ls
-gcc -Wall -g count.c -o count
-./count
-./count 1
-./count 10
-touch compile_all.sh
-ls
-vim compile_all.sh
-ls
-vim compile_all.sh
-ls
-vim compile_all.sh
-ls
-./compile_all.sh
-chmod
-chmod compile_all.sh
-ls -l
-./compile_all.sh --verbose
-man ./compile_all.sh
-ls
-vim compile_all.sh
-./ compile_all.sh
-./compile_all.sh
-vim compile_all.sh
-./compile_all.sh
 ls -l
 ./compile_all.sh
 ls
@@ -498,3 +431,70 @@ gdb
 cat parity.
 cat parity.c
 cat compute_parity.c
+ls
+nvim parity.c
+gcc -Wall -g -o compute_parity compute_parity.c parity.c
+./compute_parity 3 4 test2.txt
+./compute_parity 4 4 test2.txt
+nvim parity.c
+gcc -Wall -g -o compute_parity compute_parity.c parity.c
+./compute_parity 4 4 test2.txt
+./compute_parity 4 2 test2.txt
+git status
+git add *.txt
+git status
+git rm text1.txt
+git rm -f text1.txt
+git ci "testing progress"
+git push
+git push
+git pull
+git config pull.rebase false
+git diff
+git pull
+git pull
+git pull
+git stash
+git pull
+git diff
+git status
+git push
+touch test3.txt
+nvim test3.txt
+./compute_parity 3 4 test3.txt
+./compute_parity 3 4 quotes.txt.txt
+./compute_parity 3 4 quotes.txt
+./restore_block 4 64 quotes.txt 0
+./restore_block 1 64 quotes.txt 0
+./compute_parity 3 4 test3.txt
+./compute_parity 1 4 test3.txt
+cat parity.c
+git status
+git add testing.txt
+git ci "testing progress"
+git push
+./compute_parity 3 4 test3.txt
+vim test3.txt
+./compute_parity 3 4 test3.txt
+./compute_parity 1 4 test3.txt
+ls
+touch test4.txt
+nvim test4.txt
+./compute_parity 2 6 test4.txt
+./restore_parity 3 4 test1.txt 1
+gcc -Wall -g -o restore_parity restore_parity.c parity.c
+./restore_block 3 4 test1.txt 1
+./restore_block 1 4 test1.txt 0
+./restore_block 1 4 test1.txt 1
+./restore_block 1 4 test1.txt 2
+cat parity.c
+./restore_block 1 4 test1.txt 0
+./restore_block 4 4 test2.txt 3
+git add *.txt
+git ci "a1 complete"
+git push
+git push
+git pull
+git log
+git push
+git push
