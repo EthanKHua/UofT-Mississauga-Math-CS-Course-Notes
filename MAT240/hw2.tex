@@ -1,5 +1,373 @@
-\documentclass{../tex-setup/eh-homework}
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{systeme}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
 
 \begin{document}
-    test
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+
+    \begin{question}{1}
+        Let \( V \) be a vector space over the field \( \mathbb{F} \), and \( S \) a (non-empty) set. Let \( \mathcal{F}(S,V) = \{ f : S \to V \} \) be the set of \( V \)-valued functions.
+        
+        We define addition and scaling on \( \mathcal{F}(S,V) \) pointwise:
+        \[
+        (f + g)(s) = f(s) + g(s)
+        \]
+        \[
+        (cf)(s) = cf(s)
+        \]
+        
+        We will verify some of the vector space axioms required to prove that \( \mathcal{F}(S,V) \) is a vector space over \( \mathbb{F} \).
+        
+        \begin{enumerate}[label=(\alph*)]
+            \item Why do these operations make sense?
+            \item Prove (using only the definitions above, and the fact that \( V \) is a vector space) that \( c(f + g) = cf + cg \) for all \( f,g \in \mathcal{F}(S,V) \) and \( c \in \mathbb{F} \).
+            \item Prove that for all \( f \in \mathcal{F}(S,V) \) there exists \( g \in \mathcal{F}(S,V) \), so that \( f + g = 0 \). (Here \( 0 : S \to V \) is the constant function defined by \( 0(s) = 0_V \) for \( s \in S \).)
+        \end{enumerate}
+
+        \tcblower
+        \ 
+
+        (a):
+
+        These operations make sense because they allow us to use the properties of the sets underlying \(\mathcal{F} (S,V)\).
+
+        \medskip
+
+        (b):
+
+        We will do this by showing that for all \(s \in S\), we have \(c(f(s) + g(s)) = cf(s) + cg(s)\).
+
+        Fix \(s \in S\). It follows that \(f(s), g(s) \in V\), so by the axiom of distributivity in \(V\), we have that
+        \[
+            c(f(s) + g(s)) = cf(s) + cg(s)
+        \]
+
+        \medskip
+
+        (c):
+
+        Let \(f \in \mathcal{F} (S,V)\). Choose \(g = (-1 \cdot f)\). Then for all \(s \in S\),
+        \[
+            f(s) + g(s) = f(s) + (-f(s)) = 0
+        \]
+        as needed.
+    \end{question}
+    \newpage
+    \begin{question}{2}
+        Let \( W = \left\{ (x,y,z,w) \in \mathbb{Q}^4 \middle| \begin{array}{l}
+        x + 5w = y + 5z \\
+        y = 4w - 3z \\
+        x + y + z = 3w
+        \end{array} \right\} \).
+        
+        Do not use Q3 to solve this problem. This problem is a “warm up” for Q3.
+        
+        \begin{enumerate}[label=(\alph*)]
+            \item Rearrange the equations defining \( W \) to show that \( W \) is the set of solutions to a homogeneous system of equations.
+            \item Solve the system using row-reduction and express the general solution as a linear combination of the “basic solutions”.
+            \item Show that \( W = \text{span} \, S \), for some set \( S \subseteq \mathbb{Q}^4 \).
+            \item Deduce that \( W \) is a subspace of \( \mathbb{Q}^4 \).
+        \end{enumerate}
+
+        \tcblower
+        \ 
+
+        (a):
+
+        Rearranging, the equations become
+        \begin{equation*}
+            \systeme[xyzw]{
+                x - y - 5z + 5w = 0,
+                y + 3z -4w = 0,
+                x + y + z -3w = 0
+            }
+        \end{equation*}
+
+        \medskip
+
+        (b):
+
+        The augmented matrix associated with this system of equations is
+        \[
+            \begin{amatrix}{4}
+                1 & -1 & -5 & 5 & 0 \\
+                0 & 1 & 3 & -4 & 0 \\
+                1 & 1 & 1 & -3 & 0
+            \end{amatrix}
+        \]
+        Row reducing this, we get
+        \begin{align*}
+            \begin{amatrix}{4}
+                1 & -1 & -5 & 5 & 0 \\
+                0 & 1 & 3 & -4 & 0 \\
+                1 & 1 & 1 & -3 & 0
+            \end{amatrix}
+            \xrightarrow{r_3\,\to\,r_3 - r_1}
+            \begin{amatrix}{4}
+                1 & -1 & -5 & 5 & 0 \\
+                0 & 1 & 3 & -4 & 0 \\
+                0 & 2 & 6 & -8 & 0
+            \end{amatrix}
+            \xrightarrow[r_3\,\to\,r_3 - 2r_2]{r_1\,\to\,r_1 + r_2}
+            \begin{amatrix}{4}
+                1 & 0 & -2 & 1 & 0 \\
+                0 & 1 & 3 & -4 & 0 \\
+                0 & 0 & 0 & 0 & 0
+            \end{amatrix}
+        \end{align*}
+        We parameterize \(z\) and \(w\) to obtain that
+        \begin{align*}
+            x &= 2s - t \\
+            y &= -3s + 4t \\
+            z &= s \\
+            w &= t
+        \end{align*}
+        so the general solution of this system of equations is given by
+        \[
+            \begin{pmatrix*}
+                 x \\
+                 y \\
+                 z \\
+                 w \\
+            \end{pmatrix*}
+            =
+            s\begin{pmatrix*}[r]
+                 2 \\
+                 -3 \\
+                 1 \\
+                 0 \\
+            \end{pmatrix*}
+            +t
+            \begin{pmatrix*}[r]
+                 -1 \\
+                 4 \\
+                 0 \\
+                 1 \\
+            \end{pmatrix*}
+        \]
+
+        \medskip
+
+        (c):
+
+        Let
+        \(S = \left\{ \begin{pmatrix*}[r]
+                        2 \\
+                        -3 \\
+                        1 \\
+                        0 \\
+                      \end{pmatrix*},
+                      \begin{pmatrix*}[r]
+                        -1 \\
+                        4 \\
+                        0 \\
+                        1 \\
+                      \end{pmatrix*}\right\} \).
+        Since both vectors are solutions to the homogeneous equation in \(W\), \(S \subseteq W\).
+    \end{question}
+    \newpage
+    \begin{question}{3}
+        We now generalize Q2. Consider a linear system with \( m \) equations and \( n \) unknowns:
+        
+        \[
+        \begin{aligned}
+        a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= 0 \\
+        a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= 0 \\
+        &\vdots \\
+        a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= 0.
+        \end{aligned}
+        \]
+        
+        We saw in Week 3 that any solution \( x = (x_1, x_2, \ldots, x_n) \in \mathbb{F}^n \) can be expressed as \( x = \sum_{i=1}^{k} t_i x_i \), where \( t_i \in \mathbb{F} \) are the parameters, and \( x_i \in \mathbb{F}^n \) are the “basic solutions”.
+        
+        Let \( W \) be the set of solutions to this system.
+        
+        \begin{enumerate}
+            \item Prove that \( W = \text{span} \, S \) for some set \( S \), and hence that \( W \) is a subspace of \( \mathbb{F}^n \).
+            \item Prove that the set \(\{x_1, x_2, \ldots, x_k\}\) is linearly independent.
+            
+            (Hint: Think about the variables which correspond to the choice of parameters. There is exactly one vector for each such parameter. Use the corresponding entry to show that if \( t_1 x_1 + t_2 x_2 + \cdots + t_k x_k = 0 \) then \( t_i = 0 \) for each \( i \).)
+            
+            \item Find a basis for \( W \).
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{4}
+        Is the set \( S = \{e_1 + 2 e_2 - 3 e_3, e_1 + e_2 - e_3, e_2 - e_3\} \subseteq \mathbb{Q}^3 \) a basis for \( \mathbb{Q}^3 \)? Justify your answer.
+    \end{question}
+    \newpage
+    \begin{question}{5}
+        Let \( V \) be a finite dimensional vector space over a field \( \mathbb{F} \).
+        
+        \begin{enumerate}
+            \item Prove that if \( W \subseteq V \) is a subspace with basis \( \beta_W \), then there exists a linearly independent set \( \alpha \) so that \( \beta = \beta_W \cup \alpha \) is a basis for \( V \). (We say that \( \beta \) “extends” \( \beta_W \). So you are proving that “every basis of a subspace \( W \) can be extended to a basis of \( V \)”.)
+            \item Prove that for any linearly independent set \( I \) and spanning set \( S \), we have \( |I| \leq \dim V \leq |S| \).
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{6}
+        Consider a matrix \( M \in \mathcal{M}_{n \times n}(\mathbb{F}) \). Given \( p \in \{1, \ldots, n\} \) we can split \( M \) into “blocks”: 
+        
+        \[
+        M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}
+        \]
+        
+        where \( A \) is \( k \times k \), \( B \) is \( k \times (n-k) \), \( C \) is \( (n-k) \times k \) and \( D \) is \( (n-k) \times (n-k) \).
+        
+        For example, if \( n = 5 \) and \( k = 2 \), then such a block matrix would be of the form
+        
+        \[
+        M = \begin{pmatrix} 
+        1 & 2 & 3 & 2 & 3 \\ 
+        -5 & 3 & 3 & 1 & 1 \\ 
+        1 & 2 & 0 & -1 & 1 \\ 
+        3 & 1 & 3 & -1 & 7 \\ 
+        1 & 0 & -1 & 3 & 5 
+        \end{pmatrix}
+        \]
+        
+        where \( A = \begin{pmatrix} 
+        1 & 2 \\ 
+        -5 & 3 
+        \end{pmatrix}, B = \begin{pmatrix} 
+        3 & 2 & 3 \\ 
+        3 & 1 & 1 
+        \end{pmatrix}, C = \begin{pmatrix} 
+        1 & 2 \\ 
+        3 & 1 \\ 
+        1 & 0 
+        \end{pmatrix}, D = \begin{pmatrix} 
+        0 & -1 & 1 \\ 
+        3 & -1 & 7 \\ 
+        -1 & 3 & 5 
+        \end{pmatrix} \).
+        
+        Prove that if \( M = \begin{pmatrix} 
+        A & B \\ C & D 
+        \end{pmatrix} \) and \( N = \begin{pmatrix} 
+        A' & B' \\ C' & D' 
+        \end{pmatrix} \), then \( \alpha M + N = \begin{pmatrix} 
+        \alpha A + A' & \alpha B + B' \\ \alpha C + C' & \alpha D + D' 
+        \end{pmatrix} \).
+    \end{question}
+    \newpage
+    \begin{question}{7}
+        Let \( W = \left\{ A \in \mathcal{M}_{2n \times 2n}(\mathbb{F}) \mid A = \left( \frac{X - X^t}{O_n} \middle| \frac{O_n}{X + X^t} \right) \text{ with } X \in \mathcal{M}_{n \times n}(\mathbb{F}) \right\} \).
+        
+        (Assume char\((\mathbb{F})\neq 2\).)
+        
+        \begin{enumerate}
+            \item Let \( n = 2 \). Find a basis for \( W \).
+            \item Now generalize to arbitrary \( n \). Find a basis for \( W \), and use it to compute dim \( W \).
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{8}
+        \begin{enumerate}
+            \item Prove that if \( W_1, W_2 \subseteq V \) are subspaces, then \( W_1 + W_2 \) is a subspace.
+            \item Let \( W_1 = \{(x, y, x + y) \in \mathbb{F}^3 \mid x, y \in \mathbb{F} \} \). Find two subspaces \( W_2, W_3 \) so that:
+            
+            \begin{itemize}
+                \item \( W_1 + W_2 = \mathbb{F}^3 \) but \( \mathbb{F}^3 \neq W_1 \oplus W_2 \).
+                \item \( W_1 \oplus W_3 = \mathbb{F}^3 \).
+            \end{itemize}
+            
+            \item Find another subspace \( U \subseteq \mathbb{F}^3 \) so that \( W_1 \oplus U = \mathbb{F}^3 \).
+        \end{enumerate}
+    \end{question}
+    \newpage
+    \begin{question}{9}
+        Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \), and \( W_1, W_2 \subseteq V \) subspaces with bases \( \beta_1, \beta_2 \) respectively. Prove that \( V = W_1 \oplus W_2 \) if and only if \( \beta = \beta_1 \cup \beta_2 \) is a basis for \( V \).
+    \end{question}
+    \newpage
+    \begin{question}{10}
+        Let \( J = \left( \begin{array}{c|c} O & -I_2 \\ I_2 & O \end{array} \right) \) and \( \mathbb{F} = \mathbb{C} \).
+        
+        \begin{enumerate}
+            \item Verify that \( J^2 = -I_4 \).
+            \item Find all \( X \in \mathcal{M}_{4\times 4}(\mathbb{F}) \) so that \( XJ = JX \).
+            \item Show that \( sp_4 = \{ X \in \mathcal{M}_{4\times 4}(\mathbb{F}) | XJ = JX \} \) is a subspace of \( \mathcal{M}_{4\times 4}(\mathbb{F}) \).
+            \item Find dim \( sp_4 \) by finding a basis for \( sp_4 \).
+        \end{enumerate}
+        
+        For Question 10, you may use the following fact about block matrices without proof (you will prove it in the future):
+        
+        \[
+        \left( \begin{array}{cc} A & B \\ C & D \end{array} \right) \left( \begin{array}{cc} K & L \\ M & N \end{array} \right) = \left( \begin{array}{cc} AK + BM & AL + BN \\ CK + DM & CL + DN \end{array} \right).
+        \]
+    \end{question}
+    \newpage
+    \begin{question}{11}
+        Determine if the statements below are true or false. If true, give a proof. If false, explain why, and/or provide a counterexample.
+        
+        \begin{enumerate}
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( I \subseteq V \) is a linearly independent set so that for any \( x \in V \setminus I \), the set \( I \cup \{ x \} \) is linearly dependent, then \( I \) is a basis for \( V \).
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( S \subseteq V \) is a spanning set so that \( |S| = \dim V \), then \( S \) is a basis for \( V \).
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( W \subseteq V \) a subspace, then there exists a unique subspace \( U \subseteq V \) so that \( V = W \oplus V \).
+        \end{enumerate}
+    \end{question}
 \end{document}

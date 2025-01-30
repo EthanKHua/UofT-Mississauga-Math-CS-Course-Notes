@@ -83,14 +83,14 @@
 
         % \smallbreak
 
-        Conversely, suppose that \(f\) is differentiable at every point of \(A\). For all \(p_a \in A\), there exists an open neighborhood \(U_a\) of \(p_a\) and a function \(f_a : U_a \to \mathbb{R}\) that is differentiable at \(p_a\) and \(f_a \vert _{U_a \cap A} = f \vert U \cap A\). Notice that \(U = \{U_a\}_{a \in I}\) forms an open cover of \(A\). Thus we can find a partition of unity \(\{ \varphi _a : \mathbb{R}^n \to [0,1]\}_{a\in I}\). In particular,
+        Conversely, suppose that \(f\) is differentiable at every point of \(A\). For all \(p_a \in A\), there exists an open neighborhood \(U_a\) of \(p_a\) and a function \(f_a : U_a \to \mathbb{R}\) that is differentiable at \(p_a\) and \(f_a \vert _{U_a \cap A} = f \vert U \cap A\). Notice that \(U = \{U_a\}_{a \in I}\) forms an open cover of \(A\). Thus we can find a partition of unity \(\{ \varphi _a : \mathbb{R}^n \to [0,1]\}_{a\in I}\) subordinate to \(U\). In particular,
         \begin{itemize}
             \item \(\varphi _a \in C^{\infty}\),
             \item \(\mathop{\mathrm{supp}}(\varphi _a)\cap U \subseteq U_a\),
             \item \(\{\mathop{\mathrm{supp}}(\varphi_a)\}\) is locally finite,
             \item \(\sum\limits_{a \in I} \varphi _a = 1\).
         \end{itemize}
-        We claim that \(\hat{f} = \sum_{a \in I} \varphi _a \cdot f_a\) is the function that extends \(f\) to \(\{ U_a \} _{a \in I}\). First, note that this sum is well defined because the partition of unity is locally finite, so the sum is finite at every point, and as well, any point outside the domain of \(f_a\) implies that \(\varphi _a = 0\), so \(\varphi _a \cdot f_a = 0\).
+        We claim that \(\hat{f} = \sum_{a \in I} \varphi _a \cdot f_a\) is the differentiable function that extends \(f\) to \(\{ U_a \} _{a \in I}\). First, note that this sum is well defined because the partition of unity is locally finite, so the sum is finite at every point, and as well, any point outside the domain of \(f_a\) implies that \(\varphi _a = 0\), so \(\varphi _a \cdot f_a = 0\).
 
         Moreover, for all \(x \in U\), since \(\{ \varphi _a \}_{a \in I}\) is locally finite, for some open neighborhood \(V\) of \(x\), for some finite sequence of \(a_n \in I\),
         \[
