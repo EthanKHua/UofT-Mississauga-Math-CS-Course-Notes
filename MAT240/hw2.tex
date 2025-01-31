@@ -284,7 +284,19 @@
 
         (a):
 
+        Let \(S = \{ x_1, ..., x_k \}\). We note that any linear conbination of the vectors in \(S\) form a solution to the system, but not only that, any solution to the system can be written as a linear combination of these vectors, so \(\mathrm{span} S = W\).
 
+        \medskip
+
+        (b):
+
+        Suppose that \(\sum_{i=1}^{k} t_i x_i = 0\).
+
+        \medskip
+
+        (c):
+
+        From part (a) and part (b), the set \(S = \{ x_1, ..., x_k \}\) spans \(W\) and is linearly independent, which by definition forms a basis of \(W\).
     \end{question}
     \newpage
     \begin{question}{4}
@@ -304,7 +316,11 @@
         Consider a matrix \( M \in \mathcal{M}_{n \times n}(\mathbb{F}) \). Given \( p \in \{1, \ldots, n\} \) we can split \( M \) into “blocks”: 
         
         \[
-        M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}
+        M = \left( \begin{array}{c|c}
+            A & B \\
+            \hline
+            C & D
+        \end{array} \right) 
         \]
         
         where \( A \) is \( k \times k \), \( B \) is \( k \times (n-k) \), \( C \) is \( (n-k) \times k \) and \( D \) is \( (n-k) \times (n-k) \).
@@ -312,17 +328,18 @@
         For example, if \( n = 5 \) and \( k = 2 \), then such a block matrix would be of the form
         
         \[
-        M = \begin{pmatrix} 
+        M = \left(\begin{array}{cc|ccc} 
         1 & 2 & 3 & 2 & 3 \\ 
-        -5 & 3 & 3 & 1 & 1 \\ 
+        -5 & 3 & 3 & 1 & 1 \\
+        \hline 
         1 & 2 & 0 & -1 & 1 \\ 
         3 & 1 & 3 & -1 & 7 \\ 
         1 & 0 & -1 & 3 & 5 
-        \end{pmatrix}
+        \end{array}\right)
         \]
         
         where \( A = \begin{pmatrix} 
-        1 & 2 \\ 
+        1 & 2 \\
         -5 & 3 
         \end{pmatrix}, B = \begin{pmatrix} 
         3 & 2 & 3 \\ 
@@ -337,13 +354,20 @@
         -1 & 3 & 5 
         \end{pmatrix} \).
         
-        Prove that if \( M = \begin{pmatrix} 
-        A & B \\ C & D 
-        \end{pmatrix} \) and \( N = \begin{pmatrix} 
-        A' & B' \\ C' & D' 
-        \end{pmatrix} \), then \( \alpha M + N = \begin{pmatrix} 
-        \alpha A + A' & \alpha B + B' \\ \alpha C + C' & \alpha D + D' 
-        \end{pmatrix} \).
+        Prove that if \( M = \left(\begin{array}{c|c} 
+        A & B \\ 
+        \hline
+        C & D 
+        \end{array}\right) \) and \( N = \left(\begin{array}{c|c} 
+        A' & B' \\
+        \hline
+        C' & D' 
+        \end{array}\right) \), then
+        \[ \alpha M + N = \left(\begin{array}{c|c}
+        \alpha A + A' & \alpha B + B' \\
+        \hline
+        \alpha C + C' & \alpha D + D' 
+        \end{array}\right) \]
     \end{question}
     \newpage
     \begin{question}{7}
