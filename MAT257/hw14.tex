@@ -110,10 +110,39 @@
 
         The converse of this statement is exactly the same as the previous part, so we will omit the proof.
 
-        Suppose that \(f\) is differentiable at every point of \(A\). By the previous part, \(f\) extends to a differentiable function \(\widetilde{f}\) on some open set \(U\) that contains \(A\). Let Notice that \(A^c\) is open and \(A^c \cup U = \mathbb{R}^n\). Thus \(\{ A^c, U \}\) form an open cover of \(\mathbb{R}^n\), so we can find a partition of unity \(\{\varphi_{A^c}, \varphi_{U}\}\) subordinate to \(\{ A^c, U \}\). We claim that our desired function \(\widehat{f}\) is given by
+        Suppose that \(f\) is differentiable at every point of \(A\). By the previous part, \(f\) extends to a differentiable function \(\widetilde{f}\) on some open set \(U\) that contains \(A\). We want to find an open set \(V\) such that \(A \subseteq V \subseteq \cl{V} \subseteq U\). We see that the set \(V = \left\{ x \in \mathbb{R}^n : \mathrm{dist}_A (x) < \dfrac{\mathrm{dist}(A, U^c)}{2}\right\}\) is sufficient. It is pretty immediate that \(A \subseteq V\), as any element of \(A\) has distance 0 from \(A\). As well, if we let \(v \in \cl{V}\), since \(v\) is a limit point of \(V\) we can find \(v' \in V\) such that \(\|v - v'\| < \dfrac{\mathrm{dist}(A, U^c)}{4}\). Furthermore, by the definition of infimum we can find \(a \in A\) such that \(\|v' - a \| < \mathrm{dist}_A (x) +  \dfrac{\mathrm{dist}(A, U^c)}{4} < \dfrac{3\mathrm{dist}(A, U^c)}{4}\). Thus we have that
         \[
-            \widehat{f} = \widetilde{f} \cdot \varphi_{U}.
+            \|a - v\| \leq \|a - v'\| + \|v' - v\| < \mathrm{dist}(A, U^c)
         \]
+        For all \(w \in U^c\),
+        \[
+            \|w - v\| \geq \|w - a\| - \|a - v\| > \mathrm{dist}(A, U^c) - \mathrm{dist}(A, U^c) = 0
+        \]
+        which implies that \(v \notin U^c\), so \(v \in U\) and \(\cl{V} \subseteq U\).
+        
+        Now, notice that \(A^c\) is open and \(A^c \cup V = \mathbb{R}^n\). Thus \(\{ A^c, V \}\) form an open cover of \(\mathbb{R}^n\), so we can find a partition of unity \(\{\varphi_{A^c}, \varphi_{V}\}\) subordinate to \(\{ A^c, V \}\). We claim that our desired function \(\widehat{f}\) is given by
+        \[
+            \widehat{f} = \widetilde{f} \cdot \varphi_{V}.
+        \]
+        This function is well defined, as outside of the domain of \(\widetilde{f}\), it is identitally equal to 0.
+
+        First, we will show that \(\widehat{f}\) is differentiable on \(\mathbb{R}^n\). Let \(p \in \mathbb{R}^n\), and begin by considering the case when \(p \in \cl{V} \subseteq U\). Then for some small enough neighborhood \(W\) of \(p\), for all \(x \in W\),
+        \[
+            \widehat{f}(x) = \widetilde{f} (x) \cdot \varphi_V (x)
+        \]
+        so \(\widehat{f}\) is differentiable at \(p\).
+
+        If \(p \in \mathbb{R}^n \setminus \cl{V}\), then it is also true that \(p \notin V\), which is outside of \(\mathop{\mathrm{supp}}(\varphi_V)\). Thus, using the fact that \(\mathbb{R}^n \setminus \cl{V}\) is open, we get an open neighborhood \(W'\) of \(p\) such that
+        \[
+            \widehat{f}(x) = 0, \text{ for } x \in W'.
+        \]
+        so \(\widehat{f}\) is differentiable at \(p\).
+
+        Now, we show that it is a valid extension of \(f\). For all \(x \in A\), notice that \(\varphi_{A^c} \vert _A \equiv 0\), so it must be true that \(\varphi _V \vert _A \equiv 1\). Then it follows that
+        \[
+            \widehat{f} \vert _A = \widetilde{f}\vert _A = f \vert _A
+        \]
+        and the proof is complete.
  \end{question}
     \newpage
     \begin{question}{37}
