@@ -110,7 +110,39 @@ def range_sum(node, int low, int high):
 
 \textbf{Solution.}
 
-\textit{Part a).} We can implement LandUse by using an augmented AVL tree, where each node corresponds to a unique land pixel. Each node stores three values, \verb|node.x|, \verb|node.y|, and \verb|node.u| and its left and right children. 
+(a): We can implement LandUse by using two augmented AVL trees, where each node corresponds to a unique land pixel. Both trees store the same nodes, but ordered differently. In both trees, each node stores three values, \verb|node.x|, \verb|node.y|, and \verb|node.u| and its left and right children. We consider the first tree ``x-skewed'' and the second tree ``right-skewed''.
+
+(b): The way we compare the two nodes is different depending on the tree.
+
+In general, we compare two nodes by comparing their x and y values, treating it as tuple. For example, in the x-skewed tree, \((x,y) > (x',y')\) if either \(x > x'\) or \(x = x'\) and \(y > y'\), so we treat the x value with higher precedence than the y value. This is reversed in the y-skewed tree: we have \((x,y) > (x',y')\) if either \(y > y'\) or \(y = y'\) and \(x > x'\).
+
+(c): We will describe each operation below:
+
+\texttt{ReadType}\((S,x,y)\):
+
+To find the desired pixel and return its land use type, we can use standard BST iteration on either tree, but as convention we will search the x-skewed AVL tree. The algorithm is exactly the same as a standard binary search, only the comparisions are done with tuples rather than scalar values. There are \(n\) nodes in the x-skewed tree, so performing a binary search will result in a worst-case runtime of \(\mathcal{O} (\log n)\).
+
+\texttt{WriteType}\((S,x,y, u)\): 
+
+We insert the triple \((x,y,u)\) into both the trees. We use the insertion algorithm for AVL trees on each tree. creating the node that stores the \(x\), \(y\), and land use type. Since this is all we are doing, we can guarantee that the worst-case runtime is \(\mathcal{O}(\log n)\).
+
+\texttt{NextInRow}\((S,x,y)\):
+
+For this operation, we will first find the successor of \((x,y)\) by traversing the x-skewed AVL tree. We will call the position of the successor \((x',y')\). We know that \((x',y') \neq (x,y)\) since every pixel is unique. As well, we also know that there is no smaller pixel than \((x',y')\) that is larger than \((x,y)\). If \(x' = x\), then \((x',y')\) is indeed the pixel next in row, so we return \((x',y')\). Otherwise, we return \((0,0)\) because there is no pixel that is in the same row as \((x,y)\).
+
+In terms of time complexity, all we do is find the successor of \((x,y)\) and perform basic comparisons, so our worst-case runtime is \(\mathcal{O} (\log n)\).
+
+\texttt{NextInColumn}\((S,x,y)\): 
+
+We perform the same algorithm as in \texttt{NextInRow}, only that we are traversing through the y-skewed AVL tree, and we are comparing \(y\) and \(y'\) rather than \(x\) and \(x'\). Thus the worst-case runtime is also \(\mathcal{O} (\log n)\).
+
+\texttt{RowEmpty}\((S,x)\): 
+
+We traverse the x-skewed tree, attempting to find any pixel in the \(x\)th row. However, we perform binary search while only compare the x-value and ignore the y value. We return true once we encounter any pixel with their row being equal to \(x\), and return false if we arrive at a leaf node. Since the worst-case occurs when the travel to the bottom of the tree, and the height of the tree is \(\log n\), our worst-case runtime is \(\mathcal{O} (\log n)\).
+
+\texttt{ColumnEmpty}\((S,y)\): 
+
+This operation is the exact same as \texttt{RowEmpty}, only we search the y-skewed tree and compare y values. The worst-case runtime is also \(\mathcal{O} (\log n)\).
 
 \program
 
