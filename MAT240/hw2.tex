@@ -460,7 +460,7 @@
 
         \tcblower
 
-        Let \(n = \dim V\), \(m = |\beta_1|\), \(k = |\beta _2|\).
+        Let \(m = |\beta_1|\), \(k = |\beta _2|\).
 
         Suppose that \(V = W_1 \oplus W_2\). We will show that \(\beta = \beta _1 \cup \beta _2\) is a basis for \(V\).
 
@@ -484,7 +484,22 @@
         \]
         By the closure property of subspaces, \(\sum_{i=1}^{m} a_i v_i \in W_1\) and \(\sum_{i=1}^{k} b_i w_i \in W_2\), but since they are equal, it must be true that \(\sum_{i=1}^{m} a_i v_i = \sum_{i=1}^{k} b_i w_i \in W_1 \cap W_2 = \{ 0 \}\), so \(\sum_{i=1}^{m} a_i v_i = \sum_{i=1}^{k} b_i w_i = 0\). Since \(\beta _1, \beta _2\) are linearly independent, it must be true that \(a_i = 0\) and \(b_i = 0\), which was what we wanted to show. Therefore \(\beta\) is indeed a basis for \(V\).
 
-        Conversely, suppose that \(\beta\) is a basis for \(V\).
+        Conversely, suppose that \(\beta\) is a basis for \(V\). We want to show that \(V = W_1 \oplus W_2\). It is obvious that \(W_1 + W_2 \subseteq V\), so it suffices to prove that \(V \subseteq W_1 \oplus W_2\) and \(W_1 \cap W_2 = \{ 0 \}\).
+
+        Let \(x \in V\). Then since \(\beta\) is a basis, we have that
+        \[
+            x = \sum_{j=1}^{m} a_i v_i + \sum_{j=1}^{k} b_i w_i, \text{ for } a_i, b_i \in \mathbb{F}, v_i \in \beta _1, \text{ and } w_i \in \beta _2.
+        \]
+        By closure, we have that \(\sum_{j=1}^{m} a_i v_i \in W_1\) and \(\sum_{j=1}^{k} b_i w_i \in W_2\), so we see that \(x \in W_1 + W_2\). Thus \(V = W_1 + W_2\).
+
+        To show that \(W_1 \cap W_2 = \{ 0 \}\), it suffices to show that if \(x \in W_1 \cap W_2\), then it must be true that \(x = 0\). Indeed, if \(x \in W_1 \cap W_2\), we can write it as a two linear combinations of vectors in either \(\beta _1\) or \(\beta _2\):
+        \[
+            x = \sum_{i=1}^{m} a_i v_i = \sum_{i=1}^{k} b_i w_i
+        \]
+        \[
+            \implies \sum_{i=1}^{m} a_i v_i - \sum_{i=1}^{k} b_i w_i = 0
+        \]
+        By the linear independence of \(\beta\), we have that \(a_i = 0\), for all \(i\), which means that \(x = 0\), as desired, and the proof is complete.
     \end{question}
     \newpage
     \begin{question}{10}
