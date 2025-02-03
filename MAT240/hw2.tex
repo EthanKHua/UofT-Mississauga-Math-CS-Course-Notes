@@ -301,6 +301,43 @@
     \newpage
     \begin{question}{4}
         Is the set \( S = \{e_1 + 2 e_2 - 3 e_3, e_1 + e_2 - e_3, e_2 - e_3\} \subseteq \mathbb{Q}^3 \) a basis for \( \mathbb{Q}^3 \)? Justify your answer.
+
+        \tcblower
+
+        We claim that \(S\) is indeed a basis for \(\mathbb{Q}^3\). For convenience, denote the vectors in \(S\) by \(v_1, v_2, v_3\) respectively. Notice that
+        \[
+            e_1 = v_2 - v_3,\ e_2 = -v_1 + v_2 + 2v_3,\ e_3 = -v_1 + v_2 + v_3.
+        \]
+        Thus, for any \(x \in \mathbb{Q}^3\), since \(\{ e_1, e_2, e_3 \}\) is a basis for \(\mathbb{Q}^3\), for some \(a,b,c \in \mathbb{Q}\), we have that
+        \[
+            x = ae_1 + be_2 + ce_3 = a(v_2 - v_3) + b(-v_1 + v_2 + 2v_3) + c(-v_1 + v_2 + v_3)
+        \]
+        \[
+            \implies x = (-b - c)v_1 + (a + b + c)v_2 + (-a + c)v_3
+        \]
+        which shows that \(S\) spans \(\mathbb{Q}^3\).
+
+        Now, for constants \(p,q,r \in \mathbb{Q}\), suppose that
+        \[
+            0 = pv_1 + qv_2 + rv_3
+        \]
+        SUbstituting back our values, we get that
+        \begin{align*}
+            0 &= p(e_1 + 2e_2 - 3e_3) + q(e_1 + e_2 - e_3) + r(e_2 - e_3) \\
+            &= (p + q)e_1 + (2p + q + r)e_2 + (-3p -q -r)e_3
+        \end{align*}
+        By the linear independence of the standard vectors, we have that
+        \begin{equation*}
+            \sysdelim..
+            \systeme{
+                p+q = 0,
+                2p + q + r = 0,
+                -3p -q - r = 0
+            }
+        \end{equation*}
+        We can solve for \(p,q,r\) to get that \(p = q = r = 0\).
+
+        Thus we can conclude that \(S\) is a basis for \(\mathbb{Q}^3\).
     \end{question}
     \newpage
     \begin{question}{5}
@@ -420,6 +457,32 @@
     \newpage
     \begin{question}{9}
         Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \), and \( W_1, W_2 \subseteq V \) subspaces with bases \( \beta_1, \beta_2 \) respectively. Prove that \( V = W_1 \oplus W_2 \) if and only if \( \beta = \beta_1 \cup \beta_2 \) is a basis for \( V \).
+
+        \tcblower
+
+        Let \(n = \dim V\), \(m = |\beta_1|\), \(k = |\beta _2|\).
+
+        Suppose that \(V = W_1 \oplus W_2\). We will show that \(\beta = \beta _1 \cup \beta _2\) is a basis for \(V\).
+
+        Let \(x \in V\). By our assumption, \(x = w_1 + w_2\), for some \(w_1 \in W_1\) and \(w_2 \in W_2\). These vectors can in turn be written as
+        \[
+            w_1 = \sum_{i=1}^m a_i v_i \text{ and } w_2 = \sum_{i=1} ^k b_i w_i
+        \]
+        where \(v_i \in \beta _1\) and \(w_i \in \beta _2\). Thus \(x\) can be written as a linear combination of vectors in \(\beta\):
+        \[
+            x = \sum_{i=1}^m a_i v_i + \sum_{i=1} ^k b_i w_i
+        \]
+        so \(\beta\) spans \(V\).
+
+        To show that \(\beta\) is linearly independent, suppose that
+        \[
+            \sum_{i=1}^{m} a_i v_i + \sum_{i=1}^{k} b_i w_i = 0
+        \]
+        We put the vectors of each subspace on each side to get
+        \[
+            \sum_{i=1}^{m} a_i v_i = - \sum_{i=1}^{k} b_i w_i
+        \]
+        By the closure property of subspaces, \(\sum_{i=1}^{m} a_i v_i \in W_1\) and \(\sum_{i=1}^{k} b_i w_i \in W_2\), but since they are equal, it must be true that \(\sum_{i=1}^{m} a_i v_i = \sum_{i=1}^{k} b_i w_i \in W_1 \cap W_2 = \{ 0 \}\), so \(\sum_{i=1}^{m} a_i v_i = \sum_{i=1}^{k} b_i w_i = 0\).
     \end{question}
     \newpage
     \begin{question}{10}
