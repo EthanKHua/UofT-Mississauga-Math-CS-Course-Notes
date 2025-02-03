@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{systeme}
+
+% My boxes
+\usepackage[breakable]{tcolorbox}
+
+% \RequirePackage{background}
+% \backgroundsetup{
+%     scale=1,
+%     color=black,
+%     opacity=1,
+%     angle=0,
+%     contents={
+%         \includegraphics[width=\paperwidth,height=\paperheight]{\nightmodebackground}
+%     }
+% }
+
+\definecolor{pastelblue}{RGB}{96, 145, 245}
+\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{lightgray}{RGB}{180, 180, 180}
+\definecolor{offwhite}{RGB}{225, 225, 245}
+
+
+\pagecolor{darkgray}
+\color{offwhite}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \newtcolorbox{question}[2][]{fonttitle=\large, fontupper=\large, fontlower=\large, title=Question {#2}., oversize, arc=3mm, outer arc=2mm, opacityback=0.9, coltitle=offwhite, colframe=pastelblue, colback=darkgray, colupper=lightgray, collower=lightgray, leftrule=1mm, rightrule=1mm, toprule=1.5mm, titlerule=1mm, bottomrule=1mm, valign=center, add to natural height=5mm, lower separated=false, before lower=\begin{proof}, after lower= \smallbreak \end{proof}, #1, breakable=true}
+
+    \begin{question}{1}
+        Count the number of five-card hands that can be formed from a standard deck such that:
+        \begin{itemize}
+            \item the hand contains more red cards than black cards, \textbf{and}
+            \item there are no repeated ranks in the hand.
+        \end{itemize}
+        
+        \textit{Solution.}
+
+        We will handle the first condition by separating the problem into 3 cases: the hands with 3, 4, and 5 red cards respectively. We will also consider the second condition in every case.
+
+        \smallbreak
+
+        First, we pick our 5 distinct ranks, which there are \({13\choose 5}\) different ways to do so. After picking the 5 ranks, we want to assign each colored card a rank. For 3, 4, and 5 red cards, there are \({5 \choose 3},{5 \choose 4},{5 \choose 5}\) ways respectively to assign each red card to a different rank. For each rank, there are 2 ways to choose a red card and 2 ways to choose a black card. Since we are choosing a total of 5 cards, no matter if we are choosing 3, 4, or 5 red cards, the number of ways turns out to be \(2^5\). We can add all the cases together to get that the answer is
+        \[
+            {13 \choose 5} \cdot {5 \choose 3} \cdot 2^5 + {13 \choose 5} \cdot {5 \choose 4} \cdot 2^5 + {13 \choose 5} \cdot {5 \choose 5} \cdot 2^5
+        \]
+        \[
+            = {13 \choose 5} \cdot 2^5 \cdot (10 + 5 + 1) = {13 \choose 5} \cdot 2^9
+        \]
+    \end{question}
+    \newpage
+    \begin{question}{2}
+        In the expansion of $\left(x^3 + (2y - 3z)^9\right)^{202}$, determine the coefficients of the following terms:
+        \begin{enumerate}[label=(\alph*)]
+            \item $z^{1818}$ 
+            \item $x^{303}y^{404}z^{505}$
+        \end{enumerate}
+        \textit{Solution.}
+        
+        We can solve this problem by applying the binomial theorem twice. We see that
+        \[
+            \left(x^3 + (2y - 3z)^9\right)^{202} = \sum_{k=0}^{202} {202\choose k}x^{3(202 - k)}(2y - 3z)^{9k}
+        \]
+        \[
+            = \sum_{k=0}^{202} {202\choose k}x^{3(202 - k)}\sum_{i=0}^{9k} {9k \choose i}(2y)^{9k - i}(-3z)^{i}
+        \]
+        For part (a), we are interested in the term with \(k = 202,\ i = 9k = 1818\), as that is the only way we can get \(z^{1818}\). The coefficient for this is \({202 \choose 202}{1818 \choose 1818}(-3)^{1818} = 3^{1818}\).
+
+        \medskip
+
+        For part (b), to obtain the term with \(x^{303} y^{404} z^{505}\), we set \(k = 101\), \(i = 505\), and see that the coefficient is \({202\choose 101}{909\choose 505}2^{909 - 505}(-3)^{505}\).
+    \end{question}
+\end{document}
