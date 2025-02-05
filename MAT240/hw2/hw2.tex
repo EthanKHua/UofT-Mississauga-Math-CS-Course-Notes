@@ -353,6 +353,8 @@
 
         (a):
 
+        Let \(\gamma\) be a basis for \(V\). Since \(\beta _W\) is linearly independent, we apply the Replacement Theorem to get that there exists a subset \(\alpha \subseteq \gamma\) such that \(\beta _W \cup \alpha\) is a basis for \(V\), and we are done.
+
         \medskip
 
         (b):
@@ -361,7 +363,33 @@
         \[
             \dim V = |\beta| = |I| + |\alpha| \geq |I|
         \]
-        Now, suppose for contradiction that \(S\) is a spanning set such that 
+        Now, let \(S\) be a spanning set of \(V\). If \(\dim V = 0\), then \(V = \{ 0 \}\) and its basis is \(\beta = \varnothing\). \(S\) must be either \(\varnothing\) or \(\{ 0 \}\), so \(\dim V \leq |S|\).
+
+        If \(\dim V > 0\), it contains a non-zero vector, so \(S\) also contains a non-zero vector. Pick \(s_0 \in S\), and note that \(S_0 = \{ s_0 \}\) is linearly independent.
+        
+        If there are no elements \(w_i\) in \(S\) such that \(\{ s_1, w_i \}\) is linearly independent, that is, \(s = c_i w_i\) for some \(c_i \in \mathbb{F}\), then for all \(v \in V\), because \(S\) is a spanning set, for \(m\) vectors in \(S\) we have that
+        \[
+            v = \sum_{i=1}^{m} a_i w_i = \sum_{i=1}^{m} a_i \cdot c_i s_0
+        \]
+        which implies that \(\mathrm{span} (\{ s_0 \} ) = V\), and the result that we want follows immediately after.
+
+        If not, we can find another non-zero vector \(s_1\) so that \(S_1 = \{ s_0, s_1 \}\) is linearly independent. We repeat this process until we have a linearly independent set \(S_n = \{ s_0, ..., s_{n} \}\), where \(n = \dim V\). We claim that \(S_n\) is a basis for \(V\), and it suffices to show that \(S_n\) spans \(V\). First, if \(S_n = S\), then our result is immediate. Otherwise, let \(s_j \in S\) so that \(s_j \notin S_n\). Consider the set \(S_n \cup \{ s_j \}\), whose number of elements is greater than \(\dim V\). By the first half of this proof, we know that no linearly independent set can have a size larger than \(\dim V\), so it must be true that \(S_n \cup \{ s_j \}\) is linearly dependent. In particular, for constants \(a_j,a_{ij} \in \mathbb{F}\) not all zero,
+        \[
+            0 = a_js + \sum_{i=1}^{n} a_{ij} s_{i}.
+        \]
+        Notice that \(a_j \neq 0\), for if not, then we get that
+        \[
+            0 = \sum_{i=1}^{n} a_{ij} s_{i}
+        \]
+        which implies that every \(a_{ij} = 0\): a contradiction. Thus we can rearrange for \(s\) to obtain
+        \[
+            s = a_j^{-1} \sum_{i=1}^{n} a_{ij} s_{i}
+        \]
+        Now, let \(v \in V\). Since \(S\) spans \(V\), we have that for \(m\) vectors \(s_j \in S\) and non-zero \(c_j \in \mathbb{F}\),
+        \[
+            v = \sum_{j=1}^{m} c_j s_j = \sum_{j=1}^{m} \left( c_j \cdot a_j^{-1} \sum_{i=1}^{n} a_{ij} s_{i} \right)
+        \]
+        which shows that \(v\) is a linear combination of the vectors in \(S_n\), so \(S_n\) is a linearly independent spanning set for \(V\). Therefore we can conclude that \(S_n\) is a basis for \(V\) and we are done.
     \end{question}
     \newpage
     \begin{question}{6}
@@ -420,17 +448,149 @@
         \hline
         \alpha C + C' & \alpha D + D' 
         \end{array}\right) \]
+
+        \tcblower
+
+
     \end{question}
     \newpage
     \begin{question}{7}
-        Let \( W = \left\{ A \in \mathcal{M}_{2n \times 2n}(\mathbb{F}) \mid A = \left( \frac{X - X^t}{O_n} \middle| \frac{O_n}{X + X^t} \right) \text{ with } X \in \mathcal{M}_{n \times n}(\mathbb{F}) \right\} \).
+        Let \( W = \left\{ A \in \mathcal{M}_{2n \times 2n}(\mathbb{F}) \mid A = \left( \frac{X - X^T}{O_n} \middle| \frac{O_n}{X + X^T} \right) \text{ with } X \in \mathcal{M}_{n \times n}(\mathbb{F}) \right\} \).
         
         (Assume char\((\mathbb{F})\neq 2\).)
         
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Let \( n = 2 \). Find a basis for \( W \).
             \item Now generalize to arbitrary \( n \). Find a basis for \( W \), and use it to compute dim \( W \).
         \end{enumerate}
+
+        \tcblower
+        \ 
+
+        (a):
+
+        Let \(n = 2\). We claim that a basis for \(W\) is given by
+        \[
+            \beta = \left\{ \begin{pmatrix}
+                0 & 0 & 0 &  0 \\
+                0 & 0 & 0 &  0 \\
+                0 & 0 & 1 &  0 \\
+                0 & 0 & 0 &  0 \\
+            \end{pmatrix},
+            \begin{pmatrix}
+                0 & 1 & 0 &  0 \\
+                -1 & 0 & 0 &  0 \\
+                0 & 0 & 0 &  1 \\
+                0 & 0 & 1 &  0 \\
+            \end{pmatrix},
+            \begin{pmatrix}
+                0 & -1 & 0 &  0 \\
+                1 & 0 & 0 &  0 \\
+                0 & 0 & 0 &  1 \\
+                0 & 0 & 1 &  0 \\
+            \end{pmatrix},
+            \begin{pmatrix}
+                0 & 0 & 0 &  0 \\
+                0 & 0 & 0 &  0 \\
+                0 & 0 & 0 &  0 \\
+                0 & 0 & 0 &  1 \\
+            \end{pmatrix}\right\}.
+        \]
+        For convenience, we label these matrices in order as \(f_1, f_2, f_3\), and \(f_4\). It is pretty clear that \(\beta\) is linear independent. To show that \(\beta\) is spanning, let \(A \in W\). Then
+        \[
+            A = \begin{amatrix}{1}
+                X - X^T & 0_n \\
+                \hline \\[-10pt]
+                0_n & X + X^T
+            \end{amatrix}, \text{ for some } X = \begin{pmatrix}
+                a &  b \\
+                c &  d \\
+            \end{pmatrix} \in \mathcal{M} _{n\times n}(\mathbb{F}).
+        \]
+        We substitute \(a,b,c,d\) to get
+        \begin{align*}
+            A &= \begin{pmatrix}
+                0 & b - c & 0 &  0 \\
+                c - b & 0 & 0 &  0 \\
+                0 & 0 & 2a &  b + c \\
+                0 & 0 & b + c &  2d \\
+            \end{pmatrix}
+            = 2af_1 + bf_2 + cf_3 + 2df_4
+        \end{align*}
+        so we can conclude that \(W\) is spanned by \(\beta\).
+
+        \medskip
+
+        (b):
+
+        Let \(n \in \mathbb{N}\). We define \(e_{ij}\) to be the \(n\times n\) matrix with all its entries equal to 0 except the entry at the \(i\)th row and \(j\)th column. We claim that
+        \[
+            \beta = \left\{ \begin{amatrix}{1}
+                e_{ij} - e_{ij}^T & 0_n \\
+                \hline \\[-13pt]
+                0_n & e_{ij} - e_{ij}^T
+            \end{amatrix}, 1 \leq i,j \leq n\right\} 
+        \]
+        is a basis for \(W\).
+
+        Similarly to the previous part, define each matrix associated with \(e_{ij}\) by \(f_{ij}\). Let \(A \in W\), so
+        \[
+            A = \begin{amatrix}{1}
+                X - X^T & 0_n \\
+                \hline \\[-10pt]
+                0_n & X + X^T
+            \end{amatrix}, \text{ for an } n\times n \text{ matrix } X.
+        \]
+        We can write \(X\) in terms of the basis for \(\mathcal{M} _{n\times n}(\mathbb{F})\) to obtain that
+        \[
+            X = \sum_{i,j=1}^{n} c_{ij} e_{ij}.
+        \]
+        By the linearity of matrix transposition, it follows that
+        \begin{align*}
+            A &= \begin{amatrix}{1}
+                \sum_{i,j=1}^{n} c_{ij} e_{ij} - \left( \sum_{i,j=1}^{n} c_{ij} e_{ij} \right)^T & 0_n \\
+                \hline \\[-10pt]
+                0_n & \sum_{i,j=1}^{n} c_{ij} e_{ij} + \left( \sum_{i,j=1}^{n} c_{ij} e_{ij} \right)^T
+            \end{amatrix} \\
+            &= \begin{amatrix}{1}
+                \sum_{i,j=1}^{n} c_{ij} e_{ij} -\sum_{i,j=1}^{n} c_{ij} e_{ij}^T & 0_n \\
+                \hline \\[-10pt]
+                0_n & \sum_{i,j=1}^{n} c_{ij} e_{ij} + \sum_{i,j=1}^{n} c_{ij} e_{ij}^T \\
+            \end{amatrix} \\
+            &= \sum_{i,j=1}^{n} c_{ij}\begin{amatrix}{1}
+                e_{ij} - e_{ij}^T & 0_n \\
+                \hline \\[-10pt]
+                0_n &  e_{ij} + e_{ij}^T \\
+            \end{amatrix} \\
+            &= \sum_{i,j=1}^{n} c_{ij} f_{ij}
+        \end{align*}
+        so \(W\) is spanned by \(\beta\).
+
+        To show independence, for constants \(c_{ij} \in \mathbb{F}\), let
+        \[
+            \sum_{i,j=1}^{n} c_{ij} f_{ij} = 0
+        \]
+        We get that
+        \begin{align*}
+            \sum_{i,j=1}^{n} c_{ij}\begin{amatrix}{1}
+                e_{ij} - e_{ij}^T & 0_n \\
+                \hline \\[-10pt]
+                0_n &  e_{ij} + e_{ij}^T \\
+            \end{amatrix} = 0
+        \end{align*}
+        In order for this to be true, we must have that
+        \[
+            \sum_{i,j=1}^{n} c_{ij} (e_{ij} - e_{ij}^T) = 0
+        \]
+        and
+        \[
+            \sum_{i,j=1}^{n} c_{ij} (e_{ij} + e_{ij}^T) = 0
+        \]
+        We add both equations together to see that
+        \[
+            2 \sum_{i,j=1}^{n} c_{ij} e_{ij} = 0.
+        \]
+        Since the \(e_{ij}\)'s form a basis on \(\mathcal{M} _{n\times n}(\mathbb{F})\), it follows that \(c_{ij} = 0\) for all \(i,j\), and we are done.
     \end{question}
     \newpage
     \begin{question}{8}
