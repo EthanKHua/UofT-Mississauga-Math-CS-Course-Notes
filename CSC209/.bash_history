@@ -1,56 +1,3 @@
-ls -l
-./compile_all.sh
-ls
-chmod a-x compile_all.sh
-ls -l
-./compile_all.sh
-ls
-vim compile_all.sh
-./compile_all.sh
-ls
-git add compile_all.sh
-git ci "lab1 part 3 complete"
-git config help
-git help config
-git config --global.alias.ci "commit -m"
-git config --global alias.ci "commit -m"
-git ci "lab1 part 3 complete"
-git config --global user.email "ethan.hua@mail.utoronto.ca"
-git config --global user.name "huaethan"
-git ci "lab1 part 3 complete"
-git push
-git push
-touch my_commands.sh
-ls
-./echo_arg csc209 >> echo_out.txt
-ls
-cat echo_out.txt
-./echo_stdin << echo_stdin.c
-s
-s
-s
-s
-s
-
-sq
-
-cat echo_stdin.c
-./echo_stdin << echo_stdin.c
-
-
-./echo_stdin
-./echo_stdin < echo_stdin.c
-cat echo_stdin.c
-count 210
-./count 210
-./count 210 | wc
-man ls
-ls --block_size=SIZE
-man ls
-ls --block-size=SIZE
-man ls
-ls --block-size
-man ls
 ls -C
 ls -l -C
 man ls
@@ -497,4 +444,57 @@ git push
 git pull
 git log
 git push
+git push
+ls
+git pull
+ls
+cd lab5
+ls
+git pull
+ls
+nvim bitmap_printer.c
+nvim bitmap.c
+ls
+man ls
+cat colours.bmp
+hexdump -C yourfile.bin
+hexdump -C coloursr.bmp
+hexdump -C colours.bmp
+xxd -b colours.bmp
+nvim bitmap.c
+ls
+cat bitmap_printer.c
+nvim bitmap.c
+nvim bitmap_printer.c
+nvim bitmap.c
+nvim bitmap_printer.c
+nvim bitmap.c
+nvim bitmap_printer.c
+nvim bitmap_printer.c
+make
+cat bitmap_printer
+cat bitmap_printer.c
+ls
+./bitmap_printer "colours.bmp"
+valgrind
+sudo snap install valgrind -y
+sudo snap install valgrind -y
+sudo snap install valgrind
+sudo snap install valgrind --classic
+valgrind ./bitmap_printer colours.bmp
+valgrind ./bitmap_printer colours.bmp -s
+./bitmap_printer colours.bmp
+valgrind ./bitmap_printer colours.bmp -s
+valgrind ./bitmap_printer "colours.bmp" -s
+valgrind ./bitmap_printer "colours.bmp"
+nvim bitmap.c
+nvim bitmap.c
+make
+valgrind ./bitmap_printer colours.bmp
+nvim bitmap.c
+make
+valgrind ./bitmap_printer colours.bmp
+git add *.c
+git ci "lab5 complete"
+git pus
 git push

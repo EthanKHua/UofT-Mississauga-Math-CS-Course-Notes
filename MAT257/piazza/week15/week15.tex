@@ -53,7 +53,7 @@
     \textbf{Exercise 13.14.} Show that Theorem 13.6 holds if \(\Phi\) is simple.
 
     \begin{proof}
-        Let \(U,V \subseteq \mathbb{R}^n\) be open, and let \(\Phi : U \to V\) be a simple diffeomorphism. Without loss of generality, let the only non-simple component of \(\Phi\) be \(\varphi _n\), and let \(E = \prod_{i=1}^n [a_i, b_i] \subseteq U\) be a closed box. Since \(\Phi\) is a diffeomorphism, this implies that \(\Phi (E)\) is measurable, and as well, because \(\Phi\) is simple,
+        Let \(U,V \subseteq \mathbb{R}^n\) be open, and let \(\Phi : U \to V\) be a simple diffeomorphism. Without loss of generality, let the only non-simple component of \(\Phi\) be \(\varphi _n\) (I will explain why this reduction is valid below!), and let \(E = \prod_{i=1}^n [a_i, b_i] \subseteq U\) be a closed box. Since \(\Phi\) is a diffeomorphism, this implies that \(\Phi (E)\) is measurable, and as well, because \(\Phi\) is simple,
         \[
             \Phi (E) = \left\{ (x_1, ..., x_{n-1}, \varphi (x)) \in V : x = (x_1, ..., x_n) \in \prod_{i=1}^{n} [a_i, b_i] \right\} 
         \]
@@ -61,7 +61,7 @@
         \[
             \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n.
         \]
-        \(\Phi\) is a diffeomorphism, so the restriction \(\varphi(x', \cdot)\) is also a diffeomorphism. It follows that the image \(\varphi(x', [a_n, b_n])\) is an interval. Now, we want to apply single-variable change of variables with \(\varphi (x', u) = x_n\). Notice that
+        \(\Phi\) is a diffeomorphism, so the \(x'\)-slice \(\varphi(x', \cdot)\) is \(C^1\) and injective. It follows that the image \(\varphi(x', [a_n, b_n])\) is an interval. Now, we want to apply single-variable change of variables with \(\varphi (x', u) = x_n\). Notice that
         \[
             dx_n = \frac{\partial \varphi }{\partial u}(x', u) du
         \]
@@ -71,7 +71,7 @@
                 1 & 0 & \cdots &  0 \\
                 0 & 1 & \cdots &  0 \\
                 \vdots & \vdots & \ddots &  \vdots \\
-                0 & 0 & \cdots & \dfrac{\partial \varphi }{\partial u}(x', u) \\
+                \dfrac{\partial \varphi }{\partial x_1}(x', u) & \dfrac{\partial \varphi }{\partial x_2}(x', u) & \cdots & \dfrac{\partial \varphi }{\partial u}(x', u) \\
             \end{array} = \frac{\partial \varphi }{\partial u}(x', u)
         \]
         so it follows that
@@ -83,5 +83,7 @@
             \mu (\Phi (E)) = \int _{\Phi (E)} 1 = \int _{E'} \Psi = \int _{E'} \int_{a_n}^{b_n} |\det J \Phi | = \int _E |\det J \Phi |
         \]
         as needed.
+
+        \textbf{Explanation of Reduction.} 
     \end{proof}
 \end{document}
