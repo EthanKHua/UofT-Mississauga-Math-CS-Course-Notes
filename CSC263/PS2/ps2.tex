@@ -28,7 +28,7 @@ def range_sum(node, int low, int high):
 	count += range_sum(node.left, low, high) + range_sum(node.right, low, high)
 	return count
 	\end{lstlisting}
-	The algorithm above starts at the root node and compares the value of the node to the lower and upper range to determine which child to explore. For example, if the value at the root node is strictly less than the lower range, then the BST property tells us that every node in its left subtree will also be out of range, so there is no need to check it. Likewise, if the value at the root node is strictly greater than the upper range, we only need to check the left subtree. Otherwise, when the value is in the middle,  we should check both children as they can possibly contain values in the range we are querying for.
+	The algorithm above starts at the root node and compares its own value to the lower and upper range to determine which child to explore. For example, if the value at the root node is strictly less than the lower range, then the BST property tells us that every node in its left subtree will also be out of range, so there is no need to check it, and we can get away with checking only the right subtree. Likewise, if the value at the root node is strictly greater than the upper range, we only need to check the left subtree. Otherwise, when the value is in the middle,  we should check both children as they can possibly contain values in the range we are querying for.
 
 	Since each node is visited at most once, worst-case running time is \(\mathcal{O} (n)\), where \(n\) is the number of nodes in the BST.
 
@@ -110,7 +110,7 @@ def range_sum(node, int low, int high):
 
 \textbf{Solution.}
 
-(a): We can implement LandUse by using two augmented AVL trees, where each node corresponds to a unique land pixel. Both trees store the same nodes, but ordered differently. In both trees, each node stores three values, \verb|node.x|, \verb|node.y|, and \verb|node.u| and its left and right children. We consider the first tree ``x-skewed'' and the second tree ``right-skewed''.
+(a): We can implement LandUse by using two augmented AVL trees, where each node corresponds to a unique land pixel. Both trees store the same nodes, but ordered differently. In both trees, each node stores three values, \verb|node.x|, \verb|node.y|, and \verb|node.u| and its left and right children. We consider the first tree ``x-skewed'' and the second tree ``y-skewed''.
 
 (b): The way we compare the two nodes is different depending on the tree.
 
@@ -138,11 +138,11 @@ We perform the same algorithm as in \texttt{NextInRow}, only that we are travers
 
 \texttt{RowEmpty}\((S,x)\): 
 
-We traverse the x-skewed tree, attempting to find any pixel in the \(x\)th row. However, we perform binary search while only compare the x-value and ignore the y value. We return true once we encounter any pixel with their row being equal to \(x\), and return false if we arrive at a leaf node. Since the worst-case occurs when the travel to the bottom of the tree, and the height of the tree is \(\log n\), our worst-case runtime is \(\mathcal{O} (\log n)\).
+We traverse the x-skewed tree, attempting to find any pixel in the \(x\)th row. However, we perform binary search while only comparing the x-value and ignore the y value. We return true once we encounter any pixel with their row being equal to \(x\), and return false if we arrive at a leaf node without seeing \(x\) once. Since the worst-case occurs when the travel to the bottom of the tree, and the height of an AVL tree is \(\log n\), our worst-case runtime is \(\mathcal{O} (\log n)\).
 
 \texttt{ColumnEmpty}\((S,y)\): 
 
-This operation is the exact same as \texttt{RowEmpty}, only we search the y-skewed tree and compare y values. The worst-case runtime is also \(\mathcal{O} (\log n)\).
+This operation is the exact same as \texttt{RowEmpty}, only we search the y-skewed tree and compare y values, so the worst-case runtime is also \(\mathcal{O} (\log n)\).
 
 \program
 

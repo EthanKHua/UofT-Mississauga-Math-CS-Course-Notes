@@ -43,7 +43,7 @@
 
     Recall the statement of Theorem 13.6 and the definition of a simple mapping:
 
-    \textbf{Theorem 13.6.} Let $U,V\subseteq\R^n$ be two open sets and let $\Phi:U\rightarrow V$ be a diffeomorphism. Let $E\subseteq \R^n$ be a measurable set. Then $\Phi(E)$ is also measurable, and its measure is
+    \textbf{Theorem 13.6.} Let $U,V\subseteq\R^n$ be two open sets and let $\Phi:U\rightarrow V$ be a diffeomorphism. Let $E\subseteq U$ be a measurable set. Then $\Phi(E)$ is also measurable, and its measure is
         \[ \mu(\Phi(E)) = \int_E |\det J\Phi|. \]
 
     \textbf{Definition 13.12.} Let $\Phi:U\rightarrow \R^n$ be a function defined on some set $U\subseteq \R^n$, and let $\varphi_1,\ldots,\varphi_n$ be the component functions of $\Phi$:
@@ -84,6 +84,25 @@
         \]
         as needed.
 
-        \textbf{Explanation of Reduction.} 
+        \textbf{Explanation of Reduction.} It, in fact, does not matter in which component \(\Phi\) is simple in.
+        
+        Let \(\Phi: U \to V\) be a simple diffeomorphism, where the \(i\)th component is non-simple, and we will denote this component as the function \(\varphi : U \to \mathbb{R}\). Let \(L\) be the linear map that swaps the \(i\)th and \(n\)th component. Notice that \(L = L^{-1}\) and \(\det L = \det L^{-1} = 1\) (this will be important later). We would like to apply the theorem to \(L \circ \Phi\), but this is not simple! However, we have a workaround for this issue. Let \(\Psi : U \to V\) be the function defined by \(\Psi (x_1, ..., x_n) = (x_1, ..., x_{n-1}, \varphi \circ L(x_1, ..., x_n))\). We claim that \(L \circ \Phi (E) = \Psi (E)\).
+
+        Let \(x \in E\) and consider \(L \circ \Phi (x) = (x_1, ..., x_n, ..., \varphi (x))\). Let \(x' = L(x)\). We have that
+        \[
+            \Psi (x') = \Psi (x_1, ..., x_n, ..., x_i) = (x_1, ..., x_n, ..., \varphi (x)) = L \circ \Phi (x)
+        \]
+        We will not show the converse because it is the same argument. As well, convince yourself that \(\det J \Phi = \det J \Psi\). Now, we can apply the statement to the simple function \(\Psi\). Here is everything we need:
+        \begin{itemize}
+            \item \(\mu (L(R)) = |\det L| \mu (R)\): This is Exercise 13.11/12.18
+            \item \(\det L = 1\)
+            \item \(L \circ \Phi (E) = \Psi (E)\)
+            \item The exercise above
+            \item \(\det J \Psi = \det J \Phi\) 
+        \end{itemize}
+        We put it all together and see that
+        \[
+            \mu (\Phi (E)) = \mu (L^{-1} \circ L \circ \Phi (E)) = |\det L^{-1}| \mu (L \circ \Phi (E)) = \mu (\Psi (E)) = \int _E |\det J \Psi | = \int _E |\det J \Phi |
+        \]
     \end{proof}
 \end{document}
