@@ -73,11 +73,11 @@ class HashTable(object):
         """
         hashed = self.hash(k)
         i = 0
-        curr_node = self.array[hashed + i*i]
+        curr_node = self.array[(hashed + i*i) % self.capacity]
         while curr_node != None:
             if curr_node == DELETED or curr_node.key != k:
                 i += 1
-                curr_node = self.array[hashed + i*i]
+                curr_node = self.array[(hashed + i*i) % self.capacity]
                 continue
             return curr_node.val
         return None
