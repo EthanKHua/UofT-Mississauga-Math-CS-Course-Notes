@@ -93,7 +93,10 @@
 
         (a):
 
-        These operations make sense because they allow us to use the properties of the sets underlying \(\mathcal{F} (S,V)\).
+        To show that these operations are well defined, notice that \(f(s), g(s) \in V\), so by the axiom of closure on \(V\) we have that
+        \[
+            (f+g)(s) = f(s) + g(s) \in V \text{ and } (cf)(s) = cf(s) \in V
+        \]
 
         \medskip
 
@@ -647,7 +650,15 @@
 
         (c):
 
-        Let \(U = \mathrm{span} \{ (0,1,2) \}\). We follow the same structure as before
+        Let \(U = \mathrm{span} \{ (0,1,2) \}\). We follow the same structure as before in part (b).
+
+        Let \((x,y,z) \in \mathbb{F}^3\). We rewrite
+        \[
+            (x,y,z) = \left( x, x +2y-z, 2x+2y-z\right) + \left( 0,  - x - y + z, 2(- x - y + z)\right) 
+        \]
+        and note that \(\left( x, x +2y-z, 2x+2y-z\right) \in W_1\) and \(\left( 0,  - x - y + z, 2(- x - y + z)\right) \in W_2\), so \((x,y,z) \in W_1 + W_2\).
+
+        Now, let \((a,b,c) \in W_1 \cap W_2\). Since \((a,b,c) \in W_2\), it must be true that \(a = 0\) and \(2b = c\). At the same time, since \((a,b,c) \in W_1\) we have that \(a + b = c\), which implies that \(b=c\), which can only be true if \(b = c = 0\), so \((a,b,c) = 0\), thus showing that \(W_1 \oplus W_2 = \mathbb{F}^3\).
     \end{question}
     \newpage
     \begin{question}{9}
