@@ -72,6 +72,15 @@ class HashTable(object):
         or None if no such node exists.
         """
         hashed = self.hash(k)
+        i = 0
+        curr_node = self.array[hashed + i*i]
+        while curr_node != None:
+            if curr_node == DELETED or curr_node.key != k:
+                i += 1
+                curr_node = self.array[hashed + i*i]
+                continue
+            return curr_node.val
+        return None
 
     def delete(self, k):
         """
