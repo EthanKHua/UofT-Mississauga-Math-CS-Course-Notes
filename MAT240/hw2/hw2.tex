@@ -724,7 +724,7 @@
 
         Indeed, we have that
         \[
-            J^2 = \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) = \left( \begin{array}{c|c} O^2 + -I_2^2 & O(-I_2) + -I_2 O \\ \hline OI_2 + I_2 O & - I_2^2 + O^2 \end{array} \right) = \left( \begin{array}{c|c} -I_2 & 0 \\ \hline O & -I_2 \end{array} \right) = -I_4
+            J^2 = \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) = \left( \begin{array}{c|c} O^2 + -I_2^2 & O(-I_2) + -I_2 O \\ \hline OI_2 + I_2 O & - I_2^2 + O^2 \end{array} \right) = \left( \begin{array}{c|c} -I_2 & O \\ \hline O & -I_2 \end{array} \right) = -I_4
         \]
 
         \medskip
@@ -774,6 +774,19 @@
         \medskip
 
         (d):
+
+        For \(1 \leq i,j \leq 2\), let \(e_{ij}\) be the \((i,j)\)th standard basis vector for \(M_2(\mathbb{F})\). We claim that a basis for \(\mathfrak{sp}_4\) is given by
+        \[
+            \beta = \left\{ X \in \mathcal{M}_4(\mathbb{F}) : X = \left( \begin{array}{c|c} e_{ij} & O \\ \hline O & -e_{ij} \end{array} \right) \text{ or } X = \left( \begin{array}{c|c} O & e_{ij} \\ \hline -e_{ij} & O \end{array} \right)\right\}.
+        \]
+        Let \(A \in \mathfrak{sp}_4\). Then for matrices \(P,Q \in \mathcal{M} _2(\mathbb{R})\),
+        \[
+            A = \left( \begin{array}{c|c} P & Q \\ \hline -Q & -P \end{array} \right)
+        \]
+        We can rewrite \(P,Q\) as linear combinations of basis vectors:
+        \[
+            A = \left( \begin{array}{c|c} \sum\limits_{i,j=1}^{2} p_{ij} e_{ij} & \sum\limits_{i,j=1}^{2} q_{ij} e_{ij} \\ \hline -\sum\limits_{i,j=1}^{2} p_{ij} e_{ij} & -\sum\limits_{i,j=1}^{2} q_{ij} e_{ij}\end{array}\right) = \sum_{i,j=1}^{2} p_{ij} \left( \begin{array}{c|c} e_{ij} & O \\ \hline O & -e_{ij} \end{array} \right) + \sum_{i,j=1}^{2} q_{ij} \left( \begin{array}{c|c} O & e_{ij} \\ \hline -e_{ij} & O \end{array} \right)
+        \]
     \end{question}
     \newpage
     \begin{question}{11}
