@@ -725,7 +725,45 @@
         \begin{enumerate}[label=(\alph*)]
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( I \subseteq V \) is a linearly independent set so that for any \( x \in V \setminus I \), the set \( I \cup \{ x \} \) is linearly dependent, then \( I \) is a basis for \( V \).
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( S \subseteq V \) is a spanning set so that \( |S| = \dim V \), then \( S \) is a basis for \( V \).
-            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( W \subseteq V \) a subspace, then there exists a unique subspace \( U \subseteq V \) so that \( V = W \oplus V \).
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \). If \( W \subseteq V \) a subspace, then there exists a unique subspace \( U \subseteq V \) so that \( V = W \oplus U \).
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        Let \(V\) be a finite dimensional vector space over \(\mathbb{F}\). Suppose \(I \subseteq V\) is linearly independent and that adding any vector in \(V\setminus I\) will result in the set no longer being linearly independent, and note that the same also applies when choosing a vector that is in \(I\). Then for any \(x \in V\), we have that for some vectors \(v_1, ..., v_n \in I\),
+        \[
+            cx + \sum_{i=1}^{n} c_i v_i = 0
+        \]
+        for \(c, c_i \in \mathbb{F}\) not all zero. We make the important note that it is necessary for \(c \neq 0\), because if not, then
+        \[
+            \sum_{i=1}^{n} c_i v_i = 0
+        \]
+        which implies that all coefficients are zero by independence, which contradicts our claim that not all coefficients were zero. It follows that \(c\) has an inverse \(c^{-1}\) and
+        \[
+            x = \sum_{i=1}^{n} -c^{-1}c_i v_i.
+        \]
+        Since every \(x \in V\) is a linear combination of vectors in \(I\), it follows that \(I\) is indeed a basis for \(V\).
+
+        \medskip
+
+        (b):
+
+        Suppose for contradiction that \(S\) is not a basis for \(V\). Then \(S\) is not linearly independent, that is, for some \(s \in S\), \(c_i \in \mathbb{F}\), \(s_i \in S\setminus \{ s \}\),
+        \[
+            s = \sum_{i=1}^{n} c_i s_i
+        \]
+        This means that \(S\setminus \{ s \}\) is also a spanning set. But \(|S\setminus \{ s \} | < \dim V\), which is a contradiction by Question 5. Thus \(S\) is a basis for \(V\).
+
+        \medskip
+
+        (c):
+
+        Suppose that \(W\) is a subspace of \(V\). Then it has a basis \(\beta _W\), which is linearly independent. By Question 5, we can extend \(\beta _W\) to a basis for \(V\) by combining it with some linearly independent set \(\alpha\). We claim that our desired subspace is \(U = \mathrm{span} \alpha\). Since \(\beta _W\) is disjoint from \(\alpha\), by Question 9, \(V = W \oplus U\).
+
+        Now, suppose that \(U_1, U_2\) are subspaces such that \(V = W \oplus U_1 = W\oplus U_2\).
+
+        Let \(u \in U_1\). It follows that \(u \in V = W \oplus U_2\), so \(u = w + v\), for some \(w \in W\) and \(v \in U_2\).
     \end{question}
 \end{document}
