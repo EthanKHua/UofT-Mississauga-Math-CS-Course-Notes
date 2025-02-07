@@ -711,12 +711,69 @@
     \begin{question}{10}
         Let \( J = \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) \) and \( \mathbb{F} = \mathbb{C} \).
         
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Verify that \( J^2 = -I_4 \).
             \item Find all \( X \in \mathcal{M}_{4\times 4}(\mathbb{F}) \) so that \( XJ = JX \).
-            \item Show that \( sp_4 = \{ X \in \mathcal{M}_{4\times 4}(\mathbb{F}) | XJ = JX \} \) is a subspace of \( \mathcal{M}_{4\times 4}(\mathbb{F}) \).
-            \item Find dim \( sp_4 \) by finding a basis for \( sp_4 \).
+            \item Show that \( \mathfrak{sp}_4 = \{ X \in \mathcal{M}_{4\times 4}(\mathbb{F}) | XJ = JX \} \) is a subspace of \( \mathcal{M}_{4\times 4}(\mathbb{F}) \).
+            \item Find dim \( \mathfrak{sp}_4 \) by finding a basis for \( \mathfrak{sp}_4 \).
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        Indeed, we have that
+        \[
+            J^2 = \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) = \left( \begin{array}{c|c} O^2 + -I_2^2 & O(-I_2) + -I_2 O \\ \hline OI_2 + I_2 O & - I_2^2 + O^2 \end{array} \right) = \left( \begin{array}{c|c} -I_2 & 0 \\ \hline O & -I_2 \end{array} \right) = -I_4
+        \]
+
+        \medskip
+
+        (b):
+
+        For \(A,B,C,C \in \mathcal{M}_2(\mathbb{F})\), let \(X = \left( \begin{array}{c|c} A & B \\ \hline C & D \end{array} \right) \in \mathcal{M} _4 (\mathbb{F})\) and suppose that \(XJ = JX\). Then we have that
+        \[
+            \left( \begin{array}{c|c} A & B \\ \hline C & D \end{array} \right) \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) = \left( \begin{array}{c|c} O & -I_2 \\ \hline I_2 & O \end{array} \right) \left( \begin{array}{c|c} A & B \\ \hline C & D \end{array} \right)
+        \]
+        \[
+            \implies \left( \begin{array}{c|c} AO + BI_2 & A(-I_2) + BO \\ \hline CO + DI_2 & C(-I_2) \end{array} \right) = \left( \begin{array}{c|c} OA + -I_2 C & OB - I_2 D \\ \hline I_2 A + OC & I_2 B + OD \end{array} \right)
+        \]
+        \[
+            \implies \left( \begin{array}{c|c} B & -A \\ \hline D & -C \end{array} \right) = \left( \begin{array}{c|c} -C & -D \\ \hline A & B \end{array} \right)
+        \]
+        \[
+            \implies B = -C \text{ and } A = -D
+        \]
+        Therefore all \(X\) that satisfy this equation are of the form
+        \[
+            X = \left( \begin{array}{c|c} P & -Q \\ \hline -Q & P \end{array} \right), \text{ where } P,Q \in M_2(\mathbb{F}).
+        \]
+
+        \medskip
+
+        (c):
+
+        Notice that \(X \in \mathfrak{sp}_4\) if and only if \(X\) can be decomposed into a block matrix such that
+        \[
+            X = \left( \begin{array}{c|c} P & Q \\ \hline -Q & -P \end{array} \right)
+        \]
+        for some matrices \(P,Q \in M_2(\mathbb{F})\).
+
+        We know that \(0 \in \mathfrak{sp}_4\) because as a \(4\times 4\) matrix, \(0 = \left( \begin{array}{c|c} O & O \\ \hline O & O \end{array} \right)\), which is clearly satisfies the condition outlined above.
+
+        Now, let \(c \in \mathbb{F}\) and \(X,Y \in \mathfrak{sp}_4\). Then for some \(2\times 2\) matrices \(P,Q,R,S\),
+        \[
+            X = \left( \begin{array}{c|c} P & Q \\ \hline -Q & -P \end{array} \right) \text{ and } Y = \left( \begin{array}{c|c} R & S \\ \hline -S & -R \end{array} \right)
+        \]
+        It follows that
+        \[
+            cX + Y = c\left( \begin{array}{c|c} P & Q \\ \hline -Q & -P \end{array} \right) + \left( \begin{array}{c|c} R & S \\ \hline -S & -R \end{array} \right) = \left( \begin{array}{c|c} cP + R & cQ + S \\ \hline -cQ -S & -cP-R \end{array} \right)
+        \]
+        so \(cX + Y \in \mathfrak{sp}_4\). Thus we can conclude that \(\mathfrak{sp}_4\) is indeed a subspace.
+
+        \medskip
+
+        (d):
     \end{question}
     \newpage
     \begin{question}{11}
