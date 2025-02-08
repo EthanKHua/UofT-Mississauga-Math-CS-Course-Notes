@@ -293,7 +293,17 @@
 
         (b):
 
-        Suppose that \(\sum_{i=1}^{k} t_i x_i = 0\).
+        Suppose for contradiction that \(\sum_{i=1}^{k} t_i x_i = 0\) and not all coefficients \(t_i = 0\), let's say that \(t_j \neq 0\). Then \(t_j^{-1}\) exists and we can rearrange to get that
+        \[
+            x_j = -t_j^{-1} \sum_{i=1,i\neq j}^{k} t_i x_i.
+        \]
+        Thus for any general solution \(x\) to the homogenous equation,
+        \[
+            x = \sum_{i=1}^{k} t_i x_i = \sum_{i=1, i \neq j}^{k} t_i(1 - t_j^{-1}) x_i.
+        \]
+        Notice that this is a linear combination of \(k-1\) vectors, which implies that the general solution has \(k-1\) parameters, which is a contradiction, as we assumed that it had \(k\) parameters.
+
+        Thus \(\{ x_1, ..., x_k \}\) is linearly independent.
 
         \medskip
 
@@ -324,7 +334,7 @@
         \[
             0 = pv_1 + qv_2 + rv_3
         \]
-        SUbstituting back our values, we get that
+        Substituting back our values, we get that
         \begin{align*}
             0 &= p(e_1 + 2e_2 - 3e_3) + q(e_1 + e_2 - e_3) + r(e_2 - e_3) \\
             &= (p + q)e_1 + (2p + q + r)e_2 + (-3p -q -r)e_3
@@ -454,7 +464,58 @@
 
         \tcblower
 
+        Let \(M = \left(\begin{array}{c|c} 
+            A & B \\ 
+            \hline
+            C & D 
+            \end{array}\right),N = \left(\begin{array}{c|c} 
+                A' & B' \\
+                \hline
+                C' & D' 
+            \end{array}\right) \in \mathcal{M} _n (\mathbb{F})\), let \(k \in \mathbb{N}\)
+        Suppose that \(A, A' \in \mathcal{M} _k(\mathbb{F})\), so \(B,B' \in \mathcal{M} _{k\times (n-k)}\), \(C, C' \in \mathcal{M} _{(n-k)\times k}(\mathbb{F})\), and \(D, D' \in \mathcal{M} _{(n-k)\times (n-k)}(\mathbb{F})\). Fix \(\alpha \in \mathbb{F}\) and define
+        \[
+            P = \left(\begin{array}{c|c}
+                \alpha A + A' & \alpha B + B' \\
+                \hline
+                \alpha C + C' & \alpha D + D' 
+                \end{array}\right)
+        \]
+        Now, let \(i,j \in \mathbb{N}\) so that \(1 \leq i,j \leq n\). We will show that \((\alpha M + N)_{ij} = P_{ij}\) by taking cases on \(i\) and \(j\).
+        
+        \smallskip
 
+        Case 1: \(1 \leq i,j \leq k\)
+
+        In this case, \((\alpha M + N)_{ij} = \alpha M_{ij} + N_{ij} = \alpha A_{ij} + A'_{ij} = (\alpha A + A')_{ij} = P_{ij}\).
+
+        \smallskip
+
+        Case 2: \(1 \leq i \leq k,\ k + 1 \leq j \leq n\) 
+
+        We have that
+        \[
+            (\alpha M + N)_{ij} = \alpha M_{ij} + N_{ij} = \alpha B_{ij} + B'_{ij} = (\alpha B + B')_{ij} = P_{ij}
+        \]
+
+        \smallskip
+
+        Case 3: \(k+1 \leq i \leq n,\ 1 \leq j \leq k\)
+
+        Similarly,
+        \[
+            (\alpha M + N)_{ij} = \alpha M_{ij} + N_{ij} = \alpha C_{ij} + C'_{ij} = (\alpha C + C')_{ij} = P_{ij}
+        \]
+
+        \smallskip
+
+        Case 4: \(k+1 \leq i \leq n,\ k+1 \leq j \leq n\)
+
+        Finally, we have
+        \[
+            (\alpha M + N)_{ij} = \alpha M_{ij} + N_{ij} = \alpha D_{ij} + D'_{ij} = (\alpha D + D')_{ij} = P_{ij}
+        \]
+        Thus we have shown that \((\alpha M + N)_{ij} = P_{ij}\) for all \(1 \leq i,j \leq n\) and we are done.
     \end{question}
     \newpage
     \begin{question}{7}
