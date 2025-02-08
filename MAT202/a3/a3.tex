@@ -6,9 +6,28 @@
 
         \tcblower
 
+        Fix the numbers \(n,k \in \mathbb{N}\).
+
         Label the bins from \(1\) to \(k\). Let \(A_i\) be the ways to place the \(n\) balls into the \(k\) bins such that bin \(i\) has no balls. We want to count
         \[
             \left|A_1^C \cap \cdots \cap A_n^C\right|
         \]
+        using PIE. We first find the number of ways the place the balls into the bins so that we guarantee that certain bins are empty. Say that we want to avoid placing any balls into \(j\) bins that we have already determined beforehand. The question reduces to placing the \(n\) balls into \(k-j\) bins that were not chosen. We use the standard balls and bins formula to get that number is
+        \[
+            \binom{n + k - j - 1}{n}
+        \]
+        which applies that any choice of \(j\) bins to keep empty. This means that for any subset \(S \subseteq \{ 1,..., k \}\) we have that
+        \[
+            \left\vert \bigcap_{i\in S} A_i \right\vert = \binom{n + k - |S| - 1}{n}
+        \]
+        As well, we can count the universe \(U\) and get that
+        \[
+            |U| = \binom{n + k - 1}{n}
+        \]
+        Thus, by PIE, we have that
+        \begin{align*}
+            \left|A_1^C \cap \cdots \cap A_n^C\right| &= |U| - \sum_{S \subseteq \{ 1, ..., k \}} (-1)^{|S|} \left\vert \bigcap_{i \in S} A_i \right\vert \\
+            &= \binom{n + k - 1}{n} - \sum_{S \subseteq \{ 1, ..., k \}} (-1)^{|S|} \binom{n + k - |S| - 1}{n}
+        \end{align*}
     \end{question}
 \end{document}
