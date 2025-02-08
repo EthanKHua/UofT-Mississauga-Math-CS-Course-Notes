@@ -9,25 +9,8 @@
 \usepackage{amssymb,amsmath,amsthm,amsfonts}
 \usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage{listings}
 \usepackage{mathtools}
 \usepackage{systeme}
-
-\lstset{
-      language=Octave,
-      basicstyle=\color{offwhite},
-      breaklines=true,%
-    morekeywords={matlab2tikz},
-    keywordstyle=\color{pastelblue},%
-    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
-    identifierstyle=\color{offwhite},%
-    stringstyle=\color{mylilas},
-    commentstyle=\color{pastelgreen},%
-    showstringspaces=false,%without this there will be a symbol in the places where there is a space
-    numbers=left,%
-    numberstyle={\tiny \color{offwhite}},% size of the numbers
-    numbersep=9pt, % this defines how far the numbers are from the text
-   }
 
 % My boxes
 \usepackage[breakable]{tcolorbox}
@@ -48,8 +31,6 @@
 \definecolor{darkgray}{RGB}{60, 60, 60}
 \definecolor{lightgray}{RGB}{180, 180, 180}
 \definecolor{offwhite}{RGB}{225, 225, 245}
-\definecolor{mygreen}{RGB}{28,172,0}
-\definecolor{mylilas}{RGB}{170,55,241}
 
 \pagecolor{darkgray}
 \color{offwhite}

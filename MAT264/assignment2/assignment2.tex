@@ -15,7 +15,7 @@
         \[
             f'(x) = 1 + c\left( \left(\frac{1}{2}\right)^x \cdot \ln \left( \frac{1}{2} \right) + \left(\frac{1}{5}\right)^x \cdot \ln \left( \frac{1}{5} \right) \right) = 1 - c \left( 2^{-x} \cdot \ln 2 + 5^{-x} \cdot \ln 5 \right)
         \]
-        We note that if \(c < 0\), then \(f'(x) > 1\), which is not what we want. If \(c > 0\), \(f'\) is an increasing function. Since \(16 \leq x \leq 17\) we get that
+        We note that if \(c < 0\), then \(- c \left( 2^{-x} \cdot \ln 2 + 5^{-x} \cdot \ln 5 \right) > 0\), so \(f'(x) > 1\), which is not what we want. If \(c > 0\), \(f'\) is an increasing function. Since \(16 \leq x \leq 17\) we get that
         \[
             1 - c(2^{-16} \cdot \ln 2 + 5^{-16} \cdot \ln 5) \leq f'(x) \leq 1 - c(2^{-17} \cdot \ln 2 + 5^{-17} \cdot \ln 5)
         \]
@@ -29,17 +29,71 @@
             1 - c(2^{-16} \cdot \ln 2 + 5^{-16} \cdot \ln 5) > -1 &\implies c(2^{-16} \cdot \ln 2 + 5^{-16} \cdot \ln 5) < 2 \\
             &\implies c < \frac{2}{2^{-16} \cdot \ln 2 + 5^{-16} \cdot \ln 5}
         \end{align*}
+        Thus any value of \(c\) between \(0\) and \(\dfrac{2}{2^{-16} \cdot \ln 2 + 5^{-16} \cdot \ln 5}\) will work, so we can just pick \(c = \dfrac{1}{2^{-16} \cdot \ln 2 + 5^{-16} \cdot \ln 5}\).
 
         \item Use the function from part (b) with the value of \(c\) you have determined to find a root of \(g(x)\) accurate to within \(10^{-4}\). State the value you used for \(p_0\) and show the last three iterations. How many iterations did it take?
+        
+        We will use fixed point iteration on \(f(x) = x + cg(x)\) with \(p_0 = 16.5\). Below is the Octave code, input, and output:
+        \begin{lstlisting}
+function [m] = fixedpoint(f,x,N,tol)
+  for j=1:N
+    m = f(x);
+    disp(["Value at iteration number " num2str(j) ": " num2str(m)]);
+    if abs(m - x) <= tol
+    disp(["Fixed point within given tolerance found in " num2str(j) " iterations."])
+    return;
+    else
+    x = m;
+    end%if
+  end%for
+  disp("Method failed. Max iterations exceeded.")
+end%function
+
+>> [m] = fixedpoint(@(x) x + 1/(2^(-16)*log(2) + 5^(-16)*log(5))*(1/2^x + 1/5^x - 10^(-5)), 16.5, 1000, 10^(-4))
+Value at iteration number 1: 16.5747
+Value at iteration number 2: 16.5979
+Value at iteration number 3: 16.6056
+Value at iteration number 4: 16.6083
+Value at iteration number 5: 16.6092
+Value at iteration number 6: 16.6095
+Value at iteration number 7: 16.6096
+Value at iteration number 8: 16.6096
+Fixed point within given tolerance found in 8 iterations.
+m = 16.610
+        \end{lstlisting}
+
+        We found a fixed point for \(f\) around \(x = 16.610\), which implies that \(g\) has a root around that point as well.
     
         \item Now repeat part (c) and find a root of \(g\) accurate to within \(10^{-7}\), using potentially other values for \(c\) as necessary. Explain your process and how you picked an appropriate \(c\) and \(x_0\).
+        
+        We continue using fixed point iteration, keeping the value of \(c\) the same. We know that our fixed point is close to \(x = 16.610\), so that will be where we start the next fixed point iteration. Below is the Octave commands used and the output:
+        \begin{lstlisting}
+>> format long
+>> [m] = fixedpoint(@(x) x + 1/(2^(-16)*log(2) + 5^(-16)*log(5))*(1/2^x + 1/5^x - 10^(-5)), 16.610, 1000, 10^(-7))
+Value at iteration number 1: 16.6098
+Value at iteration number 2: 16.6097
+Value at iteration number 3: 16.6097
+Value at iteration number 4: 16.6096
+Value at iteration number 5: 16.6096
+Value at iteration number 6: 16.6096
+Value at iteration number 7: 16.6096
+Value at iteration number 8: 16.6096
+Value at iteration number 9: 16.6096
+Fixed point within given tolerance found in 9 iterations.
+m = 16.60964085351603
+        \end{lstlisting}
     \end{enumerate}
     \end{question}
-    
+    \newpage
     \begin{question}{2}
     \textbf{(2.3, \#9)} The function \(g(x) = \sqrt[3]{5 - 3x}\) satisfies the hypotheses of Proposition 5 over the interval \([1, 1.3]\).
     
     Find a bound on the number of iterations required to find the fixed point to within \(10^{-5}\) accuracy starting with initial value \(x_0\) of your choice.
+
+    Let's take the derivative of \(g\):
+    \[
+        g'(x) = \frac{-1}{(5-3x)^{\frac{2}{3}}}
+    \]
     \end{question}
     
     \begin{question}{3}
