@@ -650,7 +650,7 @@
 
         (c):
 
-        Let \(U = \mathrm{span} \{ (0,1,2) \}\). We follow the same structure as before in part (b).
+        Let \(U = \mathrm{span} \{ (0,1,2) \}\). It is clear that \(U \neq W_3\), so \(U\) is in fact another subspace. We follow the same structure as before in part (b).
 
         Let \((x,y,z) \in \mathbb{F}^3\). We rewrite
         \[
@@ -837,16 +837,12 @@
         \[
             s = \sum_{i=1}^{n} c_i s_i
         \]
-        This means that \(S\setminus \{ s \}\) is also a spanning set. But \(|S\setminus \{ s \} | < \dim V\), which is a contradiction by Question 5. Thus \(S\) is a basis for \(V\).
+        This means that \(S\setminus \{ s \}\) is also a spanning set. But \(|S\setminus \{ s \} | < \dim V\), which is a contradiction, as no spanning set can have a size less than \(\dim V\). Thus \(S\) is a basis for \(V\).
 
         \medskip
 
         (c):
 
-        Suppose that \(W\) is a subspace of \(V\). Then it has a basis \(\beta _W\), which is linearly independent. By Question 5, we can extend \(\beta _W\) to a basis for \(V\) by combining it with some linearly independent set \(\alpha\). We claim that our desired subspace is \(U = \mathrm{span} \alpha\). Since \(\beta _W\) is disjoint from \(\alpha\), by Question 9, \(V = W \oplus U\).
-
-        Now, suppose that \(U_1, U_2\) are subspaces such that \(V = W \oplus U_1 = W\oplus U_2\).
-
-        Let \(u \in U_1\). It follows that \(u \in V = W \oplus U_2\), so \(u = w + v\), for some \(w \in W\) and \(v \in U_2\).
+        This statement is false. Recall the result of Question 8: If we have the subspace \(W_1 \subseteq \mathbb{F}^3\) defined by \(W_1 = \{ (x,y,x+y) \in \mathbb{F} | x,y \in \mathbb{F} \}\), then \(W_3 = \mathrm{span} \{ e_3 \}\) and \(U = \mathrm{span} \{ (0,1,2) \}\) are two distinct subspaces such that \(\mathbb{F}^3 = W_1 \oplus W_3 = W_1 \oplus U\).
     \end{question}
 \end{document}
