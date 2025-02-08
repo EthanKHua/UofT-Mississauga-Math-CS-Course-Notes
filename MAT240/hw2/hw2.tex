@@ -787,6 +787,19 @@
         \[
             A = \left( \begin{array}{c|c} \sum\limits_{i,j=1}^{2} p_{ij} e_{ij} & \sum\limits_{i,j=1}^{2} q_{ij} e_{ij} \\ \hline -\sum\limits_{i,j=1}^{2} p_{ij} e_{ij} & -\sum\limits_{i,j=1}^{2} q_{ij} e_{ij}\end{array}\right) = \sum_{i,j=1}^{2} p_{ij} \left( \begin{array}{c|c} e_{ij} & O \\ \hline O & -e_{ij} \end{array} \right) + \sum_{i,j=1}^{2} q_{ij} \left( \begin{array}{c|c} O & e_{ij} \\ \hline -e_{ij} & O \end{array} \right)
         \]
+        Thus \(\beta\) spans \(\mathfrak{sp}_4\).
+
+        Now, suppose that
+        \[
+            = \sum_{i,j=1}^{2} p_{ij} \left( \begin{array}{c|c} e_{ij} & O \\ \hline O & -e_{ij} \end{array} \right) + \sum_{i,j=1}^{2} q_{ij} \left( \begin{array}{c|c} O & e_{ij} \\ \hline -e_{ij} & O \end{array} \right) = 0
+        \]
+        Then it must be true that
+        \[
+            \sum_{i,j=1}^{2} p_{ij} e_{ij} = \sum_{i,j=1}^{2} q_{ij} e_{ij} = 0
+        \]
+        Since the standard basis vectors are linearly independent, it follows that all \(p_{ij} = q_{ij} = 0\), thus proving that \(\beta\) is a basis for \(\mathfrak{sp}_4\).
+
+        For every of the four standard basis vector \(e_{ij}\) of \(\mathcal{M} _2(\mathbb{F})\), there are two vectors in \(\beta\) that correspond to it, so \(\dim V = |\beta | = 2\cdot 4 = 8\).
     \end{question}
     \newpage
     \begin{question}{11}
