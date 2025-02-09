@@ -1,0 +1,37 @@
+\documentclass{../../../tex-setup/eh-homework}
+
+\begin{document}
+    \begin{question}{38}
+        \textbf{Basel Problem.} Here you will use multivariable calculus to establish the following famous equation:
+        \[ \sum_{n=1}^\infty \dfrac{1}{n^2} = \dfrac{\pi^2}6. \]
+        To do it, you will evaluate the (improper) double integral $\displaystyle \int_U \dfrac{1}{1-xy}$ in two ways. Let $f:(0,1)^2\rightarrow \R$ be the function given by $f(x,y)=\dfrac{1}{1-xy}$, and let $K_N$ denote the closed box $\left[\dfrac{1}N,1-\dfrac{1}{N}\right]^2$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Evaluate $\displaystyle\int_{K_N} f$ using Fubini's theorem.
+
+            \item Evaluate $\displaystyle\int_{K_N} f$ using the Change of Variables formula twice: first using the linear diffeomorphism $(x,y)=(u+v,u-v)$, then using the polar coordinates transform.
+
+            \item Conclude that $\sum_{n=1}^\infty \dfrac{1}{n^2} = \dfrac{\pi^2}6$.
+        \end{enumerate}
+    \tcblower
+    \ 
+
+    (a):
+
+    By Fubini's:
+    \begin{align*}
+        \int _{K_N} f &= \int _{\frac{1}{N}}^{1-\frac{1}{N}}\int _{\frac{1}{N}}^{1-\frac{1}{N}} \frac{1}{1-xy}\ dy\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\ln (1 - xy) \Big| _{\frac{1}{N}}^{1-\frac{1}{N}}\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\left( \ln \left( 1 - \left(1-\frac{1}{N}\right)x \right) - \ln \left( 1 - \frac{1}{N}x \right) \right)\ dx
+    \end{align*}
+    Notice that \(-1 < -\left( 1-\frac{1}{N} \right),-\frac{1}{N} < 1\), so we can use the power series expansion of \(\ln (1+t)\) to get that
+    \begin{align*}
+        \int _{K_N} f &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\left( \sum_{n=1}^{\infty} \frac{\left( 1-\frac{1}{N}\right)^n x^n}{n} - \sum_{n=1}^{\infty} \frac{\left( \frac{1}{N} \right)^n x^n}{n}\right)\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}}\sum_{n=1}^{\infty} \frac{x^{n-1}}{n} \left( \left( \frac{1}{N} \right)^n - \left( 1 - \frac{1}{N} \right)^n \right)\ dx \\
+        &= \sum_{n=1}^{\infty} \frac{x^n}{n^2}\left( \left( \frac{1}{N} \right)^n - \left( 1 - \frac{1}{N} \right)^n \right) \Bigg| _{\frac{1}{N}}^{1-\frac{1}{N}} \\
+        &= -\sum_{n=1}^{\infty} \frac{1}{n^2} \left( \left( \frac{1}{N} \right)^n - \left( 1 - \frac{1}{N} \right)^n \right)^2
+    \end{align*}
+    \medskip
+
+    (b):
+    \end{question}
+\end{document}
