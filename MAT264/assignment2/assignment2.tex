@@ -90,18 +90,38 @@ m = 16.60964085351603
     
     Find a bound on the number of iterations required to find the fixed point to within \(10^{-5}\) accuracy starting with initial value \(x_0\) of your choice.
 
-    Let's take the derivative of \(g\):
+    Let \(\hat{x}\) be the fixed point of \(g\) within the interval \([1, 1.3]\). To find the \(M\) value in proposition 5, we take the derivative of \(g\):
     \[
-        g'(x) = \frac{-1}{(5-3x)^{\frac{2}{3}}}
+        g'(x) = \frac{-1}{(5-3x)^{\frac{2}{3}}}, \text{ where } x \in [1,1.3].
     \]
+    Since \(1 \leq x \leq 1.3\), we have
+    \[
+        1.1 \leq 5 - 3x \leq 2 \implies \frac{1}{5-3x} \leq \frac{1}{1.1} < 1
+    \]
+    Since the function \(t^{\frac{2}{3}}\) is increasing for positive \(t\), we have that
+    \[
+        \frac{1}{(5-3x)^{\frac{2}{3}}} \leq \frac{1}{1.1^{\frac{2}{3}}} < 1
+    \]
+    Thus \(|g'(x)| \leq \dfrac{1}{1.1^{\frac{2}{3}}} < 1\), so \(M = \dfrac{1}{1.1^{\frac{2}{3}}} \approx 0.9384\) is our desired value.
+
+    Let \(x_0 = 1\). Notice that \(1 \leq \hat{x} \leq 1.3\). By proposition 5, we have that
+    \[
+        |x_{165} - \hat{x}| \leq M^{165} |1 - \hat{x}| = M^{165} (\hat{x} - 1) \leq M^{165} (1.3 - 1) = 0.3 \cdot M^{165} \approx 8.393 \cdot 10^{-6} < 10^{-5}
+    \]
+    Thus the upper bound on the number of iterations is \(165\).
+
     \end{question}
-    
+    \newpage
     \begin{question}{3}
     Consider the function \(g(x) = \ln(\sin x + 1.5)\).
     
     Find an initial value \(x_0\) (to four decimal places) so that Newton’s method fails at the second iteration. That is, Newton’s method finds \(x_1\) but cannot find \(x_2\).
+    \[
+        \frac{\pi}{2} = x_0 - \frac{\ln (\sin x_0 + 1.5)}{\frac{\cos x_0}{\sin x_0 + 1.5}}
+    \]
+
     \end{question}
-    
+    \newpage
     \begin{question}{4}
     Let \(g(x) = \cos x - e^{-x/2} + 1.0005\), which has one negative root in \([-1, 0]\). Using \(x_0 = -1\) and \(x_1 = 0\), determine \(x_2\) and \(x_3\) when using:
     
@@ -111,6 +131,15 @@ m = 16.60964085351603
     \end{enumerate}
     
     Show the results of your computation in a table and explain your steps.
+
+    Let \(l\) denote the left endpoint of the current interval and \(r\) denote the right endpoint of the current interval. To begin, we set \(l = x_0\) and \(r = x_1\).
+
+    \begin{tabular}{c|c|c|c|c|c|c|c|c}
+        \(k\) & \(l\) & \(r\) & \(g(l)\) & \(g(r)\) & \(g'(x_{k})\) & Candidate & \(x_{k+1}\) & \(f(x_{k+1})\) \\
+        \hline
+        1 & -1 & 0 & -0.1079 & 1.0005 & 0.5 & -2.001 & -0.5 & 0.5941 \\
+        2 & -1 & -0.5 & -0.1079 & 0.5941 & 1.121 & -1.030 & -0.75 & 0.2772
+    \end{tabular}
     \end{question}
     
     \begin{question}{5}
@@ -129,8 +158,33 @@ m = 16.60964085351603
         \[
             |f(1.5) - P(1.5)| = \left\vert \frac{f^{(4)}(\xi)}{4!} 1.5(1.5-1)(1.5-2)(1.5-3) \right\vert = \frac{5625}{24000}\left\vert \left(\frac{\ln 2}{2}\right)^4(\sqrt{2})^{\xi} \right\vert 
         \]
+        \(f\) is increasing, so it follows that
+        \[
+            |f(1.5) - P(1.5)| \leq \frac{5625\ln 2}{24000 \cdot 2^4}(\sqrt{2})^3 = \frac{5625\ln 2}{24000 \cdot 2^3}\sqrt{2} \approx 0.2871
+        \]
     
         \item Find the Lagrange interpolating polynomial, and use it to approximate \(f(1.5)\). Then calculate the actual error in approximation.
+        
+        First, we will find \(p_1, p_2, p_3\), and \(p_4\):
+        \[
+            p_1(x) = f(0)\cdot \frac{(x - 1)(x-2)(x-3)}{(0 - 1)(0 - 2)(0 - 3)} = -\frac{1}{6}(x-1)(x-2)(x-3)
+        \]
+        \[
+            p_2(x) = f(1) \cdot \frac{x(x-2)(x-3)}{(1-0)(1-2)(1-3)} = \sqrt{2}x(x-2)(x-3)
+        \]
+        \[
+            p_3(x) = f(2) \cdot \frac{x(x-1)(x-3)}{(2-0)(2-1)(2-3)} = -x(x-1)(x-3)
+        \]
+        \[
+            p_4(x) = f(3) \cdot \frac{x(x-1)(x-2)}{(3-0)(3-1)(3-2)} = \frac{\sqrt{2}}{3}x(x-1)(x-2)
+        \]
+        Thus the Lagrange interpolating polynomial is
+        \[
+            P_3(x) = p_1(x) + p_2(x) + p_3(x) + p_4(x)
+        \]
+        \[
+            = -\frac{1}{6}(x-1)(x-2)(x-3) + \sqrt{2}x(x-2)(x-3) - x(x-1)(x-3) + \frac{\sqrt{2}}{3}x(x-1)(x-2)
+        \]
     \end{enumerate}
     \end{question}
 \end{document}
