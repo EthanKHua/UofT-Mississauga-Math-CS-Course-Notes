@@ -124,6 +124,11 @@ m = 16.60964085351603
     
     \begin{enumerate}[label=\alph*.]
         \item If this polynomial is used to approximate \(f(1.5)\), find a bound on the error in this approximation.
+        
+        Let \(P_3\) be the interpolating polynomial of least degree that passes through the points \((0, 1), (1, \sqrt{2}), (2,2)\) and \((3, 2\sqrt{2})\). We know that there exists \(\xi \in (0,3)\) such that the absolute error
+        \[
+            |f(1.5) - P(1.5)| = \left\vert \frac{f^{(4)}(\xi)}{4!} 1.5(1.5-1)(1.5-2)(1.5-3) \right\vert = \frac{5625}{24000}\left\vert \left(\frac{\ln 2}{2}\right)^4(\sqrt{2})^{\xi} \right\vert 
+        \]
     
         \item Find the Lagrange interpolating polynomial, and use it to approximate \(f(1.5)\). Then calculate the actual error in approximation.
     \end{enumerate}
