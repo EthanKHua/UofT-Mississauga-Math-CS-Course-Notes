@@ -29,5 +29,9 @@
             \left|A_1^C \cap \cdots \cap A_n^C\right| &= |U| - \sum_{S \subseteq \{ 1, ..., k \}} (-1)^{|S|} \left\vert \bigcap_{i \in S} A_i \right\vert \\
             &= \binom{n + k - 1}{n} - \sum_{S \subseteq \{ 1, ..., k \}} (-1)^{|S|} \binom{n + k - |S| - 1}{n}
         \end{align*}
+        For every \(i \in \{ 1, ..., k \}\), there are \(\dbinom{k}{i}\) sets with cardinality \(i\), so we can simplify the sum to get
+        \[
+            \binom{n+k-1}{n} - \sum_{i=1}^{k} (-1)^i \binom{k}{i} \binom{n + k - i - 1}{n}
+        \]
     \end{question}
 \end{document}
