@@ -38,7 +38,7 @@
     \[
         \Phi (x,y) = (x+y, x-y).
     \]
-    We want to find \(E\), such that \(\Phi (E) = K_N\). We will do this by finding \(\Phi ^{-1}(K_N)\). Notice that \(\Phi ^{-1}(u,v) = \left( \dfrac{u+v}{2}, \dfrac{u-v}{2} \right)\). Let \(x = \dfrac{u+v}{2}\). Since \(u,v \in \left[ \dfrac{1}{N}, 1- \dfrac{1}{N} \right] \), we have that \(x \in \left[ \dfrac{1}{N}, 1 - \dfrac{1}{N}\right]\). Thus \(\dfrac{u - v}{2} = x - v \in \left[ x - 1 + \dfrac{1}{N}, x - \dfrac{1}{N} \right]\) and we can write
+    We want to find \(E\), such that \(\Phi (E) = K_N\). We will do this by finding \(\Phi ^{-1}(K_N)\). Notice that \(\Phi ^{-1}(u,v) = \left( \dfrac{u+v}{2}, \dfrac{u-v}{2} \right)\). Fix \(u,v \in \left[ \dfrac{1}{N}, 1- \dfrac{1}{N} \right] \) and let \(x = \dfrac{u+v}{2}\). We have that \(x \in \left[ \dfrac{1}{N}, 1 - \dfrac{1}{N}\right]\). Thus \(\dfrac{u - v}{2} = x - v \in \left[ x - 1 + \dfrac{1}{N}, x - \dfrac{1}{N} \right]\) and we can write
     \[
         \Phi ^{-1}(K_N) = \left\{ (x,y) : \frac{1}{N} \leq x \leq 1 - \frac{1}{N}, x - 1 + \frac{1}{N} \leq y \leq x - \frac{1}{N}\right\} = E.
     \]
@@ -63,7 +63,7 @@
         &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} -\frac{1}{2(\cos ^2 \theta - \sin ^2 \theta)}\ln (1 - r^2(\cos ^2 \theta - \sin ^2 \theta)) \Big| _{\frac{1}{N}\sec \theta}^{\left( 1 - \frac{1}{N} \right)\sec \theta}\ d \theta \\
         &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{\cos ^2 \theta - \sin ^2 \theta}\ d \theta \\
         &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{1 - \tan ^2 \theta}\cdot \sec ^2 \theta\ d \theta \\
-        \intertext{test}
+        \intertext{Let }
     \end{align*}
     \end{question}
 \end{document}
