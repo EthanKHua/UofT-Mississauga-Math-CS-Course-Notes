@@ -38,9 +38,32 @@
     \[
         \Phi (x,y) = (x+y, x-y).
     \]
-    We want to find \(E\), such that \(\Phi (E) = K_N\). We will do this by finding \(\Phi ^{-1}(K_N)\). Notice that \(\Phi ^{-1}(u,v) = \left( \dfrac{u+v}{2}, \dfrac{u-v}{2} \right)\). Thus
+    We want to find \(E\), such that \(\Phi (E) = K_N\). We will do this by finding \(\Phi ^{-1}(K_N)\). Notice that \(\Phi ^{-1}(u,v) = \left( \dfrac{u+v}{2}, \dfrac{u-v}{2} \right)\). Let \(x = \dfrac{u+v}{2}\). Since \(u,v \in \left[ \dfrac{1}{N}, 1- \dfrac{1}{N} \right] \), we have that \(x \in \left[ \dfrac{1}{N}, 1 - \dfrac{1}{N}\right]\). Thus \(\dfrac{u - v}{2} = x - v \in \left[ x - 1 + \dfrac{1}{N}, x - \dfrac{1}{N} \right]\) and we can write
     \[
-        \Phi ^{-1} (K_N) = \left[ \frac{1}{N}, 1-\frac{1}{N} \right] \times \left[ \frac{1}{N} - \frac{1}{2}, \frac{1}{2} - \frac{1}{N} \right] 
+        \Phi ^{-1}(K_N) = \left\{ (x,y) : \frac{1}{N} \leq x \leq 1 - \frac{1}{N}, x - 1 + \frac{1}{N} \leq y \leq x - \frac{1}{N}\right\} = E.
     \]
+    Therefore we have that
+    \begin{align*}
+        \int _{K_N} f &= \int _E f \circ \Phi \cdot \left\vert \det J \Phi \right\vert \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - (x + y)(x-y)}\cdot | -2 |\ dy\ dx \\
+        &= 2\int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - x^2 + y^2}\ dy\ dx
+    \end{align*}
+    Now, let \(\Psi : (0, \infty)\times (-\frac{\pi}{2}, \frac{\pi}{2}) \to \mathbb{R}^2 \setminus (-\infty , 0] \times \mathbb{R}\) be the diffeomorphism defined by \(\Psi (r,\theta) = (r\cos \theta , r\sin \theta)\). We use a similar strategy to find \(F\), where \(\Psi (F) = E\). We see that \(\Psi ^{-1}(x,y) = \left( \sqrt{x^2 + y^2} , \arctan \left( \dfrac{y}{x} \right) \right)\). Let \(r = \sqrt{x^2 + y^2}\). Based on our definition of \(\Phi ^{-1}(K_N)\), we have that \(\dfrac{1}{N} \leq x \leq 1 - \dfrac{1}{N}\) and \(\dfrac{2}{N} - 1 \leq y \leq 1 - \dfrac{2}{N}\), so \(\dfrac{\frac{2}{N} - 1}{1 - \frac{1}{N}} \leq \dfrac{y}{x} \leq N\left(1-\dfrac{2}{N}\right)\). Thus
+    \[
+        \arctan \left( \frac{2-N}{N-1} \right) \leq \theta \leq \arctan (N-2).
+    \]
+    Additionally, we see that \(\sqrt{x^2 + y^2} = |x|\sqrt{1 + \left(\dfrac{y}{x}\right)} = x\sqrt{1 + \tan^2 \theta} = x\sec \theta\) (we can remove absolute values because \(x > 0\) and \(\theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right] \)). Therefore we can write
+    \[
+        F = \Psi ^{-1}(E) = \left[ (r, \theta) : \arctan \left( \frac{2-N}{N-1} \right) \leq \theta \leq \arctan (N-2), \frac{1}{N}\sec \theta \leq r \leq \left( 1-\frac{1}{N} \right)\sec \theta \right].
+    \]
+    We use change of variables on the integral once again to obtain
+    \begin{align*}
+        \int _{K_N} &= 2\int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - x^2 + y^2}\ dy\ dx \\
+        &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \int _{\frac{1}{N}\sec \theta}^{\left( 1-\frac{1}{N} \right)\sec \theta} \frac{r}{1 - r^2(\cos ^2 \theta - \sin ^2 \theta)}\ dr\ d \theta \\
+        &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} -\frac{1}{2(\cos ^2 \theta - \sin ^2 \theta)}\ln (1 - r^2(\cos ^2 \theta - \sin ^2 \theta)) \Big| _{\frac{1}{N}\sec \theta}^{\left( 1 - \frac{1}{N} \right)\sec \theta}\ d \theta \\
+        &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{\cos ^2 \theta - \sin ^2 \theta}\ d \theta \\
+        &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{1 - \tan ^2 \theta}\cdot \sec ^2 \theta\ d \theta \\
+        \intertext{test}
+    \end{align*}
     \end{question}
 \end{document}
