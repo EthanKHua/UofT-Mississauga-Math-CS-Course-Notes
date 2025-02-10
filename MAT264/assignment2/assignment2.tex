@@ -116,8 +116,16 @@ m = 16.60964085351603
     Consider the function \(g(x) = \ln(\sin x + 1.5)\).
     
     Find an initial value \(x_0\) (to four decimal places) so that Newton’s method fails at the second iteration. That is, Newton’s method finds \(x_1\) but cannot find \(x_2\).
+
+    \textit{Solution.}
+    
+    We know that Newton's method fails to find \(x_2\) if \(g'(x_1) = \dfrac{\cos x_1}{\sin x_1 + 1.5} = 0\). Let's pick \(x_1 = \dfrac{\pi}{2}\), which is a root of \(g'\). We want to try and obtain \(x_1\) using Newton's method, that is, we attempt to solve for \(x_0\) in the equation
     \[
-        \frac{\pi}{2} = x_0 - \frac{\ln (\sin x_0 + 1.5)}{\frac{\cos x_0}{\sin x_0 + 1.5}}
+        \frac{\pi}{2} = x_0 - \frac{g(x_0)}{g'(x_0)}.
+    \]
+    which is equivalent to trying to find a root of the function
+    \[
+        h(x) = x - \dfrac{g(x)}{g'(x)} - \dfrac{\pi}{2} = x - \frac{\ln (\sin x + 1.5)}{\frac{\cos x}{\sin x + 1.5}}.
     \]
 
     \end{question}
