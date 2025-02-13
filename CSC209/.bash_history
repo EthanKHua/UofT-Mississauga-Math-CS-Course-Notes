@@ -1,23 +1,3 @@
-ls -C
-ls -l -C
-man ls
-ls --sort -S
-ls --sort-S
-ls --sort
-ls --sort S
-ls -S
-ls -S | ./echo_stdin
-ls
-vim my_commands.sh
-cat my_commands.sh
-./my_commands.sh
-vim my_commands.sh
-./my_commands.sh
-man wc
-wc -m 1324
-wc -m "1234"
-man wc
-wc -m echo_stdin.c
 vim my_commands.sh
 ./my_commands.sh
 git add my_commands.sh
@@ -497,4 +477,24 @@ valgrind ./bitmap_printer colours.bmp
 git add *.c
 git ci "lab5 complete"
 git pus
+git push
+ls
+cd lab6
+ls
+nvim copy.c
+ls
+exit
+ls
+git status
+cd lab6
+git add copy.c
+git ci "copy.c added"
+git pull
+git pull
+git push
+git push
+nvim copy.c
+git add copy.c
+git ci "fixed mistake"
+git push
 git push

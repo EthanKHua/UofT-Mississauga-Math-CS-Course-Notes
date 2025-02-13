@@ -125,9 +125,39 @@ m = 16.60964085351603
     \]
     which is equivalent to trying to find a root of the function
     \[
-        h(x) = x - \dfrac{g(x)}{g'(x)} - \dfrac{\pi}{2} = x - \frac{\ln (\sin x + 1.5)}{\frac{\cos x}{\sin x + 1.5}}.
+        h(x) = x - \dfrac{g(x)}{g'(x)} - \dfrac{\pi}{2} = x - (\sin x + 1.5) \cdot \frac{\ln (\sin x + 1.5)}{\cos x} - \frac{\pi}{2}.
     \]
+    Notice that \(h\) is defined for all values of \(x\) except for those of the form \(x = \frac{\pi}{2} + n \pi\), for \(n \in \mathbb{Z}\). Since \(-\frac{\pi}{2} < -1.5 < -1 < \frac{\pi}{2}\), we know that \(h\) is defined on the entire interval \([-1.3, -1]\). Moreover, \(h\) is continuous on this interval, and \(h(-1.5) = 1.81 > 0\) and \(h(-1) = -2.06 < 0\), so the conditions to use the bisection method are met. Below is the Octave code used to find the root:
 
+    \begin{itemize}
+        \item[]
+        \begin{lstlisting}
+function [m,M,i]=bisection(a,b,f,tol)
+    N=ceil((log(b-a)-log(tol))/log(2));
+    L=f(a);
+    for i=1:N
+        m=(a+b)/2;
+        M=f(m);
+        if (M==0)
+        return;
+        end%if
+        if (L*M<0)
+        b=m;
+        else
+        a=m;
+        L=M;
+        end%if
+    end%for
+    i=N;
+end%function
+>>f = @(x) x - (sin(x)+1.5)*log(sin(x)+1.5)/cos(x) - pi/2;
+>> [m,M,i] = bisection(-1.5, -1, f, 0.00001)
+m = -1.4567
+M = 2.287e-05
+i = 16
+        \end{lstlisting}
+    \end{itemize}
+    Therefore, \(h\) has a root at around \(x = -1.4567\). We choose \(x_0\) to be this value, from which it follows that \(x_1 = \frac{\pi}{2}\), and thus since \(g'(x_1) = 0\), \(x_2\) cannot be found.
     \end{question}
     \newpage
     \begin{question}{4}
@@ -140,20 +170,50 @@ m = 16.60964085351603
     
     Show the results of your computation in a table and explain your steps.
 
-    Let \(l\) denote the left endpoint of the current interval and \(r\) denote the right endpoint of the current interval. To begin, we set \(l = x_0\) and \(r = x_1\).
+    \medskip
 
-    \begin{tabular}{c|c|c|c|c|c|c|c|c}
-        \(k\) & \(l\) & \(r\) & \(g(l)\) & \(g(r)\) & \(g'(x_{k})\) & Candidate & \(x_{k+1}\) & \(f(x_{k+1})\) \\
-        \hline
-        1 & -1 & 0 & -0.1079 & 1.0005 & 0.5 & -2.001 & -0.5 & 0.5941 \\
-        2 & -1 & -0.5 & -0.1079 & 0.5941 & 1.121 & -1.030 & -0.75 & 0.2772
-    \end{tabular}
+    (a):
+
+    Let \(l\) denote the left endpoint of the current interval and \(r\) denote the right endpoint of the current interval. To begin, we set \(l = x_0\) and \(r = x_1\). For each row, we evaluate the candidate for the subsequent term in the sequence \(x_{k+1}\), which is \(c = x_{k-1} - \frac{g(x_k)}{g'(x_k)}\). If \(c \in [l,r]\), then we set \(x_{k+1} = c\). Otherwise, we take \(x_{k+1} = \frac{l+r}{2}\), the midpoint of the interval. For the next iteration, we choose the new left and right endpoints such that \(x_{k+1}\) is one of the new endpoints and we choose between the previous endpoints for our second endpoint such that the function evaluated at the chosen endpoint has opposite sign to \(f(x_{k+1})\).  Below is the table of values computed:
+
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c|c|c|c}
+            \(k\) & \(l\) & \(r\) & \(g(l)\) & \(g(r)\) & \(g'(x_{k})\) & Candidate & \(x_{k+1}\) & \(g(x_{k+1})\) \\
+            \hline
+            1 & -1 & 0 & -0.1079 & 1.0005 & 0.5 & -2.001 & -0.5 & 0.5941 \\
+            2 & -1 & -0.5 & -0.1079 & 0.5941 & 1.121 & -1.030 & -0.75 & 0.2772
+        \end{tabular}
+    \end{center}
+
+    \vspace{9pt}
+
+    Thus, using the bracketed Newton's method, we have that \(x_2 = -0.5\) and \(x_3 = -0.75\).
+
+    \medskip
+
+    (b):
+
+    The method for calculating the values is similar to the previous part, only that our candidate is now given by \(c_{k+1} = x_k - g(x_k) \dfrac{x_k - x_{k-1}}{g(x_k) - g(x_{k-1})}\). Below are the values calculated using the bracketed secant method:
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c|c|c}
+            \(k\) & \(l\) & \(r\) & \(g(l)\) & \(g(r)\) & Candidate & \(x_{k+1}\) & \(g(x_{k+1})\) \\
+            \hline
+            1 & -1 & 0 & -0.1079 & 1.0005 & -0.9026 & -0.9026 & 0.0497 \\
+            2 & -1 & -0.9026 & -0.1079 & 0.0497 & -0.9333 & 0.9333 & 0.0010
+        \end{tabular}
+    \end{center}
+    Thus \(x_2 = -0.9026\) and \(x_3 = 0.9333\).
     \end{question}
     
     \begin{question}{5}
     Let \(g(x) = \cos x - e^{-x/2} + 1.0005\).
     
     Using any of the root-finding methods discussed in Chapter 2, find all of its positive roots to within \(10^{-4}\). Explain how you know you’ve found all of them.
+
+    \textit{Solution.}
+
+    First, we notice that for \(x > \ln 1000\) 
+
     \end{question}
     
     \begin{question}{6}
