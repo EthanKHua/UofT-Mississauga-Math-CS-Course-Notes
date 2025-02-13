@@ -204,7 +204,7 @@ i = 16
     \end{center}
     Thus \(x_2 = -0.9026\) and \(x_3 = 0.9333\).
     \end{question}
-    
+    \newpage
     \begin{question}{5}
     Let \(g(x) = \cos x - e^{-x/2} + 1.0005\).
     
@@ -212,19 +212,83 @@ i = 16
 
     \textit{Solution.}
 
-    First, we notice that for \(x > \ln 1000\) 
+    First, we notice that for all \(x > 2\ln 2000 \approx 15.2018\), we have that
+    \begin{align*}
+        -x < 2\ln 0.0005 &\implies e^{-\frac{x}{2}} < 0.0005
+    \end{align*}
+    Thus
+    \[
+        g(x) > -1 - 0.0005 + 1.0005 = 0
+    \]
+    Moreover, for all \(x \in [4\pi , 5\pi]\), we have that \(\cos x\) is decreasing, so \(g\) is decreasing on this interval, so
+    \[
+        g(x) > g(5\pi) \approx 0.0001 > 0
+    \]
+    We have shown that \(g\) has no roots in \([4\pi ,5\pi ]\) and \((15.2018, \infty)\), whose union is simply the interval \([4\pi ,\infty)\), so we can guarantee that \(g\) has no roots past \(x = 4\pi\).
 
+    Now, make the observation that \(g\) is continuous and that
+    \begin{align*}
+        g(0) &= 1.0005 \\
+        g(\pi) &= -0.207379576351 \\
+        g(2 \pi) &= 1.95728608174 \\
+        g(3\pi) &= -0.00848329102113 \\
+        g(4\pi) &= 1.99863255727.
+    \end{align*}
+    This shows that \(g\) changes sign at least 4 times, and by the intermediate value theorem, attains a root at least 4 times, but since we know \(\cos (x)\) is monotonic on the intervals \([n \pi , (n+1)\pi]\), there can be no other sign changes, so in fact, \(g\) has exactly 4 positive roots. We now attempt to find them using the bisection method:
+    \begin{itemize}
+        \item[]
+        \begin{lstlisting}
+function [m,M,i]=bisection(a,b,f,tol)
+N=ceil((log(b-a)-log(tol))/log(2));
+L=f(a);
+for i=1:N
+m=(a+b)/2;
+M=f(m);
+if (M==0)
+return;
+end%if
+if (L*M<0)
+b=m;
+else
+a=m;
+L=M;
+end%if
+end%for
+i=N;
+end%function
+        \end{lstlisting}
+        \begin{lstlisting}[numbers=none]
+>> f=@(x) cos(x)-e^(-x/2)+1.0005;
+>> [m,M,i]=bisection(0,pi,f,0.0001)
+m = 2.3304
+M = 3.0711e-06
+i = 15
+>> [m,M,i]=bisection(pi,2*pi,f,0.0001)
+m = 3.7079
+M = 6.5866e-06
+i = 15
+>> [m,M,i]=bisection(2*pi,3*pi,f,0.0001)
+m = 9.2897
+M = -7.3882e-07
+i = 15
+>> [m,M,i]=bisection(3*pi,4*pi,f,0.0001)
+m = 9.5509
+M = 2.3212e-06
+i = 15
+        \end{lstlisting}
+    \end{itemize}
+    Thus the four positive roots of \(g\) are \(m_1 = 2.3304\), \(m_2 = 3.7079\), \(m_3 = 9.2897\), and \(m_4 = 9.5509\).
     \end{question}
-    
+    \newpage
     \begin{question}{6}
     \textbf{(3.2, \#11, 12)} A Lagrange interpolating polynomial is constructed for the function \(f(x) = (\sqrt{2})^x\) using \(x_0 = 0\), \(x_1 = 1\), \(x_2 = 2\), \(x_3 = 3\).
     
     \begin{enumerate}[label=\alph*.]
         \item If this polynomial is used to approximate \(f(1.5)\), find a bound on the error in this approximation.
         
-        Let \(P_3\) be the interpolating polynomial of least degree that passes through the points \((0, 1), (1, \sqrt{2}), (2,2)\) and \((3, 2\sqrt{2})\). We know that there exists \(\xi \in (0,3)\) such that the absolute error
+        Let \(P_3\) be the interpolating polynomial of least degree that passes through the points \((0, 1), (1, \sqrt{2}), (2,2)\) and \((3, 2\sqrt{2})\). We know that there exists \(\xi \in (0,3)\) such that the absolute error is
         \[
-            |f(1.5) - P(1.5)| = \left\vert \frac{f^{(4)}(\xi)}{4!} 1.5(1.5-1)(1.5-2)(1.5-3) \right\vert = \frac{5625}{24000}\left\vert \left(\frac{\ln 2}{2}\right)^4(\sqrt{2})^{\xi} \right\vert 
+            |f(1.5) - P(1.5)| = \left\vert \frac{f^{(4)}(\xi)}{4!} 1.5(1.5-1)(1.5-2)(1.5-3) \right\vert = \frac{5625}{24000}\left\vert \left(\frac{\ln 2}{2}\right)^4(\sqrt{2})^{\xi} \right\vert.
         \]
         \(f\) is increasing, so it follows that
         \[
@@ -238,7 +302,7 @@ i = 16
             p_1(x) = f(0)\cdot \frac{(x - 1)(x-2)(x-3)}{(0 - 1)(0 - 2)(0 - 3)} = -\frac{1}{6}(x-1)(x-2)(x-3)
         \]
         \[
-            p_2(x) = f(1) \cdot \frac{x(x-2)(x-3)}{(1-0)(1-2)(1-3)} = \sqrt{2}x(x-2)(x-3)
+            p_2(x) = f(1) \cdot \frac{x(x-2)(x-3)}{(1-0)(1-2)(1-3)} = \frac{1}{\sqrt{2}}x(x-2)(x-3)
         \]
         \[
             p_3(x) = f(2) \cdot \frac{x(x-1)(x-3)}{(2-0)(2-1)(2-3)} = -x(x-1)(x-3)
@@ -251,7 +315,11 @@ i = 16
             P_3(x) = p_1(x) + p_2(x) + p_3(x) + p_4(x)
         \]
         \[
-            = -\frac{1}{6}(x-1)(x-2)(x-3) + \sqrt{2}x(x-2)(x-3) - x(x-1)(x-3) + \frac{\sqrt{2}}{3}x(x-1)(x-2)
+            = -\frac{1}{6}(x-1)(x-2)(x-3) + \frac{1}{\sqrt{2}}x(x-2)(x-3) - x(x-1)(x-3) + \frac{\sqrt{2}}{3}x(x-1)(x-2)
+        \]
+        We substitute \(x=1.5\) to see that the actual error is
+        \[
+            |f(1.5) - P_3(1.5)| \approx 0.0006.
         \]
     \end{enumerate}
     \end{question}
