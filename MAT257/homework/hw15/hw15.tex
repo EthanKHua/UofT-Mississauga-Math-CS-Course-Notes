@@ -25,10 +25,10 @@
     \end{align*}
     Notice that \(-1 < -\left( 1-\frac{1}{N} \right),-\frac{1}{N} < 1\), so we can use the power series expansion of \(\ln (1+t)\) to get that
     \begin{align*}
-        \int _{K_N} f &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\left( \sum_{n=1}^{\infty} \frac{\left( 1-\frac{1}{N}\right)^n x^n}{n} - \sum_{n=1}^{\infty} \frac{\left( \frac{1}{N} \right)^n x^n}{n}\right)\ dx \\
-        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}}\sum_{n=1}^{\infty} \frac{x^{n-1}}{n} \left( \left( \frac{1}{N} \right)^n - \left( 1 - \frac{1}{N} \right)^n \right)\ dx \\
-        &= \sum_{n=1}^{\infty} \frac{x^n}{n^2}\left( \left( \frac{1}{N} \right)^n - \left( 1 - \frac{1}{N} \right)^n \right) \Bigg| _{\frac{1}{N}}^{1-\frac{1}{N}} \\
-        &= -\sum_{n=1}^{\infty} \frac{1}{n^2} \left( \left( \frac{1}{N} \right)^n - \left( 1 - \frac{1}{N} \right)^n \right)^2
+        \int _{K_N} f &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\left( \sum_{n=1}^{\infty} -\frac{\left( 1-\frac{1}{N}\right)^n x^n}{n} + \sum_{n=1}^{\infty} \frac{\left( \frac{1}{N} \right)^n x^n}{n}\right)\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}}\sum_{n=1}^{\infty} \frac{x^{n-1}}{n} \left( \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n\right)\ dx \\
+        &= \sum_{n=1}^{\infty} \frac{x^n}{n^2}\left(  \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n \right) \Bigg| _{\frac{1}{N}}^{1-\frac{1}{N}} \\
+        &= \sum_{n=1}^{\infty} \frac{1}{n^2} \left( \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n \right)^2
     \end{align*}
     \medskip
 
@@ -38,32 +38,127 @@
     \[
         \Phi (x,y) = (x+y, x-y).
     \]
-    We want to find \(E\), such that \(\Phi (E) = K_N\). We will do this by finding \(\Phi ^{-1}(K_N)\). Notice that \(\Phi ^{-1}(u,v) = \left( \dfrac{u+v}{2}, \dfrac{u-v}{2} \right)\). Fix \(u,v \in \left[ \dfrac{1}{N}, 1- \dfrac{1}{N} \right] \) and let \(x = \dfrac{u+v}{2}\). We have that \(x \in \left[ \dfrac{1}{N}, 1 - \dfrac{1}{N}\right]\). Thus \(\dfrac{u - v}{2} = x - v \in \left[ x - 1 + \dfrac{1}{N}, x - \dfrac{1}{N} \right]\) and we can write
+    Notice that \(\det J\Phi = \det \begin{pmatrix}
+        1 &  1 \\
+        1 &  -1 \\
+    \end{pmatrix} = -2\) and \(\Phi ^{-1}(x,y) = \left( \frac{x+y}{2}, \frac{x-y}{2} \right)\).
+
+    Define
+    \[E = \left\{ (x,y) \in \mathbb{R}^2 : \frac{1}{N} \leq x \leq 1 - \frac{1}{N}, \left\vert x - \frac{1}{2} \right\vert - \frac{1}{2} + \frac{1}{2N} \leq y \leq \frac{1}{2} - \frac{1}{2N} - \left\vert x-\frac{1}{2} \right\vert\right\}.\]
+
+    We claim that \(\Phi (E) = K_N\).
+
+    Let \(u = \frac{x+y}{2}\), \(v = \frac{x-y}{2}\). Recall that our constraints for \(x\) and \(y\) are \(\frac{1}{N} \leq x,y \leq 1 - \frac{1}{N}\). It follows that
     \[
-        \Phi ^{-1}(K_N) = \left\{ (x,y) : \frac{1}{N} \leq x \leq 1 - \frac{1}{N}, x - 1 + \frac{1}{N} \leq y \leq x - \frac{1}{N}\right\} = E.
+        \frac{1}{N} \leq u \leq 1-\frac{1}{N}
     \]
-    Therefore we have that
+    \[
+        \frac{1}{N} \leq u+v \leq 1 - \frac{1}{N} \implies \frac{1}{N} - u \leq v \leq 1 - \frac{1}{N} - u
+    \]
+    \[
+        \frac{1}{N} \leq u-v \leq 1 - \frac{1}{N} \implies u - 1 + \frac{1}{N} \leq v \leq u - \frac{1}{N}
+    \]
+    If \(\frac{1}{N} \leq u < \frac{1}{2}\), then \(u - 1 + \frac{1}{N} < \frac{1}{N} - u\), so the inequality \(\frac{1}{N} - u \leq v \leq u - \frac{1}{N}\) suffices. On the other hand, if \(\frac{1}{2} \leq u \leq 1 - \frac{1}{N}\), then the inequality \(u - 1 + \frac{1}{N} \leq v \leq 1 - \frac{1}{N} - u\) suffices.
+
+    Therefore, we have that
     \begin{align*}
         \int _{K_N} f &= \int _E f \circ \Phi \cdot \left\vert \det J \Phi \right\vert \\
-        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - (x + y)(x-y)}\cdot | -2 |\ dy\ dx \\
-        &= 2\int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - x^2 + y^2}\ dy\ dx
+        &= 2\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \int _{\frac{1}{N} - u}^{u - \frac{1}{N}} \frac{1}{1 - (u + v)(u-v)}\ dv\ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}} \int _{u-1+\frac{1}{N}}^{1-\frac{1}{N}-u} \frac{1}{1 - (u + v)(u-v)}\ dv\ du\right) \\
+        &= 2\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \int _{\frac{1}{N} - u}^{u - \frac{1}{N}} \frac{1}{1 - u^2 + v^2}\ dv\ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}} \int _{u-1+\frac{1}{N}}^{1-\frac{1}{N}-u} \frac{1}{1 - u^2 + v^2}\ dv\ du\right)
     \end{align*}
-    Now, let \(\Psi : (0, \infty)\times (-\frac{\pi}{2}, \frac{\pi}{2}) \to \mathbb{R}^2 \setminus (-\infty , 0] \times \mathbb{R}\) be the diffeomorphism defined by \(\Psi (r,\theta) = (r\cos \theta , r\sin \theta)\). We use a similar strategy to find \(F\), where \(\Psi (F) = E\). We see that \(\Psi ^{-1}(x,y) = \left( \sqrt{x^2 + y^2} , \arctan \left( \dfrac{y}{x} \right) \right)\). Let \(r = \sqrt{x^2 + y^2}\). Based on our definition of \(\Phi ^{-1}(K_N)\), we have that \(\dfrac{1}{N} \leq x \leq 1 - \dfrac{1}{N}\) and \(\dfrac{2}{N} - 1 \leq y \leq 1 - \dfrac{2}{N}\), so \(\dfrac{\frac{2}{N} - 1}{1 - \frac{1}{N}} \leq \dfrac{y}{x} \leq N\left(1-\dfrac{2}{N}\right)\). Thus
+    By symmetry along \(y = 0\), the integral above is equal to
     \[
-        \arctan \left( \frac{2-N}{N-1} \right) \leq \theta \leq \arctan (N-2).
+        4\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \int _{0}^{u - \frac{1}{N}} \frac{1}{1 - u^2 + v^2}\ dv\ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}} \int _{0}^{1-\frac{1}{N}-u} \frac{1}{1 - u^2 + v^2}\ dv\ du\right)
     \]
-    Additionally, we see that \(\sqrt{x^2 + y^2} = |x|\sqrt{1 + \left(\dfrac{y}{x}\right)} = x\sqrt{1 + \tan^2 \theta} = x\sec \theta\) (we can remove absolute values because \(x > 0\) and \(\theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right] \)). Therefore we can write
-    \[
-        F = \Psi ^{-1}(E) = \left[ (r, \theta) : \arctan \left( \frac{2-N}{N-1} \right) \leq \theta \leq \arctan (N-2), \frac{1}{N}\sec \theta \leq r \leq \left( 1-\frac{1}{N} \right)\sec \theta \right].
-    \]
-    We use change of variables on the integral once again to obtain
+    We do both integrals side-by-side:
     \begin{align*}
-        \int _{K_N} &= 2\int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - x^2 + y^2}\ dy\ dx \\
-        &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \int _{\frac{1}{N}\sec \theta}^{\left( 1-\frac{1}{N} \right)\sec \theta} \frac{r}{1 - r^2(\cos ^2 \theta - \sin ^2 \theta)}\ dr\ d \theta \\
-        &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} -\frac{1}{2(\cos ^2 \theta - \sin ^2 \theta)}\ln (1 - r^2(\cos ^2 \theta - \sin ^2 \theta)) \Big| _{\frac{1}{N}\sec \theta}^{\left( 1 - \frac{1}{N} \right)\sec \theta}\ d \theta \\
-        &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{\cos ^2 \theta - \sin ^2 \theta}\ d \theta \\
-        &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{1 - \tan ^2 \theta}\cdot \sec ^2 \theta\ d \theta \\
-        \intertext{Let }
+        &=4\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \frac{1}{\sqrt{1 - u^2}}\arctan \left( \frac{u-\frac{1}{N}}{\sqrt{1-u^2}} \right) \ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}}\frac{1}{\sqrt{1 - u^2}}\arctan \left( \frac{1-\frac{1}{N} - u}{\sqrt{1-u^2}} \right)\ du\right)
     \end{align*}
+    For the first integral, let \(u = \sin \theta\). For the second integral, let \(u = \cos \theta\). We have
+    \begin{align*}
+        &=4\left( \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \frac{\sin \theta -\frac{1}{N}}{|\cos \theta |} \right) \ d \theta - \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \frac{1-\frac{1}{N} - \cos \theta}{|\sin \theta |} \right)\ d \theta\right) \\
+    \end{align*}
+    We remove the absolute values and simplify to get that the integral is equal to
+    \[
+        4\left( \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta - \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \tan \left( \frac{\theta}{2} \right) - \frac{1}{N}\csc \theta \right)\ d \theta\right)
+    \]
+    It is quite difficult to find a closed form for these integrals due to the pesky \(\frac{1}{N}\), but we will deal with it in part (c).
+
+    \medskip
+
+    (c):
+
+    Recall from part (a) that \(\int _{K_N} f = \sum_{n=1}^{\infty} \frac{1}{n^2} \left( \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n \right)^2\). It is not hard to see that as \(N \to \infty\), \(\int _{K_N}f \to \sum\limits_{n=1}^{\infty} \dfrac{1}{n^2}\). Now, we will show that
+    \[
+        4\left( \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta - \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \tan \left( \frac{\theta}{2} \right) - \frac{1}{N}\csc \theta \right)\ d \theta\right)
+    \]
+    converges to
+    \[
+        \frac{\pi^2}{6}.
+    \]
+    First, we restrict \(N > 2\) to ensure that \(\arcsin \left( \frac{1}{N}\right) < \frac{\pi}{6}\) and \(\arccos \left( 1-\frac{1}{N} \right) < \frac{\pi}{3}\). Since \(\sec t\) is bounded by \(\frac{2}{\sqrt{3}}\) on \(\left[\arcsin \left( \frac{1}{N} \right) , \frac{\pi}{6}\right]\), by the monotonicity of \(\arctan t\) we have that
+    \[
+        \arctan \left( \tan \theta - \frac{2}{\sqrt{3}N} \right) \leq \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \leq \arctan \left( \tan \theta + \frac{2}{\sqrt{3}N} \right)
+    \]
+    We note that \(\arctan t\) is uniformly continuous on a closed interval, so for sufficiently large \(N\), we have that for any \(\theta \in \left[ \arcsin \left( \frac{1}{N} \right), \frac{\pi}{6} \right]\),
+    \[
+        \arctan (\tan \theta) - \frac{6\varepsilon}{\pi} < \arctan \left( \tan \theta - \frac{2}{\sqrt{3}N} \right)
+    \]
+    and
+    \[
+        \arctan (\tan \theta) + \frac{6\varepsilon}{\pi} > \arctan \left( \tan \theta + \frac{2}{\sqrt{3}N} \right)
+    \]
+    for some \(\varepsilon > 0\) that can be made arbitrarily small. By the monotonicity of the integral,
+    \[
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) - \frac{6\varepsilon}{\pi}\ d \theta < \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta
+    \]
+    and
+    \[
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta < \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) + \frac{6\varepsilon}{\pi}\ d \theta
+    \]
+    It is easy to evaluate the two integrals that bound the original one. We get that
+    \begin{align*}
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) - \frac{6\varepsilon}{\pi}\ d \theta &= \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \theta - \frac{6\varepsilon}{\pi}\ d \theta \\
+        &= \frac{1}{2}\left( \frac{\pi^2}{36} - \arcsin ^2\left( \frac{1}{N} \right)  \right) - \frac{6\varepsilon}{\pi}\left( \frac{\pi}{6} - \arcsin \left( \frac{1}{N}\right)\right) \\
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) + \frac{6\varepsilon}{\pi}\ d \theta &= \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \theta + \frac{6\varepsilon}{\pi}\ d \theta \\
+        &= \frac{1}{2}\left( \frac{\pi^2}{36} - \arcsin ^2\left( \frac{1}{N} \right)  \right) + \frac{6\varepsilon}{\pi}\left( \frac{\pi}{6} - \arcsin \left( \frac{1}{N}\right)\right) \\
+    \end{align*}
+    We apply Squeeze Theorem to see that
+    \[
+        \lim_{N \to \infty} \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta = \frac{\pi^2}{72}.
+    \]
+    By a similar argument, we can show that
+    \begin{align*}
+        -\lim_{N \to \infty} \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \tan \left( \frac{\theta}{2} \right) - \frac{1}{N}\csc \theta \right)\ d \theta &= \int_0^{\frac{\pi}{3}} \frac{\theta}{2}\ d \theta \\
+        &= \frac{\pi^2}{36}
+    \end{align*}
+    Thus our original integral converges to
+    \[
+        4\left( \frac{\pi^2}{72} + \frac{\pi^2}{36}\right) = \frac{\pi^2}{18} + \frac{\pi^2}{9} = \frac{\pi^2}{6}
+    \]
+    Therefore we can conclude that
+    \[
+        \sum_{n=1}^{\infty} \frac{1}{n^2} = \lim_{N \to \infty} \int _{K_N} f = \frac{\pi^2}{6}
+    \]
+    and we are done.
+
+
+    % Now, let \(\Psi : (0, \infty)\times (-\frac{\pi}{2}, \frac{\pi}{2}) \to \mathbb{R}^2 \setminus (-\infty , 0] \times \mathbb{R}\) be the diffeomorphism defined by \(\Psi (r,\theta) = (r\cos \theta , r\sin \theta)\). We use a similar strategy to find \(F\), where \(\Psi (F) = E\). We see that \(\Psi ^{-1}(x,y) = \left( \sqrt{x^2 + y^2} , \arctan \left( \dfrac{y}{x} \right) \right)\). Let \(r = \sqrt{x^2 + y^2}\). Based on our definition of \(\Phi ^{-1}(K_N)\), we have that \(\dfrac{1}{N} \leq x \leq 1 - \dfrac{1}{N}\) and \(\dfrac{2}{N} - 1 \leq y \leq 1 - \dfrac{2}{N}\), so \(\dfrac{\frac{2}{N} - 1}{1 - \frac{1}{N}} \leq \dfrac{y}{x} \leq N\left(1-\dfrac{2}{N}\right)\). Thus
+    % \[
+    %     \arctan \left( \frac{2-N}{N-1} \right) \leq \theta \leq \arctan (N-2).
+    % \]
+    % Additionally, we see that \(\sqrt{x^2 + y^2} = |x|\sqrt{1 + \left(\dfrac{y}{x}\right)} = x\sqrt{1 + \tan^2 \theta} = x\sec \theta\) (we can remove absolute values because \(x > 0\) and \(\theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right] \)). Therefore we can write
+    % \[
+    %     F = \Psi ^{-1}(E) = \left[ (r, \theta) : \arctan \left( \frac{2-N}{N-1} \right) \leq \theta \leq \arctan (N-2), \frac{1}{N}\sec \theta \leq r \leq \left( 1-\frac{1}{N} \right)\sec \theta \right].
+    % \]
+    % We use change of variables on the integral once again to obtain
+    % \begin{align*}
+    %     \int _{K_N} &= 2\int _{\frac{1}{N}}^{1-\frac{1}{N}} \int _{x - 1 + \frac{1}{N}}^{x-\frac{1}{N}} \frac{1}{1 - x^2 + y^2}\ dy\ dx \\
+    %     &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \int _{\frac{1}{N}\sec \theta}^{\left( 1-\frac{1}{N} \right)\sec \theta} \frac{r}{1 - r^2(\cos ^2 \theta - \sin ^2 \theta)}\ dr\ d \theta \\
+    %     &= 2 \int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} -\frac{1}{2(\cos ^2 \theta - \sin ^2 \theta)}\ln (1 - r^2(\cos ^2 \theta - \sin ^2 \theta)) \Big| _{\frac{1}{N}\sec \theta}^{\left( 1 - \frac{1}{N} \right)\sec \theta}\ d \theta \\
+    %     &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{\cos ^2 \theta - \sin ^2 \theta}\ d \theta \\
+    %     &= -\int _{\arctan \left( \frac{2-N}{N-1} \right)}^{\arctan (N-2)} \frac{\ln (1 - \left( 1 - \frac{1}{N} \right)^2(1 - \tan ^2 \theta)) - \ln (1 - \frac{1}{N^2}(1 - \tan ^2 \theta))}{1 - \tan ^2 \theta}\cdot \sec ^2 \theta\ d \theta \\
+    %     \intertext{Let }
+    % \end{align*}
     \end{question}
 \end{document}
