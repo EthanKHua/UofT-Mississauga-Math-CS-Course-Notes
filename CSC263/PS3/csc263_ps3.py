@@ -55,6 +55,32 @@ class HashTable(object):
             capacity = self.capacity
         return floor(capacity * (hash(k) * A % 1))
 
+    def find(self, arr, cap, k):
+        """
+        Find the index of the node with key k within arr with capacity cap. If key is not present, returns the index of
+        an empty spot where a new node with key k should be inserted.
+        """
+        i = 0
+        hashed = self.hash(k, cap)
+        while arr[(hashed + i * i) % cap] and arr[(hashed + i * i) % cap] != DELETED:
+            if arr[(hashed + i * i) % cap].key == k:
+                break
+            i += 1
+        return (hashed + i * i) % cap
+
+    def rehash(self, new_capacity):
+        """
+        Reinsert the existing elements in the current array into a new array with
+        the given new capacity
+        """
+        new_arr = [None] * new_capacity
+        for node in self.array:
+            if node is None or node == DELETED:
+                continue
+            new_arr[self.find(new_arr, new_capacity, node.key)] = node
+        self.array = new_arr
+        self.capacity = new_capacity
+
     def insert(self, k, v):
         """
         Insert Node(k, v) into the hash table. Use the hash function self.hash(),
@@ -65,22 +91,25 @@ class HashTable(object):
 
         If the hash table capacity is >= 50%, double the hash table capacity.
         """
+        # insert new element
+        insert_index = self.find(self.array, self.capacity, k)
+        if self.array[insert_index] is None or self.array[insert_index] == DELETED:
+            self.size += 1
+        self.array[insert_index] = Node(k, v)
+
+        # if hash table capacity is above half, double array capacity and rehash all the elements
+        if self.size >= self.capacity / 2:
+            self.rehash(self.capacity * 2)
 
     def search(self, k):
         """
         Return the value of the node with key k in the hash table,
         or None if no such node exists.
         """
-        hashed = self.hash(k)
-        i = 0
-        curr_node = self.array[(hashed + i*i) % self.capacity]
-        while curr_node != None:
-            if curr_node == DELETED or curr_node.key != k:
-                i += 1
-                curr_node = self.array[(hashed + i*i) % self.capacity]
-                continue
-            return curr_node.val
-        return None
+        index = self.find(self.array, self.capacity, k) # possible index of node
+        if self.array[index] is None or self.array[index] == DELETED:
+            return None
+        return self.array[index].val
 
     def delete(self, k):
         """
@@ -89,6 +118,13 @@ class HashTable(object):
         If the hash table capacity is <= 25%, halve the hash table capacity,
         but do not go below self.initial_capacity
         """
+        index = self.find(self.array, self.capacity, k) # index candidate for node
+        if self.array[index] is None or self.array[index] == DELETED:
+            return
+        self.array[index] = DELETED
+        self.size -= 1
+        if self.initial_capacity < self.size <= self.capacity / 4:
+            self.rehash(self.capacity // 2)
 
     # You may write helper functions freely
 
