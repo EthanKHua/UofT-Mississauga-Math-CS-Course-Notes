@@ -123,7 +123,7 @@ class HashTable(object):
             return
         self.array[index] = DELETED
         self.size -= 1
-        if self.initial_capacity < self.size <= self.capacity / 4:
+        if self.size <= self.capacity / 4 and self.initial_capacity < self.capacity:
             self.rehash(self.capacity // 2)
 
     # You may write helper functions freely

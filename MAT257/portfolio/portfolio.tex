@@ -2755,7 +2755,7 @@
         \[
             \frac{\partial M}{\partial y} = \frac{\partial^2 F}{\partial y \partial x} = \frac{\partial^2 F}{\partial x \partial y} = \frac{\partial N}{\partial x}
         \]
-        Conversely, suppose that \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\). We define \(\int f\) to be the antiderivative of \(f\) with constant \(C=0\). Since \(N,M\) are continuous, they are integrable with respect to both \(x\) and \(y\). Furthermore, their antiderivative and partial derivatives are integrable because they are continuous. Let \(F\) be defined by
+        Conversely, suppose that \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\). We define \(\int f\ dx\) to be the antiderivative of \(f(.,y)\) with additional constant \(C=0\), and likewise for \(\int f\ dy\). Since \(N,M\) are continuous, they are integrable with respect to both \(x\) and \(y\). Furthermore, their antiderivative and partial derivatives are integrable because they are continuous. Let \(F\) be defined by
         \[
             F(x,y) = \int M(x,y)\ dx + \int N(x,y)\ dy - \frac{1}{2}\left( \iint \frac{\partial M}{\partial y}\ dy\ dx + \iint \frac{\partial N}{\partial x} (x,y)\ dx\ dy \right)
         \]
@@ -2768,6 +2768,28 @@
         Since \(F\) is symmetric, taking the partial derivative with respect to \(y\) will similarly give us \(\dfrac{\partial F}{\partial y} (x,y) = N(x,y)\), and the proof is complete.
         \smallbreak
     \end{proof}
+    \begin{cor}
+        Suppose we have a differential equation of the form
+        \[
+            M(x,y) + N(x,y) \frac{dy}{dx} = 0
+        \]
+        where \(M,N: \mathbb{R}^2 \to \mathbb{R}\) are \(C^1\) functions in terms of \(x\) and \(y\), \(N \neq 0\), and \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\). Then this differential equation has a solution.
+    \end{cor}
+    \begin{proof}
+        By the proposition above, we have that there exists some \(C^2\) function \(F : \mathbb{R}^2 \to \mathbb{R}\) with \(\frac{\partial F}{\partial x} = M\) and \(\frac{\partial F}{\partial y} = N \neq 0\). In particular, for some \(x_0,y_0 \in \mathbb{R}\),
+        \[
+            \frac{\partial F}{\partial y}(x_0, y_0) \neq 0.
+        \]
+        Let \(C\) be an arbitrary constant, and set \(F(x,y) = C\). By the Implicit Function Theorem, we have that there exists an open set \(U \subseteq \mathbb{R}\) containing \(x_0\) and a function \(\Psi : U \to \mathbb{R}\) so that
+        \[
+            F(x, \Psi (x)) = C.
+        \]
+        We claim that a solution to the differential equation is given by \(\Psi\). We see that by taking the derivative of the equation above, we immediately get the original differential equation:
+        \[
+            M(x, \Psi (x)) + N(x, \Psi (x))\Psi '(x) = 0.
+        \]
+    \end{proof}
+    It may seem tricky to find the \(\Psi\) function, but the work involved amounts to isolating \(y\) in the equation \(F(x,y) = C\), which we will illustrate with the following example.
     \begin{example}
         Find the solution to the differential equation
         \[
@@ -2781,9 +2803,18 @@
         \[
             \frac{\partial F}{\partial x}(x,y) = M(x,y) \text{ and } \frac{\partial F}{\partial y}(x,y) = N(x,y).
         \]
-        It follows that
+        In particular, by following the explicit formula, we have
         \[
-            F'(x,y)(1) = M(x,y) + N(x,y)
+            F(x,y) = 2xe^x - 2e^x + 2x^3 - xy.
         \]
+        Set \(2xe^x - 2e^x + 2x^3 - xy = C\), for some constant \(C \in \mathbb{R}\). We claim the solution to the differential equation is \(y = 2e^x - \frac{2}{x}e^x + 2x^2 - \frac{C}{x}\). Indeed, we have that
+        \[
+            \frac{dy}{dx} = 2e^x + \frac{2}{x^2}e^x - \frac{2}{x}e^x + 4x + \frac{C}{x^2}
+        \]
+        so
+        \[
+            x \frac{dy}{dx} + y = x\left( 2e^x + \frac{2}{x^2}e^x - \frac{2}{x}e^x + 4x + \frac{C}{x^2} \right) + 2e^x - \frac{2}{x}e^x + 2x^2 - \frac{C}{x} = 2xe^x + 6x^2
+        \]
+        as desired.
     \end{example}
 \end{document}
