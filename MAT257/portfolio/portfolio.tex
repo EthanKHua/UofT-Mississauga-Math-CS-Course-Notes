@@ -2743,9 +2743,9 @@
         \smallbreak
     \end{proof}
 
-    \begin{thm}
-        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\).
-    \end{thm}
+    % \begin{thm}
+    %     Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\).
+    % \end{thm}
 
     \begin{prop}
         \textbf{Exact equations.} Let \(M,N : \mathbb{R}^2 \to \mathbb{R}\) be totally differentiable functions. Then there exists a twice differentiable function \(F: \mathbb{R}^2 \to \mathbb{R}\) such that \(\dfrac{\partial F}{\partial x} = M\) and \(\dfrac{\partial F}{\partial y} = N\) if and only if \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\).
@@ -2768,4 +2768,22 @@
         Since \(F\) is symmetric, taking the partial derivative with respect to \(y\) will similarly give us \(\dfrac{\partial F}{\partial y} (x,y) = N(x,y)\), and the proof is complete.
         \smallbreak
     \end{proof}
+    \begin{example}
+        Find the solution to the differential equation
+        \[
+            x \dfrac{dy}{dx} + y = 2xe^x + 6x^2.
+        \]
+        Let \(M(x,y) = 2xe^x + 6x^2 - y\), \(N(x,y) = -x\). We see that
+        \[
+            \frac{\partial M}{\partial y} (x,y) = -1 = \frac{\partial N}{\partial x} (x,y)
+        \]
+        By the proposition above, we can find a function \(F : \mathbb{R}^2 \to \mathbb{R}\) so that
+        \[
+            \frac{\partial F}{\partial x}(x,y) = M(x,y) \text{ and } \frac{\partial F}{\partial y}(x,y) = N(x,y).
+        \]
+        It follows that
+        \[
+            F'(x,y)(1) = M(x,y) + N(x,y)
+        \]
+    \end{example}
 \end{document}
