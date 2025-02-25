@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Exercise 15.14}
+    \textbf{Solvers:} Emerald, Ethan
+
+    \textbf{Writeup:} Ethan
+
+    \begin{center}
+        \textit{Special mention to Alan and Sanchit for helping us out a bit as well!}
+    \end{center}
+    Let \(M\) be a (smooth) \(n\)-manifold. Show that each point \(p \in M\) has a relatively open neighborhood \(U \subseteq M\) such that \(U\) homeomorphic to \(\mathbb{R}^n\). In fact, show that there is a smooth regular embedding \(\varphi : \mathbb{R}^n \to U\) such that \(\varphi (\vec{0}) = p\).
+
+    \begin{proof}
+        Let \(p \in M\). By our assumption, we can find a smooth regular embedding \(\hat{\varphi}: \hat{V} \to V\), where \(\hat{V} \subseteq \mathbb{R}^n\) is open and \(V\) is a relatively open subset of \(M\) containing \(p\). Furthermore, there exists \(q \in \hat{V}\) such that \(\hat{\varphi}(q) = p\) and an open ball \(B_{\max}(q, r) \subseteq \hat{V}\). Note that we make use of an open ball with respect to the max-norm, for reasons that will become clear soon. Let \(U = \hat{\varphi}(B_{\max}(q, r))\). We are guaranteed that \(U\) is open because \(\hat{\varphi}\) is a homeomorphism. Now, we define a smooth homeomorphism between \(B_{\max}(q, r)\) and \(\mathbb{R}^n\). Let \(\Phi : \mathbb{R}^n \to B_{\max}(q, r)\) be defined by
+        \[
+            \Phi (\vec{x}) = \left( \frac{2}{\pi r}\arctan (x_1) + q_1, ..., \frac{2}{\pi r}\arctan (x_n) + q_n\right) 
+        \]
+        Notice that \(B_{\max}(q, r)\) is a cartesian product of intervals \(\prod _{i=1}^n [q_i - r, q_i + r]\). The function \(\Phi_i(x) = \frac{2}{\pi r}\arctan (x) + q_i\) is a well known bijection between \(\mathbb{R}\) and \([q_i - r, q_i + r]\), so it is clear that \(\Phi\) is a bijection with a continuous inverse. Moreover, each component is analytic, and therefore smooth, so \(\Phi\) is a smooth homeomorphism. We claim that our desired function \(\varphi: \mathbb{R}^n \to U\) is given by
+        \[
+            \varphi (x) = \hat{\varphi}(\Phi (x)).
+        \]
+        \(\varphi\) is a composition of smooth functions, and therefore smooth. \(J \Phi\) is a diagonal matrix with non-zero diagonals, so is rank \(n\). It follows that the Jacobian \(J \varphi (x) = J \hat{\varphi}(\Phi (x)) \cdot J \Phi (x)\) is rank \(n\) for all \(x\). Finally, \(\varphi\) is a homeomorphism since it is a composition of homeomorphisms (so \(U \simeq \mathbb{R}^n\), as needed). Thus we can conclude that \(\varphi\) is a smooth regular embedding. As well,
+        \[
+            \varphi (0) = \hat{\varphi}(\Phi (0)) = \hat{\varphi}(q) = p.
+        \]
+    \end{proof}
+\end{document}
