@@ -1,0 +1,34 @@
+\documentclass{../../../tex-setup/eh-homework}
+
+\begin{document}
+    \begin{question}{39}
+        Let $M\subseteq\R^N$ be a set and let $\varphi:U\rightarrow M$ be a smooth parametrization of $M$, defined on some open set $U\subseteq \R^n$. We say that $\varphi$ is a \textbf{regular parametrization} if $\varphi$ is a homeomorphism, and if $\varphi'(p)$ has rank $n$ at every point $p\in U$. Note that we require $\varphi^{-1}$ to be continuous, but not necessarily smooth!
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that if $\varphi$ is a regular parametrization of $M$, then $\varphi^{-1}$ is also smooth.
+        
+        \item Prove that if $\varphi:U\rightarrow M$ and $\psi:V\rightarrow M$ are two regular parametrizations of $M$, then $\vol_\varphi(M)=\vol_\psi(M)$.
+
+        \item Use regular parametrizations to find the surface area of a sphere of radius $r$ in $\R^4$.
+    \end{enumerate}
+    \tcblower
+    \ 
+
+    (a):
+
+    Suppose \(\varphi\) is a smooth regular parametrization of \(M\).
+
+    \medskip
+
+    (b):
+
+    Suppose that \(\varphi : U \to M\) and \(\psi : V \to M\) are regular parametrizations of \(M\). We can rewrite
+    \[
+        \psi = \varphi \circ \left(\varphi^{-1} \circ \psi\right).
+    \]
+    Let \(\Phi : V \to U\) be defined by \(\Phi = \varphi^{-1} \circ \psi\). We claim that \(\Phi\) is a diffeomorphim. \(\psi\) is smooth, and by part (a), we know that \(\varphi^{-1}\) is smooth, so \(\Phi\) is also smooth. Furthermore, \(\Phi^{-1} = \psi^{-1} \circ \varphi\), which is smooth for similar reasons. Thus \(\Phi\) is indeed a diffeomorphism. This being the case, we know that parametrizations are diffeomorphism-invariant (done in class), so we can conclude that
+    \[
+        \vol _{\varphi}(M) = \vol _{\psi}(M).
+    \]
+    \end{question}
+\end{document}
