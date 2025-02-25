@@ -53,13 +53,16 @@
         \[
             \Phi (\vec{x}) = \left( \frac{2}{\pi r}\arctan (x_1) + q_1, ..., \frac{2}{\pi r}\arctan (x_n) + q_n\right) 
         \]
-        Notice that \(B_{\max}(q, r)\) is a cartesian product of intervals \(\prod _{i=1}^n [q_i - r, q_i + r]\). The function \(\Phi_i(x) = \frac{2}{\pi r}\arctan (x) + q_i\) is a well known bijection between \(\mathbb{R}\) and \([q_i - r, q_i + r]\), so it is clear that \(\Phi\) is a bijection with a continuous inverse. Moreover, each component is analytic, and therefore smooth, so \(\Phi\) is a smooth homeomorphism. We claim that our desired function \(\varphi: \mathbb{R}^n \to U\) is given by
+        Notice that \(B_{\max}(q, r)\) is a cartesian product of intervals \(\prod _{i=1}^n [q_i - r, q_i + r]\). The function \(\Phi_i(x) = \frac{2}{\pi r}\arctan (x) + q_i\) is a well known bijection between \(\mathbb{R}\) and \([q_i - r, q_i + r]\), so it is clear that \(\Phi\) is a bijection with a continuous inverse. Moreover, each component is smooth, so \(\Phi\) is a smooth homeomorphism. We claim that our desired function \(\varphi: \mathbb{R}^n \to U\) is given by
         \[
             \varphi (x) = \hat{\varphi}(\Phi (x)).
         \]
-        \(\varphi\) is a composition of smooth functions, and therefore smooth. \(J \Phi\) is a diagonal matrix with non-zero diagonals, so is rank \(n\). It follows that the Jacobian \(J \varphi (x) = J \hat{\varphi}(\Phi (x)) \cdot J \Phi (x)\) is rank \(n\) for all \(x\). Finally, \(\varphi\) is a homeomorphism since it is a composition of homeomorphisms (so \(U \simeq \mathbb{R}^n\), as needed). Thus we can conclude that \(\varphi\) is a smooth regular embedding. As well,
+        \(\varphi\) is a composition of smooth functions, and therefore smooth. \(J \Phi\) is a diagonal matrix with non-zero diagonals, so it is rank \(n\). It follows that the Jacobian \(J \varphi (x) = J \hat{\varphi}(\Phi (x)) \cdot J \Phi (x)\) is rank \(n\) for all \(x \in \mathbb{R}^n\). Finally, \(\varphi\) is a homeomorphism since it is a composition of homeomorphisms (so \(U \simeq \mathbb{R}^n\), as needed). Thus we can conclude that \(\varphi\) is a smooth regular embedding. As well,
         \[
             \varphi (0) = \hat{\varphi}(\Phi (0)) = \hat{\varphi}(q) = p.
         \]
+        and the proof is done.
+
     \end{proof}
+    This exercise shows that we can assume WLOG that the domain of every smooth regular embedding is \(\mathbb{R}^n\).
 \end{document}
