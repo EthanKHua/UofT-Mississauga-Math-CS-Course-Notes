@@ -28,29 +28,40 @@
 
     The first situation begins with an empty hash table with intial capacity 10, where \(N\) elements are inserted, and then \(N\) elements are deleted. I will analyse the amortized complexity using the 
 
-    Focusing on each insert operation first, on the \(i\)th insert, there are going to be \(i-1\) elements in the hash table already, and the worst-case situation is if all \(i\) elements---the \(i-1\) previous insertions plus the one to be inserted---hash to the same address. This means that the \texttt{insert} method must iterate through all of the previous elements in order to find an available address. In this case, the number of array accesses is \(i\). After the insertion, if the hash table is half full, the method will need to reinsert each element into a new array with double the capacity. If this occurs, the number of accesses to the original array is \(2i\) and in the worst-case where every element hashes to the same address in the new array, inserting the \(j\)th element will take \(j\) array accesses. Note that the rehashing only happens if \(i = 10 \cdot 2^n\), where \(n\) is a positive integer. Then if \(a_i\) is the number of array accesses made in the \(i\)th insertion operation, then
+    Focusing on each insert operation first, on the \(i\)th insert, there are going to be \(i-1\) elements in the hash table already, and the worst-case situation is if all \(i\) elements---the \(i-1\) previous insertions plus the one to be inserted---hash to the same address. This means that the \texttt{insert} method must iterate through all of the previous elements in order to find an available address. In this case, the number of array accesses is \(i\). After the insertion, if the hash table is half full, the method will need to reinsert each element into a new array with double the capacity. If this occurs, the number of accesses to the original array is \(2i\) and in the worst-case where every element hashes to the same address in the new array, inserting the \(j\)th element will take \(j\) array accesses. Our possible capacities, given that the initial capacity is 10, can be represented by \(10 \cdot 2^n\) with \(n\) being a non-negative integer. The rehashing only happens if \(i = 5 \cdot 2^n\), which is half of some potential capacity. Then if \(a_i\) is the number of array accesses made in the \(i\)th insertion operation, then
     \[
         a_i = \begin{dcases}
-            i + 2i + \sum_{j=1}^{i} j, &\text{ if } i = 10 \cdot 2^n, \text{ for some }  n \geq 0,\\
+            i + 2i + \sum_{j=1}^{i} j, &\text{ if } i = 5 \cdot 2^n, \text{ for some }  n \geq 0,\\
             i, &\text{ otherwise} .
         \end{dcases}
     \]
-    Note that \(10\cdot 2^n < N\), so \(n\) must be between 0 and \(\log N - \log 10\), where the logarithm is in base 2. Summing up all \(N\) insertions, we have that the total worst-case runtime of the insertions is
+    Note that \(5\cdot 2^n < N\), so \(n\) must be between 0 and \(\lfloor\log N - \log 5\rfloor\), where the logarithm is in base 2. Summing up all \(N\) insertions, we have that the total worst-case runtime of the insertions is
     \begin{align*}
-        \sum_{i=1}^{N} a_i &= \sum_{i=1}^{N} i + \sum_{n=0}^{\lfloor \log N  - \log 10 \rfloor} \left( 2\cdot 10\cdot 2^n + \sum_{j=1}^{10 \cdot 2^n} j \right) \\
-        &= \sum_{i=1}^{N} i + \sum_{n=0}^{\lfloor \log N - \log 10\rfloor} 2\cdot 10\cdot 2^n + \sum_{n=0}^{\lfloor \log N - \log 10\rfloor}\sum_{j=1}^{10 \cdot 2^n} j \\
-        &= \sum_{i=1}^{N} i + \sum_{n=0}^{\lfloor \log N - \log 10\rfloor} 2\cdot 10\cdot 2^n + \frac{1}{2}\sum_{n=0}^{\lfloor \log N - \log 10\rfloor} 10\cdot 2^n(10 \cdot 2^n + 1) \\
-        &=\sum_{i=1}^{N} i + 25 \sum_{n=0}^{\lfloor \log N - \log 10\rfloor} 2^n + 50\sum_{n=0}^{\lfloor \log N - \log 10\rfloor} 4^n \\
-        &= \frac{1}{2}N(N+1)+25 \cdot (2^{\lfloor \log N - \log 10\rfloor + 1} - 1) + 50 \cdot \frac{4^{\lfloor \log N - \log 10\rfloor + 1} - 1}{3}
+        \sum_{i=1}^{N} a_i &= \sum_{i=1}^{N} i + \sum_{n=0}^{\lfloor \log N  - \log 5 \rfloor} \left( 2\cdot 5\cdot 2^n + \sum_{j=1}^{5 \cdot 2^n} j \right) \\
+        &= \sum_{i=1}^{N} i + \sum_{n=0}^{\lfloor \log N - \log 5\rfloor} 2\cdot 5\cdot 2^n + \sum_{n=0}^{\lfloor \log N - \log 5\rfloor}\sum_{j=1}^{5 \cdot 2^n} j \\
+        &= \sum_{i=1}^{N} i + \sum_{n=0}^{\lfloor \log N - \log 5\rfloor} 2\cdot 5\cdot 2^n + \frac{1}{2}\sum_{n=0}^{\lfloor \log N - \log 5\rfloor} 5\cdot 2^n(5 \cdot 2^n + 1) \\
+        &=\sum_{i=1}^{N} i + \frac{25}{2} \sum_{n=0}^{\lfloor \log N - \log 5\rfloor} 2^n + \frac{25}{2}\sum_{n=0}^{\lfloor \log N - \log 5\rfloor} 4^n \\
+        &= \frac{1}{2}N(N+1)+\frac{25}{2} \cdot (2^{\lfloor \log N - \log 5\rfloor + 1} - 1) + \frac{25}{2} \cdot \frac{4^{\lfloor \log N - \log 5\rfloor + 1} - 1}{3}
     \end{align*}
-    Removing the floor will obtain an upper bound for the runtime:
+    Removing the floor operator will obtain an upper bound for the runtime:
     \[
-        \sum_{i=1}^{N} a_i \leq \frac{1}{2}N(N+1)+25 \cdot (2^{\log N - \log 10 + 1} - 1) + 50 \cdot \frac{4^{\log N - \log 10 + 1} - 1}{3}
+        \sum_{i=1}^{N} a_i \leq \frac{1}{2}N(N+1)+\frac{25}{2} \cdot (2^{\log N - \log 5 + 1} - 1) + \frac{25}{2} \cdot \frac{4^{\log N - \log 5 + 1} - 1}{3}
     \]
     \[
-        = \frac{1}{2}N(N+1)+25 \cdot \left(2 \cdot \frac{N}{10} - 1\right) + 50 \cdot \frac{4 \cdot \frac{N^2}{100} - 1}{3} = \frac{7}{6}N^2 + \frac{11}{2}N - 25 - \frac{50}{3} \in \mathcal{O} (N^2)
+        = \frac{1}{2}N(N+1)+\frac{25}{2} \cdot \left(2 \cdot \frac{N}{5} - 1\right) + \frac{25}{2} \cdot \frac{4 \cdot \frac{N^2}{25} - 1}{3}
     \]
-    We can perform a very similar analysis on the \(N\) delete operations. The worst-case runtime is when every element hashes to the same address, and each element is deleted in backwards order of the most recent rehashing. This guarantees that every other element must be checked before the method is able to access the element to be deleted.
+    \[
+        = \frac{7}{6}N^2 + \frac{11}{2}N - \frac{25}{2} - \frac{25}{6} \in \mathcal{O} (N^2)
+    \]
+    We can perform a very similar analysis on the \(N\) delete operations. The worst-case runtime is when every element hashes to the same address at every capacity, and each element is deleted in backwards order of the most recent rehashing. In particular, with my implementation, rehashing is done linearly, so the last key in the hash table will be inserted last, and due to open addressing, must iterate through the address of every key inserted before it. This guarantees that every other element must be checked before the method is able to access the element to be deleted. There is a symmetry between the runtime of the insert and delete operations, namely if \(b_i\) represents the \(i\)th delete operation, then
+    \[
+        b_i = a_{N-i}.
+    \]
+    Thus
+    \[
+        \sum_{i=1}^{N} b_i \in \mathcal{O} (N^2)
+    \]
+    Adding the aggregated sum of the insert and delete operations together will still give us a cost in \(\mathcal{O} (N^2)\), so the amortized cost of any operation is \(\mathcal{O} (N)\).
     
     I hope that my explanations and analyses were satisfactory, and I look forward to hearing back from you soon. Thank you very much.
 
