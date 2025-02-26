@@ -1,165 +1,3 @@
-vim my_commands.sh
-./my_commands.sh
-git add my_commands.sh
-git ci "lab1 part 4 complete"
-git push
-logout
-pwd
-git pull
-ls
-cd huaethan
-git pull
-ls
-cd lab2
-ls
-vim digits.c
-vim invest.c
-vim phone.c
-vim score_card.c
-gcc -Wall -g -o score_card score_card.c
-./score_card 10 -3 4
-vim score_card.c
-gcc -Wall -g -o score_card score_card.c
-./score_card 10 -3 4
-gcc -Wall -g -o phone phone.c
-vim phone.c
-gcc -Wall -g -o phone phone.c
-./phone qwertyuiop -1
-./phone
-gcc -Wall -g -o invest invest.c
-./invest 10000 1.05
-gcc -Wall -g -o digits digits.c
-git add invest.c phone.c score_card.c
-git ci "everything but digits complete"
-git push
-vim digits.c
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 10
-./digits 1023012312312
-vim digits.c
-pwd
-pwd
-cd documents
-cd uni
-cd csc209
-cd huaethan
-git pull
-ls
-cd mab2
-cd lab2
-ls
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 10
-cat digits.c
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 10
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 10
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-./digits 1313
-vim digits.c
-./digits 1
-./digits 0
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 0
-cat digits.c
-./digits 01
-./digits 1
-vim digits.c
-gcc -Wall -g -o digits digits.c
-./digits 1
-vim digits.c
-./digits "1"
-git add digits.c
-git ci "digits.c progress"
-git push
-exit
-cd documents
-cd uni
-cd csc209
-cd huaethan
-cd lab2
-git pull
-vim phone.c
-gcc -Wall -g -o phone phone.c
-./phone 9051234567 0
-./phone qwertyuiop 0
-vim phone.c
-./phone
-vim phone.c
-gcc -Wall -g -o phone phone.c
-./phone
-vim phone.c
-gcc -Wall -g -o phone phone.c
-./phone
-vim phone.c
-gcc -Wall -g -o phone phone.c
-./phone
-git add .
-git rm .
-git rm -r .
-git rm -f .
-git rm -f -r .
-git status
-git add .gitkeep digits.c invest.c phone.c score_card.c
-git ci "lab2 complete frfr"
-git push
-git status
-git log
-git help revert
-git revert a051caf02820ca7d6c7184a041a8ac61973f6d65
-git status
-vim phone.c
-gcc -Wall -g -o phone phone.c
-./phone
-git add phone.c
-git ci "lab2 complete frfr"
-git push
-gcc -Wall -g -o test test.c
-vim test.c
-gcc -Wall -g -o test test.c
-ls
-gcc -Wall -g -o test1 test.c
-./test1
-./test1
-ls
-cd a1
-ls
-cat compute_parity.c parity.c
-vim compute_parity.c
-vim parity.c
-vim compute_parity.c
-vim parity.c
-gcc -Wall -g -o compute_parity compute_parity.c parity.c
-./compute_parity
-./compute_parity 4 64 "quotes.txt"
-vim parity.c
 vim parity.c
 gcc -Wall -g -o compute_parity compute_parity.c parity.c
 vim parity.c
@@ -498,3 +336,165 @@ git add copy.c
 git ci "fixed mistake"
 git push
 git push
+ls
+cd a2
+ls
+cat list.c
+cat do_list.c
+nvim gc.c
+cat MakeFile
+nvim gc.c
+ls
+nvim gc_list.c
+ls
+cat do_list.c
+nvim gc.c
+ls
+nvim gc.c
+ls
+cat do_list.c
+ls
+cat transactions
+ls transactions
+make
+nvim gc.c
+nvim gc.c
+nvim gc.c
+make
+nvim gc.c
+make
+nvim gc.c
+make
+nvim gc_list.c
+make
+./do_list
+./do_list transactions/list_trans1
+nvim do_list.c
+nvim gc.c
+make
+./do_list transactions/list_trans1
+cat transactions/list_trans1
+cat do_list.c
+ls
+cat gc.log
+./do_list transactions/list_trans1
+nvim do_list.c
+nvim list.c
+nvim list.c
+nvim transactions/list_trans1
+./do_list transactions/list_trans1
+nvim transactions/list_trans1
+./do_list transactions/list_trans1
+nvim transactions/list_trans1
+./do_list transactions/list_trans1
+nvim do_list.c
+valgrind ./do_list transactions/list_trans1
+nvim gc.c
+make
+./do_list transactions/list_trans1
+valgrind ./do_list transactions/list_trans1
+nvim gc.c
+nvim gc.c
+./do_list transactions/list_trans1
+make
+nvim gc.c
+make
+./do_list transactions/list_trans1
+valgrind ./do_list transactions/list_trans1
+nvim gc.log
+valgrind ./do_list transactions/list_trans1
+nvim gc.log
+nvim gc.c
+gdb ./do_list
+nvim gc.c
+make
+valgrind ./do_list transactions/list_trans1
+gdb ./do_list
+nvim gc.c
+make
+valgrind ./do_list transactions/list_trans1
+nvim gc.c
+free
+make
+valgrind ./do_list transactions/list_trans1
+cat gc.log
+nvim gc.log
+valgrind ./do_list transactions/list_trans1
+nvim gc.log
+nvim transactions/list_trans1
+nvim gc.c
+nvim gc.c
+valgrind -s ./do_list transactions/list_trans1
+nvim list.c
+nvim list.c
+nvim gc.c
+make
+gdb ./do_list
+gc.c
+nvim gc.c
+make
+valgrind -s ./do_list transactions/list_trans1
+gdb ./do_list
+valgrind -s ./do_list transactions/list_trans1
+nvim gc.c
+cat gc.log
+./do_list transactions/list_trans1
+cat gc.log
+./do_list transactions/list_trans1
+cat gc.log
+nvim do_list.c
+nvim gc.c
+ls
+nvim gc_list.c
+make
+./do_list transactions/list_trans1
+./do_list transactions/list_trans1
+git diff
+git add *.c
+git status
+ls
+git add *.c
+git status
+git add ./*.c
+git status
+git add gc.c do_fstree.c fstree.c gc_fstree.c gc_list.c
+git status
+git ci "a2 progress"
+ls
+ls -l
+ls -v
+cd ..
+git add A2/*.c
+git status
+git ci "a2 progress"
+git push
+cd A2
+ls
+cat fstree.c
+cat gc_fstree.c
+nvim gc_fstree.c
+make
+nvim gc_fstree.c
+make
+cat fstree.h
+nvim gc_fstree.c
+make
+./do_fstree transactions/fstree_trans1
+ls transactions
+./do_fstree transactions/fs_trans1
+nvim do_fstree.c
+nvim fstree.c
+gdb do_fstree
+nvim fstree.c
+ls
+nvim testing.txt
+git pull
+git add testing.txt
+git ci "created testing.txt"
+git pull
+git stash
+git pull
+nvim gc.c
+nvim testing.txt
+date
+ps

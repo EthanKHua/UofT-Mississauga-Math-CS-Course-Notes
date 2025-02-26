@@ -53,15 +53,23 @@
     \[
         = \frac{7}{6}N^2 + \frac{11}{2}N - \frac{25}{2} - \frac{25}{6} \in \mathcal{O} (N^2)
     \]
-    We can perform a very similar analysis on the \(N\) delete operations. The worst-case runtime is when every element hashes to the same address at every capacity, and each element is deleted in backwards order of the most recent rehashing. In particular, with my implementation, rehashing is done linearly, so the last key in the hash table will be inserted last, and due to open addressing, must iterate through the address of every key inserted before it. This guarantees that every other element must be checked before the method is able to access the element to be deleted. There is a symmetry between the runtime of the insert and delete operations, namely if \(b_i\) represents the \(i\)th delete operation, then
+    We can perform a very similar analysis on the \(N\) delete operations. The worst-case runtime is when every element hashes to the same address at every capacity, and each element is deleted in backwards order of the most recent rehashing. In particular, with my implementation, rehashing is done linearly, so the last key in the hash table will be inserted last, and due to open addressing, must iterate through the address of every key inserted before it. This guarantees that every other element must be checked before the method is able to access the element to be deleted. For similar reasons, if \(b_{N - i + 1}\) represents the \(N-i+1\)th delete operation, then
     \[
-        b_i = a_{N-i}.
+        b_{N-i+1} = \begin{dcases}
+            i + 4i + \sum_{j=1}^{i} j, &\text{ if } i = 5 \cdot 2^{n}, \ n \in \mathbb{N}\\
+            i, &\text{ otherwise} .
+        \end{dcases}
     \]
-    Thus
+    This is because after \(N-i\) deletions, there are \(i\) elements remaining in the hash table, so the subsequent deletion without accounting for array shrinking will have a runtime of \(i\). As well, when rehashing, \(i\) is a quarter of the maximum capacity, and the rehashing algorithm needs to iterate through the entire array, so there are actually \(4i\) array accesses rather than just \(2i\). Moreover, the resizing only happens if \(i\) is a quarter of the maximum capacity and the current maximum capacity is not the initial capacity. Namely, when \(i = 5 \cdot 2^n\). Thus we can do a very similar calculation as before to obtain that
     \[
-        \sum_{i=1}^{N} b_i \in \mathcal{O} (N^2)
+        \sum_{i=1}^{N} b_i \in \mathcal{O} (N^2).
     \]
-    Adding the aggregated sum of the insert and delete operations together will still give us a cost in \(\mathcal{O} (N^2)\), so the amortized cost of any operation is \(\mathcal{O} (N)\).
+    Adding the aggregated sum of the insert and delete operations together will still give us a cost in \(\mathcal{O} (N^2)\), so the amortized cost of the sequence in the first situation is \(\mathcal{O} (N)\).
+
+    In the second situation, every insert and delete operation will require a rehashing. This is because the capacity of the hash table is one insertion away from half capacity, so after the insertion the table will be expanded. After this expansion, the capacity is at exactly one quarter, and the current capacity is not the initial capacity (which must be less than or equal to \(2N\)), and deleting an element will cause the table to shrink. Again, the worst-case input for this situation is if every element hashes to the same address, and \texttt{delete} is called on the element that is inserted last in the rehashing. This being the case, every pair of insert and delete operations will have the runtime
+    \[
+        t = \left(N + 2N + \sum_{j=1}^{N} j\right) + \left( N + 4N + \sum_{j=1}^{N} j \right) = 8N + 2\sum_{j=1}^{N} j
+    \] 
     
     I hope that my explanations and analyses were satisfactory, and I look forward to hearing back from you soon. Thank you very much.
 
