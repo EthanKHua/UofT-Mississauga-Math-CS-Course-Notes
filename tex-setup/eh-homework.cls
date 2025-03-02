@@ -26,6 +26,8 @@
 %     }
 % }
 
+\allowdisplaybreaks
+
 \definecolor{pastelblue}{RGB}{96, 145, 245}
 \definecolor{pastelgreen}{RGB}{106, 235, 135}
 \definecolor{darkgray}{RGB}{60, 60, 60}
