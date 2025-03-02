@@ -61,12 +61,17 @@ class HashTable(object):
         an empty spot where a new node with key k should be inserted.
         """
         i = 0
+        first_delete_index = -1
         hashed = self.hash(k, cap)
-        while arr[(hashed + i * i) % cap] and arr[(hashed + i * i) % cap] != DELETED:
-            if arr[(hashed + i * i) % cap].key == k:
-                break
+        while arr[(hashed + i * i) % cap]:
+            if arr[(hashed + i * i) % cap] == DELETED:
+                if first_delete_index == -1:
+                    first_delete_index = (hashed + i * i) % cap
+            elif arr[(hashed + i * i) % cap].key == k:
+                return (hashed + i * i) % cap
             i += 1
-        return (hashed + i * i) % cap
+        
+        return (hashed + i * i) % cap if first_delete_index == -1 else first_delete_index
 
     def rehash(self, new_capacity):
         """
@@ -107,7 +112,7 @@ class HashTable(object):
         or None if no such node exists.
         """
         index = self.find(self.array, self.capacity, k) # possible index of node
-        if self.array[index] is None or self.array[index] == DELETED:
+        if not self.array[index] or self.array[index] == DELETED:
             return None
         return self.array[index].val
 
@@ -156,3 +161,4 @@ if __name__ == "__main__":
     n = T.search(1)
     assert(n == "c")
 
+    
