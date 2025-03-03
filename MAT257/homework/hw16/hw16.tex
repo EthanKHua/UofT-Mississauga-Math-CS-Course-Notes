@@ -16,7 +16,40 @@
 
     (a):
 
-    Suppose \(\varphi\) is a smooth regular parametrization of \(M\).
+    First, we show that the inversion map for invertible linear maps \(T \mapsto T^{-1}\) is smooth.
+
+    Let \(T\) be a linear mapping. We will show that the total derivative of the inversion map at \(T\) is defined by \(h \mapsto -T^{-1} h T^{-1}\). Let \(\varepsilon > 0\). Let \(\delta = \|T^{-1}\|^{-1}(1 - \frac{\|T^{-1}\|^2}{\varepsilon + \|T^{-1}\|^2})\). Let \(\|h\| < \delta\), and recall that for this choice of \(\delta\), \(T + h\) is still invertible. We have that
+    \begin{align*}
+        \frac{1}{\|h\|}\left\lVert (T + h)^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert &= \frac{1}{\|h\|}\left\lVert (T(I + T^{-1}h))^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &= \frac{1}{\|h\|}\left\lVert (I + T^{-1}h)^{-1}T^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert
+    \end{align*}
+    Notice that \(\|I - I - T^{-1}h\|_{\op} = \|T^{-1}h\|_{\op} \leq \|T^{-1}\|_{\op}\|h\|_{\op} < 1\), so by a lemma from long ago, we have that \(I + T^{-1} h\) is invertible and
+    \[
+        (I + T^{-1}h)^{-1} = \sum_{n=0}^{\infty} (I - (I + T^{-1}h))^n = \sum_{n=0}^{\infty} (-1)^n (T^{-1} h)^n
+    \]
+    Thus we can rewrite our original expression as
+    \begin{align*}
+        &\quad\frac{1}{\|h\|}\left\lVert \sum_{n=0}^{\infty} (-1)^n (T^{-1} h)^n T^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &=\frac{1}{\|h\|}\left\lVert \left( \sum_{n=0}^{\infty} (-1)^n (T^{-1} h)^n - I \right) T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &= \frac{1}{\|h\|}\left\lVert \left( \sum_{n=1}^{\infty} (-1)^n (T^{-1} h)^n\right) T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &= \frac{1}{\|h\|}\left\lVert \left( - T^{-1}h + \sum_{n=2}^{\infty} (-1)^n (T^{-1} h)^n\right) T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &=\frac{1}{\|h\|}\left\lVert \sum_{n=2}^{\infty} (-1)^n (T^{-1} h)^n T^{-1} \right\rVert \\
+        &<  \sum_{n=2}^{\infty}\frac{1}{\|h\|}\left\lVert (T^{-1} h)^n T^{-1} \right\rVert \\
+        &\leq \sum_{n=2}^{\infty}\frac{1}{\|h\|}\|T^{-1}\|^{n+1}\|h\|^n \\
+        &=\|T^{-1}\|^3 \|h\|\sum_{n=0}^{\infty} \|T^{-1} \|^n \|h\|^n \\
+        &= \frac{\|T^{-1}\|^3 \|h\|}{1 - \|T^{-1}\|\|h\|} \tag{\(\|T^{-1}\|\|h\| < 1\)} \\
+        &= \frac{\|T^{-1}\|^2}{1 - \|T^{-1}\|\|h\|} - \|T^{-1}\|^2 \\
+        &< \varepsilon
+    \end{align*}
+    Thus \(T^{-1} h T^{-1}\) is the desired derivative. Now, notice that the derivative is also differentiable because it is built from the identity mapping and itself. But this implies that the original mapping is twice differentiable, so the derivative is in fact also twice differentiable. We can continue this process an arbitrary number of times, but hopefully it is convincing enough to show that the inversion mapping is infinitely differentiable. For convenience, define our inversion mapping as \(V\) (which i should've done earlier lol).
+
+    \medskip
+
+    Suppose \(\varphi\) is a smooth regular parametrization of \(M\). Since \(\varphi'\) has full rank, we can apply the Inverse Function Theorem, we obtain that \(\varphi^{-1}\) is \(C^1\) and
+    \[
+        (\varphi^{-1})' = (\varphi' \circ \varphi^{-1})^{-1} = V \circ \varphi' \circ \varphi^{-1}
+    \]
+    We can apply the same argument from before to \(\varphi^{-1}\) to show that it is infinitely differentiable. Since \(V\) and \(\varphi'\) are smooth, \((\varphi^{-1})'\) is \(C^1\), so \(\varphi^{-1}\) is \(C^2\), and so on. Therefore we can conclude that \(\varphi^{-1}\) is indeed \(C^{\infty}\).
 
     \medskip
 
@@ -26,9 +59,66 @@
     \[
         \psi = \varphi \circ \left(\varphi^{-1} \circ \psi\right).
     \]
-    Let \(\Phi : V \to U\) be defined by \(\Phi = \varphi^{-1} \circ \psi\). We claim that \(\Phi\) is a diffeomorphim. \(\psi\) is smooth, and by part (a), we know that \(\varphi^{-1}\) is smooth, so \(\Phi\) is also smooth. Furthermore, \(\Phi^{-1} = \psi^{-1} \circ \varphi\), which is smooth for similar reasons. Thus \(\Phi\) is indeed a diffeomorphism. This being the case, we know that parametrizations are diffeomorphism-invariant (done in class), so we can conclude that
+    Let \(\Phi : V \to U\) be defined by \(\Phi = \varphi^{-1} \circ \psi\). We claim that \(\Phi\) is a diffeomorphism. \(\psi\) is smooth, and by part (a), we know that \(\varphi^{-1}\) is smooth, so \(\Phi\) is also smooth. Furthermore, \(\Phi^{-1} = \psi^{-1} \circ \varphi\), which is smooth for similar reasons. Thus \(\Phi\) is indeed a diffeomorphism. This being the case, we know that parametrizations are diffeomorphism-invariant (done in class), so we can conclude that
     \[
         \vol _{\varphi}(M) = \vol _{\psi}(M).
     \]
+    \medskip
+    (c):
+
+    Let \(rS^3 = \{ (x,y,z,w) \in \mathbb{R}^4 : \sqrt{x^2 + y^2 + z^2 + w^2} = r\}\). Let \(S_w^+ = \{ (x,y,z,w) \in \mathbb{R}^4 : \sqrt{x^2 + y^2 + z^2 + w^2} = r, w > 0\}\) be the positive \(w\)-hemisphere of \(rS^3\). We will analyze the volume of \(S_w^+\), which is half of the total surface area of \(rS^3\). Let \(f(x,y,z) = \sqrt{r^2 - x^2 - y^2 - z^2}\). We define the parametrization \(\Phi: B(0, r) \subseteq \mathbb{R}^3 \to S_w^+\) by
+    \[
+        \Phi (x,y,z) = (x,y,z, f(x,y,z)).
+    \]
+    This function is smooth, as the identity function is smooth and \(f\) is smooth when \((x,y,z) \neq 0\) and \(\Phi\) is not defined on \(0\). We see that
+    \[
+        J \Phi = \begin{pmatrix}
+            I_3 \\
+            \nabla f
+        \end{pmatrix}
+    \]
+    which is guaranteed to be maximal rank 3, so \(\Phi\) is regular. We have that
+    \[
+        (J \Phi)^t J \Phi = \begin{pmatrix}
+            I_3 &  (\nabla f)^t \\
+        \end{pmatrix}
+        \begin{pmatrix}
+             I_3 \\
+             \nabla f \\
+        \end{pmatrix}
+        = I_3 + (\nabla f)^t \nabla f
+    \]
+    \[
+        = \begin{pmatrix}
+            1 + \dfrac{x^2}{r^2 - x^2 - y^2 - z^2} & \dfrac{xy}{r^2 - x^2 - y^2 - z^2} & \dfrac{xz}{r^2 - x^2 - y^2 - z^2}  \\
+            \dfrac{xy}{r^2 - x^2 - y^2 - z^2} & 1 + \dfrac{y^2}{r^2 - x^2 - y^2 - z^2} & \dfrac{yz}{r^2 - x^2 - y^2 - z^2}  \\
+            \dfrac{xz}{r^2 - x^2 - y^2 - z^2} & \dfrac{yz}{r^2 - x^2 - y^2 - z^2} & 1 + \dfrac{z^2}{r^2 - x^2 - y^2 - z^2}  \\
+        \end{pmatrix}
+    \]
+    \begin{align*}
+        \implies \det ((J \Phi)^t J \Phi) &= 1 + \frac{x^2 + y^2 + z^2}{r^2 - x^2 - y^2 - z^2} \tag{trust} \\
+        &= \frac{r^2}{r^2 - x^2 - y^2 - z^2}
+    \end{align*}
+    Therefore the volume is
+    \begin{align*}
+        \vol(S_w^+) &= \int _{B(0,r)}\sqrt{\det ((J \Phi)^t J \Phi)} \\
+        &= \int_{-r}^{r} \int_{-\sqrt{r^2 - x^2}}^{\sqrt{r^2 - x^2}} \int_{-\sqrt{r^2 - x^2 - y^2}}^{\sqrt{r^2 - x^2 - y^2}} \frac{r}{\sqrt{r^2 - x^2 - y^2 - z^2}}\ dz\ dy\ dx \\
+        &=8r\int_{0}^{r} \int_{0}^{\sqrt{r^2 - x^2}} \int_{0}^{\sqrt{r^2 - x^2 - y^2}} \frac{1}{\sqrt{r^2 - x^2 - y^2 - z^2}}\ dz\ dy\ dx \\
+        &= 8r\int_{0}^{r} \int_{0}^{\sqrt{r^2 - x^2}} \arcsin \left( \frac{z}{\sqrt{r^2 - x^2 - y^2}}\right) \Big|_0^{\sqrt{r^2 - x^2 - y^2}}\ dy\ dx \\
+        &= 8r\int_{0}^{r} \int_{0}^{\sqrt{r^2 - x^2}} \frac{\pi}{2}\ dy\ dx \\
+        &= 4\pi r \int_{0}^{r} \sqrt{r^2 - x^2}\ dx \\
+        &= 4\pi r\left( \frac{1}{4}\pi r^2 \right) \\
+        &= \pi^2 r^3
+    \end{align*}
+    This is the surface area of one hemisphere, and thus the total surface area of the sphere is \(\pi ^2 r^3\).
+    % We contruct the parametrization using spherical coordinates. First, parametrize the \(w\)-component with \(w = r\sin \gamma\). If we fix any \(\gamma \in [-\frac{\pi}{2}, \frac{\pi}{2}]\), then the equation for the curve becomes
+    % \[
+    %     \sqrt{x^2 + y^2 + z^2} = r\sqrt{1 - \sin^2 \gamma} \implies \sqrt{x^2 + y^2 + z^2} = r\cos \gamma
+    % \]
+    % This curve represents a sphere in \(\mathbb{R}^3\) with radius \(r\cos \gamma\), which we can parametrize using spherical coordinates \((\theta , \phi) \mapsto  (r\cos \theta \cos \phi \cos \gamma, r\sin \theta \cos \phi \cos \gamma , r\sin \phi \cos \gamma)\). Thus we can parametrize \(rS^3\) with the function
+    % \[
+    %     \Phi (\theta , \phi , \gamma) = (r\cos \theta \cos \phi \cos \gamma, r\sin \theta \cos \phi \cos \gamma , r\sin \phi \cos \gamma, \sin \gamma).
+    % \]
+    % To ensure the parametrizations are homeomorphic to their image, we cover \(rS^3\) with \(rS^3 \setminus \{ (0,0,0,r),(0,0,0,-r)\}\) and \(rS^3 \setminus \{ (0,0,r,0), (0,0,-r,0)\}\) and parametrize these sets with \(\Phi _1 = \Phi \mid_{}\), 
     \end{question}
 \end{document}
