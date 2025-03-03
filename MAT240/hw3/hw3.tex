@@ -1,0 +1,236 @@
+\documentclass{eh-homework}
+
+\begin{document}
+    \begin{question}{1}
+        Let \( A = \begin{pmatrix} 1 & 0 & -1 & 1 \\ 1 & 1 & 1 & 0 \\ 2 & 1 & 0 & 1 \end{pmatrix} \). Use row and column operations on \( A \) to obtain a matrix \( B \) of the form in Theorem 53. Use that work to find invertible matrices \( P, Q \) so that \( B = PAQ \).
+        \tcblower
+        We perform the following row and column operations:
+        \begin{align*}
+            A =
+            &\begin{pmatrix}
+                1 & 0 & -1 & 1 \\
+                1 & 1 & 1 & 0 \\
+                2 & 1 & 0 & 1
+            \end{pmatrix}
+            \xrightarrow[r_3\,\to\,r_3 - 2r_1]{r_2\,\to\,r_2 - r_1}
+            \begin{pmatrix}
+                1 & 0 & -1 &  1 \\
+                0 & 1 & 2 &  -1 \\
+                0 & 1 & 2 &  -1 \\
+            \end{pmatrix}
+            \xrightarrow{r_3\,\to\,r_3 - r_2}
+            \begin{pmatrix}
+                1 & 0 & -1 &  1 \\
+                0 & 1 & 2 &  -1 \\
+                0 & 0 & 0 &  0 \\
+            \end{pmatrix}\\
+            \xrightarrow[c_4\,\to\,c_4 - c_1 + c_2]{c_3\,\to\,c_3 + c_1 - 2c_2}
+            &\begin{pmatrix}
+                1 & 0 & 0 &  0 \\
+                0 & 1 & 0 &  0 \\
+                0 & 0 & 0 &  0 \\
+            \end{pmatrix}\\
+        \end{align*}
+        Define this matrix we obtained as \(B\). We will perform the same row and column operations above on \(I_3\) and \(I_4\), respectively in order to define \(P\) and \(Q\). We have that
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                0 & 1 &  0 \\
+                0 & 0 &  1 \\
+            \end{pmatrix}
+            &\xrightarrow[r_3\,\to\,r_3 - 2r_1]{r_2\,\to\,r_2 - r_1}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                -1 & 1 &  0 \\
+                -2 & 0 &  1 \\
+            \end{pmatrix}\\
+            &\xrightarrow{r_3\,\to\,r_3 - r_2}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                -1 & 1 &  0 \\
+                -1 & -1 &  1 \\
+            \end{pmatrix}
+        \end{align*}
+        and
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0 & 0 &  0 \\
+                0 & 1 & 0 &  0 \\
+                0 & 0 & 1 &  0 \\
+                0 & 0 & 0 &  1 \\
+            \end{pmatrix}
+            \xrightarrow[c_4\,\to\,c_4 - c_1 + c_2]{c_3\,\to\,c_3 + c_1 - 2c_2}
+            \begin{pmatrix}
+                1 & 0 & 1 &  -1 \\
+                0 & 1 & -2 &  1 \\
+                0 & 0 & 1 &  0 \\
+                0 & 0 & 0 &  1 \\
+            \end{pmatrix}
+        \end{align*}
+        Let \(P = \begin{pmatrix}
+            1 & 0 &  0 \\
+            -1 & 1 &  0 \\
+            -1 & -1 &  1 \\
+        \end{pmatrix},
+        Q = \begin{pmatrix}
+            1 & 0 & 1 &  -1 \\
+            0 & 1 & -2 &  1 \\
+            0 & 0 & 1 &  0 \\
+            0 & 0 & 0 &  1 \\
+        \end{pmatrix}\). We see that
+        \begin{align*}
+            PAQ &= \begin{pmatrix}
+                1 & 0 &  0 \\
+                -1 & 1 &  0 \\
+                -1 & -1 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 & -1 & 1 \\
+                1 & 1 & 1 & 0 \\
+                2 & 1 & 0 & 1
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 & 1 &  -1 \\
+                0 & 1 & -2 &  1 \\
+                0 & 0 & 1 &  0 \\
+                0 & 0 & 0 &  1 \\
+            \end{pmatrix} \\
+            &=\begin{pmatrix}
+                1 & 0 & -1 &  1 \\
+                0 & 1 & 2 &  -1 \\
+                0 & 0 & 0 &  0 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 & 1 &  -1 \\
+                0 & 1 & -2 &  1 \\
+                0 & 0 & 1 &  0 \\
+                0 & 0 & 0 &  1 \\
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                1 & 0 & 0 &  0 \\
+                0 & 1 & 0 &  0 \\
+                0 & 0 & 0 &  0 \\
+            \end{pmatrix}\\
+            &= B
+        \end{align*}
+        as required.
+    \end{question}
+
+    \begin{question}{2}
+        Let \( A = \begin{pmatrix} 1 & -2 & -4 \\ 1 & 1 & -1 \\ 1 & 0 & -1 \end{pmatrix} \).
+
+        \begin{enumerate}
+            \item Verify that \( A \) is invertible, by row-reducing the augmented matrix \( (A | I_3) \).
+            \item Use (a) to find \( A^{-1} \).
+            \item Express \( A \) as a product of elementary matrices.
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{3}
+        Find the explicit formula for the linear transformation \( T : \mathbb{Q}^4 \to \mathbb{Q}^3 \) which satisfies:
+
+        \[
+        T\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}, \quad
+        T\begin{pmatrix} 2 \\ 1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}, \quad
+        T\begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}, \quad
+        T\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.
+        \]
+    \end{question}
+
+    \begin{question}{4}
+        Let \( \mathbb{F} = \mathbb{Q} \) and \( V = \mathcal{M}_{2 \times 2}(\mathbb{F}) \). Consider the linear map \( T : \mathcal{M}_{2 \times 2}(\mathbb{F}) \to \mathcal{M}_{2 \times 2}(\mathbb{F}) \) given by \( T(A) = A^T \). Set \( \beta = \{ E_{11}, E_{12}, E_{21}, E_{22} \} \) and \( \gamma = \{ E_{11}, E_{22}, E_{12} + E_{21}, E_{12} - E_{21} \} \).
+
+        \begin{enumerate}
+            \item Find \( P \) - the change of coordinate matrix from \( \gamma \) to \( \beta \) coordinates.
+            \item Find \( P^{-1} \) - the change of coordinate matrix from \( \beta \) to \( \gamma \) coordinates.
+            \item Find \( A = [T]_\beta \).
+            \item Find \( B = [T]_\gamma \).
+            \item Confirm that \( A = PBP^{-1} \) using (a)-(d).
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{5}
+        Let \( T : \mathcal{M}_{n \times n}(\mathbb{F}) \to \mathcal{M}_{n \times n}(\mathbb{F}) \) be the linear map given by \( T(A) = A + A^T \).
+
+        \begin{enumerate}
+            \item Find \( N(T) \) and \( \dim N(T) \).
+            \item What is \( \operatorname{im}(T) \)?
+            \item Is \( \mathcal{M}_{n \times n}(\mathbb{F}) = \operatorname{im}(T) \oplus N(T) \)?
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{6}
+        Let \( V, W \) be vector spaces over a field \( \mathbb{F} \) and \( T : V \to W \) a linear map. Prove that \( T \) is injective if and only if \( N(T) = \{\mathbf{0}_V\} \). (Make no assumption here about \( \dim V, \dim W \).)
+        \tcblower
+        Suppose that \(T\) is injective. Let \(T(x) = 0\), for some \(x \in V\). Recall that \(T(0) = 0\) for any linear map. Therefore by injectivity \(x = 0\), so \(N(T) = \{ 0 \}\).
+
+        Conversely, suppose that \(N(T) = \{ 0 \}\). Let \(x,y \in V\) such that \(T(x) = T(y)\). By linearity, we have that \(T(x - y) = 0\), but this implies that \(x - y = 0\), so \(x = y\) and \(T\) is injective.
+    \end{question}
+
+    \begin{question}{7}
+        Let \( V, W \) be vector spaces over a field \( \mathbb{F} \), and \( T : V \to W \) a linear map. Find a condition on \( T \) which is equivalent to "\( T(S) \) spans \( W \) for any spanning set \( S \subseteq V \) of \( V \)".
+
+        (Hint: Write down the definition of \( T(S) \) is spanning to get started.)
+    \end{question}
+
+    \begin{question}{8}
+        Let \( P \in \mathcal{M}_{n \times n}(\mathbb{F}) \). Prove the following three conditions are equivalent.
+
+        \begin{enumerate}
+            \item \( P \) is invertible.
+            \item There exists bases \( \beta, \gamma \) of \( \mathbb{F}^n \) so that \( P = [\mathrm{I}_{\mathbb{F}^n}]_\beta^\gamma \).
+            \item For any \( n \)-dimensional vector space \( V \) over \( \mathbb{F} \), there exists bases \( \beta, \gamma \) of \( V \) so that \( P = [\mathrm{I}_V]_\beta^\gamma \).
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{9}
+        Consider the relation \( \equiv \) on \( \mathcal{M}_{m \times n}(\mathbb{F}) \) defined by \( A \equiv B \) if \( A \to B \) using a combination of row and/or column operations.
+
+        \begin{enumerate}
+            \item Prove that \( \equiv \) is an equivalence relation on \( \mathcal{M}_{m \times n}(\mathbb{F}) \).
+            \item Find a condition on \( A, B \) which is equivalent to \( A \equiv B \). (Hint: Theorem 53.)
+            \item Classify the equivalence classes for this relation, and prove that there are exactly \( \min\{n, m\} \) such classes.
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{10}
+        Let \( V, W \) be finite dimensional vector spaces over \( \mathbb{F} \), and \( T : V \to W \) a linear map. Set \( n = \dim V \), \( m = \dim W \). Let \( \mathbf{x}_1, \mathbf{x}_2 \in \mathbb{F}^n \) be two non-parallel vectors. Prove there exists bases \( \beta, \gamma \) of \( V, W \) respectively, so that \( [T]_\beta^\gamma = (\mathbf{x}_1 \ \mathbf{x}_2 \ \mathbf{0} \ \cdots \ \mathbf{0}) \). (Hint: use problems 7,8.)
+    \end{question}
+
+    \begin{question}{11}
+        Let \( T : V \to V \) be linear. We say that a subspace \( W \subseteq V \) is "\( T \)-invariant" if \( T(W) \subseteq W \).
+
+        For example, if \( T : \mathbb{R}^3 \to \mathbb{R}^3 \) is counter-clockwise rotation around the \( z \)-axis by angle \( \theta \), then \( P_{xy} = \{(x, y, 0) \in \mathbb{R}^3\} \) is \( T \)-invariant, as is \( L_z \) (the \( z \)-axis).
+
+        \begin{enumerate}
+            \item Verify the claims made above, by showing that \( P_{xy} \) and \( L_z \) are \( T \)-invariant.
+            \item Show that \( \mathbb{R}^3 = P_{xy} \oplus L_z \) by finding a basis \( \beta = \beta_1 \cup \beta_2 \) for \( \mathbb{R}^3 \) so that \( \beta_1 \) is a basis for \( P_{xy} \) and \( \beta_2 \) is a basis for \( L_z \).
+            \item Using your basis \( \beta \) from (b), find \( [T]_\beta \).
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{12}
+        Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \), \( T \in \mathcal{L}(V) \), and \( W_1 \subseteq V \) a \( T \)-invariant subspace with basis \( \beta_1 \). Set \( k = \dim W_1 \).
+
+        We will generalize what we saw in \#11c.
+
+        \begin{enumerate}
+            \item Extend \( \beta_1 \) to a basis \( \beta \) of \( V \). Show that \( [T]_\beta = \begin{pmatrix} A & C \\ O_{n-k,k} & B \end{pmatrix} \), where \( A \) is \( k \times k \), \( B \) is \( (n-k) \times (n-k) \), and \( C \) is \( k \times (n-k) \).
+            \item Suppose that \( W_2 \) is a subspace so that \( V = W_1 \oplus W_2 \). Let \( \beta = \beta_1 \cup \beta_2 \), where \( \beta_2 \) is any basis for \( W_2 \).
+
+            Prove that if \( W_2 \) is \( T \)-invariant, then \( [T]_\beta = \begin{pmatrix} A & O_{k,n-k} \\ O_{n-k,k} & B \end{pmatrix} \) is block diagonal.
+            \item Is the converse of (b) true or false? Justify your answer.
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}{13}
+        Determine if the statements below are true or false. If true, give a proof. If false, explain why, and/or provide a counterexample.
+
+        \begin{enumerate}
+            \item Let \( \beta = \{ e_1, \ldots, e_n \} \) be the standard basis for \( \mathbb{F}^n \), and \( \gamma = \{ v_1, \ldots, v_n \} \) a basis for \( \mathbb{F}^n \). Then there exists a sequence of row operations that takes \( \beta \) to \( \gamma \). (That is, \( v_i \) is obtained from \( e_i \) using the same row operations for all \( i \).)
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( T : V \to V \) a linear map. If \( \beta, \gamma \) are bases for \( V \) so that \( [T]_\beta^\gamma = I_n \), then \( T = I_V \).
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( S, T : V \to V \) linear maps. If rank \( T = \text{rank } S \), then there exist bases \( \beta, \beta', \gamma, \gamma' \) for \( V \) so that \( [S]_\beta^\gamma = [T]_\beta^\gamma \).
+            \item Let \( A, B \in \mathcal{M}_{n \times n}(\mathbb{F}) \). If \( A^2 \sim B^2 \), then \( A \sim B \).
+        \end{enumerate}
+    \end{question}
+\end{document}
