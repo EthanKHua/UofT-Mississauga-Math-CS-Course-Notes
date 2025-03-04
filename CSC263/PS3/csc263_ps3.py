@@ -161,4 +161,16 @@ if __name__ == "__main__":
     n = T.search(1)
     assert(n == "c")
 
+    for i in range(100):
+        T.insert(i, i)
+        assert(T.search(i) == i)
+    assert(T.size == 100)
+    assert(T.capacity == 320)
+    for i in range(100):
+        assert(T.search(i) == i)
+    for i in range(100):
+        T.delete(i)
+        assert(not T.search(i))
+        for j in range(i+1, 100):
+            assert(T.search(j) == j)
     
