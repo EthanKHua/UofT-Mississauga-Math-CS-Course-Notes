@@ -1,0 +1,29 @@
+\documentclass{../../../tex-setup/eh-homework}
+
+\begin{document}
+    \begin{question}{40}
+        Let $O_n(\R)$ be the set of all $n\times n$ real orthogonal matrices:
+        \[ O_n(\R) = \{A\in M_n(\R) : A^tA=I_n\}. \]
+        Show that $O_n$ is a smooth manifold, and find its dimension.
+        \tcblower
+        First, we note that \(O_n(\mathbb{R})\) is the zero set of the function \(f: M_n(\mathbb{R}) \to S^n\) defined by
+        \[
+            f(A) = A^t A - I_n
+        \]
+        where \(S^n\) is the set of symmetric \(n\times n\) matrices. We will show that \(Jf(X)(h) = X^t h + h^T X\). Indeed,
+        \begin{align*}
+            \lim_{h \to 0} \frac{f(X + h) - f(X) - X^t h - h^t X}{\|h\|} &= \lim_{h \to 0} \frac{(X + h)^t (X + h) - X^t X - X^t h - h^t X}{\|h\|} \\
+            &= \lim_{h \to 0} \frac{h^t h}{\|h\|} \\
+            &= 0
+        \end{align*}
+        Next, we want to show that \(\rank Jf(X) = \frac{1}{2}n(n+1)\) for all \(X \in O_n(\mathbb{R})\). It suffices to show that \(Jf(X)\) is surjective to \(S^n\).
+
+        Let \(Y \in S^n\). Let \(h = \frac{1}{2}XY\). We see that
+        \begin{align*}
+            Jf(X)(h) &= X^t \left( \frac{1}{2}XY \right) + \left( \frac{1}{2}XY \right)^t X = \frac{1}{2}\left( X^t XY + Y^t X^t X \right) \\
+            &= \frac{1}{2}(Y + Y^t) \tag{\(X\) is orthogonal} \\
+            &= Y \tag{\(Y\) is symmetric}
+        \end{align*}
+        Thus \(R(Jf(X)) = S^n\) so \(\rank Jf(X) = \dim S^n = \frac{1}{2}n(n+1)\).
+    \end{question}
+\end{document}

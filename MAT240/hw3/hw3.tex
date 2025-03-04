@@ -171,6 +171,26 @@
         Let \( V, W \) be vector spaces over a field \( \mathbb{F} \), and \( T : V \to W \) a linear map. Find a condition on \( T \) which is equivalent to "\( T(S) \) spans \( W \) for any spanning set \( S \subseteq V \) of \( V \)".
 
         (Hint: Write down the definition of \( T(S) \) is spanning to get started.)
+        \tcblower
+        We claim that this statement is equivalent to saying that \(T\) is surjective.
+
+        Suppose that for any set \(S \subseteq V\) that spans \(V\), \(T(S)\) spans \(W\). We prove that \(T\) is surjective.
+
+        Let \(w \in W\). We can write \(w\) as a linear combination of some number of vectors in \(T(S)\). That is, for some \(k \in \mathbb{N}\) and \(s_i \in S\), \(c_i \in \mathbb{F}\), \(i \in \{ 1, ..., k \}\),
+        \[
+            w = \sum_{i=1}^{k} c_i T(s_i) = T \left(\sum_{i=1}^{k}c_i s_i\right)
+        \]
+        so \(T\) is surjective.
+
+        Conversely, suppose that \(T\) is surjective. Let \(S\) be a spanning set of \(V\). We will show that \(T(S)\) spans \(W\). Let \(w \in W\). By surjectivity, there exists \(v \in V\) so that \(T(v) = w\). We can rewrite
+        \[
+            v = \sum_{i=1}^{k} c_i s_i
+        \]
+        for some number of vectors \(s_i \in S\) and \(c_i \in \mathbb{F}\). Then
+        \[
+            T\left( \sum_{i=1}^{k} c_i s_i \right) = w \implies \sum_{i=1}^{k} c_i T(s_i) = w
+        \]
+        Notice that \(T(s_i) \in T(S)\), from which it follows that \(T(S)\) spans \(W\), and the proof is complete.
     \end{question}
 
     \begin{question}{8}
