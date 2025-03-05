@@ -10,7 +10,7 @@
         \[
             f(A) = A^t A - I_n
         \]
-        where \(S^n\) is the set of symmetric \(n\times n\) matrices. We will show that \(Jf(X)(h) = X^t h + h^T X\). Indeed,
+        where \(S^n\) is the set of symmetric \(n\times n\) matrices. Notice that \(f\) is smooth as it is constructed by smooth functions. Additionally, we show that \(Jf(X)(h) = X^t h + h^T X\). Indeed,
         \begin{align*}
             \lim_{h \to 0} \frac{f(X + h) - f(X) - X^t h - h^t X}{\|h\|} &= \lim_{h \to 0} \frac{(X + h)^t (X + h) - X^t X - X^t h - h^t X}{\|h\|} \\
             &= \lim_{h \to 0} \frac{h^t h}{\|h\|} \\
@@ -25,5 +25,25 @@
             &= Y \tag{\(Y\) is symmetric}
         \end{align*}
         Thus \(R(Jf(X)) = S^n\) so \(\rank Jf(X) = \dim S^n = \frac{1}{2}n(n+1)\).
+
+        We now prove that \(O_n(\mathbb{R})\) is a smooth manifold of dimension \(\frac{1}{2}n(n+1)\). Let \(p \in O_n(\mathbb{R})\). Then \(f(p) = 0\) and \(Jf(p)\) has the maximal rank of \(\frac{1}{2}n(n+1)\). We write
+        \[
+            Jf(p) = \left( \begin{array}{@{}c|c@{}}
+                A & B
+            \end{array} \right) 
+        \]
+        where \(A\) is a \(\frac{1}{2}n(n+1) \times \frac{1}{2}n(n-1)\) matrix and \(B\) is a \(\frac{1}{2}n(n+1) \times \frac{1}{2}n(n+1)\) matrix and assume without loss of generality that \(B\) is an invertible submatrix of \(Jf(p)\). We can do this because we can swap the components of \(f\), and therefore columns of \(Jf(p)\) without affecting the conclusion of the statement (because manifolds are invariant under diffeomorphims). Thus, we write \(p = (a,b)\) for \(a \in \mathbb{R}^{\frac{1}{2}n(n-1)}\), \(b \in \mathbb{R}^{\frac{1}{2}n(n+1)}\) and apply the Implicit Function Theorem and obtain an open set \(\hat{U} \subseteq \mathbb{R}^{\frac{1}{2}n(n-1)}\) containing \(a\) and a \(C^{\infty}\) function \(\Phi : \hat{U} \to \mathbb{R}^{\frac{1}{2}n(n+1)}\) so that
+        \[
+            f(x, \Phi(x)) = 0
+        \]
+        for all \(x \in \hat{U}\). We claim that \(\varphi: \hat{U} \to \Phi (\hat{U})\) defined by
+        \[
+            \varphi (x) = (x, \Phi (x))
+        \]
+        is our desired smooth regular embedding. It is fairly clear that \(\varphi\) is smooth. Additionally, \(J \varphi (x) = \left( \begin{array}{@{}cc@{}}
+            I_{\frac{1}{2}n(n-1)} \\
+            \hline
+            J\Phi
+        \end{array} \right) \) is a \(n^2 \times \frac{1}{2}n(n-1)\) matrix and has at least \(\frac{1}{2}n(n-1)\) linearly independent rows, so \(\varphi\) is regular.
     \end{question}
 \end{document}
