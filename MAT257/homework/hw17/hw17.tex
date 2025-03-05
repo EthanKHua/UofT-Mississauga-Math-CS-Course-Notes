@@ -46,4 +46,28 @@
             J\Phi
         \end{array} \right) \) is a \(n^2 \times \frac{1}{2}n(n-1)\) matrix and has at least \(\frac{1}{2}n(n-1)\) linearly independent rows, so \(\varphi\) is regular. Finally, if we let \(\varphi (x) = \varphi (y)\), we have that \((x,\Phi (x)) = (y, \Phi (y))\), from which we get \(x=y\), so \(\varphi\) is injective, and therefore bijective to its image. In addition, we can explicitly find \(\varphi^{-1} (y) = \pi _{\mathbb{R}^{\frac{1}{2}n(n-1)}}(y)\), which is continuous because it is a linear map. Therefore \(\varphi\) is a homeomorphism onto its image, and we are done.
     \end{question}
+    \newpage
+    \begin{question}{41}
+        Let $0<a<b$. In the $xz$-plane, draw a circle of radius $a$ centered at the point $(b,0,0)$; rotate this circle about the $z$-axis. The resulting subset of $\R^3$ is called a \textbf{torus}, denoted by $\mathbf{T}=\mathbf{T}_{a,b}$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Find a smooth function $f:U\rightarrow \R$, defined on some open set $U\subseteq \R^2$, so that $\mathbf{T}$ is equal to the zero set of $f$.
+            
+            \item Show that $\mathbf{T}$ is a smooth manifold.
+            
+            \item Find the surface area of $\mathbf{T}$, in terms of $a$ and $b$.
+        \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        Notice that in cylindrical coordinates, the torus can be defined by
+        \[
+            T = \{ (r, \theta, z) : (r - b)^2 + z^2 = a^2\}.
+        \]
+        If we map the polar part of the set back to cartesian coordinates, we see that \(T\) is actually the zero set of the function
+        \[
+            f(x,y,z) = (\sqrt{x^2 + y^2} - b)^2 + z^2 = a^2
+        \]
+    \end{question}
 \end{document}
