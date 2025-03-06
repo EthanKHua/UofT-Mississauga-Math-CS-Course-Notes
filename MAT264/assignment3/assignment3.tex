@@ -1,6 +1,7 @@
 \documentclass{eh-homework}
 
 \begin{document}
+\usetikzlibrary{arrows.meta}
 \section*{Assignment 3: Due March 16, 2025 (Sunday) at 11:59PM ET}
 
 Answers must be submitted via Crowdmark using your personalized submission link (which will be sent to your email). Late submissions will not be accepted.
@@ -30,16 +31,6 @@ x & -3 & -1.5 & 0 & 2 \\
 f(x) & 3.11 & 3.05 & 3.4 & 3.7 \\
 \end{array}
 \]
-
-\begin{center}
-\begin{tikzpicture}
-    \draw[->] (-4,0) -- (3,0) node[below] {\( x \)};
-    \foreach \x in {-3, -1.5, 0, 2} {
-        \draw (\x,0.1) -- (\x,-0.1);
-        \node[below] at (\x,-0.1) {\(\x\)};
-    }
-\end{tikzpicture}
-\end{center}
 \end{question}
 
 \begin{question}{3}
@@ -47,11 +38,12 @@ f(x) & 3.11 & 3.05 & 3.4 & 3.7 \\
 
 \begin{center}
 \begin{tikzpicture}
-    \draw[->] (-1,0) -- (5,0) node[below] {\( x \)};
-    \foreach \x/\label in {0/\(x_0\), 1/\(x_0 + h\), 2/\(x_0 + 2h\), 3/\(x_0 + 3h\), 4/\(x_0 + \frac{3}{2}h\)} {
-        \draw (\x,0.1) -- (\x,-0.1);
+    \draw[<->] (-7,0) -- (7,0) node[below]{};
+    \foreach \x/\label in {-6/\(x_0\), -2/\(x_0 + h\), 2/\(x_0 + 2h\), 6/\(x_0 + 3h\)} {
+        \draw[fill] (\x, 0) circle (2pt);
         \node[below] at (\x,-0.1) {\label};
     }
+    \draw (0, 0) circle (3pt);
 \end{tikzpicture}
 \end{center}
 
@@ -64,16 +56,6 @@ using a direct method as discussed in Section 4.1.
 
 \begin{question}{5}
 \textbf{(Based on 4.1, \#19)} Let \( x_0, x_0 + \alpha h, x_0 + 2h \) be nodes where \( \alpha \neq 0,2 \).
-
-\begin{center}
-\begin{tikzpicture}
-    \draw[->] (-1,0) -- (4,0) node[below] {\( x \)};
-    \foreach \x/\label in {0/\(x_0\), 1/\(x_0 + \alpha h\), 3/\(x_0 + 2h\)} {
-        \draw (\x,0.1) -- (\x,-0.1);
-        \node[below] at (\x,-0.1) {\label};
-    }
-\end{tikzpicture}
-\end{center}
 
 \begin{enumerate}[label=\alph*.]
     \item Write the first Taylor polynomials of \( f(x_0 +\alpha h) \) and \( f(x_0 +2h) \) around \( x = x_0 \), then use these to show that:
@@ -90,11 +72,13 @@ using a direct method as discussed in Section 4.1.
 
 \begin{center}
 \begin{tikzpicture}
-    \draw[<->] (-1,0) -- (4,0) node[below] {\( x \)};
-    \foreach \x/\label in {0/\(x_0\), 1/\(x_0 + \frac{4}{3}h\), 3/\(x_0 + 2h\)} {
-        \draw (\x,0.1) -- (\x,-0.1);
+    \draw[<->] (-1,0) -- (7,0);
+    \draw[{Bracket[width=3mm]}-{Bracket[width=3mm]}] (0, 0) -- (6,0);
+    \foreach \x/\label in {0/\(x_0\), 4/\(x_0 + \frac{4}{3}h\), 6/\(x_0 + 2h\)} {
+        \draw[fill] (\x, 0) circle (2pt);
         \node[below] at (\x,-0.1) {\label};
     }
+
 \end{tikzpicture}
 \end{center}
 
