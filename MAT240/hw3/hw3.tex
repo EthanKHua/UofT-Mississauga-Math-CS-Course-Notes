@@ -206,11 +206,50 @@
     \begin{question}{9}
         Consider the relation \( \equiv \) on \( \mathcal{M}_{m \times n}(\mathbb{F}) \) defined by \( A \equiv B \) if \( A \to B \) using a combination of row and/or column operations.
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Prove that \( \equiv \) is an equivalence relation on \( \mathcal{M}_{m \times n}(\mathbb{F}) \).
             \item Find a condition on \( A, B \) which is equivalent to \( A \equiv B \). (Hint: Theorem 53.)
             \item Classify the equivalence classes for this relation, and prove that there are exactly \( \min\{n, m\} \) such classes.
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        We show reflexivity, symmetry, and transitivity in that order.
+
+        Reflexivity: Since \(IA = A\), and \(I\) is considered a row operation, \(A \equiv A\).
+
+        Symmetry: Suppose that \(A \equiv B\) then for some invertible matrices \(P,Q\) we have that \(PAQ = B\). But at the same time this means that \(P^{-1} B Q^{-1} = A\) so \(B \equiv A\).
+
+        Transitivity: Suppose that \(A \equiv B\) and \(B \equiv C\). Then for invertible matrices \(P,Q,R,S\), \(PAQ = B\) and \(RBS = C\), so \((RP)A(QS) = R(PAQ)S = RBS = C\). Since \(RP, QS\) are also invertible, we have that \(A \equiv C\).
+
+        \medskip
+
+        (b):
+
+        We claim that an equivalent condition is \(\rank A = \rank B\). Suppose that \(A \equiv B\). Then \(PAQ = B\) for some invertible matrices \(P,Q\), but it is known that rank is preserved by multiplication with invertible matrices, so \(\rank A = \rank PAQ = \rank B\).
+
+        Conversely, suppose that \(r \coloneqq \rank A = \rank B\). By Theorem 53, there exist row/column operations so that
+        \[
+            A,B \to \left( \begin{array}{@{}c|c@{}}
+                I_r & 0 \\
+                \hline
+                0 & 0
+            \end{array} \right).
+        \]
+        We denote this matrix by \(J_r\).
+        that is, for invertible matrices \(P,Q,R,S\), \(PAQ = I' = RBS\). It follows that \(R^{-1} P A Q S^{-1} = B\), so \(A \equiv B\) as desired.
+
+        \medskip
+
+        (c):
+
+        We can classify the equivalence classes by matrix rank. That is, each equivalence class is of the form
+        \[
+            [J_r] = \{ A \in \mathcal{M} _{m\times n}(\mathbb{F}) : \rank A = r\}.
+        \]
+        The possible ranks of \(m\times n\) matrices range from \(0\) to \(\min \{ n,m \}\), so there are \(\min \{ n,m \} + 1\) different values of \(r\). We will verify that these equivalence classes are exhaustive and disjoint. Every \(m \times n\) matrix must have a rank, so it belongs to at least one of the classes, but at the same time, a matrix can possibly only have one rank, so it necessarily belongs to exactly one equivalence class.
     \end{question}
 
     \begin{question}{10}

@@ -6,7 +6,14 @@
         \[ O_n(\R) = \{A\in M_n(\R) : A^tA=I_n\}. \]
         Show that $O_n$ is a smooth manifold, and find its dimension.
         \tcblower
-        First, we note that \(O_n(\mathbb{R})\) is the zero set of the function \(f: M_n(\mathbb{R}) \to S^n\) defined by
+        First, we will prove the Regular Level-Set Theorem:
+        \smallbreak
+        Let \(X,Y\) be normed vector spaces with dimensions \(n,m\) and ordered bases \(\alpha ,\beta\) respectively, where \(n > m\). Let \(F: X \to Y\) be a smooth function. Define \(M = F^{-1} (0_Y)\). If \(F'(p)\) is surjective for all \(p \in M\), then \(M\) is a smooth manifold of dimension \(n - m\). That is, if \(\phi _\alpha : X \to \mathbb{R}^n\) is the coordinate isomorphism corresponding to \(\alpha\), then \(M\) is a smooth \(k\)-manifold if \(\phi _\alpha (M)\) is a smooth \(k\)-manifold in the usual sense.
+        \smallbreak
+
+        This problem reduces to trying to prove that \(N \coloneqq \phi _\alpha (M)\) is a smooth manifold of dimension \(n-m\). Notice that \(N = \phi _\alpha (F^{-1} (0_Y)) = \phi _\alpha (F^{-1} (\phi _\beta (0_{\mathbb{R}^m})))\). Since \(\phi _\alpha , \phi _\beta\) are isomorphisms, we have that \(N = \phi _\alpha \circ F^{-1} \circ \phi _\beta (0_{\mathbb{R}^m})\). Let \(\hat{F} = \phi _\alpha \circ F^{-1} \circ \phi _\beta\), and notice that \(N\) is the zero set of \(\hat{F}\).
+
+        We note that \(O_n(\mathbb{R})\) is the zero set of the function \(f: M_n(\mathbb{R}) \to S^n\) defined by
         \[
             f(A) = A^t A - I_n
         \]
@@ -50,7 +57,7 @@
     \begin{question}{41}
         Let $0<a<b$. In the $xz$-plane, draw a circle of radius $a$ centered at the point $(b,0,0)$; rotate this circle about the $z$-axis. The resulting subset of $\R^3$ is called a \textbf{torus}, denoted by $\mathbf{T}=\mathbf{T}_{a,b}$.
         \begin{enumerate}[label=(\alph*)]
-            \item Find a smooth function $f:U\rightarrow \R$, defined on some open set $U\subseteq \R^2$, so that $\mathbf{T}$ is equal to the zero set of $f$.
+            \item Find a smooth function $f:U\rightarrow \R$, defined on some open set $U\subseteq \R^3$, so that $\mathbf{T}$ is equal to the zero set of $f$.
             
             \item Show that $\mathbf{T}$ is a smooth manifold.
             
@@ -67,7 +74,22 @@
         \]
         If we map the polar part of the set back to cartesian coordinates, we see that \(T\) is actually the zero set of the function
         \[
-            f(x,y,z) = (\sqrt{x^2 + y^2} - b)^2 + z^2 = a^2
+            f(x,y,z) = (\sqrt{x^2 + y^2} - b)^2 + z^2 - a^2
         \]
+        This function is smooth everywhere except for when \(x = 0 = y\), so we let \(U = \mathbb{R}^3 \setminus \{ (x,y,z) : x = y = 0 \}\).
+
+        \medskip
+
+        (b):
+
+        Since \(T\) is the zero set of a smooth function, \(T\) is automatically a smooth manifold by a result in the tutorial which was (kind of) proved in the previous question above. However, we will show that \(T\) is a 2-manifold for fun. This is still pretty quick, as \(Jf(p)\) is a \(1 \times 3\) matrix, so its maximum rank is 1, but its rank cannot be 0 because
+        \[
+            \frac{\partial f}{\partial x} (x,y,z) = 2\frac{\sqrt{x^2 + y^2} - b}{\sqrt{x^2 + y^2}} = 2 - \frac{2b}{\sqrt{x^2 + y^2}}
+        \]
+        and
+        \[
+            \frac{\partial f}{\partial z} (x,y,z) = 2z
+        \]
+        Thus \(Jf(p)\) is always rank 1, so according to the tutorial result, \(T\) is of dimension \(3 - 1 = 2\).
     \end{question}
 \end{document}
