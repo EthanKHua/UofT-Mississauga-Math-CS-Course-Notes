@@ -105,5 +105,48 @@
         but if this is the case, \(f(p) = -a^2 \neq 0\), so \(p \notin T\), which is a contradiction.
 
         Thus \(Jf(p)\) is always rank 1, so according to the Regular Level-Set Theorem, \(T\) is a smooth manifold of dimension \(3 - 1 = 2\).
+
+        \medskip
+
+        (c):
+
+        We split \(T\) into \(4\) quadrants of equal volume, but we will only do the computation for one quadrant. Let \(Q\) be the set
+        \[
+            Q = \{ (x,y,z) \in T : x > 0 , z > 0 \}.
+        \]
+        We parametrize \(Q\) with the function \(\varphi : (b -a, b + a) \times \left( -\frac{\pi}{2},\frac{\pi}{2} \right)\) defined by
+        \[
+            \varphi (r,\theta) = (r\cos \theta , r\sin \theta , \sqrt{a^2 - (r - b)^2}).
+        \]
+        To see that \(\varphi\) is a smooth regular embedding, we see that every component is smooth on \(Q\) (the third component is smooth when \(r \neq b \pm a\), but \(r \in (b - a, b + a)\)). As well, the first two components are the polar coordinate transform, so \(J \varphi(p)\) is rank \(2\) for all \(p \in (b - a, b + a)\times \left( -\frac{\pi}{2}, \frac{\pi}{2} \right)\). Finally, notice that \(\varphi^{-1}(x,y,z) = \left( \sqrt{x^2 + y^2} , \arctan \left( \frac{y}{x} \right)  \right) \) is continuous, so \(\varphi\) is a homeomorphism, thus confirming that \(\varphi\) is a smooth regular embedding. Now, we find an expression for \(V(J \varphi(r, \theta))\):
+        \begin{align*}
+            V(J \varphi(r, \theta)) &= \sqrt{\det ((J \varphi (r, \theta))^t J \varphi (r, \theta))} \\
+            &= \sqrt{\det \left(\begin{pmatrix}
+                \cos \theta  & \sin \theta & - \frac{r - b}{\sqrt{a^2 - (r-b)^2}} \\
+                -r \sin \theta & r\cos \theta & 0  \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \cos \theta & -r \sin \theta  \\
+                \sin \theta & r\cos \theta  \\
+                - \frac{r-b}{\sqrt{a^2 - (r - b)^2}}& 0  \\
+            \end{pmatrix}
+            \right)} \\
+            &= \sqrt{\det \begin{pmatrix}
+                \frac{a^2}{a^2 - (r-b)^2} & 0  \\
+                0 & r^2  \\
+            \end{pmatrix}}
+            = \sqrt{\frac{a^2 r^2}{a^2 - (r - b)^2}} \\
+            &= \frac{ar}{\sqrt{a^2 - (r - b)^2}}
+        \end{align*}
+        Now we can calculate the volume of \(Q\):
+        \begin{align*}
+            \vol (Q) &= \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{b-a}^{b+a} V(J \varphi (r, \theta))\ dr\ d \theta = \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{b-a}^{b+a} \frac{ar}{\sqrt{a^2 - (r-b)^2}}\ dr\ d \theta \\
+            &= \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{-a}^a \frac{a(r + b)}{\sqrt{a^2 - r^2}}\ dr\ d\theta \tag{substitution \(r \mapsto r - b\)} \\
+            &= \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{-a}^a \frac{ar}{\sqrt{a^2 - r^2}}\ dr\ d \theta + \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{-a}^a \frac{ab}{\sqrt{a^2 - r^2}}\ dr\ d \theta \\
+            &= 0 + ab\int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \arcsin \left( \frac{r}{a}\right) \Big| _{-a}^{a}\ d \theta \tag{first integrand is odd} \\
+            &= ab \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \pi\ d \theta \\
+            &= \pi ^2 ab
+        \end{align*}
+        Finally, we multiply the surface area of the quadrant by 4 to obtain that the total surface area is \(4\pi ^2 ab\).
     \end{question}
 \end{document}

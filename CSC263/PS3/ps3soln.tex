@@ -66,12 +66,12 @@
 
     In the second situation, every insert and delete operation will require a rehashing. This is because the capacity of the hash table is one insertion away from half capacity, so after the insertion the table will be expanded. After this expansion, the capacity is at exactly one quarter, and the current capacity is not the initial capacity (which must be less than or equal to \(2N\)), and deleting an element will cause the table to shrink. After these two operations, the table ``returns'' to the same state as how it started, so the next pair of insertion and deletion will do the same thing. Again, the worst-case input for this situation is if every element hashes to the same address, and \texttt{delete} is called on the element that is inserted last in the rehashing. This being the case, every pair of insert and delete operations will have the runtime
     \[
-        t = \left(N + 2N + \sum_{j=1}^{N} j\right) + \left( N + 4N + \sum_{j=1}^{N} j \right) = 8N + 2\sum_{j=1}^{N} j = 8N + N(N+1) = N^2 + 9N.
+        t = \left(N + 2N + \sum_{j=1}^{N} j\right) + \left( N + 4N + \sum_{j=1}^{N-1} j \right) = 9N + 2\sum_{j=1}^{N-1} j = 9N + N(N-1) = N^2 + 8N.
     \]
     Since there are \(N\) pairs in total, the total cost of all operations is
     \begin{align*}
-        \sum_{i=1}^{N} t &= \sum_{i=1}^{N} N^2 + 9N \\
-        &= N^3 + 9N^2 \in \mathcal{O} (N^3).
+        \sum_{i=1}^{N} t &= \sum_{i=1}^{N} N^2 + 8N \\
+        &= N^3 + 8N^2 \in \mathcal{O} (N^3).
     \end{align*}
     Thus the amortized runtime in the second situation is \(\mathcal{O} (N^2)\), which completes both the complexity analyses.
     
