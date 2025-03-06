@@ -11,47 +11,55 @@
         Let \(X,Y\) be normed vector spaces with dimensions \(n,m\) and ordered bases \(\alpha ,\beta\) respectively, where \(n > m\). Let \(F: X \to Y\) be a smooth function. Define \(M = F^{-1} (0_Y)\). If \(F'(p)\) is surjective for all \(p \in M\), then \(M\) is a smooth manifold of dimension \(n - m\). That is, if \(\phi _\alpha : X \to \mathbb{R}^n\) is the coordinate isomorphism corresponding to \(\alpha\), then \(M\) is a smooth \(k\)-manifold if \(\phi _\alpha (M)\) is a smooth \(k\)-manifold in the usual sense.
         \smallbreak
 
-        This problem reduces to trying to prove that \(N \coloneqq \phi _\alpha (M)\) is a smooth manifold of dimension \(n-m\). Notice that \(N = \phi _\alpha (F^{-1} (0_Y)) = \phi _\alpha (F^{-1} (\phi _\beta (0_{\mathbb{R}^m})))\). Since \(\phi _\alpha , \phi _\beta\) are isomorphisms, we have that \(N = \phi _\alpha \circ F^{-1} \circ \phi _\beta (0_{\mathbb{R}^m})\). Let \(\hat{F} = \phi _\alpha \circ F^{-1} \circ \phi _\beta\), and notice that \(N\) is the zero set of \(\hat{F}\).
-
-        We note that \(O_n(\mathbb{R})\) is the zero set of the function \(f: M_n(\mathbb{R}) \to S^n\) defined by
+        This problem reduces to trying to prove that \(N \coloneqq \phi _\alpha (M)\) is a smooth manifold of dimension \(n-m\). Notice that \(N = \phi _\alpha (F^{-1} (0_Y)) = \phi _\alpha (F^{-1} (\phi _\beta (0_{\mathbb{R}^m})))\). Since \(\phi _\alpha , \phi _\beta\) are isomorphisms, we have that \(N = \phi _\alpha \circ F^{-1} \circ \phi _\beta (0_{\mathbb{R}^m})\). Let \(\hat{F} : \mathbb{R}^n \to \mathbb{R}^m\) be a function defined by \(\hat{F} = \phi _\alpha \circ F^{-1} \circ \phi _\beta\), and notice that \(N\) is the zero set of \(\hat{F}\). For any \(p \in N\), notice that \(\hat{F}'(p)\) is surjective, because
         \[
-            f(A) = A^t A - I_n
+            \hat{F}'(p) = (\phi _\beta \circ F \circ \phi^{-1} _\alpha)'(p) = \phi _\beta \circ F'(\phi ^{-1}_{\alpha}) \circ \phi^{-1}_{\alpha} 
         \]
-        where \(S^n\) is the set of symmetric \(n\times n\) matrices. Notice that \(f\) is smooth as it is constructed by smooth functions. Additionally, we show that \(Jf(X)(h) = X^t h + h^T X\). Indeed,
-        \begin{align*}
-            \lim_{h \to 0} \frac{f(X + h) - f(X) - X^t h - h^t X}{\|h\|} &= \lim_{h \to 0} \frac{(X + h)^t (X + h) - X^t X - X^t h - h^t X}{\|h\|} \\
-            &= \lim_{h \to 0} \frac{h^t h}{\|h\|} \\
-            &= 0
-        \end{align*}
-        Next, we want to show that \(\rank Jf(X) = \frac{1}{2}n(n+1)\) for all \(X \in O_n(\mathbb{R})\). It suffices to show that \(Jf(X)\) is surjective to \(S^n\).
-
-        Let \(Y \in S^n\). Let \(h = \frac{1}{2}XY\). We see that
-        \begin{align*}
-            Jf(X)(h) &= X^t \left( \frac{1}{2}XY \right) + \left( \frac{1}{2}XY \right)^t X = \frac{1}{2}\left( X^t XY + Y^t X^t X \right) \\
-            &= \frac{1}{2}(Y + Y^t) \tag{\(X\) is orthogonal} \\
-            &= Y \tag{\(Y\) is symmetric}
-        \end{align*}
-        Thus \(R(Jf(X)) = S^n\) so \(\rank Jf(X) = \dim S^n = \frac{1}{2}n(n+1)\).
-
-        We now prove that \(O_n(\mathbb{R})\) is a smooth manifold of dimension \(\frac{1}{2}n(n+1)\). Let \(p \in O_n(\mathbb{R})\). Then \(f(p) = 0\) and \(Jf(p)\) has the maximal rank of \(\frac{1}{2}n(n+1)\). We write
+        is just \(F'(\phi^{-1}_{\alpha})\)--a surjective map--composed with linear isomorphisms. This implies that \(R(J\hat{F}(p)) = \mathbb{R}^m\) and \(\rank J\hat{F}(p) = m\). We can write
         \[
-            Jf(p) = \left( \begin{array}{@{}c|c@{}}
+            J\hat{F}(p) = \left( \begin{array}{@{}c|c@{}}
                 A & B
             \end{array} \right) 
         \]
-        where \(A\) is a \(\frac{1}{2}n(n+1) \times \frac{1}{2}n(n-1)\) matrix and \(B\) is a \(\frac{1}{2}n(n+1) \times \frac{1}{2}n(n+1)\) matrix and assume without loss of generality that \(B\) is an invertible submatrix of \(Jf(p)\). We can do this because we can swap the components of \(f\), and therefore columns of \(Jf(p)\) without affecting the conclusion of the statement (because manifolds are invariant under diffeomorphims). Thus, we write \(p = (a,b)\) for \(a \in \mathbb{R}^{\frac{1}{2}n(n-1)}\), \(b \in \mathbb{R}^{\frac{1}{2}n(n+1)}\) and apply the Implicit Function Theorem and obtain an open set \(\hat{U} \subseteq \mathbb{R}^{\frac{1}{2}n(n-1)}\) containing \(a\) and a \(C^{\infty}\) function \(\Phi : \hat{U} \to \mathbb{R}^{\frac{1}{2}n(n+1)}\) so that
+        where \(A\) is a \(m\times n-m\) matrix and \(B\) is a \(m \times m\) matrix, and assume without loss of generality that \(B\) is invertible, for if not, \(J\hat{F}(p)\) is still guaranteed to contain an invertible \(m\times m\) submatrix, and we can perform column swaps to move the matrix to the right, which does not change the conclusion of our statement.
+
+        Recall that since \(N\) is the zero set of \(\hat{F}\), \(\hat{F}(p) = 0\). Thus, we write \(p = (a,b)\) for \(a \in \mathbb{R}^{n-m}\), \(b \in \mathbb{R}^{m}\) and apply the Implicit Function Theorem and obtain an open set \(\hat{U} \subseteq \mathbb{R}^{n-m}\) containing \(a\) and a \(C^{\infty}\) function \(\Phi : \hat{U} \to \mathbb{R}^{m}\) so that
         \[
-            f(x, \Phi(x)) = 0
+            \hat{F}(x, \Phi(x)) = 0
         \]
         for all \(x \in \hat{U}\). We claim that \(\varphi: \hat{U} \to \Phi (\hat{U})\) defined by
         \[
             \varphi (x) = (x, \Phi (x))
         \]
         is our desired smooth regular embedding. It is fairly clear that \(\varphi\) is smooth. Additionally, \(J \varphi (x) = \left( \begin{array}{@{}cc@{}}
-            I_{\frac{1}{2}n(n-1)} \\
+            I_{n-m} \\
             \hline
             J\Phi
-        \end{array} \right) \) is a \(n^2 \times \frac{1}{2}n(n-1)\) matrix and has at least \(\frac{1}{2}n(n-1)\) linearly independent rows, so \(\varphi\) is regular. Finally, if we let \(\varphi (x) = \varphi (y)\), we have that \((x,\Phi (x)) = (y, \Phi (y))\), from which we get \(x=y\), so \(\varphi\) is injective, and therefore bijective to its image. In addition, we can explicitly find \(\varphi^{-1} (y) = \pi _{\mathbb{R}^{\frac{1}{2}n(n-1)}}(y)\), which is continuous because it is a linear map. Therefore \(\varphi\) is a homeomorphism onto its image, and we are done.
+        \end{array} \right) \) is a \((n-m) \times n\) matrix and has at least \(n-m\) linearly independent rows, so \(\varphi\) is regular. Finally, if we let \(\varphi (x) = \varphi (y)\), we have that \((x,\Phi (x)) = (y, \Phi (y))\), from which we get \(x=y\), so \(\varphi\) is injective, and therefore bijective to its image. In addition, we can explicitly find \(\varphi^{-1} (y) = \pi _{\mathbb{R}^{n-m}}(y)\), which is continuous because it is a linear map. Therefore \(\varphi\) is a homeomorphism onto its image, so \(N\) is a smooth \((n-m)\)-manifold. It follows that \(\phi ^{-1}_{\alpha} (N) = M\) is also a smooth manifold of dimension \(n-m\) so we are done.
+
+        \medskip
+
+        Now, we may proceed to prove that \(O_n(\mathbb{R})\) is a smooth manifold of dimension \(\frac{1}{2}n(n-1)\).
+
+        We note that \(O_n(\mathbb{R})\) is the zero set of the function \(f: M_n(\mathbb{R}) \to S^n\) defined by
+        \[
+            f(A) = A^t A - I_n
+        \]
+        where \(S^n\) is the set of symmetric \(n\times n\) matrices. Notice that \(f\) is smooth as it is constructed by smooth functions. Additionally, we show that \(f'(X)(h) = X^t h + h^T X\). Indeed,
+        \begin{align*}
+            \lim_{h \to 0} \frac{f(X + h) - f(X) - X^t h - h^t X}{\|h\|} &= \lim_{h \to 0} \frac{(X + h)^t (X + h) - X^t X - X^t h - h^t X}{\|h\|} \\
+            &= \lim_{h \to 0} \frac{h^t h}{\|h\|} \\
+            &= 0
+        \end{align*}
+        Next, we want to show that \(f'(X)\) is surjective on \(S^n\) for all \(X \in O_n(\mathbb{R})\).
+
+        Let \(Y \in S^n\). Let \(h = \frac{1}{2}XY\). We see that
+        \begin{align*}
+            f'(X)(h) &= X^t \left( \frac{1}{2}XY \right) + \left( \frac{1}{2}XY \right)^t X = \frac{1}{2}\left( X^t XY + Y^t X^t X \right) \\
+            &= \frac{1}{2}(Y + Y^t) \tag{\(X\) is orthogonal} \\
+            &= Y \tag{\(Y\) is symmetric}
+        \end{align*}
+        Now, we have the hypotheses needed to apply the Regular Level-Set Theorem, and conclude that \(O_n(\mathbb{R})\) is a smooth manifold of dimension \(n^2 - \frac{1}{2}n(n+1) = \frac{1}{2}n(n-1)\).
     \end{question}
     \newpage
     \begin{question}{41}
@@ -82,7 +90,7 @@
 
         (b):
 
-        Since \(T\) is the zero set of a smooth function, \(T\) is automatically a smooth manifold by a result in the tutorial which was (kind of) proved in the previous question above. However, we will show that \(T\) is a 2-manifold for fun. This is still pretty quick, as \(Jf(p)\) is a \(1 \times 3\) matrix, so its maximum rank is 1, but its rank cannot be 0 because
+        Notice that for all \(p = (x,y,z) \in T\), \(f'(p)\) is rank 1, because \(f'(p)\) is a \(1 \times 3\) matrix, so its rank is at most 1, but it cannot be rank 0 because
         \[
             \frac{\partial f}{\partial x} (x,y,z) = 2\frac{\sqrt{x^2 + y^2} - b}{\sqrt{x^2 + y^2}} = 2 - \frac{2b}{\sqrt{x^2 + y^2}}
         \]
@@ -90,6 +98,12 @@
         \[
             \frac{\partial f}{\partial z} (x,y,z) = 2z
         \]
-        Thus \(Jf(p)\) is always rank 1, so according to the tutorial result, \(T\) is of dimension \(3 - 1 = 2\).
+        so being rank 0 implies that
+        \[
+            f'(p) = \left( 2 - \frac{2b}{\sqrt{x^2 + y^2}}, 2 - \frac{2b}{\sqrt{x^2 + y^2}}, 2z \right) = (0,0,0) \implies \sqrt{x^2 + y^2} = b \text{ and } z = 0
+        \]
+        but if this is the case, \(f(p) = -a^2 \neq 0\), so \(p \notin T\), which is a contradiction.
+
+        Thus \(Jf(p)\) is always rank 1, so according to the Regular Level-Set Theorem, \(T\) is a smooth manifold of dimension \(3 - 1 = 2\).
     \end{question}
 \end{document}
