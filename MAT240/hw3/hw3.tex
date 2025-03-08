@@ -196,11 +196,16 @@
     \begin{question}{8}
         Let \( P \in \mathcal{M}_{n \times n}(\mathbb{F}) \). Prove the following three conditions are equivalent.
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item \( P \) is invertible.
             \item There exists bases \( \beta, \gamma \) of \( \mathbb{F}^n \) so that \( P = [\mathrm{I}_{\mathbb{F}^n}]_\beta^\gamma \).
             \item For any \( n \)-dimensional vector space \( V \) over \( \mathbb{F} \), there exists bases \( \beta, \gamma \) of \( V \) so that \( P = [\mathrm{I}_V]_\beta^\gamma \).
         \end{enumerate}
+        \tcblower
+
+        Suppose (a). We prove (b).
+
+        Consider the linear transformation \(T_P : \mathbb{F}^n \to \mathbb{F}^n\). Since \(T_P\) is invertible, 
     \end{question}
 
     \begin{question}{9}
@@ -209,7 +214,7 @@
         \begin{enumerate}[label=(\alph*)]
             \item Prove that \( \equiv \) is an equivalence relation on \( \mathcal{M}_{m \times n}(\mathbb{F}) \).
             \item Find a condition on \( A, B \) which is equivalent to \( A \equiv B \). (Hint: Theorem 53.)
-            \item Classify the equivalence classes for this relation, and prove that there are exactly \( \min\{n, m\} \) such classes.
+            \item Classify the equivalence classes for this relation, and prove that there are exactly \( 1 + \min\{n, m\} \) such classes.
         \end{enumerate}
         \tcblower
         \ 
@@ -253,11 +258,11 @@
     \end{question}
 
     \begin{question}{10}
-        Let \( V, W \) be finite dimensional vector spaces over \( \mathbb{F} \), and \( T : V \to W \) a linear map. Set \( n = \dim V \), \( m = \dim W \). Let \( \mathbf{x}_1, \mathbf{x}_2 \in \mathbb{F}^n \) be two non-parallel vectors. Prove there exists bases \( \beta, \gamma \) of \( V, W \) respectively, so that \( [T]_\beta^\gamma = (\mathbf{x}_1 \ \mathbf{x}_2 \ \mathbf{0} \ \cdots \ \mathbf{0}) \). (Hint: use problems 7,8.)
+        Let \( V, W \) be finite dimensional vector spaces over \( \mathbb{F} \), and \( T : V \to W \) a linear map with \(\rank T = 2\). Set \( n = \dim V \), \( m = \dim W \). Let \( \mathbf{x}_1, \mathbf{x}_2 \in \mathbb{F}^n \) be two non-parallel vectors. Prove there exists bases \( \beta, \gamma \) of \( V, W \) respectively, so that \( [T]_\beta^\gamma = (\mathbf{x}_1 \ \mathbf{x}_2 \ \mathbf{0} \ \cdots \ \mathbf{0}) \). (Hint: use problems 7,8.)
     \end{question}
 
     \begin{question}{11}
-        Let \( T : V \to V \) be linear. We say that a subspace \( W \subseteq V \) is "\( T \)-invariant" if \( T(W) \subseteq W \).
+        Let \( T : V \to V \) be linear. We say that a subspace \( W \subseteq V \) is ``\( T \)-invariant'' if \( T(W) \subseteq W \).
 
         For example, if \( T : \mathbb{R}^3 \to \mathbb{R}^3 \) is counter-clockwise rotation around the \( z \)-axis by angle \( \theta \), then \( P_{xy} = \{(x, y, 0) \in \mathbb{R}^3\} \) is \( T \)-invariant, as is \( L_z \) (the \( z \)-axis).
 
@@ -285,7 +290,7 @@
     \begin{question}{13}
         Determine if the statements below are true or false. If true, give a proof. If false, explain why, and/or provide a counterexample.
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Let \( \beta = \{ e_1, \ldots, e_n \} \) be the standard basis for \( \mathbb{F}^n \), and \( \gamma = \{ v_1, \ldots, v_n \} \) a basis for \( \mathbb{F}^n \). Then there exists a sequence of row operations that takes \( \beta \) to \( \gamma \). (That is, \( v_i \) is obtained from \( e_i \) using the same row operations for all \( i \).)
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( T : V \to V \) a linear map. If \( \beta, \gamma \) are bases for \( V \) so that \( [T]_\beta^\gamma = I_n \), then \( T = I_V \).
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( S, T : V \to V \) linear maps. If rank \( T = \text{rank } S \), then there exist bases \( \beta, \beta', \gamma, \gamma' \) for \( V \) so that \( [S]_\beta^\gamma = [T]_\beta^\gamma \).

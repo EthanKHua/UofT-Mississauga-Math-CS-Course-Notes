@@ -19,6 +19,10 @@ x(t) = 11t^3 - 18t^2 + 3t + 5
 y(t) = t^3 + 1
 \]
 has control points \((5,1)\), \((6,1)\), and \((1,2)\). Find the fourth control point.
+
+\bigskip
+
+Notice that \((x(0), y(0)) = (5,1)\) and \((x(1), y(1)) = (1,2)\), so \((5,1), (1,2)\) are the first and last control points. Let us suppose that \((a,b)\) is the fourth control point, and it is ordered second.
 \end{question}
 
 \begin{question}{2}
@@ -31,6 +35,21 @@ x & -3 & -1.5 & 0 & 2 \\
 f(x) & 3.11 & 3.05 & 3.4 & 3.7 \\
 \end{array}
 \]
+
+\bigskip
+
+We let \(x_0 = -3\), \(h = 1\). Then the stencil looks like this:
+\begin{center}
+    \begin{tikzpicture}
+        \draw[<->] (-7, 0) -- (5, 0);
+        \foreach \x\val in {-6/\(x_0\), -3/\(x_0 + \frac{3}{2}h\), 0/\(x_0 + 3h\), 4/\(x_o + 5h\)} {
+            \draw[fill] (\x, 0) circle (2pt);
+            \node[below] at (\x, -0.1) {\val};
+        }
+        \draw (2, 0) circle (3pt);
+        \node[below] at (2, -0.1) {\(x_0 + 4h\)};
+    \end{tikzpicture}
+\end{center}
 \end{question}
 
 \begin{question}{3}
@@ -44,10 +63,34 @@ f(x) & 3.11 & 3.05 & 3.4 & 3.7 \\
         \node[below] at (\x,-0.1) {\label};
     }
     \draw (0, 0) circle (3pt);
+    \node[below] at (0, -0.1) {\(x_0 + \frac{3}{2}h\)};
 \end{tikzpicture}
 \end{center}
 
 using a direct method as discussed in Section 4.1.
+
+\bigskip
+
+We begin by finding the interpolating polynomial of least degree for this stencil. Using Lagrange's interpolation formula:
+\[
+    L(x_0 + \theta h) = \frac{(\theta - 1)(\theta - 2)(\theta - 3)}{(-1)(-2)(-3)}f(x_0) + \frac{\theta(\theta - 2)(\theta - 3)}{(1)(-1)(-2)}f(x_0 + h)
+\]
+\[
+    + \frac{\theta(\theta - 1)(\theta - 3)}{(2)(1)(-1)}f(x_0 + 2h) + \frac{\theta(\theta - 1)(\theta - 2)}{(3)(2)(1)}f(x_0 + 3h)
+\]
+\[
+    =-\frac{(\theta - 1)(\theta - 2)(\theta - 3)}{6}f(x_0) + \frac{\theta(\theta - 2)(\theta - 3)}{2}f(x_0 + h)
+\]
+\[
+    - \frac{\theta(\theta - 1)(\theta - 3)}{2}f(x_0 + 2h) + \frac{\theta(\theta - 1)(\theta - 2)}{6}f(x_0 + 3h)
+\]
+We take the derivative twice with respect to \(\theta\) to get that
+\[
+    h^2L''(x_0 + \theta h) = \theta \left(\frac{f(x_0 + h)}{2} - \frac{f(x_0 + 2h)}{2} + \frac{f(x_0 + 3h)}{6}\right)
+\]
+\[
+    + (\theta - 1)\left( -\frac{f(x_0)}{6} - \frac{f(x_0 + 2h)}{2} + \frac{f(x_0 + 3h)}{6} \right) 
+\]
 \end{question}
 
 \begin{question}{4}
