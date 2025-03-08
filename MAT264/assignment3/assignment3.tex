@@ -22,7 +22,7 @@ has control points \((5,1)\), \((6,1)\), and \((1,2)\). Find the fourth control 
 
 \bigskip
 
-Notice that \((x(0), y(0)) = (5,1)\) and \((x(1), y(1)) = (1,2)\), so \((5,1), (1,2)\) are the first and last control points. Let us suppose that \((a,b)\) is the fourth control point, and it is ordered second.
+Notice that \((x(0), y(0)) = (5,1)\) and \((x(1), y(1)) = (1,2)\), so \((5,1), (1,2)\) are the first and last control points. Let us suppose that \((a,b)\) is the missing control point, and it is ordered second.
 \end{question}
 
 \begin{question}{2}
@@ -79,22 +79,82 @@ We begin by finding the interpolating polynomial of least degree for this stenci
     + \frac{\theta(\theta - 1)(\theta - 3)}{(2)(1)(-1)}f(x_0 + 2h) + \frac{\theta(\theta - 1)(\theta - 2)}{(3)(2)(1)}f(x_0 + 3h)
 \]
 \[
-    =-\frac{(\theta - 1)(\theta - 2)(\theta - 3)}{6}f(x_0) + \frac{\theta(\theta - 2)(\theta - 3)}{2}f(x_0 + h)
+    = -\frac{\theta ^3 -6 \theta ^2 + 11 \theta - 6}{6}f(x_0) + \frac{\theta ^3 -5 \theta ^2 + 6 \theta}{2}f(x_0 + h)
 \]
 \[
-    - \frac{\theta(\theta - 1)(\theta - 3)}{2}f(x_0 + 2h) + \frac{\theta(\theta - 1)(\theta - 2)}{6}f(x_0 + 3h)
+    - \frac{\theta ^3 - 4 \theta ^2 + 3 \theta}{2}f(x_0 + 2h) + \frac{\theta ^3 - 3 \theta^2 + 2 \theta}{6}f(x_0 + 3h)
 \]
 We take the derivative twice with respect to \(\theta\) to get that
 \[
-    h^2L''(x_0 + \theta h) = \theta \left(\frac{f(x_0 + h)}{2} - \frac{f(x_0 + 2h)}{2} + \frac{f(x_0 + 3h)}{6}\right)
+    h^2L''(x_0 + \theta h) = -\frac{6\theta - 12}{6}f(x_0)+\frac{6 \theta - 10}{2}f(x_0 + h)-\frac{6\theta - 8}{2}f(x_0 + 2h)+\frac{6\theta - 6}{6}f(x_0 + 3h)
 \]
 \[
-    + (\theta - 1)\left( -\frac{f(x_0)}{6} - \frac{f(x_0 + 2h)}{2} + \frac{f(x_0 + 3h)}{6} \right) 
+    = (2- \theta)f(x_0) +(3\theta - 5)f(x_0 + h)+(4 - 3\theta)f(x_0 + 2h)+(\theta - 1)f(x_0 + 3h)
+\]
+Substituting \(\theta = \frac{3}{2}\) gives us the required approximation formula:
+\[
+    f''\left( x_0 + \frac{3}{2}h \right) \approx \frac{1}{h^2}\left( \frac{1}{2}f(x_0) - \frac{1}{2} f(x_0 + h) - \frac{1}{2} f(x_0 + 2h) + \frac{1}{2}f(x_0 + 3h) \right) 
 \]
 \end{question}
 
 \begin{question}{4}
 \textbf{(4.2, \#3c)} Over the same stencil as in the previous question, derive an approximation formula for the second derivative \( f'' \) but now using undetermined coefficients.
+
+\bigskip
+
+Let our formula be of the form
+\[
+    a_0 f(x_0) + a_1 f(x_0 + h) + a_2 f(x_0 + 2h) + a_3 f(x_0 + 3h).
+\]
+For \(i = 0, 1, 2, 3\), the formula is exact for functions \(f_i (x) = \left(x - x_0\right)^i\). Thus using each function, we have the system of equations
+\begin{align*}
+    0 &= a_0 + a_1 + a_2 + a_3 \\
+    0 &= h a_1 + 2h a_2 + 3h a_3 \\
+    2 &= h^2 a_1 + 4h^2 a_2 + 9h^2 a_3 \\
+    9h &= h^3 a_1 + 8 h^3 a_2 + 27 h^3 a_3
+\end{align*}
+which we can solve by row reducing the matrix
+\begin{align*}
+    \left( \begin{array}{@{}cccc|c@{}}
+        1 & 1 & 1 & 1 & 0 \\
+        0 & h & 2h & 3h & 0 \\
+        0 & h^2 & 4h^2 & 9h^2 & 2 \\
+        0 & h^3 & 8h^3 & 27h^3 & 9h
+    \end{array} \right)
+    &\rightarrow
+    \left( \begin{array}{@{}cccc|c@{}}
+        1 & 0 & -1 & -2 & 0 \\
+        0 & 1 & 2 & 3 & 0 \\
+        0 & 0 & 2h^2 & 6h^2 & 2 \\
+        0 & 0 & 6h^2 & 24h^2 & 9
+    \end{array} \right)
+    \rightarrow
+    \left( \begin{array}{@{}cccc|c@{}}
+        1 & 0 & -1 & -2 & 0 \\
+        0 & 1 & 2 & 3 & 0 \\
+        0 & 0 & 2h^2 & 6h^2 & 2 \\
+        0 & 0 & 0 & 6h^2 & 3
+    \end{array} \right) \\
+    &\rightarrow
+    \left( \begin{array}{@{}cccc|c@{}}
+        1 & 0 & -1 & -2 & 0 \\
+        0 & 1 & 2 & 3 & 0 \\
+        0 & 0 & 1 & 0 & -\frac{1}{2h^2} \\
+        0 & 0 & 0 & 1 & \frac{1}{2h^2}
+    \end{array} \right)
+    \rightarrow
+    \left( \begin{array}{@{}cccc|c@{}}
+        1 & 0 & 0 & 0 & \frac{1}{2h^2} \\
+        0 & 1 & 0 & 0 & -\frac{1}{2h^2} \\
+        0 & 0 & 1 & 0 & -\frac{1}{2h^2} \\
+        0 & 0 & 0 & 1 & \frac{1}{2h^2}
+    \end{array} \right)
+\end{align*}
+Therefore our approximating formula for \(f''\left( x_0 + \frac{3}{2}h \right)\) is
+\[
+    f''\left( x_0 + \frac{3}{2}h \right) \approx \frac{1}{2h^2}f(x_0) - \frac{1}{2h^2}f(x_0 + h) - \frac{1}{2h^2}f(x_0 + 2h) + \frac{1}{2h^2}f(x_0 + 3h)
+\]
+which is consistent with the formula we obtained in the previous question.
 \end{question}
 
 \begin{question}{5}
@@ -103,10 +163,80 @@ We take the derivative twice with respect to \(\theta\) to get that
 \begin{enumerate}[label=\alph*.]
     \item Write the first Taylor polynomials of \( f(x_0 +\alpha h) \) and \( f(x_0 +2h) \) around \( x = x_0 \), then use these to show that:
     \[
-    f'(x_0) = \frac{1}{2h} \left[ \frac{-2+\alpha}{\alpha} f(x_0) + \frac{4}{\alpha(2-\alpha)} f(x_0 + \alpha h) - \frac{\alpha}{2-\alpha} f(x_0 + 2h) \right].
+    f'(x_0) = \frac{1}{2h} \left[ -\frac{2+\alpha}{\alpha} f(x_0) + \frac{4}{\alpha(2-\alpha)} f(x_0 + \alpha h) - \frac{\alpha}{2-\alpha} f(x_0 + 2h) \right].
     \]
 
+    Assuming \(f\) is analytic, the Taylor series expansion of \(f\) around \(x = x_0\) is
+    \[
+        f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n
+    \]
+    so
+    \[
+        f(x_0 + \alpha h) \approx f(x_0) + f'(x_0) \alpha h \text{ and } f(x_0 + 2h) \approx f(x_0) + f'(x_0) 2h
+    \]
+    \[
+        \implies f'(x_0) \approx \frac{1}{\alpha h}(f(x_0 + \alpha h) - f(x_0)) \text{ and } f'(x_0) \approx \frac{1}{2h}(f(x_0 + 2h) - f(x_0))
+    \]
+    We see that
+    \begin{align*}
+        &\ \frac{1}{2h} \left[ -\frac{2+\alpha}{\alpha} f(x_0) + \frac{4}{\alpha(2-\alpha)} f(x_0 + \alpha h) - \frac{\alpha}{2-\alpha} f(x_0 + 2h) \right] \\
+        &= \frac{1}{2h} \left[ -\frac{2+\alpha}{\alpha} f(x_0) + \frac{4}{\alpha(2-\alpha)} (f(x_0) + f'(x_0) \alpha h) - \frac{\alpha}{2-\alpha} (f(x_0) + f'(x_0) 2h) \right] \\
+        &= \frac{1}{2h}\left[ \left( -\frac{2}{\alpha} - 1 + \frac{4}{\alpha (2 - \alpha)} - \frac{\alpha}{2 - \alpha} \right) f(x_0) + \left( \frac{4h}{2 - \alpha} - \frac{2\alpha h}{2 - \alpha} \right) f'(x_0) \right] \\
+        &= \frac{1}{2h}\left[ \left( -\frac{2}{\alpha} - 1 + \frac{2}{\alpha} + \frac{2}{2 - \alpha} + 1 - \frac{2}{2 - \alpha} \right) f(x_0) + \frac{2h(2 - \alpha)}{2 - \alpha} f'(x_0) \right] \\
+        &= \frac{1}{2h}[2h f'(x_0)] \\
+        &= f'(x_0)
+    \end{align*}
+    as needed.
+
     \item Now show that the same result is obtained when using the method of undetermined coefficients.
+    
+    Let
+    \[
+        f'(x_0) \approx a_0 f(x_0) + a_1 f(x_0 + \alpha h) + a_2 f(x_0 + 2h).
+    \]
+    Choose functions \(f_i(x) = (x - x_0)^i\), for \(i = 0,1,2\). It follows that
+    \begin{align*}
+        0 &= a_0 + a_1 + a_2 \\
+        1 &= \alpha h a_1 + 2h a_2 \\
+        0 &= \alpha ^2 h^2 a_1 + 4h^2 a_2
+    \end{align*}
+    We solve by row reducing, keeping in mind that we never perform division by 0 since \(\alpha \neq 0,2\):
+    \begin{align*}
+        \left( \begin{array}{@{}ccc|c@{}}
+            1 & 1 & 1 &  0 \\
+            0 & \alpha h & 2h &  1 \\
+            0 & \alpha^2 h^2 & 4h^2 &  0 \\
+        \end{array} \right)
+        &\rightarrow
+        \left( \begin{array}{@{}ccc|c@{}}
+            1 & 1 & 1 &  0 \\
+            0 & \alpha^2 h^2 & 4h^2 &  0 \\
+            0 & 0 & 2h - \frac{4h}{\alpha} &  1 \\
+        \end{array} \right)
+        \rightarrow
+        \left( \begin{array}{@{}ccc|c@{}}
+            1 & 0 & 1 - \frac{4}{\alpha^2} &  0 \\
+            0 & 1 & \frac{4}{\alpha^2} &  0 \\
+            0 & 0 & 2h - \frac{4h}{\alpha} &  1 \\
+        \end{array} \right) \\
+        &\rightarrow
+        \left( \begin{array}{@{}ccc|c@{}}
+            1 & 0 & 1 - \frac{4}{\alpha^2} &  0 \\
+            0 & 1 & \frac{4}{\alpha^2} &  0 \\
+            0 & 0 & 1 &  \frac{\alpha}{2h(\alpha - 2)} \\
+        \end{array} \right)
+        \rightarrow
+        \left( \begin{array}{@{}ccc|c@{}}
+            1 & 0 & 0 &  -\frac{2 + a}{2\alpha h} \\
+            0 & 1 & 0 &  - \frac{2}{\alpha h(\alpha -2)} \\
+            0 & 0 & 1 &  \frac{\alpha}{2h(\alpha - 2)} \\
+        \end{array} \right)
+    \end{align*}
+    Thus \(a_0 = -\frac{2 + a}{2\alpha h}, a_1 = - \frac{2}{\alpha h(\alpha -2)}, a_2 = \frac{\alpha}{2h(\alpha - 2)}\), so
+    \[
+        f'(x_0) \approx \frac{1}{2h}\left[ -\frac{2+\alpha}{\alpha}f(x_0) + \frac{4}{\alpha (2 - \alpha)}f(x_0 + \alpha h) - \frac{\alpha}{2-\alpha}f(x_0 + 2h)\right] 
+    \]
+    as expected.
 \end{enumerate}
 \end{question}
 
@@ -124,7 +254,9 @@ We take the derivative twice with respect to \(\theta\) to get that
 
 \end{tikzpicture}
 \end{center}
+\bigskip
 
+First
 \end{question}
 
 \vfill
