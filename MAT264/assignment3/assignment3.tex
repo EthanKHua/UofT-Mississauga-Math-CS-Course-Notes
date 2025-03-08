@@ -2,14 +2,6 @@
 
 \begin{document}
 \usetikzlibrary{arrows.meta}
-\section*{Assignment 3: Due March 16, 2025 (Sunday) at 11:59PM ET}
-
-Answers must be submitted via Crowdmark using your personalized submission link (which will be sent to your email). Late submissions will not be accepted.
-
-If you used Octave to assist you in solving a problem, also attach to the solution to that problem the script and commands you used and the corresponding outputs obtained.
-
-A proper selection of questions from the ones below will be graded.
-
 \begin{question}{1}
 \textbf{(5.1, \#18)} The Bézier curve
 \[
@@ -22,9 +14,30 @@ has control points \((5,1)\), \((6,1)\), and \((1,2)\). Find the fourth control 
 
 \bigskip
 
-Notice that \((x(0), y(0)) = (5,1)\) and \((x(1), y(1)) = (1,2)\), so \((5,1), (1,2)\) are the first and last control points. Let us suppose that \((a,b)\) is the missing control point, and it is ordered second.
+Notice that \((x(0), y(0)) = (5,1)\) and \((x(1), y(1)) = (1,2)\), so \((5,1), (1,2)\) are the first and last control points. Let us suppose that \((a,b)\) is the missing control point, and it is ordered second. Then the B\'ezier curve with the control points above should have the form
+\begin{align*}
+    x(t) &= 5(1-t)^3 + 3at(1-t)^2 + 18t^2(1-t) + t^3 \\
+    &= (-5 + 3a - 18 + 1)t^3 + (15 - 6a + 18)t^2 + (-15 + 3a)t + 5 \\
+    &= (3a - 22)t^3 + (- 6a + 33)t^2 + (3a - 15)t + 5
+\end{align*}
+\begin{align*}
+    y(t) &= (1-t)^3 + 3bt(1-t)^2 + 3t^2(1-t) + 2t^3 \\
+    &= (-1 + 3b - 3 + 2)t^3 + (3 - 6b + 3)t^2 + (-3 + 3b)t + 1 \\
+    &= (3b - 2)t^3 + (- 6b + 6)t^2 + (3b - 3)t + 1
+\end{align*}
+We attempt to equate coefficients of \(x(t)\), and obtain that \(a = 11 = \frac{17}{2}\), which is impossible. Thus it must be true that \((a,b)\) is the third control point in order. We perform similar calculations to get that
+\begin{align*}
+    x(t) &= 5(1-t)^3 + 18t(1-t)^2 + 3at^2(1-t) + t^3 \\
+    &= (-5 + 18 - 3a + 1)t^3 + (15 - 36 + 3a)t^2 + (-15 + 18)t + 5 \\
+    &= (-3a + 14)t^3 + (3a - 21)t^2 + 3t + 5
+\end{align*}
+and
+\begin{align*}
+    y(t) = (3b - 2)t^3 + (- 6b + 6)t^2 + (3b - 3)t + 1.
+\end{align*}
+It can be shown that \(a = 1, b = 1\) by equating coefficients. Thus the missing third control point is \((1,1)\).
 \end{question}
-
+\newpage
 \begin{question}{2}
 Sketch a stencil for the following data, picking appropriate \(x_0\) and \(h\), that can be used to approximate \(f'(1)\). You do not need to derive the formula.
 
@@ -51,7 +64,7 @@ We let \(x_0 = -3\), \(h = 1\). Then the stencil looks like this:
     \end{tikzpicture}
 \end{center}
 \end{question}
-
+\newpage
 \begin{question}{3}
 \textbf{(4.1, \#13c)} Derive an approximation formula for the second derivative \( f'' \) over the stencil:
 
@@ -96,7 +109,7 @@ Substituting \(\theta = \frac{3}{2}\) gives us the required approximation formul
     f''\left( x_0 + \frac{3}{2}h \right) \approx \frac{1}{h^2}\left( \frac{1}{2}f(x_0) - \frac{1}{2} f(x_0 + h) - \frac{1}{2} f(x_0 + 2h) + \frac{1}{2}f(x_0 + 3h) \right) 
 \]
 \end{question}
-
+\newpage
 \begin{question}{4}
 \textbf{(4.2, \#3c)} Over the same stencil as in the previous question, derive an approximation formula for the second derivative \( f'' \) but now using undetermined coefficients.
 
@@ -152,11 +165,11 @@ which we can solve by row reducing the matrix
 \end{align*}
 Therefore our approximating formula for \(f''\left( x_0 + \frac{3}{2}h \right)\) is
 \[
-    f''\left( x_0 + \frac{3}{2}h \right) \approx \frac{1}{2h^2}f(x_0) - \frac{1}{2h^2}f(x_0 + h) - \frac{1}{2h^2}f(x_0 + 2h) + \frac{1}{2h^2}f(x_0 + 3h)
+    \frac{1}{2h^2}f(x_0) - \frac{1}{2h^2}f(x_0 + h) - \frac{1}{2h^2}f(x_0 + 2h) + \frac{1}{2h^2}f(x_0 + 3h)
 \]
 which is consistent with the formula we obtained in the previous question.
 \end{question}
-
+\newpage
 \begin{question}{5}
 \textbf{(Based on 4.1, \#19)} Let \( x_0, x_0 + \alpha h, x_0 + 2h \) be nodes where \( \alpha \neq 0,2 \).
 
@@ -172,10 +185,7 @@ which is consistent with the formula we obtained in the previous question.
     \]
     so
     \[
-        f(x_0 + \alpha h) \approx f(x_0) + f'(x_0) \alpha h \text{ and } f(x_0 + 2h) \approx f(x_0) + f'(x_0) 2h
-    \]
-    \[
-        \implies f'(x_0) \approx \frac{1}{\alpha h}(f(x_0 + \alpha h) - f(x_0)) \text{ and } f'(x_0) \approx \frac{1}{2h}(f(x_0 + 2h) - f(x_0))
+        f(x_0 + \alpha h) \approx f(x_0) + f'(x_0) \alpha h \text{ and } f(x_0 + 2h) \approx f(x_0) + f'(x_0) 2h.
     \]
     We see that
     \begin{align*}
@@ -239,7 +249,7 @@ which is consistent with the formula we obtained in the previous question.
     as expected.
 \end{enumerate}
 \end{question}
-
+\newpage
 \begin{question}{6}
 \textbf{(4.2, \#4i)} Use undetermined coefficients to derive an approximation formula for the integral over the stencil:
 
@@ -254,12 +264,45 @@ which is consistent with the formula we obtained in the previous question.
 
 \end{tikzpicture}
 \end{center}
-\bigskip
 
-First
+Suppose that
+\[
+    \int _{x_0}^{x_0 + 2h} f \approx a_0 f(x_0) + a_1 f \left( x_0 + \frac{4}{3}h \right) + a_2 f(x_0 + 2h).
+\]
+This is exact when \(f\) is a polynomial of degree 2 or less. Pick \(f_i(x) = (x - x_0)^i\), for \(i = 0,1,2\). Then
+\begin{align*}
+    2h &= a_0 + a_1 + a_2 \\
+    2h^2 &= \frac{4}{3}h a_1 + 2h a_2 \\
+    \frac{8}{3}h^3 &= \frac{16}{9}h^2 a_1 + 4h^2 a_2
+\end{align*}
+\begin{align*}
+    2h &= a_0 + a_1 + a_2 \\
+    \implies h &= \frac{2}{3} a_1 + a_2 \\
+    \frac{2}{3}h &= \frac{4}{9} a_1 + a_2
+\end{align*}
+We solve this system:
+\begin{align*}
+    \left( \begin{array}{@{}ccc|c@{}}
+        1 & 1 & 1 & 2h \\
+        0 & \frac{2}{3} & 1 & h \\
+        0 & \frac{4}{9} & 1 & \frac{2h}{3}
+    \end{array} \right) 
+    &\rightarrow
+    \left( \begin{array}{@{}ccc|c@{}}
+        1 & 0 & -\frac{1}{2} & \frac{h}{2} \\
+        0 & 1 & \frac{3}{2} & \frac{3h}{2} \\
+        0 & 0 & \frac{1}{3} & 0
+    \end{array} \right)
+    \rightarrow
+    \left( \begin{array}{@{}ccc|c@{}}
+        1 & 0 & 0 & \frac{h}{2} \\
+        0 & 1 & 0 & \frac{3h}{2} \\
+        0 & 0 & 1 & 0
+    \end{array} \right)
+\end{align*}
+Thus \(a_0 = \frac{h}{2}, a_1 = \frac{3h}{2}, a_2 = 0\) so our formula is
+\[
+    \int _{x_0}^{x_0 + 2h} f \approx \frac{h}{2}\left( f(x_0) + 3f \left( x_0 + \frac{4h}{3} \right) \right) 
+\]
 \end{question}
-
-\vfill
-\centerline{End of Assignment 3}
-
 \end{document}
