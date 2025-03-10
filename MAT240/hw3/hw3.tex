@@ -119,11 +119,107 @@
     \begin{question}{2}
         Let \( A = \begin{pmatrix} 1 & -2 & -4 \\ 1 & 1 & -1 \\ 1 & 0 & -1 \end{pmatrix} \).
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Verify that \( A \) is invertible, by row-reducing the augmented matrix \( (A | I_3) \).
             \item Use (a) to find \( A^{-1} \).
             \item Express \( A \) as a product of elementary matrices.
         \end{enumerate}
+        \tcblower
+        \ 
+        
+        (a):
+        We see that 
+        \begin{align*}
+            (A|I_3) &= \left( \begin{array}{@{}ccc|ccc@{}}
+                1 & -2 & -4 & 1 & 0 & 0 \\
+                1 & 1 & -1 & 0 & 1 & 0 \\
+                1 & 0 & -1 & 0 & 0 & 1 \\
+            \end{array} \right)
+            \xrightarrow{r_2\,\to\,r_2 - r_1,r_3\,\to\,r_3 - r_1}
+            \left( \begin{array}{@{}ccc|ccc@{}}
+                1 & -2 & -4 & 1 & 0 & 0 \\
+                0 & 3 & 3 & -1 & 1 & 0 \\
+                0 & 2 & 3 & -1 & 0 & 1 \\
+            \end{array} \right) \\
+            &\xrightarrow{r_1\,\to\,r_1 + r_3,r_2\,\to\,r_2 - r_3}
+            \left( \begin{array}{@{}ccc|ccc@{}}
+                1 & 0 & -1 & 0 & 0 & 1 \\
+                0 & 1 & 0 & 0 & 1 & -1 \\
+                0 & 2 & 3 & -1 & 0 & 1 \\
+            \end{array} \right)
+            \xrightarrow{r_3\,\to\,r_3 - 2r_2}
+            \left( \begin{array}{@{}ccc|ccc@{}}
+                1 & 0 & -1 & 0 & 0 & 1 \\
+                0 & 1 & 0 & 0 & 1 & -1 \\
+                0 & 0 & 3 & -1 & -2 & 3 \\
+            \end{array} \right) \\
+            &\xrightarrow{r_1\,\to\,r_1 + \frac{1}{3}r_3}
+            \left( \begin{array}{@{}ccc|ccc@{}}
+                1 & 0 & 0 & -\frac{1}{3} & -\frac{2}{3} & 2 \\
+                0 & 1 & 0 & 0 & 1 & -1 \\
+                0 & 0 & 3 & -1 & -2 & 3 \\
+            \end{array} \right)
+            \xrightarrow{r_3\,\to\,\frac{1}{3}r_3}
+            \left( \begin{array}{@{}ccc|ccc@{}}
+                1 & 0 & 0 & -\frac{1}{3} & -\frac{2}{3} & 2 \\
+                0 & 1 & 0 & 0 & 1 & -1 \\
+                0 & 0 & 1 & -\frac{1}{3} & -\frac{2}{3} & 1 \\
+            \end{array} \right)
+        \end{align*}
+        Since \(A\) can be row reduced into the identity matrix, \(A\) is invertible.
+
+        \medskip
+
+        (b):
+
+        By our row reductions above, we know that \(A^{-1} = \begin{pmatrix}
+            -\frac{1}{3} & -\frac{2}{3} & 2 \\
+            0 & 1 & -1 \\
+            -\frac{1}{3} & -\frac{2}{3} & 1 \\
+        \end{pmatrix}\).
+
+        \medskip
+
+        (c):
+
+        To express \(A\) is a product of elementary matrices, we can apply the opposite row operations to the identity matrix in reverse order. That is,
+        \[
+            A = \begin{pmatrix}
+                1 & 0 &  0 \\
+                1 & 1 &  0 \\
+                0 & 0 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                0 & 1 &  0 \\
+                1 & 0 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 &  -1 \\
+                0 & 1 &  0 \\
+                0 & 0 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                0 & 1 &  1 \\
+                0 & 0 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                0 & 1 &  0 \\
+                0 & 2 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 &  -\frac{1}{3} \\
+                0 & 1 &  0 \\
+                0 & 0 &  1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 &  0 \\
+                0 & 1 &  0 \\
+                0 & 0 &  3 \\
+            \end{pmatrix}
+        \]
     \end{question}
 
     \begin{question}{3}
@@ -205,7 +301,13 @@
 
         Suppose (a). We prove (b).
 
-        Consider the linear transformation \(T_P : \mathbb{F}^n \to \mathbb{F}^n\). Since \(T_P\) is invertible, 
+        Consider the linear transformation \(T_P : \mathbb{F}^n \to \mathbb{F}^n\). Let \(\beta\) be an ordered basis for \(\mathbb{F}^n\). We will show that \(\gamma = T_P(\beta)\) is also an ordered basis for \(\mathbb{F}^n\). Since \(P\) is invertible, \(T_P\) has an inverse \((T_P)^{-1} = T_{P^{-1}}\), so \(T_P\) is surjective and \(\mathrm{span} (T_P(\beta)) = \mathbb{F}^n\). Since \(|T_P(\beta)| = n\), \(T_P(\beta)\) is indeed an ordered basis. Thus we can conclude that \(P\) is a change of basis matrix from \(\beta\) to \(\gamma\).
+
+        \medskip
+
+        Suppose (b). We prove (c).
+
+        Let \(\beta = \{ v_1, ..., v_n \}\) be an ordered basis for \(V\), and
     \end{question}
 
     \begin{question}{9}
