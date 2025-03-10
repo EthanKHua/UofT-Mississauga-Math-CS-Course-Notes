@@ -20,5 +20,27 @@
         \textbf{Lemma:} A countable union of sets with Jordan measure 0 is a Lebesgue null set.
 
         Let \(E = \bigcup_{i \geq 0} E_i\), where \(\mu (E_i) = 0\).
+
+        \medskip
+
+        (b):
+
+        Let \(p\) be a point in the topological boundary of \(M\). We will show that \(p \in \partial M\). Suppose for contradiction that \(p\) is in \(M^\circ\), meaning it is contained in a chart \((U, \varphi)\) that is diffeomorphic to an open set \(\hat{U}\) in \(\mathbb{R}^N\). Note that \(\varphi\) is a diffeomorphism with domain \(\hat{U}\) and codomain \(U\). Then it must be true that \(\varphi (\hat{U}) = U\) is an open subset of \(\mathbb{R}^N\). But this is a contradiction, as that would imply that the boundary point \(p\) is in the interior of \(M\). Therefore \(p \in \partial M\).
+
+        Next, let \(p \in \partial M\) and again suppose for contradiction that \(p\) is not in the topological boundary of \(M\). Then it must be true that \(p\) is in the topological interior of \(M\). Recall that \(p \in \partial M\) implies that it is contained in a chart \((U, \varphi)\) that is diffeomorphic to \(\overline{\mathbb{H}^n}\) and \(p \in \mathrm{bd} (\mathbb{H}^n)\). Since \(p\) is in the topological interior of \(M\), we can find an open ball \(B(p, r) \subseteq M\) which is also open in \(\mathbb{R}^N\). Then \(\varphi ^{-1}(B(p,r))\) should also be open in \(\mathbb{R}^N\). But this implies that for small enough \(\delta\), \(\varphi (p) - (0, ..., \delta) \in \overline{\mathbb{H}^N}\), which cannot happen.
+
+        \medskip
+
+        (c):
+
+        First, we prove that a compact Lebesgue null set \(E\) has Jordan measure 0. It suffices to show that the upper measure \(\mu ^* (E) = 0\).
+
+        Let \(\varepsilon > 0\). By definition, we can find a countable union of boxes \(B = \bigcup_{i=1}^{\infty} B_i\) such that \(E \subseteq B\) and \(\vol(B) < \varepsilon\). But since \(E\) is compact, it can be covered by finitely many boxes \(B_{n_i}\), \(0 < i \leq N\). Thus
+        \[
+            \vol\left( \bigcup_{i=1}^{N} B_{n_i} \right) = \sum_{i=1}^{N} \vol(B_{n_i}) \leq \vol(B) < \varepsilon.
+        \]
+        Since \(\varepsilon\) was chosen arbitrarily, we can conclude that \(\mu ^* (E) = 0\), and \(E\) has Jordan measure 0.
+
+        Now, suppose that \(M\) is compact and its boundary is nonempty. If \(\dim M < N\), \(M\) is a Lebesgue null set and has Jordan measure 0, and therefore measurable. Otherwise, if \(\dim M = N\), since the boundary of \(M\) is non-empty, the topological boundary of \(M\) is actually a smooth manifold of dimension \((N-1)\), and therefore a Lebesgue null set. As well, the topological boundary of \(M\) is compact, so it is Jordan measure 0, which implies that \(M\) is Jordan measurable.
     \end{question}
 \end{document}
