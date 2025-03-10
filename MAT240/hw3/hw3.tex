@@ -231,27 +231,284 @@
         T\begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}, \quad
         T\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.
         \]
+        \tcblower
+
+        Notice that
+        \[
+            \beta = \left\{ \begin{pmatrix}
+                 1 \\
+                 0 \\
+                 0 \\
+                 0 \\
+            \end{pmatrix},
+            \begin{pmatrix}
+                2 \\
+                1 \\
+                0 \\
+                0 \\
+            \end{pmatrix},
+            \begin{pmatrix}
+            1 \\
+            1 \\
+            1 \\
+            0 \\
+            \end{pmatrix},
+            \begin{pmatrix}
+                1 \\
+                1 \\
+                1 \\
+                1 \\
+            \end{pmatrix}
+             \right\}
+        \]
+        is a basis for \(\mathbb{Q}^4\). We attempt to find the general form for a vector \((x,y,z,w) \in \mathbb{Q}^4\) in terms of these vectors. By inspection, we see that
+        \[
+            \begin{pmatrix}
+                 x \\
+                 y \\
+                 z \\
+                 w \\
+            \end{pmatrix}
+            =
+            (x - 2y + z)
+            \begin{pmatrix}
+                1 \\
+                0 \\
+                0 \\
+                0 \\
+           \end{pmatrix}
+            +(y - z)
+            \begin{pmatrix}
+                2 \\
+                1 \\
+                0 \\
+                0 \\
+           \end{pmatrix}
+            +(z - w)
+            \begin{pmatrix}
+                1 \\
+                1 \\
+                1 \\
+                0 \\
+           \end{pmatrix}
+           +
+            w\begin{pmatrix}
+                1 \\
+                1 \\
+                1 \\
+                1 \\
+           \end{pmatrix}
+        \]
+        Thus
+        \begin{align*}
+            T \begin{pmatrix}
+                 x \\
+                 y \\
+                 z \\
+                 w \\
+            \end{pmatrix}
+            &=
+            (x - 2y + z)
+            T\begin{pmatrix}
+                1 \\
+                0 \\
+                0 \\
+                0 \\
+            \end{pmatrix}
+            +(y - z)
+            T\begin{pmatrix}
+                2 \\
+                1 \\
+                0 \\
+                0 \\
+            \end{pmatrix}
+            +(z - w)
+            T\begin{pmatrix}
+                1 \\
+                1 \\
+                1 \\
+                0 \\
+            \end{pmatrix}
+            +wT\begin{pmatrix}
+                1 \\
+                1 \\
+                1 \\
+                1 \\
+           \end{pmatrix} \\
+           &=
+           (x - 2y + z)
+           \begin{pmatrix}
+             1 \\
+             2 \\
+             3 \\
+           \end{pmatrix}
+           +(y-z)
+           \begin{pmatrix}
+             0 \\
+             1 \\
+             1 \\
+           \end{pmatrix}
+           +(z-w)
+           \begin{pmatrix}
+             0 \\
+             0 \\
+             1 \\
+           \end{pmatrix}
+           +w
+           \begin{pmatrix}
+             0 \\
+             0 \\
+             0 \\
+           \end{pmatrix} \\
+           &=\begin{pmatrix}
+             x - 2y + z \\
+             2x -3y + z \\
+             3x - 5y + 3z - w \\
+           \end{pmatrix}
+        \end{align*}
     \end{question}
 
     \begin{question}{4}
         Let \( \mathbb{F} = \mathbb{Q} \) and \( V = \mathcal{M}_{2 \times 2}(\mathbb{F}) \). Consider the linear map \( T : \mathcal{M}_{2 \times 2}(\mathbb{F}) \to \mathcal{M}_{2 \times 2}(\mathbb{F}) \) given by \( T(A) = A^T \). Set \( \beta = \{ E_{11}, E_{12}, E_{21}, E_{22} \} \) and \( \gamma = \{ E_{11}, E_{22}, E_{12} + E_{21}, E_{12} - E_{21} \} \).
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Find \( P \) - the change of coordinate matrix from \( \gamma \) to \( \beta \) coordinates.
+            
+            We have
+            \begin{align*}
+                P &= \begin{pmatrix}
+                    [E_{11}]_\beta & [E_{22}]_\beta & [E_{12} + E_{21}]_\beta &  [E_{12} - E_{21}]_\beta \\
+                \end{pmatrix} \\
+                &= \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 0 & 1 & 1  \\
+                    0 & 0 & 1 & -1  \\
+                    0 & 1 & 0 &  0 \\
+                \end{pmatrix}
+            \end{align*}
             \item Find \( P^{-1} \) - the change of coordinate matrix from \( \beta \) to \( \gamma \) coordinates.
+            
+            Similarly,
+            \begin{align*}
+                P^{-1} &= \begin{pmatrix}
+                    [E_{11}]_\gamma & [E_{12}]_\gamma & [E_{21}]_\gamma & [E_{22}]_\gamma \\
+                \end{pmatrix} \\
+                &= \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 0 & 0 & 1  \\
+                    0 & \frac{1}{2} & \frac{1}{2} & 0  \\
+                    0 & \frac{1}{2} & -\frac{1}{2} & 0  \\
+                \end{pmatrix}
+            \end{align*}
             \item Find \( A = [T]_\beta \).
+            
+            We see that
+            \begin{align*}
+                A &= \begin{pmatrix}
+                    [T(E_{11})]_\beta & [T(E_{12})]_\beta & [T(E_{21})]_\beta & [T(E_{22})]_\beta \\
+                \end{pmatrix} \\
+                &= \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 0 & 1 & 0  \\
+                    0 & 1 & 0 & 0  \\
+                    0 & 0 & 0 & 1  \\
+                \end{pmatrix}
+            \end{align*}
             \item Find \( B = [T]_\gamma \).
+            
+            Once again,
+            \begin{align*}
+                B &= \begin{pmatrix}
+                    [T(E_{11})]_\gamma & [T(E_{22})]_\gamma & [T(E_{12} + E_{21})]_\gamma &  [T(E_{12} - E_{21})]_\gamma \\
+                \end{pmatrix} \\
+                &= \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 1 & 0 & 0  \\
+                    0 & 0 & 1 & 0  \\
+                    0 & 0 & 0 & -1 \\
+                \end{pmatrix}
+            \end{align*}
+
             \item Confirm that \( A = PBP^{-1} \) using (a)-(d).
+            
+            \begin{align*}
+                PBP^{-1} &=
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 0 & 1 & 1  \\
+                    0 & 0 & 1 & -1  \\
+                    0 & 1 & 0 &  0 \\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 1 & 0 & 0  \\
+                    0 & 0 & 1 & 0  \\
+                    0 & 0 & 0 & -1 \\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 0 & 0 & 1  \\
+                    0 & \frac{1}{2} & \frac{1}{2} & 0  \\
+                    0 & \frac{1}{2} & -\frac{1}{2} & 0  \\
+                \end{pmatrix} \\
+                &= \begin{pmatrix}
+                    1 & 0 & 0 &  0 \\
+                    0 & 0 & 1 &  -1 \\
+                    0 & 0 & 1 &  1 \\
+                    0 & 1 & 0 &  0 \\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0  \\
+                    0 & 0 & 0 & 1  \\
+                    0 & \frac{1}{2} & \frac{1}{2} & 0  \\
+                    0 & \frac{1}{2} & -\frac{1}{2} & 0  \\
+                \end{pmatrix} \\
+                &=
+                \begin{pmatrix}
+                    1 & 0 & 0 &  0 \\
+                    0 & 0 & 1 &  0 \\
+                    0 & 1 & 0 &  0 \\
+                    0 & 0 & 0 &  1 \\
+                \end{pmatrix} \\
+                &= A
+            \end{align*}
+            as expected.
         \end{enumerate}
     \end{question}
 
     \begin{question}{5}
         Let \( T : \mathcal{M}_{n \times n}(\mathbb{F}) \to \mathcal{M}_{n \times n}(\mathbb{F}) \) be the linear map given by \( T(A) = A + A^T \).
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Find \( N(T) \) and \( \dim N(T) \).
+            
+            We claim that \(N(T)\) is the set of all skew symmetric matrices with zeroes on the diagonal, which has dimension \(\frac{1}{2}n(n-1)\).
+            
+            Set \(T(A) = A + A^T = 0\). We have that \(A_{ij} + A_{ji} = 0\) for each \(0 < i,j \leq n\). In particular, we have that \(A_{ij} = 0\) if \(i = j\) and \(A_{ij} = -A_{ji}\) otherwise. But this describes exactly all skew symmetric matrices with zeroes on the diagonal. The basis for this set is
+            \[
+                \beta = \{ E_{ij} - E_{ji} : 0 < i < j \leq n \}
+            \]
+            and there are \(\frac{1}{2}n(n-1)\) vectors in this set, so \(\dim N(T) = \frac{1}{2}n(n-1)\).
             \item What is \( \operatorname{im}(T) \)?
+            
+            We claim that \(\mathrm{im} (T)\) is the set of all symmetric matrices \(S_n\). We see that
+            \[
+                (A + A^t)_{ij} = A_{ij} + A^t_{ij} = A_{ij} + A_{ji} = A_{ji} + A^t_{ji} = (A + A^t)_{ji}
+            \]
+            so \(\mathrm{im} (T) \subseteq S_n\). To show set equality, suppose that \(B\) is a symmetric matrix. Let \(A = \frac{1}{2}B\) then
+            \[
+                T(A) = \frac{1}{2}T(B) = \frac{1}{2}(B + B^t) = B
+            \]
+            Thus \(\mathrm{im} (T) = S_n\) and has basis
+            \[
+                \gamma = \{ E_{ij} : 0 < i \leq j \leq n \}.
+            \]
+            and is dimension \(\frac{1}{2}n(n+1)\).
             \item Is \( \mathcal{M}_{n \times n}(\mathbb{F}) = \operatorname{im}(T) \oplus N(T) \)?
+            
+            Yes.
+
+            To show this, notice that \(\beta \cap \gamma = \varnothing\), so \(\mathrm{im} (T) \oplus N(T)\) has basis \(\alpha = \beta \cup \gamma\). But notice that \(|\alpha| = \frac{1}{2}n(n-1) + \frac{1}{2}n(n+1) = n^2\), which is the dimension of \(\mathcal{M} _n(\mathbb{F})\). Therefore \(\alpha\) is actually a basis for \(\mathcal{M} _n(\mathbb{F})\) and thus \(\mathcal{M} _n(\mathbb{F}) = \mathrm{im} (T) \oplus N(T)\).
         \end{enumerate}
     \end{question}
 
@@ -299,15 +556,54 @@
         \end{enumerate}
         \tcblower
 
-        Suppose (a). We prove (b).
+        Suppose (a). We prove (b) and (c) at the same time.
+
+        Let \(\beta = \{ v_1, ..., v_n \}, \beta' = \{ v'_1, ..., v'_n \}\) be bases for \(\mathbb{F}^n\) and \(V\) respectively. For \(i = 1, ..., n\), let
+        \[
+            u_i = \sum_{j=1}^{n} P_{ji} v_j \text{ and } u'_i = \sum_{j=1}^{n} P_{ji} v'_j.
+        \]
+        Define \(\gamma = \{ u_1, ...,u_n \}, \gamma ' = \{ u'_1, ..., u'_n \}\). We claim that they are bases for \(\mathbb{F}^n\) and \(V\). We will only show that is the case for \(\gamma\), because the argument is the same for \(\gamma '\).
+
+        It suffices to show that \(\gamma\) is linearly independent, as it is a set of \(n\) vectors, from which it will follow that \(\gamma\) is a basis for \(\mathbb{F}^n\). For constants \(c_i \in \mathbb{F}\), let
+        \[
+            \sum_{i=1}^{n} c_i \sum_{j=1}^{n} P_{ji} v_j = 0
+        \]
+        By the linear independence of \(\beta\), for each \(j\),
+        \[
+            \sum_{i=1}^{n} c_i P_{ji} = 0
+        \]
+        But this is the same as saying
+        \[
+            P \begin{pmatrix}
+                 c_1 \\
+                 \vdots \\
+                 c_n \\
+            \end{pmatrix}
+            = \vec{0}
+        \]
+        Since \(P^{-1}\) exists, we perform left multiplication by \(P^{-1}\) to see that
+        \[
+            \begin{pmatrix}
+                c_1 \\
+                \vdots \\
+                c_n \\
+           \end{pmatrix} = 0
+        \]
+        which means that \(c_i = 0\) for all \(i\), thus showing that \(\gamma\) is linearly independent and indeed a basis for \(\mathbb{F}^n\), and by the same argument, \(\gamma'\) is also a basis for \(V\).
+
+        Finally, notice that for each \(u_i\), \([u_i]_\beta\) is equal to the \(i\)th row of \(P\) which confirms that \(P = [I_{\mathbb{F}^n}]_\gamma^\beta\). The same applies for \(u'_i\) so \(P = [I_V]_{\gamma'}^{\beta'}\).
 
         Consider the linear transformation \(T_P : \mathbb{F}^n \to \mathbb{F}^n\). Let \(\beta\) be an ordered basis for \(\mathbb{F}^n\). We will show that \(\gamma = T_P(\beta)\) is also an ordered basis for \(\mathbb{F}^n\). Since \(P\) is invertible, \(T_P\) has an inverse \((T_P)^{-1} = T_{P^{-1}}\), so \(T_P\) is surjective and \(\mathrm{span} (T_P(\beta)) = \mathbb{F}^n\). Since \(|T_P(\beta)| = n\), \(T_P(\beta)\) is indeed an ordered basis. Thus we can conclude that \(P\) is a change of basis matrix from \(\beta\) to \(\gamma\).
 
         \medskip
 
-        Suppose (b). We prove (c).
+        Suppose (c). We prove (a).
 
-        Let \(\gamma = \{ v_1, ..., v_n \}\) be an ordered basis for \(V\). Let \(\beta',\gamma'\) be ordered bases of \(\mathbb{F}^n\) so that \(P = [I_{\mathbb{F}^n}]_{\beta'}^{\gamma'}\). Let \(\beta = \{ u_1, ..., u_n \}\) be the set of vectors such that \([u_i]_\gamma = P \circ \phi^{-1} (v_i)\) 
+        For some bases \(\beta , \gamma\), \(P = [I_V]_\beta^\gamma\). We claim that \(P^{-1} = [I_V]_\gamma^{\beta}\). Indeed,
+        \[
+            P P^{-1} =  [I_V]_\beta^\gamma [I_V]_\gamma^{\beta} = [I_V]_\gamma = I_n
+        \]
+        This covers all the equivalences and we are done.
     \end{question}
 
     \begin{question}{9}
@@ -361,6 +657,10 @@
 
     \begin{question}{10}
         Let \( V, W \) be finite dimensional vector spaces over \( \mathbb{F} \), and \( T : V \to W \) a linear map with \(\rank T = 2\). Set \( n = \dim V \), \( m = \dim W \). Let \( \mathbf{x}_1, \mathbf{x}_2 \in \mathbb{F}^n \) be two non-parallel vectors. Prove there exists bases \( \beta, \gamma \) of \( V, W \) respectively, so that \( [T]_\beta^\gamma = (\mathbf{x}_1 \ \mathbf{x}_2 \ \mathbf{0} \ \cdots \ \mathbf{0}) \). (Hint: use problems 7,8.)
+
+        \tcblower
+
+        By the Dimension Theorem, \(\mathrm{null}(T) = n-2 \). Let \(\alpha = \{ v_1, ..., v_{n-2} \}\) be a basis for \(N(T)\) and extend this basis into a basis \(\{ a, b, v_1, ..., v_{n-2}\}\) which we set as \(\gamma\).
     \end{question}
 
     \begin{question}{11}
@@ -368,7 +668,7 @@
 
         For example, if \( T : \mathbb{R}^3 \to \mathbb{R}^3 \) is counter-clockwise rotation around the \( z \)-axis by angle \( \theta \), then \( P_{xy} = \{(x, y, 0) \in \mathbb{R}^3\} \) is \( T \)-invariant, as is \( L_z \) (the \( z \)-axis).
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Verify the claims made above, by showing that \( P_{xy} \) and \( L_z \) are \( T \)-invariant.
             \item Show that \( \mathbb{R}^3 = P_{xy} \oplus L_z \) by finding a basis \( \beta = \beta_1 \cup \beta_2 \) for \( \mathbb{R}^3 \) so that \( \beta_1 \) is a basis for \( P_{xy} \) and \( \beta_2 \) is a basis for \( L_z \).
             \item Using your basis \( \beta \) from (b), find \( [T]_\beta \).
@@ -380,7 +680,7 @@
 
         We will generalize what we saw in \#11c.
 
-        \begin{enumerate}
+        \begin{enumerate}[label=(\alph*)]
             \item Extend \( \beta_1 \) to a basis \( \beta \) of \( V \). Show that \( [T]_\beta = \begin{pmatrix} A & C \\ O_{n-k,k} & B \end{pmatrix} \), where \( A \) is \( k \times k \), \( B \) is \( (n-k) \times (n-k) \), and \( C \) is \( k \times (n-k) \).
             \item Suppose that \( W_2 \) is a subspace so that \( V = W_1 \oplus W_2 \). Let \( \beta = \beta_1 \cup \beta_2 \), where \( \beta_2 \) is any basis for \( W_2 \).
 
