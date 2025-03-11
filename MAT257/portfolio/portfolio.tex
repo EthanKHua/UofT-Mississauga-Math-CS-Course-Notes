@@ -33,7 +33,7 @@
 	\newtheorem{example}[thm]{Example}
 	\newtheorem{exercise}[thm]{Exercise} %Exercise
 
-\title{MAT257 Midterm Portfolio - Ethan Hua}
+\title{MAT257 Final Portfolio - Ethan Hua}
 \date{}
 
 \begin{document}
@@ -2817,4 +2817,18 @@
         \]
         as desired.
     \end{example}
+    \subsection{Precompactness}
+    We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
+    \begin{defn}
+        A metric space \(X\) is \textit{precompact} if any open cover permits a \textit{countable} subcover.
+    \end{defn}
+    While it is cumbersome to directly find examples of precompact metric spaces, we can show that precompactness is equivalent to certain metric space properties, and thus show that all metric spaces with those properties are also precompact.
+    \begin{prop}
+        A metric space is precompact if and only if it is separable.
+    \end{prop}
+    \begin{proof}
+        Let \(X\) be a metric space. Suppose that \(X\) is precompact. For \(n \in \mathbb{N}\), let \(U_n = \{ B\left( x_{ni}, \frac{1}{n} \right) \}_{i \in I}\) be an open cover of \(X\), and suppose without loss of generality that \(U_n\) is countable. It follows that \(U = \bigcup_{n=1}^{\infty} U_n\) is countable as well. Let \(C = \{ x_{ni} \}_{i \in I}\) be the collection of all the open ball centers in \(U\). This set is countable, so it only remains to show that \(C\) is dense in \(X\). Let \(x \in X\), \(\varepsilon > 0\). Take \(n\) such that \(\frac{1}{n} < \varepsilon\). Then \(x\) is contained in some open ball \(B(x_i , \frac{1}{n})\). But this implies that \(x_i \in B(x, \varepsilon)\), so \(C\) is dense. Thus \(X\) is separable.
+
+        Conversely, suppose that \(X\) is separable. Let \(\{ U_i \} _{i \in I}\) be an open cover for \(X\).
+    \end{proof}
 \end{document}
