@@ -40,4 +40,4 @@
 \contentsline {subsubsection}{\numberline {2.2.4}Exercise 4.24.}{45}{}%
 \contentsline {subsubsection}{\numberline {2.2.5}Exercise 6.28}{45}{}%
 \contentsline {section}{\numberline {3}Original Work}{45}{}%
-\contentsline {subsection}{\numberline {3.1}Precompactness}{50}{}%
+\contentsline {subsection}{\numberline {3.1}Precompactness}{51}{}%

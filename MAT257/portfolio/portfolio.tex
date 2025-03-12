@@ -2843,21 +2843,67 @@
     \end{proof}
     We can use this notion to define a multivariate antiderivative as follows:
     \begin{defn}
-        Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^{nm}\) be a function of the form \(f(x_1, ..., x_n) = (f_1(x_1, ..., x_n), ..., f_n(x_1, ..., x_n))\), where \(U\) is open and each \(f_i: U \to \mathbb{R}^m\) are differentiable functions. An \textbf{antiderviative} of \(f\), if it exists, is a function \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) such that \(\frac{\partial F}{\partial x_i} = f_i\) for all \(i\).
+        Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^{nm}\) be a function of the form \(f(x_1, ..., x_n) = (f_1(x_1, ..., x_n), ..., f_n(x_1, ..., x_n))\), where \(U\) is open and each \(f_i: U \to \mathbb{R}^m\) are differentiable functions. An \textbf{antiderivative} of \(f\), if it exists, is a function \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) such that \(\frac{\partial F}{\partial x_i} = f_i\) for all \(i\).
     \end{defn}
+    \begin{example}
+        Let \(f: \mathbb{R}^3 \to \mathbb{R}^3\) be defined by
+        \[
+            f(x,y,z) = (y^2 \sin z,2xy \sin z,xy^2 \cos z).
+        \]
+        We first verify that \(f\) has an antiderivative. We compare the required partial derivatives:
+        \begin{align*}
+            \frac{\partial f_x}{\partial y} (x,y,z) &= 2y\sin z \\
+            \frac{\partial f_y}{\partial x} (x,y,z) &= 2y\sin z \\
+            \frac{\partial f_x}{\partial z} (x,y,z) &= y^2 \cos z \\
+            \frac{\partial f_z}{\partial x} (x,y,z) &= y^2 \cos z \\
+            \frac{\partial f_y}{\partial z} (x,y,z) &= 2xy \cos z \\
+            \frac{\partial f_z}{\partial y} (x,y,z) &= 2xy \cos z \\
+        \end{align*}
+        Since the pairs match, we confirm that the antiderivative of \(f\) does indeed exist and is given by
+        \[
+            F(x,y,z) = \frac{1}{3}\left(\int y^2 \sin z\ dx + \int 2xy \sin z\ dy + \int xy^2 \cos z\ dz\right) = xy^2 \sin z
+        \]
+    \end{example}
     Based on the concept of an antiderivative in single variable calculus, we expect there to be a tight correlation with the derivative of a function. Here, we show that is indeed the case.
     \begin{thm}
         If \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) is the antiderivative of \(f\), then
         \[
             JF(p) = \begin{pmatrix}
-                f_1(p)^t & \cdots &  f_n(p)^t \\
-            \end{pmatrix}
+                f_1(p) \\
+                \vdots \\
+                f_n(p) \\
+            \end{pmatrix}^t
         \]
         for all \(p \in U\).
     \end{thm}
     \begin{proof}
-        Let \(F = (F_1, ..., F_m)\), where \(F_i : \mathbb{R}^n \to \mathbb{R}\) are functions.
+        Let \(F = (F_1, ..., F_m)\), where \(F_i : \mathbb{R}^n \to \mathbb{R}\) are functions. As well, write
+        \[
+            f = (f_1, ..., f_n)
+        \]
+        where \(f_i = (f_{i1} , ..., f_{in})\). Then note that
+        \[
+            (JF(p))_{ij} = \frac{\partial F_i}{\partial x_j}(p)
+        \]
+        but since \(F\) is the antiderivative of \(f\), we know that \(\frac{\partial F}{\partial x_j} = f_j\), so
+        \[
+            \frac{\partial F_i}{\partial x_j}(p) = f_{ji} = \begin{pmatrix}
+                f_1(p) & \cdots & f_n(p) \\
+            \end{pmatrix}_{ji} = \begin{pmatrix}
+                f_1(p) \\
+                \vdots \\
+                f_n(p) \\
+            \end{pmatrix}^t_{ij}.
+        \]
     \end{proof}
+    We can also define repeated antiderivatives recursively.
+    \begin{defn}
+        Let \(k \in \mathbb{N}\), \(f: \mathbb{R}^n \to \mathbb{R}^{knm}\). The \(k\)th antiderivative of \(f\) is
+        \begin{itemize}
+            \item The antiderivative of \(f\) if \(k = 1\) (in the sense of the definition above),
+            \item The antiderivative of the \(k-1\)th antiderivative of \(f\) if \(k > 1\).
+        \end{itemize}
+    \end{defn}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
     \begin{defn}
