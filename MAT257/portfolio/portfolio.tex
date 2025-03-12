@@ -2831,12 +2831,32 @@
 
         Conversely, suppose that \(X\) is separable. Let \(\{ U_i \} _{i \in I}\) be an open cover for \(X\).
     \end{proof}
-    \begin{prop}
+    \begin{cor}
         Every subset of a precompact metric space is also precompact.
-    \end{prop}
+    \end{cor}
     \begin{proof}
-        Let \(X\) be a metric space with \(C \subseteq X\). Let \(\{ U_i \} _{i \in I}\) be an open cover for \(C\). We extend this collection into an open cover of \(X\) by simply taking 
+        We know that precompactness is equivalent to separability, and we also know that any subset of a separable metric space is also separable, and thus precompact.
     \end{proof}
     For this section, we focus mainly on \(\mathbb{R}^n\) rather than arbitrary precompact metric spaces.
+    \begin{prop}
+        Every set with a compact exhaustion is precompact.
+    \end{prop}
+    \begin{proof}
+        Let \(A\) be a set with a compact exhaustion \(K_n\). Let \(\{ U_i \} _{i \in I}\) be an open cover of \(A\). Notice that this is also an open cover for each \(K_n\), which induces a finite subcover \(\mathcal{U}_n\) for each compact set. We take the countable union of these sets and claim that is the desired countable subcover.
+
+        Let \(x \in A\). Then \(x\) is contained in some \(K_n\). But this implies that \(x\) is in some open set \(U_i\) such that \(U_i \in \mathcal{U}_n\), so this choice is indeed a countable subcover.
+    \end{proof}
+    \begin{cor}
+        \(\mathbb{R}^n\) is precompact.
+    \end{cor}
+    \begin{proof}
+        This can be seen quickly, as \(\left( \cl{B}(0, n) \right)_{n \in \mathbb{N}}\) is a compact exhaustion of \(\mathbb{R}^n\), so we can apply the proposition above to obtain our conclusion.
+    \end{proof}
+    \begin{thm}
+        Let \(M \subseteq \mathbb{R}^N\) be a manifold. Then \(M\) has a countable atlas.
+    \end{thm}
+    \begin{proof}
+        Let \(\{ (U_i , \varphi _i) \}_{i \in I}\) be an atlas for \(M\). Since \(\{ U_i \}\) constitutes an open cover of \(M\), we can find a countable subcover \(\{ U_{i_n} \}_{n \in \mathbb{N}}\) by the precompactness of \(M\). Then \(\{ (U_{i_n}, \varphi _{i_n}) \}_{n \in \mathbb{N}}\) is still an atlas over \(M\), but is countable, so we are done.
+    \end{proof}
 
 \end{document}
