@@ -1,0 +1,46 @@
+\documentclass{eh-homework}
+
+\begin{document}
+    \begin{question}{1}
+        Let $G$ be a simple graph with vertex set $V$ and edge set $E$. 
+        Define a subset of vertices $S \subseteq V$ to be \textbf{unfriendly} if for any two vertices $u,v \in S$, $u$ and $v$ are \underline{not} adjacent in $G$. 
+        \begin{enumerate}[label=(\alph*)]
+            \item List all unfriendly subsets of vertices of the graph $H$, which has vertex set $V(H) = \{1,2,3,4,5,6\}$ and edge set $E(H) = \{(1,2),(1,3),(1,4),(2,4),(2,5),(3,5),(5,6)\}$. 
+            Explain how you know you've found all of them.
+            \item Suppose that $S \subseteq V$ is the largest unfriendly subset of vertices of a graph $G$. 
+            Show that any vertex of $G$ is either in $S$, or adjacent to a vertex in $S$.
+        \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        We can find all unfriendly subsets methodically by first considering subsets that include 1, then subsets the include 2 but not 1, and so on. This method should be able to find all subsets.
+
+        We see that \(1\) is adjacent to \(2,3,4\), so any unfriendly subset with \(1\) cannot include \(2,3,4\). The only candidates left are \(5,6\), but we see that they share an edge and thus cannot be in the same set. Thus the unfriendly subsets including 1 are \(\{ 1 \} ,\{ 1,5 \} ,\{ 1,6 \}\).
+
+        Next, we find unfriendly subsets including 2 but not 1. Notice that \(2\) is adjacent to \(1,4,5\), so \(2\) can be in a subset with \(3,6\) both, or neither, so the unfriendly subsets including 2 but not 1 are \(\{ 2 \} , \{ 2,3 \} , \{ 2,6 \} , \{ 2,3,6 \}\).
+
+        Similarly for \(3\), the vertices it is not adjacent to is \(2,4,6\), but we exclude \(2\). The remaining vertices do not share an edge with each other, so the unfriendly subsets including \(3\) but not \(1,2\) are \(\{ 3 \} , \{ 3,4 \} , \{ 3,6 \} , \{ 3,4,6 \}\).
+
+        \(4\) is not adjacent to \(3,5,6\), and we exclude \(3\). However, \(5,6\) are adjacent so an unfriendly subset can only contain zero or one of \(5,6\). Thus the subsets with 4 but not \(1,2,3\) are \(\{ 4 \}, \{ 4,5 \} , \{ 4,6 \}\).
+
+        Next, we want to find subsets including \(5\) but not \(1,2,3,4\). The only other candidate is \(6\), which is adjacent to \(5\), so the only unfriendly subset is \(\{ 5 \}\).
+
+        Finally, the only unfriendly subset that contains \(6\) but not \(1,2,3,4,5\) is \(\{ 6 \}\) for obvious reasons.
+
+        Thus all the unfriendly subsets are
+        \[
+            \{ 1 \} ,\{ 1,5 \} ,\{ 1,6 \},\{ 2 \} , \{ 2,3 \} , \{ 2,6 \} , \{ 2,3,6 \},
+        \]
+        \[
+            \{ 3 \} , \{ 3,4 \} , \{ 3,6 \} , \{ 3,4,6 \},\{ 4 \}, \{ 4,5 \} , \{ 4,6 \},\{ 5 \}, \{ 6 \}
+        \]
+
+        \medskip
+
+        (b):
+
+        Let \(S\) be the largest unfriendly subset. Let \(v \in V\). If \(v \in S\), we are done, so consider the case where \(v \notin S\). Suppose for contradiction that \(v\) is not adjacent to any vertex in \(S\). This implies that \(S \cup \{ v \}\) is an unfriendly subset of vertices, which contradicts the assumption that \(S\) is the largest unfriendly subset. Thus any vertex is either in \(S\) or adjacent to a vertex in \(S\).
+    \end{question}
+\end{document}
