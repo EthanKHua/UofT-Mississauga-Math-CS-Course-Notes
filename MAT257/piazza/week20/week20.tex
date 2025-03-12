@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\newcommand{\cl}[1]{\overline{#1}}
+
+\swapnumbers % places numbers before thm names
+
+\theoremstyle{plain} % The "plain" style italicizes all body text.
+	\newtheorem{thm}{Theorem}
+		\numberwithin{thm}{section} % Theorem numbers are determined by section.
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{exercise}[thm]{Exercise} %Exercise
+
+\begin{document}
+    \section*{Exercise 16.7. Tangent space to a graph}
+    \textbf{Ethan}
+
+    \medskip
+
+    Let \(U \subseteq \mathbb{R}^n\) be an open set, and let \(f: U \to \mathbb{R}\) be some function (that is smooth). Let \(M\) be the graph of \(f\), so that \(M\) is a smooth manifold in \(\mathbb{R}^{n+1}\).
+
+    We attempt to find the tangent space \(T_p M\) of some point \(p\).
+
+    Since \(M\) is a graph, we can cover \(M\) with a single chart \((U, \varphi)\), where \(\varphi (x) = (x, f(x))\). Fix \(p \in M\) and write \(p = \varphi (q)\), for some \(q \in U\). From exercise \(16.3\), a vector \(v\) is in the tangent space \(T_p M\) if \(v\) is in the image of \(\varphi '(q)\). That is, the tangent space coincides exactly with the image of \(\varphi (q)\). Thus it suffices to find \(\varphi (q)(\mathbb{R}^{n})\). We have that
+    \[
+        J \varphi (q) = \left( \begin{array}{c}
+            I_n \\
+            \hline
+            \nabla f(q)
+        \end{array} \right) 
+    \]
+    So for any \(h \in \mathbb{R}^n\),
+    \[
+        \varphi '(q)(h) = (h, \nabla f(q)h)
+    \]
+    and we can conclude that
+    \[
+        T_p M = \left\{ (p, (h, \nabla f(q)h)) \in \mathbb{R}^{n+1}_p : p = (q, f(q)), h \in \mathbb{R}^n \right\}.
+    \]
+\end{document}
