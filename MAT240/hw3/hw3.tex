@@ -673,6 +673,54 @@
             \item Show that \( \mathbb{R}^3 = P_{xy} \oplus L_z \) by finding a basis \( \beta = \beta_1 \cup \beta_2 \) for \( \mathbb{R}^3 \) so that \( \beta_1 \) is a basis for \( P_{xy} \) and \( \beta_2 \) is a basis for \( L_z \).
             \item Using your basis \( \beta \) from (b), find \( [T]_\beta \).
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        We begin by finding an expression for \(T\). Notice that
+        \begin{align*}
+            T(e_1) &= (\cos \theta , \sin \theta , 0) \\
+            T(e_2) &= (-\sin \theta, \cos \theta, 0) \\
+            T(e_3) &= (0,0,1) \\
+        \end{align*}
+        In the case of \(e_1, e_2\), the projection onto the \(xy\)-plan lies on the unit circle, and thus each vector is rotated \(\theta\) and \(\theta + \frac{\pi}{2}\) radians respectively (relative to the point \((0,1)\)). Thus we have that
+        \begin{align*}
+            T(x,y,z) &= x(\cos \theta , \sin \theta , 0) + y(-\sin \theta , \cos \theta , 0) + z(0,0,1) \\
+            &= (x\cos \theta - y\sin \theta , x\sin \theta +y\cos \theta , z)
+        \end{align*}
+        Now, let \((x,y,0) \in P_{xy}\). Then
+        \[
+            T(x,y,0) = (x \cos \theta - y\sin \theta , x\sin \theta + y\cos \theta , 0) \in P_{xy}
+        \]
+        Additionally, let \((0,0,z) \in L_z\). Then
+        \[
+            T(0,0,z) = (0,0,z) \in L_z
+        \]
+        Thus \(P_{xy}\) and \(L_z\) are T-invariant subspaces.
+
+        \medskip
+
+        (b):
+
+        Let \(\beta_1 = \{ e_1, e_2 \}, \beta _2 = \{ e_3 \}\). It is clear that \(\beta _1\) is a basis for the \(xy\)-plane and \(\beta _2\) is a basis for the \(z\)-axis. Then \(\beta = \{ e_1, e_2, e_3 \}\) is the standard ordered basis for \(\mathbb{R}^3\), which was what we wanted to show.
+
+        \medskip
+
+        (c):
+
+        We have already found all we need from the previous parts:
+        \[
+            [T]_\beta = \begin{pmatrix}
+                [T(e_1)]_\beta & [T(e_2)]_\beta &  [T(e_3)]_\beta \\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \cos \theta & \sin \theta &  0 \\
+                -\sin \theta & \cos \theta &  0 \\
+                0 & 0 &  1 \\
+            \end{pmatrix}
+        \]
     \end{question}
 
     \begin{question}{12}
