@@ -2817,6 +2817,20 @@
         \]
         as desired.
     \end{example}
+    We can generalize this result to multiple variables:
+    \begin{thm}
+        Let \(N_1, ..., N_n: \mathbb{R}^n \to \mathbb{R}^m\) be differentiable functions. Then there exists a twice differentiable function \(F: \mathbb{R}^n \to \mathbb{R}^m\) such that \(\frac{\partial F}{\partial x_i} = N_i\) if and only if \(\frac{\partial N_i}{\partial x_j} = \frac{\partial N_j}{\partial x_i}\) for all \(i,j \in \{ 1, ..., n \}\).
+    \end{thm}
+    \begin{proof}
+        Suppose such \(F\) does exist. For each \(i,j\), we can apply Clairaut's Theorem to each component function of \(N_i, N_j\) to see that
+        \[
+            \frac{\partial N_i}{\partial x_j} = \frac{\partial F}{\partial x_j \partial x_i} = \frac{\partial F}{\partial x_i \partial x_j} = \frac{\partial N_j}{\partial x_i}.
+        \]
+        Conversely, suppose that \(\frac{\partial N_i}{\partial x_j} = \frac{\partial N_j}{\partial x_i}\) for all \(i,j \in \{ 1, ..., n \}\). Similar to the smaller case, define
+        \[
+            F = \sum_{i=1}^{n} \int N_i\ dx_i - \frac{1}{n}\sum_{i=1}^{n} \sum_{j=i+1}^{n} \int \int \frac{\partial N_i}{\partial x_j} \ dx_j\ dx_i
+        \]
+    \end{proof}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
     \begin{defn}
