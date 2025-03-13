@@ -2916,7 +2916,9 @@
     \begin{proof}
         Let \(X\) be a metric space. Suppose that \(X\) is precompact. For \(n \in \mathbb{N}\), let \(U_n = \{ B\left( x_{ni}, \frac{1}{n} \right) \}_{i \in I}\) be an open cover of \(X\), and suppose without loss of generality that \(U_n\) is countable. It follows that \(U = \bigcup_{n=1}^{\infty} U_n\) is countable as well. Let \(C = \{ x_{ni} \}_{i \in I}\) be the collection of all the open ball centers in \(U\). This set is countable, so it only remains to show that \(C\) is dense in \(X\). Let \(x \in X\), \(\varepsilon > 0\). Take \(n\) such that \(\frac{1}{n} < \varepsilon\). Then \(x\) is contained in some open ball \(B(x_i , \frac{1}{n})\). But this implies that \(x_i \in B(x, \varepsilon)\), so \(C\) is dense. Thus \(X\) is separable.
 
-        Conversely, suppose that \(X\) is separable. Let \(\{ U_i \} _{i \in I}\) be an open cover for \(X\).
+        Conversely, suppose that \(X\) is separable. Let \(\{ U_i \} _{i \in I}\) be an open cover for \(X\). Let \(C \subseteq X\) be a separable subset of \(X\) and write it as \(C = \{ q_1, q_2, ... \}\). We construct the countable subcover \(U\) as follows. For all \(n,k \in \mathbb{N}\), consider the open ball \(B(q_n, \frac{1}{k})\). For each of these balls, if there exists an open set \(U_{nk}\) inside the cover such that \(B(q_n, \frac{1}{k}) \subseteq U_{nk}\), we include \(U_{nk}\) inside the subcover. Notice that \(U\) is countable by construction.
+
+        Let \(x \in X\). There is some open set \(U_i\), not necessarily in \(U\) that contains \(x\). Take the open ball \(B(x, \delta) \subseteq U_i\).
     \end{proof}
     \begin{cor}
         Every subset of a precompact metric space is also precompact.
