@@ -743,8 +743,53 @@
         \begin{enumerate}[label=(\alph*)]
             \item Let \( \beta = \{ e_1, \ldots, e_n \} \) be the standard basis for \( \mathbb{F}^n \), and \( \gamma = \{ v_1, \ldots, v_n \} \) a basis for \( \mathbb{F}^n \). Then there exists a sequence of row operations that takes \( \beta \) to \( \gamma \). (That is, \( v_i \) is obtained from \( e_i \) using the same row operations for all \( i \).)
             \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( T : V \to V \) a linear map. If \( \beta, \gamma \) are bases for \( V \) so that \( [T]_\beta^\gamma = I_n \), then \( T = I_V \).
-            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( S, T : V \to V \) linear maps. If rank \( T = \text{rank } S \), then there exist bases \( \beta, \beta', \gamma, \gamma' \) for \( V \) so that \( [S]_\beta^\gamma = [T]_\beta^\gamma \).
+            \item Let \( V \) be a finite dimensional vector space over \( \mathbb{F} \) and \( S, T : V \to V \) linear maps. If rank \( T = \text{rank } S \), then there exist bases \( \beta, \beta', \gamma, \gamma' \) for \( V \) so that \( [S]_\beta^\gamma = [T]_{\beta'}^{\gamma'}\).
             \item Let \( A, B \in \mathcal{M}_{n \times n}(\mathbb{F}) \). If \( A^2 \sim B^2 \), then \( A \sim B \).
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+        This statement is true. Consider the linear operator \(T: \mathbb{F}^n \to \mathbb{F}^n\) defined by \(T(e_i) = v_i\) for all \(i \in \{ 1, ..., n \}\). Notice that \(T\) is surjective, as \(\mathrm{span} (T(\beta)) = \mathrm{span} (\gamma) = \mathbb{F}^n\). It follows that \(T\) is invertible, so \([T]_\beta^\gamma\) is invertible, so it can be decomposed into a number of elementary matrices and thus represent a sequence of row operations. But notice that \([T]_\beta^\gamma\) is exactly the matrix that maps \(e_i\) to \(v_i\), so we have what we wanted.
+
+        \medskip
+
+        (b):
+
+        This is false. Let \(V = \mathbb{F}^n\). Take \(\beta\) as the standard basis. As well, let \(\gamma = \{ e_1, e_2, ..., e_{n-1}, -e_n\}\), so that \(\gamma\) is just \(\beta\) only with the last basis vector multiplied by \(-1\). Consider the linear map \(T\) defined in the previous part. Then \(T(e_n) = -e_n\), so \(T\) is not the identity map, but it is not hard to see that \([T]_\beta^\gamma = I_n\).
+
+        \medskip
+
+        (c):
+
+        This is true. Let \(k = \rank \ T = \rank \ S\). Take \(k\) vectors \(e_1, ..., e_k \). By Question 10, there exists bases \(\beta , \gamma , \beta ', \gamma '\) such that
+        \[
+            [T]_\beta^\gamma = \left(\begin{array}{c|c}
+                I_k & O \\
+                O & O \\
+            \end{array} \right)
+            =
+            [S]_{\beta'}^{\gamma'}
+        \]
+        as desired.
+
+        \medskip
+
+        (d):
+
+        This is false. Consider \(A = \begin{pmatrix}
+            0 &  1 \\
+            0 &  0 \\
+        \end{pmatrix},
+        B = 0_n\), the zero matrix. Then
+        \[
+            A^2 = B^2
+        \]
+        But \(\rank A = 1\) and \(\rank B = 0\), so for any invertible matrix \(P\),
+        \[
+            \rank PAP^{-1} = 1
+        \]
+        so \(A\) is not similar to \(B\).
     \end{question}
 \end{document}
