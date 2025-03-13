@@ -2918,7 +2918,7 @@
 
         Conversely, suppose that \(X\) is separable. Let \(\{ U_i \} _{i \in I}\) be an open cover for \(X\). Let \(C \subseteq X\) be a separable subset of \(X\) and write it as \(C = \{ q_1, q_2, ... \}\). We construct the countable subcover \(U\) as follows. For all \(n,k \in \mathbb{N}\), consider the open ball \(B(q_n, \frac{1}{k})\). For each of these balls, if there exists an open set \(U_{nk}\) inside the cover such that \(B(q_n, \frac{1}{k}) \subseteq U_{nk}\), we include \(U_{nk}\) inside the subcover. Notice that \(U\) is countable by construction.
 
-        Let \(x \in X\). There is some open set \(U_i\), not necessarily in \(U\) that contains \(x\). Take the open ball \(B(x, \delta) \subseteq U_i\).
+        Let \(x \in X\). There is some open set \(U_i\), not necessarily in \(U\) that contains \(x\). Take the open ball \(B(x, \delta) \subseteq U_i\). By the separability of \(X\), there exists some \(q_n \in C\) so that \(q_n \in B( x, \frac{\delta}{2} )\). Let \(k \in \mathbb{N}\) such that \(\frac{1}{k} < \frac{\delta}{2}\) and consider another open ball \(B(q_n, \frac{1}{k}) \subseteq B(x, \delta)\). We are guaranteed that \(U_{nk}\) exists, because \(B(q_n, \frac{1}{k}) \subseteq U_i\), so \(B(q_n, \frac{1}{k})\) of at least one set in the open cover. Thus \(x \in U_{nk} \in U\), so \(U\) is indeed a countable open cover so \(X\) is precompact.
     \end{proof}
     \begin{cor}
         Every subset of a precompact metric space is also precompact.
