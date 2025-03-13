@@ -754,7 +754,34 @@
 
         (a):
 
+        Let \(n = \dim V\). Let \(\beta _1 = \{ v_1, ..., v_k \}\) be a basis for \(W_1\). Let \(\beta = \{ v_1, ..., v_k, v_{k+1} , ..., v_n \}\) be the basis obtained from extending \(\beta _1\). To show that \([T]_\beta = \left(\begin{array}{@{}c|c@{}} A & C \\ \hline O_{n-k,k} & B \end{array} \right)\), we are unconcerned about the matrices on the right hand side, so we only focus on the left side of the matrix. Consider the \(i\)th column of \([T]_\beta\), where \(1 \leq i \leq k\). This is equal to \([T(v_i)]_\beta\). Since \(W_1\) is \(T\)-invariant, \(T(v_i) \in W_1\), so it can be expressed as a linear combination of exclusively vectors in \(\beta _1\). Thus
+        \[
+            [T(v_i)]_\beta = \begin{pmatrix}
+                 a_{1i} \\
+                 \vdots \\
+                 a_{ki} \\
+                 0 \\
+                 \vdots \\
+                 0 \\
+            \end{pmatrix}
+        \]
+        where \(a_{ji} \in \mathbb{F}\) and the bottom \(n-k\) entries are 0. Since this is true for all colummns \(1\) to \(k\), the statement is proven.
 
+        \medskip
+
+        (b):
+
+        Now take \(W_2\) to be a \(T\)-invariant subspace so that \(V = W_1 \oplus W_2\). Let \(\beta = \beta _1 \cup \beta _2\), where \(\beta _1, \beta _2\) are bases for \(W_1, W_2\) respectively. To show that \(\left(\begin{array}{@{}c|c@{}} A & O_{k,n-k} \\ \hline O_{n-k,k} & B \end{array}\right)\), it suffices to show the right sides are equivalent, as we have proved the left side in the previous part. The argument is very similar to before, so we will be brief. For each \(T(v_i)\), where \(v_i \in W_2\), the representation as a linear combination does not use any vectors from \(W_1\), so the first \(k\) entries of \([T(v_i)]_\beta\) are guaranteed to be 0 as required.
+
+        \medskip
+
+        (c):
+
+        The converse is true. Suppose that \([T]_\beta = \left(\begin{array}{@{}c|c@{}} A & O_{k,n-k} \\ \hline O_{n-k,k} & B \end{array}\right)\) is block diagonal. Let \(v \in W_2\). Write \(v = \sum_{i=k+1}^{n} a_i v_i\) as a linear combination of vectors in \(\beta _2\). It follows that
+        \[
+            T(v) = \sum_{i=k+1}^{n} a_i T(v_i) = \sum_{i=k+1}^{n} a_i \sum_{j=k+1}^{n} b_{ij} v_j \in W_2
+        \]
+        thus verifying that \(W_2\) is \(T\)-invariant.
     \end{question}
 
     \begin{question}{13}
