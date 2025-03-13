@@ -660,7 +660,21 @@
 
         \tcblower
 
-        By the Dimension Theorem, \(\mathrm{null}(T) = n-2 \). Let \(\alpha = \{ v_1, ..., v_{n-2} \}\) be a basis for \(N(T)\) and extend this basis into a basis \(\{ a, b, v_1, ..., v_{n-2}\}\) which we set as \(\gamma\).
+        Define
+        \[
+            A = \begin{pmatrix}
+                \mathbf{x}_1 & \mathbf{x}_2 & 0 & \cdots &  0 \\
+            \end{pmatrix}
+        \]
+        \(\rank \ A = 2\) because there are 2 linearly independent rows. Fix two arbitrary bases \(\beta', \gamma'\) and consider \([T]_{\beta'}^{\gamma'}\), which is rank 2 by assumption. By question 9, we can perform a sequence of row and column operations to turn \([T]_{\beta'}^{\gamma'}\) into \(A\). In particular, for invertible matrices \(P \in \mathcal{M} _m(\mathbb{F}), Q \in \mathcal{M} _n(\mathbb{F})\),
+        \[
+            P [T]_{\beta'}^{\gamma'} Q = A
+        \]
+        Using question 8, and noting that the choice of \(\beta\) was arbitrary in its proof, we can say that \(P = [I_W]_{\gamma'}^\gamma\) and \(Q^{-1} = [I_V]_{\beta'}^\beta\) for some basis \(\gamma\) of \(W\) and \(\beta\) of \(V\). Thus we have that
+        \[
+            A = P [T]_{\beta'}^{\gamma'} Q = [I_W]_{\gamma'}^\gamma [T]_{\beta'}^{\gamma'} [I_V]_{\beta}^{\beta'} = [T]_\beta^\gamma
+        \]
+        which is what we wanted.
     \end{question}
 
     \begin{question}{11}
@@ -684,7 +698,7 @@
             T(e_2) &= (-\sin \theta, \cos \theta, 0) \\
             T(e_3) &= (0,0,1) \\
         \end{align*}
-        In the case of \(e_1, e_2\), the projection onto the \(xy\)-plan lies on the unit circle, and thus each vector is rotated \(\theta\) and \(\theta + \frac{\pi}{2}\) radians respectively (relative to the point \((0,1)\)). Thus we have that
+        In the case of \(e_1, e_2\), the projection onto the \(xy\)-plan lies on the unit circle, and thus each vector is rotated \(\theta\) and \(\theta + \frac{\pi}{2}\) radians respectively (relative to the point \((0,1)\)). Then we have that
         \begin{align*}
             T(x,y,z) &= x(\cos \theta , \sin \theta , 0) + y(-\sin \theta , \cos \theta , 0) + z(0,0,1) \\
             &= (x\cos \theta - y\sin \theta , x\sin \theta +y\cos \theta , z)
@@ -729,12 +743,18 @@
         We will generalize what we saw in \#11c.
 
         \begin{enumerate}[label=(\alph*)]
-            \item Extend \( \beta_1 \) to a basis \( \beta \) of \( V \). Show that \( [T]_\beta = \begin{pmatrix} A & C \\ O_{n-k,k} & B \end{pmatrix} \), where \( A \) is \( k \times k \), \( B \) is \( (n-k) \times (n-k) \), and \( C \) is \( k \times (n-k) \).
+            \item Extend \( \beta_1 \) to a basis \( \beta \) of \( V \). Show that \( [T]_\beta = \left(\begin{array}{@{}c|c@{}} A & C \\ \hline O_{n-k,k} & B \end{array} \right)\), where \( A \) is \( k \times k \), \( B \) is \( (n-k) \times (n-k) \), and \( C \) is \( k \times (n-k) \).
             \item Suppose that \( W_2 \) is a subspace so that \( V = W_1 \oplus W_2 \). Let \( \beta = \beta_1 \cup \beta_2 \), where \( \beta_2 \) is any basis for \( W_2 \).
 
-            Prove that if \( W_2 \) is \( T \)-invariant, then \( [T]_\beta = \begin{pmatrix} A & O_{k,n-k} \\ O_{n-k,k} & B \end{pmatrix} \) is block diagonal.
+            Prove that if \( W_2 \) is \( T \)-invariant, then \( [T]_\beta = \left(\begin{array}{@{}c|c@{}} A & O_{k,n-k} \\ \hline O_{n-k,k} & B \end{array}\right) \) is block diagonal.
             \item Is the converse of (b) true or false? Justify your answer.
         \end{enumerate}
+        \tcblower
+        \ 
+
+        (a):
+
+
     \end{question}
 
     \begin{question}{13}
