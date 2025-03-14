@@ -2742,11 +2742,6 @@
         which was what we wanted.
         \smallbreak
     \end{proof}
-
-    % \begin{thm}
-    %     Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\).
-    % \end{thm}
-
     \begin{prop}
         \textbf{Exact equations.} Let \(M,N : \mathbb{R}^2 \to \mathbb{R}\) be totally differentiable functions. Then there exists a twice differentiable function \(F: \mathbb{R}^2 \to \mathbb{R}\) such that \(\dfrac{\partial F}{\partial x} = M\) and \(\dfrac{\partial F}{\partial y} = N\) if and only if \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\).
     \end{prop}
@@ -2896,14 +2891,20 @@
             \end{pmatrix}^t_{ij}.
         \]
     \end{proof}
+    In this case, we denote \(f\) to be the \textbf{characteristic function} of \(JF\).
+
     We can also define repeated antiderivatives recursively.
     \begin{defn}
-        Let \(k \in \mathbb{N}\), \(f: \mathbb{R}^n \to \mathbb{R}^{knm}\). The \(k\)th antiderivative of \(f\) is
+        Let \(k \in \mathbb{N}\), \(f: \mathbb{R}^n \to \mathbb{R}^{n^km}\). The \(k\)th antiderivative of \(f\) is
         \begin{itemize}
             \item The antiderivative of \(f\) if \(k = 1\) (in the sense of the definition above),
             \item The antiderivative of the \(k-1\)th antiderivative of \(f\) if \(k > 1\).
         \end{itemize}
     \end{defn}
+    Now, we can prove the main result we sought out to prove.
+    \begin{thm}
+        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\).
+    \end{thm}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
     \begin{defn}
