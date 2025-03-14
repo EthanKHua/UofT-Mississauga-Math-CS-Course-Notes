@@ -14,12 +14,16 @@
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\diam}{\mathrm{diam}}
+\newcommand{\rank}{\mathrm{rank}}
 \newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\vol}{\mathrm{vol}}
 
 \newcommand{\cl}[1]{\overline{#1}}
 
 \swapnumbers % places numbers before thm names
+
+\allowdisplaybreaks
 
 \theoremstyle{plain} % The "plain" style italicizes all body text.
 	\newtheorem{thm}{Theorem}
@@ -33,7 +37,8 @@
 	\newtheorem{example}[thm]{Example}
 	\newtheorem{exercise}[thm]{Exercise} %Exercise
 
-\title{MAT257 Final Portfolio - Ethan Hua}
+\title{MAT257 Final Portfolio}
+\author{Ethan Hua}
 \date{}
 
 \begin{document}
@@ -2794,12 +2799,401 @@
         \end{proof}
         \newpage
         \subsection{\#38}
+        \textbf{Basel Problem.} Here you will use multivariable calculus to establish the following famous equation:
+        \[ \sum_{n=1}^\infty \dfrac{1}{n^2} = \dfrac{\pi^2}6. \]
+        To do it, you will evaluate the (improper) double integral $\displaystyle \int_U \dfrac{1}{1-xy}$ in two ways. Let $f:(0,1)^2\rightarrow \R$ be the function given by $f(x,y)=\dfrac{1}{1-xy}$, and let $K_N$ denote the closed box $\left[\dfrac{1}N,1-\dfrac{1}{N}\right]^2$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Evaluate $\displaystyle\int_{K_N} f$ using Fubini's theorem.
+
+            \item Evaluate $\displaystyle\int_{K_N} f$ using the Change of Variables formula twice: first using the linear diffeomorphism $(x,y)=(u+v,u-v)$, then using the polar coordinates transform.
+
+            \item Conclude that $\sum_{n=1}^\infty \dfrac{1}{n^2} = \dfrac{\pi^2}6$.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+    By Fubini's:
+    \begin{align*}
+        \int _{K_N} f &= \int _{\frac{1}{N}}^{1-\frac{1}{N}}\int _{\frac{1}{N}}^{1-\frac{1}{N}} \frac{1}{1-xy}\ dy\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\ln (1 - xy) \Big| _{\frac{1}{N}}^{1-\frac{1}{N}}\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\left( \ln \left( 1 - \left(1-\frac{1}{N}\right)x \right) - \ln \left( 1 - \frac{1}{N}x \right) \right)\ dx
+    \end{align*}
+    Notice that \(-1 < -\left( 1-\frac{1}{N} \right),-\frac{1}{N} < 1\), so we can use the power series expansion of \(\ln (1+t)\) to get that
+    \begin{align*}
+        \int _{K_N} f &= \int _{\frac{1}{N}}^{1-\frac{1}{N}} -\frac{1}{x}\left( \sum_{n=1}^{\infty} -\frac{\left( 1-\frac{1}{N}\right)^n x^n}{n} + \sum_{n=1}^{\infty} \frac{\left( \frac{1}{N} \right)^n x^n}{n}\right)\ dx \\
+        &= \int _{\frac{1}{N}}^{1-\frac{1}{N}}\sum_{n=1}^{\infty} \frac{x^{n-1}}{n} \left( \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n\right)\ dx \\
+        &= \sum_{n=1}^{\infty} \frac{x^n}{n^2}\left(  \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n \right) \Bigg| _{\frac{1}{N}}^{1-\frac{1}{N}} \\
+        &= \sum_{n=1}^{\infty} \frac{1}{n^2} \left( \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n \right)^2
+    \end{align*}
+    \medskip
+
+    (b):
+
+    Let \(\Phi : \mathbb{R}^2 \to \mathbb{R}^2\) be the diffeomorphism defined by
+    \[
+        \Phi (x,y) = (x+y, x-y).
+    \]
+    Notice that \(\det J\Phi = \det \begin{pmatrix}
+        1 &  1 \\
+        1 &  -1 \\
+    \end{pmatrix} = -2\) and \(\Phi ^{-1}(x,y) = \left( \frac{x+y}{2}, \frac{x-y}{2} \right)\).
+
+    Define
+    \[E = \left\{ (x,y) \in \mathbb{R}^2 : \frac{1}{N} \leq x \leq 1 - \frac{1}{N}, \left\vert x - \frac{1}{2} \right\vert - \frac{1}{2} + \frac{1}{2N} \leq y \leq \frac{1}{2} - \frac{1}{2N} - \left\vert x-\frac{1}{2} \right\vert\right\}.\]
+
+    We claim that \(\Phi (E) = K_N\).
+
+    Let \(u = \frac{x+y}{2}\), \(v = \frac{x-y}{2}\). Recall that our constraints for \(x\) and \(y\) are \(\frac{1}{N} \leq x,y \leq 1 - \frac{1}{N}\). It follows that
+    \[
+        \frac{1}{N} \leq u \leq 1-\frac{1}{N}
+    \]
+    \[
+        \frac{1}{N} \leq u+v \leq 1 - \frac{1}{N} \implies \frac{1}{N} - u \leq v \leq 1 - \frac{1}{N} - u
+    \]
+    \[
+        \frac{1}{N} \leq u-v \leq 1 - \frac{1}{N} \implies u - 1 + \frac{1}{N} \leq v \leq u - \frac{1}{N}
+    \]
+    If \(\frac{1}{N} \leq u < \frac{1}{2}\), then \(u - 1 + \frac{1}{N} < \frac{1}{N} - u\), so the inequality \(\frac{1}{N} - u \leq v \leq u - \frac{1}{N}\) suffices. On the other hand, if \(\frac{1}{2} \leq u \leq 1 - \frac{1}{N}\), then the inequality \(u - 1 + \frac{1}{N} \leq v \leq 1 - \frac{1}{N} - u\) suffices.
+
+    Therefore, we have that
+    \begin{align*}
+        \int _{K_N} f &= \int _E f \circ \Phi \cdot \left\vert \det J \Phi \right\vert \\
+        &= 2\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \int _{\frac{1}{N} - u}^{u - \frac{1}{N}} \frac{1}{1 - (u + v)(u-v)}\ dv\ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}} \int _{u-1+\frac{1}{N}}^{1-\frac{1}{N}-u} \frac{1}{1 - (u + v)(u-v)}\ dv\ du\right) \\
+        &= 2\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \int _{\frac{1}{N} - u}^{u - \frac{1}{N}} \frac{1}{1 - u^2 + v^2}\ dv\ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}} \int _{u-1+\frac{1}{N}}^{1-\frac{1}{N}-u} \frac{1}{1 - u^2 + v^2}\ dv\ du\right)
+    \end{align*}
+    By symmetry along \(y = 0\), the integral above is equal to
+    \[
+        4\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \int _{0}^{u - \frac{1}{N}} \frac{1}{1 - u^2 + v^2}\ dv\ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}} \int _{0}^{1-\frac{1}{N}-u} \frac{1}{1 - u^2 + v^2}\ dv\ du\right)
+    \]
+    We do both integrals side-by-side:
+    \begin{align*}
+        &=4\left( \int _{\frac{1}{N}}^{\frac{1}{2}} \frac{1}{\sqrt{1 - u^2}}\arctan \left( \frac{u-\frac{1}{N}}{\sqrt{1-u^2}} \right) \ du + \int _{\frac{1}{2}}^{1-\frac{1}{N}}\frac{1}{\sqrt{1 - u^2}}\arctan \left( \frac{1-\frac{1}{N} - u}{\sqrt{1-u^2}} \right)\ du\right)
+    \end{align*}
+    For the first integral, let \(u = \sin \theta\). For the second integral, let \(u = \cos \theta\). We have
+    \begin{align*}
+        &=4\left( \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \frac{\sin \theta -\frac{1}{N}}{|\cos \theta |} \right) \ d \theta - \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \frac{1-\frac{1}{N} - \cos \theta}{|\sin \theta |} \right)\ d \theta\right) \\
+    \end{align*}
+    We remove the absolute values and simplify to get that the integral is equal to
+    \[
+        4\left( \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta - \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \tan \left( \frac{\theta}{2} \right) - \frac{1}{N}\csc \theta \right)\ d \theta\right)
+    \]
+    It is quite difficult to find a closed form for these integrals due to the pesky \(\frac{1}{N}\), but we will deal with it in part (c).
+
+    \medskip
+
+    (c):
+
+    Recall from part (a) that \(\int _{K_N} f = \sum_{n=1}^{\infty} \frac{1}{n^2} \left( \left( 1 - \frac{1}{N} \right)^n - \left(\frac{1}{N} \right)^n \right)^2\). This sum is bounded above by \(\sum_{n=1}^{\infty} \frac{1}{n^2}\), so by the dominated convergence theorem as \(N \to \infty\), \(\int _{K_N}f \to \sum\limits_{n=1}^{\infty} \dfrac{1}{n^2}\). Now, we will show that
+    \[
+        4\left( \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta - \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \tan \left( \frac{\theta}{2} \right) - \frac{1}{N}\csc \theta \right)\ d \theta\right)
+    \]
+    converges to
+    \[
+        \frac{\pi^2}{6}.
+    \]
+    First, we restrict \(N > 2\) to ensure that \(\arcsin \left( \frac{1}{N}\right) < \frac{\pi}{6}\) and \(\arccos \left( 1-\frac{1}{N} \right) < \frac{\pi}{3}\). Since \(\sec t\) is bounded by \(\frac{2}{\sqrt{3}}\) on \(\left[\arcsin \left( \frac{1}{N} \right) , \frac{\pi}{6}\right]\), by the monotonicity of \(\arctan t\) we have that
+    \[
+        \arctan \left( \tan \theta - \frac{2}{\sqrt{3}N} \right) \leq \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \leq \arctan \left( \tan \theta + \frac{2}{\sqrt{3}N} \right)
+    \]
+    We note that \(\arctan t\) is uniformly continuous on a closed interval, so for sufficiently large \(N\), we have that for any \(\theta \in \left[ \arcsin \left( \frac{1}{N} \right), \frac{\pi}{6} \right]\),
+    \[
+        \arctan (\tan \theta) - \frac{6\varepsilon}{\pi} < \arctan \left( \tan \theta - \frac{2}{\sqrt{3}N} \right)
+    \]
+    and
+    \[
+        \arctan (\tan \theta) + \frac{6\varepsilon}{\pi} > \arctan \left( \tan \theta + \frac{2}{\sqrt{3}N} \right)
+    \]
+    for some \(\varepsilon > 0\) that can be made arbitrarily small. By the monotonicity of the integral,
+    \[
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) - \frac{6\varepsilon}{\pi}\ d \theta < \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta
+    \]
+    and
+    \[
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta < \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) + \frac{6\varepsilon}{\pi}\ d \theta
+    \]
+    It is easy to evaluate the two integrals that bound the original one. We get that
+    \begin{align*}
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) - \frac{6\varepsilon}{\pi}\ d \theta &= \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \theta - \frac{6\varepsilon}{\pi}\ d \theta \\
+        &= \frac{1}{2}\left( \frac{\pi^2}{36} - \arcsin ^2\left( \frac{1}{N} \right)  \right) - \frac{6\varepsilon}{\pi}\left( \frac{\pi}{6} - \arcsin \left( \frac{1}{N}\right)\right) \\
+        \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan (\tan \theta) + \frac{6\varepsilon}{\pi}\ d \theta &= \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \theta + \frac{6\varepsilon}{\pi}\ d \theta \\
+        &= \frac{1}{2}\left( \frac{\pi^2}{36} - \arcsin ^2\left( \frac{1}{N} \right)  \right) + \frac{6\varepsilon}{\pi}\left( \frac{\pi}{6} - \arcsin \left( \frac{1}{N}\right)\right) \\
+    \end{align*}
+    We apply Squeeze Theorem to see that
+    \[
+        \lim_{N \to \infty} \int _{\arcsin \left( \frac{1}{N} \right)}^{\frac{\pi}{6}} \arctan \left( \tan \theta - \frac{1}{N}\sec \theta \right) \ d \theta = \frac{\pi^2}{72}.
+    \]
+    By a similar argument, we can show that
+    \begin{align*}
+        -\lim_{N \to \infty} \int _{\frac{\pi}{3}}^{\arccos \left( 1-\frac{1}{N} \right)} \arctan \left( \tan \left( \frac{\theta}{2} \right) - \frac{1}{N}\csc \theta \right)\ d \theta &= \int_0^{\frac{\pi}{3}} \frac{\theta}{2}\ d \theta \\
+        &= \frac{\pi^2}{36}
+    \end{align*}
+    Thus our original integral converges to
+    \[
+        4\left( \frac{\pi^2}{72} + \frac{\pi^2}{36}\right) = \frac{\pi^2}{18} + \frac{\pi^2}{9} = \frac{\pi^2}{6}
+    \]
+    Therefore we can conclude that
+    \[
+        \sum_{n=1}^{\infty} \frac{1}{n^2} = \lim_{N \to \infty} \int _{K_N} f = \frac{\pi^2}{6}
+    \]
+    and we are done.
+        \end{proof}
         \newpage
         \subsection{\#39}
-        \newpage
+        Let $M\subseteq\R^N$ be a set and let $\varphi:U\rightarrow M$ be a smooth parametrization of $M$, defined on some open set $U\subseteq \R^n$. We say that $\varphi$ is a \textbf{regular parametrization} if $\varphi$ is a homeomorphism, and if $\varphi'(p)$ has rank $n$ at every point $p\in U$. Note that we require $\varphi^{-1}$ to be continuous, but not necessarily smooth!
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that if $\varphi$ is a regular parametrization of $M$, then $\varphi^{-1}$ is also smooth.
+            
+            \item Prove that if $\varphi:U\rightarrow M$ and $\psi:V\rightarrow M$ are two regular parametrizations of $M$, then $\vol_\varphi(M)=\vol_\psi(M)$.
+    
+            \item Use regular parametrizations to find the surface area of a sphere of radius $r$ in $\R^4$.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+    First, we show that the inversion map for invertible linear maps \(T \mapsto T^{-1}\) is smooth.
+
+    Let \(T\) be a linear mapping. We will show that the total derivative of the inversion map at \(T\) is defined by \(h \mapsto -T^{-1} h T^{-1}\). Let \(\varepsilon > 0\). Let \(\delta = \|T^{-1}\|^{-1}(1 - \frac{\|T^{-1}\|^2}{\varepsilon + \|T^{-1}\|^2})\). Let \(\|h\| < \delta\), and recall that for this choice of \(\delta\), \(T + h\) is still invertible. We have that
+    \begin{align*}
+        \frac{1}{\|h\|}\left\lVert (T + h)^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert &= \frac{1}{\|h\|}\left\lVert (T(I + T^{-1}h))^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &= \frac{1}{\|h\|}\left\lVert (I + T^{-1}h)^{-1}T^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert
+    \end{align*}
+    Notice that \(\|I - I - T^{-1}h\|_{\op} = \|T^{-1}h\|_{\op} \leq \|T^{-1}\|_{\op}\|h\|_{\op} < 1\), so by a lemma from long ago, we have that \(I + T^{-1} h\) is invertible and
+    \[
+        (I + T^{-1}h)^{-1} = \sum_{n=0}^{\infty} (I - (I + T^{-1}h))^n = \sum_{n=0}^{\infty} (-1)^n (T^{-1} h)^n
+    \]
+    Thus we can rewrite our original expression as
+    \begin{align*}
+        &\quad\frac{1}{\|h\|}\left\lVert \sum_{n=0}^{\infty} (-1)^n (T^{-1} h)^n T^{-1} - T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &=\frac{1}{\|h\|}\left\lVert \left( \sum_{n=0}^{\infty} (-1)^n (T^{-1} h)^n - I \right) T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &= \frac{1}{\|h\|}\left\lVert \left( \sum_{n=1}^{\infty} (-1)^n (T^{-1} h)^n\right) T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &= \frac{1}{\|h\|}\left\lVert \left( - T^{-1}h + \sum_{n=2}^{\infty} (-1)^n (T^{-1} h)^n\right) T^{-1} + T^{-1} h T^{-1} \right\rVert \\
+        &=\frac{1}{\|h\|}\left\lVert \sum_{n=2}^{\infty} (-1)^n (T^{-1} h)^n T^{-1} \right\rVert \\
+        &<  \sum_{n=2}^{\infty}\frac{1}{\|h\|}\left\lVert (T^{-1} h)^n T^{-1} \right\rVert \\
+        &\leq \sum_{n=2}^{\infty}\frac{1}{\|h\|}\|T^{-1}\|^{n+1}\|h\|^n \\
+        &=\|T^{-1}\|^3 \|h\|\sum_{n=0}^{\infty} \|T^{-1} \|^n \|h\|^n \\
+        &= \frac{\|T^{-1}\|^3 \|h\|}{1 - \|T^{-1}\|\|h\|} \tag{\(\|T^{-1}\|\|h\| < 1\)} \\
+        &= \frac{\|T^{-1}\|^2}{1 - \|T^{-1}\|\|h\|} - \|T^{-1}\|^2 \\
+        &< \varepsilon
+    \end{align*}
+    Thus \(T^{-1} h T^{-1}\) is the desired derivative. Now, notice that the derivative is also differentiable because it is built from the identity mapping and itself. But this implies that the original mapping is twice differentiable, so the derivative is in fact also twice differentiable. We can continue this process an arbitrary number of times, but hopefully it is convincing enough to show that the inversion mapping is infinitely differentiable. For convenience, define our inversion mapping as \(V\) (which i should've done earlier lol).
+
+    \medskip
+
+    Suppose \(\varphi\) is a smooth regular parametrization of \(M\). Since \(\varphi'\) has full rank, we can apply the Inverse Function Theorem, we obtain that \(\varphi^{-1}\) is \(C^1\) and
+    \[
+        (\varphi^{-1})' = (\varphi' \circ \varphi^{-1})^{-1} = V \circ \varphi' \circ \varphi^{-1}
+    \]
+    We can apply the same argument from before to \(\varphi^{-1}\) to show that it is infinitely differentiable. Since \(V\) and \(\varphi'\) are smooth, \((\varphi^{-1})'\) is \(C^1\), so \(\varphi^{-1}\) is \(C^2\), and so on. Therefore we can conclude that \(\varphi^{-1}\) is indeed \(C^{\infty}\).
+
+    \medskip
+
+    (b):
+
+    Suppose that \(\varphi : U \to M\) and \(\psi : V \to M\) are regular parametrizations of \(M\). We can rewrite
+    \[
+        \psi = \varphi \circ \left(\varphi^{-1} \circ \psi\right).
+    \]
+    Let \(\Phi : V \to U\) be defined by \(\Phi = \varphi^{-1} \circ \psi\). We claim that \(\Phi\) is a diffeomorphism. \(\psi\) is smooth, and by part (a), we know that \(\varphi^{-1}\) is smooth, so \(\Phi\) is also smooth. Furthermore, \(\Phi^{-1} = \psi^{-1} \circ \varphi\), which is smooth for similar reasons. Thus \(\Phi\) is indeed a diffeomorphism. This being the case, we know that parametrizations are diffeomorphism-invariant (done in class), so we can conclude that
+    \[
+        \vol _{\varphi}(M) = \vol _{\psi}(M).
+    \]
+    \medskip
+    (c):
+
+    Let \(rS^3 = \{ (x,y,z,w) \in \mathbb{R}^4 : \sqrt{x^2 + y^2 + z^2 + w^2} = r\}\). Let \(S_w^+ = \{ (x,y,z,w) \in \mathbb{R}^4 : \sqrt{x^2 + y^2 + z^2 + w^2} = r, w > 0\}\) be the positive \(w\)-hemisphere of \(rS^3\). We will analyze the volume of \(S_w^+\), which is half of the total surface area of \(rS^3\). Let \(f(x,y,z) = \sqrt{r^2 - x^2 - y^2 - z^2}\). We define the parametrization \(\Phi: B(0, r) \subseteq \mathbb{R}^3 \to S_w^+\) by
+    \[
+        \Phi (x,y,z) = (x,y,z, f(x,y,z)).
+    \]
+    This function is smooth, as the identity function is smooth and \(f\) is smooth when \((x,y,z) \neq 0\) and \(\Phi\) is not defined on \(0\). We see that
+    \[
+        J \Phi = \begin{pmatrix}
+            I_3 \\
+            \nabla f
+        \end{pmatrix}
+    \]
+    which is guaranteed to be maximal rank 3, so \(\Phi\) is regular. We have that
+    \[
+        (J \Phi)^t J \Phi = \begin{pmatrix}
+            I_3 &  (\nabla f)^t \\
+        \end{pmatrix}
+        \begin{pmatrix}
+             I_3 \\
+             \nabla f \\
+        \end{pmatrix}
+        = I_3 + (\nabla f)^t \nabla f
+    \]
+    \[
+        = \begin{pmatrix}
+            1 + \dfrac{x^2}{r^2 - x^2 - y^2 - z^2} & \dfrac{xy}{r^2 - x^2 - y^2 - z^2} & \dfrac{xz}{r^2 - x^2 - y^2 - z^2}  \\
+            \dfrac{xy}{r^2 - x^2 - y^2 - z^2} & 1 + \dfrac{y^2}{r^2 - x^2 - y^2 - z^2} & \dfrac{yz}{r^2 - x^2 - y^2 - z^2}  \\
+            \dfrac{xz}{r^2 - x^2 - y^2 - z^2} & \dfrac{yz}{r^2 - x^2 - y^2 - z^2} & 1 + \dfrac{z^2}{r^2 - x^2 - y^2 - z^2}  \\
+        \end{pmatrix}
+    \]
+    \begin{align*}
+        \implies \det ((J \Phi)^t J \Phi) &= 1 + \frac{x^2 + y^2 + z^2}{r^2 - x^2 - y^2 - z^2} \tag{trust} \\
+        &= \frac{r^2}{r^2 - x^2 - y^2 - z^2}
+    \end{align*}
+    Therefore the volume is
+    \begin{align*}
+        \vol(S_w^+) &= \int _{B(0,r)}\sqrt{\det ((J \Phi)^t J \Phi)} \\
+        &= \int_{-r}^{r} \int_{-\sqrt{r^2 - x^2}}^{\sqrt{r^2 - x^2}} \int_{-\sqrt{r^2 - x^2 - y^2}}^{\sqrt{r^2 - x^2 - y^2}} \frac{r}{\sqrt{r^2 - x^2 - y^2 - z^2}}\ dz\ dy\ dx \\
+        &=8r\int_{0}^{r} \int_{0}^{\sqrt{r^2 - x^2}} \int_{0}^{\sqrt{r^2 - x^2 - y^2}} \frac{1}{\sqrt{r^2 - x^2 - y^2 - z^2}}\ dz\ dy\ dx \\
+        &= 8r\int_{0}^{r} \int_{0}^{\sqrt{r^2 - x^2}} \arcsin \left( \frac{z}{\sqrt{r^2 - x^2 - y^2}}\right) \Big|_0^{\sqrt{r^2 - x^2 - y^2}}\ dy\ dx \\
+        &= 8r\int_{0}^{r} \int_{0}^{\sqrt{r^2 - x^2}} \frac{\pi}{2}\ dy\ dx \\
+        &= 4\pi r \int_{0}^{r} \sqrt{r^2 - x^2}\ dx \\
+        &= 4\pi r\left( \frac{1}{4}\pi r^2 \right) \\
+        &= \pi^2 r^3
+    \end{align*}
+    This is the surface area of one hemisphere, and thus the total surface area of the sphere is \(2\pi ^2 r^3\).
+        \end{proof}    
+        \newpage   
         \subsection{\#40}
+        Let $O_n(\R)$ be the set of all $n\times n$ real orthogonal matrices:
+        \[ O_n(\R) = \{A\in M_n(\R) : A^tA=I_n\}. \]
+        Show that $O_n$ is a smooth manifold, and find its dimension.
+        \begin{proof}
+            First, we will prove the Regular Level-Set Theorem:
+            \smallbreak
+            Let \(X,Y\) be normed vector spaces with dimensions \(n,m\) and ordered bases \(\alpha ,\beta\) respectively, where \(n > m\). Let \(F: X \to Y\) be a smooth function. Define \(M = F^{-1} (0_Y)\). If \(F'(p)\) is surjective for all \(p \in M\), then \(M\) is a smooth manifold of dimension \(n - m\). That is, if \(\phi _\alpha : X \to \mathbb{R}^n\) is the coordinate isomorphism corresponding to \(\alpha\), then \(M\) is a smooth \(k\)-manifold if \(\phi _\alpha (M)\) is a smooth \(k\)-manifold in the usual sense.
+            \smallbreak
+    
+            This problem reduces to trying to prove that \(N \coloneqq \phi _\alpha (M)\) is a smooth manifold of dimension \(n-m\). Notice that \(N = \phi _\alpha (F^{-1} (0_Y)) = \phi _\alpha (F^{-1} (\phi _\beta (0_{\mathbb{R}^m})))\). Since \(\phi _\alpha , \phi _\beta\) are isomorphisms, we have that \(N = \phi _\alpha \circ F^{-1} \circ \phi _\beta (0_{\mathbb{R}^m})\). Let \(\hat{F} : \mathbb{R}^n \to \mathbb{R}^m\) be a function defined by \(\hat{F} = \phi _\alpha \circ F^{-1} \circ \phi _\beta\), and notice that \(N\) is the zero set of \(\hat{F}\). For any \(p \in N\), notice that \(\hat{F}'(p)\) is surjective, because
+            \[
+                \hat{F}'(p) = (\phi _\beta \circ F \circ \phi^{-1} _\alpha)'(p) = \phi _\beta \circ F'(\phi ^{-1}_{\alpha}) \circ \phi^{-1}_{\alpha} 
+            \]
+            is just \(F'(\phi^{-1}_{\alpha})\)--a surjective map--composed with linear isomorphisms. This implies that \(R(J\hat{F}(p)) = \mathbb{R}^m\) and \(\rank  J\hat{F}(p) = m\). We can write
+            \[
+                J\hat{F}(p) = \left( \begin{array}{@{}c|c@{}}
+                    A & B
+                \end{array} \right) 
+            \]
+            where \(A\) is a \(m\times n-m\) matrix and \(B\) is a \(m \times m\) matrix, and assume without loss of generality that \(B\) is invertible, for if not, \(J\hat{F}(p)\) is still guaranteed to contain an invertible \(m\times m\) submatrix, and we can perform column swaps to move the matrix to the right, which does not change the conclusion of our statement.
+    
+            Recall that since \(N\) is the zero set of \(\hat{F}\), \(\hat{F}(p) = 0\). Thus, we write \(p = (a,b)\) for \(a \in \mathbb{R}^{n-m}\), \(b \in \mathbb{R}^{m}\) and apply the Implicit Function Theorem and obtain an open set \(\hat{U} \subseteq \mathbb{R}^{n-m}\) containing \(a\) and a \(C^{\infty}\) function \(\Phi : \hat{U} \to \mathbb{R}^{m}\) so that
+            \[
+                \hat{F}(x, \Phi(x)) = 0
+            \]
+            for all \(x \in \hat{U}\). We claim that \(\varphi: \hat{U} \to \Phi (\hat{U})\) defined by
+            \[
+                \varphi (x) = (x, \Phi (x))
+            \]
+            is our desired smooth regular embedding. It is fairly clear that \(\varphi\) is smooth. Additionally, \(J \varphi (x) = \left( \begin{array}{@{}cc@{}}
+                I_{n-m} \\
+                \hline
+                J\Phi
+            \end{array} \right) \) is a \((n-m) \times n\) matrix and has at least \(n-m\) linearly independent rows, so \(\varphi\) is regular. Finally, if we let \(\varphi (x) = \varphi (y)\), we have that \((x,\Phi (x)) = (y, \Phi (y))\), from which we get \(x=y\), so \(\varphi\) is injective, and therefore bijective to its image. In addition, we can explicitly find \(\varphi^{-1} (y) = \pi _{\mathbb{R}^{n-m}}(y)\), which is continuous because it is a linear map. Therefore \(\varphi\) is a homeomorphism onto its image, so \(N\) is a smooth \((n-m)\)-manifold. It follows that \(\phi ^{-1}_{\alpha} (N) = M\) is also a smooth manifold of dimension \(n-m\) so we are done.
+    
+            \medskip
+    
+            Now, we may proceed to prove that \(O_n(\mathbb{R})\) is a smooth manifold of dimension \(\frac{1}{2}n(n-1)\).
+    
+            We note that \(O_n(\mathbb{R})\) is the zero set of the function \(f: M_n(\mathbb{R}) \to S^n\) defined by
+            \[
+                f(A) = A^t A - I_n
+            \]
+            where \(S^n\) is the set of symmetric \(n\times n\) matrices. Notice that \(f\) is smooth as it is constructed by smooth functions. Additionally, we show that \(f'(X)(h) = X^t h + h^T X\). Indeed,
+            \begin{align*}
+                \lim_{h \to 0} \frac{f(X + h) - f(X) - X^t h - h^t X}{\|h\|} &= \lim_{h \to 0} \frac{(X + h)^t (X + h) - X^t X - X^t h - h^t X}{\|h\|} \\
+                &= \lim_{h \to 0} \frac{h^t h}{\|h\|} \\
+                &= 0
+            \end{align*}
+            Next, we want to show that \(f'(X)\) is surjective on \(S^n\) for all \(X \in O_n(\mathbb{R})\).
+    
+            Let \(Y \in S^n\). Let \(h = \frac{1}{2}XY\). We see that
+            \begin{align*}
+                f'(X)(h) &= X^t \left( \frac{1}{2}XY \right) + \left( \frac{1}{2}XY \right)^t X = \frac{1}{2}\left( X^t XY + Y^t X^t X \right) \\
+                &= \frac{1}{2}(Y + Y^t) \tag{\(X\) is orthogonal} \\
+                &= Y \tag{\(Y\) is symmetric}
+            \end{align*}
+            Now, we have the hypotheses needed to apply the Regular Level-Set Theorem, and conclude that \(O_n(\mathbb{R})\) is a smooth manifold of dimension \(n^2 - \frac{1}{2}n(n+1) = \frac{1}{2}n(n-1)\).    
+        \end{proof}
         \newpage
         \subsection{\#41}
+        Let $0<a<b$. In the $xz$-plane, draw a circle of radius $a$ centered at the point $(b,0,0)$; rotate this circle about the $z$-axis. The resulting subset of $\R^3$ is called a \textbf{torus}, denoted by $\mathbf{T}=\mathbf{T}_{a,b}$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Find a smooth function $f:U\rightarrow \R$, defined on some open set $U\subseteq \R^3$, so that $\mathbf{T}$ is equal to the zero set of $f$.
+            
+            \item Show that $\mathbf{T}$ is a smooth manifold.
+            
+            \item Find the surface area of $\mathbf{T}$, in terms of $a$ and $b$.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+        Notice that in cylindrical coordinates, the torus can be defined by
+        \[
+            T = \{ (r, \theta, z) : (r - b)^2 + z^2 = a^2\}.
+        \]
+        If we map the polar part of the set back to cartesian coordinates, we see that \(T\) is actually the zero set of the function
+        \[
+            f(x,y,z) = (\sqrt{x^2 + y^2} - b)^2 + z^2 - a^2
+        \]
+        This function is smooth everywhere except for when \(x = 0 = y\), so we let \(U = \mathbb{R}^3 \setminus \{ (x,y,z) : x = y = 0 \}\).
+
+        \medskip
+
+        (b):
+
+        Notice that for all \(p = (x,y,z) \in T\), \(f'(p)\) is rank 1, because \(f'(p)\) is a \(1 \times 3\) matrix, so its rank is at most 1, but it cannot be rank 0 because
+        \[
+            \frac{\partial f}{\partial x} (x,y,z) = 2\frac{\sqrt{x^2 + y^2} - b}{\sqrt{x^2 + y^2}} = 2 - \frac{2b}{\sqrt{x^2 + y^2}}
+        \]
+        and
+        \[
+            \frac{\partial f}{\partial z} (x,y,z) = 2z
+        \]
+        so being rank 0 implies that
+        \[
+            f'(p) = \left( 2 - \frac{2b}{\sqrt{x^2 + y^2}}, 2 - \frac{2b}{\sqrt{x^2 + y^2}}, 2z \right) = (0,0,0) \implies \sqrt{x^2 + y^2} = b \text{ and } z = 0
+        \]
+        but if this is the case, \(f(p) = -a^2 \neq 0\), so \(p \notin T\), which is a contradiction.
+
+        Thus \(Jf(p)\) is always rank 1, so according to the Regular Level-Set Theorem, \(T\) is a smooth manifold of dimension \(3 - 1 = 2\).
+
+        \medskip
+
+        (c):
+
+        We split \(T\) into \(4\) quadrants of equal volume, but we will only do the computation for one quadrant. Let \(Q\) be the set
+        \[
+            Q = \{ (x,y,z) \in T : x > 0 , z > 0 \}.
+        \]
+        We parametrize \(Q\) with the function \(\varphi : (b -a, b + a) \times \left( -\frac{\pi}{2},\frac{\pi}{2} \right)\) defined by
+        \[
+            \varphi (r,\theta) = (r\cos \theta , r\sin \theta , \sqrt{a^2 - (r - b)^2}).
+        \]
+        To see that \(\varphi\) is a smooth regular embedding, we see that every component is smooth on \(Q\) (the third component is smooth when \(r \neq b \pm a\), but \(r \in (b - a, b + a)\)). As well, the first two components are the polar coordinate transform, so \(J \varphi(p)\) is rank \(2\) for all \(p \in (b - a, b + a)\times \left( -\frac{\pi}{2}, \frac{\pi}{2} \right)\). Finally, notice that \(\varphi^{-1}(x,y,z) = \left( \sqrt{x^2 + y^2} , \arctan \left( \frac{y}{x} \right)  \right) \) is continuous, so \(\varphi\) is a homeomorphism, thus confirming that \(\varphi\) is a smooth regular embedding. Now, we find an expression for \(V(J \varphi(r, \theta))\):
+        \begin{align*}
+            V(J \varphi(r, \theta)) &= \sqrt{\det ((J \varphi (r, \theta))^t J \varphi (r, \theta))} \\
+            &= \sqrt{\det \left(\begin{pmatrix}
+                \cos \theta  & \sin \theta & - \frac{r - b}{\sqrt{a^2 - (r-b)^2}} \\
+                -r \sin \theta & r\cos \theta & 0  \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \cos \theta & -r \sin \theta  \\
+                \sin \theta & r\cos \theta  \\
+                - \frac{r-b}{\sqrt{a^2 - (r - b)^2}}& 0  \\
+            \end{pmatrix}
+            \right)} \\
+            &= \sqrt{\det \begin{pmatrix}
+                \frac{a^2}{a^2 - (r-b)^2} & 0  \\
+                0 & r^2  \\
+            \end{pmatrix}}
+            = \sqrt{\frac{a^2 r^2}{a^2 - (r - b)^2}} \\
+            &= \frac{ar}{\sqrt{a^2 - (r - b)^2}}
+        \end{align*}
+        Now we can calculate the volume of \(Q\):
+        \begin{align*}
+            \vol (Q) &= \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{b-a}^{b+a} V(J \varphi (r, \theta))\ dr\ d \theta = \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{b-a}^{b+a} \frac{ar}{\sqrt{a^2 - (r-b)^2}}\ dr\ d \theta \\
+            &= \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{-a}^a \frac{a(r + b)}{\sqrt{a^2 - r^2}}\ dr\ d\theta \tag{substitution \(r \mapsto r - b\)} \\
+            &= \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{-a}^a \frac{ar}{\sqrt{a^2 - r^2}}\ dr\ d \theta + \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \int _{-a}^a \frac{ab}{\sqrt{a^2 - r^2}}\ dr\ d \theta \\
+            &= 0 + ab\int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \arcsin \left( \frac{r}{a}\right) \Big| _{-a}^{a}\ d \theta \tag{first integrand is odd} \\
+            &= ab \int _{-\frac{\pi}{2}}^{\frac{\pi}{2}} \pi\ d \theta \\
+            &= \pi ^2 ab
+        \end{align*}
+        Finally, we multiply the surface area of the quadrant by 4 to obtain that the total surface area is \(4\pi ^2 ab\).
+        \end{proof}
         \newpage
         \subsection{\#42}
         \newpage
@@ -3082,6 +3476,254 @@
         Conversely, suppose that \(\lambda_j < 0\), for some \(j \in \{1, ..., n\}\). \(Q_D(0) = 0\), but \(Q_D(e_j) = \lambda_j < 0\), so the origin is not a minimum.
         \smallbreak
     \end{proof}
+    \subsubsection{Exercise 11.8}
+    \textbf{Solvers:} Ethan, Ali, Mitya
+
+    \noindent\textbf{Writeup:} Ethan
+
+    \noindent\textbf{Lemma 12.4.} Let \(P\) be a polybox in \(\mathbb{R}^n\). Then
+    \begin{enumerate}
+        \item \(P\) is a finite disjoint union of boxes.
+        \item If \(\{ E_1, ..., E_k \} \) and \(\{ F_1, ..., F_m \}\) are two pairwise disjoint collections of boxes, and \(\bigcup_{i=1}^{k} E_i = \bigcup_{j=1}^{m} F_j\), then
+        \[
+            \sum_{i=1}^{k} \mathrm{vol} (E_i) = \sum_{j=1}^{m} \mathrm{vol} (F_j)
+        \]
+    \end{enumerate}
+    \begin{proof}
+        We start with a proof of part (a). Since \(P\) is a polybox, we can write it as a finite union of boxes not necessarily disjoint. We have
+        \[
+            P = \bigcup_{i=1}^{p} P_i, \text{ where } P_i \text{ is a box in } \mathbb{R}^n
+        \]
+        We proceed using induction on \(p\) to prove (a). When \(p = 1\), \(P\) itself is a box and is considered a finite union of disjoint boxes.
+
+        Suppose that the claim holds for some \(p - 1\). We can rewrite \(P\) as
+        \[
+            P = P_p \cup \bigcup_{i=1}^{p-1} P_i
+        \]
+        From our assumption, the polybox \(\bigcup_{i=1}^{p-1} P_i\) can be expressed as a finite union of disjoint boxes, which we will denote as \(B_i\), so we have
+        \[
+            P = P_p \cup \bigcup_{i=1}^{q} B_i = \bigcup_{i=1}^{q} (B_i \cup P_p)
+        \]
+        Consider each pair of boxes \(B_i\) and \(P_p\). By Lemma 12.2,
+        \begin{enumerate}
+            \item \(P_p \cap B_i\) is a box
+            \item \(P_p \setminus B_i\) and \(B_i \setminus P_p\) are finite unions of disjoint boxes.
+        \end{enumerate}
+        Additionally, all these sets are disjoint from each other. We can take the union of all the sets above and see that \((P_p \cap B_i) \cup (P_p \setminus B_i) \cup (B_i \setminus P_p) = B_i \cup P_p\) is also a finite union of disjoint boxes. Thus \(P\) is a finite union of disjoint boxes.
+
+        By induction, part (a) has been proven and we move on to prove part (b).
+
+        \medbreak
+
+        \noindent Let \(\{ E_1, ..., E_k \}, \{F_1, ..., F_m \}\) be pairwise disjoint collections of boxes such that
+        \[
+            P = \bigcup_{i=1}^{k} E_i = \bigcup_{j=1}^{m} F_j
+        \]
+        For \(i \in \{ 1, ..., k \}, j \in \{1, ..., m\}\), define \(A_{ij} = E_i \cap F_j\). We will show that \(A \coloneqq \bigcup_{i=1}^{k} \bigcup_{j=1}^{m} A_{ij} = P\). It is clear that \(A \subseteq P\), so only \(P \subseteq A\) will be shown.
+
+        Let \(x \in P\). Then \(x\) must belong to some boxes \(E_i\) and \(F_j\), so \(x \in A_{ij} \subseteq A\). This shows that \(A\) is also a valid disjoint decomposition of \(P\).
+
+        Finally, notice that for all \(E_i, F_j\),
+        \[
+            E_i = \bigcup_{j=1}^{m} A_{ij} \text{ and } F_j = \bigcup_{i=1}^{k} A_{ij}
+        \]
+        By part (b) of Lemma 12.2, we have
+        \[
+            \mathrm{vol} (E_i) = \sum_{j=1}^m \mathrm{vol} (A_{ij}) \text{ and } \mathrm{vol} (F_j) = \sum_{i=1}^{k} \mathrm{vol} (A_{ij})
+        \]
+        Therefore
+        \[
+            \sum_{i=1}^{k} \mathrm{vol} (E_i) = \sum_{i=1}^{k} \sum_{j=1}^{m} \mathrm{vol} (A_{ij}) = \sum_{j=1}^{m} \sum_{i=1}^{k} \mathrm{vol} (A_{ij}) = \sum_{j=1}^{m} \mathrm{vol} (F_j)
+        \]
+        what was what we wanted.
+        \smallbreak
+    \end{proof}
+    \subsubsection{Fubini's Theorem + Exercise 12.15}
+    \textbf{Solvers:} Ethan
+    Let \(E\) be a closed rectangle in \(\mathbb{R}^2\), so \(E = [a,b]\times [c,d]\). Let \(f: E \to \mathbb{R}\) be a continuous function. Then
+    \[
+        \int _E f = \int _c^d \int _a^b f(x,y)\ dx\ dy
+    \]
+    \begin{proof}
+        We make the quick note that \(f(\cdot,y)\) is integrable because it is continuous. Moreover, it is uniformly continuous because it is defined on the closed interval \([a,b]\). Define \(g: [c,d] \to \mathbb{R}\) by
+        \[
+            g(y) = \int _a^b f(x,y)\ dx.
+        \]
+        We can argue that \(g\) is continuous because for any \(y\),
+        \[
+            |g(y + h) - g(y)| = \left\vert \int _a^b f(x,y + h)\ dx - \int _a^b f(x,y)\ dx\right\vert < \int _a^b |f(x, y + h) - f(x,y)|\ dx,
+        \]
+        which we can make arbitrarily small using the uniform continuity of \(f\).
+
+        Let \(P\) partition \([a,b]\) and \(Q\) partition \([c,d]\), and let \(n,m\) represent the number of intervals in \(P\) and \(Q\) respectively. Define
+        \[
+            M_{ij} = \sup \{f(x,y) : (x,y) \in [p_{i-1}, p_i] \times [q_{j-1}, q_j]\}.
+        \]
+        We claim that for all \(j\), \(y \in [q_{j-1}, q_j]\),
+        \[
+            \sum_{i=1}^{n} M_{ij} (p_i - p_{i-1}) \geq U(f(\cdot,y), P).
+        \]
+        Define \(M_{iy} = \sup \{f(x,y) : x \in [p_{i-1}, p_i]\}\). We notice that the set in \(M_{iy}\) is a subset of the one in \(M_{ij}\), so we immediately have that \(M_{iy} < M_{ij}\). Thus
+        \[
+            U(f(\cdot, y), P) = \sum_{i=1}^{n} M_{iy} (p_{i-1}, p_i) \leq \sum_{i=1}^{n} M_{ij} (p_{i-1}, p_i).
+        \]
+        From this, we get that for any \(j\),
+        \[
+            g(y_j) = \int _a^b f(x,y)\ dx \leq \sum_{i=1}^{n} M_{ij} (p_{i-1}, p_i), \text{ where } y_j \in [q_{j-1}, q_j],
+        \]
+        which implies that
+        \[
+            \sum_{i=1}^{n} M_{ij} (p_{i-1}, p_i) \geq M_j \coloneqq \sup \{g(y) : y \in [q_{j-1}, q_j]\}.
+        \]
+
+        It follows that
+        \[
+            U(f,(P,Q)) = \sum_{j=1}^{m} \sum_{i=1}^{n} M_{ij} (p_i - p_{i-1})(q_j - q_{j-1}) \geq \sum_{j=1}^{m} M_j (q_j - q_{j-1}) = U(g, Q) \geq \int _c^d g(y)\ dy,
+        \]
+        \[
+            \implies U(f,(P,Q)) \geq \int _c^d \int _a^b f(x,y)\ dx\ dy.
+        \]
+        We can follow the same steps from above but reversing the inequality signs to get that
+        \[
+            L(f,(P,Q)) \leq \int _c^d \int _a^b f(x,y)\ dx\ dy.
+        \]
+        Since we did this with arbitrary partitions \(P,Q\), we actually know that
+        \[
+            L(f) \leq \int _c^d \int _a^b f(x,y)\ dx\ dy \leq U(f),
+        \]
+        but \(L(f) = U(f)\) because of the integrability of \(f\), so we conclude that
+        \[
+            \int _E f = \int _c^d \int _a^b f(x,y)\ dx\ dy.
+        \]
+    \end{proof}
+    \textbf{Example:} Integrate \(f(x,y) = x^y\) on \(E = [0,1]^2\).
+
+    Note that \(f\) is undefined at \((0,0)\), but we can construct a function \(g\) that is the same as \(f\) but with \(g(0,0) = 1\) to solve this issue. It is also continuous, which I invite you to do as an exercise.
+
+    Using Fubini's Theorem, we have that
+    \[
+        \int _E f = \int _0^1 \int _0^1 x^y\ dx\ dy = \int _0^1 \frac{x^{y+1}}{y + 1}\Big| _0^1\ dy = \int _0^1 \frac{1}{y + 1}\ dy = \ln |y + 1| \Big| _0^1 = \ln 2.
+    \]
+    Doing this from the definition is kind of painful, so having Fubini in your closet is quite useful.
+
+    \section{Exercise 13.14}
+    Recall the statement of Theorem 13.6 and the definition of a simple mapping:
+
+    \textbf{Theorem 13.6.} Let $U,V\subseteq\R^n$ be two open sets and let $\Phi:U\rightarrow V$ be a diffeomorphism. Let $E\subseteq U$ be a measurable set. Then $\Phi(E)$ is also measurable, and its measure is
+        \[ \mu(\Phi(E)) = \int_E |\det J\Phi|. \]
+
+    \textbf{Definition 13.12.} Let $\Phi:U\rightarrow \R^n$ be a function defined on some set $U\subseteq \R^n$, and let $\varphi_1,\ldots,\varphi_n$ be the component functions of $\Phi$:
+        \[ \Phi(p) = (\varphi_1(p), \ldots, \varphi_n(p)) \quad \text{for all $p\in U$.} \]
+    If the $i$th component function is just $x_i$ --- \textit{i.e.} $\varphi_i(x_1,\ldots,x_n)=x_i$ for some $i$ --- then we say that $\Phi$ is \textbf{$x_i$-simple}. We say that $\Phi$ is \textbf{simple} if it is $x_i$-simple for all but one $i$.
+
+    \textbf{Exercise 13.14.} Show that Theorem 13.6 holds if \(\Phi\) is simple.
+
+    \begin{proof}
+        Let \(U,V \subseteq \mathbb{R}^n\) be open, and let \(\Phi : U \to V\) be a simple diffeomorphism. Without loss of generality, let the only non-simple component of \(\Phi\) be \(\varphi _n\) (I will explain why this reduction is valid below!), and let \(E = \prod_{i=1}^n [a_i, b_i] \subseteq U\) be a closed box. Since \(\Phi\) is a diffeomorphism, this implies that \(\Phi (E)\) is measurable, and as well, because \(\Phi\) is simple,
+        \[
+            \Phi (E) = \left\{ (x_1, ..., x_{n-1}, \varphi (x)) \in V : x = (x_1, ..., x_n) \in \prod_{i=1}^{n} [a_i, b_i] \right\} 
+        \]
+        Let \(E' = \prod_{i=1}^{n-1} [a_i, b_i]\), and define \(\Psi : E' \to \mathbb{R}\) by
+        \[
+            \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n.
+        \]
+        \(\Phi\) is a diffeomorphism, so the \(x'\)-slice \(\varphi(x', \cdot)\) is \(C^1\) and injective. It follows that the image \(\varphi(x', [a_n, b_n])\) is an interval. Now, we want to apply single-variable change of variables with \(\varphi (x', u) = x_n\). Notice that
+        \[
+            dx_n = \frac{\partial \varphi }{\partial u}(x', u) du
+        \]
+        and
+        \[
+            \det J \Phi = \begin{array}{|cccc|}
+                1 & 0 & \cdots &  0 \\
+                0 & 1 & \cdots &  0 \\
+                \vdots & \vdots & \ddots &  \vdots \\
+                \dfrac{\partial \varphi }{\partial x_1}(x', u) & \dfrac{\partial \varphi }{\partial x_2}(x', u) & \cdots & \dfrac{\partial \varphi }{\partial u}(x', u) \\
+            \end{array} = \frac{\partial \varphi }{\partial u}(x', u)
+        \]
+        so it follows that
+        \[
+            \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n = \int _{a_n}^{b_n} |\det J \Phi |
+        \]
+        Finally, using Fubini's Theorem, we get that
+        \[
+            \mu (\Phi (E)) = \int _{\Phi (E)} 1 = \int _{E'} \Psi = \int _{E'} \int_{a_n}^{b_n} |\det J \Phi | = \int _E |\det J \Phi |
+        \]
+        as needed.
+
+        \textbf{Explanation of Reduction.} It, in fact, does not matter in which component \(\Phi\) is simple in.
+        
+        Let \(\Phi: U \to V\) be a simple diffeomorphism, where the \(i\)th component is non-simple, and we will denote this component as the function \(\varphi : U \to \mathbb{R}\). Let \(L\) be the linear map that swaps the \(i\)th and \(n\)th component. Notice that \(L = L^{-1}\) and \(\det L = \det L^{-1} = 1\) (this will be important later). We would like to apply the theorem to \(L \circ \Phi\), but this is not simple! However, we have a workaround for this issue. Let \(\Psi : U \to V\) be the function defined by \(\Psi (x_1, ..., x_n) = (x_1, ..., x_{n-1}, \varphi \circ L(x_1, ..., x_n))\). We claim that \(L \circ \Phi (E) = \Psi (E)\).
+
+        Let \(x \in E\) and consider \(L \circ \Phi (x) = (x_1, ..., x_n, ..., \varphi (x))\). Let \(x' = L(x)\). We have that
+        \[
+            \Psi (x') = \Psi (x_1, ..., x_n, ..., x_i) = (x_1, ..., x_n, ..., \varphi (x)) = L \circ \Phi (x)
+        \]
+        We will not show the converse because it is the same argument. As well, convince yourself that \(\det J \Phi = \det J \Psi\). Now, we can apply the statement to the simple function \(\Psi\). Here is everything we need:
+        \begin{itemize}
+            \item \(\mu (L(R)) = |\det L| \mu (R)\): This is Exercise 13.11/12.18
+            \item \(\det L = 1\)
+            \item \(L \circ \Phi (E) = \Psi (E)\)
+            \item The exercise above
+            \item \(\det J \Psi = \det J \Phi\) 
+        \end{itemize}
+        We put it all together and see that
+        \[
+            \mu (\Phi (E)) = \mu (L^{-1} \circ L \circ \Phi (E)) = |\det L^{-1}| \mu (L \circ \Phi (E)) = \mu (\Psi (E)) = \int _E |\det J \Psi | = \int _E |\det J \Phi |
+        \]
+    \end{proof}
+    \subsubsection{Exercise 15.14}
+    \textbf{Solvers:} Emerald, Ethan
+
+    \textbf{Writeup:} Ethan
+
+    \begin{center}
+        \textit{Special mention to Alan and Sanchit for helping us out a bit as well!}
+    \end{center}
+    Let \(M\) be a (smooth) \(n\)-manifold. Show that each point \(p \in M\) has a relatively open neighborhood \(U \subseteq M\) such that \(U\) homeomorphic to \(\mathbb{R}^n\). In fact, show that there is a smooth regular embedding \(\varphi : \mathbb{R}^n \to U\) such that \(\varphi (\vec{0}) = p\).
+
+    \begin{proof}
+        Let \(p \in M\). By our assumption, we can find a smooth regular embedding \(\hat{\varphi}: \hat{V} \to V\), where \(\hat{V} \subseteq \mathbb{R}^n\) is open and \(V\) is a relatively open subset of \(M\) containing \(p\). Furthermore, there exists \(q \in \hat{V}\) such that \(\hat{\varphi}(q) = p\) and an open ball \(B_{\max}(q, r) \subseteq \hat{V}\). Note that we make use of an open ball with respect to the max-norm, for reasons that will become clear soon. Let \(U = \hat{\varphi}(B_{\max}(q, r))\). We are guaranteed that \(U\) is open because \(\hat{\varphi}\) is a homeomorphism. Now, we define a smooth homeomorphism between \(B_{\max}(q, r)\) and \(\mathbb{R}^n\). Let \(\Phi : \mathbb{R}^n \to B_{\max}(q, r)\) be defined by
+        \[
+            \Phi (\vec{x}) = \left( \frac{2}{\pi r}\arctan (x_1) + q_1, ..., \frac{2}{\pi r}\arctan (x_n) + q_n\right) 
+        \]
+        Notice that \(B_{\max}(q, r)\) is a cartesian product of intervals \(\prod _{i=1}^n [q_i - r, q_i + r]\). The function \(\Phi_i(x) = \frac{2}{\pi r}\arctan (x) + q_i\) is a well known bijection between \(\mathbb{R}\) and \([q_i - r, q_i + r]\), so it is clear that \(\Phi\) is a bijection with a continuous inverse. Moreover, each component is smooth, so \(\Phi\) is a smooth homeomorphism. We claim that our desired function \(\varphi: \mathbb{R}^n \to U\) is given by
+        \[
+            \varphi (x) = \hat{\varphi}(\Phi (x)).
+        \]
+        \(\varphi\) is a composition of smooth functions, and therefore smooth. \(J \Phi\) is a diagonal matrix with non-zero diagonals, so it is rank \(n\). It follows that the Jacobian \(J \varphi (x) = J \hat{\varphi}(\Phi (x)) \cdot J \Phi (x)\) is rank \(n\) for all \(x \in \mathbb{R}^n\). Finally, \(\varphi\) is a homeomorphism since it is a composition of homeomorphisms (so \(U \simeq \mathbb{R}^n\), as needed). Thus we can conclude that \(\varphi\) is a smooth regular embedding. As well,
+        \[
+            \varphi (0) = \hat{\varphi}(\Phi (0)) = \hat{\varphi}(q) = p.
+        \]
+        and the proof is done.
+
+    \end{proof}
+    This exercise shows that we can assume WLOG that the domain of every smooth regular embedding is \(\mathbb{R}^n\).
+
+    \subsubsection{Exercise 16.7. Tangent space to a graph}
+    \textbf{Ethan}
+
+    \medskip
+
+    Let \(U \subseteq \mathbb{R}^n\) be an open set, and let \(f: U \to \mathbb{R}\) be some function (that is smooth). Let \(M\) be the graph of \(f\), so that \(M\) is a smooth manifold in \(\mathbb{R}^{n+1}\).
+
+    We attempt to find the tangent space \(T_p M\) of some point \(p\).
+
+    Since \(M\) is a graph, we can cover \(M\) with a single chart \((U, \varphi)\), where \(\varphi (x) = (x, f(x))\). Fix \(p \in M\) and write \(p = \varphi (q)\), for some \(q \in U\). From exercise \(16.3\), a vector \(v\) is in the tangent space \(T_p M\) if \(v\) is in the image of \(\varphi '(q)\). That is, the tangent space coincides exactly with the image of \(\varphi (q)\). Thus it suffices to find \(\varphi (q)(\mathbb{R}^{n})\). We have that
+    \[
+        J \varphi (q) = \left( \begin{array}{c}
+            I_n \\
+            \hline
+            \nabla f(q)
+        \end{array} \right) 
+    \]
+    So for any \(h \in \mathbb{R}^n\),
+    \[
+        \varphi '(q)(h) = (h, \nabla f(q)h)
+    \]
+    and we can conclude that
+    \[
+        T_p M = \left\{ (p, (h, \nabla f(q)h)) \in \mathbb{R}^{n+1}_p : q \in U, p = (q, f(q)), h \in \mathbb{R}^n \right\}.
+    \]
 
 
 
@@ -3225,6 +3867,47 @@
         Let $d_1$ and $d_2$ be two metrics on $X$. Now let $U$ be an open set in $(X,d_1)$, we show it is open in $(X,d_2)$. We have that for all $x \in U$, there exists $\varepsilon > 0$ such that $B_1(x, \varepsilon) \subseteq U$. Fix $k = \min\{d_2(x,y) \mid y \in X \setminus \{x\}\}$. We see that $k$ exists by the finiteness of $X$, moreover it is non zero. Now we see that $B_2(x,k) = \{x\}$. We see that $\{x\}$ is open as $B_2(x,k) \subseteq \{x\}$ and so its only point $x$ is an interior point. We see then that $B_2(x,k) \subseteq B_1(x,\varepsilon) \subseteq U$. Thus $x$ is an interior point of $U$ in $(X,d_1)$. Thus we see that if $U$ is open in $(X,d_1)$ then it is open in $(X,d_2)$. The proof for the reverse direction follows similarly. Thus we see that any two metrics on $X$ are topologically equivalent.
     \end{proof}
 
+    \subsubsection{Exercise 9.21}
+    \textbf{Solvers:} Ethan, Udo
+
+    \textbf{Writeup:} Udo
+
+    \includegraphics[scale=0.45]{../images/9.21.png}
+
+    \subsubsection{14.8}
+    \textbf{Writeup:} Ali\\
+\textbf{Solvers:} Ethan, Ryan, Ali\\\\
+\textbf{14.8 Theorem} \textit{invariance of volume under reparametrization}
+    Let $M$ be a parametrizable set in $\R^N$, and let $\alpha:U\rightarrow M$ and $\beta:V\rightarrow M$ two parametrizations of $M$, where $U,V\subseteq \R^n$ are two open sets. Suppose that $\Phi:U\rightarrow V$ is a diffeomorphism such that $\beta \circ \Phi = \alpha$. Then
+        \[ \vol_\alpha(M) = \vol_\beta(M). \]
+\begin{proof}
+    \[\vol_\alpha(M)=\int_U V(J\alpha)\]
+    By definition of $\vol$
+    \[\int_U V(J\alpha)=\int_{\Phi^{-1}(V)} V(J(\beta\circ\Phi))\]
+    By definition of $\Phi$
+    \[\int_{\Phi^{-1}(V)} V(J(\beta\circ\Phi))=\int_{\Phi^{-1}(V)} V((J\beta\circ\Phi)\circ J\Phi)\]
+    By application of the multivariate chain rule on $J(\beta\circ\Phi)$
+    \[\int_{\Phi^{-1}(V)} V((J\beta\circ\Phi)\circ J\Phi)=\int_{\Phi^{-1}(V)} \sqrt{\det(((J\beta\circ\Phi)\circ J\Phi)^t((J\beta\circ\Phi)\circ J\Phi))}\]
+    By the definition of $V$, the volume of a parallelepiped
+    \[\int_{\Phi^{-1}(V)} \sqrt{\det(((J\beta\circ\Phi)\circ J\Phi)^t((J\beta\circ\Phi)\circ J\Phi))}=\int_{\Phi^{-1}(V)} \sqrt{\det((J\Phi)^t(J\beta\circ\Phi)^t(J\beta\circ\Phi)(J\Phi))}\]
+    By property of transpose $(AB)^t=B^tA^t$ for matrices $A$ and $B$
+    \[\int_{\Phi^{-1}(V)} \sqrt{\det((J\Phi)^t(J\beta\circ\Phi)^t(J\beta\circ\Phi)(J\Phi))}=\int_{\Phi^{-1}(V)} \sqrt{\det(J\Phi)^t\det((J\beta\circ\Phi)^t(J\beta\circ\Phi))\det(J\Phi)}\]
+    Because $J\Phi$ is a square matrix and by the properties of determinant
+    \[\int_{\Phi^{-1}(V)} \sqrt{\det(J\Phi)^t\det((J\beta\circ\Phi)^t(J\beta\circ\Phi))\det(J\Phi)}=\int_{\Phi^{-1}(V)} \sqrt{\det((J\beta\circ\Phi)^t(J\beta\circ\Phi))\det(J\Phi)^2}\]
+    Because $\det A^t=\det A$ for any square matrix $A$
+    \[\int_{\Phi^{-1}(V)} \sqrt{\det((J\beta\circ\Phi)^t(J\beta\circ\Phi))\det(J\Phi)^2}=\int_{\Phi^{-1}(V)} \sqrt{\det((J\beta\circ\Phi)^t(J\beta\circ\Phi))}\cdot|\det J\Phi|\]
+    Because $\sqrt{x^2}=|x|$
+    \[\int_{\Phi^{-1}(V)} \sqrt{\det((J\beta\circ\Phi)^t(J\beta\circ\Phi))}\cdot|\det J\Phi|=\int_{\Phi^{-1}(V)} V(J\beta\circ\Phi)\cdot|\det J\Phi|\]
+    By the definition of $V$
+    \[\int_{\Phi^{-1}(V)} V(J\beta\circ\Phi)\cdot|\det J\Phi|=\int_{\Phi^{-1}(V)} (V(J\beta)\circ\Phi)\cdot|\det J\Phi|\]
+    Because $V(J\beta\circ\Phi)=V\circ J\beta\circ\Phi=V(J\beta)\circ\Phi$
+    
+    \[\int_{\Phi^{-1}(V)} (V(J\beta)\circ\Phi)\cdot|\det J\Phi|=\int_V V(J\beta)\]
+    By the Change of Variables Theorem from Unit 13\\\\
+    Finally, we have shown that \[\vol_\alpha(M)=\int_UV(J\alpha)=\int_VV(J\beta)=\vol_\beta(M)\]
+    As needed.
+\end{proof}
+
 
 
 
@@ -3350,6 +4033,10 @@
         which is a contradiction.
         \smallbreak
     \end{proof}
+
+    \begin{thm}
+        (Fubini's Theorem) Let \(E, F\) be two measurable sets.
+    \end{thm}
 
     \begin{defn}
         A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree.
