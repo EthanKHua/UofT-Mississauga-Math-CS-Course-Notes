@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[margin=1.0in]{geometry}
-\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools}
+\usepackage{amssymb,amsmath,amsthm,amsfonts,mathtools,systeme}
 \usepackage{enumitem}
 \usepackage{xcolor}
 
@@ -2162,7 +2162,648 @@
             \]
             Therefore \(\nabla f(5,2) = \left( -\dfrac{9}{2}, -\dfrac{17}{2} \right)\).
         \end{proof}
+        \newpage
+        \subsection{\#30}
+        Let $U\subseteq \R^n$ be an open set in $\R^n$, and let $K$ be a compact subset of $U$. Prove that there exists an \textit{infinitely differentiable} function $\varphi:\R^n\rightarrow [0,1]$ such that $\varphi(p)=1$ for all $p\in K$, and $\varphi(p)=0$ for all $p\in \R^n\setminus U$. This is called a \textbf{bump function} supported on $U$.
 
+        (For a function $f:U\rightarrow Y$, the \textbf{$n$th total derivative} $f^{(n)}$ is defined as follows: for $n=0$, we set $f^{(0)}=f$; for $n\geq 1$, if $f^{(n-1)}$ is totally differentiable, we set $f^{(n)} = (f^{(n-1)})'$. We say that $f$ is \textbf{infinitely differentiable} if $f^{(n)}$ exists for all $n\geq 0$.)
+
+        \begin{proof}
+            First, we notice that the bump function in Big List \#4 can be generalised to arbitrary intervals by simply performing horizontal translations. Now, we show that bump functions for closed rectangles within open rectangles in \(\mathbb{R}^n\) can be constructed.
+
+		Let \(R = \prod _{i=1}^n [a_i, b_i]\) be a closed rectangle that is inside an open rectangle \(S = \prod _{i=1}^n (c_i, d_i)\) in \(\mathbb{R}^n\). This implies that for all \(i\), \(c_i < a_i \leq b_i < d_i\). Considering this as an interval in \(\mathbb{R}\), we can find a bump function \(\varphi _i\) such that \(\varphi _i([a_i, b_i]) = \{1\}\) and \(\varphi _i(\mathbb{R}\setminus (c_i, d_i)) = \{0\}\). Notice that this is a function from \(\mathbb{R}\) to \(\mathbb{R}\). We define \(\alpha _i : \mathbb{R}^n \to \mathbb{R}\) by \(\alpha _i (x) = \varphi _i (x_i)\). It will be shown that the bump function supported in \(S\) is
+		\[
+			\beta (x) = \prod _{i=1}^n \alpha _i(x)
+		\]
+		First, note that each \(\alpha _i\) is infinitely differentiable, so \(\beta\) is infinitely differentiable as well. If \(p = (p_1, ..., p_n) \in R\), then for all \(i \in \{1, ..., n\}\), \(p_i \in [a_i, b_i]\), so \(\alpha _i (p) = 1\). We have
+		\[
+			\beta (p) = \prod _{i=1}^n \alpha _i(p) = 1
+		\]
+		Using a similar argument, if \(p \in \mathbb{R}^n \setminus S\), there is at least one component of \(p\) such that \(p_i \notin (c_i, d_i)\), and so \(\alpha _i(p) = 0\), which implies that
+		\[
+			\beta (p) = 0
+		\]
+		as desired.
+
+		Additionally, if there exists bump functions \(\alpha _1\) and \(\alpha _2\) supported on open sets \(U_1\) and \(U_2\) respectively, where the compact sets are \(K_1 \subseteq U_1\) and \(K_2 \subseteq U_2\), then there exists a bump function \(\varphi\) supported on \(U_1 \cup U_2\) for the compact set \(K_1 \cup K_2\), which is defined by
+		\[
+			\varphi (x) = \alpha _1(x) + \alpha _2(x) - \alpha _1(x) \alpha _2(x).
+		\]
+		Verifying this, we see that if \(x \in K_1 \cup K_2\), then either \(x \in K_1\) or \(x \in K_2\). Assuming without loss of generality that \(x \in K_1\), we have that
+		\[
+			\varphi (x) = 1 + \alpha _2(x) - \alpha _2(x) = 1
+		\]
+		As well, if \(x \in \mathbb{R}^n \setminus (U_1 \cup U_2)\), then \(\varphi (x) = 0\), showing that \(\varphi\) is indeed a bump function.
+
+		Next, let \(\mathbb{R}^n\) be equipped with the max-norm. We claim that \(\prod _{i=1}^n (p-r,p+r) \subseteq B(p,r)\), for \(p \in \mathbb{R}^n\) and \(r > 0\).
+
+		Let \(x \in \prod _{i=1}^n (p-r,p+r)\). For all \(i\), \(|p_i - x_i| < r\), so \(\|x - p\| _{\max} < r\). Hence \(x \in B(p, r)\).
+
+		Thus \(\prod _{i=1}^n (p-r,p+r) \subseteq B(p,r)\), and moreover by taking the closure of both sets,
+		
+		\(\prod _{i=1}^n [p-r,p+r] \subseteq \cl{B}(p,r)\).
+		
+		Now, we can proceed proving the main result.
+
+		Let \(U\) be an open subset of \(\mathbb{R}^n\), and let \(K \subseteq U\) be compact. For every \(y_i \in K\), there exists an open ball centered around \(y_i\) so that \(B(y_i, \delta_i) \subseteq U\). Furthermore, we have that
+		\[
+			\prod _{i=1}^n \left[y_i - \frac{\delta_i}{2}, y_i + \frac{\delta_i}{2}\right] \subseteq \prod _{i=1}^n (y_i - \delta_i , y_i + \delta_i) \subseteq B(y_i, \delta_i) \subseteq U
+		\]
+		Let \(R_i = \prod _{i=1}^n \left[y_i - \frac{\delta_i}{2}, y_i + \frac{\delta_i}{2}\right]\) and \(S_i = \prod _{i=1}^n (y_i - \delta_i , y_i + \delta_i)\). Notice that \(\{R_i^{\circ}\}\) forms an open cover on \(K\), and by compactness, there is an finite subcover \(\{R_{i_n}^{\circ}\}_{n \leq N}\). Note that if we take the closure of each set, we get the closed cover \(\{R_{i_n}\}\).
+		
+		For each closed rectangle \(R_{i_n}\), we can find a bump function supported on \(S_i\). Since we have a finite number of rectangles, we can ``merge'' all the bump functions by combining them one at a time using the method outlined above. This eventually obtains a bump function \(\gamma\) supported on \(\bigcup_{n=1}^{N} S_{i_n}\) for the compact set \(\bigcup_{n=1}^{N} K_{i_n}\). We claim that this bump function is also a bump function support on \(U\) for the compact set \(K\).
+
+		If \(x \in K\), then it is also true that \(x \in \bigcup_{n=1}^{N} K_{i_n}\). It follows that \(\gamma (x) = 1\).
+
+		In a similar fashion, if \(x \in \mathbb{R}^n \setminus U\), then \(x \in \mathbb{R}^n \setminus \bigcup_{n=1}^{N} S_{i_n}\), from which it follows that \(\gamma (x) = 0\).
+
+		Therefore we have found a bump function as desired and the proof is complete.
+        \end{proof}
+        \newpage
+        \subsection{\#31}
+        \begin{enumerate}[label=(\alph*)]
+			\item Let $A\in M_n(\R)$ be a symmetric matrix and let $Q(\vec{x})=\vec{x}^TA\vec{x}$ be the correpsonding quadratic form. Prove that the following two statements are equivalent:
+			\begin{enumerate}[label=(\roman*)]
+				\item $Q(\vec{x})> 0$ for all $\vec{x}\neq \vec{0}$.
+		
+				\item All eigenvalues of $A$ are strictly positive.
+			\end{enumerate}
+		
+			In this case, we say that $Q$ is a \textbf{positive definite} quadratic form, and that $A$ is a \textbf{positive definite} matrix.
+		
+			\item Prove the following ``stay away'' lemma, which you will need for part (c): if $Q:\R^n\rightarrow \R$ is a positive definite quadratic form, then there exists a constant $\eta>0$ such that $Q(\vec{x})\geq \eta \|\vec{x}\|^2$ for all $\vec{x}\in \R^n$.
+		
+			\item Let $U\subseteq\R^n$ be an open set, let $f:U\rightarrow \R$ be a twice continuously differentiable function, and let $p_0\in U$ be a point at which $\nabla f(p_0)=\vec{0}$. Prove that if the Hessian matrix $Hf(p_0)$ is positive definite, then $f$ achieves a \textbf{local minimum} at $p_0$; \textit{i.e.} $p_0$ has an open neighborhood $U_0$, contained in $U$, such that $f(p)\geq f(p_0)$ for all $p\in U_0$.
+		\end{enumerate}
+		\begin{proof}
+            (a):
+
+            Suppose that \(Q(\vec{x}) > 0\) for all \(\vec{x} \neq 0\). Since \(A\) is symmetric, it is orthogonally diagonalizable, so there exists an orthogonal matrix \(P \in M_n(\mathbb{R})\) such that \(B = P^{\top} A P\) is diagonal. Letting \(Q_B(\vec{x}) = \vec{x}^{\top} B \vec{x}\), we have that
+            \[
+                Q(\vec{x}) = Q_B \circ P (\vec{x})
+            \]
+            We will show that \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\).
+    
+            Let \(\vec{x} \in \mathbb{R}^n\) so that \(\vec{x} \neq 0\). Since \(Q(\vec{x}) > 0\), it follows that \(Q_B(\vec{x}) > 0\) as well, which implies that its eigenvalues are strictly positive. Since \(A\) and \(B\) share the same eigenvalues, we are done.
+    
+            Conversely, suppose that all the eigenvalues of \(A\) are strictly positive. By a similar argument as before, the eigenvalues of \(B\) are positive, so \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\). The same applies to \(Q\) and we are done.
+    
+            \medskip
+    
+            (b):
+    
+            First, equip \(\mathbb{R}^n\) with the 2-norm.
+    
+            Let \(Q\) be a positive definite quadratic form, so \(Q(\vec{x}) = \vec{x}^{\top}A\vec{x}\), for some diagonalizable matrix \(A\), where all its eigenvalues \(\lambda _i\) are strictly positive.
+            
+            Let \(\eta = \min_{1 \leq i \leq n} \{\lambda _i\}\). Let \(B\) be the diagonal matrix such that \(A = P^{\top} B P\) for an orthogonal matrix \(P\). Denote \(P(\vec{x}) = (p_1, ..., p_n)\). We have
+            \[
+                Q(\vec{x}) = Q_B \circ P(\vec{x}) = (P(\vec{x}))^{\top}B(P(\vec{x})) = \sum_{i=1}^{n} \lambda_i \cdot p_i^2 \geq \eta \sum_{i=1}^{n} p_i^2 = \eta \lVert P(\vec{x}) \rVert _2
+            \]
+            Since \(P\) preserves distance, we have that
+            \[
+                Q(\vec{x}) \geq \eta \lVert P(\vec{x}) \rVert _2^2 = \eta \lVert \vec{x} \rVert _2^2
+            \]
+            as desired.
+    
+            \medskip
+    
+            (c):
+    
+            Let \(U \subseteq \mathbb{R}^n\) be an open set, let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Let \(p_0 \in U\) be a point such that \(\nabla f(p_0) = 0\). Suppose that \(Hf(p_0)\) is positive definite. We will show that \(Q(x) = \frac{1}{2}x^T Hf(p_0) x\) is a quadratic approximation to \(f\) at \(p_0\). That is,
+            \[
+                \lim_{h \to 0} \frac{f(p_0 + h) - f(p_0) - Q(h)}{\|h\|^2} = 0
+            \]
+            Let \(\varepsilon > 0\). Since \(U\) is open, there is a \(\delta _o\) so that \(p_0 + h \in U\), where \(\|h\| < \delta _o\). Additionally, by the continuity of \(Hf\), there exists \(\delta _c\) so that for \(\|h\| < \delta _c\), \(|Hf(p_0 + h) - Hf(p_0)| < 2\varepsilon\). Let \(\delta = \min \{ \delta _o, \delta _c \}\). Fix \(h \in \mathbb{R}^n\) such that \(0 < \|h\| < \delta\).
+            
+            Since \(U\) is open, there exists \(r > 0\) so that \(p_0 + th \in U\) for \(t \in (-r, 1 + r)\). Define \(g(t) = f(p_0 + th)\).
+            Applying Taylor's quadratic remainder formula to \(g\), there exists \(\theta \in (0, 1)\) so that
+            \[
+                g(1) = g(0) + g'(0) + \frac{1}{2}g''(\theta) \implies f(p_0 + h) = f(p_0) + f'(p_0)h + \frac{1}{2}f''(p_0 + \theta h)(h)h
+            \]
+            Since \(\nabla f(p_0) = 0\), we have
+            \[
+                f(p_0 + h) = f(p_0) + \frac{1}{2}h^T Hf(p_0 + \theta h)h
+            \]
+            Thus we have
+            \[
+                |f(p_0 + h) - f(p_0) - Q(h)| = \left\vert \frac{1}{2}h^T Hf(p_0 + \theta h)h - \frac{1}{2}h^T Hf(p_0)h\right\vert
+            \]
+            \[
+                \leq \frac{1}{2}\|h^T\| _c \|Hf(p_0 + \theta h) - Hf(p_0)\| \|h\|
+            \]
+            where \(\|\cdot\| _c\) is a norm on row vectors defined by \(\|x\| _c = \|x^T\|\). Automatically we have that 
+            \[
+                |f(p_0 + h) - f(p_0) - Q(h)| \leq \frac{1}{2}\|Hf(p_0 + \theta h) - Hf(p_0)\| \|h\|^2 < \varepsilon \|h\|^2
+            \]
+            \[
+                \implies \frac{f(p_0 + h) - f(p_0) - Q(h)}{\|h\|^2} < \varepsilon
+            \]
+            as desired. Thus \(Q\) is indeed a quadratic approximation for \(f\) at \(p_0\). It remains to show that \(f\) attains a local minimum at \(p_0\). Suppose that this is not the case. In particular, for every open neighborhood around \(p_0\) there is a point \(q\) where \(f(q) < f(p_0)\). We write \(q = p_0 + s\), where \(s = q - p_0\). Since \(Hf(p_0)\) is positive definite, \(Q\) is positive definite. Using the quadratic approximation, there is a \(\delta > 0\) so that for all \(0 < \|h\| < \delta\),
+            \[
+                |f(p_0 + h) - f(p_0) - Q(h)| < \eta\|h\|^2,
+            \]
+            where \(\eta\) comes from part (b) applied to \(Q\). Find a suitable \(s\) such that \(f(p_0 + s) < f(p_0)\). By part (a), \(Q(s) > 0\). This implies that \(f(p_0 + s) - f(p_0) - Q(s) < 0\), so
+            \[
+                f(p_0) - f(p_0 + s) + Q(s) < \eta \|h\|^2 \implies f(p_0) + Q(s) - \eta \|h\|^2 < f(p_0 + s).
+            \]
+            From part (b), we know that \(Q(s) - \eta \|h\|^2 \geq 0\), so
+            \[
+                f(p_0) < f(p_0 + s)
+            \]
+            which is a contradiction.
+    
+            Therefore we have shown that \(f\) attains a local minimum at \(p_0\) and we are done.    
+        \end{proof}
+        \newpage
+        \subsection{\#32}
+        Let $M$ be a subset of $\R^n$, let $p_0\in M$ be a point, and let $\vec{v}\in \R^n$ be a vector. We say that $\vec{v}$ is a \textbf{tangent vector} to $M$ at $p_0$ if there exists $\delta>0$ and a $C^1$ function $\alpha:(-\delta,\delta)\rightarrow M$ such that $\alpha(0)=p_0$ and $\alpha'(0)=\vec{v}$. In other words, $\vec{v}$ is the velocity vector of a curve through $M$.
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose now that $M$ is the \textit{zero set} of some $C^1$ function $f:U\rightarrow \R$, where $U$ is an open set in $\R^n$: thus
+                \[ M = \{p\in U : f(p)=0\}. \]
+            Suppose that $p_0\in M$ is a point such that $\nabla f(p_0)\neq \vec{0}$, and let $\vec{v}\in \R^n$ be a vector. Show that $\vec{v}$ is a tangent vector to $M$ at $p_0$ if and only if $\nabla f(p_0)\cdot \vec{v}=0$.
+
+            \item Let $E$ be the ellipsoid in $\R^3$ defined by the following equation:
+                \[ x^2 + yz + y^2 - xy - xz + z^2 = 3. \]
+            Find the equation of the tangent plane to $M$ at the point $p_0=(1,2,0)$.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+        Suppose that \(\vec{v}\) is a tangent vector to \(M\) at \(p_0\). Then there exists a function \(\alpha : (-\delta , \delta ) \to M\) so that \(\alpha (0) = p_0\) and \(\alpha '(0) = \vec{v}\). Define \(g: (-\delta , \delta ) \to \mathbb{R}\) by \(g(t) = f(\alpha(t))\). For all \(t \in (-\delta ,\delta)\), \(\alpha (t) \in M\), so \(g(t) = 0\). It follows that
+        \[
+            0 = g'(t) = \nabla f(\alpha (t)) \cdot \alpha '(t)
+        \]
+        Substituting \(t = 0\) yields
+        \[
+            \nabla f(p_0) \cdot \vec{v} = 0
+        \]
+        as needed.
+
+        \medskip
+
+        Conversely, suppose that \(\nabla f(p_0) \cdot \vec{v} = 0\). Since \(\nabla f(p_0) \neq 0\), \(\dfrac{\partial f}{\partial x_i}(p_0) \neq 0\) for some \(i \in \{0, ..., n\}\). Define the \(C^1\) function \(g: \mathbb{R}^n \to \mathbb{R}\) as the function that swaps the \(i\)th and \(n\)th coordinate. That is,
+        \[
+            g(x_1, ..., x_n) = f(x_1, ..., x_{i-1}, x_n, x_{i+1}, ..., x_i)
+        \]
+        Let \(p'\) be the vector in \(\mathbb{R}^{n-1}\) whose components are the same as \(p_0\) except that its \(i\)th component is \(p_n\). In particular,
+        \[
+            p' = (p_1, ..., p_{i-1}, p_n, p_{i+1}, ..., p_{n-1}).
+        \]
+        Notice that \(\dfrac{\partial g}{\partial x_n}(p', p_i) = \dfrac{\partial f}{\partial x_i}(p_0) \neq 0\). Applying the Implicit Function Theorem with \(k = 1\), there exists an open set \(W \subseteq \mathbb{R}^{n-1}\) that contains \(p'\) and a continuously differentiable function \(\psi : W \to \mathbb{R}\) such that for all \(x' \in W\), \(\psi (p') = p_i\) and
+        \[
+            g(x', \psi(x')) = f(x_1, ..., x_{i-1} , \psi (x'), x_{i+1}, ..., x_{n-1}) = 0
+        \]
+        Since \(W\) is open, there exists \(\delta > 0\) so that for all \(\|t\| < \delta\), \(p' + t \pi _{\mathbb{R}^{n-1}}(\vec{v}) \in W\).
+
+        Let \(\hat{v}\) be \(\vec{v}\) with swapped \(i\)th and \(n\)th components. Let \(\alpha : (-\delta ,\delta) \to M\) be defined by
+        \[
+            \alpha (t) = (p_1 + tv_1, ..., p_{i-1} + tv_{i-1}, \psi (p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)), p_{i+1} + tv_{i+1}, ..., p_n + tv_n).
+        \]
+        We can see that \(\alpha (0) = p_0\). Next, we want to show that \(\alpha '(0) = \vec{v}\). We first find the total derivative of \(\psi (p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1))\). For \(j \in \{1, ..., n-1 \}\), we know that the \(j\)th partial derivative is given by
+        \[
+            \dfrac{\frac{\partial g}{\partial x_j}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)) \cdot v_i \cdot \hat{v}_j}{\frac{\partial g}{\partial x_n}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)) \cdot (-v_i)} = -\dfrac{\frac{\partial g}{\partial x_j}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1)) \cdot \hat{v}_j}{\frac{\partial g}{\partial x_n}(p' + t v_i (\pi _{\mathbb{R}^{n-2}}(\hat{v}), -1))}
+        \]
+        substituting \(t=0\) into this expression gives us
+        \[
+            -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial g}{\partial x_n}(p')} = -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial f}{\partial x_i}(p_0)}
+        \]
+        For \(j \neq i\),
+        \[
+            -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial f}{\partial x_i}(p_0)} = -\dfrac{\frac{\partial f}{\partial x_j}(p_0) \cdot v_j}{\frac{\partial f}{\partial x_i}(p_0)}.
+        \]
+        For \(j = i\),
+        \[
+            -\dfrac{\frac{\partial g}{\partial x_j}(p') \cdot \hat{v}_j}{\frac{\partial f}{\partial x_i}(p_0)} = -\dfrac{\frac{\partial f}{\partial x_n}(p_0 ) \cdot v_n}{\frac{\partial f}{\partial x_i}(p_0)}
+        \]
+        Thus the total derivative is given by
+        \[
+            - \frac{1}{\frac{\partial f}{\partial x_i}(p_0)}\sum_{j \in \{1, ..., i-1, i+1, ..., n\}}\frac{\partial f}{\partial x_j}(p_0) \cdot v_j
+        \]
+        Recall that \(\sum\limits_{j=1}^n \dfrac{\partial f}{\partial x_j}(p_0) \cdot v_j = \nabla f(p_0) \cdot \vec{v} = 0\). Using this, our expression for the total derivative at \(t = 0\) becomes
+        \[
+            - \frac{1}{\frac{\partial f}{\partial x_i}(p_0)} \cdot \left( -\frac{\partial f}{\partial x_i} (p_0) \cdot v_i \right) = v_i
+        \]
+        Therefore, we conclude that
+        \[
+            \alpha' (0) = (v_1, ..., v_{i-1}, v_i, v_{i+1}, ..., v_n) = \vec{v},
+        \]
+        Which verifies that \(\vec{v}\) is indeed a tangent vector to \(M\) at \(p_0\), finishing the proof.
+
+        \medskip
+
+        \noindent(b):
+
+        Let \(f: \mathbb{R}^3 \to \mathbb{R}\) be a function defined by
+        \[
+            f(x,y,z) = x^2 + yz + y^2 - xy -xz + z^2 - 3
+        \]
+        Its zero set is exactly \(M\) and its gradient is
+        \[
+            \nabla f(x,y,z) = (2x - y - z, z + 2y - x, y - x + 2z).
+        \]
+        Substituting \(p_0\), we get \(\nabla f(p_0) = (0, 3, 1) \neq 0\). Let \(\vec{v}_1 = (1, 0, 0)\), \(\vec{v}_2 = (0, 1, -3)\). Notice that
+        \[
+            \nabla f(p_0) \cdot \vec{v}_1 = \nabla f(p_0) \cdot \vec{v}_2 = 0
+        \]
+        By the results of part (a), \(\vec{v}_1\) and \(\vec{v}_2\) are tangent vectors to \(M\) at \(p_0\). The equation of the plane spanned by \(\vec{v}_1\) and \(\vec{v}_2\) is given by
+        \[
+            3y + z = 0
+        \]
+        We shift this equation to \(p_0\), giving us
+        \[
+            3y + z = 6
+        \]
+        \end{proof}
+        \newpage
+        \subsection{\#33}
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $g:U\rightarrow \R$ be a $C^1$ function defined on an open set $U\subseteq \R^n$, and let $M$ be its zero set:
+                \[ M = \{ p\in U : g(p)=0 \}. \]
+            Suppose that we have a $C^1$ function $f:U\rightarrow \R$, defined on an open set $U\subseteq \R^n$ which contains $M$, and we wish to find the maximum of $f$ on $M$. Assume that $M$ is compact, and that $f$ achieves its maximum on $M$ at some point $p_0\in M$. Prove that there exists a real number $\lambda \in \R$ such that
+                \[ \nabla f(p_0) = \lambda \nabla g(p_0). \]
+            This number $\lambda$ is known as the \textbf{Lagrange multiplier}.
+    
+            \item Use Lagrange multipliers to solve the following optimization problem: \textit{Find the point(s) on the ellipsoid $x^2 + yz + y^2 - xy - xz + z^2 = 3$ which are \textbf{closest} and \textbf{furthest} from the origin.}
+        \end{enumerate}
+        \begin{proof}
+            (a):
+        
+        Let \(h: U \times \mathbb{R} \to \mathbb{R}\) be the \(C^1\) function defined by
+        \[
+            h(x, y) = yg(x) + y - f(x)
+        \]
+        Notice that \(h(p_0, f(p_0)) = f(p_0) \cdot g(p_0) + f(p_0) - f(p_0) = 0\) and \(\dfrac{\partial h}{\partial y} (p_0, f(p_0)) = g(p_0) + 1 = 1 \neq 0\). By the implicit function theorem, there exists an open set \(W \subseteq \mathbb{R}^n\) and \(C^1\) function \(\psi : W \to \mathbb{R}\) such that for all \(x \in W\),
+        \[
+            h(x, \psi (x)) = \psi (x) g(x) + \psi (x) - f(x) = 0
+        \]
+        Taking the derivative of both sides at \(p_0\) with respect to \(x\), we see that
+        \[
+            g(p_0) \nabla \psi (p_0) + \psi (p_0) \nabla g(p_0) + \nabla \psi (p_0) - \nabla f(p_0) = 0
+        \]
+        \[
+            \implies \psi (p_0) \nabla g(p_0) + \nabla \psi (p_0) - \nabla f(p_0) = 0
+        \]
+        Also note that \(\dfrac{\partial \psi}{\partial x_i}(p_0) = \dfrac{\frac{\partial h}{\partial x_i}(p_0, f(p_0))}{\frac{\partial h}{\partial y}(p_0, f(p_0))} = \dfrac{\partial g}{\partial x_i}(p_0) - \dfrac{\partial f}{\partial x_i}(p_0)\). Thus our equation becomes
+        \[
+            (\psi (p_0) + 1)\nabla g(p_0) - 2 \nabla f(p_0) = 0 \implies \nabla f(p_0) = \frac{\psi (p_0) + 1}{2} g(p_0)
+        \]
+        Therefore the value \(\lambda = \dfrac{\psi (p_0) + 1}{2}\) is the one that we needed.
+
+        \medskip
+
+        (b):
+
+        Define
+        \[
+            g(x,y,z) = x^2 + yz + y^2 - xy - xz + z^2 - 3.
+        \]
+        Its zero set \(M\) is defined by the ellipsoid
+        \[
+            x^2 + yz + y^2 - xy - xz + z^2 - 3 = 0.
+        \]
+        We will attempt to minimize and maximize \(f(x,y,z) = x^2 + y^2 + z^2\) on \(M\). We know that if \(f\) achieves a maximum or minimum, by part (a), there exists \(\lambda \in \mathbb{R}\) so that
+        \[
+            \nabla f(p_0) = \lambda \nabla g(p_0) \implies (2x, 2y, 2z) = \lambda (2x - y - z, z + 2y - x, y - x + 2z)
+        \]
+        We simply evaluate \(f\) at these points and check which ones are maximums, minimums, or neither. From the above equality, we end up with the system of equations
+        \begin{equation*}
+            \sysdelim..
+            \systeme{
+                {2(1 - \lambda)}x + y + z = 0,
+                x + {2(1 - \lambda)}y - z = 0,
+                x - y + {2(1 - \lambda)}z = 0
+            }
+        \end{equation*}
+        Consider if \(\lambda = \frac{3}{2}\). The equations collect and become
+        \begin{equation*}
+            x = y + z
+        \end{equation*}
+        From the ellipsoid, we have
+        \[
+            x^2 + yz + y^2 - xy - xz + z^2 = 3 \implies f(x,y,z) = x(y + z) - yz + 3,
+        \]
+        but at the same time, we have
+
+        \[
+            x^2 + yz + y^2 - xy - xz + z^2 = 3 \implies x^2 + yz + y^2 - (y + z)y - (y + z)z + z^2 = 3
+        \]
+        Expand the brackets and simplify to get
+        \[
+            x^2 - yz = 3 \implies x^2 - yz + 3 = 6.
+        \]
+        Thus
+        \[
+            f(x,y,z) = 6,\ \text{when } \lambda = \frac{3}{2}
+        \]
+        Otherwise, we take the first and second equation in the original system and add them together to obtain
+        \[
+            (2(1 - \lambda) + 1)x + (2(1 - \lambda) + 1)y = 0
+        \]
+        \[
+            \implies (2(1 - \lambda) + 1)(x + y) = 0 \tag{1}
+        \]
+        Likewise, we can subtract the third equation from the second to get
+        \[
+            (2(1 - \lambda) + 1)y - (2(1 - \lambda) + 1)z = 0
+        \]
+        \[
+            (2(1 - \lambda) + 1)(y - z) = 0 \tag{2}
+        \]
+        Since \((2(1 - \lambda) + 1) \neq 0\), from equations (1) and (2), we get that \(z = y = -x\). We substitute every variable into the original equation for \(x\) and see that
+        \[
+            x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 3 \implies x = \frac{1}{\sqrt{2}},\ y = z = -\frac{1}{\sqrt{2}}
+        \]
+        so
+        \[
+            f \left( \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}} \right) = \frac{3}{2}
+        \]
+        Thus the points on the ellipsoid that are furthest from the origin satisfy the equation \(x = y + z\), and the point that is closest to the origin is \(\left( \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}} \right)\).
+        \end{proof}
+        \newpage
+        \subsection{\#34}
+        \newpage
+        \subsection{\#35}
+        \textit{Perturbing the roots of a polynomial.}
+    
+    Let $f(x)=\sum_{i=0}^n a_ix^i$ be a \textbf{monic} polynomial with \textbf{no repeated real roots}. This means that $a_n=1$, and that all real roots of $f$ have multiplicity $1$.
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        
+        Let $r$ be a root of $f(x)$. Prove that for all $\varepsilon>0$, there exists $\delta>0$ such that: if $g(x)=\sum_{i=0}^n b_ix^i$ is a monic polynomial with coefficients $b_i$ satisfying $|a_i-b_i|<\delta$, then $g(x)$ has at least one root in the interval $(r-\varepsilon,r+\varepsilon)$.
+
+        This shows that slight perturbations of the coefficients results in slight perturbations of the roots.
+        
+        \item Suppose that $f$ has fewer than $n$ real roots. Prove that number of real roots of $f$ does not change under small perturbation of the coefficients.
+    \end{enumerate}
+        \begin{proof}
+            (a):
+
+    First, we prove the following lemma:
+
+    \textbf{Lemma.} Let \(r \in \mathbb{R}\) be a root of a polynomial \(p\). Then \(r\) is a repeated root if and only if \(p'(r) = 0\).
+
+    Suppose that \(p\) has a repeated root. Then we can factor \(p\) as \((x - r)^k q(x)\), for some \(k > 1\) and \(q \in \mathbb{P} (\mathbb{R})\). We can take the derivative of this and get that
+    \[
+        p'(x) = k(x - r)^{k-1} q(x) + (x - r)^k q'(x)
+    \]
+    \[
+        \implies p'(r) = 0
+    \]
+    Conversely, suppose that \(p'(r) = 0\), for some \(r \in \mathbb{R}\). We can write
+    \[
+        p'(x) = (x - r)\sum_{i=0}^{m} c_i x^i, \text{ for constants } c_0, ..., c_m
+    \]
+    We can integrate both sides to get that
+    \[
+        p(x) = \int (x - r) \sum_{i=0}^{m} c_i x_i\ dx = \int x\sum_{i=0}^{m} c_i x_i - r\sum_{i=0}^{m} c_i x_i\ dx
+    \]
+    \[
+        = \sum_{i=0}^{m} \frac{c_i}{i+2}x^{i+2} - r \sum_{i=0}^{m} \frac{c_i}{i+1}x^{i+1} + C
+    \]
+    In order for \(r\) to be a root of \(p\), we must have that
+    \[
+        p(r) = \sum_{i=0}^{m} \left(\frac{c_i}{i+2}r^{i+2} - \frac{c_i}{i+1}r^{i+2}\right) + C = 0
+    \]
+    \[
+        \implies C = \sum_{i=0}^{m} \left(\frac{c_i}{i+1}r^{i+2} - \frac{c_i}{i+2}r^{i+2}\right)
+    \]
+    Therefore (im sorry)
+    \begin{align*}
+        p(x) &= \sum_{i=0}^{m} \left( \frac{c_i}{i+2}x^{i+2} - \frac{c_i}{i + 2}r^{i+2} + \frac{c_i}{i+1}r^{i+2} - r\frac{c_i}{i + 1}x^{i+1} \right) \\
+        &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i+2} \right)(x^{i+2} - r^{i+2}) - \left( \frac{c_i r}{i + 1} \right)(x^{i+1} - r^{i+1})\right) \\
+        &= \sum_{i=0}^{m} \left( \left( \frac{c_i}{i + 2} \right)(x - r) \sum_{j=0}^{i+1} x^j r^{i - j + 1} - \left( \frac{c_i}{i + 1} \right)(x - r)\sum_{j=0}^{i} x^j r^{i-j+1} \right) \\
+        &= (x - r)\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)} \left( (i + 1)\left(x^{i+1} + \sum_{j=0}^{i} x^j r^{i-j+1} \right) - (i + 2)\sum_{j=0}^{i} x^j r^{i-j+1} \right) \right) \\
+        &= (x - r)\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)}\left( (i+1)x^{i+1} - \sum_{j=0}^{i}x^j r^{i-j+1} \right) \right) \\
+        &= (x-r)\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)} \sum_{j=0}^{i} (x^{i+1} - x^j r^{i-j+1})\right) \\
+        &= (x-r)\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)} \sum_{j=0}^{i} x^j (x^{i-j+1} - r^{i-j+1})\right) \\
+        &= (x-r)\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)} \sum_{j=0}^{i} x^j (x-r)\sum_{k=0}^{i-j} x^k r^{i-j-k+1}\right) \\
+        &= (x-r)^2\sum_{i=0}^{m} \left( \frac{c_i}{(i+1)(i+2)} \sum_{j=0}^{i} \sum_{k=0}^{i-j} x^{k+j} r^{i-j-k+1}\right) \\
+    \end{align*}
+    which implies that \(r\) is a repetaed root of \(p\).
+
+    Define the \(C^1\) function \(\Phi : \mathbb{R}^{n+2} \to \mathbb{R}\) by
+    \[
+        \Phi (y_0, y_1, ..., y_{n}, x) = \sum_{i=0}^{n} y_i x^i.
+    \]
+    Let \(a = (a_0, ..., a_n) \in \mathbb{R}^{n+1}\). We have that \(\Phi (a, r) = 0\) and as well, by our lemma,
+    
+    \(\dfrac{\partial \Phi}{\partial x}(a, r) = f'(r) \neq 0\). Applying the Implicit Function Theorem, we get that for some open set \(W \subseteq \mathbb{R}^{n+1}\) containing \(a\) and \(C^1\) function \(\Psi : W \to \mathbb{R}\) such that \(\Psi (a) = r\),
+    \[
+        \Phi (b, \Psi (b)) = 0, \text{ for all } b \in W.
+    \]
+    Now, let \(\varepsilon > 0\). by the continuity of \(\Psi\) at \(a\), there exists a \(\delta > 0\) so that for all \(b \in W\) with \(\|b - a\| < (n+1)\delta\), \(|\Psi (b) - r| < \varepsilon\), so \(\Psi (b) \in (r - \varepsilon, r + \varepsilon)\). Consider the polynomial
+    \[
+        g(x) = \sum_{i=0}^{n} b_i x^i = \Phi (b,x)
+    \]
+    Where \(|a_i - b_i| < \delta\). It follows that
+    \[
+        (n+1)\delta > \sum_{i=0}^{n} |a_i - b_i| > \|a - b\|
+    \]
+    which implies that \(\Psi (b) \in (r - \varepsilon, r + \varepsilon)\). But notice that \(\Psi (b)\) is actually a root of \(g(x)\), as desired.
+
+    \medskip
+
+    (b):
+
+    From part (a), we know that the number of roots can never decrease under small perturbations. Thus, it suffices to show that it will never increase, either.
+
+    First, we will strengthen the statement in part (a) so that for small enough \(\varepsilon\), there is exactly one root in the interval \((r - \varepsilon, r + \varepsilon)\). By the continuity of \(\dfrac{\partial \Phi}{\partial x}\), we obtain \(\xi > 0\) so that for \((c,s) \in \mathbb{R}^{n+1} \times \mathbb{R}\) such that \(\|(c,s) - (a,r)\| < \xi\),
+    \[
+        \left\vert \dfrac{\partial \Phi}{\partial x}(c,s) - \dfrac{\partial \Phi}{\partial x}(a,r) \right\vert < \frac{1}{2} \left\vert \dfrac{\partial \Phi}{\partial x}(a,r) \right\vert
+    \]
+    \[
+        \implies \dfrac{\partial \Phi}{\partial x}(a,r) - \frac{1}{2}\left\vert \dfrac{\partial \Phi}{\partial x}(a,r) \right\vert < \dfrac{\partial \Phi}{\partial x}(c,s) < \dfrac{\partial \Phi}{\partial x}(a,r) + \frac{1}{2} \left\vert \dfrac{\partial \Phi}{\partial x}(a,r) \right\vert
+    \]
+    Since \(\dfrac{\partial \Phi}{\partial x}(a,r) \neq 0\), it follows that \(\dfrac{\partial \Phi}{\partial x}(c,s) \neq 0\) as well. Let \(\varepsilon < \frac{\xi}{2}\). Define \(\delta _a\) as the value we found in part (a) for this value of \(\varepsilon\). Let \(g\) be a polynomial with coefficients \(b_i\) such that \(|a_i - b_i| < \min \left\{\delta_a, \dfrac{\xi}{2(n+1)}\right\}\). Then \(g(x) = \Phi (b, x)\) and \(g'(x) = \dfrac{\partial \Phi}{\partial x}(b,x)\). But notice that for \(|x - r| < \varepsilon = \frac{\xi}{2}\), we have that
+    \[
+        \|(b,x) - (a,r)\| \leq \sum_{i=0}^{n} |a_i - b_i| + |x - r| < \frac{(n+1)\xi}{2(n+1)} + \frac{\xi}{2} = \xi,
+    \]
+    so \(g'(x) = \dfrac{\partial \Phi}{\partial x}(b,x) \neq 0\), which implies that \(g\) is injective on the interval \((r - \varepsilon, r + \varepsilon)\). We already knew that \(g(\Psi (b)) = 0\), now we know that this is the only root in the interval.
+
+    For every root \(r\), we have an associated interval \((r - \varepsilon _r, r + \varepsilon _r)\) such that \(g\) contains exactly one root within them. Finally, we must show that outside of all these intervals, \(g\) does not gain any new roots. To do this, we have to shrink \(\delta\) even further. Let \(R\) be the finite set of all the roots of \(f\). Let \(V = \mathbb{R}\setminus \bigcup_{r \in R} (r - \varepsilon_r, r + \varepsilon _r)\). Consider the set
+    \[
+        S = |f|(V)
+    \]
+    Notice that \(\inf S > 0\). We use the fact that \(f \in \Omega (x^n)\) to claim that there exists \(x_0\) such that for all \(|x| > x_0\), we have
+    \[
+        |f(x)| \geq \eta |x|^n, \text{ for some } \eta > 0.
+    \]
+    Let \(m = \max \{1, x_0\}\). Let \(\delta = \min \left\{ \delta_a, \dfrac{\xi}{2(n+1)}, \dfrac{\eta}{2(n+1)}, \dfrac{\inf S}{2m^n(n+1)} \right\}\). Let \(x \in V\). We have that
+    \[
+        ||f(x)| - |g(x)|| \leq |f(x) - g(x)| = \left\vert \sum_{i=0}^{n} a_i x^i - \sum_{i=0}^{n} b_i x^i \right\vert \leq \sum_{i=0}^{n} |a_i - b_i| |x|^i
+    \]
+    Consider the case where \(|x| > m\). We get
+    \[
+        | |f(x) - |g(x)| | \leq \sum_{i=0}^{n} |a_i - b_i| |x|^i < \sum_{i=0}^{n} \frac{\eta}{2(n+1)} |x|^n = \frac{\eta}{2}|x|^n
+    \]
+    \[
+        \implies |g(x)| > |f(x)| - \frac{\eta}{2}|x|^n \geq \eta |x|^n - \frac{\eta}{2}|x|^n > 0
+    \]
+    Otherwise, if \(|x| \leq m\),
+    \[
+        | |f(x)| - |g(x)| | \leq \sum_{i=0}^{n} |a_i - b_i| |x|^i \leq \sum_{i=0}^{n} \frac{\inf S}{2m^n(n+1)}m^i \leq \sum_{i=0}^{n} \frac{\inf S}{2m^n(n+1)}m^n
+    \]
+    \[
+        \implies |g(x)| > |f(x)| - \frac{\inf S}{2} \geq \inf S - \frac{\inf S}{2} = \frac{\inf S}{2} > 0
+    \]
+    In either case, we see that \(g\) has no roots in \(V\).
+
+    Therefore, we see that any \(g\) with coefficients \(\delta\)-close to \(f\) has exactly one root close to each root of \(f\), and no other roots, so we can conclude that \(g\) exactly the same number of roots as \(f\).
+        \end{proof}
+        \newpage
+        \subsection{\#36}
+        In Handout \#7, we defined differentiability for functions on open sets. Now we give a definition that works over arbitrary sets. \textcolor{blue}{For this problem, you will need to read Piazza Post @274 and use Theorem 1.1.}
+    
+        Let $A\subseteq \R^n$ be an arbitrary set, let $f:A\rightarrow \R$ be a function, and let $p\in A$ be a point. We say that $f$ is \textbf{differentiable} at $p$ if there exists an open neighborhood $U$ of $p$ and a function $\widehat{f}:U\rightarrow \R$ such that $\widehat{f}$ is differentiable at $p$ (in the sense of Handout \#7) and $\widehat{f}\vert_{U\cap A}=f\vert_{U\cap A}$.
+
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $f$ is differentiable at every point of $A$ if and only if $f$ extends to a differentiable function defined on an open set containing $A$.
+
+            \item Suppose further that $A$ is closed. Prove that $f$ is differentiable at every point of $A$ if and only if $f$ extends to a differentiable function on $\R^n$.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+            Suppose that \(f\) extends to a differentiable function \(\hat{f}\) on an open set \(U \supseteq A\). That is, \(\hat{f}\vert _A = f\). Let \(x \in A\). Since \(U\) is open, we can find an open ball such that \(B(x, \varepsilon) \subseteq U\). Immediately, we get that the function \(\hat{f} \vert _{B(x,\varepsilon)}\) is the desired extension of \(f\) at \(x\), as \(\hat{f}\) is differentiable at \(x\) and \(\hat{f}\vert _{B(x,\varepsilon) \cap A} = f_{B(x,\varepsilon) \cap A}\).
+    
+            % \smallbreak
+    
+            Conversely, suppose that \(f\) is differentiable at every point of \(A\). For all \(p_a \in A\), there exists an open neighborhood \(U_a\) of \(p_a\) and a function \(f_a : U_a \to \mathbb{R}\) that is differentiable at \(p_a\) and \(f_a \vert _{U_a \cap A} = f \vert U \cap A\). Notice that \(U = \{U_a\}_{a \in I}\) forms an open cover of \(A\). Thus we can find a partition of unity \(\{ \varphi _a : \mathbb{R}^n \to [0,1]\}_{a\in I}\) subordinate to \(U\). In particular,
+            \begin{itemize}
+                \item \(\varphi _a \in C^{\infty}\),
+                \item \(\mathop{\mathrm{supp}}(\varphi _a)\cap U \subseteq U_a\),
+                \item \(\{\mathop{\mathrm{supp}}(\varphi_a)\}\) is locally finite,
+                \item \(\sum\limits_{a \in I} \varphi _a = 1\).
+            \end{itemize}
+            We claim that \(\hat{f} = \sum_{a \in I} \varphi _a \cdot f_a\) is the differentiable function that extends \(f\) to \(\{ U_a \} _{a \in I}\). First, note that this sum is well defined because the partition of unity is locally finite, so the sum is finite at every point, and as well, any point outside the domain of \(f_a\) implies that \(\varphi _a = 0\), so \(\varphi _a \cdot f_a = 0\).
+    
+            Moreover, for all \(x \in U\), since \(\{ \varphi _a \}_{a \in I}\) is locally finite, for some open neighborhood \(V\) of \(x\), for some finite sequence of \(a_n \in I\),
+            \[
+                \hat{f}(y) = \sum_{n=1}^{N} \varphi _{a_n} (y) \cdot f_{a_n}(y), \text{ where } y \in V.
+            \]
+            Since each term is differentiable, \(\hat{f}\) is differentiable at \(x\). Thus \(\hat{f}\) is differentiable on the entirety of \(U\). Additionally, for each \(a_n\), \(x \in U_{a_n}\), so by our initial assumption,
+            \[
+                \sum_{n=1}^{N} \varphi _{a_n} (x) \cdot f_{a_n}(x) = f(x) \cdot \sum_{n=1}^{N} \varphi _{a_n} (x) = f(x)
+            \]
+            which shows that \(\hat{f}\vert _A = f\) as needed.
+    
+            \medskip
+    
+            (b):
+    
+            Suppose that \(A\) is a closed set.
+    
+            The converse of this statement is exactly the same as the previous part, so we will omit the proof.
+    
+            Suppose that \(f\) is differentiable at every point of \(A\). By the previous part, \(f\) extends to a differentiable function \(\widetilde{f}\) on some open set \(U\) that contains \(A\). We want to find an open set \(V\) such that \(A \subseteq V \subseteq \cl{V} \subseteq U\). We see that the set \(V = \left\{ x \in \mathbb{R}^n : \mathrm{dist}_A (x) < \dfrac{\mathrm{dist}(A, U^c)}{2}\right\}\) is sufficient. It is pretty immediate that \(A \subseteq V\), as any element of \(A\) has distance 0 from \(A\). As well, if we let \(v \in \cl{V}\), since \(v\) is a limit point of \(V\) we can find \(v' \in V\) such that \(\|v - v'\| < \dfrac{\mathrm{dist}(A, U^c)}{4}\). Furthermore, by the definition of infimum we can find \(a \in A\) such that \(\|v' - a \| < \mathrm{dist}_A (x) +  \dfrac{\mathrm{dist}(A, U^c)}{4} < \dfrac{3\mathrm{dist}(A, U^c)}{4}\). Thus we have that
+            \[
+                \|a - v\| \leq \|a - v'\| + \|v' - v\| < \mathrm{dist}(A, U^c)
+            \]
+            For all \(w \in U^c\),
+            \[
+                \|w - v\| \geq \|w - a\| - \|a - v\| > \mathrm{dist}(A, U^c) - \mathrm{dist}(A, U^c) = 0
+            \]
+            which implies that \(v \notin U^c\), so \(v \in U\) and \(\cl{V} \subseteq U\).
+            
+            Now, notice that \(A^c\) is open and \(A^c \cup V = \mathbb{R}^n\). Thus \(\{ A^c, V \}\) form an open cover of \(\mathbb{R}^n\), so we can find a partition of unity \(\{\varphi_{A^c}, \varphi_{V}\}\) subordinate to \(\{ A^c, V \}\). We claim that our desired function \(\widehat{f}\) is given by
+            \[
+                \widehat{f} = \widetilde{f} \cdot \varphi_{V}.
+            \]
+            This function is well defined, as outside of the domain of \(\widetilde{f}\), it is identitally equal to 0.
+    
+            First, we will show that \(\widehat{f}\) is differentiable on \(\mathbb{R}^n\). Let \(p \in \mathbb{R}^n\), and begin by considering the case when \(p \in \cl{V} \subseteq U\). Then for some small enough neighborhood \(W\) of \(p\), for all \(x \in W\),
+            \[
+                \widehat{f}(x) = \widetilde{f} (x) \cdot \varphi_V (x)
+            \]
+            so \(\widehat{f}\) is differentiable at \(p\).
+    
+            If \(p \in \mathbb{R}^n \setminus \cl{V}\), then it is also true that \(p \notin V\), which is outside of \(\mathop{\mathrm{supp}}(\varphi_V)\). Thus, using the fact that \(\mathbb{R}^n \setminus \cl{V}\) is open, we get an open neighborhood \(W'\) of \(p\) such that
+            \[
+                \widehat{f}(x) = 0, \text{ for } x \in W'.
+            \]
+            so \(\widehat{f}\) is differentiable at \(p\).
+    
+            Now, we show that it is a valid extension of \(f\). For all \(x \in A\), notice that \(\varphi_{A^c} \vert _A \equiv 0\), so it must be true that \(\varphi _V \vert _A \equiv 1\). Then it follows that
+            \[
+                \widehat{f} \vert _A = \widetilde{f}\vert _A = f \vert _A
+            \]
+            and the proof is complete.    
+        \end{proof}
+        \newpage
+        \subsection{\#37}
+        The following set is called the \textbf{$n$-simplex}:
+        \[ \Delta_n := \{ \vec{x}=(x_1,\ldots,x_n)\in \R^n : x_1,\ldots,x_n\geq 0 \text{ and } x_1+\cdots+x_n\leq 1\}. \]
+        You can assume, without proof, that $\Delta_n$ is Jordan measurable.
+        
+        Find, with proof, an explicit formula for $\mu(\Delta_n)$ in terms of $n$.
+        \begin{proof}
+            First, we show that \(\Delta _n\) is the same as the set
+            \[
+                S = \left\{ (x_1, ..., x_n) \in \mathbb{R}^n : 0\leq x_1 \leq 1, 0 \leq x_2 \leq 1 - x_1, ..., 0 \leq x_n \leq 1 - \sum_{i=1}^{n-1} x_i \right\}
+            \]
+            Let \(x \in \Delta _n\). We want to show that \(0 \leq x_i \leq 1 - \sum_{j=1}^{i - 1} x_j\). We get that \(x_i \geq 0\) immediately. As well, since \(\sum_{j=1}^{n} x_j \leq 1\) and every component is non-negative, we have that
+            \[
+                x_i \leq 1 - \sum_{j=1}^{i - 1} x_j - \sum_{j=i+1}^{n} x_j \leq 1 - \sum_{j=1}^{i - 1} x_j
+            \]
+            which shows that \(\Delta _n \subseteq S\).
+    
+            Now, let \(x \in S\). We know every \(x_i\) is non-negative and additionally
+            \[
+                x_n \leq 1 - \sum_{i=1}^{n-1} x_i \implies \sum_{i=1}^{n} x_i \leq 1
+            \]
+            so \(S \subseteq \Delta _n\).
+    
+            Now, we proceed to find \(\mu (S) = \mu (\Delta _n)\). Using Fubini's Theorem, we get
+            \[
+                \mu (S) = \int _S 1 = \int _0^1 \int _0^{1-x_1} \cdots \int _0^{1 - \sum_{i=1}^{n-1} x_i} 1\ dx_n \cdots dx_2\ dx_1
+            \]
+            Let \(I: \mathbb{N} \times [0,1] \to \mathbb{R}\) be defined recursively as follows:
+            % \[
+            %     \begin{dcases*}
+            %         I(1, \alpha) = \int _0^{1-\alpha} 1\ dt,\\
+            %         I(n, \alpha) = \int _0^{1-\alpha} I(n-1, \alpha + t)\ dt, &\text{ for } n > 1 .
+            %     \end{dcases*}
+            % \]
+            \begin{align*}
+                I(1, \alpha) &= \int _0^{1-\alpha} 1\ dt &\ \\
+                I(k, \alpha) &= \int _0^{1-\alpha} I(k-1, \alpha + t)\ dt, &\text{ for } > 1.
+            \end{align*}
+            Notice that if we continue applying the definition, we get that
+            \[
+                I(n, 0) = \mu (S)
+            \]
+            Now, we will prove using induction on \(n\) that for all \(\alpha \in [0,1]\), \(I(n, \alpha) = \dfrac{1}{n!}(1 - \alpha)^n\).
+    
+            Let \(n = 1\). Then
+            \[
+                I(1, \alpha) = \int _0^{1- \alpha}1\ dt = 1 - \alpha
+            \]
+            Now, suppose that \(I(k, \alpha) = \dfrac{1}{k!}(1 - \alpha)^k\) holds for all \(\alpha \in [0,1]\) and some \(k \in \mathbb{N}\). We want to show that the same holds for \(k + 1\) as well. For an arbitrary \(\alpha\), we get
+            \begin{align*}
+                I(k+1, \alpha ) &= \int _0^{1 - \alpha} I(k, \alpha + t)\ dt \\
+                &= \int _0^{1-\alpha} \frac{1}{k!}(1 - \alpha - t)^k\ dt \\
+                &= -\frac{1}{(k+1)!}(1 - \alpha - t)^{k+1} \Big| _0^{1-\alpha} \\
+                &= \frac{1}{(k+1)!}(1 - \alpha)^{k+1}
+            \end{align*}
+            as desired. Thus we get that
+            \[
+                \mu (S) = I(n, 0) = \frac{1}{n!}
+            \]    
+        \end{proof}
+        \newpage
+        \subsection{\#38}
+        \newpage
+        \subsection{\#39}
+        \newpage
+        \subsection{\#40}
+        \newpage
+        \subsection{\#41}
+        \newpage
+        \subsection{\#42}
+        \newpage
+        \subsection{\#43}
 
 
 
