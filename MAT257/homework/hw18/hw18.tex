@@ -41,7 +41,7 @@
 
         Now, we prove the problem at hand. Let \(M \subseteq \mathbb{R}^N\) be a smooth \(n\)-manifold with \(n < N\). Let \(\{ (U_i, \varphi)\}_{i \in I}\) be an atlas for \(M\). By Lemma 1, we can assume without loss of generality that the atlas is countable. We can also assume that each \(U_i\) is bounded, for if not, we can take a countable union of open balls that cover the unbounded \(U_i\), and restrict the embedding to each ball.
 
-        For each chart \((U_i, \varphi_i)\), assume that the 
+        For each chart \((U_i, \varphi_i)\), assume that the domain \(\hat{U}\) is measurable. 
 
         \medskip
 
@@ -68,5 +68,38 @@
         Since \(\varepsilon\) was chosen arbitrarily, we can conclude that \(\mu ^* (E) = 0\), and \(E\) has Jordan measure 0.
 
         Now, suppose that \(M\) is compact and its boundary is nonempty. If \(\dim M < N\), \(M\) is a Lebesgue null set and has Jordan measure 0, and therefore measurable. Otherwise, if \(\dim M = N\), since the boundary of \(M\) is non-empty, the topological boundary of \(M\) is actually a smooth manifold of dimension \((N-1)\), and therefore a Lebesgue null set. As well, the topological boundary of \(M\) is compact, so it is Jordan measure 0, which implies that \(M\) is Jordan measurable.
+    \end{question}
+    \newpage
+    \begin{question}{34}
+        Let $\Phi:\R^n\rightarrow\R^m$ be a $C^1$ mapping.
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose that $n>m = 1$. Show that $\Phi$ cannot be injective.
+            
+            \item Suppose that $n<m$. Show that if $K\subseteq\R^n$ is a compact set, then $\Phi(K)$ is a Jordan measurable set, and has Jordan measure zero.
+        \end{enumerate}
+        \tcblower
+        \ 
+        
+        (a):
+
+        Suppose for contradiction that \(n > m = 1\) and \(\Phi\) is a \(C^1\) injective function. Since \(\Phi\) cannot be a constant function, by the results of Big List \#26, there is a \(p \in \mathbb{R}^n\) so that \(\nabla \Phi(p) \neq 0\). In particular, we will say that \(\dfrac{\partial \Phi}{\partial x_j} \neq 0\). Define \(\alpha : \mathbb{R}^n \to \mathbb{R}\) by \(\alpha (x) = \Phi (x) - \Phi (p)\). Injectivity is translation-invariant, so \(\alpha\) is injective. Notice that \(\alpha (p) = 0\). We can apply the implicit function theorem to obtain an open set \(W \subseteq \mathbb{R}^{n-1}\) that contains \(p' = (p_1, ..., p_{j-1}, p_{j+1}, ..., p_n)\) and a \(C^1\) function \(\Psi : W \to \mathbb{R}\) such that for all \(x = (x_1, ..., x_{n-1}) \in W\),
+        \[
+            \alpha (x_1, ..., x_{j-1}, \Psi (x), x_{j}, ..., x_{n-1}) = 0
+        \]
+        Then, since \(W\) is open and contains \(p'\), we can find another distinct point \(q \in W\). We have
+        \[
+            \alpha (p_1, ..., p_{j-1}, \Psi (p'), p_{j+1}, ..., p_n) = 0 = \alpha (q_1, ..., q_{j-1}, \Psi (q), q_{j}, ..., q_{n-1})
+        \]
+        which contradicts the fact that \(\alpha\) is injective.
+
+        \medskip
+
+        (b):
+
+        Since \(K\) is compact, and thus bounded, we can enclose it in a closed box \(B = [-L, L]^n\), for some positive \(L\). It suffices to show that \(\Phi (B)\) has measure 0, as we can apply the monotonicity of measure to conclude that \(\Phi (K)\) has measure 0.
+
+        First, let \(\hat{\Phi}: \mathbb{R}^m \to \mathbb{R}^m\) be defined by \(\hat{\Phi}(x) = \Phi (\pi _{\mathbb{R}^n}(x))\). That is, \(\hat{\Phi}\) first projects vectors in \(\mathbb{R}^m\) onto \(\mathbb{R}^n\) and then composes it with \(\Phi\). Let \(\hat{B} = B \times \{ 0 \}^{m-n}\). Then note that \(\hat{\Phi}(\hat{B}) = \Phi (B)\). Trivially, \(\hat{B}\) has measure 0. We now show that \(\Phi (B)\) also has measure 0.
+
+        Let \(\varepsilon > 0\). 
     \end{question}
 \end{document}
