@@ -100,6 +100,32 @@
 
         First, let \(\hat{\Phi}: \mathbb{R}^m \to \mathbb{R}^m\) be defined by \(\hat{\Phi}(x) = \Phi (\pi _{\mathbb{R}^n}(x))\). That is, \(\hat{\Phi}\) first projects vectors in \(\mathbb{R}^m\) onto \(\mathbb{R}^n\) and then composes it with \(\Phi\). Let \(\hat{B} = B \times \{ 0 \}^{m-n}\). Then note that \(\hat{\Phi}(\hat{B}) = \Phi (B)\). Trivially, \(\hat{B}\) has measure 0. We now show that \(\Phi (B)\) also has measure 0.
 
-        Let \(\varepsilon > 0\). 
+        Let \(\varepsilon > 0\). Since \(\hat{\Phi}\) is \(C^1\), its derivative is continuous. By the extreme value theorem, each component derivative attains a maximum on \(\hat{B}\). Let \(\alpha\) a positive number greater than all the maximums. Since \(\hat{B}\) has measure 0, we can find a finite number of cubes \(B_1, ..., B_k\) with side length \(d\) such that
+        \[
+            \hat{B} \subseteq \bigcup_{i=1}^{k} B_i \text{ and } \sum_{i=1}^{k} \vol(B_i) < \frac{\varepsilon}{m^m \alpha^m}
+        \]
+        Consider some cube \(B_i = \prod_{j=1}^{m} [a_{ij}, a_{ij} + d]\). For each component \(\hat{\Phi}_j: \mathbb{R}^m \to \mathbb{R}\), it must be true that \(\hat{\Phi}_j\) attains a maximum \(\hat{\Phi}_j(M_{ij})\) and minimum \(\hat{\Phi}_{ij}(m_{ij})\), for some \(M_{ij}, m_{ij} \in B_i\). Define \(g: [0,1] \to \mathbb{R}\) by
+        \[
+            g(t) = \hat{\Phi}_j(t M_{ij} + (1 - t)m_{ij})
+        \]
+        By the Mean Value Theorem, there exists some \(c \in (0,1)\) such that
+        \[
+            g(1) - g(0) = g'(c) \implies \hat{\Phi}_j (M) - \hat{\Phi}_j (m) = \hat{\Phi}_j '(c M_{ij} + (1 - c)m_{ij})(M_{ij} - m_{ij})
+        \]
+        Taking the 2-norm of both sides, it follows that
+        \[
+            \hat{\Phi}_j (M_{ij}) - \hat{\Phi}_j (m_{ij}) \leq \|\hat{\Phi}_j '(c M_{ij} + (1 - c)m_{ij})\| \|M_{ij} - m_{ij}\| \leq (\sqrt{m} \alpha)(\sqrt{m}d) = m \alpha d
+        \]
+        Note that we used the fact that each component of \(\hat{\Phi}_j '(c M_{ij} + (1 - c)m_{ij})\) is bounded by \(\alpha\) and \(\|M_{ij} - m_{ij}\|\) can be no bigger than the diagonal of \(B_i\).
+
+        Finally, we see that the box \(C_i = \prod_{j=1}^m [\hat{\Phi}_j(m_{ij}), \hat{\Phi}_j(M_{ij})]\) covers \(\hat{\Phi} (B_i)\), and its volume is given by
+        \[
+            \prod_{j=1}^m (\hat{\Phi}_j (M_{ij}) - \hat{\Phi}_j (m_{ij})) \leq \prod_{j=1}^m m \alpha d = m^m \alpha^m \vol (B_i)
+        \]
+        From here, we know that the union \(\bigcup_{i=1}^{k} C_i \supseteq \hat{\Phi}(\hat{B})\) but
+        \[
+            \sum_{i=1}^{k} C_i < m^m \alpha^m \sum_{i=1}^{k} \vol (B_i) < \varepsilon.
+        \]
+        Therefore \(\Phi(B)\) has measure 0, so \(\Phi (K)\) has measure 0 and we are done.
     \end{question}
 \end{document}
