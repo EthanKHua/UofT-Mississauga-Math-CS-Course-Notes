@@ -15,11 +15,33 @@
 
         (a):
 
-        We begin by proving a lemma:
+        We begin by proving a number of lemmas:
 
-        \textbf{Lemma:} A countable union of sets with Jordan measure 0 is a Lebesgue null set.
+        \textbf{Lemma 1:} An open cover of any subset \(M \subseteq \mathbb{R}^n\) has a countable subcover.
 
-        Let \(E = \bigcup_{i \geq 0} E_i\), where \(\mu (E_i) = 0\).
+        We know that \(\mathbb{R}^n\) is separable, so \(M\) is also separable. Let \(C\) be a countable dense subset of \(M\). Let \(\mathcal{U}\) be an open cover for \(M\). We construct the countable subcover \(\hat{U}\) as follows. For each \(q \in C\) and \(k \in \mathbb{Q}\), consider the open ball \(B(q, k)\). If there exists a \(U_{qk} \in \mathcal{U}\) such that \(B(q , k) \in U_{qk}\), include it in \(\hat{U}\). Notice that \(\hat{U}\) is at most countable. We claim that it is also an open cover.
+
+        Let \(x \in M\). Then it is contained in some open set \(U \in \mathcal{U}\). As well, we can find an open ball such that \(B(x, \delta) \in U\). Since \(C\) is dense, we can find \(q \in C\) such that \(q \in B(x, \frac{\delta}{4})\). Let \(k \in \mathbb{Q}\) such that \(\frac{\delta}{4} < k < \frac{\delta}{2}\). Then \(x \in B(q, k) \subseteq B(x, \delta)\), because for all \(y \in B(q,k)\),
+        \[
+            \|x - y\| \leq \|x - q\| + \|q - y\| < \frac{\delta}{4} + \frac{\delta}{2} < \delta
+        \]
+        It follows that \(B(q,k) \in U\), so it is guaranteed that some \(U_{qk}\) from our construction exists. Thus \(x \in U_{qk} \in U\) so \(U\) is indeed an open cover and we are done.
+
+        \medskip
+
+        \textbf{Lemma 2:} A countable union of sets with Jordan measure 0 is a Lebesgue null set.
+
+        Let \(E = \bigcup_{i \geq 1} E_i\), where \(\mu (E_i) = 0\). Let \(\varepsilon > 0\). For each \(E_i\), we can find a finite union of boxes \(B_i\) such that \(B_i \supseteq E_i\) and \(\vol (B_i) < \frac{\varepsilon}{2^i}\). We see that \(\bigcup_{i\geq1}B_i\) is a countable union of boxes, \(E \subseteq \bigcup_{i\geq1}B_i\), and
+        \[
+            \sum_{i = 1}^{\infty} \vol (B_i) < \sum_{i=1}^{\infty} \frac{\varepsilon}{2^i} = \frac{\varepsilon}{2(1 - \frac{1}{2})} = \varepsilon
+        \]
+        as desired.
+
+        \medskip
+
+        Now, we prove the problem at hand. Let \(M \subseteq \mathbb{R}^N\) be a smooth \(n\)-manifold with \(n < N\). Let \(\{ (U_i, \varphi)\}_{i \in I}\) be an atlas for \(M\). By Lemma 1, we can assume without loss of generality that the atlas is countable. We can also assume that each \(U_i\) is bounded, for if not, we can take a countable union of open balls that cover the unbounded \(U_i\), and restrict the embedding to each ball.
+
+        For each chart \((U_i, \varphi_i)\), assume that the 
 
         \medskip
 

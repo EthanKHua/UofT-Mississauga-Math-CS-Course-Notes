@@ -4035,7 +4035,10 @@
     \end{proof}
 
     \begin{thm}
-        (Fubini's Theorem) Let \(E, F\) be two measurable sets.
+        (Fubini's Theorem) Let \(E, F\) be two measurable sets. Let \(f: E \times F \to \mathbb{R}\) be an integrable function such that the \(x\)-slice \(f(x, \cdot)\) is integrable for all \(x \in E\) excluding a set of measure 0. Define \(\int _F f : E \to \mathbb{R}\) by \((\int _F f)(x) = \int _F f(x, \cdot)\). Then
+        \[
+            \int _{E \times F} f = \int _E \int _F f
+        \]
     \end{thm}
 
     \begin{defn}
