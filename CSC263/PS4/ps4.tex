@@ -1,0 +1,75 @@
+\documentclass{assignment-263}
+
+\anum{4}
+\course{CSC263}
+\duedate{Mar. 27, 2025}
+\filename{ps4.pdf, ps4.tex, ps4.py}
+
+\begin{document}
+\think
+\begin{enumerate}
+\item \textbf{[12 points]}
+	You are given a weighted, connected, undirected graph $G=(V, E)$ and
+    one of its minimum spanning trees $T\subseteq E$. Furthermore, you are guaranteed that the edge weights are all distinct.
+
+    \begin{enumerate}
+      \item \textbf{[6 points]}
+        A new edge $(u, v)$ with weight $w_{u, v}\;(u, v\in V)$ is
+        added to $G$, resulting in a new graph $G'=(V, E\cup \{(u,
+        v)\})$. How do you efficiently find a minimum spanning tree
+        $T'$ of $G'$? Describe and justify your algorithm in concise
+        and precise English, and analyse its runtime. To get full
+        marks, your algorithm's worst-case runtime must be in
+        $\mathcal{O}(|V|)$.
+
+      \item \textbf{[4 points]} Prove that the second lightest edge in the graph should belong to every minimum spanning tree.
+      
+      \item \textbf{[2 points]} Prove that the third lightest edge in the graph may not be in a minimum spanning tree.
+        
+    \end{enumerate}
+
+	\end{enumerate}
+
+  \begin{enumerate}
+    \item[2.] \textbf{[6 points]}
+    You are given a $k \times k$ grid of squares (think of a chess board). Each square is identified by $(i,j) \in [k] \times [k]$ where $[k] = \{1,2,...,k\}$, $i$ is the row number, and $j$ is the column number. From any square you are allowed to make one of the following moves: (i) $m$ steps in the vertical direction and $n$ steps in the horizontal direction, or (ii) $n$ steps in the vertical direction and $m$ steps in the horizontal direction. If you encounter the edge of the board (either a vertical edge or a horizontal edge) while making the move, then the move is invalid. For example, if $m = 1$ and $n = 2$, then this corresponds to the moves made by the knight on a chess board. You play this game with your friend. Your friend first chooses a square $(i,j) \in [k]\times [k]$. Your task is to find another square $(i',j') \in [k] \times [k]$ such that there is no valid sequence of moves from $(i,j)$ to $(i',j')$, or declare that no such $(i',j')$ exists. Devise an $O(k^2)$ algorithm to solve this task.
+ \end{enumerate}
+
+\program
+
+\begin{enumerate}
+\item[3.] \textbf{(12 points)}
+  You are planning an around-the-world trip with your two best friends for the summer. 
+There is a total of $n$ cities that the three of you want to visit.
+As you are traveling around the world, you are worried about time zones and airport access. Therefore, some cities can only be visited after visiting another city first, which is in a nearby timezone or has an airport, which are expressed as a list of pairs (cityX,cityY) (cityX can only be visited after visiting cityY).
+
+Given the total number of cities and a list of dependency pairs, is it possible for you all to visit all cities?
+
+Your task is to write the function \verb|can_visit_all_cities|, which determines whether visiting the $n$ cities is possible or not given the dependencies. \textbf{(8 points)}
+
+\textbf{Requirements}
+\begin{itemize}
+\item Your code must be written in Python 3, and the filename must be \verb|ps4.py|.
+\item We will grade only the \verb|can_visit_all_cities| function; please do not change its signature in the starter code. include as many helper functions as you wish.
+\item You are {\bf not} allowed to use the built-in Python dictionary or set.
+\item To get full marks, your algorithm must have average-case runtime
+  ${O}(m + n),$ where $m$ is the number of dependencies given.
+\end{itemize}
+
+\textbf{Input/Output Specification}
+Please see the python starter code for input / output
+specifications. 
+
+\textbf{Write-up (4 points)}: in your \verb|ps4.pdf/ps4.tex| files,
+include the following: an explanation of how your code works,
+justification of correctness, and justification of desired
+${O}(m + n)$ average-case runtime.
+
+\end{enumerate}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
