@@ -29,7 +29,7 @@
 \allowdisplaybreaks
 
 \definecolor{pastelblue}{RGB}{96, 145, 245}
-\definecolor{pastelgreen}{RGB}{106, 235, 135}
+\definecolor{pastelgreen}{RGB}{96, 225, 125}
 \definecolor{darkgray}{RGB}{60, 60, 60}
 \definecolor{lightgray}{RGB}{180, 180, 180}
 \definecolor{offwhite}{RGB}{225, 225, 245}
