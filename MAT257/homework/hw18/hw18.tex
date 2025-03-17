@@ -39,9 +39,23 @@
 
         \medskip
 
+        \textbf{Lemma 3:} If \(K\) is a Jordan measurable set with a compact exhaustion \(K_n\), then \(\mu (K) = \lim_{n \to \infty} \mu (K_n)\).
+
+        Let \(\varepsilon > 0\). Since \(K\) is Jordan measurable, we can find a closed polybox \(I \subseteq K\) such that
+        \[
+            \mu (I) > \mu (K) - \varepsilon
+        \]
+        Notice that \(I\) is covered by \(\{ K_n \} _{n \in \mathbb{N}}\) and is compact, so there exists \(N \in \mathbb{N}\) such that \(I \subseteq K_n\) for all \(n > N\). Thus
+        \[
+            \mu (K_n) > \mu (I) > \mu (K) - \varepsilon \implies |\mu (K) - \mu (K_n)| < \varepsilon
+        \]
+        as needed.
+
+        \medskip
+
         Now, we prove the problem at hand. Let \(M \subseteq \mathbb{R}^N\) be a smooth \(n\)-manifold with \(n < N\). Let \(\{ (U_i, \varphi)\}_{i \in I}\) be an atlas for \(M\). By Lemma 1, we can assume without loss of generality that the atlas is countable. We can also assume that each \(U_i\) is bounded, for if not, we can take a countable union of open balls that cover the unbounded \(U_i\), and restrict the embedding to each ball.
 
-        For each chart \((U_i, \varphi_i)\), assume that the domain \(\hat{U}\) is measurable. 
+        For each chart \((U_i, \varphi_i)\), assume that the domain \(\hat{U}\) is \(\mathbb{R}^n\) or \(\overline{\mathbb{H}^n}\), depending on if the chart includes the manifold boundary. Regardless, we can take the compact exhaustion \(K_n = B(0, n)\) and see that \(\varphi _i (K_n)\) is a compact exhaustion for \(U_i\). Additionally, since \(\varphi _i\) maps from lower dimension to higher dimension, we know from a previous Big List question that \(\mu (\varphi _i (K_n))=0\), so by Lemma 3, \(\mu (U_i) = 0\). This is true for each chart \(U_i\), so we apply Lemma 2 to conclude that \(\cup _{i \geq 1} U_i = M\) is a Lebesgue null set.
 
         \medskip
 
