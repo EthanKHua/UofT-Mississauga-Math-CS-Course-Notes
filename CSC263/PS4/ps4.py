@@ -12,7 +12,8 @@ def can_visit_all_cities(numCities, dependencies):
       Pre:  numCities is the number of cities to be visited
             dependencies is a list of 2-tuples representing (city1,city2) with city1 can only be visited after city2
       Post: return whether visiting all cities is possible or not
-      '''
+    '''
+    
     pass  # TODO: implement this function
 
 if __name__ == '__main__':

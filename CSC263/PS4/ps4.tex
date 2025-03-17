@@ -5,6 +5,8 @@
 \duedate{Mar. 27, 2025}
 \filename{ps4.pdf, ps4.tex, ps4.py}
 
+\usetikzlibrary{automata, positioning, arrows}
+
 \begin{document}
 \think
 \begin{enumerate}
@@ -24,8 +26,23 @@
 
       \item \textbf{[4 points]} Prove that the second lightest edge in the graph should belong to every minimum spanning tree.
       
+      Suppose for contradiction that there exists a minimum spanning tree that does not contain the second lightest edge. Assume that this edge connects some vertices \(u,v\). It must be true that there is some path in the minimum spanning tree \(T\) that connects \(u\) and \(v\). We make the assumption that \(G\) is simple (so there is not another edge directly connecting \(u,v\)), implying that this path traverses at least \(2\) edges. Of these edges, there is guaranteed to be one edge \((r,s)\) that is strictly heavier than \((u,v)\). Create a new subgraph which contains all the edges of \(T\), but contains the edge \((u,v)\) and excludes the edge \((r,s)\). Notice that this subgraph is a spanning tree whose total edge weight is less than \(T\), which contradicts the fact that \(T\) is a minimum spanning tree. Therefore all minimum spanning trees should contain the second lightest edge.
+      
       \item \textbf{[2 points]} Prove that the third lightest edge in the graph may not be in a minimum spanning tree.
-        
+      
+      Consider the graph
+      \begin{center}
+        \centering
+        \begin{tikzpicture}[node distance=2cm]
+          \node[state] (A) {A};
+          \node[state,below left of=A] (B) {B};
+          \node[state,below right of=A] (C) {C};
+          \path (A) edge [] node[above left] {1} (B);
+          \path (A) edge [] node[above right] {2} (C);
+          \path (B) edge [] node[below] {3} (C);
+        \end{tikzpicture}
+      \end{center}
+      It is quite clear that the only minimum spanning tree for this graph is the subgraph obtained by removing the edge with weight 3. But this edge is also the third lightest edge, which illustrates what we wanted.
     \end{enumerate}
 
 	\end{enumerate}
@@ -34,6 +51,12 @@
     \item[2.] \textbf{[6 points]}
     You are given a $k \times k$ grid of squares (think of a chess board). Each square is identified by $(i,j) \in [k] \times [k]$ where $[k] = \{1,2,...,k\}$, $i$ is the row number, and $j$ is the column number. From any square you are allowed to make one of the following moves: (i) $m$ steps in the vertical direction and $n$ steps in the horizontal direction, or (ii) $n$ steps in the vertical direction and $m$ steps in the horizontal direction. If you encounter the edge of the board (either a vertical edge or a horizontal edge) while making the move, then the move is invalid. For example, if $m = 1$ and $n = 2$, then this corresponds to the moves made by the knight on a chess board. You play this game with your friend. Your friend first chooses a square $(i,j) \in [k]\times [k]$. Your task is to find another square $(i',j') \in [k] \times [k]$ such that there is no valid sequence of moves from $(i,j)$ to $(i',j')$, or declare that no such $(i',j')$ exists. Devise an $O(k^2)$ algorithm to solve this task.
  \end{enumerate}
+
+ \textbf{Solution:} Our algorithm works as follows. First, we treat the grid as a graph, where each square is a vertex, and
+ \[
+  ((i,j), (i - n, j - m)),((i,j), (i - n, j + m)),((i,j), (i + n, j - m)),((i,j), (i + n, j + m))
+ \]
+ are edges, if the squares are in \([k]\times [k]\). Notice that in this graph, there are \(k^2\) vertices and at most \(4k^2\) edges. We perform a DFS on this graph originating from the original square chosen, which we call \((i,j)\). This has a run time of \(\mathcal{O} (k^2)\). Afterwards, we iterate through each vertex with a nested for loop. If we find a vertex \((i', j')\) that has not been visited, that implies that it cannot be reached from \((i,j)\), so we return that square. If we completely iterate through the grid without finding an unvisited square, then that means all squares are reachable, so no square is unreachable.
 
 \program
 
