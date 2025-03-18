@@ -4035,11 +4035,34 @@
     \end{proof}
 
     \begin{thm}
-        (Fubini's Theorem) Let \(E, F\) be two measurable sets. Let \(f: E \times F \to \mathbb{R}\) be an integrable function such that the \(x\)-slice \(f(x, \cdot)\) is integrable for all \(x \in E\) excluding a set of measure 0. Define \(\int _F f : E \to \mathbb{R}\) by \((\int _F f)(x) = \int _F f(x, \cdot)\). Then
+        (Fubini's Theorem) Let \(E, F\) be two measurable sets. Let \(f: E \times F \to \mathbb{R}\) be an integrable function such that the \(x\)-slice \(f(x, \cdot)\) is integrable for all \(x \in E\). Define \(\int _F f : E \to \mathbb{R}\) by \((\int _F f)(x) = \int _F f(x, \cdot)\). Then
         \[
             \int _{E \times F} f = \int _E \int _F f
         \]
     \end{thm}
+    \begin{proof}
+        Let \(P,Q\) be partitions for \(E\) and \(F\) respectively. Consider the subbox \(P_i\) of \(P\). For each subbox \(Q_j\) in \(Q\), define \(M_{ij} = \sup \{ f(x,y) : (x,y) \in P_i \times Q_j \}\). For any \(x_0 \in P_i\), we have
+        \[
+            \int _F f(x_0, \cdot) \leq U(f(x_0, \cdot), Q) = \sum_{j=1}^{m} \sup \{ f(x_0, y) : y \in Q_j\} \vol (Q_j) \leq \sum_{j=1}^{m} M_{ij} \vol(Q_j)
+        \]
+        \[
+            \implies \sup \left\{ \int _F f(x, \cdot) : x \in P_i \right\} \leq \sum_{j=1}^{m} M_{ij} \vol(Q_j)
+        \]
+        \[
+            \implies U\left( \int _F f, P \right) \leq \sum_{i=1}^{n} \sum_{j=1}^{m} M_{ij} \vol(Q_j) \vol(P_i) = U(f, (P,Q))
+        \]
+        \[
+            \implies \int _E \int _F f \leq U(f)
+        \]
+        By an analogous argument, we can additionally show that \(\int _E \int _F f \geq L(f)\). Thus
+        \[
+            L(f) \leq \int _E \int _F f \leq U(f)
+        \]
+        and since \(L(f) = U(f) = \int _{E \times F} f\), we can conclude that
+        \[
+            \int _{E \times F} f = \int _E \int _F f.
+        \]
+    \end{proof}
 
     \begin{defn}
         A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree.
