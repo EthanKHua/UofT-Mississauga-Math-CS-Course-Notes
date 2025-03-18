@@ -4035,7 +4035,7 @@
     \end{proof}
 
     \begin{thm}
-        (Fubini's Theorem) Let \(E, F\) be two measurable sets. Let \(f: E \times F \to \mathbb{R}\) be an integrable function such that the \(x\)-slice \(f(x, \cdot)\) is integrable for all \(x \in E\). Define \(\int _F f : E \to \mathbb{R}\) by \((\int _F f)(x) = \int _F f(x, \cdot)\). Then
+        (Fubini's Theorem) Let \(E \subseteq \mathbb{R}^c, F \subseteq \mathbb{R}^d\) be two measurable sets. Let \(f: E \times F \to \mathbb{R}\) be an integrable function such that the \(x\)-slice \(f(x, \cdot)\) is integrable for all \(x \in E\). Define \(\int _F f : E \to \mathbb{R}\) by \((\int _F f)(x) = \int _F f(x, \cdot)\). Then
         \[
             \int _{E \times F} f = \int _E \int _F f
         \]
@@ -4064,38 +4064,6 @@
         \]
     \end{proof}
 
-    \begin{defn}
-        A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree.
-    \end{defn}
-
-    % \begin{prop}
-    %     All polynomials in \(n\) variables are infinitely differentiable.
-    % \end{prop}
-    % \begin{proof}
-    %     Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial. It suffices to show 
-    % \end{proof}
-
-    \begin{lemma}
-        Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables. For each \(i \in \{1, ..., n\}\), there exists \(k_i \in \mathbb{N}\) such that \(\dfrac{\partial ^{k_i} g}{\partial x_i ^{k_i}} = 0\).
-    \end{lemma}
-    \begin{proof}
-        Fix \(p = (p_1, ..., p_n) \in \mathbb{R}^n\). Let \(i \in \{1, ..., n\}\). Define a \(g_i : \mathbb{R} \to \mathbb{R}\) by
-        \[
-            g_i(x) = g(p_1, ..., p_{i-1}, x, ..., p_n) = p_1^{d_1}\cdots p_{i-1}^{d_{i-1}} p_{i+1}^{d_{i+1}} \cdots x^{d_i}.
-        \]
-        This is a monomial in 1 variable of degree \(d_i\). Thus \(g_i^{(d_i + 1)} = 0\).
-
-        Notice that
-        \[
-            \frac{\partial g}{\partial x_i} (p) = \lim_{t \to 0} \frac{g(p+tx_i) - g(p)}{t} = \lim_{t \to 0} \frac{g_i(p_i + t) - g_i(p_i)}{t} = g_i'(p_i)
-        \]
-        We can observe that this pattern continues for all \(i\)th partial derivatives, so we can conclude that
-        \[
-            \dfrac{\partial ^{d_i + 1} g}{\partial x_i ^{d_i + 1}}(p) = g_i^{(d_i + 1)}(p_i) = 0
-        \]
-        which was what we wanted.
-        \smallbreak
-    \end{proof}
     \begin{prop}
         \textbf{Exact equations.} Let \(M,N : \mathbb{R}^2 \to \mathbb{R}\) be totally differentiable functions. Then there exists a twice differentiable function \(F: \mathbb{R}^2 \to \mathbb{R}\) such that \(\dfrac{\partial F}{\partial x} = M\) and \(\dfrac{\partial F}{\partial y} = N\) if and only if \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\).
     \end{prop}
@@ -4255,10 +4223,53 @@
             \item The antiderivative of the \(k-1\)th antiderivative of \(f\) if \(k > 1\).
         \end{itemize}
     \end{defn}
+    Next, we prepare some definitions and propositions to help us prove the main result.
+    \begin{defn}
+        A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree. Additionally, we define a \textbf{\(k\)-polynomial} to be a function \(f: \mathbb{R}^n \to \mathbb{R}^k\) such that each component is a polynomial in \(n\) variables. Likewise, its degree is defined to be the degree of the highest degree component. Note that using this definition, a polynomial in the sense of the above definition is considered a 1-polynomial.
+    \end{defn}
+    \begin{prop}
+        Let \(f: \mathbb{R}^n \to \mathbb{R}^k\) be a \(k\)-polynomial in \(n\) variables. Then the characteristic function of \(Jf\) is a \(nk\)-polynomial in \(n\) variables.
+    \end{prop}
+    \begin{proof}
+        Let \(g: \mathbb{R}^n \to \mathbb{R}^{nk}\) be the characteristic function of \(Jf\). By Theorem 4.15, we know that each component function of \(g\) is a partial derivative of some component function of \(f\). Denote this component as \(f_i\). We claim that \(\frac{\partial f_i}{\partial x_j}\) is a polynomial.
+    \end{proof}
+
+    % \begin{prop}
+    %     All polynomials in \(n\) variables are infinitely differentiable.
+    % \end{prop}
+    % \begin{proof}
+    %     Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial. It suffices to show 
+    % \end{proof}
+
+    \begin{lemma}
+        Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables. For each \(i \in \{1, ..., n\}\), there exists \(k_i \in \mathbb{N}\) such that \(\dfrac{\partial ^{k_i} g}{\partial x_i ^{k_i}} = 0\).
+    \end{lemma}
+    \begin{proof}
+        Fix \(p = (p_1, ..., p_n) \in \mathbb{R}^n\). Let \(i \in \{1, ..., n\}\). Define a \(g_i : \mathbb{R} \to \mathbb{R}\) by
+        \[
+            g_i(x) = g(p_1, ..., p_{i-1}, x, ..., p_n) = p_1^{d_1}\cdots p_{i-1}^{d_{i-1}} p_{i+1}^{d_{i+1}} \cdots x^{d_i}.
+        \]
+        This is a monomial in 1 variable of degree \(d_i\). Thus \(g_i^{(d_i + 1)} = 0\).
+
+        Notice that
+        \[
+            \frac{\partial g}{\partial x_i} (p) = \lim_{t \to 0} \frac{g(p+tx_i) - g(p)}{t} = \lim_{t \to 0} \frac{g_i(p_i + t) - g_i(p_i)}{t} = g_i'(p_i)
+        \]
+        We can observe that this pattern continues for all \(i\)th partial derivatives, so we can conclude that
+        \[
+            \dfrac{\partial ^{d_i + 1} g}{\partial x_i ^{d_i + 1}}(p) = g_i^{(d_i + 1)}(p_i) = 0
+        \]
+        which was what we wanted.
+        \smallbreak
+    \end{proof}
+    
     Now, we can prove the main result we sought out to prove.
     \begin{thm}
-        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\).
+        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\). As well, if \(f\) is a function such that \(f^{(k)} = 0\) for some \(k \in \mathbb{N}\), then \(f\) is necessarily a polynomial.
     \end{thm}
+    \begin{proof}
+        Let \(d_m\) denote the degree of \(f^{(m)}\). We claim that if \(d_m > 0\), then \(d_{m+1} < d_m\).
+    \end{proof}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
     \begin{defn}
