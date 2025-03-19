@@ -1,7 +1,3 @@
-vim parity.c
-gcc -Wall -g -o compute_parity compute_parity.c parity.c
-vim parity.c
-gcc -Wall -g -o compute_parity compute_parity.c parity.c
 ./compute_parity 4 64 "quotes.txt"
 vim parity.c
 vim parity.c
@@ -498,3 +494,7 @@ nvim gc.c
 nvim testing.txt
 date
 ps
+netcat
+netcat teach.cs.toronto.edu 30017
+netcat -C teach.cs.toronto.edu 30017
+netcat -C teach.cs.toronto.edu 30017

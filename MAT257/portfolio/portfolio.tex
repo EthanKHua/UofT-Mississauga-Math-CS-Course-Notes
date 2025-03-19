@@ -4162,6 +4162,14 @@
     \begin{defn}
         Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^{nm}\) be a function of the form \(f(x_1, ..., x_n) = (f_1(x_1, ..., x_n), ..., f_n(x_1, ..., x_n))\), where \(U\) is open and each \(f_i: U \to \mathbb{R}^m\) are differentiable functions. An \textbf{antiderivative} of \(f\), if it exists, is a function \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) such that \(\frac{\partial F}{\partial x_i} = f_i\) for all \(i\).
     \end{defn}
+    We can also define repeated antiderivatives recursively.
+    \begin{defn}
+        Let \(k \in \mathbb{N}\), \(f: \mathbb{R}^n \to \mathbb{R}^{n^km}\). The \(k\)th antiderivative of \(f\) is
+        \begin{itemize}
+            \item The antiderivative of \(f\) if \(k = 1\) (in the sense of the definition above),
+            \item The antiderivative of the \(k-1\)th antiderivative of \(f\) if \(k > 1\).
+        \end{itemize}
+    \end{defn}
     \begin{example}
         Let \(f: \mathbb{R}^3 \to \mathbb{R}^3\) be defined by
         \[
@@ -4181,9 +4189,15 @@
             F(x,y,z) = \frac{1}{3}\left(\int y^2 \sin z\ dx + \int 2xy \sin z\ dy + \int xy^2 \cos z\ dz\right) = xy^2 \sin z
         \]
     \end{example}
-    Based on the concept of an antiderivative in single variable calculus, we expect there to be a tight correlation with the derivative of a function. Here, we show that is indeed the case.
+    A motivation for defining antiderivatives in this way is to be able to express higher order derivatives in a more condensed and understandable way, as we will see below. First, we define a way to transform functions between arbitrary finite dimensional vector spaces over \(\mathbb{R}\) into functions between \(\mathbb{R}^n\) and \(\mathbb{R}^m\).
+    \begin{defn}
+        Let \(V,W\) be finite dimensional vector spaces with dimensions \(n,m\) respectively and let \(f : V \to W\) be a function. Let \(\alpha ,\beta \) be ordered bases for \(V,W\), and let \(\phi _\alpha : V \to \mathbb{R}^n\) be the standard coordinate isomorphism to \(\mathbb{R}^n\) corresponding to \(\alpha\), and define \(\phi _\beta\) similarly. A \textbf{coordinate representation} for \(f\) with respect to \(\alpha\) and \(\beta\) is the function \(\hat{f}: \mathbb{R}^n \to \mathbb{R}^m\) defined by
+        \[
+            \hat{f} = \phi _\beta \circ f \circ \phi_\alpha^{-1}.
+        \]
+    \end{defn}
     \begin{thm}
-        If \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) is the antiderivative of \(f\), then
+        If \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) is the antiderivative of \(f = (f_1, ..., f_n) : \mathbb{R}^n \to \mathbb{R}^{nm}\), then 
         \[
             JF(p) = \begin{pmatrix}
                 f_1(p) \\
@@ -4213,16 +4227,37 @@
             \end{pmatrix}^t_{ij}.
         \]
     \end{proof}
-    In this case, we denote \(f\) to be the \textbf{characteristic function} of \(JF\).
+    It follows that \(f\) is the coordinate representation for \((JF)^t\) with respect to the standard bases of \(\mathbb{R}^n\) and \(M_{n\times m}(\mathbb{R})\). We call such a function to be the \textbf{function representation} of \(JF\) or \(F'\). This concept may not be too useful when only working with first derivatives, but quickly becomes enticing when used for higher order derivatives.
+    \begin{thm}
+        Let \(F: \mathbb{R}^n \to \mathbb{R}^m\) be a smooth function, and let \(f: \mathbb{R}^n \to \mathbb{R}^{n^k m}\) be the function representation of \(J^k F\). Then the function representation of \(f'\) is also the function representation of \(J^{k+1} F\).
+    \end{thm}
+    \begin{proof}
+        We denote \(f = (f_1, ..., f_{n^k m})\), where \(f_i : \mathbb{R}^n \to \mathbb{R}\) are functions. Let \(g\) be the function representation of \(f'\). Write \(g = (g_1, ..., g_n)\), where \(g_i : \mathbb{R}^n \to \mathbb{R}^{n^{k+1}m}\) are functions. Then
+        \[
+            Jf = \begin{pmatrix}
+                 g_1 \\
+                 \vdots \\
+                 g_n \\
+            \end{pmatrix}^t.
+        \]
+        But since \(f\) is the function representation of \(J^k F\),
+        \[
+            J^k F = \begin{pmatrix}
+                 f_1 \\
+                 \vdots \\
+                 f_n \\
+            \end{pmatrix}^t.
+        \]
+        We take the Jacobian of both sides to obtain that
+        \[
+            J^{k+1} F = \begin{pmatrix}
+                \frac{\partial f_{1}}{\partial x_1} & \cdots & \frac{\partial f_{1}}{\partial x_n} \\
+                \vdots & \ddots & \vdots \\
+                \frac{\partial f_{n^{k}m}}{\partial x_1} & \cdots & \frac{\partial f_{n^k m}}{\partial x_n}
+            \end{pmatrix}
+        \]
+    \end{proof}
 
-    We can also define repeated antiderivatives recursively.
-    \begin{defn}
-        Let \(k \in \mathbb{N}\), \(f: \mathbb{R}^n \to \mathbb{R}^{n^km}\). The \(k\)th antiderivative of \(f\) is
-        \begin{itemize}
-            \item The antiderivative of \(f\) if \(k = 1\) (in the sense of the definition above),
-            \item The antiderivative of the \(k-1\)th antiderivative of \(f\) if \(k > 1\).
-        \end{itemize}
-    \end{defn}
     Next, we prepare some definitions and propositions to help us prove the main result.
     \begin{defn}
         A \textbf{monomial} in \(n\) variables is a function \(m : \mathbb{R}^n \to \mathbb{R}\) of the form \(m(x_1, ..., x_n) = x_1^{i_1}\cdots x_n^{i_n}\), where \(i_1, ..., i_n \geq 0\). The degree of a monomial is \(\mathrm{deg} (m) = i_1 + \cdots + i_n\). A \textbf{polynomial} is a linear combination of monomials, and its degree is defined to be the degree of the monomial with the highest degree. Additionally, we define a \textbf{\(k\)-polynomial} to be a function \(f: \mathbb{R}^n \to \mathbb{R}^k\) such that each component is a polynomial in \(n\) variables. Likewise, its degree is defined to be the degree of the highest degree component. Note that using this definition, a polynomial in the sense of the above definition is considered a 1-polynomial.
@@ -4268,14 +4303,14 @@
         Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\). As well, if \(f\) is a function such that \(f^{(k)} = 0\) for some \(k \in \mathbb{N}\), then \(f\) is necessarily a polynomial.
     \end{thm}
     \begin{proof}
-        Let \(d_m\) denote the degree of \(f^{(m)}\). We claim that if \(d_m > 0\), then \(d_{m+1} < d_m\).
+        Let \(d_m\) denote the degree of \(f^{(m)}\). We claim that if \(d_m > 0\), then \(d_{m+1} < d_m\). Let \(g_m\) be the characteristic function of 
     \end{proof}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
     \begin{defn}
         A metric space \(X\) is \textit{precompact} if any open cover permits a \textit{countable} subcover.
     \end{defn}
-    While it is cumbersome to directly find examples of precompact metric spaces, we can show that precompactness is equivalent to certain metric space properties, and thus show that all metric spaces with those properties are also precompact.
+    While it can be cumbersome to directly find examples of precompact metric spaces, we can show that precompactness is equivalent to certain metric space properties, and thus show that all metric spaces with those properties are also precompact.
     \begin{prop}
         A metric space is precompact if and only if it is separable.
     \end{prop}
