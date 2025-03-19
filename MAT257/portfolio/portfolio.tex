@@ -4227,7 +4227,16 @@
             \end{pmatrix}^t_{ij}.
         \]
     \end{proof}
-    It follows that \(f\) is the coordinate representation for \((JF)^t\) with respect to the standard bases of \(\mathbb{R}^n\) and \(M_{n\times m}(\mathbb{R})\). We call such a function to be the \textbf{function representation} of \(JF\) or \(F'\). This concept may not be too useful when only working with first derivatives, but quickly becomes enticing when used for higher order derivatives.
+    It follows that \(f\) is the coordinate representation for \((JF)^t\) with respect to the standard bases of \(\mathbb{R}^n\) and \(M_{n\times m}(\mathbb{R})\). We define this unique function to be the \textbf{function representation} of \(JF\) or \(F'\). It is not hard to see that the converse holds as well:
+    \begin{prop}
+        If \(f\) is the function representation of \(JF\), then \(F\) is an antiderivative of \(f\).
+    \end{prop}
+    \begin{proof}
+        Reverse the steps from the proof above.
+    \end{proof}
+    
+    
+    This concept may not seem too useful when only working with first derivatives, but quickly becomes enticing when used for higher order derivatives.
     \begin{thm}
         Let \(F: \mathbb{R}^n \to \mathbb{R}^m\) be a smooth function, and let \(f: \mathbb{R}^n \to \mathbb{R}^{n^k m}\) be the function representation of \(J^k F\). Then the function representation of \(f'\) is also the function representation of \(J^{k+1} F\).
     \end{thm}
@@ -4255,7 +4264,27 @@
                 \vdots & \ddots & \vdots \\
                 \frac{\partial f_{n^{k}m}}{\partial x_1} & \cdots & \frac{\partial f_{n^k m}}{\partial x_n}
             \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \frac{\partial f}{\partial x_1}^t & \cdots &  \frac{\partial f}{\partial x_n}^t \\
+            \end{pmatrix}
+            = 
+            \begin{pmatrix}
+                \frac{\partial f}{\partial x_1} \\
+                \vdots \\
+                \frac{\partial f}{\partial x_n} \\
+            \end{pmatrix}^t
         \]
+        Recall that \(f\) is an antiderivative of \(g\), so
+        \[
+            J^{k+1} F =
+            \begin{pmatrix}
+                g_1 \\
+                \vdots \\
+                g_n \\
+           \end{pmatrix}^t
+        \]
+        so \(g\) is indeed the function representation for \(J^{k+1} F\).
     \end{proof}
 
     Next, we prepare some definitions and propositions to help us prove the main result.
@@ -4277,26 +4306,17 @@
     % \end{proof}
 
     \begin{lemma}
-        Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables. For each \(i \in \{1, ..., n\}\), there exists \(k_i \in \mathbb{N}\) such that \(\dfrac{\partial ^{k_i} g}{\partial x_i ^{k_i}} = 0\).
+        Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables, so \(g(x_1, ..., x_n) = x_1^{j_1}\cdots x_n^{j_n}\). For each \(i \in \{1, ..., n\}\), \(\deg \left( \frac{\partial g}{\partial x_i} \right) = \deg (g) - 1\).
     \end{lemma}
     \begin{proof}
-        Fix \(p = (p_1, ..., p_n) \in \mathbb{R}^n\). Let \(i \in \{1, ..., n\}\). Define a \(g_i : \mathbb{R} \to \mathbb{R}\) by
+        Fix \(p = (p_1, ..., p_n) \in \mathbb{R}^n\). Let \(i \in \{1, ..., n\}\). Notice that
         \[
-            g_i(x) = g(p_1, ..., p_{i-1}, x, ..., p_n) = p_1^{d_1}\cdots p_{i-1}^{d_{i-1}} p_{i+1}^{d_{i+1}} \cdots x^{d_i}.
+            \frac{\partial g}{\partial x_i} (x_1, ..., x_n) = j_i x_1^{j_1} \cdots x_i^{j_i - 1} \cdots x_n^{j_n}
         \]
-        This is a monomial in 1 variable of degree \(d_i\). Thus \(g_i^{(d_i + 1)} = 0\).
-
-        Notice that
-        \[
-            \frac{\partial g}{\partial x_i} (p) = \lim_{t \to 0} \frac{g(p+tx_i) - g(p)}{t} = \lim_{t \to 0} \frac{g_i(p_i + t) - g_i(p_i)}{t} = g_i'(p_i)
-        \]
-        We can observe that this pattern continues for all \(i\)th partial derivatives, so we can conclude that
-        \[
-            \dfrac{\partial ^{d_i + 1} g}{\partial x_i ^{d_i + 1}}(p) = g_i^{(d_i + 1)}(p_i) = 0
-        \]
-        which was what we wanted.
+        and \(\mathrm{deg} \left( \frac{\partial g}{\partial x_i} \right) = j_1 + \cdots + (j_i - 1) + \cdots + j_n = \mathrm{deg} (g) - 1\).
         \smallbreak
     \end{proof}
+    This extends easily to \(k\)-polynomials, as the degree of every monomial in a polynomial reduces by one, immediately implying the result, which implies the same thing for \(k\)-polynomials.
     
     Now, we can prove the main result we sought out to prove.
     \begin{thm}
