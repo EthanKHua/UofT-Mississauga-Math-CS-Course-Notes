@@ -4306,6 +4306,24 @@
     % \end{proof}
 
     \begin{lemma}
+        The partial derivative of a monomial is a monomial. In particular, if \(f(x_1, ..., x_n) = x_1^{j_1} \cdots x_n^{j_n}\), then
+        \[
+            \frac{\partial f}{\partial x_i}(x_1, ..., x_n) = j_i x_1^{j_1} \cdots x_i^{j_i - 1} \cdots x_n^{j_n}
+        \]
+    \end{lemma}
+    \begin{proof}
+        For any fixed point \(p = (p_1, ..., p_n) \in \mathbb{R}^n\), let \(g_i(t) = f(p + te_i) = p_1^{j_1} \cdots (p_i + t)^{j_i} \cdots p_n^{j_n}\). We have that
+        \[
+            \frac{\partial f}{\partial x_i} (p) = g_i'(0) = j_i x_1^{j_1} \cdots x_i^{j_i - 1} \cdots x_n^{j_n}
+        \]
+        as required.
+    \end{proof}
+    The following corollary follows immediately and generalizes the above result for an arbitrary \(k\)-polynomials.
+    \begin{cor}
+        The partial derivative of any \(k\)-polynomial is a \(k\)-polynomial.
+    \end{cor}
+    The next result relates the degree of a monomial to the degree of its partial derivatives.
+    \begin{lemma}
         Let \(g : \mathbb{R}^n \to \mathbb{R}\) be a monomial in \(n\) variables, so \(g(x_1, ..., x_n) = x_1^{j_1}\cdots x_n^{j_n}\). For each \(i \in \{1, ..., n\}\), \(\deg \left( \frac{\partial g}{\partial x_i} \right) = \deg (g) - 1\).
     \end{lemma}
     \begin{proof}
@@ -4317,13 +4335,40 @@
         \smallbreak
     \end{proof}
     This extends easily to \(k\)-polynomials, as the degree of every monomial in a polynomial reduces by one, immediately implying the result, which implies the same thing for \(k\)-polynomials.
+
+    The next result will show that polynomials are ``closed'' under differentiation.
+    \begin{thm}
+        If \(f: \mathbb{R}^n \to \mathbb{R}^m\) is a \(m\)-polynomial with degree \(d\), then the function representation \(\hat{f}\) of \(Jf\) is a \(nm\)-polynomial with degree \(d - 1\).
+    \end{thm}
+    \begin{proof}
+        This result is fairly quick, as we know that the components of \(\hat{f}\) are the partial derivatives of \(f\), where are polynomials themselves. Since \(\hat{f}\) has \(nm\) components, we can conclude that it is a \(nm\)-polynomial. As well, since the degree of each component of \(\hat{f}\) is one less than some component from \(f\), we can also conclude that \(\mathrm{deg} (\hat{f}) = d - 1\).
+    \end{proof}
     
     Now, we can prove the main result we sought out to prove.
     \begin{thm}
-        Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\). As well, if \(f\) is a function such that \(f^{(k)} = 0\) for some \(k \in \mathbb{N}\), then \(f\) is necessarily a polynomial.
+        Let \(f : \mathbb{R}^n \to \mathbb{R}^p\) be a polynomial in \(n\) variables. There exists \(k \in \mathbb{N}\) such that \(f^{(k)} = 0\). As well, if \(f\) is a function such that \(f^{(k)} = 0\) for some \(k \in \mathbb{N}\), then \(f\) is necessarily a polynomial.
     \end{thm}
     \begin{proof}
-        Let \(d_m\) denote the degree of \(f^{(m)}\). We claim that if \(d_m > 0\), then \(d_{m+1} < d_m\). Let \(g_m\) be the characteristic function of 
+        Let \(d\) be the degree of \(f\). Take \(k = d + 1\). Let \(g_m\) be the function representation of \(f^{(m)}\). We show using induction that \(\mathrm{deg} (g_m) = d - m\), for \(m \in \{ 0, ..., d \}\).
+
+        Let \(m = 0\). Then \(g_m = f\), so \(\mathrm{deg} (g_m) = d\).
+
+        Now, for \(m < d\), suppose that \(\mathrm{deg} (g_m) = d - m\). Then the function representation of \(Jg_m\) has degree \(d - m - 1\), but we know that this is also the function representation of \(f^{(m+1)}\), which is \(g_{m+1}\), so \(\mathrm{deg} (g_{m+1}) = d - m - 1\).
+
+        Thus \(g_d\) has degree 0, but this simply means that \(g_d\) is a constant function, from which it follows that \(g_{d+1}\) is the zero function. But this implies that \(f^{(d+1)} = 0\).
+
+        Now, we prove the second half using induction on \(k\).
+
+        Let \(k = 1\). Then \(f' = 0\), which implies that \(f\) is a constant function, which is a polynomial of degree 0.
+
+        Now, suppose that the statement is true for some \(k \in \mathbb{N}\). Suppose that \(f^{(k+1)} = 0\). Let \(\hat{f}\) be the function representation of \(f'\). Notice that the function representation \(g\) of \(f^{(k+1)}\) is the function representation of \(\hat{f}^{(k)}\). We have that
+        \[
+            (f)^{(k+1)} = 0 \iff g = 0 \iff \hat{f}^{(k)} = 0
+        \]
+        By our assumption, we know that \(\hat{f}\) is a polynomial, but it is also the function representation of \(f'\), which means that \(f\) is the antiderivative of \(\hat{f}\). If we write \(\hat{f} = (\hat{f}_1, ..., \hat{f}_n)\), where \(\hat{f}_i : \mathbb{R}^n \to \mathbb{R}^p\) are functions. Then we have that
+        \[
+            f = \frac{1}{n}\sum_{i=1}^{n} \int \hat{f}_i\ dx_i
+        \]
     \end{proof}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
