@@ -24,6 +24,10 @@
         marks, your algorithm's worst-case runtime must be in
         $\mathcal{O}(|V|)$.
 
+      The algorithm works as follows. First, add the new edge \((u,v)\) to \(T\). Since \(T\) now has \(n\) edges and \(n\) vertices, it is guaranteed to contain some loop. We perform a DFS starting at \(u\) to find this loop, and we know it is successful when the algorithm encounters \(u\) again. Finally, iterate through the edges contained in this loop and remove the edge with the highest weight.
+
+      Now, we will show that this algorithm has a worst-case runtime of \(\mathcal{O} (|V|)\). Adding the new edge to \(T\) takes constant runtime, so that is not our main point of concern. The DFS on \(T\) has a worst-case runtime of \(\mathcal{O} (|V| + |E|) = \mathcal{O} (|V|)\), and we might need to iterate through every edge, if the loop in the graph contains every edge, which has a runtime of \(\mathcal{O} (|T|) = \mathcal{O} (|V|)\). Thus the worst-case runtime of this algorithm is \(\mathcal{O} (|V|)\).
+
       \item \textbf{[4 points]} Prove that the second lightest edge in the graph should belong to every minimum spanning tree.
       
       Suppose for contradiction that there exists a minimum spanning tree that does not contain the second lightest edge. Assume that this edge connects some vertices \(u,v\). It must be true that there is some path in the minimum spanning tree \(T\) that connects \(u\) and \(v\). We make the assumption that \(G\) is simple (so there is not another edge directly connecting \(u,v\)), implying that this path traverses at least \(2\) edges. Of these edges, there is guaranteed to be one edge \((r,s)\) that is strictly heavier than \((u,v)\). Create a new subgraph which contains all the edges of \(T\), but contains the edge \((u,v)\) and excludes the edge \((r,s)\). Notice that this subgraph is a spanning tree whose total edge weight is less than \(T\), which contradicts the fact that \(T\) is a minimum spanning tree. Therefore all minimum spanning trees should contain the second lightest edge.
