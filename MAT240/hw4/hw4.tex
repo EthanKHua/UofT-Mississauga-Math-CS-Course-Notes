@@ -1,0 +1,180 @@
+\documentclass{eh-homework}
+
+\begin{document}
+\begin{question}{1}
+    Use row operations on the matrix $A = \begin{pmatrix}
+    1 & 0 & 2 & 1 \\
+    1 & 2 & 3 & 2 \\
+    1 & -2 & 6 & 3 \\
+    2 & 4 & -6 & -2
+    \end{pmatrix}$ to obtain an upper triangular matrix, then use Theorem 59 to find $\det A$. (You will get no credit for using a row/column expansion.)
+
+    \bigskip
+
+    We have
+    \begin{align*}
+        \det A &= \det \begin{pmatrix}
+            1 & 0 & 2 & 1 \\
+            1 & 2 & 3 & 2 \\
+            1 & -2 & 6 & 3 \\
+            2 & 4 & -6 & -2
+            \end{pmatrix} \\
+            &= \det \begin{pmatrix}
+                1 & 0 & 2 &  1 \\
+                0 & 2 & 1 &  1 \\
+                0 & -2 & 4 &  2 \\
+                0 & 4 & -10 &  -4 \\
+            \end{pmatrix} \\
+            &= \det \begin{pmatrix}
+                1 & 0 & 2 &  1 \\
+                0 & 2 & 1 &  1 \\
+                0 & 0 & 5 &  3 \\
+                0 & 0 & -12 &  -6 \\
+            \end{pmatrix} \\
+            &= -6\det \begin{pmatrix}
+                1 & 0 & 2 &  1 \\
+                0 & 2 & 1 &  1 \\
+                0 & 0 & 5 &  3 \\
+                0 & 0 & 2 &  1 \\
+            \end{pmatrix} \\
+            &= 6\det \begin{pmatrix}
+                1 & 0 & 2 &  1 \\
+                0 & 2 & 1 &  1 \\
+                0 & 0 & 2 &  1 \\
+                0 & 0 & 5 &  3 \\
+            \end{pmatrix} \\
+            &= 6\det \begin{pmatrix}
+                1 & 0 & 2 &  1 \\
+                0 & 2 & 1 &  1 \\
+                0 & 0 & 2 &  1 \\
+                0 & 0 & 0 &  \frac{1}{2} \\
+            \end{pmatrix} \\
+            &= 6(1)(2)(2)\left(\frac{1}{2}\right) \\
+            &= 12
+    \end{align*}
+    \end{question}
+    
+    \begin{question}{2}
+    Let $T = T_A : \mathbb{Q}^5 \to \mathbb{Q}^5$ where $A = \begin{pmatrix}
+    1 & 0 & 1 & -2 & 0 \\
+    3 & 0 & 1 & 0 & -2 \\
+    2 & 0 & 0 & 2 & -2 \\
+    2 & 0 & 0 & 1 & -2 \\
+    2 & 0 & 1 & -2 & -1
+    \end{pmatrix}$.
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Find $C_T$ and the eigenvalues of $T$.
+        
+        We have
+        \begin{align*}
+            C_T(\lambda) &= \det (\lambda I - T) \\
+            &= \det \begin{pmatrix}
+                \lambda - 1 & 0 & -1 & 2 &  0 \\
+                -3 & \lambda & -1 & 0 &  2 \\
+                -2 & 0 & \lambda & -2 &  2 \\
+                -2 & 0 & 0 & \lambda - 1 &  2 \\
+                -2 & 0 & -1 & 2 &  \lambda + 1 \\
+            \end{pmatrix} \\
+            &= -\lambda \det \begin{pmatrix}
+                \lambda - 1 & -1 & 2 &  0 \\
+                -2 & \lambda & -2 &  2 \\
+                -2 & 0 & \lambda - 1 &  2 \\
+                -2 & -1 & 2 &  \lambda + 1 \\
+            \end{pmatrix} \\
+            &= -\lambda \det \begin{pmatrix}
+                \lambda + 1 & 0 & 0 &  -\lambda - 1 \\
+                -2 & \lambda & -2 &  2 \\
+                -2 & 0 & \lambda - 1 &  2 \\
+                -2 & -1 & 2 &  \lambda + 1 \\
+            \end{pmatrix} \\
+            &= -\lambda \left( (\lambda + 1)\det \begin{pmatrix}
+                \lambda & -2 &  2 \\
+                0 & \lambda-1 &  2 \\
+                -1 & 2 &  \lambda+1 \\
+            \end{pmatrix} +(\lambda+1)\det \begin{pmatrix}
+                -2 & \lambda &  -2 \\
+                -2 & 0 &  \lambda-1 \\
+                -2 & -1 &  2 \\
+            \end{pmatrix} \right) \\
+            &= \lambda(\lambda + 1)\left( -(\lambda - 1)(\lambda(\lambda+1) + 2) + 2(2\lambda - 2) + -2(2\lambda - 2) + (\lambda - 1)(2 + 2\lambda) \right) \\
+            &= \lambda(\lambda+1)\left( (\lambda - 1)(2 - \lambda - \lambda^2 - 2 + 2\lambda\right) \\
+            &=\lambda(\lambda+1)(\lambda - 1)(\lambda - \lambda^2) \\
+            &= - \lambda^2 (\lambda - 1)^2 (\lambda + 1)
+        \end{align*}
+
+        The eigenvalues are the roo
+
+        \item For each eigenvalue, find a basis for the corresponding eigenspace.
+        \item Determine if $T$ is diagonalizable, and if so, find a basis $\beta$ so that $[T]_\beta$ is diagonal.
+    \end{enumerate}
+    \end{question}
+    
+    \begin{question}{3}
+    \begin{enumerate}
+        \item Read the proof of Theorem 58 from the additional file in the Week 10 Readings on the course page.
+        \item Prove Part 1 of Theorem 59 using a strategy similar to the proof of Theorem 58. (You cannot use other parts of Theorem 59 in this proof.)
+    \end{enumerate}
+    \end{question}
+    
+    \begin{question}{4}
+    Assume that Parts 1 and 2 of Theorem 59 have been proved. You cannot use Parts 4 through 7 of Theorem 59 in the following problem.
+    
+    \begin{enumerate}
+        \item Prove Part 3 using induction on $n$. (Check $n = 1, 2$ by hand, then in the inductive step assume $n+1 \ge 3$.)
+        \item Prove Part 4 using row-swapping matrices and properties of determinants.
+    \end{enumerate}
+    \end{question}
+    
+    \begin{question}{5}
+    Prove that if $U \in M_{n \times n}(F)$ is upper triangular, then $\det U = \prod_{i=1}^n U_{ii}$.
+    \end{question}
+    
+    \begin{question}{6}
+    Let $V$ be a vector space over $F$, and $T : V \to V$ a linear map. If $W \subseteq V$ is a $T$-invariant subspace, then the restriction map $T_W : W \to W$ is defined as follows.
+    
+    \begin{enumerate}
+        \item Prove that $A = [T_W]_{\beta_W}$ using the relationship $[T]_\beta = \begin{pmatrix} A & B \\ 0 & C \end{pmatrix}$.
+        \item Prove that $\det M = (\det A)(\det C)$.
+    \end{enumerate}
+    \end{question}
+    
+    \begin{question}{7}
+    Deduce from Question 6 that if $W$ is a $T$-invariant subspace, then $C_{T_W}$ divides $C_T$.
+    \end{question}
+    
+    \begin{question}{8}
+    Let $V$ be a finite-dimensional vector space over a field $F$, and $W_1, W_2 \subseteq V$ such that $V = W_1 \oplus W_2$. Define the projection maps $P_i : V \to V$ by $P(x) = x_i$ where $x = x_1 + x_2$ with $x_1 \in W_1$ and $x_2 \in W_2$.
+    
+    \begin{enumerate}
+        \item Prove that $P_i$ is linear.
+        \item Prove that $P_i^2 = P_i$.
+        \item Prove that each $W_j$ is $P_i$-invariant.
+        \item Determine if $P_i$ is diagonalizable and justify your answer.
+    \end{enumerate}
+    \end{question}
+    
+    \begin{question}{9}
+    Define the direct sum for more than two subspaces. Let $W_1, \ldots, W_k \subseteq V$ be subspaces such that $V = W_1 \oplus \cdots \oplus W_k$.
+    
+    \begin{enumerate}
+        \item Prove that every basis $\beta$ for $V$ gives a direct sum decomposition $V = W_1 \oplus \cdots \oplus W_n$ where $\dim W_i = 1$.
+        \item Prove the converse: If $V = W_1 \oplus \cdots \oplus W_n$ with $\dim W_i = 1$, then choosing non-zero $w_i \in W_i$ forms a basis for $V$.
+        \item Let $T : V \to V$ be linear. Show that $[T]_\beta$ is block diagonal.
+    \end{enumerate}
+    \end{question}
+    
+    \begin{question}{10}
+    Let $W_1, \ldots, W_k \subseteq V$ with bases $\beta_1, \ldots, \beta_k$. Prove that $V = W_1 \oplus \cdots \oplus W_k$ if and only if $\beta = \beta_1 \cup \cdots \cup \beta_k$ is a basis for $V$.
+    \end{question}
+    
+    \begin{question}{11}
+    Determine whether the following statements are true or false. Justify your answers.
+    
+    \begin{enumerate}
+        \item If $V = W_1 \oplus W_2$ and $T_{W_1}, T_{W_2}$ are diagonalizable, then $T$ is diagonalizable.
+        \item If $W_i \cap W_j = \{0\}$ for $i \neq j$ and $V = W_1 + W_2 + W_3$, then $V = W_1 \oplus W_2 \oplus W_3$.
+        \item If $\dim V = 7$, $\dim N(T) = 3$, and $\operatorname{rank}(T - I) = 4$, then $T$ is diagonalizable.
+    \end{enumerate}
+    \end{question}
+\end{document}
