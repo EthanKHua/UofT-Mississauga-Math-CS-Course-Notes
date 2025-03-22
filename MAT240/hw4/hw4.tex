@@ -343,38 +343,207 @@
             0 \\
             1 \\
             0 \\
-       \end{pmatrix} \right\} 
+       \end{pmatrix} \right\}.
         \]
     \end{enumerate}
     \end{question}
     
     \begin{question}{3}
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item Read the proof of Theorem 58 from the additional file in the Week 10 Readings on the course page.
         \item Prove Part 1 of Theorem 59 using a strategy similar to the proof of Theorem 58. (You cannot use other parts of Theorem 59 in this proof.)
     \end{enumerate}
+    Let \(A \in M_n(\mathbb{F})\) with \(n \geq 2\). If \(A\) has a row of 0's, then \(\det A = 0\).
+    \tcblower
+    Write \(A = \begin{pmatrix}
+         r_1 \\
+         \vdots \\
+         r_n \\
+    \end{pmatrix}\), where \(r_j\) represents the rows of \(A\). Suppose that \(r_i = \vec{0}\). If \(i = 1\), the result is immediate by cofactor expansion. Otherwise, if \(i > 1\), we do induction on \(n\).
+
+    Let \(n = 2\). The only possibility is \(i = 2\), so denote
+    \[
+        A = \begin{pmatrix}
+            a &  b \\
+            0 &  0 \\
+        \end{pmatrix}.
+    \]
+    From here, it is easy to see that \(\det A = 0\).
+
+    Now, suppose that this is true for some \(n\). We will show that it is true for \(n + 1\). Define \(\tilde{r}_{j,k}\) to be the row obtained by deleting the \(k\)th entry of \(r_j\). Using cofactor expansion along the first row, we have
+    \[
+        \det A = \sum_{k=1}^{n+1} A_{1k}\det \tilde{A}_{1k}
+    \]
+    Observe that \(\tilde{A}_{1k}\) are \(n\times n\) matrices, and since the \(i\)th row was 0 in the original matrix (and \(i > 1\)), the \(i - 1\)th row in \(\tilde{A}_{1k}\) is 0, so by the induction hypothesis \(\det \tilde{A}_{1k} = 0\), thus \(\det A = 0\) and we are done.
+
     \end{question}
     
     \begin{question}{4}
     Assume that Parts 1 and 2 of Theorem 59 have been proved. You cannot use Parts 4 through 7 of Theorem 59 in the following problem.
     
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item Prove Part 3 using induction on $n$. (Check $n = 1, 2$ by hand, then in the inductive step assume $n+1 \ge 3$.)
         \item Prove Part 4 using row-swapping matrices and properties of determinants.
     \end{enumerate}
+    \tcblower
+    \ 
+
+    (a):
+
+    We prove Part 3 using induction on \(n\).
+
+    Let \(n = 1\). The statement is vacuously true, as \(A\) cannot have 2 identical rows.
+
+    Let \(n = 2\). Then it must be true that
+    \[
+        A = \begin{pmatrix}
+            a &  b \\
+            a &  b \\
+        \end{pmatrix}, \text{ for } a,b \in \mathbb{F}.
+    \]
+    Then \(\det A = ab - ab = 0\) as expected.
+
+    Now, suppose that this statement is true for some \(n \in \mathbb{N}\), where \(n > 1\). We will show it also holds for \(n + 1\). Let \(r_i,r_j\) be the identical rows. Since \(n + 1 > 2\), we are guaranteed to have one other row \(r_k\) that is not \(r_i\) or \(r_j\). We perform a row \(k\) expansion of \(\det A\) and see that
+    \[
+        \det A = \sum_{l=1}^{n + 1} A_{kl} \det \tilde{A}_{kl}
+    \]
+    Notice that \(\tilde{A}_{kl}\) is a \(n\times n\) matrix, and contain both \(r_i\) and \(r_j\) with the \(l\)th entry deleted. But these rows are still identical because the same entry got deleted. By the induction hypothesis,
+    \[
+        \det A = \sum_{l=1}^{n + 1} A_{kl} 0 = 0
+    \]
+    which was what we wanted.
+
+    \bigskip
+
+    (b):
+
+    Suppose that \(B\) is obtained from \(A\) by swapping row \(i\) and row \(j\). Denote these rows as \(r_i,r_j\) respectively. Using linearity in one row of the determinant, and the previous result we proved,
+    \[
+        0 = \det \begin{pmatrix}
+             r_1 \\
+             \vdots \\
+             r_i + r_j\\
+             \vdots \\
+             r_i + r_j \\
+             \vdots \\
+             r_n
+        \end{pmatrix} =
+        \det \begin{pmatrix}
+            r_1 \\
+            \vdots \\
+            r_i\\
+            \vdots \\
+            r_i + r_j \\
+            \vdots \\
+            r_n
+       \end{pmatrix} +
+       \det \begin{pmatrix}
+            r_1 \\
+            \vdots \\
+            r_j\\
+            \vdots \\
+            r_i + r_j \\
+            \vdots \\
+            r_n
+        \end{pmatrix}
+    \]
+    \[
+        \implies 0 = \det \begin{pmatrix}
+            r_1 \\
+            \vdots \\
+            r_i\\
+            \vdots \\
+            r_j \\
+            \vdots \\
+            r_n
+       \end{pmatrix}+
+       \det \begin{pmatrix}
+            r_1 \\
+            \vdots \\
+            r_i\\
+            \vdots \\
+            r_i \\
+            \vdots \\
+            r_n
+        \end{pmatrix}+
+        \det \begin{pmatrix}
+            r_1 \\
+            \vdots \\
+            r_j\\
+            \vdots \\
+            r_i \\
+            \vdots \\
+            r_n
+       \end{pmatrix}+
+       \det \begin{pmatrix}
+            r_1 \\
+            \vdots \\
+            r_j\\
+            \vdots \\
+            r_j \\
+            \vdots \\
+            r_n
+        \end{pmatrix}
+    \]
+    \[
+        \implies 0 = \det A + 0 + \det B + 0
+    \]
+    \[
+        \implies \det B = -\det A
+    \]
+    as needed.
     \end{question}
     
     \begin{question}{5}
     Prove that if $U \in M_{n \times n}(F)$ is upper triangular, then $\det U = \prod_{i=1}^n U_{ii}$.
+    \tcblower
+    We proceed using induction on \(n\). If \(n=1\), the result is immediate. Suppose that the statement holds for some \(n \in \mathbb{N}\). We will show the same is the case for \(n + 1\).
+
+    Let \(U \in M_{n+1} (\mathbb{F})\) be upper triangular. We have
+    \[
+        \det U = \sum_{j=1}^{n+1} U_{1j} \det \tilde{U}_{1j}.
+    \]
+    For \(j \neq 1\), notice that the entries of the first column of \(\tilde{U}_{1j}\) are 0, as \((\tilde{U}_{1j})_{i1} = U_{(i+1)1} = 0\). Thus
+    \[
+        \det \tilde{U}_{1j} = \det \tilde{U}_{1j}^t = 0
+    \]
+    as the transpose has a row of 0's. The cofacter expansion of \(\det U\) reduces to
+    \[
+        \det U = U_{11} \det \tilde{U}_{11}
+    \]
+    but \(\tilde{U}_{11} \in M_n(\mathbb{F})\) is upper triangular, so
+    \[
+        \det U = U_{11} \prod _{i=1}^n \tilde{U}_{ii} = U_{11} \prod _{i=2}^{n+1} U_{ii} = \prod _{i=1}^{n+1} U_{ii}. 
+    \]
+    which completes the proof.
     \end{question}
     
     \begin{question}{6}
-    Let $V$ be a vector space over $F$, and $T : V \to V$ a linear map. If $W \subseteq V$ is a $T$-invariant subspace, then the restriction map $T_W : W \to W$ is defined as follows.
+    Let $V$ be a vector space over $F$, and $T : V \to V$ a linear map. If $W \subseteq V$ is a $T$-invariant subspace, then we can restrict \(T\) to \(W\), to obtain a map \(T_W : W \to W\). We call \(T_W\) the restriction map.
     
-    \begin{enumerate}
-        \item Prove that $A = [T_W]_{\beta_W}$ using the relationship $[T]_\beta = \begin{pmatrix} A & B \\ 0 & C \end{pmatrix}$.
-        \item Prove that $\det M = (\det A)(\det C)$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(\beta _W\) be a basis for \(W\). In HW\#3 we proved that if \(\beta = \beta _W \beta _1\) is an extension of \(\beta_W\) to a basis for \(V\), then \([T]_\beta = \left( \begin{array}{@{}c|c@{}}
+            A & B \\
+            \hline
+            O & C \\
+        \end{array}\right)\). Prove that \(A = [T_W]_{\beta_W}\).
+
+        \item Let \(M = \left(\begin{array}{@{}c|c@{}}
+            A & B \\
+            \hline
+            O & C \\
+        \end{array}\right)\). Prove that \(\det M = \det A \det C\).
     \end{enumerate}
+    \tcblower
+    \ 
+
+    (a):
+
+    Denote \(\beta = \{ w_1, ..., w_n \}\). Then the \(j\)th column of \(\left( \begin{array}{@{}c@{}}
+        A \\
+        \hline
+        O \\
+    \end{array} \right)\) is \([T(w_j)]_\beta\).
     \end{question}
     
     \begin{question}{7}
