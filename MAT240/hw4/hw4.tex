@@ -103,10 +103,248 @@
             &= - \lambda^2 (\lambda - 1)^2 (\lambda + 1)
         \end{align*}
 
-        The eigenvalues are the roo
+        The eigenvalues are the roots of \(C_T\), which are \(\lambda = 0, 1, -1\).
 
         \item For each eigenvalue, find a basis for the corresponding eigenspace.
+        
+        For \(\lambda = 0\), we solve the equation \(Ax = 0\) via row reduction:
+        \begin{align*}
+            \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 0 & 1 & -2 & 0 & 0\\
+                3 & 0 & 1 & 0 & -2 & 0\\
+                2 & 0 & 0 & 2 & -2 & 0\\
+                2 & 0 & 0 & 1 & -2 & 0\\
+                2 & 0 & 1 & -2 & -1 & 0 \\
+            \end{array} \right) &\to
+            \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 0 & 1 & -2 & 0 & 0\\
+                0 & 0 & -2 & 6 & -2 & 0\\
+                0 & 0 & -2 & 6 & -2 & 0\\
+                0 & 0 & -2 & 5 & -2 & 0\\
+                0 & 0 & -1 & 2 & -1 & 0 \\
+            \end{array} \right) \to 
+            \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 0 & 0 & 1 & 0 & 0\\
+                0 & 0 & 1 & 3 & 1 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & -1 & 0 & 0\\
+                0 & 0 & 0 & -1 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 1 & 0 & 1 & 0\\
+                0 & 0 & 0 & 1 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right)
+        \end{align*}
+        We get that \(x_1 = 0, x_4 = 0, x_3 + x_5 = 0\). We parametrize \(x_2 = t, x_3 = s\) and get
+        \[
+            x = \begin{pmatrix}
+                 0 \\
+                 t \\
+                 s \\
+                 0 \\
+                 -s \\
+            \end{pmatrix} =
+            te_2 + s\begin{pmatrix}
+                 0 \\
+                 0 \\
+                 1 \\
+                 0 \\
+                 -1 \\
+            \end{pmatrix}
+        \]
+        Thus a basis for \(E_0(T)\) is \( \left\{ e_2, \begin{pmatrix}
+             0 \\
+             0 \\
+             1 \\
+             0 \\
+             -1 \\
+        \end{pmatrix}\right\} \).
+
+        \medskip
+
+        For \(\lambda = 1\), to solve \((A - I)x = 0\), we get the system
+        \begin{align*}
+            \left( \begin{array}{@{}ccccc|c@{}}
+                0 & 0 & 1 & -2 & 0 & 0\\
+                3 & -1 & 1 & 0 & -2 & 0\\
+                2 & 0 & -1 & 2 & -2 & 0\\
+                2 & 0 & 0 & 0 & -2 & 0\\
+                2 & 0 & 1 & -2 & -2 & 0 \\
+            \end{array} \right) &\to
+            \left( \begin{array}{@{}ccccc|c@{}}
+                0 & 0 & 1 & -2 & 0 & 0\\
+                1 & -1 & 2 & -2 & 0 & 0\\
+                2 & 0 & -1 & 2 & -2 & 0\\
+                0 & 0 & 1 & -2 & 0 & 0\\
+                0 & 0 & 2 & -4 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to 
+            \left( \begin{array}{@{}ccccc|c@{}}
+                0 & 0 & 1 & -2 & 0 & 0\\
+                1 & -1 & 0 & 2 & 0 & 0\\
+                0 & 2 & 0 & -4 & -2 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to 
+            \left( \begin{array}{@{}ccccc|c@{}}
+                0 & 0 & 1 & -2 & 0 & 0\\
+                1 & 0 & 0 & 0 & -1 & 0\\
+                0 & 1 & 0 & -2 & -1 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right)
+        \end{align*}
+        We parametrize \(x_4 = t, x_5 = s\) to get
+        \[
+            x = \begin{pmatrix}
+                s  \\
+                2t + s  \\
+                2t  \\
+                t  \\
+                s  \\
+            \end{pmatrix} = 
+            s \begin{pmatrix}
+                 1 \\
+                 1 \\
+                 0 \\
+                 0 \\
+                 1 \\
+            \end{pmatrix} +
+            t \begin{pmatrix}
+                 0 \\
+                 2 \\
+                 2 \\
+                 1 \\
+                 0 \\
+            \end{pmatrix}
+        \]
+        Thus a basis for \(E_1(T)\) is \(\left\{ \begin{pmatrix}
+            1 \\
+            1 \\
+            0 \\
+            0 \\
+            1 \\
+       \end{pmatrix},\begin{pmatrix}
+            0 \\
+            2 \\
+            2 \\
+            1 \\
+            0 \\
+        \end{pmatrix} \right\} \).
+
+        \medskip
+
+        For \(\lambda = -1\), we solve \((A + I)x = 0\):
+        \begin{align*}
+            \left( \begin{array}{@{}ccccc|c@{}}
+                2 & 0 & 1 & -2 & 0 & 0\\
+                3 & 1 & 1 & 0 & -2 & 0\\
+                2 & 0 & 1 & 2 & -2 & 0\\
+                2 & 0 & 0 & 2 & -2 & 0\\
+                2 & 0 & 1 & -2 & 0 & 0 \\
+            \end{array} \right) &\to 
+            \left( \begin{array}{@{}ccccc|c@{}}
+                2 & 0 & 1 & -2 & 0 & 0\\
+                1 & 1 & 0 & 2 & -2 & 0\\
+                0 & 0 & 0 & 4 & -2 & 0\\
+                0 & 0 & -1 & 4 & -2 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 1 & 0 & 2 & -2 & 0\\
+                2 & 0 & 1 & -2 & 0 & 0\\
+                0 & 0 & -1 & 4 & -2 & 0\\
+                0 & 0 & 0 & 4 & -2 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 1 & 0 & 2 & -2 & 0\\
+                0 & -2 & 1 & -4 & 4 & 0\\
+                0 & 0 & -1 & 4 & -2 & 0\\
+                0 & 0 & 0 & 4 & -2 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 1 & 0 & 2 & -2 & 0\\
+                0 & -2 & 0 & 0 & 2 & 0\\
+                0 & 0 & -1 & 4 & -2 & 0\\
+                0 & 0 & 0 & 4 & -2 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 1 & 0 & 0 & -1 & 0\\
+                0 & -2 & 0 & 0 & 2 & 0\\
+                0 & 0 & -1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 4 & -2 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right) \\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 1 & 0 & 0 & -1 & 0\\
+                0 & -1 & 0 & 0 & 1 & 0\\
+                0 & 0 & -1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & -\frac{1}{2} & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right)\\
+            &\to \left( \begin{array}{@{}ccccc|c@{}}
+                1 & 0 & 0 & 0 & 0 & 0\\
+                0 & -1 & 0 & 0 & 1 & 0\\
+                0 & 0 & -1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & -\frac{1}{2} & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 \\
+            \end{array} \right)\\
+        \end{align*}
+        Let \(x_5 = t\). The general solution is
+        \[
+            x = t\begin{pmatrix}
+                 0 \\
+                 2 \\
+                 0 \\
+                 1 \\
+                 0 \\
+            \end{pmatrix}
+        \]
+        So a basis for \(E_{-1}(T)\) is \(\left\{ \begin{pmatrix}
+            0 \\
+            2 \\
+            0 \\
+            1 \\
+            0 \\
+       \end{pmatrix} \right\}\).
+
         \item Determine if $T$ is diagonalizable, and if so, find a basis $\beta$ so that $[T]_\beta$ is diagonal.
+        
+        Since the dimension of each eigenspace matches the algebraic multiplicity of each corresponding eigenvalue, \(T\) is diagonalizable and the basis \(\beta\) that makes \([T]_\beta\) diagonal is exactly the basis consisting of the basis vectors of each eigenspace. In particular,
+        \[
+            \beta = \left\{ e_2, \begin{pmatrix}
+                0 \\
+                0 \\
+                1 \\
+                0 \\
+                -1 \\
+           \end{pmatrix},\begin{pmatrix}
+            1 \\
+            1 \\
+            0 \\
+            0 \\
+            1 \\
+       \end{pmatrix},\begin{pmatrix}
+            0 \\
+            2 \\
+            2 \\
+            1 \\
+            0 \\
+        \end{pmatrix},\begin{pmatrix}
+            0 \\
+            2 \\
+            0 \\
+            1 \\
+            0 \\
+       \end{pmatrix} \right\} 
+        \]
     \end{enumerate}
     \end{question}
     
