@@ -7,6 +7,10 @@ University of Toronto Mississauga
 # Do NOT add any "import" statements
 # Do NOT use Python dictionaries
 
+NOT_VISITED = 0
+VISITING = 1
+VISITED = 2
+
 
 #############################################
 # Hash table
@@ -132,6 +136,40 @@ class HashTable(object):
         if self.size <= self.capacity / 4 and self.initial_capacity < self.capacity:
             self.rehash(self.capacity // 2)
 
+    def get_keys(self):
+        """
+        Returns a list of all keys inside the hash table
+        """
+        keys = []
+        for node in self.array:
+            if node is None or node == DELETED:
+                continue
+            keys.append(node.key)
+        return keys
+
+
+
+
+def dfs(city, dp, visited):
+    """
+    Return true of there is a cycle in the graph
+    """
+    status = visited.search(city)
+    if status is None:
+        visited.insert(city, VISITING)
+        cities = dp.search(city)
+        if cities is None:
+            return False
+        for c in dp.search(city):
+            if dfs(c, dp, visited):
+                return True
+        visited.insert(city, VISITED)
+        return False
+    if status == VISITED:
+        return False
+    # if status == VISITING:
+    return True
+
 def can_visit_all_cities(numCities, dependencies):
     '''
       Pre:  numCities is the number of cities to be visited
@@ -140,16 +178,20 @@ def can_visit_all_cities(numCities, dependencies):
     '''
     # convert dependencies into adjacency list
     dp = HashTable(2 * numCities)
-    dep = HashTable(2 * numCities) # number of depend
+    visited = HashTable(2 * numCities)
     for d in dependencies:
-        val = dp.search(d[0])
+        val = dp.search(d[1])
         if val is None:
-            dp.insert(d[0], [d[1]])
+            dp.insert(d[1], [d[0]])
         else:
-            val.append(d[1])
+            val.append(d[0])
+    
+    for key in dp.get_keys():
+        if dfs(key, dp, visited):
+            return False
     
 
-    pass  # TODO: implement this function
+    return True # TODO: implement this function
 
 if __name__ == '__main__':
     # some small test cases
