@@ -539,11 +539,72 @@
 
     (a):
 
-    Denote \(\beta = \{ w_1, ..., w_n \}\). Then the \(j\)th column of \(\left( \begin{array}{@{}c@{}}
+    Let \(n = \dim V\), \(k = \dim W\). Denote \(\beta = \{ w_1, ..., w_n \}\). Then the \(j\)th column of \(\left( \begin{array}{@{}c@{}}
         A \\
         \hline
         O \\
-    \end{array} \right)\) is \([T(w_j)]_\beta\).
+    \end{array} \right)\) is \([T(w_j)]_\beta\), so
+    \[
+        T(w_j) = \sum_{i=1}^{k} A_{ij} w_i.
+    \]
+    But since \(w_j \in W\), we have
+    \[
+        T_W(w_j) = T(w_j) = \sum_{i=1}^{k} A_{ij} w_i.
+    \]
+    which implies that \([T_W(w_j)]_{\beta_W}\) is exactly the \(j\)th column of \(A\), from which we can conclude that \([T_W]_{\beta_W} = A\).
+
+    \medskip
+
+    (b):
+
+    We begin by proving 2 lemmas:
+
+    \textbf{Lemma 1:} Let \(k < n\). For matrices \(B \in M_{k\times (n-k)}(\mathbb{F})\), \(C \in M_{(n-k)\times (n-k)}(\mathbb{F})\), Let \(M = \left( \begin{array}{@{}c|c@{}}
+        I_k & B \\
+        \hline
+        O & C
+    \end{array} \right) \in M_n(\mathbb{F})\). Then \(\det M = \det C\).
+
+    Proceed using induction on \(k\). If \(k = 1\), then
+    \[
+        \det M = \det C + \sum_{j=2}^{n} M_{1j} \det \tilde{M}_{1j}.
+    \]
+    For \(j > 1\), \(\tilde{M}_{1j}\) has a column full of 0's, so \(\det \tilde{M}_{1j} = 0\) and the result follows.
+
+    Now suppose that the lemma is true for some \(k \in \mathbb{N}\). Using a similar argument,
+    \[
+        \det M = \sum_{j=1}^{n} M_{1j} \det \tilde{M}_{1j} = \det \tilde{M}_{11} + \sum_{j=k+2}^{n} M_{1j} \det \tilde{M}_{1j} = \det \tilde{M}_{11}
+    \]
+    Notice that \(\tilde{M}_{11}\) satisfies our assumption in the induction hypthoesis, so \(\det M = \det \tilde{M}_{11} = \det C\).
+
+    \medskip
+
+    \textbf{Lemma 2:} \(\det \left( \begin{array}{@{}c|c@{}}
+        A & O \\
+        \hline
+        O & I
+    \end{array} \right) = \det A\).
+
+    The proof is analogous to the proof of Lemma 1, so we omit it. We now proceed with the main result.
+
+    First, consider the case where \(A\) is not invertible. Then its columns are linearly dependent. But this means that \(M\) also has linearly dependent columns, so \(\det M = 0 = \det A \det C\).
+
+    Otherwise, if \(A\) is invertible, define \(N = \left( \begin{array}{@{}c|c@{}}
+        A^{-1} & O \\
+        \hline
+        O & I
+    \end{array} \right)\). Then \(MN = \left( \begin{array}{@{}c|c@{}}
+            I & B \\
+            \hline
+            O & C
+        \end{array} \right)\) and we get
+    \[
+        \det C = \det MN = \det M \det N = \det M \det A^{-1} = \frac{\det M}{\det A}
+    \]
+    \[
+        \implies \det M = \det A \det C
+    \]
+    and we are done.
     \end{question}
     
     \begin{question}{7}
