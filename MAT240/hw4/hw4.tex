@@ -53,7 +53,7 @@
             &= 12
     \end{align*}
     \end{question}
-    
+    \newpage
     \begin{question}{2}
     Let $T = T_A : \mathbb{Q}^5 \to \mathbb{Q}^5$ where $A = \begin{pmatrix}
     1 & 0 & 1 & -2 & 0 \\
@@ -347,7 +347,7 @@
         \]
     \end{enumerate}
     \end{question}
-    
+    \newpage
     \begin{question}{3}
     \begin{enumerate}[label=(\alph*)]
         \item Read the proof of Theorem 58 from the additional file in the Week 10 Readings on the course page.
@@ -377,7 +377,7 @@
     Observe that \(\tilde{A}_{1k}\) are \(n\times n\) matrices, and since the \(i\)th row was 0 in the original matrix (and \(i > 1\)), the \(i - 1\)th row in \(\tilde{A}_{1k}\) is 0, so by the induction hypothesis \(\det \tilde{A}_{1k} = 0\), thus \(\det A = 0\) and we are done.
 
     \end{question}
-    
+    \newpage
     \begin{question}{4}
     Assume that Parts 1 and 2 of Theorem 59 have been proved. You cannot use Parts 4 through 7 of Theorem 59 in the following problem.
     
@@ -493,7 +493,7 @@
     \]
     as needed.
     \end{question}
-    
+    \newpage
     \begin{question}{5}
     Prove that if $U \in M_{n \times n}(F)$ is upper triangular, then $\det U = \prod_{i=1}^n U_{ii}$.
     \tcblower
@@ -517,7 +517,7 @@
     \]
     which completes the proof.
     \end{question}
-    
+    \newpage
     \begin{question}{6}
     Let $V$ be a vector space over $F$, and $T : V \to V$ a linear map. If $W \subseteq V$ is a $T$-invariant subspace, then we can restrict \(T\) to \(W\), to obtain a map \(T_W : W \to W\). We call \(T_W\) the restriction map.
     
@@ -606,7 +606,7 @@
     \]
     and we are done.
     \end{question}
-    
+    \newpage
     \begin{question}{7}
     Deduce from Question 6 that if $W$ is a $T$-invariant subspace, then $C_{T_W}$ divides $C_T$.
     \tcblower
@@ -627,7 +627,7 @@
     \]
     as expected.
     \end{question}
-    
+    \newpage
     \begin{question}{8}
     Let $V$ be a finite-dimensional vector space over a field $F$, and $W_1, W_2 \subseteq V$ subspaces so that $V = W_1 \oplus W_2$. Define the projection maps $P_i : V \to V$ by $P_i(x) = x_i$ where $x = x_1 + x_2$ with $x_1 \in W_1$ and $x_2 \in W_2$.
     
@@ -673,28 +673,142 @@
     \]
     which is a diagonal matrix, so \(P_1\) is diagonalizable.
     \end{question}
-    
+    \newpage
     \begin{question}{9}
-    Define the direct sum for more than two subspaces. Let $W_1, \ldots, W_k \subseteq V$ be subspaces such that $V = W_1 \oplus \cdots \oplus W_k$.
+    In this problem, we carefully define the direct sum for more than two subspaces.
     
-    \begin{enumerate}
-        \item Prove that every basis $\beta$ for $V$ gives a direct sum decomposition $V = W_1 \oplus \cdots \oplus W_n$ where $\dim W_i = 1$.
-        \item Prove the converse: If $V = W_1 \oplus \cdots \oplus W_n$ with $\dim W_i = 1$, then choosing non-zero $w_i \in W_i$ forms a basis for $V$.
-        \item Let $T : V \to V$ be linear. Show that $[T]_\beta$ is block diagonal.
+    Let $W_1, \ldots, W_k \subseteq V$ be subspaces. We say $V = W_1 \oplus \cdots \oplus W_k$ if:
+    \begin{itemize}
+        \item \(V = W_1 + \cdots + W_k\)
+        \item For each \(i \in \{ 1, \cdots, k \}\), we have \(W_i \cap \left( \sum_{j\neq i} W_j \right) = \{ 0 \}\).
+    \end{itemize}
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(V\) be an \(n\)-dimensional vector space. Prove that every basis \(\beta\) for \(V\) gives a direct sum decomposition \(V = W_1 \oplus \cdots \oplus W_n\) where \(\dim W_i = 1\).
+        \item Prove the converse of (a): If $V = W_1 \oplus \cdots \oplus W_n$ with $\dim W_i = 1$, then choosing non-zero $w_i \in W_i$ forms a basis \(\beta = \{ w_1, \ldots, w_n \}\) for $V$.
+        \item Let $T : V \to V$ be linear, and \(V = W_1 \oplus \cdots \oplus W_k\), where each \(W_i\) is \(T\)-invariant. Let \(\beta _i\) be a basis for \(W_i\), and set \(\beta = \beta _1 \cup \cdots \cup \beta _k\). Show that $[T]_\beta = \left( \begin{array}{@{}c|c|c|c@{}}
+            A_1 & O & \cdots & O \\
+            \hline
+            O & A_2 & O & O \\
+            \hline
+            \vdots & \vdots & \ddots & \vdots \\
+            \hline
+            O & \cdots & O & A_k \\
+        \end{array} \right) $ is block diagonal.
     \end{enumerate}
+    \tcblower
+    \ 
+
+    (a):
+
+    For each basis element \(w_i\), set \(W_i = \mathrm{span} (w_i)\). It is immediate that \(V = W_1 + \cdots + W_n\). Only the second condition remains to be shown. Let \(i \in \{ 1, ..., n \}\). Let \(v \in W_i \cap \left( \sum_{j\neq i} W_j \right)\). This means that for some \(c_i \in \mathbb{F}\), \(-c_i w_i = v = \sum_{j\neq i} c_j w_j\). We rearrange to get that \(\sum_{j=1}^{n} c_i w_i = 0\). By linear independence of \(\beta\), \(c_i = 0\), so \(v = 0\). Thus \(V = W_1 \oplus \cdots \oplus W_n\).
+
+    \bigskip
+
+    (b):
+
+    Suppose that \(V = W_1 \oplus \cdots \oplus W_n\). From each \(W_i\) pick a \(w_i \neq 0\). Since \(\dim W_i = 1\), \(\{ w_i \}\) is actually a basis for \(W_i\). Now, we show that \(\beta = \{ w_1, \ldots, w_{n} \}\) forms a basis for \(V\). Let \(v \in V\). Then \(v = v_1 + \cdots + v_n\), where \(v_i \in W_i\). But each \(v_i\) can be written as \(c_i w_i\), for some \(c_i \in \mathbb{F}\), so
+    \[
+        v = \sum_{i=1}^{n} c_i w_i
+    \]
+    Next, let \(\sum_{i=1}^{n} c_i w_i = 0\). For each \(j \in \{ 1, ..., n \}\) We have that \(-c_{j}  w_j = \sum_{i\neq j} c_i w_i\). This means that \(-c_j w_j\) is an element of both \(W_j\) and \(\left( \sum_{i\neq j} W_i \right)\), so \(-c_j w_j = 0\), meaning \(c_j = 0\) for each \(j\). Thus we can conclude that \(\beta\) is a basis for \(V\).
+
+    \bigskip
+
+    (c):
+
+    Proceed by using induction on \(k\). If \(k = 1\), the entire matrix itself is the block, so the result is trivial.
+
+    Suppose the statement holds for some \(k\). We want to show it for \(k+1\). Let \(V = W_1 \oplus \cdot \oplus W_k \oplus W_{k+1}\). Since each \(W_i\) is \(T\)-invariant, it follows that \(W' \coloneqq W_1 \oplus \cdots \oplus W_k\) is \(T\)-invariant. Thus
+    \[
+        [T]_\beta = \left( \begin{array}{@{}c|c@{}}
+            A & O \\
+            \hline
+            O & A_{k+1} \\
+        \end{array} \right)
+    \]
+    where \(A = [T_{W'}]_{\beta'}\), \(A_{k+1} = [T_{W_{k+1}}]_{\beta_{k+1}}\), and \(\beta ' = \beta _1 \cup \cdots \cup \beta _k\). Note that the top right quadrant is \(O\) because \(W_{k+1}\) is \(T\)-invariant. Finally, by our induction hypothesis, \(A\) is actually block diagonal, so
+    \[
+        [T]_\beta = \left( \begin{array}{@{}c|c@{}}
+            A & O \\
+            \hline
+            O & A_{k+1} \\
+        \end{array} \right) = \left( \begin{array}{@{}c|c|c|c@{}}
+            A_1 & O & \cdots & O \\
+            \hline
+            O & A_2 & O & O \\
+            \hline
+            \vdots & \vdots & \ddots & \vdots \\
+            \hline
+            O & \cdots & O & A_k \\
+        \end{array} \right)
+    \]
+    and we are done.
     \end{question}
-    
+    \newpage
     \begin{question}{10}
-    Let $W_1, \ldots, W_k \subseteq V$ with bases $\beta_1, \ldots, \beta_k$. Prove that $V = W_1 \oplus \cdots \oplus W_k$ if and only if $\beta = \beta_1 \cup \cdots \cup \beta_k$ is a basis for $V$.
+    Let $W_1, \ldots, W_k \subseteq V$ be subspaces of \(V\) with bases $\beta_1, \ldots, \beta_k$. Prove that $V = W_1 \oplus \cdots \oplus W_k$ if and only if $\beta = \beta_1 \cup \cdots \cup \beta_k$ is a basis for $V$.
+    \tcblower
+    We proceed with induction on \(k\). For \(k = 1\), the result is obvious. Now suppose it holds for some \(k\). Then using a result from the first homework, \(V = W_1 \oplus \cdots \oplus W_{k+1}\) if and only if \(\beta ' \cup \beta_{k+1}\) is a basis for \(V\), where \(\beta ' = \beta _1 \cup \cdots \cup \beta _k\) is a basis for \(W_1 \oplus \cdots \oplus W_k\), which we know from the induction hypothesis. Thus \(\beta = \beta _1 \cup \cdots \cup \beta _{k+1}\), so the equivalence in statements has been shown.
     \end{question}
-    
+    \newpage
     \begin{question}{11}
     Determine whether the following statements are true or false. Justify your answers.
     
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item If $V = W_1 \oplus W_2$ and $T_{W_1}, T_{W_2}$ are diagonalizable, then $T$ is diagonalizable.
         \item If $W_i \cap W_j = \{0\}$ for $i \neq j$ and $V = W_1 + W_2 + W_3$, then $V = W_1 \oplus W_2 \oplus W_3$.
-        \item If $\dim V = 7$, $\dim N(T) = 3$, and $\operatorname{rank}(T - I) = 4$, then $T$ is diagonalizable.
+        \item Let \(V\) be a finite dimensional vector space over \(\mathbb{F}\) and \(T: V \to V\) be a linear map. If $\dim V = 7$, $\dim N(T) = 3$, and $\operatorname{rank}(T - I) = 4$, then $T$ is diagonalizable.
     \end{enumerate}
+    \tcblower
+    \ 
+
+    (a):
+
+    This statement is true. Suppose that \(V = W_1 \oplus W_2\) and \(T_{W_1}, T_{W_2}\) are diagonalizable. Pick bases \(\beta _1, \beta _2\) for \(W_1, W_2\) such that \(A = [T_{W_1}], B = [T_{W_2}]\) are diagonal. It follows that \(\beta = \beta _1 \cup \beta _2\) is a basis for \(V\) and moreover
+    \[
+        [T]_\beta = \left( \begin{array}{@{}c|c@{}}
+            A & O \\
+            \hline
+            O & B
+        \end{array} \right)
+    \]
+    which is diagonal.
+
+    \bigskip
+
+    (b):
+
+    This statement is true. Let \(\beta _1, \beta _2, \beta _3\) be bases for \(W_1, W_2, W_3\). Since \(W_1 \cap W_2 = \{ 0 \}\), then \(W' = W_1 + W_2\) is a direct sum of the subspaces \(W_1\) and \(W_2\) and a basis for \(W'\) is given by \(\beta ' = \beta _1 \cup \beta _2\). As well, from our assumption, \(\beta _1, \beta _2, \beta _3\) are pairwise disjoint so \(\beta_3\) is disjoint from \(\beta '\). It follows that \(\beta = \beta _1 \cup \beta _2 \cup \beta _3\) is a basis for \(V = W_1 + W_2 + W_3\), so we indeed have \(V = W_1 \oplus W_2 \oplus W_3\).
+
+    \bigskip
+
+    (c):
+
+    This statement is false. Let \(V = \mathbb{F}^7\) with standard basis \(\beta\). Take \(T = T_A\), where
+    \[
+        A = \begin{pmatrix}
+            0 & 0 & 0 & 0 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 1 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 1 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 1 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 0 &  1 \\
+        \end{pmatrix}
+    \]
+    Clearly \(\rank T = 4\), so \(\mathrm{nullity} (T) = 3\). As well,
+    \[
+        [T - I]_\beta = \begin{pmatrix}
+            -1 & 0 & 0 & 0 & 0 & 0 &  0 \\
+            0 & -1 & 0 & 0 & 0 & 0 &  0 \\
+            0 & 0 & -1 & 1 & 0 & 0 &  0 \\
+            0 & 0 & 0 & -1 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 0 &  0 \\
+            0 & 0 & 0 & 0 & 0 & 0 &  0 \\
+        \end{pmatrix}
+    \]
+    has rank 4. But observe that \(C_T(\lambda) = \lambda ^4 (\lambda - 1)^3\) so the eigenvalue \(0\) has multiplicity 4, but the eigenspace \(E_0(T) = N(A)\) has dimension \(3\), so \(T\) is not diagonalizable.
     \end{question}
 \end{document}
