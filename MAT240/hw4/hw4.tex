@@ -557,7 +557,7 @@
 
     (b):
 
-    We begin by proving 2 lemmas:
+    We will use the following 2 lemmas:
 
     \textbf{Lemma 1:} Let \(k < n\). For matrices \(B \in M_{k\times (n-k)}(\mathbb{F})\), \(C \in M_{(n-k)\times (n-k)}(\mathbb{F})\), Let \(M = \left( \begin{array}{@{}c|c@{}}
         I_k & B \\
@@ -609,6 +609,23 @@
     
     \begin{question}{7}
     Deduce from Question 6 that if $W$ is a $T$-invariant subspace, then $C_{T_W}$ divides $C_T$.
+    \tcblower
+    Suppose that \(W\) is a \(T\)-invariant subspace. Fix a basis \(\beta\) such that \([T]_\beta = \left( \begin{array}{@{}c|c@{}}
+        [T_W]_{\beta_W} & B \\
+        \hline
+        O & C \\
+    \end{array}\right)\). Then
+    \[
+        C_T(\lambda) = \det (\lambda I - T) = \det \left( \begin{array}{@{}c|c@{}}
+            \lambda I_k - [T_W]_{\beta_W} & -B \\
+            \hline
+            O & \lambda I_{n-k} - C \\
+        \end{array}\right) = \det (\lambda I_k - T_W)\det (I_{n-k} - C)
+    \]
+    \[
+        C_T(\lambda) = C_{T_W}(\lambda)\det (I_{n-k} - C)
+    \]
+    as expected.
     \end{question}
     
     \begin{question}{8}
