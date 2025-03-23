@@ -629,14 +629,49 @@
     \end{question}
     
     \begin{question}{8}
-    Let $V$ be a finite-dimensional vector space over a field $F$, and $W_1, W_2 \subseteq V$ such that $V = W_1 \oplus W_2$. Define the projection maps $P_i : V \to V$ by $P(x) = x_i$ where $x = x_1 + x_2$ with $x_1 \in W_1$ and $x_2 \in W_2$.
+    Let $V$ be a finite-dimensional vector space over a field $F$, and $W_1, W_2 \subseteq V$ subspaces so that $V = W_1 \oplus W_2$. Define the projection maps $P_i : V \to V$ by $P_i(x) = x_i$ where $x = x_1 + x_2$ with $x_1 \in W_1$ and $x_2 \in W_2$.
     
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item Prove that $P_i$ is linear.
         \item Prove that $P_i^2 = P_i$.
         \item Prove that each $W_j$ is $P_i$-invariant.
         \item Determine if $P_i$ is diagonalizable and justify your answer.
     \end{enumerate}
+    \tcblower
+    For convenience, we will prove the statements for \(P_1\), as the argument for \(P_2\) will be the exact same.
+
+    (a):
+
+    Let \(x,y \in V\), \(c \in \mathbb{F}\). Write \(x = x_1 + x_2, y = y_1 + y_2\), where \(x_i,y_i \in W_i\). Then
+    \[
+        P_1(cx + y) = P_1(cx_1 + y_1 + cx_2 + y_2) = cx_1 + y_1 = cP_1(x) +P_i(y)
+    \]
+
+    \bigskip
+
+    (b):
+
+    Let \(x = x_1 + x_2 \in V\). Then \(P_1(x) = x_1\). Notice that \(x_1 = x_1 + 0\), so \(P_1^2 x = P_1(x_1) = x_1 = P_1(x)\).
+
+    \bigskip
+
+    (c):
+
+    As we have shown above, for \(x_1 \in W_1\), \(P_1(x_1) = x_1 \in W_1\), so \(W_1\) is \(P_1\)-invariant. For \(x_2 \in W_2\), we have \(P_1(x_2) = 0 \in W_2\), so \(W_2\) is also \(P_1\)-invariant.
+
+    \bigskip
+
+    (d):
+
+    Let \(n_1\) be the dimensions of \(W_1\). Choose \(\beta = \beta _1 \cup \beta _2\) to be a basis for \(V\), where \(\beta _1, \beta _2\) are bases for \(W_1, W_2\) respectively. Based on part (c), we have
+    \[
+        [P_1]_\beta = \left( \begin{array}{@{}c|c@{}}
+            I_{n_1} & O \\
+            \hline
+            O & O
+        \end{array} \right) 
+    \]
+    which is a diagonal matrix, so \(P_1\) is diagonalizable.
     \end{question}
     
     \begin{question}{9}
