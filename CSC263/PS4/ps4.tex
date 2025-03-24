@@ -24,7 +24,7 @@
         marks, your algorithm's worst-case runtime must be in
         $\mathcal{O}(|V|)$.
 
-      The algorithm works as follows. First, add the new edge \((u,v)\) to \(T\). Since \(T\) now has \(n\) edges and \(n\) vertices, it is guaranteed to contain some loop. We perform a DFS starting at \(u\) to find this loop, and we know it is successful when the algorithm encounters \(u\) again. Finally, iterate through the edges contained in this loop and remove the edge with the highest weight.
+      The algorithm works as follows. First, add the new edge \((u,v)\) to \(T\). Since \(T\) now has \(n\) edges and \(n\) vertices, it is guaranteed to contain some loop. We perform a DFS starting at \(u\) to find this loop, and we know it is successful when the algorithm encounters \(u\) again. Finally, iterate through the edges contained in this loop and remove the edge with the highest weight. This new tree is guaranteed to be the a minimum spanning tree of \(G'\).
 
       Now, we will show that this algorithm has a worst-case runtime of \(\mathcal{O} (|V|)\). Adding the new edge to \(T\) takes constant runtime, so that is not our main point of concern. The DFS on \(T\) has a worst-case runtime of \(\mathcal{O} (|V| + |E|) = \mathcal{O} (|V|)\), and we might need to iterate through every edge, if the loop in the graph contains every edge, which has a runtime of \(\mathcal{O} (|T|) = \mathcal{O} (|V|)\). Thus the worst-case runtime of this algorithm is \(\mathcal{O} (|V|)\).
 
@@ -91,6 +91,12 @@ specifications.
 include the following: an explanation of how your code works,
 justification of correctness, and justification of desired
 ${O}(m + n)$ average-case runtime.
+
+This algorithm works by converting the list of dependencies into a graph, and then using DFS to find cycles. It makes use of the fact that all cities are reachable if and only if the graph does not contain any cycles. To see this, suppose that the graph has a cycle. This means that there are two cities that indirectly depend on each other (i.e. a city depends on another city that eventually depends on the other city), which means that it is impossible to visit either of those cities. Now, suppose that there are no cycles in the graph. Each chain of dependencies must terminate. Using an inductive argument, we can argue that the dependecies of any city are reachable, therefore making every city reachable.
+
+As for the implementationg, the algorithm first converts the list of dependencies into a directed graph, by using a hash table with capacity \(2n\) that stores each city name as a key and the list of cities that have the key as a dependency for the value. The algorithm performs a DFS to find a cycle. In particular, it marks each city as either not visited, visiting, or visited as it traverses the graph, and if it encounters a city that has "visiting" status, it knows that a cycle has been found. If a cycle has been found, not every city is reachable, so the algorithm returns false. Otherwise, return true.
+
+To compute the average case runtime, we assume that each combination of dependencies is equally likely and further assume that our hash table possesses the uniform hashing property. Let \(n\) be the number of cities and let \(m\) be the number of cities. Converting the list of dependencies into a graph requires iterating through each edge and inserting it into the hash table. Since we assume the uniform hashing property, and the load factor less than one, each insertion takes constant time, so constructing the graph takes \(O(m)\). Finally, the DFS has a runtime in \(O(n+m)\), no matter how the edges are distributed. Thus the total average case runtime is \(O(n+m)\).
 
 \end{enumerate}
 

@@ -4072,7 +4072,7 @@
         \[
             \frac{\partial M}{\partial y} = \frac{\partial^2 F}{\partial y \partial x} = \frac{\partial^2 F}{\partial x \partial y} = \frac{\partial N}{\partial x}
         \]
-        Conversely, suppose that \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\). We define \(\int f\ dx\) to be the antiderivative of \(f(.,y)\) with additional constant \(C=0\), and likewise for \(\int f\ dy\). Since \(N,M\) are continuous, they are integrable with respect to both \(x\) and \(y\). Furthermore, their antiderivative and partial derivatives are integrable because they are continuous. Let \(F\) be defined by
+        Conversely, suppose that \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\). We define \(\int f\ dx\) to be the antiderivative of \(f(.,y)\) with additional constant \(C=0\), and likewise for \(\int f\ dy\). Since \(N,M\) are continuous, they are integrable with respect to both \(x\) and \(y\). Let \(F\) be defined by
         \[
             F(x,y) = \frac{1}{2}\int M(x,y)\ dx + \frac{1}{2}\int N(x,y)\ dy
         \]
@@ -4369,6 +4369,7 @@
         \[
             f = \frac{1}{n}\sum_{i=1}^{n} \int \hat{f}_i\ dx_i
         \]
+        but each \(\int \hat{f}_i\ dx_i\) is a polynomial, and a linear combination of polynomials is also a polynomial, so we can conclude that \(f\) is a polynomial, which completes the proof.
     \end{proof}
     \subsection{Precompactness}
     We know that compactness can play a big role in proving results, such as the existence of partitions of unity. Here, we look into a slightly weaker version of compactness and see what results can be proved with it.
