@@ -159,9 +159,11 @@ def dfs(city, dp, visited):
         visited.insert(city, VISITING)
         cities = dp.search(city)
         if cities is None:
+            visited.insert(city, VISITED)
             return False
         for c in dp.search(city):
             if dfs(c, dp, visited):
+                visited.insert(city, VISITED)
                 return True
         visited.insert(city, VISITED)
         return False
@@ -180,11 +182,11 @@ def can_visit_all_cities(numCities, dependencies):
     dp = HashTable(2 * numCities)
     visited = HashTable(2 * numCities)
     for d in dependencies:
-        val = dp.search(d[1])
+        val = dp.search(d[0])
         if val is None:
-            dp.insert(d[1], [d[0]])
+            dp.insert(d[0], [d[1]])
         else:
-            val.append(d[0])
+            val.append(d[1])
     
     for key in dp.get_keys():
         if dfs(key, dp, visited):
