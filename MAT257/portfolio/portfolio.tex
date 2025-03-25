@@ -4414,5 +4414,49 @@
     \begin{proof}
         Let \(\{ (U_i , \varphi _i) \}_{i \in I}\) be an atlas for \(M\). Since \(\{ U_i \}\) constitutes an open cover of \(M\), we can find a countable subcover \(\{ U_{i_n} \}_{n \in \mathbb{N}}\) by the precompactness of \(M\). Then \(\{ (U_{i_n}, \varphi _{i_n}) \}_{n \in \mathbb{N}}\) is still an atlas over \(M\), but is countable, so we are done.
     \end{proof}
+    \section{Major Theorems}
+    \subsection{Sequential Compactness and Compactness}
+    \begin{defn}
+        A metric space \(X\) is compact if every open cover permits a finite subcover.
+    \end{defn}
+    \begin{defn}
+        A metric space \(X\) is sequentially compact if every sequence has a convergent subsequence.
+    \end{defn}
+    \begin{thm}
+        Let \(X\) be a metric space. Then \(X\) is compact if and only if \(X\) is sequentially compact.
+    \end{thm}
+    \begin{proof}
+        Suppose for contradiction that \(X\) is compact but not sequentially compact. Let \((a_n)\) be a sequence with no convergent subsequence. For each \(a_n\), take the open ball \(B(a_n, \frac{1}{n})\).
 
+        Conversely, suppose that \(X\) is clustering, and suppose again seeking contradiction that \(X\) is not compact. Let \(\{ U_i \} _{i \in I}\) be an open cover that does not have a finite subcover. Recall the magic number lemma: for any open cover of a clustering metric space, there exists \(\delta > 0\) such that any subset \(A \subseteq X\) with \(\diam A < \delta\) is a subset of some \(U_i\) in the open cover.
+    \end{proof}
+    \subsection{Equivalence of Norms in Finite Dimensional Vector Spaces}
+    \begin{thm}
+        Let \((V, \|\cdot\|)\) be a normed vector space with dimension \(n\). There exists a linear homeomorphism between \((V, \|\cdot \|)\) and \((\mathbb{R}^n, \|\cdot\| _2)\), where \(\|\cdot\| _2\) represents the standard Euclidean norm.
+    \end{thm}
+    \begin{proof}
+        Since \(V\) and \(\mathbb{R}^n\) have the same dimension, ther exists a linear isomorphism between them. We claim that this is the desired homeomorphism.
+    \end{proof}
+    \subsection{Differentiability Theorem}
+    \begin{thm}
+        Let \(f: U \to \mathbb{R}^m\) be a function, where \(U\) is open in \(\mathbb{R}^n\). Then \(f\) is continuously differentiable if and only if \(f\) is partially continuously differentiable.
+    \end{thm}
+    \subsection{Inverse Function Theorem and Implicit Function Theorem}
+    \begin{thm}
+        \textbf{Inverse Function Theorem.} Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be a \(C^1\) function. If \(p \in U\) such that \(Jf(p)\) is invertible, then
+        \begin{itemize}
+            \item There exists an open set \(U_0 \subseteq U\) such that \(\Phi = f | _{U_0}\) is injective.
+            \item \(V_0 = f^{-1} (U_0)\) is open.
+            \item \(\Phi ^{-1}(q) = (\Phi ' \circ \Phi^{-1}(q))^{-1}\)
+            \item \(\Phi ^{-1}\) is \(C^1\).
+        \end{itemize}
+    \end{thm}
+    \subsection{Change of Variables}
+    \begin{thm}
+        Let \(E\) be a measurable set in \(\mathbb{R}^n\) and let \(\Phi : \mathbb{R}^n \to \mathbb{R}^n\) be a diffeomorphism. Let \(f\) be integrable on \(\Phi (E)\). Then
+        \[
+            \int _{\Phi (E)} f = \int _E f \circ \Phi \cdot |\det J \Phi |
+        \]
+    \end{thm}
+    \subsection{Green's Theorem}
 \end{document}
