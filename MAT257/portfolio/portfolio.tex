@@ -4437,7 +4437,11 @@
         Let \((V, \|\cdot\|)\) be a normed vector space with dimension \(n\). There exists a linear homeomorphism between \((V, \|\cdot \|)\) and \((\mathbb{R}^n, \|\cdot\| _2)\), where \(\|\cdot\| _2\) represents the standard Euclidean norm.
     \end{thm}
     \begin{proof}
-        Since \(V\) and \(\mathbb{R}^n\) have the same dimension, there exists a linear isomorphism between them. We claim that this is the desired homeomorphism. 
+        We prove that all norms are equivalent in finite dimensional vector spaces, from which the theorem will follow quickly. First, note that a vector space over \(\mathbb{R}\) with dimension \(n\) is isomorphic to \(\mathbb{R}^n\), so there exists a linear isomorphism \(\Phi : V \to \mathbb{R}^n\). Let \(\|\cdot\|\) be a norm on \(V\). We define the norm \(\|\cdot\| _2\) to be \(\|x\| _2 = \|\Phi (x)\| _E\), where the norm on the right represents the Euclidean norm in \(\mathbb{R}^n\). It is easy to show that this is indeed a norm. We claim that \(\|\cdot \|\) and \(\|\cdot \| _2\) are equivalent. To do this, we need to show that there exist \(m,M > 0\) such that for all \(x \in V\),
+        \[
+            m\|x\| \leq \|x\| _2 \leq M \|x\|.
+        \]
+        To do this, we will show that the unit ball is compact.
     \end{proof}
     \subsection{Differentiability Theorem}
     \begin{thm}
