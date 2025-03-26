@@ -4461,13 +4461,12 @@
         \]
         We apply the same argument to \(\Phi ^{-1}\) to conclude that \(\Phi\) is indeed a homeomorphism and we are done.
     \end{proof}
-    \subsection{Chain Rule}
     \subsection{Differentiability Theorem}
     \begin{thm}
         Let \(f: U \to \mathbb{R}^m\) be a function, where \(U\) is open in \(\mathbb{R}^n\). Then \(f\) is continuously differentiable if and only if \(f\) is partially continuously differentiable.
     \end{thm}
     \begin{proof}
-        First, let us consider the case when \(m = 1\). Suppose that \(f\) is continuously differentiable. We want to show that the partial derivative with respect to each \(x_i\) is continuous. Let \(p \in U\). For each \(i\), there exists \(\delta > 0\) such that for \(t \in (-\delta , \delta)\), \(f(p + te_i) \in U\). Define \(f_i: (-\delta , \delta) \to \mathbb{R}\) by \(f_i (t) = f(p + te_i)\). Using the chain rule, we get that
+        First, let us consider the case when \(m = 1\). As well, for convenience, we equip our vector spaces with the 1-norm. Suppose that \(f\) is continuously differentiable. We want to show that the partial derivative with respect to each \(x_i\) is continuous. Let \(p \in U\). For each \(i\), there exists \(\delta > 0\) such that for \(t \in (-\delta , \delta)\), \(f(p + te_i) \in U\). Define \(f_i: (-\delta , \delta) \to \mathbb{R}\) by \(f_i (t) = f(p + te_i)\). Using the chain rule, we get that
         \[
             f_i'(t) = f'(p + te_i)(e_i).
         \]
@@ -4481,29 +4480,91 @@
         \[
             f'(p)(h) = \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p)
         \]
-        Do do this, we want to show
+        To do this, we want to show
         \[
             \lim_{h \to 0} \frac{1}{\|h\|}\left( f(p + h) - f(p) - \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p) \right) = 0.
         \]
-        For \(p \in U, h \in \mathbb{R}^n\), define \(p_n\) as follows.
+        For \(p \in U, h \in \mathbb{R}^n\), let \(p_k\) be defined by
         \[
-            p_0 = p, p_i = p_{i-1} + h_i e_i
+            p_k = p + \sum_{i=1}^{k} h_i e_i
         \]
-        Let \(\varepsilon > 0\). Then
+        where \(k\) is an integer that ranges from \(0\) to \(n\). Using the Mean Value Theorem, we can say that there exists \(t_i \in (0, h_i)\) such that
         \[
-            \left\vert f(p + h) - f(p) - \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p)  \right\vert = \left\vert \sum_{i=1}^{n} \left(f(p_i) - f(p_{i-1}) - h_i \frac{\partial f}{\partial x_i} \right) \right\vert 
+            h_i \frac{\partial f}{\partial x_i} (p_{i-1} + t_i e_i) = f(p_i) - f(p_{i-1}).
         \]
+        Write \(q_i = p_{i-1} + t_i e_i\).
+
+        Now let \(\varepsilon > 0\). Then choose \(\delta\) so that \(B(p, \delta) \subseteq U\) and \(\left\vert\frac{\partial f}{\partial x_i} (p + h) - \frac{\partial f}{\partial x_i} (p)\right\vert < \varepsilon\) for all \(i\) with \(\|h\| < \delta\). Then for \(h \in \mathbb{R}^n\) with \(\|h\| < \delta\),
+        \begin{align*}
+            \left\vert f(p + h) - f(p) - \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p)  \right\vert &= \left\vert \sum_{i=1}^{n} \left(f(p_i) - f(p_{i-1}) - h_i \frac{\partial f}{\partial x_i} (p)\right) \right\vert \\
+            &\leq \sum_{i=1}^{n} |h_i| \left\vert \frac{\partial f}{\partial x_i} (q_i) - \frac{\partial f}{\partial x_i} (p) \right\vert
+        \end{align*}
+        Notice that \(\|q_i - p\| < \|h\| < \delta\), so
+        \begin{align*}
+            \sum_{i=1}^{n} |h_i| \left\vert \frac{\partial f}{\partial x_i} (q_i) - \frac{\partial f}{\partial x_i} (p) \right\vert &< \sum_{i=1}^{n} |h_i| \varepsilon \\
+            &= \varepsilon \|h\|.
+        \end{align*}
+        Thus showing that our limit indeed converges to 0, so our derivative is valid. It remains to show that it is continuous. Let \(\varepsilon > 0\). We use the same \(\delta\) as above. Let \(v \in \mathbb{R}^n\) with \(\|v\| < \delta\). Notice that for all \(h \in \mathbb{R}^n\) with \(\|h\| = 1\),
+        \[
+            |f'(p + v)(h) - f'(p)(h)| = \left\vert\sum_{i=1}^{n} h_i \left( \frac{\partial f}{\partial x_i} (p + v) - \frac{\partial f}{\partial x_i} (p) \right)\right\vert < \|h\| \varepsilon = \varepsilon
+        \]
+        which means that
+        \[
+            \|f'(p+v) - f'(p)\| _{\op} < \varepsilon
+        \]
+        as desired.
     \end{proof}
     \subsection{Inverse Function Theorem and Implicit Function Theorem}
     \begin{thm}
         \textbf{Inverse Function Theorem.} Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be a \(C^1\) function. If \(p \in U\) such that \(Jf(p)\) is invertible, then
         \begin{itemize}
             \item There exists an open set \(U_0 \subseteq U\) such that \(\Phi = f | _{U_0}\) is injective.
-            \item \(V_0 = f^{-1} (U_0)\) is open.
+            \item \(V_0 = f(U_0)\) is open.
             \item \(\Phi ^{-1}(q) = (\Phi ' \circ \Phi^{-1}(q))^{-1}\)
             \item \(\Phi ^{-1}\) is \(C^1\).
         \end{itemize}
     \end{thm}
+    \begin{proof}
+        Let \(L = f'(p)\). For \(y \in \mathbb{R}^n\), define a function \(\alpha_y (q) = q + L^{-1}(y - f(q))\), where \(q \in U\). We claim that \(q\) is a fixed point of \(\alpha _y\) if and only if \(f(q) = y\). Suppose that \(q\) is a fixed point. Then
+        \[
+            q = \alpha _y (q) = q + L^{-1} (y - f(q)) \implies L^{-1} (y) = L^{-1} (f(q))
+        \]
+        Since \(L^{-1}\) is invertible, it must be that \(y = f(q)\).
+
+        Conversely, suppose that \(y = f(q)\). Then
+        \[
+            \alpha _y(q) = q + L^{-1} (0) = q
+        \]
+        so \(q\) is a fixed point.
+
+        Next, we see by inspection that the derivative of \(\alpha _y\) is given by
+        \[
+            \alpha _y'(q) = I - L^{-1} \circ f'(q).
+        \]
+        Then
+        \[
+            \|\alpha _y'(q)\| _{\op} = \|I - L^{-1} \circ f'(q)\| \leq \|L^{-1} \| _{\op} \|L - f'(q)\| _{\op}
+        \]
+        Recall that \(L = f'(p)\). Since \(f'\) is continuous, by letting \(\varepsilon = \frac{1}{2}\|L^{-1} \| _{\op}^{-1}\), for all \(q\) in some open ball \(U_0\) of \(p\), 
+        \[
+            \|\alpha _y'(q)\| _{\op} \leq \frac{1}{2}
+        \]
+        From this, we can say that
+        \[
+            \|\alpha _y(a) - \alpha _y(b)\| \leq \frac{1}{2}\|a - b\|, \text{ where } a,b \in U_0
+        \]
+        Now, we have the tools to show that \(f\) is injective on \(U_0\). Let \(a,b \in U_0\) such that \(f(a) = f(b)\). Let \(y = f(a) = f(b)\). Then we immediately have that \(a\) and \(b\) are fixed points of \(\alpha_y\). Then
+        \[
+            \|\alpha _y(a) - \alpha _y(b)\| \leq \frac{1}{2}\|a - b\| \implies \|a - b\| \leq \frac{1}{2}\|a - b\|
+        \]
+        which is only possible if \(a = b\). Thus \(f(p)\) is locally injective, and we will call this restriction \(\Phi: U_0 \to \mathbb{R}\).
+
+        Next, to show that \(V_0 = \Phi (U_0)\) is open, first select any \(v \in V_0\) and write \(v = \Phi (q)\), for some \(q \in U_0\). Since \(U_0\) is open, we have \(C = \cl{B}(q, r) \subseteq U_0\) for some \(r > 0\). Consider \(\alpha _y\) when \(y = v\). We claim that \(\alpha _y (C) \subseteq C\). Let \(u \in C\). Then
+        \[
+            \|\alpha _y(q) - \alpha _y(u)\| \leq \frac{1}{2}\|q - u\| < r
+        \]
+        but since \(v = \Phi (q)\) we actually have \(\alpha _y(q) = q\) so \(\alpha _y(u) \in C\). Let \(s = \). Then for
+    \end{proof}
     \subsection{Change of Variables}
     \begin{thm}
         Let \(E\) be a measurable set in \(\mathbb{R}^n\) and let \(\Phi : \mathbb{R}^n \to \mathbb{R}^n\) be a diffeomorphism. Let \(f\) be integrable on \(\Phi (E)\). Then
