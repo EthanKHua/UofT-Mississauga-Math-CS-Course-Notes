@@ -4441,12 +4441,59 @@
         \[
             m\|x\| \leq \|x\| _2 \leq M \|x\|.
         \]
-        To do this, we will show that the unit ball is compact.
+        Recall that the unit ball (with respect to \(\|\cdot\| _2\)) is compact in all finite dimensional vector spaces. It follows that the closed set \(C = \{ x \in V : \|x\| _2 = 1 \} \subseteq B_2(x,1)\) is compact. Define a continuous function \(f: C \to \mathbb{R}\) by
+        \[
+            f(x) = \frac{\|x\| _2}{\|x\|}.
+        \]
+        By the Extreme Value Theorem, \(f\) attains a maximum \(M\) and minimum \(m\). That is, for all \(x \in C\),
+        \[
+            m \leq \frac{\|x\| _2}{\|x\|} \leq M \implies m \|x\| \leq \|x\| _2 \leq M \|x\|.
+        \]
+        We claim that these values of \(M,m\) are the ones we are looking for. Let \(x \in V\). If \(x = 0\), the inequality trivially holds true. Otherwise, we can take \(\frac{x}{\|x\| _2} \in C\), from which it follows that
+        \[
+            m \frac{\|x\|}{\|x\| _2} \leq 1 \leq M \frac{\|x\|}{\|x\| _2} \implies m \|x\| \leq \|x\| _2 \leq M \|x\|.
+        \]
+        as desired.
+
+        Now we prove the main result. We claim that the linear isomorphism defined above is the homeomorphism we are looking for. We show that \(\Phi\) is continuous. Since \(\Phi\) is linear, it suffices to show that this is the case at \(x = 0\). Let \(\varepsilon > 0\). Take \(\delta = \frac{\varepsilon}{M}\). Then for all \(x\) with \(\|x\| < \delta\),
+        \[
+            \|\Phi (x)\| _E = \|x\| _2 \leq M \|x\| < \varepsilon
+        \]
+        We apply the same argument to \(\Phi ^{-1}\) to conclude that \(\Phi\) is indeed a homeomorphism and we are done.
     \end{proof}
+    \subsection{Chain Rule}
     \subsection{Differentiability Theorem}
     \begin{thm}
         Let \(f: U \to \mathbb{R}^m\) be a function, where \(U\) is open in \(\mathbb{R}^n\). Then \(f\) is continuously differentiable if and only if \(f\) is partially continuously differentiable.
     \end{thm}
+    \begin{proof}
+        First, let us consider the case when \(m = 1\). Suppose that \(f\) is continuously differentiable. We want to show that the partial derivative with respect to each \(x_i\) is continuous. Let \(p \in U\). For each \(i\), there exists \(\delta > 0\) such that for \(t \in (-\delta , \delta)\), \(f(p + te_i) \in U\). Define \(f_i: (-\delta , \delta) \to \mathbb{R}\) by \(f_i (t) = f(p + te_i)\). Using the chain rule, we get that
+        \[
+            f_i'(t) = f'(p + te_i)(e_i).
+        \]
+        but notice that
+        \[
+            \frac{\partial f}{\partial x_i} (p) = \lim_{t \to 0} \frac{1}{t}(f(p + te_i) - f(p)) = \lim_{t \to 0} \frac{1}{t}(f_i(t) - f_i(0)) = f_i'(0) = f'(p)(e_i).
+        \]
+        Since \(f'(\cdot)(e_i)\) is continuous, it follows that the partial derivatives are also continuous.
+
+        Conversely, suppose that every partial derivative is continuous. We claim that
+        \[
+            f'(p)(h) = \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p)
+        \]
+        Do do this, we want to show
+        \[
+            \lim_{h \to 0} \frac{1}{\|h\|}\left( f(p + h) - f(p) - \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p) \right) = 0.
+        \]
+        For \(p \in U, h \in \mathbb{R}^n\), define \(p_n\) as follows.
+        \[
+            p_0 = p, p_i = p_{i-1} + h_i e_i
+        \]
+        Let \(\varepsilon > 0\). Then
+        \[
+            \left\vert f(p + h) - f(p) - \sum_{i=1}^{n} h_i \frac{\partial f}{\partial x_i} (p)  \right\vert = \left\vert \sum_{i=1}^{n} \left(f(p_i) - f(p_{i-1}) - h_i \frac{\partial f}{\partial x_i} \right) \right\vert 
+        \]
+    \end{proof}
     \subsection{Inverse Function Theorem and Implicit Function Theorem}
     \begin{thm}
         \textbf{Inverse Function Theorem.} Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be a \(C^1\) function. If \(p \in U\) such that \(Jf(p)\) is invertible, then
