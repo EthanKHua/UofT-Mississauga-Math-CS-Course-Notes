@@ -4597,17 +4597,134 @@
         \begin{align*}
             \|\Phi^{-1} (x + k) - \Phi^{-1} (x) - (\Phi ' \circ \Phi^{-1})^{-1} (x)(k)\| &< \|(\Phi ' \circ \Phi^{-1})^{-1} (x)\| _{\op} \cdot \frac{\|h\|s \varepsilon}{\|(\Phi ' \circ \Phi^{-1})^{-1} (x)\| _{\op}} \\
             &= \|h\|s \varepsilon \\
-            \leq \|k\| \varepsilon
+            &\leq \|k\| \varepsilon
         \end{align*}
-        So \(\Phi^{-1}\) is indeed differentiable and 
+        So \(\Phi^{-1}\) is indeed differentiable. To show that \((\Phi^{-1})'\) is continuous, we note that it is the composition of \(\Phi^{-1}\), \(\Phi '\), and the inversion map \(A \mapsto A^{-1}\), all of which are continuous. To see that the inversion map is continuous, refer to the proof that the inversion map is differentiable in Big List \#39, from which continuity follows immediately.
 
+        We have proven all four statements so the proof is done.
+    \end{proof}
+    \begin{thm}
+        \textbf{Implicit Function Theorem.} Let \(f: \mathbb{R}^{n + k}\to \mathbb{R}^k\) be a \(C^1\) function. Let \((a,b) \in \mathbb{R}^{n+k}\), where \(a \in \mathbb{R}^n, b \in \mathbb{R}^k\)  such that \(f(a,b) = 0\). Write
+        \[
+            J f (a,b) = \left( \begin{array}{@{}c|c@{}}
+                A & B
+            \end{array} \right) 
+        \]
+        If \(B\) is invertible, then there is an open neighborhood \(U_0 \subseteq \mathbb{R}^k\) containing \(b\) and a \(C^1\) function \(\Phi : \mathbb{R}^n \to \mathbb{R}^k\) such that for all \(x \in U_0\),
+        \[
+            f(x, \Phi (x)) = 0 \text{ and } \Phi (a) = b.
+        \]
+    \end{thm}
+    \begin{proof}
+        Define \(G: \mathbb{R}^{n+k} \to \mathbb{R}^{n+k}\) by
+        \[
+            G(x,y) = (x, f(x,y)).
+        \]
+        Notice that
+        \[
+            JG(a,b) = \left( \begin{array}{@{}c|c@{}}
+                I & O \\
+                \hline
+                A & B
+            \end{array} \right) 
+        \]
+        Since \(I,B\) are invertible, \(JG(a,b)\) is invertible, so by the Inverse Function Theorem, we have that \(G^{-1}\) exists in an open neighborhood \(V_0\) around \((a,b)\). Write \(G^{-1} = (G_1^{-1}, G_2^{-1})\), where \(G_1^{-1} : V_0 \to \mathbb{R}^n, G_2^{-1} : V_0 \to \mathbb{R}^k\) are \(C^1\) functions. Let \(U_0\) be defined by
+        \[
+            U_0 = \{ x \in \pi_{\mathbb{R}^n} (V_0), (x,0) \in V_0 \} \subseteq V_0
+        \]
+        where \(\pi _{\mathbb{R}^n}\) is the projection of \(\mathbb{R}^{n+k} \) onto the first \(n\) components. We want to show that \(U_0\) is non-empty and open. Note that \(G(a,b) = (a, 0) \in U_0\), so \(U_0\) is non-empty, and additionally contains \(a\). Let \(x \in U_0\). Since \(V_0\) is open, we can find \(B((x,0), r) \subseteq V_0\). If we take the same radius, we have for \(v \in B(x, r)\),
+        \[
+            \|x - v\| < r \implies \|(x,0) - (v,0)\| < r \implies (v,0) \in V_0 \text{ and } v \in U_0.
+        \]
+        We claim that our desired function \(\Phi\) is defined by
+        \[
+            \Phi = G_2^{-1} (\cdot, 0).
+        \]
+        We already have that \(\Phi\) is \(C^1\). As well, for \(x \in U_0\), we have
+        \[
+            (x, 0) = G (G^{-1} (x,0)) = G(G_1^{-1} (x,0), G_2^{-1} (x,0)) = (G_1^{-1} (x,0), f(G_1^{-1} (x,0), G_2^{-1} (x,0)))
+        \]
+        so \(x = G_1^{-1} (x,0)\) and \(f(G_1^{-1} (x,0), G_2^{-1} (x,0)) = f(x, \Phi (x)) = 0\) as needed. Finally, notice that \(G(a,b) = (a, 0)\), and \(G\) is injective on \(V_0\), so it must be true that \(\Phi (a) = b\) and we are done.
     \end{proof}
     \subsection{Change of Variables}
     \begin{thm}
-        Let \(E\) be a measurable set in \(\mathbb{R}^n\) and let \(\Phi : \mathbb{R}^n \to \mathbb{R}^n\) be a diffeomorphism. Let \(f\) be integrable on \(\Phi (E)\). Then
+        Let \(E\) be a measurable set in \(\mathbb{R}^n\) and let \(\Phi : U \to V\) be a diffeomorphism, where \(U\) contains \(E\). Let \(f\) be integrable on \(\Phi (E)\). Then
         \[
-            \int _{\Phi (E)} f = \int _E f \circ \Phi \cdot |\det J \Phi |0
+            \int _{\Phi (E)} f = \int _E (f \circ \Phi) \cdot |\det J \Phi |
         \]
     \end{thm}
-    \subsection{Green's Theorem}
+    \begin{proof}
+        We begin with a series of reductions. First, it suffices to prove the case when \(E\) is a box, for if not, then take a box \(B\) that contains \(E\). Then
+        \[
+            \int _E (f \circ \Phi) \cdot |\det J \Phi | = \int _B \chi_E \cdot (f \circ \Phi) \cdot |\det J \Phi | = \int_{\Phi (B)} \chi _{\Phi(E)} \cdot f = \int _{\Phi (E)} f.
+        \]
+        Secondly, we can assume without loss of generality that \(f = 1\). For an integrable function \(g\), if we take an arbitrary partition \(P\) of \(\Phi (E)\), then the upper sum
+        \[
+            U(g,P) = \sum_{i=1}^{k} \sup \{ g(x) : x \in P_i \} \cdot \vol (P_i) = \sum_{i=1}^{k} \sup \{ g(x) : x \in P_i \} \int _{P_i} 1 = \sum_{i=1}^{k} \sup \{ g(x) : x \in P_i \} \int _{\Phi^{-1}(P_i)} |\det J \Phi |
+        \]
+        \[
+            = \sum_{i=1}^{k} \sup \{ g \circ \Phi (y) : y \in \Phi ^{-1} (P_i) \} \int _{\Phi^{-1}(P_i)} |\det J \Phi | \geq \sum_{i=1}^{k} \int _{\Phi^{-1} (P_i)} (g \circ \Phi) \cdot |\det J \Phi | = \int _E (g \circ \Phi) \cdot |\det J \Phi |
+        \]
+        A similar argument will show that the same applies for the lower sum so
+        \[
+            L(g,P) \leq \int _E (g \circ \Phi) \cdot | \det J \Phi | \leq U(g,P) \implies L(g) \leq \int _E (g \circ \Phi) \cdot | \det J \Phi | \leq U(g)
+        \]
+        which means that \(\int _{\Phi (E)} g = \int _E (g \circ \Phi) \cdot | \det J \Phi |\).
+
+        With the reductions out of the way, we are going to show that diffeomorphisms can be locally represented as a composition of one linear mapping and multiple simple mappings, that is, for any \(p \in U\), we get a neighborhood \(U_0\) such that
+        \[
+            \Phi (q) = L \circ S_1 \circ \cdots \circ S_m (q)
+        \]
+        where \(q \in U_0\), \(L\) is linear, and \(S_i\) are simple mappings that are non-singular.
+
+        Suppose without loss of generality that \(\Phi (0) = 0\). If not, we can simply apply the theorem to \(\Phi (x + p) - \Phi (p)\) so that this is the case. We proceed with induction on the number of simple entries of \(\Phi\). If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then at any \(p \in U\),
+        \[
+            J \Phi (p) = \left( \begin{array}{@{}c|c@{}}
+                I_{k-1} & O \\
+                \hline
+                A & B
+            \end{array} \right) 
+        \]
+        where \(A,B\) are matrices.
+        
+        
+        
+        
+        we first show that the statement is true for linear diffeomorphisms, that is, for \(\Phi \in L(\mathbb{R}^n, \mathbb{R}^n)\). But recall that for linear maps,
+        \[
+            \int _{\Phi (E)} 1 = \mu (\Phi (E)) = |\det \Phi | \mu (E) = \int _E |\det \Phi |
+        \]
+        Next, we prove that the theorem is valid for simple diffeomorphisms \(\Phi\). Without loss of generality, let the only non-simple component of \(\Phi\) be \(\varphi _n\), and let \(E = \prod_{i=1}^n [a_i, b_i] \subseteq U\) be a closed box. Since \(\Phi\) is a diffeomorphism, this implies that \(\Phi (E)\) is measurable, and as well, because \(\Phi\) is simple,
+        \[
+            \Phi (E) = \left\{ (x_1, ..., x_{n-1}, \varphi (x)) \in V : x = (x_1, ..., x_n) \in \prod_{i=1}^{n} [a_i, b_i] \right\} 
+        \]
+        Let \(E' = \prod_{i=1}^{n-1} [a_i, b_i]\), and define \(\Psi : E' \to \mathbb{R}\) by
+        \[
+            \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n.
+        \]
+        \(\Phi\) is a diffeomorphism, so the \(x'\)-slice \(\varphi(x', \cdot)\) is \(C^1\) and injective. It follows that the image \(\varphi(x', [a_n, b_n])\) is an interval. Now, we want to apply single-variable change of variables with \(\varphi (x', u) = x_n\). Notice that
+        \[
+            dx_n = \frac{\partial \varphi }{\partial u}(x', u) du
+        \]
+        and
+        \[
+            \det J \Phi = \begin{array}{|cccc|}
+                1 & 0 & \cdots &  0 \\
+                0 & 1 & \cdots &  0 \\
+                \vdots & \vdots & \ddots &  \vdots \\
+                \dfrac{\partial \varphi }{\partial x_1}(x', u) & \dfrac{\partial \varphi }{\partial x_2}(x', u) & \cdots & \dfrac{\partial \varphi }{\partial u}(x', u) \\
+            \end{array} = \frac{\partial \varphi }{\partial u}(x', u)
+        \]
+        so it follows that
+        \[
+            \Psi (x') = \int_{\varphi (x', [a_n, b_n])} 1\ dx_n = \int _{a_n}^{b_n} |\det J \Phi |
+        \]
+        Finally, using Fubini's Theorem, we get that
+        \[
+            \mu (\Phi (E)) = \int _{\Phi (E)} 1 = \int _{E'} \Psi = \int _{E'} \int_{a_n}^{b_n} |\det J \Phi | = \int _E |\det J \Phi |
+        \]
+        as needed.
+
+        Next, we 
+    \end{proof}
 \end{document}
