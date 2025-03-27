@@ -4549,6 +4549,8 @@
         \[
             \|\alpha _y'(q)\| _{\op} \leq \frac{1}{2}
         \]
+        Here, we also require \(U_0\) to be chosen such that \(f'(q)\) is invertible, which will be useful later.
+
         From this, we can say that
         \[
             \|\alpha _y(a) - \alpha _y(b)\| \leq \frac{1}{2}\|a - b\|, \text{ where } a,b \in U_0
@@ -4557,19 +4559,54 @@
         \[
             \|\alpha _y(a) - \alpha _y(b)\| \leq \frac{1}{2}\|a - b\| \implies \|a - b\| \leq \frac{1}{2}\|a - b\|
         \]
-        which is only possible if \(a = b\). Thus \(f(p)\) is locally injective, and we will call this restriction \(\Phi: U_0 \to \mathbb{R}\).
+        which is only possible if \(a = b\). Thus \(f(p)\) is locally injective, and we will call this restriction \(\Phi: U_0 \to \mathbb{R}\). That concludes the proof of the first statement.
 
-        Next, to show that \(V_0 = \Phi (U_0)\) is open, first select any \(v \in V_0\) and write \(v = \Phi (q)\), for some \(q \in U_0\). Since \(U_0\) is open, we have \(C = \cl{B}(q, r) \subseteq U_0\) for some \(r > 0\). Consider \(\alpha _y\) when \(y = v\). We claim that \(\alpha _y (C) \subseteq C\). Let \(u \in C\). Then
+        Next, to show that \(V_0 = \Phi (U_0)\) is open, first select any \(v \in V_0\) and write \(v = \Phi (q)\), for some \(q \in U_0\). Since \(U_0\) is open, we have \(C = \cl{B}(q, r) \subseteq U_0\) for some \(r > 0\). Let \(s = \frac{1}{2}\|L^{-1} \| _{\op} ^{-1}\). We claim that \(B(v, s) \subseteq V_0\). Let \(w \in B(v,s)\). Consider \(\alpha _y\) when \(y = w\). We claim that \(\alpha _y (C) \subseteq C\). Let \(\alpha _y (u) \in \alpha _y(C)\). Then
+        \begin{align*}
+            \|q - \alpha _y(u)\| &\leq \|q - \alpha _y(q)\| + \|\alpha _y(q) - \alpha _y (u)\| \\
+            &\leq \|L^{-1} (w - \Phi (q))\| + \frac{1}{2}\|q - u\| \\
+            &\leq \|L^{-1} \| _{\op} \|w - v\| + \frac{1}{2}\|q - u\| \\
+            &< \frac{1}{2}r + \frac{1}{2}r \\
+            &= r
+        \end{align*}
+        so \(\alpha _y(u) \in C\). Since \(\alpha _y\) is a contraction map, it must be that it has a unique fixed point \(z \in C\). But \(z\) is a fixed point only if \(\Phi (z) = w\), so \(w \in V_0\) which satisfies the second condition.
+
+        Let \(x \in V_0\). Since \(V_0\) is open, for small enough \(k \in \mathbb{R}^n\), \(x + k \in V_0\), so \(x + k = \Phi (u)\) for some \(u \in U_0\). We write \(u = \Phi^{-1} (x) + h\), where \(h = u - \Phi^{-1} (x)\). Moreover, by setting \(y = x\) and once again considering \(\alpha _y\), we have
         \[
-            \|\alpha _y(q) - \alpha _y(u)\| \leq \frac{1}{2}\|q - u\| \leq r
+            0 = k + x - \Phi (\Phi^{-1} (x) + h) \implies h = L^{-1} (k) + \alpha _y(\Phi^{-1} (x) + h) - \Phi^{-1} (x)
         \]
-        but since \(v = \Phi (q)\) we actually have \(\alpha _y(q) = q\) so \(\alpha _y(u) \in C\). Since we have \(a_y(C) \subseteq C\), then \(\Phi (a_y(C)) \subseteq \Phi (C)\).
+        Note that \(\Phi^{-1} (x)\) is a fixed point of \(\alpha _y\), so
+        \[
+            h = L^{-1} (k) + \alpha _y(\Phi^{-1} (x) + h) - \alpha _y(\Phi^{-1} (x))
+        \]
+        \[
+            \implies \|h\| \leq \|L^{-1}\| _{\op} \|k\| + \frac{1}{2}\|h\| \implies \|h\| \leq \frac{\|k\|}{s}
+        \]
+
+        Now, we show that \((\Phi ^{-1})'(x) = (\Phi ' \circ \Phi ^{-1})^{-1}(x)\). Let \(\varepsilon > 0\). Let \(k \in \mathbb{R}^n\) small enough so that \(x + k \in V_0\) and \(x + k = \Phi (\Phi^{-1} (x) + h)\), where \(\|h\| \leq \frac{\|k\|}{s}\). Then
+        \begin{align*}
+            \|\Phi^{-1} (x + k) - \Phi^{-1} (x) - (\Phi ' \circ \Phi^{-1})^{-1} (x)(k)\| &= \|\Phi^{-1} (\Phi (\Phi^{-1} (x) + h)) - \Phi^{-1} (x) - (\Phi ' \circ \Phi^{-1})^{-1} (x)(k)\| \\
+            &= \|h - (\Phi ' \circ \Phi^{-1})^{-1} (x)(\Phi (\Phi^{-1} (x) + h) - x)\| \\
+            &\leq \|(\Phi ' \circ \Phi^{-1})^{-1} (x)\| _{\op}\|\Phi (\Phi^{-1} (x) + h) - \Phi (\Phi^{-1} (x)) - (\Phi ' \circ \Phi^{-1})^{-1} (x)(h)\| \\
+        \end{align*}
+        Since \(\Phi\) is differentiable, for \(\|h\| < \delta\), for some \(\delta\),
+        \[
+            \|\Phi (\Phi^{-1} (x) + h) - \Phi (\Phi^{-1} (x)) - (\Phi ' \circ \Phi^{-1})^{-1} (x)(h)\| < \frac{\|h\|s\varepsilon}{\|(\Phi ' \circ \Phi^{-1})^{-1} (x)\| _{\op}}
+        \]
+        Thus if we take \(\|k\| < s \delta\), \(\|h\| < \delta\), so
+        \begin{align*}
+            \|\Phi^{-1} (x + k) - \Phi^{-1} (x) - (\Phi ' \circ \Phi^{-1})^{-1} (x)(k)\| &< \|(\Phi ' \circ \Phi^{-1})^{-1} (x)\| _{\op} \cdot \frac{\|h\|s \varepsilon}{\|(\Phi ' \circ \Phi^{-1})^{-1} (x)\| _{\op}} \\
+            &= \|h\|s \varepsilon \\
+            \leq \|k\| \varepsilon
+        \end{align*}
+        So \(\Phi^{-1}\) is indeed differentiable and 
+
     \end{proof}
     \subsection{Change of Variables}
     \begin{thm}
         Let \(E\) be a measurable set in \(\mathbb{R}^n\) and let \(\Phi : \mathbb{R}^n \to \mathbb{R}^n\) be a diffeomorphism. Let \(f\) be integrable on \(\Phi (E)\). Then
         \[
-            \int _{\Phi (E)} f = \int _E f \circ \Phi \cdot |\det J \Phi |
+            \int _{\Phi (E)} f = \int _E f \circ \Phi \cdot |\det J \Phi |0
         \]
     \end{thm}
     \subsection{Green's Theorem}

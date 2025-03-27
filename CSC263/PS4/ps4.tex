@@ -60,6 +60,9 @@
  \[
   ((i,j), (i - n, j - m)),((i,j), (i - n, j + m)),((i,j), (i + n, j - m)),((i,j), (i + n, j + m))
  \]
+ \[
+  ((i,j), (i - m, j - n)),((i,j), (i - m, j + n)),((i,j), (i + m, j - n)),((i,j), (i + m, j + n))
+ \]
  are edges, if the squares are in \([k]\times [k]\). Notice that in this graph, there are \(k^2\) vertices and at most \(4k^2\) edges. We perform a DFS on this graph originating from the original square chosen, which we call \((i,j)\). This has a run time of \(\mathcal{O} (k^2)\). Afterwards, we iterate through each vertex with a nested for loop. If we find a vertex \((i', j')\) that has not been visited, that implies that it cannot be reached from \((i,j)\), so we return that square. If we completely iterate through the grid without finding an unvisited square, then that means all squares are reachable, so no square is unreachable.
 
 \program
