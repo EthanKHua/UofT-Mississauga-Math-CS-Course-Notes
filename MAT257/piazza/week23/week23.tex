@@ -48,7 +48,14 @@
     \begin{proof}
         Let \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be conservative. For each connected component \(U_i\) of \(U\), we pick an arbitrary \(q_i \in U_i\). Define a function \(f: U \to \mathbb{R}\) as follows. For each \(p \in U\), it is contained in some \(U_i\). Let \(\gamma : [0,1] \to U_i\) parametrize a path from \(p\) to \(p_i\), that is, \(\gamma\) is smooth, regular, and satisfies \(\gamma (0) = p\), \(\gamma (1) = p_i\). For this \(\gamma\), we define
         \[
-            f(p) = \oint _{\gamma [0,1]} F \cdot \vec{dx} = \int _0^1 F (\gamma (t))\cdot \gamma '(t)\ dt
+            f(p) = \oint _{\gamma [0,1]} F \cdot \vec{dx} = \int _0^1 F (\gamma (t))\cdot \gamma '(t)\ dt.
+        \]
+        We assert that this function is well defined, that is to say that \(f(p)\) is independent of the choice of the path parametrized by \(\gamma\). Let \(\hat{\gamma}: [0,1] \to U\) be a parametrization of another path between \(p\) and \(p_0\). We craft a piecewise function
+        \[
+            \varphi (t) = \begin{dcases}
+                \gamma(t), &\text{ if } t \in [0,1] ;\\
+                \hat{\gamma}(2 - t), &\text{ if } t \in (1, 2] .\\
+            \end{dcases}
         \]
     \end{proof}
 \end{document}
