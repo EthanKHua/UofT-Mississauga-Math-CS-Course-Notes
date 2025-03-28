@@ -4677,15 +4677,40 @@
         \]
         where \(q \in U_0\), \(L\) is linear, and \(S_i\) are simple mappings that are non-singular.
 
-        Suppose without loss of generality that \(\Phi (0) = 0\). If not, we can simply apply the theorem to \(\Phi (x + p) - \Phi (p)\) so that this is the case. We proceed with induction on the number of simple entries of \(\Phi\). If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then at any \(p \in U\),
+        Suppose without loss of generality that \(\Phi (0) = 0\). If not, we can simply apply the theorem to \(\Phi (x + p) - \Phi (p)\) so that this is the case. We proceed with induction on the number of simple entries of \(\Phi\). If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then 
         \[
-            J \Phi (p) = \left( \begin{array}{@{}c|c@{}}
+            \Phi (x_1, ..., x_n) = (x_1, ..., x_{k-1}, \varphi _k (x), ..., \varphi _n (x)).
+        \]
+        We have that
+        \[
+            J \Phi (0) = \left( \begin{array}{@{}c|c@{}}
                 I_{k-1} & O \\
                 \hline
                 A & B
             \end{array} \right) 
         \]
-        where \(A,B\) are matrices.
+        where \(A,B\) are matrices. Since \(J \Phi (0)\) is invertible, for some \(i, k \leq i \leq n\), \(\dfrac{\partial \varphi _i}{\partial x_k} (0) \neq 0\). Define
+        \[
+            \Psi (x_1, ..., x_n) = (x_1, ..., x_{k-1} , \varphi _i, x_{k+1} , ..., x_n).
+        \]
+        Notice that
+        \[
+            J \Psi (0) = \begin{pmatrix}
+                1 & 0 & \cdots & \cdots & \cdots &  0 \\
+                0 & 1 & \cdots & \cdots & \cdots &  \vdots \\
+                \vdots & \vdots & \ddots & \cdots & \cdots &  \vdots \\
+                \cdots & \cdots & \cdots & \nabla \varphi_i(0) & \cdots &  \cdots \\
+                \vdots & \vdots & \vdots & \vdots & \ddots &  \vdots \\
+                0 & \cdots & \cdots & \cdots & \cdots &  1 \\
+            \end{pmatrix}
+        \]
+        so \(J \Psi(0)\) is invertible. By the Inverse Function Theorem, there is an open neighborhood \(U_0\) containing 0 such that \(\Psi | _{U_0}\) is invertible. Then consider the function
+        \[
+            L_{ik} \circ \Phi \circ \Psi^{-1} = 
+        \]
+        
+        
+        
         
         
         
