@@ -4671,13 +4671,13 @@
         \]
         which means that \(\int _{\Phi (E)} g = \int _E (g \circ \Phi) \cdot | \det J \Phi |\).
 
-        With the reductions out of the way, we are going to show that diffeomorphisms can be locally represented as a composition of one linear mapping and multiple simple mappings, that is, for any \(p \in U\), we get a neighborhood \(U_0\) such that
+        With the reductions out of the way, we are going to show that diffeomorphisms can be locally represented as a composition of one linear mapping and multiple simple mappings. However, we first show that this is the case for when \(\Phi (0) = 0\). To state the proposition more clearly, for any \(p \in U\), we get a neighborhood \(U_0\) such that
         \[
-            \Phi (q) = L \circ S_1 \circ \cdots \circ S_m (q)
+            \Phi (q) = L \circ S_1 \circ \cdots \circ S_n (q)
         \]
-        where \(q \in U_0\), \(L\) is linear, and \(S_i\) are simple mappings that are non-singular.
+        where \(q \in U_0\), \(L\) is linear, and \(S_i\) are simple mappings that are non-singular, and \(S_i (0) = 0\).
 
-        Suppose without loss of generality that \(\Phi (0) = 0\). If not, we can simply apply the theorem to \(\Phi (x + p) - \Phi (p)\) so that this is the case. We proceed with induction on the number of simple entries of \(\Phi\). If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then 
+        We proceed with induction on the number of consecutive simple entries of \(\Phi\), staring from the first component. If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then 
         \[
             \Phi (x_1, ..., x_n) = (x_1, ..., x_{k-1}, \varphi _k (x), ..., \varphi _n (x)).
         \]
@@ -4719,18 +4719,36 @@
         \[
             \alpha (0) = L_{ik} \circ \Phi \circ \Psi^{-1} (0) = 0
         \]
-        Moreover, for any \(y \in \Psi (U_0)\), we write \(y = \Psi (x)\) and get that
+        Moreover, by rearranging we have
         \[
-            \alpha ( \Psi (x)) = 
+            \Phi (x) = L_{ik} \circ \alpha \circ \Psi (x)
         \]
-        
-        
-        
-        
-        
-        
-        
-        we first show that the statement is true for linear diffeomorphisms, that is, for \(\Phi \in L(\mathbb{R}^n, \mathbb{R}^n)\). But recall that for linear maps,
+        for \(x \in U_0\). Notice that \(\alpha\) is a function with its first \(k\) entries simple. By the induction hypothesis, we can shrink \(U_0\) to locally decompose \(\alpha\) into several non-singular simple maps \(\beta_i\) with \(\beta _i(0) = 0\) and one linear map so that
+        \[
+            \alpha (x) = T \circ \beta _1 \circ \cdots \circ \beta _{n-k} \text{ for all } x \in U_0
+        \]
+        Thus
+        \[
+            \Phi (x) = L_{ik} \circ T \circ \beta _1 \circ \cdots \circ \beta _{n-k} \circ \Psi (x)
+        \]
+        \(L_{ik} \circ T\) is linear and each map \(\beta _i, \Psi\) is simple, non-singular, and vanishes at 0. Thus we have shown the statement holds for functions with the first \(k-1\) components simple.
+
+        Through induction, we have proven that the statement holds for any diffeomorphism \(\Phi\).
+
+        Now, to show that we can decompose any \(\Phi\) without the restriction that \(\Phi (0) = 0\), we apply the statement to \(\Phi (x + p) - \Phi (p)\) to get that
+        \[
+            \Phi (x + p) - \Phi (p) = L \circ S_1 \circ \cdots \circ S_n (x).
+        \]
+        We perform the substitution \(u = x + p\) to get
+        \[
+            \Phi (u) - \Phi (p) = L \circ S_1 \circ \cdots \circ S_n (u - p).
+        \]
+
+        Next, we show that if the main theorem holds for two diffeomorphisms \(\Phi : U \to V,\Psi : V \to W\), it holds for \(\Psi \circ \Phi\). This can be shown quickly through a series of algebraic manipulations:
+        \[
+            \int _{\Psi \circ \Phi (E)} 1 = \int _{\Phi (E)} |\det J \Psi | = \int _E |\det J \Phi \cdot \det J \Psi | = \int _E = |\det (J \Psi J \Phi)| = \int _E |\det J (\Psi \circ \Phi)|
+        \]
+        Now, we show that the statement is true for linear diffeomorphisms, that is, for \(\Phi \in L(\mathbb{R}^n, \mathbb{R}^n)\). But recall that for linear maps,
         \[
             \int _{\Phi (E)} 1 = \mu (\Phi (E)) = |\det \Phi | \mu (E) = \int _E |\det \Phi |
         \]
@@ -4765,6 +4783,6 @@
         \]
         as needed.
 
-        Next, we 
+        We combine the results above to prove it for an arbitrary diffeomorphism \(\Phi\). For each \(p_i \in E\), 
     \end{proof}
 \end{document}
