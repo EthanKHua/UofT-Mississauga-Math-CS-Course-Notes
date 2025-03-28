@@ -39,8 +39,20 @@
 
         \tcblower
 
-        First, we will quickly prove a form of transitivity for manifold charts.
+        First, we will prove a form of transitivity for manifold charts.
 
-        \textbf{Lemma.} From a manifold \(M\), take two charts \((U, \varphi)\), \((V, \psi)\) that are consistently oriented with each other. Then \((U ,\varphi)\) is positively oriented with \(\mathcal{A}^+\) if and only if \((V, \psi)\) is positively oriented with \(\mathcal{L} ^+\).
+        \textbf{Lemma.} From a manifold \(M\), take two charts \((U, \varphi)\), \((V, \psi)\) that are consistently oriented with each other. Then \((U ,\varphi)\) is positively oriented with \(\mathcal{A}^+\) if and only if \((V, \psi)\) is positively oriented with \(\mathcal{A}\).
+
+        Suppose that \((U, \varphi)\) is positively oriented with \(\mathcal{A}\). Consider the chart \((U \cap V, \varphi | _{U \cap V})\) that is consistently oriented with some chart \((W, \gamma)\) in \(\mathcal{A}\). We will show that \((V, \psi)\) is consistently oriented with \((W, \gamma)\). Notice that
+        \[
+            \psi \circ \gamma^{-1} = (\psi \circ \varphi^{-1}) \circ (\varphi \circ \gamma^{-1})
+        \]
+        so
+        \[
+            J (\psi \circ \gamma^{-1}) = J (\psi \circ \varphi^{-1}) \cdot J (\varphi \circ \gamma^{-1}) > 0
+        \]
+        as needed.
+
+        
     \end{question}
 \end{document}
