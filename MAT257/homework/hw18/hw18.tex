@@ -41,11 +41,11 @@
 
         \textbf{Lemma 3:} If \(K\) is a Jordan measurable set with a compact exhaustion \(K_n\), then \(\mu (K) = \lim_{n \to \infty} \mu (K_n)\).
 
-        Let \(\varepsilon > 0\). Since \(K\) is Jordan measurable, we can find a closed polybox \(I \subseteq K\) such that
+        Let \(\varepsilon > 0\). Since \(K\) is Jordan measurable, we can find a closed polybox \(I \subseteq K^\circ\) such that
         \[
             \mu (I) > \mu (K) - \varepsilon
         \]
-        Notice that \(I\) is covered by \(\{ K_n \} _{n \in \mathbb{N}}\) and is compact, so there exists \(N \in \mathbb{N}\) such that \(I \subseteq K_n\) for all \(n > N\). Thus
+        Notice that for any \(x \in I\), \(x\) is contained in some \(K_n\). It follows that \(x \in K_{n+1} ^\circ\), so \(I\) is covered by \(\{ K_n ^\circ\} _{n \in \mathbb{N}}\). Since \(I\) is compact, there exists \(N \in \mathbb{N}\) such that \(I \subseteq K_n\) for all \(n > N\). Thus
         \[
             \mu (K_n) > \mu (I) > \mu (K) - \varepsilon \implies |\mu (K) - \mu (K_n)| < \varepsilon
         \]

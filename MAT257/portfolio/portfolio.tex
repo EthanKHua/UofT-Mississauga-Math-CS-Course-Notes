@@ -103,11 +103,41 @@
             \hline
             \#26 & Complete \\
             \hline
-            \#27 & NA \\
+            \#27 & Complete (Specially Selected) \\
             \hline
-            \#28 & NA \\
+            \#28 & Complete \\
             \hline
-            \#29 & NA \\
+            \#29 & Complete \\
+            \hline
+            \#30 & Complete \\
+            \hline
+            \#31 & Complete \\
+            \hline
+            \#32 & Complete \\
+            \hline
+            \#33 & Complete \\
+            \hline
+            \#34 & Complete \\
+            \hline
+            \#35 & Complete \\
+            \hline
+            \#36 & Complete \\
+            \hline
+            \#37 & Complete \\
+            \hline
+            \#38 & Complete \\
+            \hline
+            \#39 & Complete \\
+            \hline
+            \#40 & Complete \\
+            \hline
+            \#41 & Complete \\
+            \hline
+            \#42 & Complete \\
+            \hline
+            \#43 & NA \\
+            \hline
+            \#44 & NA \\
             \hline
         \end{tabular}
     \end{center}
@@ -1845,7 +1875,7 @@
             \[
                 D_v f(p) = \lim_{h \to 0} \frac{f(p + hv) - f(p)}{h} = \lim_{h \to 0} \frac{g(h) - g(0)}{h} = g'(0) = f'(\alpha (0))(v) = f'(p)(v),
             \]
-            Now, we can compute the derivative of \(D_{v} f\) directly and obtain that \((D_v f)'(p) = (f')'(p)(v)\). But we know by that \(f\) is twice continuously differentiable, so \((D_v f)'\) is continuous.
+            Now, we can compute the derivative of \(D_{v} f\) directly and obtain that \((D_v f)'(p) = (f')'(p)(\cdot)(v)\). But we know by that \(f\) is twice continuously differentiable, so \((D_v f)'\) is continuous.
 
             Thus \(D_v f\) is continuously differentiable.
             \medskip
@@ -2528,6 +2558,68 @@
         \end{proof}
         \newpage
         \subsection{\#34}
+        Let $\Phi:\R^n\rightarrow\R^m$ be a $C^1$ mapping.
+        \begin{enumerate}[label=(\alph*)]
+            \item Suppose that $n>m = 1$. Show that $\Phi$ cannot be injective.
+            
+            \item Suppose that $n<m$. Show that if $K\subseteq\R^n$ is a compact set, then $\Phi(K)$ is a Jordan measurable set, and has Jordan measure zero.
+        \end{enumerate}
+        \color{red}
+        Previous submission was just a complete skill issue in part (b). This new submission hopefully provides a correct proof for part (b).
+
+        Changes: all of part (b) lol.
+        \color{black}
+        \begin{proof}
+            \ 
+            
+            (a):
+
+            Suppose for contradiction that \(n > m = 1\) and \(\Phi\) is a \(C^1\) injective function. Since \(\Phi\) cannot be a constant function, by the results of Big List \#26, there is a \(p \in \mathbb{R}^n\) so that \(\nabla \Phi(p) \neq 0\). In particular, we will say that \(\dfrac{\partial \Phi}{\partial x_j} \neq 0\). Define \(\alpha : \mathbb{R}^n \to \mathbb{R}\) by \(\alpha (x) = \Phi (x) - \Phi (p)\). Injectivity is translation-invariant, so \(\alpha\) is injective. Notice that \(\alpha (p) = 0\). We can apply the implicit function theorem to obtain an open set \(W \subseteq \mathbb{R}^{n-1}\) that contains \(p' = (p_1, ..., p_{j-1}, p_{j+1}, ..., p_n)\) and a \(C^1\) function \(\Psi : W \to \mathbb{R}\) such that for all \(x = (x_1, ..., x_{n-1}) \in W\),
+            \[
+                \alpha (x_1, ..., x_{j-1}, \Psi (x), x_{j}, ..., x_{n-1}) = 0
+            \]
+            Then, since \(W\) is open and contains \(p'\), we can find another distinct point \(q \in W\). We have
+            \[
+                \alpha (p_1, ..., p_{j-1}, \Psi (p'), p_{j+1}, ..., p_n) = 0 = \alpha (q_1, ..., q_{j-1}, \Psi (q), q_{j}, ..., q_{n-1})
+            \]
+            which contradicts the fact that \(\alpha\) is injective.
+
+            \medskip
+
+            (b):
+
+            Since \(K\) is compact, and thus bounded, we can enclose it in a closed box \(B = [-L, L]^n\), for some positive \(L\). It suffices to show that \(\Phi (B)\) has measure 0, as we can apply the monotonicity of measure to conclude that \(\Phi (K)\) has measure 0.
+
+            First, let \(\hat{\Phi}: \mathbb{R}^m \to \mathbb{R}^m\) be defined by \(\hat{\Phi}(x) = \Phi (\pi _{\mathbb{R}^n}(x))\). That is, \(\hat{\Phi}\) first projects vectors in \(\mathbb{R}^m\) onto \(\mathbb{R}^n\) and then composes it with \(\Phi\). Let \(\hat{B} = B \times \{ 0 \}^{m-n}\). Then note that \(\hat{\Phi}(\hat{B}) = \Phi (B)\). Trivially, \(\hat{B}\) has measure 0. We now show that \(\Phi (B)\) also has measure 0.
+
+            Let \(\varepsilon > 0\). Since \(\hat{\Phi}\) is \(C^1\), its derivative is continuous. By the extreme value theorem, each component derivative attains a maximum on \(\hat{B}\). Let \(\alpha\) a positive number greater than all the maximums. Since \(\hat{B}\) has measure 0, we can find a finite number of cubes \(B_1, ..., B_k\) with side length \(d\) such that
+            \[
+                \hat{B} \subseteq \bigcup_{i=1}^{k} B_i \text{ and } \sum_{i=1}^{k} \vol(B_i) < \frac{\varepsilon}{m^m \alpha^m}
+            \]
+            Consider some cube \(B_i = \prod_{j=1}^{m} [a_{ij}, a_{ij} + d]\). For each component \(\hat{\Phi}_j: \mathbb{R}^m \to \mathbb{R}\), it must be true that \(\hat{\Phi}_j\) attains a maximum \(\hat{\Phi}_j(M_{ij})\) and minimum \(\hat{\Phi}_{ij}(m_{ij})\), for some \(M_{ij}, m_{ij} \in B_i\). Define \(g: [0,1] \to \mathbb{R}\) by
+            \[
+                g(t) = \hat{\Phi}_j(t M_{ij} + (1 - t)m_{ij})
+            \]
+            By the Mean Value Theorem, there exists some \(c \in (0,1)\) such that
+            \[
+                g(1) - g(0) = g'(c) \implies \hat{\Phi}_j (M) - \hat{\Phi}_j (m) = \hat{\Phi}_j '(c M_{ij} + (1 - c)m_{ij})(M_{ij} - m_{ij})
+            \]
+            Taking the 2-norm of both sides, it follows that
+            \[
+                \hat{\Phi}_j (M_{ij}) - \hat{\Phi}_j (m_{ij}) \leq \|\hat{\Phi}_j '(c M_{ij} + (1 - c)m_{ij})\| \|M_{ij} - m_{ij}\| \leq (\sqrt{m} \alpha)(\sqrt{m}d) = m \alpha d
+            \]
+            Note that we used the fact that each component of \(\hat{\Phi}_j '(c M_{ij} + (1 - c)m_{ij})\) is bounded by \(\alpha\) and \(\|M_{ij} - m_{ij}\|\) can be no bigger than the diagonal of \(B_i\).
+
+            Finally, we see that the box \(C_i = \prod_{j=1}^m [\hat{\Phi}_j(m_{ij}), \hat{\Phi}_j(M_{ij})]\) covers \(\hat{\Phi} (B_i)\), and its volume is given by
+            \[
+                \prod_{j=1}^m (\hat{\Phi}_j (M_{ij}) - \hat{\Phi}_j (m_{ij})) \leq \prod_{j=1}^m m \alpha d = m^m \alpha^m \vol (B_i)
+            \]
+            From here, we know that the union \(\bigcup_{i=1}^{k} C_i \supseteq \hat{\Phi}(\hat{B})\) but
+            \[
+                \sum_{i=1}^{k} C_i < m^m \alpha^m \sum_{i=1}^{k} \vol (B_i) < \varepsilon.
+            \]
+            Therefore \(\Phi(B)\) has measure 0, so \(\Phi (K)\) has measure 0 and we are done.
+        \end{proof}
         \newpage
         \subsection{\#35}
         \textit{Perturbing the roots of a polynomial.}
@@ -3121,7 +3213,7 @@
         \begin{proof}
             (a):
 
-        Notice that in cylindrical coordinates, the torus can be defined by
+        Notice that in cylindrical coordinates, each \(\theta\)-slice contains a circle with radius \(a\) centered at \(b\), so the torus can be defined by
         \[
             T = \{ (r, \theta, z) : (r - b)^2 + z^2 = a^2\}.
         \]
@@ -3196,19 +3288,145 @@
         \end{proof}
         \newpage
         \subsection{\#42}
+        Let $M\subseteq \R^N$ be a smooth $n$-manifold (with or without boundary!).
+        \begin{enumerate}[label=(\alph*)]
+            \item Show that if $n<N$, then $M$ is a \textit{Lebesgue null set}.
+
+            \item Show that if $n=N$ and $M$ is closed and its boundary is nonempty, then $\partial M$ coincides with the usual topological boundary (as defined on Handout \#2).
+
+            \item Show that if $M$ is compact and its boundary is nonempty, then $M$ is Jordan measurable.
+        \end{enumerate}
+        \begin{proof}
+            (a):
+
+            We begin by proving a number of lemmas:
+
+            \textbf{Lemma 1:} An open cover of any subset \(M \subseteq \mathbb{R}^n\) has a countable subcover.
+
+            We know that \(\mathbb{R}^n\) is separable, so \(M\) is also separable. Let \(C\) be a countable dense subset of \(M\). Let \(\mathcal{U}\) be an open cover for \(M\). We construct the countable subcover \(\hat{U}\) as follows. For each \(q \in C\) and \(k \in \mathbb{Q}\), consider the open ball \(B(q, k)\). If there exists a \(U_{qk} \in \mathcal{U}\) such that \(B(q , k) \in U_{qk}\), include it in \(\hat{U}\). Notice that \(\hat{U}\) is at most countable. We claim that it is also an open cover.
+
+            Let \(x \in M\). Then it is contained in some open set \(U \in \mathcal{U}\). As well, we can find an open ball such that \(B(x, \delta) \in U\). Since \(C\) is dense, we can find \(q \in C\) such that \(q \in B(x, \frac{\delta}{4})\). Let \(k \in \mathbb{Q}\) such that \(\frac{\delta}{4} < k < \frac{\delta}{2}\). Then \(x \in B(q, k) \subseteq B(x, \delta)\), because for all \(y \in B(q,k)\),
+            \[
+                \|x - y\| \leq \|x - q\| + \|q - y\| < \frac{\delta}{4} + \frac{\delta}{2} < \delta
+            \]
+            It follows that \(B(q,k) \in U\), so it is guaranteed that some \(U_{qk}\) from our construction exists. Thus \(x \in U_{qk} \in U\) so \(U\) is indeed an open cover and we are done.
+
+            \medskip
+
+            \textbf{Lemma 2:} A countable union of sets with Jordan measure 0 is a Lebesgue null set.
+
+            Let \(E = \bigcup_{i \geq 1} E_i\), where \(\mu (E_i) = 0\). Let \(\varepsilon > 0\). For each \(E_i\), we can find a finite union of boxes \(B_i\) such that \(B_i \supseteq E_i\) and \(\vol (B_i) < \frac{\varepsilon}{2^i}\). We see that \(\bigcup_{i\geq1}B_i\) is a countable union of boxes, \(E \subseteq \bigcup_{i\geq1}B_i\), and
+            \[
+                \sum_{i = 1}^{\infty} \vol (B_i) < \sum_{i=1}^{\infty} \frac{\varepsilon}{2^i} = \frac{\varepsilon}{2(1 - \frac{1}{2})} = \varepsilon
+            \]
+            as desired.
+
+            \medskip
+
+            \textbf{Lemma 3:} If \(K\) is a Jordan measurable set with a compact exhaustion \(K_n\), then \(\mu (K) = \lim_{n \to \infty} \mu (K_n)\).
+
+            Let \(\varepsilon > 0\). Since \(K\) is Jordan measurable, we can find a closed polybox \(I \subseteq K^\circ\) such that
+            \[
+                \mu (I) > \mu (K) - \varepsilon
+            \]
+            Notice that for any \(x \in I\), \(x\) is contained in some \(K_n\). It follows that \(x \in K_{n+1} ^\circ\), so \(I\) is covered by \(\{ K_n ^\circ\} _{n \in \mathbb{N}}\). Since \(I\) is compact, there exists \(N \in \mathbb{N}\) such that \(I \subseteq K_n\) for all \(n > N\). Thus
+            \[
+                \mu (K_n) > \mu (I) > \mu (K) - \varepsilon \implies |\mu (K) - \mu (K_n)| < \varepsilon
+            \]
+            as needed.
+
+            \medskip
+
+            Now, we prove the problem at hand. Let \(M \subseteq \mathbb{R}^N\) be a smooth \(n\)-manifold with \(n < N\). Let \(\{ (U_i, \varphi)\}_{i \in I}\) be an atlas for \(M\). By Lemma 1, we can assume without loss of generality that the atlas is countable. We can also assume that each \(U_i\) is bounded, for if not, we can take a countable union of open balls that cover the unbounded \(U_i\), and restrict the embedding to each ball.
+
+            For each chart \((U_i, \varphi_i)\), assume that the domain \(\hat{U}\) is \(\mathbb{R}^n\) or \(\overline{\mathbb{H}^n}\), depending on if the chart includes the manifold boundary. Regardless, we can take the compact exhaustion \(K_n = B(0, n)\) and see that \(\varphi _i (K_n)\) is a compact exhaustion for \(U_i\). Additionally, since \(\varphi _i\) maps from lower dimension to higher dimension, we know from a previous Big List question that \(\mu (\varphi _i (K_n))=0\), so by Lemma 3, \(\mu (U_i) = 0\). This is true for each chart \(U_i\), so we apply Lemma 2 to conclude that \(\cup _{i \geq 1} U_i = M\) is a Lebesgue null set.
+
+            \medskip
+
+            (b):
+
+            Let \(p\) be a point in the topological boundary of \(M\). We will show that \(p \in \partial M\). Suppose for contradiction that \(p\) is in \(M^\circ\), meaning it is contained in a chart \((U, \varphi)\) that is diffeomorphic to an open set \(\hat{U}\) in \(\mathbb{R}^N\). Note that \(\varphi\) is a diffeomorphism with domain \(\hat{U}\) and codomain \(U\). Then it must be true that \(\varphi (\hat{U}) = U\) is an open subset of \(\mathbb{R}^N\). But this is a contradiction, as that would imply that the boundary point \(p\) is in the interior of \(M\). Therefore \(p \in \partial M\).
+
+            Next, let \(p \in \partial M\) and again suppose for contradiction that \(p\) is not in the topological boundary of \(M\). Then it must be true that \(p\) is in the topological interior of \(M\). Recall that \(p \in \partial M\) implies that it is contained in a chart \((U, \varphi)\) that is diffeomorphic to \(\overline{\mathbb{H}^n}\) and \(p \in \mathrm{bd} (\mathbb{H}^n)\). Since \(p\) is in the topological interior of \(M\), we can find an open ball \(B(p, r) \subseteq M\) which is also open in \(\mathbb{R}^N\). Then \(\varphi ^{-1}(B(p,r))\) should also be open in \(\mathbb{R}^N\). But this implies that for small enough \(\delta\), \(\varphi (p) - (0, ..., \delta) \in \overline{\mathbb{H}^N}\), which cannot happen.
+
+            \smallskip
+
+            Therefore we can conclude that \(\partial M\) coincides with the topological boundary of \(M\).
+
+            \medskip
+
+            (c):
+
+            First, we prove that a compact Lebesgue null set \(E\) has Jordan measure 0. It suffices to show that the upper measure \(\mu ^* (E) = 0\).
+
+            Let \(\varepsilon > 0\). By definition, we can find a countable union of boxes \(B = \bigcup_{i=1}^{\infty} B_i\) such that \(E \subseteq B\) and \(\vol(B) < \varepsilon\). But since \(E\) is compact, it can be covered by finitely many boxes \(B_{n_i}\), \(0 < i \leq N\). Thus
+            \[
+                \vol\left( \bigcup_{i=1}^{N} B_{n_i} \right) = \sum_{i=1}^{N} \vol(B_{n_i}) \leq \vol(B) < \varepsilon.
+            \]
+            Since \(\varepsilon\) was chosen arbitrarily, we can conclude that \(\mu ^* (E) = 0\), and \(E\) has Jordan measure 0.
+
+            Now, suppose that \(M\) is compact and its boundary is nonempty. If \(\dim M < N\), \(M\) is a Lebesgue null set and has Jordan measure 0, and therefore measurable. Otherwise, if \(\dim M = N\), since the boundary of \(M\) is non-empty, the topological boundary of \(M\) is actually a smooth manifold of dimension \((N-1)\), and therefore a Lebesgue null set. As well, the topological boundary of \(M\) is compact, so it is Jordan measure 0, which implies that \(M\) is Jordan measurable.
+        \end{proof}
         \newpage
         \subsection{\#43}
+        \textbf{Transverse intersction.} Let $M,N$ be two smooth surfaces in $\R^3$. We say that $M$ and $N$ \textbf{intersect transversally} if $T_pM\neq T_pN$ for all $p\in M\cap N$.
+    
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that if $M,N$ intersect transversally, then $M\cap N$ is a smooth curve in $\R^3$.
+            \item Show by example that the conclusion of (a) fails without the assumption of transverse intersection.
+        \end{enumerate}
+        \begin{proof}
+        (a):
 
+        Suppose that \(M\) and \(N\) intersect transversally. We will show that \(M \cap N\) is a smooth \(1\)-manifold in \(\mathbb{R}^3\). Let \(p \in M \cap N\). Then there is some relatively open neighborhood \(U\) of \(M\) and \(V\) of \(N\) that is the zero set of some smooth functions \(f,g: \mathbb{R}^3 \to \mathbb{R}\), that is, \(U = Z(f)\) and \(V = Z(g)\). Let \(\Phi : \mathbb{R}^3 \to \mathbb{R}^2\) be defined by \(\Phi = (f,g)\). We claim that there exists a chart containing \(p\) by showing that \(U\cap V\) is the zero set of \(\Phi\), and \(J \Phi(q)\) is surjective for all \(q \in U \cap V\). We first start by verifying that \(U \cap V\) is relatively open to \(M \cap N\). This is quick, as we know that \(U\) and \(V\) are relatively open to \(M\) and \(N\) respectively, for each point in \(U \cap V\), we can choose two open balls with radii \(r_1,r_2\) that stays within \(M\) and \(N\) respectively. We then take the lesser of the radii as our radius.
 
+        Moving on, we see that \(\Phi\) is smooth, and \(Z(\Phi) = U \cap V\). It remains to show that \(J \Phi (q)\) has rank 2 for all \(q \in U \cap V\). The Jacobian of \(\Phi\) is a \(2 \times 3\) matrix given by
+        \[
+            J \Phi (q) = \left( \begin{array}{@{}c@{}}
+                \nabla f(q) \\
+                \hline
+                \nabla g(q) \\
+            \end{array} \right).
+        \]
+        It necessarily has rank at most 2 and at least 1 (because \(\nabla f, \nabla g \neq 0\)). Suppose for contradiction that \(\rank J \Phi (q) = 1\). Then \(\nabla f(q) = c \nabla g(q)\) for some non-zero constant \(c\). We know that the tangent space \(T_q M\) is given by the set of tagged vectors orthogonal to \(\nabla f(q)\). Likewise, \(T_q N\) consists of tagged vectors orthogonal to \(\nabla g(q)\). But notice that for \(v \in T_q M\), we have \(\nabla f(q) \cdot v = 0\) but also \(c \nabla f(q) \cdot v = \nabla g(q) \cdot v = 0\). If we additionally apply the same argument to \(u \in T_q N\), we can see that \(T_q M = T_q N\) which is a contradiction. Thus \(J \Phi (q)\) must have rank 2. From here, it follows that \(\Phi ^{-1}(\{ 0 \}) = U \cap V\) is a smooth manifold with dimension 1, so we can conclude that \(M \cap N\) is a smooth curve.
 
+        \medskip
 
+        (b):
 
+        Let \(M\) be the \(xy\)-plane, and let \(N\) be the graph of \(f(x,y) = x^2 + y^2\). Then \(M \cap N\) is simply the origin, which is not a smooth curve.
 
+        \end{proof}
+        \newpage
+        \subsection{\#44}
+        Suppose that $M$ is a smooth manifold, and let $\mathcal{A}$ be an open cover of $M$ by pairwise consistently oriented charts. Let $\mathcal{A}^+$ be the collection of all charts on $M$ which are positively oriented with $\mathcal{A}$; likewise, let $\mathcal{A}^-$ be the collection of all charts on $M$ which are negatively oriented with $\mathcal{A}$.
 
+        Now suppose that $\mathcal{B}$ is some other open cover of $M$ by charts, such that any two (overlapping) charts in $\mathcal{B}$ are consistently oriented. Prove that if $M$ is connected, then either $\mathcal{B}$ is completely contained in $\mathcal{A}^+$, or else it is completely contained in $\mathcal{A}^-$.
 
+        \begin{proof}
 
+            First, we will prove a form of transitivity for manifold charts.
 
+            \textbf{Lemma.} From a manifold \(M\), take two charts \((U, \varphi)\), \((V, \psi)\) that are consistently oriented with each other. Then \((U ,\varphi)\) is positively oriented with \(\mathcal{A}\) if \((V, \psi)\) is positively oriented with \(\mathcal{A}\).
 
+            Suppose that \((U, \varphi)\) is positively oriented with \(\mathcal{A}\). Consider the chart \((U \cap V, \varphi | _{U \cap V})\) that is consistently oriented with some chart \((W, \gamma)\) in \(\mathcal{A}\). We will show that \((V, \psi)\) is consistently oriented with \((W, \gamma)\). Notice that
+            \[
+                \psi \circ \gamma^{-1} = (\psi \circ \varphi^{-1}) \circ (\varphi \circ \gamma^{-1})
+            \]
+            so
+            \[
+                J (\psi \circ \gamma^{-1}) = J (\psi \circ \varphi^{-1}) \cdot J (\varphi \circ \gamma^{-1}) \text{ and } \det J(\psi \circ \gamma^{-1}) > 0
+            \]
+            as needed.
+
+            Next, we prove the main result. Let \(\mathcal{B}\) be an open cover of \(M\) by charts. Pick a chart \((U, \varphi)\) in \(\mathcal{B}\), and say for convenience that it is contained in \(\mathcal{A} ^+\). If the chart picked was in \(\mathcal{A} ^-\) the argument is analogous. We claim that all other charts are also contained in \(\mathcal{A} ^+\). Let \((V, \psi) \in \mathcal{B}\). Take any two points \(p \in U\) and \(q \in V\). Since \(M\) is connected, we can find a continuous function \(\gamma : [0,1] \to M\) such that \(\gamma (0) = p\) and \(\gamma (1) = q\). Consider \(C = \gamma [0,1]\). Since it is compact, we can find a finite number of charts \(\{ (U_n, \varphi_n) \} _{n \leq N}\) that cover \(C\), such that the open cover includes \((U, \varphi)\) and \((V, \psi)\). As well, we can always find a sequence of \(m\) charts \((U_{n_k})_{1 \leq k \leq m}\) such that
+            \[
+                U \cap U_{n_1} \neq \varnothing , U_{n_1} \cap U_{n_2} \neq \varnothing , \ldots , U_{n_{m}} \cap V \neq \varnothing.
+            \]
+            Suppose if not. Then consider \(\mathcal{C} \), the collection of charts in the finite subcover that can be reached from \(U\) using a chain of charts. Let \(\overline{\mathcal{C}}\) be the complement; the colleciton of charts that cannot be reached from \(V\). Then the charts of \(\mathcal{C}\) and \(\mathcal{D}\) are pairwise disjoint from one another, and \(V \in \overline{\mathcal{C}}\). We have that \(\mathcal{C} \cup \overline{\mathcal{C}}\) cover \(\gamma [0,1]\), but \(\bigcup_{C_i \in \mathcal{C}} C_i\) is disjoint from \(\bigcup_{D_i \in \overline{\mathcal{C}}} D_i\), which contradicts the fact that \(\gamma [0,1]\) is connected, so such a sequence of charts does indeed exist. Since \((U, \varphi)\) and \((U_{n_1}, \varphi_{n_1})\) are consistently oriented with each other and \((U, \varphi)\) is positively oriented with \(\mathcal{A}\), by the lemma, \((U_{n_1}, \varphi_{n_1})\) is positively oriented with \(\mathcal{A}\). We can apply this argument inductively to conclude that \(V\) is also positively oriented with \(\mathcal{A}\) and thus \(V \in \mathcal{A} ^+\).
+
+            Therefore, if a single chart in \(\mathcal{B}\) is contained in \(\mathcal{A}^+\), then in fact every chart in \(\mathcal{B}\) is contained in \(\mathcal{A}^+\). The same applies for the case where there is a chart that is contained in \(\mathcal{A}^-\).
+        \end{proof}
     \section{Handout Exercises}
     \subsection{Written by Me}
 
@@ -4645,6 +4863,13 @@
             (x, 0) = G (G^{-1} (x,0)) = G(G_1^{-1} (x,0), G_2^{-1} (x,0)) = (G_1^{-1} (x,0), f(G_1^{-1} (x,0), G_2^{-1} (x,0)))
         \]
         so \(x = G_1^{-1} (x,0)\) and \(f(G_1^{-1} (x,0), G_2^{-1} (x,0)) = f(x, \Phi (x)) = 0\) as needed. Finally, notice that \(G(a,b) = (a, 0)\), and \(G\) is injective on \(V_0\), so it must be true that \(\Phi (a) = b\) and we are done.
+    \end{proof}
+    \subsection{Condition for Local Minimum}
+    \begin{thm}
+        Let \(U \subseteq \mathbb{R}^n\) be an open set. Let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Let \(p_0 \in U\) be a point such that \(\nabla f(p_0) = 0\). If the Hessian matrix \(Hf(p_0)\) is positive definite, then \(f\) achieves a local minimum at \(p_0\).
+    \end{thm}
+    \begin{proof}
+        Refer to Big List \#31.
     \end{proof}
     \subsection{Change of Variables}
     \begin{thm}
