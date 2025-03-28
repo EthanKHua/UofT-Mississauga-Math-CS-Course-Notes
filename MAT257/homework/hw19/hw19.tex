@@ -49,10 +49,18 @@
         \]
         so
         \[
-            J (\psi \circ \gamma^{-1}) = J (\psi \circ \varphi^{-1}) \cdot J (\varphi \circ \gamma^{-1}) > 0
+            J (\psi \circ \gamma^{-1}) = J (\psi \circ \varphi^{-1}) \cdot J (\varphi \circ \gamma^{-1})
+        \]
+        and
+        \[
+            \det (\psi \circ \gamma^{-1}) > 0
         \]
         as needed.
 
-        
+        Next, we prove the main result. Let \(\mathcal{B}\) be an open cover of \(M\) by charts. Pick a chart \((U, \varphi)\) in \(\mathcal{B}\), and say for convenience that it is contained in \(\mathcal{A} ^+\). If the chart picked was in \(\mathcal{A} ^-\) the argument is analogous. We claim that all other charts are also contained in \(\mathcal{A} ^+\). Let \((V, \psi) \in \mathcal{B}\). Take any two points \(p \in U\) and \(q \in V\). Since \(M\) is connected, we can find a continuous function \(\gamma : [0,1] \to M\) such that \(\gamma (0) = p\) and \(\gamma (1) = q\). Consider \(C = \gamma [0,1]\). Since it is compact, we can find a finite number of charts \(\{ (U_n, \varphi_n) \} _{n \leq N}\) that cover \(C\), such that the open cover includes \((U, \varphi)\) and \((V, \psi)\). As well, we can always find a sequence of \(m\) charts \((U_{n_k})_{1 \leq k \leq m}\) such that
+        \[
+            U \cap U_{n_1} \neq \varnothing , U_{n_1} \cap U_{n_2} \neq \varnothing , \ldots , U_{n_{m}} \cap V \neq \varnothing
+        \]
+
     \end{question}
 \end{document}
