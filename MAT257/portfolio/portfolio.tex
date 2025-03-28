@@ -4704,9 +4704,24 @@
                 0 & \cdots & \cdots & \cdots & \cdots &  1 \\
             \end{pmatrix}
         \]
-        so \(J \Psi(0)\) is invertible. By the Inverse Function Theorem, there is an open neighborhood \(U_0\) containing 0 such that \(\Psi | _{U_0}\) is invertible. Then consider the function
+        so \(J \Psi(0)\) is invertible. By the Inverse Function Theorem, there is an open neighborhood \(U_0\) containing 0 such that \(\Psi | _{U_0}\) is invertible. Let \(L_{ik}\) be the linear transformation that swaps the \(i\) and \(k\)th component. We write
         \[
-            L_{ik} \circ \Phi \circ \Psi^{-1} = 
+            \Psi^{-1} = (x_1, ..., x_{k-1} , \varphi _i^{-1} , x_{k+1} , ..., x_n), \text{ where } \varphi _i^{-1} : \Psi (U_0) \to \mathbb{R}.
+        \]
+        Notice that \(\varphi _i \circ \Psi^{-1} = x_k\). Then consider the function \(\alpha : \Psi (U_0) \to V\) 
+        \[
+            \alpha(x) = L_{ik} \circ \Phi \circ \Psi^{-1} (x) = L_{ik} (x_1, ..., x_{k-1} , \varphi _k (\Psi ^{-1}(x)), ..., \varphi _{i-1} (\Psi ^{-1}(x)), x_k, \varphi _{i+1} (\Psi ^{-1}(x)), ..., \varphi _n (\Psi ^{-1}(x)))
+        \]
+        \[
+            = (x_1, ..., x_{k-1} , x_k, \varphi _{k+1} (\Psi ^{-1}(x)), \varphi _{i-1} (\Psi ^{-1}(x)), \varphi _k (\Psi ^{-1}(x)), \varphi _{i+1} (\Psi ^{-1}(x)), ..., \varphi _n (\Psi ^{-1}(x)))
+        \]
+        \(J\alpha(0)\) is invertible because the Jacobian of its composite functions are invertible. As well, since \(\Psi (0) = 0\) and it is locally injective, we have that
+        \[
+            \alpha (0) = L_{ik} \circ \Phi \circ \Psi^{-1} (0) = 0
+        \]
+        Moreover, for any \(y \in \Psi (U_0)\), we write \(y = \Psi (x)\) and get that
+        \[
+            \alpha ( \Psi (x)) = 
         \]
         
         
