@@ -4743,7 +4743,18 @@
         \[
             \Phi (u) - \Phi (p) = L \circ S_1 \circ \cdots \circ S_n (u - p).
         \]
-
+        Let \(\alpha _{p_i} (x) = (x_1, ..., x_{i-1} , x_i - p_i, ..., x_n)\). We can write \(u - p = \alpha _1 \circ \cdots \circ \alpha _n (u)\). As well, for any function \(f: \mathbb{R}^n \to \mathbb{R}^n\), we have
+        \[
+            f(x) - p = \alpha _{p_1} \circ \cdots \circ \alpha _{p_n} \circ f(x),
+        \]
+        Recall that \(L\) is a series of component swaps, so \(L^{-1}\) exists for any \(x \in \mathbb{R}^n\). Thus
+        \[
+            \Phi (u) = L \circ S_1 \circ \cdots \circ S_n (u - p) + \Phi (p)= L (S_1 \circ \cdots \circ S_n (u - p) + L^{-1} \circ \Phi (p)) 
+        \]
+        \[
+            = L \circ \alpha _{(L^{-1} \circ \Phi (p))_1} \circ \cdots \circ \alpha _{(L^{-1} \circ \Phi (p))_n} \circ S_1 \circ \cdots \circ S_n \circ \alpha_{p_1} \circ \cdots \circ \alpha_{p_n} (u)
+        \]
+        Every function in the expression is simple, save for \(L\). Thus we can still decompose \(\Phi\) regardless of whether \(\Phi (0) = 0\).
 
         Next, we show that if the main theorem holds for two diffeomorphisms \(\Phi : U \to V,\Psi : V \to W\), it holds for \(\Psi \circ \Phi\). This can be shown quickly through a series of algebraic manipulations:
         \[
@@ -4784,6 +4795,18 @@
         \]
         as needed.
 
-        We combine the results above to prove it for an arbitrary diffeomorphism \(\Phi\). For each \(p_i \in E\), we can decompose \(\Phi\) into a composition of linear maps and simple mappings, 
+        We combine the results above to prove it for an arbitrary diffeomorphism \(\Phi\). For each \(p_i \in E\), we can decompose \(\Phi\) into a composition of linear maps and simple mappings, and we know that the result holds for linear maps, simple mappings, and compositions of them, so the result holds for \(\Phi\) in some neighborhood \(U_i\) containing \(p_i\), so
+        \[
+            \int _{\Phi (U_i)} 1 = \int _{U_i} |\det \Phi |
+        \]
+        Consider the open cover \(\mathcal{U} = \{ U_i \} _{i \in I}\) of \(E\). Let \(\{ \phi_i \} _{i \in I}\) be a partition of unity subordinate to \(\mathcal{U}\). Then we have that
+        \begin{align*}
+            \int _{\Phi (E)}1 &= \sum_{i \in I} \phi _i \int _{\Phi (E)} 1 \\
+            &= \sum_{i \in I} \phi _i \int _{\Phi (U_i)} 1 \\
+            &= \sum_{i \in I} \phi _i \int _{U_i} |\det J \Phi |\\
+            &= \sum_{i \in I} \phi _i \int _{E} |\det J \Phi | \\
+            &= \int _E |\det J \Phi |
+        \end{align*}
+        Thus we have proven the Change of Variables formula.
     \end{proof}
 \end{document}
