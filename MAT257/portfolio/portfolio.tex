@@ -3824,7 +3824,7 @@
     \]
     Doing this from the definition is kind of painful, so having Fubini in your closet is quite useful.
 
-    \section{Exercise 13.14}
+    \subsubsection{Exercise 13.14}
     Recall the statement of Theorem 13.6 and the definition of a simple mapping:
 
     \textbf{Theorem 13.6.} Let $U,V\subseteq\R^n$ be two open sets and let $\Phi:U\rightarrow V$ be a diffeomorphism. Let $E\subseteq U$ be a measurable set. Then $\Phi(E)$ is also measurable, and its measure is
@@ -3942,6 +3942,48 @@
     \[
         T_p M = \left\{ (p, (h, \nabla f(q)h)) \in \mathbb{R}^{n+1}_p : q \in U, p = (q, f(q)), h \in \mathbb{R}^n \right\}.
     \]
+    \subsubsection{Exercise 18.15}
+    Recall the following definitions:
+    \begin{enumerate}[label=(\alph*)]
+        \item $F$ is \textbf{exact} if $F=\nabla f$ for some smooth function $f:U\rightarrow \R$. The function $f$ is called a \textbf{scalar potential function} for $F$.
+        \item $F$ is \textbf{conservative} if $\displaystyle \oint_CF \cdot d\vec{x}=0$ for every loop $C$ contained in $U$. (A \textbf{loop} is the image of a piecewise smooth map $\gamma:[a,b]\rightarrow \R^n$ such that $\gamma$ is a regular embedding on $[a,b)$, and $\gamma(a)=\gamma(b)$. Or, you could think of it as a smooth, oriented curve $C$ which is closed as a subset of $\R^n$, and such that $\partial C = \varnothing$.)
+    \end{enumerate}
+    In this exercise, we will show that a conservative function is also exact.
+    \begin{proof}
+        Let \(F: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be conservative. For each connected component \(U_i\) of \(U\), we pick an arbitrary \(q_i \in U_i\). Define a function \(f: U \to \mathbb{R}\) as follows. For each \(p \in U\), it is contained in some \(U_i\). Let \(\gamma : [0,1] \to U_i\) parametrize a path from \(p\) to \(p_i\), that is, \(\gamma\) is smooth, regular, and satisfies \(\gamma (0) = p\), \(\gamma (1) = p_i\). For this \(\gamma\), we define
+        \[
+            f(p) = \oint _{\gamma [0,1]} F \cdot d\vec{x} = \int _0^1 F (\gamma (t))\cdot \gamma '(t)\ dt.
+        \]
+        We assert that this function is well defined, that is to say that \(f(p)\) is independent of the choice of the path parametrized by \(\gamma\). Let \(\hat{\gamma}: [0,1] \to U\) be a parametrization of another path between \(p\) and \(p_0\). Notice that \(\gamma [0,1] \sqcup \hat{\gamma}[0,1]\) is a piecewise smooth loop. So from our assumption, we have that
+        \[
+            \oint _{\gamma [0,1] \sqcup \hat{\gamma}[0,1]} F \cdot d\vec{x} = \oint _{\gamma [0,1]} F \cdot d\vec{x} + \oint _{\hat{\gamma}[0,1]} F \cdot d\vec{x} = \int _0^1 F(\gamma (t))\cdot \gamma '(t)\ dt + \int _1^0 F(\hat{\gamma}(t))\cdot \hat{\gamma}'(t)\ dt = 0
+        \]
+        \[
+            \implies f(p) = \int _0^1 F(\gamma (t))\cdot \gamma '(t)\ dt = \int _0^1 F(\hat{\gamma}(t))\cdot \hat{\gamma}'(t)\ dt
+        \]
+        so our choice of path does not matter.
+        
+        As you can see, the computation above looks wildly different from whatever I was doing in lecture. It turns out that what I did (i.e. parametrizing the loop with a piecewise function) is not the way to evaluate a line integral on a piecewise smooth curve, which is completely my fault. What you should actually do is sum up the line integrals on each individual smooth curve, making sure that each parametrization is oriented correctly. That is why we have one of the integral bounds to be from 1 to 0. We haven't covered a way to formalize the concept of orienting piecewise smooth curves so this argument will have to do for now.
+
+        Moving on, we now want to show that \(\dfrac{\partial f}{\partial x_i} (p) = F_i(p)\), which we will do from the limit definition. Let \(p \in U\), and take \(h \in \mathbb{R}\) small enough so that \(p + he_i\) and \(p\) lie within the same connected component \(U_i\). Consider two parametrizations: a path from \(p\) to \(p_i\), and a path from \(p+he_i\) to \(p_i\). We call them \(\gamma _1 : [0,1] \to U\) and \(\gamma _2: [0,1] \to U\) respectively. As well, parametrize the straight line between \(p + he_i\) and \(p\) with \(\varphi (t) = p + the_i\), where \(t \in [0,1]\). Now note that \(\gamma _1[0,1] \sqcup \gamma _2 [0,1] \sqcup \varphi [0,1]\) form a piecewise smooth closed loop. We have that
+        \[
+            \oint_{\gamma _1[0,1] \sqcup \gamma _2 [0,1] \sqcup \varphi [0,1]} F \cdot d \vec{x} = \int _0^1 F(\gamma _1(t))\cdot \gamma _1'(t)\ dt - \int _0^1 F(\gamma _2(t))\cdot \gamma _2'(t)\ dt + \int _0^1 F(\varphi (t))\cdot \varphi '(t)\ dt = 0
+        \]
+        and thus
+        \begin{align*}
+            \frac{1}{h}(f(p + he_i) - f(p)) &= \frac{1}{h}\left( \int _0^1 F(\gamma _2(t))\cdot \gamma _2'(t)\ dt - \int _0^1 F(\gamma _1(t))\cdot \gamma _1'(t)\ dt \right.\\
+            &\quad \left. + \int _0^1 F(\varphi (t))\cdot \varphi '(t)\ dt - \int _0^1 F(\varphi (t))\cdot \varphi '(t)\ dt\right) \\
+            &= \frac{1}{h}\int _0^1 F(\varphi (t))\cdot \varphi '(t)\ dt \\
+            &= \frac{1}{h}\int _0^1 F(p + the_i)\cdot he_i\ dt \\
+            &= \int _0^1 F_i(p + the_i)\ dt \\
+            &= \frac{1}{h}\int _0^h F_i(p + ue_i)\ du \tag{\(u = th\)} \\
+        \end{align*}
+        If we let \(h \to 0\), we notice that this expression is the derivative of \(I(x) = \int _0^x F_i(p + ue_i)\ du\) at \(x = 0\), so
+        \[
+            \frac{\partial f}{\partial x_i} (p) = \lim_{h \to 0} \frac{f(p + he_i) - f(p)}{h} = I'(0) = F_i(p)
+        \]
+        as needed.
+    \end{proof}
 
 
 
