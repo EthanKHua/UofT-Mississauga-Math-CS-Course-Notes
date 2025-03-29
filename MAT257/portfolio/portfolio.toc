@@ -64,10 +64,11 @@
 \contentsline {subsubsection}{\numberline {2.2.7}14.8}{86}{}%
 \contentsline {section}{\numberline {3}Original Work}{88}{}%
 \contentsline {subsection}{\numberline {3.1}Precompactness}{96}{}%
-\contentsline {section}{\numberline {4}Major Theorems}{97}{}%
-\contentsline {subsection}{\numberline {4.1}Sequential Compactness and Compactness}{97}{}%
-\contentsline {subsection}{\numberline {4.2}Equivalence of Norms in Finite Dimensional Vector Spaces}{97}{}%
-\contentsline {subsection}{\numberline {4.3}Differentiability Theorem}{98}{}%
-\contentsline {subsection}{\numberline {4.4}Inverse Function Theorem and Implicit Function Theorem}{99}{}%
-\contentsline {subsection}{\numberline {4.5}Condition for Local Minimum}{101}{}%
-\contentsline {subsection}{\numberline {4.6}Change of Variables}{102}{}%
+\contentsline {subsection}{\numberline {3.2}Generalizing the Inverse Function Theorem}{97}{}%
+\contentsline {section}{\numberline {4}Major Theorems}{98}{}%
+\contentsline {subsection}{\numberline {4.1}Sequential Compactness and Compactness}{98}{}%
+\contentsline {subsection}{\numberline {4.2}Equivalence of Norms in Finite Dimensional Vector Spaces}{98}{}%
+\contentsline {subsection}{\numberline {4.3}Differentiability Theorem}{99}{}%
+\contentsline {subsection}{\numberline {4.4}Inverse Function Theorem and Implicit Function Theorem}{100}{}%
+\contentsline {subsection}{\numberline {4.5}Condition for Local Minimum}{103}{}%
+\contentsline {subsection}{\numberline {4.6}Change of Variables}{103}{}%

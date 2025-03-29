@@ -4176,6 +4176,7 @@
 
 
     \section{Original Work}
+    All the statements in this section are some results I proved in no particular order.
     \begin{thm}
         Let \((X, d)\) be a separable metric space. Then \(A \subseteq X\) is separable with respect to the metric \(d\).
     \end{thm}
@@ -4257,13 +4258,9 @@
     \begin{cor}
         Let \(X\) be a normed vector space. Then \(X\) has a compact exhaustion if and only if \(X\) is finite dimensional.
     \end{cor}
-
-    \begin{defn}
-        Let \(p > 0\). For \(x = (x_1, ..., x_n) \in \mathbb{R}^n\), the \textbf{p-norm} of \(x\) is defined by
-        \[
-            \|x\| _p = \sqrt[p]{\sum_{i=1}^n |x_i|^p}
-        \]
-    \end{defn}
+    \begin{proof}
+        This follows from the previous proposition and a Big List problem.
+    \end{proof}
 
     \begin{prop}
         Equip \(\mathbb{R}^n\) with any norm \(\|\cdot\| _a\). Let \(f : \mathbb{R}^n \to \mathbb{R}\) be a function given by \(f(x) = \|x\|\), for any norm \(\|\cdot\|\) on \(\mathbb{R}^n\). Then \(f\) is not differentiable at \(x=0\).
@@ -4294,6 +4291,21 @@
         \]
         which is a contradiction.
         \smallbreak
+    \end{proof}
+
+    \begin{thm}
+        Let \(Y\) and \(K\) be metric spaces with \(K\) compact. Let \(f: K \to Y\) be a continuous function. Then \(f\) is uniformly continuous.
+    \end{thm}
+    \begin{proof}
+        Let \(\varepsilon > 0\). For each \(p \in K\), we can find an open ball \(U_p \subseteq K\) such that for all \(x \in U_p\),
+        \[
+            d_Y(f(p), f(x)) < \frac{\varepsilon}{2}
+        \]
+        Notice that \(\{ U_p \} _{p \in K}\) forms an open cover of \(K\), so by compactness, we can find a Lebesgue number \(\delta\) for this open cover. We claim that this choice of \(\delta\) suffices for uniform continuity. Let \(x,y \in K\) with \(d_K(x,y) < \delta\). Then \(y \in B(x, \delta)\). This open ball is contained in some open set \(U_p\) of our open cover. It follows that
+        \[
+            d_Y(f(x), f(y)) \leq d_Y(f(p), f(x)) + d_Y(f(p), f(y)) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+        \]
+        as needed.
     \end{proof}
 
     \begin{thm}
@@ -4677,6 +4689,57 @@
         Let \(\{ (U_i , \varphi _i) \}_{i \in I}\) be an atlas for \(M\). Since \(\{ U_i \}\) constitutes an open cover of \(M\), we can find a countable subcover \(\{ U_{i_n} \}_{n \in \mathbb{N}}\) by the precompactness of \(M\). Then \(\{ (U_{i_n}, \varphi _{i_n}) \}_{n \in \mathbb{N}}\) is still an atlas over \(M\), but is countable, so we are done.
     \end{proof}
     This result is useful for when we want to apply countative additivity on manifold charts. For instance, this theorem is used to show that a lower dimensional manifold is a Lebesgue null set by showing that we can find a countable atlas where each chart has Jordan measure 0, and then applying countable additivity of the Jordan measure.
+
+    \subsection{Generalizing the Inverse Function Theorem}
+    Below is the statement for the Inverse Function Theorem:
+    \begin{thm}
+        Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be a \(C^1\) function. If \(p \in U\) such that \(Jf(p)\) is invertible, then
+        \begin{itemize}
+            \item There exists an open set \(U_0 \subseteq U\) such that \(\Phi = f | _{U_0}\) is injective.
+            \item \(V_0 = f(U_0)\) is open.
+            \item \(\Phi ^{-1}(q) = (\Phi ' \circ \Phi^{-1}(q))^{-1}\)
+            \item \(\Phi ^{-1}\) is \(C^1\).
+        \end{itemize}
+    \end{thm}
+    As well, here is the statement of the Implicit Function Theorem:
+    \begin{thm}
+        Let \(f: \mathbb{R}^{n + k}\to \mathbb{R}^k\) be a \(C^1\) function. Let \((a,b) \in \mathbb{R}^{n+k}\), where \(a \in \mathbb{R}^n, b \in \mathbb{R}^k\)  such that \(f(a,b) = 0\). Write
+        \[
+            J f (a,b) = \left( \begin{array}{@{}c|c@{}}
+                A & B
+            \end{array} \right) 
+        \]
+        If \(B\) is invertible, then there is an open neighborhood \(U_0 \subseteq \mathbb{R}^k\) containing \(b\) and a \(C^1\) function \(\Phi : \mathbb{R}^n \to \mathbb{R}^k\) such that for all \(x \in U_0\),
+        \[
+            f(x, \Phi (x)) = 0 \text{ and } \Phi (a) = b.
+        \]
+    \end{thm}
+    It seems that these two theorems are a special case for some more general theorem. In fact, these statements are actually equivalent. We have shown that the Implicit Function Theorem follows from the Inverse Function Theorem. We will show that the converse is also true.
+    \begin{proof}
+        Suppose that the Implicit Function Theorem has been proven. Let \(f : U \to \mathbb{R}^n\) be a \(C^1\) function. Let \(p \in U\) such that \(Jf(p)\) is invertible. Let \(g: f(U) \times U \to \mathbb{R}^n\) be defined by
+        \[
+            g(x,y) = f(y) - x
+        \]
+        We see that the Jacobian is of the form
+        \[
+            J g(x,y) = \left( \begin{array}{@{}c|c@{}}
+                I & Jf(y)
+            \end{array} \right) 
+        \]
+        Since \(g(f(p), p) = 0\) and \(Jf(y)\) is invertible, by the Implicit Function Theorem, we can find an open neighborhood \(V_0 \subseteq f(U)\) containing \(f(p)\) and a \(C^1\) function \(\Psi : V_0 \to U\) such that for all \(x \in V_0\),
+        \[
+            g(x, \Psi (x)) = 0 \implies f(\Psi (x)) = x
+        \]
+        We see that \(f\) acts as a left inverse for \(\Psi\), so \(\Psi\) is injective. We set \(U_0 = \Psi (V_0)\) and see that \(\Phi  = f | _{U_0}\) is the inverse of \(\Psi\), or in other words \(\Psi = \Phi ^{-1}\) (statement 2 and 4). By the continuity of \(\Phi\) and the fact that \(V_0\) is open, we have that \(U_0\) is open since \(\Phi (U_0) = V_0\) (statement 1). Focussing on the equation above, we can take the derivative of both sides to obtain that for \(q \in V_0\),
+        \[
+            \Phi '(\Psi (q)) \circ \Psi '(q) = I \implies \Psi '(q) = (\Phi ' \circ \Psi)^{-1} (q) \tag{statement 3}
+        \]
+        The fact that \(\Phi '(\Psi (q))\) is invertible is swept under the rug here, but the reasoning is that we can shrink \(U_0\) so that it is invertible by using the fact that \(\GL (\mathbb{R}^n)\) is open, and reassign \(V_0 = \Phi (U_0)\). \(V_0\) stays open because \(\Psi (V_0) = U_0\).
+
+        Thus we have proven every statement in the Inverse Function Theorem.
+    \end{proof}
+
+
     \section{Major Theorems}
     \subsection{Sequential Compactness and Compactness}
     \begin{defn}
