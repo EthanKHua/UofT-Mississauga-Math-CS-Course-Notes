@@ -4738,6 +4738,27 @@
 
         Thus we have proven every statement in the Inverse Function Theorem.
     \end{proof}
+    In order to take a step closer to finding the general statement, let us consider other special cases. For instance, let \(f: U \subseteq \mathbb{R}^k \to \mathbb{R}^{n+k}\) be a \(C^1\) function. We write \(f = (f_1, f_2)\), where \(f_1: \mathbb{R}^k \to \mathbb{R}^n\) and \(f_2: \mathbb{R}^k \to \mathbb{R}^k\) are functions. Then the Jacobian is of the form
+    \[
+        Jf(p) = \left( \begin{array}{@{}c@{}}
+            Jf_1(p) \\
+            \hline
+            Jf_2(p) \\
+        \end{array} \right) 
+    \]
+    Suppose that \(Jf_2(p_0)\) is invertible, for some \(p_0 \in U\). By the Inverse Function Theorem, \(f_2\) has an inverse \(f_2^{-1}: V_0 \to U_0\) in an open neighborhood \(U_0\) of \(p_0\). Define a function \(\Phi : \mathbb{R}^n \times V_0 \to U_0\) by
+    \[
+        \Phi (y_1, ..., y_{n+k}) = f_2^{-1}(y_{n+1} , ..., y_{n+k}).
+    \]
+    Notice that for all \(x \in U_0\),
+    \[
+        \Phi (f(x)) = \Phi (f_1(x), f_2(x)) = x
+    \]
+    So we have the case for when the dimension of domain is the same, less than, and greater than that of the codomain. For the case when the domain is higher dimension, the statement involves composing some function inside \(f\). When the domain is lower dimension, we compose outside of \(f\). We conjecture that the general case will involve composing both sides of \(f\).
+    These are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? And thus we arrive at the generalized Inverse Function Theorem:
+    \begin{thm}
+        Let \(f: \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that for some open neighborhood \(U_0\) of some \(p_0\), \(\rank Jf(p) = k\) for all \(p \in U_0\). Then there exist two \(C^1\) functions \(\Psi\) 
+    \end{thm}
 
 
     \section{Major Theorems}
