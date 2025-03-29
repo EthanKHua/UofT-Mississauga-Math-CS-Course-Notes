@@ -1666,7 +1666,9 @@
             which verifies our claim. Since \(f'(p) = M\) for all \(p \in U\), \(f'\) is constant, and from part (b), this implies that \(f'' = 0\), which completes the proof.
         \end{proof}
 
-        \subsection{\#27}
+        \subsection{\#27*}
+
+        \textit{I always found integration fun, because it was similar to solving some kind of puzzle. I have known about Feynmann's trick for a long time, but I never thought about how it ties in with multivariable calculus. Completing this problem was very interesting as I got to see how this trick really worked.}
 
         Let $f:\R^2\rightarrow \R$ be a continuously differentiable function.
         \begin{enumerate}[label=(\alph*)]
@@ -1692,7 +1694,7 @@
             \[
                 \dfrac{d\varphi}{dx}(x_0) = \int_a^b \dfrac{\partial f}{\partial x}(x_0,t) \ dt.
             \]
-            Let \(\varepsilon > 0\). By the partial differentiability of \(f\), we obtain a \(\delta\) so that \[\left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x}(x_0, t) \right\vert < \dfrac{|h|\varepsilon}{b-a}\] for all \(0 < |h| <\delta\).
+            Let \(\varepsilon > 0\). By the partial differentiability of \(f\), we obtain a \(\delta\) so that \[\left\vert f(x_0 + h, t) - f(x_0, t) - h\frac{\partial f}{\partial x}(x_0, t) \right\vert < \dfrac{|h|\varepsilon}{b-a}\] for all \(0 < |h| <\delta\). Since \(t\) is contained in a closed interval \([a,b]\), so the limit converges uniformly and we are guaranteed to be able to find a \(\delta\) that works for all \(t \in [a,b]\).
             
             Fix \(h \in \mathbb{R}\) so that \(0 < |h| <\delta\). By the linearity of the integral,
             \[
@@ -1908,7 +1910,7 @@
             \medbreak
             (b)(iv):
 
-            From the previous part, simply take \(v = x_i\) and \(w = x_j\) and the result follows immediately.
+            From the previous part, simply take \(v = e_i\) and \(w = e_j\) and the result follows immediately.
         \end{proof}
 
         \subsection{\#29}
@@ -3423,7 +3425,7 @@
             \[
                 U \cap U_{n_1} \neq \varnothing , U_{n_1} \cap U_{n_2} \neq \varnothing , \ldots , U_{n_{m}} \cap V \neq \varnothing.
             \]
-            Suppose if not. Then consider \(\mathcal{C} \), the collection of charts in the finite subcover that can be reached from \(U\) using a chain of charts. Let \(\overline{\mathcal{C}}\) be the complement; the colleciton of charts that cannot be reached from \(V\). Then the charts of \(\mathcal{C}\) and \(\mathcal{D}\) are pairwise disjoint from one another, and \(V \in \overline{\mathcal{C}}\). We have that \(\mathcal{C} \cup \overline{\mathcal{C}}\) cover \(\gamma [0,1]\), but \(\bigcup_{C_i \in \mathcal{C}} C_i\) is disjoint from \(\bigcup_{D_i \in \overline{\mathcal{C}}} D_i\), which contradicts the fact that \(\gamma [0,1]\) is connected, so such a sequence of charts does indeed exist. Since \((U, \varphi)\) and \((U_{n_1}, \varphi_{n_1})\) are consistently oriented with each other and \((U, \varphi)\) is positively oriented with \(\mathcal{A}\), by the lemma, \((U_{n_1}, \varphi_{n_1})\) is positively oriented with \(\mathcal{A}\). We can apply this argument inductively to conclude that \(V\) is also positively oriented with \(\mathcal{A}\) and thus \(V \in \mathcal{A} ^+\).
+            Suppose if not. Then consider \(\mathcal{C} \), the collection of charts in the finite subcover that can be reached from \(U\) using a chain of charts. Let \(\overline{\mathcal{C}}\) be the complement; the collection of charts that cannot be reached from \(V\). Then the charts of \(\mathcal{C}\) and \(\mathcal{D}\) are pairwise disjoint from one another, and \(V \in \overline{\mathcal{C}}\). We have that \(\mathcal{C} \cup \overline{\mathcal{C}}\) cover \(\gamma [0,1]\), but \(\bigcup_{C_i \in \mathcal{C}} C_i\) is disjoint from \(\bigcup_{D_i \in \overline{\mathcal{C}}} D_i\), which contradicts the fact that \(\gamma [0,1]\) is connected, so such a sequence of charts does indeed exist. Since \((U, \varphi)\) and \((U_{n_1}, \varphi_{n_1})\) are consistently oriented with each other and \((U, \varphi)\) is positively oriented with \(\mathcal{A}\), by the lemma, \((U_{n_1}, \varphi_{n_1})\) is positively oriented with \(\mathcal{A}\). We can apply this argument inductively to conclude that \(V\) is also positively oriented with \(\mathcal{A}\) and thus \(V \in \mathcal{A} ^+\).
 
             Therefore, if a single chart in \(\mathcal{B}\) is contained in \(\mathcal{A}^+\), then in fact every chart in \(\mathcal{B}\) is contained in \(\mathcal{A}^+\). The same applies for the case where there is a chart that is contained in \(\mathcal{A}^-\).
         \end{proof}
@@ -4648,6 +4650,12 @@
         Let \(x \in X\). There is some open set \(U_i\), not necessarily in \(U\) that contains \(x\). Take the open ball \(B(x, \delta) \subseteq U_i\). By the separability of \(X\), there exists some \(q_n \in C\) so that \(q_n \in B( x, \frac{\delta}{2} )\). Let \(k \in \mathbb{N}\) such that \(\frac{1}{k} < \frac{\delta}{2}\) and consider another open ball \(B(q_n, \frac{1}{k}) \subseteq B(x, \delta)\). We are guaranteed that \(U_{nk}\) exists, because \(B(q_n, \frac{1}{k}) \subseteq U_i\), so \(B(q_n, \frac{1}{k})\) of at least one set in the open cover. Thus \(x \in U_{nk} \in U\), so \(U\) is indeed a countable open cover so \(X\) is precompact.
     \end{proof}
     \begin{cor}
+        \(\mathbb{R}^n\) is precompact.
+    \end{cor}
+    \begin{proof}
+        This is because \(\mathbb{R}^n\) is separable.
+    \end{proof}
+    \begin{cor}
         Every subset of a precompact metric space is also precompact.
     \end{cor}
     \begin{proof}
@@ -4662,18 +4670,13 @@
 
         Let \(x \in A\). Then \(x\) is contained in some \(K_n\). But this implies that \(x\) is in some open set \(U_i\) such that \(U_i \in \mathcal{U}_n\), so this choice is indeed a countable subcover.
     \end{proof}
-    \begin{cor}
-        \(\mathbb{R}^n\) is precompact.
-    \end{cor}
-    \begin{proof}
-        This can be seen quickly, as \(\left( \cl{B}(0, n) \right)_{n \in \mathbb{N}}\) is a compact exhaustion of \(\mathbb{R}^n\), so we can apply the proposition above to obtain our conclusion.
-    \end{proof}
     \begin{thm}
         Let \(M \subseteq \mathbb{R}^N\) be a manifold. Then \(M\) has a countable atlas.
     \end{thm}
     \begin{proof}
         Let \(\{ (U_i , \varphi _i) \}_{i \in I}\) be an atlas for \(M\). Since \(\{ U_i \}\) constitutes an open cover of \(M\), we can find a countable subcover \(\{ U_{i_n} \}_{n \in \mathbb{N}}\) by the precompactness of \(M\). Then \(\{ (U_{i_n}, \varphi _{i_n}) \}_{n \in \mathbb{N}}\) is still an atlas over \(M\), but is countable, so we are done.
     \end{proof}
+    This result is useful for when we want to apply countative additivity on manifold charts. For instance, this theorem is used to show that a lower dimensional manifold is a Lebesgue null set by showing that we can find a countable atlas where each chart has Jordan measure 0, and then applying countable additivity of the Jordan measure.
     \section{Major Theorems}
     \subsection{Sequential Compactness and Compactness}
     \begin{defn}
