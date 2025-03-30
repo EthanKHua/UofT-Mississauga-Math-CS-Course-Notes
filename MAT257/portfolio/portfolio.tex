@@ -4757,13 +4757,71 @@
     So we have the case for when the dimension of domain is the same, less than, and greater than that of the codomain. For the case when the domain is higher dimension, the statement involves composing some function inside \(f\). When the domain is lower dimension, we compose outside of \(f\). We conjecture that the general case will involve composing both sides of \(f\).
     These are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? And thus we arrive at the generalized Inverse Function Theorem:
     \begin{thm}
-        Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that for some open neighborhood \(U_0\) of some \(p_0\), \(\rank Jf(p) = k\) for all \(p \in U_0\). Then there exist two diffeomorphisms \(\Psi: f(U_0) \to V_0 \subseteq \mathbb{R}^m\), \(\Phi : W_0 \subseteq \mathbb{R}^n \to U_0\) such that
+        Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that \(\rank Jf(p) = k \leq \min \{ n,m \}\) for all \(p \in U\). Then there exists an open neighborhood \(U_0 \subseteq U\) containing \(p_0\) and two diffeomorphisms \(\Psi: f(U_0) \to V_0 \subseteq \mathbb{R}^m\), \(\Phi : W_0 \subseteq \mathbb{R}^n \to U_0\) such that for all \((x_1, ..., x_n) \in W_0\),
         \[
             \Psi \circ f \circ \Phi (x_1, ..., x_n) = (x_1, ..., x_k, 0, ..., 0)
         \]
     \end{thm}
     \begin{proof}
-        idk
+        Suppose the Jacobian of \(f\) at \(p_0 = (p_1, p_2)\) is of the form
+        \[
+            \left( \begin{array}{@{}c|c@{}}
+                A & B \\
+                \hline
+                C & D \\
+            \end{array} \right) 
+        \]
+        where \(A \in M_{k \times k}(\mathbb{R})\). Suppose without loss of generality that \(A\) is invertible. If not, we know that \(Jf(p)\) must have \(k\) linearly independent rows and columns, so we can apply swaps to both the inner and outer components of \(f\) to move them into the top left corner, which does not change the conclusion of the theorem, as we are composing \(f\) with diffeomorphisms on both sides.
+
+        Write \(f = (f_1, f_2)\), where \(f_1: U \to \mathbb{R}^k\), \(f_2: U \to \mathbb{R}^{m-k}\) are \(C^1\) functions. Define \(g: \mathbb{R}^k \times \mathbb{R}^{n-k} \to \mathbb{R}^n\) by
+        \[
+            g(x,y) = (f_1(x,y), y)
+        \]
+        The Jacobian of \(g\) at \(p_0\) is
+        \[
+            Jg(p_0) = \left( \begin{array}{@{}c|c@{}}
+                A & B \\
+                \hline
+                O & I_{n-k} \\
+            \end{array} \right) 
+        \]
+        Since \(A\) is invertible, \(Jg(p_0)\) is invertible, so by the Inverse Function Theorem, we can find an open neighborhood \(U_0\) containing \(p_0\) such that the diffeomorphism \(\Phi = (g | _{U_0})^{-1}\) exists. Let \(W_0 = g(U_0)\) and write \(\Phi = (\varphi _1, \varphi _2)\). For all \((x,y) \in W_0\), we have
+        \[
+            (x,y) = g \circ \Phi (x,y) = g(\varphi _1(x,y), \varphi _2(x,y)) = (f_1(\varphi _1(x,y), \varphi _2(x,y)), \varphi _2(x,y))
+        \]
+        so
+        \[
+            y = \varphi _2(x,y) \text{ and } x = f_1(\varphi _1(x,y), y)
+        \]
+        We see that \(f \circ \Phi (x,y) = (x, f_2(\varphi _1(x,y), y))\). Let \(h(x,y) = f_2(\varphi _1(x,y), y)\) and notice that
+        \[
+            J (f \circ \Phi)(x,y) = \left( \begin{array}{@{}c|c@{}}
+                I_k & O \\
+                \hline
+                H_1(x,y) & H_2(x,y)
+            \end{array} \right) 
+        \]
+        for some matrices \(H_1, H_2\). But \(J (f \circ \Phi)\) has rank \(k\), so it must be true that \(H_2 = 0\). It follows that for all \((x,y) \in W_0\), \(h(x, y) = h(x, p_2)\).
+        Let \(\Psi : f(U_0) \to \mathbb{R}^m\) be defined as
+        \[
+            \Psi (z,w) = (z, w - h(z, p_2)), \text{ where } z \in \mathbb{R}^k,\ w \in \mathbb{R}^{m-k}.
+        \]
+        Its Jacobian is
+        \[
+            \left( \begin{array}{@{}c|c@{}}
+                I_k & O \\
+                \hline
+                -H_1(z,p_2) & I_{m-k} \\
+            \end{array} \right).
+        \]
+        which has rank \(m\), implying that \(\Psi\) is locally a diffeomorphism onto its image.
+
+        Finally, we let \((x,y) \in W_0\) for \(x \in \mathbb{R}^k\) and \(y \in \mathbb{R}^{n-k}\) and see that
+        \begin{align*}
+            \Psi \circ f \circ \Phi (x, y) &= \Psi (x, h(x,y)) \\
+            &= (x, h(x,y) - h(x, p_2)) \\
+            &= (x, 0)
+        \end{align*}
     \end{proof}
 
 
