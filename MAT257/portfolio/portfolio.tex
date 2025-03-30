@@ -4738,7 +4738,7 @@
 
         Thus we have proven every statement in the Inverse Function Theorem.
     \end{proof}
-    In order to take a step closer to finding the general statement, let us consider other special cases. For instance, let \(f: U \subseteq \mathbb{R}^k \to \mathbb{R}^{n+k}\) be a \(C^1\) function. We write \(f = (f_1, f_2)\), where \(f_1: \mathbb{R}^k \to \mathbb{R}^n\) and \(f_2: \mathbb{R}^k \to \mathbb{R}^k\) are functions. Then the Jacobian is of the form
+    In order to take a step closer to finding the general case, let us consider other special cases. For instance, let \(f: U \subseteq \mathbb{R}^k \to \mathbb{R}^{n+k}\) be a \(C^1\) function. We write \(f = (f_1, f_2)\), where \(f_1: \mathbb{R}^k \to \mathbb{R}^n\) and \(f_2: \mathbb{R}^k \to \mathbb{R}^k\) are functions. Then the Jacobian is of the form
     \[
         Jf(p) = \left( \begin{array}{@{}c@{}}
             Jf_1(p) \\
@@ -4757,8 +4757,14 @@
     So we have the case for when the dimension of domain is the same, less than, and greater than that of the codomain. For the case when the domain is higher dimension, the statement involves composing some function inside \(f\). When the domain is lower dimension, we compose outside of \(f\). We conjecture that the general case will involve composing both sides of \(f\).
     These are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? And thus we arrive at the generalized Inverse Function Theorem:
     \begin{thm}
-        Let \(f: \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that for some open neighborhood \(U_0\) of some \(p_0\), \(\rank Jf(p) = k\) for all \(p \in U_0\). Then there exist two \(C^1\) functions \(\Psi\) 
+        Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that for some open neighborhood \(U_0\) of some \(p_0\), \(\rank Jf(p) = k\) for all \(p \in U_0\). Then there exist two diffeomorphisms \(\Psi: f(U_0) \to V_0 \subseteq \mathbb{R}^m\), \(\Phi : W_0 \subseteq \mathbb{R}^n \to U_0\) such that
+        \[
+            \Psi \circ f \circ \Phi (x_1, ..., x_n) = (x_1, ..., x_k, 0, ..., 0)
+        \]
     \end{thm}
+    \begin{proof}
+        idk
+    \end{proof}
 
 
     \section{Major Theorems}
