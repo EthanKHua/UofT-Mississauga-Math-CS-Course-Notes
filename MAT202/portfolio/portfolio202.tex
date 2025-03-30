@@ -1,0 +1,207 @@
+\documentclass{eh-homework}
+
+\begin{document}
+    \title{Final Portfolio \\ MAT202}
+    \author{Ethan Hua}
+    \date{April 4, 2025}
+    \maketitle
+    \begin{question}[title=Introduction]{1}
+        Over the course of MAT202 this semester, I have improved my work in regards to writing format and style. I wanted to take this opportunity to go back and revise my previous assignment submissions, using the knowledge and experience I have now. I have selected four questions to revise: A1Q1, A2Q1, A5Q1, and A6Q1. I selected these four because I felt that in each question, there was room to improve the clarity of my explanations.
+
+    \smallskip
+
+    A1Q1 was the first assignment I completed in this course. As such, there were several areas I could improve on, namely the organisation and formatting. My resubmission emphasises on changing the writing structure to communicate my ideas more clearly.
+
+    \smallskip
+
+    As for A2Q1, I believe I adequately conveyed my mathematical ideas, but I felt that there were issues with my wording, which made the submission come off as informal. In this resubmission, I change my wording to hopefully articulate my arguments better and make my solution easier to read.
+
+    \smallskip
+
+    A5Q1 was unlike the previous two questions, in the aspect that it required more computation rather than wordy arguments. I think I did a good job with connecting each computation to the next, but there were problems related to the precision of my mathematical arguments. I fix this in the portfolio by being more explicit about what I am doing.
+
+    \smallskip
+
+    Finally, I found that I ran into similar issues as A1Q1 and A2Q1 with A6Q1. The arguments are wordy, and the formatting makes it hard to read. Like the previous questions, I will fix these issues in this portfolio.
+
+    \smallskip
+
+    As I was reading through my past submissions, I found that my writing progressed to become less colloquial, which is an improvement from when I started the semester. I hope that my experience now will improve the submissions in the past.
+    \end{question}
+
+    \newpage
+
+    \begin{question}{1 of Assignment 1}
+        Count the number of five-card hands that can be formed from a standard deck such that:
+        \begin{itemize}
+            \item the hand contains more red cards than black cards, \textbf{and}
+            \item there are no repeated ranks in the hand.
+        \end{itemize}
+        
+        \textit{Solution.}
+
+        We begin by counting the number of combinations of ranks in the five-card hand. There are 13 ranks to choose from, and we must pick 5 to place in our hand, so there are \(\dbinom{13}{5}\) ways to pick the ranks.
+        
+        \smallbreak
+        
+        Next, we want to assign each colored card a rank. We separate the problem into three cases: the cases where the hand contains 3, 4, or 5 red cards. There cannot be less than 3 red cards, as that would imply that there are more black cards than red cards.
+        
+        \smallbreak
+
+        Of the 5 cards in hand, we want to choose 3, 4, or 5 of them to be red. For each case, there are \(\dbinom{5}{3},\dbinom{5}{4},\dbinom{5}{5}\) ways respectively to do so. As well, every black card can either be a club or a spade, and every red card can be a heart or a diamond, so the suit of each card in the hand can be chosen in two ways. Applying the multiplcation rule, the number of valid hands we can pick for each case is given by
+        \[
+            {13 \choose 5} \cdot {5 \choose 3} \cdot 2^5 ,\ {13 \choose 5} \cdot {5 \choose 4} \cdot 2^5,\ {13 \choose 5} \cdot {5 \choose 5} \cdot 2^5
+        \]
+        respectively. Finally, we use the sum rule and add all the cases together to get that the total number of valid hands is
+        \[
+            {13 \choose 5} \cdot {5 \choose 3} \cdot 2^5 + {13 \choose 5} \cdot {5 \choose 4} \cdot 2^5 + {13 \choose 5} \cdot {5 \choose 5} \cdot 2^5
+        \]
+        \[
+            = {13 \choose 5} \cdot 2^5 \cdot (10 + 5 + 1) = {13 \choose 5} \cdot 2^9
+        \]
+    \end{question}
+    \newpage
+    \begin{question}{1 of Assignment 2}
+        Write a combinatorial proof of the identity
+        \[
+            \sum_{i=0}^{n-1}\sum_{j=0}^{n-1} \binom{n}{i} \binom{n}{j}
+            = 
+            \sum_{k=0}^{n-1} \binom{n}{k} \left(3^{n-k} - 2\right)
+        \]
+        for integer $n \geq 1$.
+
+        \tcblower
+
+        We claim that both sides count the number of combinations of \(n\) students that are enroled in math, computer science, both, or neither, with the additional restriction that there must be at least one person that is not enroled in math, and another person, potentially the same one as before, that is not enroled in computer science.
+
+        \medskip
+
+        In the left hand side, each term \(\binom{n}{i}\binom{n}{j}\) counts the number of ways to assign \(i\) people to be in math and \(j\) people to be in computer science out of a total of \(n\) people. Notice that \(i\) and \(j\) are indexed so that they are strictly less than \(n\), so it is impossible for all students to be enroled in math or all students to be enroled in computer science. All the combinations of \(i\) and \(j\) are added up to obtain the number we are looking for.
+
+        \medskip
+
+        In the right hand side, for every term in the sum, \(\binom{n}{k}\) is the number of combinations of \(k\) people enroled in both math and computer science. The remaining \(n - k\) people can be enroled in only math, only computer science, or neither, which there are \(3^{n-k}\) possibilities of. However, we subtract the cases where all the remaining students are in math or all the remaining students are in computer science, of which there are 2 ways to achieve that. Finally, all the terms are added up from \(k=0\) to \(k=n-1\), guaranteeing that we avoid the case where every student is in both math and computer science.
+
+        \medskip
+
+        Thus both sides of the equation count the same thing, and the proof is complete.
+    \end{question}
+    \pagebreak
+    \begin{question}{1 of Assignment 5}
+        Solve the congruence $252x \equiv 1001 \pmod{7777}$, and express your final answer in terms of congruence classes in $\mathbb{Z}_{7777}$.
+
+        \medskip
+
+        \textit{Solution:} First, we find \(\mathrm{gcd} (252, 7777)\) using the Euclidean algorithm:
+        \begin{align*}
+            7777 &= 30 \cdot 252 + 217 \\
+            252 &= 1 \cdot 217 + 35 \\
+            217 &= 6 \cdot 35 + 7 \\
+            35 &=  5 \cdot 7 + 0
+        \end{align*}
+        Thus \(\mathrm{gcd} (252, 7777) = 7\), and \(7 \mid 1001\), so this congruence has solutions. We divide the congruence by \(7\) to obtain the congruence
+        \[
+            36x \equiv 143 \pmod {1111}
+        \]
+        We find the inverse of \(36\) mod \(1111\) by performing the Euclidean algorithm on \(1111\) and \(36\), followed by a back substitution.
+        \begin{align*}
+            1111 &= 30 \cdot 36 + 31 \\
+            36 &= 1 \cdot 31 + 5 \\
+            31 &= 6 \cdot 5 + 1 \\
+            5 &= 5 \cdot 1 + 0
+        \end{align*}
+        Now, we perform a back substitution to write 1 as a linear combination of 36 and 1111:
+        \begin{align*}
+            1 &= 31 - 6\cdot5 \\
+            &= 31 - 6 \cdot (36 - 1 \cdot 31) \\
+            &= 7 \cdot 31 - 6 \cdot 36 \\
+            &= 7 \cdot (1111 - 30\cdot 36) - 6 \cdot 36 \\
+            &= 7 \cdot 1111 - 216 \cdot 36 \\
+            \implies -216 \cdot 36 &\equiv 1 \pmod {1111} \\
+            895 \cdot 36 &\equiv 1 \pmod{1111}
+        \end{align*}
+        This means that \(895\) is the inverse of \(36\) mod \(1111\). We multiply both sides of the congruence by \(895\) to obtain that
+        \begin{align*}
+            x &\equiv 127985 \pmod{1111} \\
+            x &\equiv 220 \pmod{1111}
+        \end{align*}
+        Since we are looking for solutions mod \(7777\), we want \(x\) to be between \(0\) and \(7777\). We can continually increment \(x\) by \(1111\) to obtain that the solutions to the congruence are
+        \[[x] = [220], [1331], [2442], [3553], [4664], [5775], [6886].\]
+    \end{question}
+    \pagebreak
+    \begin{question}{1 of Assignment 6}
+        Let $G$ be a simple graph with vertex set $V$ and edge set $E$. 
+        Define a subset of vertices $S \subseteq V$ to be \textbf{unfriendly} if for any two vertices $u,v \in S$, $u$ and $v$ are \underline{not} adjacent in $G$. 
+        \begin{enumerate}[label=(\alph*)]
+            \item List all unfriendly subsets of vertices of the graph $H$, which has vertex set $V(H) = \{1,2,3,4,5,6\}$ and edge set $E(H) = \{(1,2),(1,3),(1,4),(2,4),(2,5),(3,5),(5,6)\}$.
+            \item Suppose that $S \subseteq V$ is the largest unfriendly subset of vertices of a graph $G$. 
+            Show that any vertex of $G$ is either in $S$, or adjacent to a vertex in $S$.
+        \end{enumerate}
+        \tcblower
+        \ 
+
+        Part (a):
+
+        We claim that all the unfriendly subsets of \(H\) are
+        \[
+            \{ 1 \} ,\{ 1,5 \} ,\{ 1,6 \},\{ 2 \} , \{ 2,3 \} , \{ 2,6 \} , \{ 2,3,6 \},
+        \]
+        \[
+            \{ 3 \} , \{ 3,4 \} , \{ 3,6 \} , \{ 3,4,6 \},\{ 4 \}, \{ 4,5 \} , \{ 4,6 \},\{ 5 \}, \{ 6 \}
+        \]
+
+        To show this, we methodically find all unfriendly subsets by first considering subsets that include 1, then the subsets that include 2 but not 1, and so on.
+
+        \smallskip
+
+        We see that \(1\) is adjacent to \(2,3,4\), so any unfriendly subset with \(1\) cannot include \(2,3,4\). The only candidates left are \(5,6\), but we see that they share an edge and cannot be in the same set. Thus the unfriendly subsets including 1 are \(\{ 1 \} ,\{ 1,5 \} ,\{ 1,6 \}\).
+
+        \smallskip
+
+        Next, we find unfriendly subsets including 2 but not 1. Notice that \(2\) is adjacent to \(1,4,5\), so \(2\) can be in a subset with \(3,6\) both, or neither, so the unfriendly subsets including 2 but not 1 are \(\{ 2 \} , \{ 2,3 \} , \{ 2,6 \} , \{ 2,3,6 \}\).
+
+        \smallskip
+
+        Similarly for \(3\), the vertices it is not adjacent to is \(2,4,6\), but we exclude \(2\). The remaining vertices do not share an edge with each other, so the unfriendly subsets including \(3\) but not \(1,2\) are \(\{ 3 \} , \{ 3,4 \} , \{ 3,6 \} , \{ 3,4,6 \}\).
+
+        \smallskip
+
+        \(4\) is not adjacent to \(3,5,6\), and we exclude \(3\). However, \(5,6\) are adjacent so an unfriendly subset can only contain zero or one of \(5,6\). Thus the subsets with 4 but not \(1,2,3\) are \(\{ 4 \}, \{ 4,5 \} , \{ 4,6 \}\).
+
+        \smallskip
+
+        Next, we want to find subsets including \(5\) but not \(1,2,3,4\). The only other candidate is \(6\), which is adjacent to \(5\), so the only unfriendly subset is \(\{ 5 \}\).
+
+        \smallskip
+
+        Finally, the only unfriendly subset that contains \(6\) but not \(1,2,3,4,5\) is \(\{ 6 \}\) for obvious reasons.
+
+        Therefore we have found all the unfriendly subsets as needed.
+
+        \medskip
+
+        Part (b):
+
+        Let \(S \subseteq V\) be the largest unfriendly subset of \(G\). Let \(v \in V\). If \(v \in S\), the statement is proven, so we only consider the case where \(v \notin S\). Suppose for contradiction that \(v\) is not adjacent to any vertex in \(S\). This implies that \(S \cup \{ v \}\) is an unfriendly subset of vertices, which contradicts the assumption that \(S\) is the largest unfriendly subset. Thus any vertex is either in \(S\) or adjacent to a vertex in \(S\).
+    \end{question}
+    \pagebreak
+    \begin{question}[title=Conclusion]{1}
+        Overall, I found that my experience in this course was very fulfilling, not only in terms of the course material but also with my writing style.
+
+    \smallskip
+
+    I enjoyed learning material from this course over the semester, and I found the course structure to be very conductive for my learning. The frequent feedback from the assignments and lectures are extremely useful for improving my work.
+    
+    \smallskip
+    
+    I found that the proofs in this course utilised significantly more writing, which emphasised the importance of being concise and articulating my ideas clearly. It has changed the way I write proofs for the better, which I am happy about. I will definitely carry this experience onwards with me as I take more advanced math courses.
+
+    \smallskip
+
+    Additionally, I would like to thank the TA's for giving valuable feedback on my assignments, which gave me clear directions for where to improve my work for this final portfolio. Having an extra pair of eyes to proofread my work is reassuring, as I find that I am biased towards my own work, making it harder to spot any mistakes or inconsistencies. The process of writing this portfolio could have been vastly different without their help.
+
+    \smallskip
+
+    This final portfolio was an excellent opportunity to see how I have changed my writing and thinking throughout the entire course. I am looking forward to how I evolve as a mathematician going into the future.
+    \end{question}
+\end{document}
