@@ -4755,7 +4755,7 @@
         \Phi (f(x)) = \Phi (f_1(x), f_2(x)) = x
     \]
     So we have the case for when the dimension of domain is the same, less than, and greater than that of the codomain. For the case when the domain is higher dimension, the statement involves composing some function inside \(f\). When the domain is lower dimension, we compose outside of \(f\). We conjecture that the general case will involve composing both sides of \(f\).
-    These are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? And thus we arrive at the generalized Inverse Function Theorem:
+    Additionally, these are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? And thus we arrive at the generalized Inverse Function Theorem:
     \begin{thm}
         Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that \(\rank Jf(p) = k \leq \min \{ n,m \}\) for all \(p \in U\). Then there exists an open neighborhood \(U_0 \subseteq U\) containing \(p_0\) and two diffeomorphisms \(\Psi: f(U_0) \to V_0 \subseteq \mathbb{R}^m\), \(\Phi : W_0 \subseteq \mathbb{R}^n \to U_0\) such that for all \((x_1, ..., x_n) \in W_0\),
         \[
@@ -4823,8 +4823,16 @@
             &= (x, 0)
         \end{align*}
     \end{proof}
-
-
+    The usage of local diffeomorpisms hint at applications involving manifolds, but as of now, the usage escapes my knowledge. This is still pretty cool though, as the theorem is related to the result in linear algebra that states that any matrix with rank \(r\) can be row and column reduced to the identity matrix in the top left, and if we take the Jacobian of the composition \(\Psi \circ f \circ \Phi\), we get
+    \[
+        J (\Psi \circ f \circ \Phi)(x) = \left( \begin{array}{@{}c|c@{}}
+            I_k & O \\
+            \hline 
+            O & O \\
+        \end{array} \right) 
+    \]
+    so the intuition behind this generalisation of the Inverse Function Theorem is locally, \(f\) looks like a linear transformation with rank \(k\), so we can reduce it to a nice looking matrix via row and column operations.
+    
     \section{Major Theorems}
     \subsection{Sequential Compactness and Compactness}
     \begin{defn}
