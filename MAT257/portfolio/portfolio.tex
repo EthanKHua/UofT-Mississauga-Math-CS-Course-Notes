@@ -4969,6 +4969,71 @@
         \]
         as desired.
     \end{proof}
+
+    \subsection{Chain Rule}
+
+    Let \(X,Y,Z\) be normed vector spaces, and \(g: X \to Y\), \(f: Y \to Z\) be functions. For some \(p \in X\), suppose that \(g\) is totally differentiable at \(p\) and \(f\) is totally differentiable at \(g(p)\). Then the function \(f \circ g\) is totally differentiable at \(p\), and \((f \circ g)' = f'(g(p)) \circ g'(p)\).
+
+	\begin{proof}
+		Let \(L_f = f'(g(p))\) and \(L_g = g'(p)\). First, let's prove that \(L_f \circ L_g\) is a linear bounded operator. For \(a,b \in X\), \(c \in \mathbb{R}\),
+		\[
+			L_f(L_g(ca + b)) = L_f(cL_g(a) + L_g(b)) = cL_f(L_g(a)) + L_f(L_g(b))
+		\]
+		Thus \(L_f \circ L_g\) is linear. Now, since \(L_f, L_g\) are bounded linear operators, there exist constants \(M_f, M_g > 0\) such that for all \(x \in X\), \(y \in Y\),
+		\[
+			\|L_f(y)\| _Z \leq M_f \|y\| _Y \text{ and } \|L_g(x)\| _Y \leq M_g \|x\| _X
+		\]
+		Then we have that for all \(x \in X\),
+		\[
+			\|L_f(L_g(x))\| _Z \leq M_f\|L_g(x)\| _Y \leq M_f \cdot M_g \|x\| _X
+		\]
+		so it is bounded as well. Now we can move on to the long part of the proof.
+  
+		Let \(\varepsilon > 0\). By our assumption, there exists positive numbers \(\delta _f , \delta _g\) such that for \(h_f, h_g\) with \(\|h_f\| _X < \delta _f\), \(\|h_g\| _X < \delta _g\),
+		\[
+			\|f(g(p) + h_f) - f(g(p)) - L_f(h_f)\| _Z \leq \min \left\{\sqrt{\varepsilon}, \frac{\varepsilon}{4M_g}\right\} \|h_f\| _X \tag{1}
+		\]
+		and
+		\[
+			\|g(p+h_g) - g(p) - L_g(h_g)\| _Y \leq \min \left\{\frac{\sqrt{\varepsilon}}{4}, \frac{\varepsilon}{2M_f}\right\} \|h_g\| _X \tag{2}
+		\]
+		As well, since \(g\) being totally differentiable at \(p\) implies continuity at \(p\), then for all \(\|h_c\| _X < \delta _c\),
+		\[
+			\|g(p + h_c) - g(p)\| < \delta _f \tag{3}
+		\]
+		Define \(\varepsilon _f = \min \left\{\sqrt{\varepsilon}, \frac{\varepsilon}{4M_g}\right\}\) and \(\varepsilon _g = \min \left\{\frac{\sqrt{\varepsilon}}{4}, \frac{\varepsilon}{2M_f}\right\}\), and let \(\delta = \min \{\delta_g, \delta_c, r\}\). For \(h \in X\) with \(\|h\| _X < \delta\),
+		\[
+			\frac{\|f(g(p+h)) - f(g(p)) - L_f(L_g(h))\| _Z}{\|h\| _X}
+		\]	
+		\[
+			\leq \frac{\|f(g(p+h)) - f(g(p)) - L_f(g(p + h) - g(p))\| _Z + \|L_f(g(p+h) - g(p) - L_g(h))\| _Z}{\|h\| _X}
+		\]
+		Consider the first term. Because of (3), we can apply (1) with \(h_f = g(p + h) - g(p)\) and get that
+		\[
+			\frac{\|f(g(p+h)) - f(g(p)) - L_f(g(p + h) - g(p))\| _Z}{\|h\| _X} < \frac{\|g(p+h) - g(p)\|}{\|h\| _X}\varepsilon _f
+		\]
+		Then applying (2) with \(h_g = h\),
+		\[
+			\leq \frac{\|g(p+h) - g(p) - L_g(h)\| _Y + \|L_g(h)\| _Y}{\|h\| _X}\varepsilon _f \leq \frac{\sqrt{\varepsilon}}{4}\varepsilon _f + M_g \varepsilon _f \leq \frac{\sqrt{\varepsilon}}{4}\sqrt{\varepsilon} + M_g \frac{\varepsilon}{4 M_g}
+		\]
+		\[
+			= \frac{\varepsilon}{2}
+		\]
+		Now, we examine the second term. Using the fact that \(L_f\) is a bounded linear operator and (2),
+		\[
+			\frac{\|L_f(g(p+h) - g(p) - L_g(h))\| _Z}{\|h\| _X} \leq \frac{M_f \|g(p+h) - g(p) - L_g(h)\| _Y}{\|h\| _X} < \frac{M_f \varepsilon}{2M_f} = \frac{\varepsilon}{2}
+		\]
+		Adding the two together we conclude that
+		\[
+			\frac{\|f(g(p+h)) - f(g(p)) - L_f(g(p + h) - g(p))\| _Z + \|L_f(g(p+h) - g(p) - L_g(h))\| _Z}{\|h\| _X}
+		\] 
+		\[
+			< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+		\]
+		and we are done.
+
+	\end{proof}
+    
     \subsection{Inverse Function Theorem and Implicit Function Theorem}
     \begin{thm}
         \textbf{Inverse Function Theorem.} Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^n\) be a \(C^1\) function. If \(p \in U\) such that \(Jf(p)\) is invertible, then
@@ -5106,9 +5171,88 @@
         Let \(U \subseteq \mathbb{R}^n\) be an open set. Let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Let \(p_0 \in U\) be a point such that \(\nabla f(p_0) = 0\). If the Hessian matrix \(Hf(p_0)\) is positive definite, then \(f\) achieves a local minimum at \(p_0\).
     \end{thm}
     \begin{proof}
-        Refer to Big List \#31.
+        First, we show that for a quadratic form \(Q(x) = x^t A x\), \(Q(x) > 0\) for all \(x\neq 0\) if and only if all the eigenvalues of \(A\) are positive.
+
+        Suppose that \(Q(\vec{x}) > 0\) for all \(\vec{x} \neq 0\). Since \(A\) is symmetric, it is orthogonally diagonalizable, so there exists an orthogonal matrix \(P \in M_n(\mathbb{R})\) such that \(B = P^{\top} A P\) is diagonal. Letting \(Q_B(\vec{x}) = \vec{x}^{\top} B \vec{x}\), we have that
+        \[
+            Q(\vec{x}) = Q_B \circ P (\vec{x})
+        \]
+        We will show that \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\).
+
+        Let \(\vec{x} \in \mathbb{R}^n\) so that \(\vec{x} \neq 0\). Since \(Q(\vec{x}) > 0\), it follows that \(Q_B(\vec{x}) > 0\) as well, which implies that its eigenvalues are strictly positive. Since \(A\) and \(B\) share the same eigenvalues, we are done.
+
+        Conversely, suppose that all the eigenvalues of \(A\) are strictly positive. By a similar argument as before, the eigenvalues of \(B\) are positive, so \(Q_B(\vec{x}) > 0\) for all \(\vec{x} \neq 0\). The same applies to \(Q\) and we are done.
+
+        \medskip
+
+        Next, we will show that there exists a constant \(\eta > 0\) so that \(Q(x) \geq \eta \|x\|^2\) are all \(x \in \mathbb{R}^n\).
+
+        First, equip \(\mathbb{R}^n\) with the 2-norm.
+
+        Let \(Q\) be a positive definite quadratic form, so \(Q(\vec{x}) = \vec{x}^{\top}A\vec{x}\), for some diagonalizable matrix \(A\), where all its eigenvalues \(\lambda _i\) are strictly positive.
+        
+        Let \(\eta = \min_{1 \leq i \leq n} \{\lambda _i\}\). Let \(B\) be the diagonal matrix such that \(A = P^{\top} B P\) for an orthogonal matrix \(P\). Denote \(P(\vec{x}) = (p_1, ..., p_n)\). We have
+        \[
+            Q(\vec{x}) = Q_B \circ P(\vec{x}) = (P(\vec{x}))^{\top}B(P(\vec{x})) = \sum_{i=1}^{n} \lambda_i \cdot p_i^2 \geq \eta \sum_{i=1}^{n} p_i^2 = \eta \lVert P(\vec{x}) \rVert _2
+        \]
+        Since \(P\) preserves distance, we have that
+        \[
+            Q(\vec{x}) \geq \eta \lVert P(\vec{x}) \rVert _2^2 = \eta \lVert \vec{x} \rVert _2^2
+        \]
+        as desired.
+
+        \medskip
+
+        Now, we prove the main result at hand.
+
+        Let \(U \subseteq \mathbb{R}^n\) be an open set, let \(f: U \to \mathbb{R}\) be a \(C^2\) function. Let \(p_0 \in U\) be a point such that \(\nabla f(p_0) = 0\). Suppose that \(Hf(p_0)\) is positive definite. We will show that \(Q(x) = \frac{1}{2}x^T Hf(p_0) x\) is a quadratic approximation to \(f\) at \(p_0\). That is,
+        \[
+            \lim_{h \to 0} \frac{f(p_0 + h) - f(p_0) - Q(h)}{\|h\|^2} = 0
+        \]
+        Let \(\varepsilon > 0\). Since \(U\) is open, there is a \(\delta _o\) so that \(p_0 + h \in U\), where \(\|h\| < \delta _o\). Additionally, by the continuity of \(Hf\), there exists \(\delta _c\) so that for \(\|h\| < \delta _c\), \(|Hf(p_0 + h) - Hf(p_0)| < 2\varepsilon\). Let \(\delta = \min \{ \delta _o, \delta _c \}\). Fix \(h \in \mathbb{R}^n\) such that \(0 < \|h\| < \delta\).
+        
+        Since \(U\) is open, there exists \(r > 0\) so that \(p_0 + th \in U\) for \(t \in (-r, 1 + r)\). Define \(g(t) = f(p_0 + th)\).
+        Applying Taylor's quadratic remainder formula to \(g\), there exists \(\theta \in (0, 1)\) so that
+        \[
+            g(1) = g(0) + g'(0) + \frac{1}{2}g''(\theta) \implies f(p_0 + h) = f(p_0) + f'(p_0)h + \frac{1}{2}f''(p_0 + \theta h)(h)h
+        \]
+        Since \(\nabla f(p_0) = 0\), we have
+        \[
+            f(p_0 + h) = f(p_0) + \frac{1}{2}h^T Hf(p_0 + \theta h)h
+        \]
+        Thus we have
+        \[
+            |f(p_0 + h) - f(p_0) - Q(h)| = \left\vert \frac{1}{2}h^T Hf(p_0 + \theta h)h - \frac{1}{2}h^T Hf(p_0)h\right\vert
+        \]
+        \[
+            \leq \frac{1}{2}\|h^T\| _c \|Hf(p_0 + \theta h) - Hf(p_0)\| \|h\|
+        \]
+        where \(\|\cdot\| _c\) is a norm on row vectors defined by \(\|x\| _c = \|x^T\|\). Automatically we have that 
+        \[
+            |f(p_0 + h) - f(p_0) - Q(h)| \leq \frac{1}{2}\|Hf(p_0 + \theta h) - Hf(p_0)\| \|h\|^2 < \varepsilon \|h\|^2
+        \]
+        \[
+            \implies \frac{f(p_0 + h) - f(p_0) - Q(h)}{\|h\|^2} < \varepsilon
+        \]
+        as desired. Thus \(Q\) is indeed a quadratic approximation for \(f\) at \(p_0\). It remains to show that \(f\) attains a local minimum at \(p_0\). Suppose that this is not the case. In particular, for every open neighborhood around \(p_0\) there is a point \(q\) where \(f(q) < f(p_0)\). We write \(q = p_0 + s\), where \(s = q - p_0\). Since \(Hf(p_0)\) is positive definite, \(Q\) is positive definite. Using the quadratic approximation, there is a \(\delta > 0\) so that for all \(0 < \|h\| < \delta\),
+        \[
+            |f(p_0 + h) - f(p_0) - Q(h)| < \eta\|h\|^2,
+        \]
+        where \(\eta\) comes from part (b) applied to \(Q\). Find a suitable \(s\) such that \(f(p_0 + s) < f(p_0)\). By part (a), \(Q(s) > 0\). This implies that \(f(p_0 + s) - f(p_0) - Q(s) < 0\), so
+        \[
+            f(p_0) - f(p_0 + s) + Q(s) < \eta \|h\|^2 \implies f(p_0) + Q(s) - \eta \|h\|^2 < f(p_0 + s).
+        \]
+        From part (b), we know that \(Q(s) - \eta \|h\|^2 \geq 0\), so
+        \[
+            f(p_0) < f(p_0 + s)
+        \]
+        which is a contradiction.
+
+        Therefore we have shown that \(f\) attains a local minimum at \(p_0\) and we are done.    
     \end{proof}
+
     \subsection{Change of Variables}
+
     \begin{thm}
         Let \(E\) be a measurable set in \(\mathbb{R}^n\) and let \(\Phi : U \to V\) be a diffeomorphism, where \(U\) contains \(E\). Let \(f\) be integrable on \(\Phi (E)\). Then
         \[

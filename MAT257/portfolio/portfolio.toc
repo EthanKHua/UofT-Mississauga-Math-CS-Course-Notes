@@ -70,6 +70,7 @@
 \contentsline {subsection}{\numberline {4.1}Sequential Compactness and Compactness}{100}{}%
 \contentsline {subsection}{\numberline {4.2}Equivalence of Norms in Finite Dimensional Vector Spaces}{100}{}%
 \contentsline {subsection}{\numberline {4.3}Differentiability Theorem}{101}{}%
-\contentsline {subsection}{\numberline {4.4}Inverse Function Theorem and Implicit Function Theorem}{102}{}%
-\contentsline {subsection}{\numberline {4.5}Condition for Local Minimum}{105}{}%
-\contentsline {subsection}{\numberline {4.6}Change of Variables}{105}{}%
+\contentsline {subsection}{\numberline {4.4}Chain Rule}{102}{}%
+\contentsline {subsection}{\numberline {4.5}Inverse Function Theorem and Implicit Function Theorem}{104}{}%
+\contentsline {subsection}{\numberline {4.6}Condition for Local Minimum}{106}{}%
+\contentsline {subsection}{\numberline {4.7}Change of Variables}{107}{}%
