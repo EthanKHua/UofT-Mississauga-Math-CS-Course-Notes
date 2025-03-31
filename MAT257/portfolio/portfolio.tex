@@ -4337,7 +4337,8 @@
             \int _{E \times F} f = \int _E \int _F f.
         \]
     \end{proof}
-
+    \subsection{Antiderivatives}
+    In this section, we look into a possible generalisation of function antiderivatives. We create some definitions and prove results that help us solve specific problems. In particular, we will use the concept of antiderivatives to prove that multivariate polynomials are closed under differentiation and integration.
     \begin{prop}
         \textbf{Exact equations.} Let \(M,N : \mathbb{R}^2 \to \mathbb{R}\) be totally differentiable functions. Then there exists a twice differentiable function \(F: \mathbb{R}^2 \to \mathbb{R}\) such that \(\dfrac{\partial F}{\partial x} = M\) and \(\dfrac{\partial F}{\partial y} = N\) if and only if \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\).
     \end{prop}
@@ -4673,6 +4674,41 @@
     \begin{proof}
         We know that precompactness is equivalent to separability, and we also know that any subset of a separable metric space is also separable, and thus precompact.
     \end{proof}
+    Now, we investigate whether the union, intersection, or cartesian product of precompact metric paces are precompact.
+    \begin{prop}
+        Let \(X,Y\) be precompact metric spaces. Then the following are true:
+        \begin{enumerate}[label=(\alph*)]
+            \item \(X \cup Y\) is precompact,
+            \item \(X \cap Y\) is precompact,
+            \item \(X \times Y\) endowed with the product metric is precompact.
+        \end{enumerate}
+    \end{prop}
+    \begin{proof}
+        \ 
+
+        (a):
+
+        Let \(\mathcal{U}\) be an open cover for \(X \cup Y\). We can find countable subcovers \(\mathcal{U}_1, \mathcal{U}_2\) for \(X\) and \(Y\) respectively, then note that \(\mathcal{U} _1 \cup \mathcal{U} _2\) is a countable subcover of \(X \cup Y\).
+        
+        \medskip
+
+        (b):
+
+        \(X \cap Y\) is a subset of \(X\), so it is also precompact.
+
+        \medskip
+
+        (c):
+
+        \(X,Y\) being precompact implies that they are separable. Take countable dense subsets \(C \subseteq X, D \subseteq Y\). We will show that the countable set \(C \times D\) is dense in \(X \times Y\).
+
+        Fix \((x,y) \in X \times Y\), and let \(\varepsilon > 0\). We can find \(c \in C\), \(d \in D\) such that \(d_X(x,c) < \frac{\varepsilon}{2}\) and \(d_Y(y,d) < \frac{\varepsilon}{2}\) so therefore
+        \[
+            d((x,y), (c,d)) = d_X(x,c) + d_Y(y,d) < \varepsilon.
+        \]
+        as needed.
+    \end{proof}
+
     For this section, we focus mainly on \(\mathbb{R}^n\) rather than arbitrary precompact metric spaces.
     \begin{prop}
         Every set with a compact exhaustion is precompact.
@@ -4716,7 +4752,7 @@
     \end{thm}
     It seems that these two theorems are a special case for some more general theorem. In fact, these statements are actually equivalent. We have shown that the Implicit Function Theorem follows from the Inverse Function Theorem. We will show that the converse is also true.
     \begin{proof}
-        Suppose that the Implicit Function Theorem has been proven. Let \(f : U \to \mathbb{R}^n\) be a \(C^1\) function. Let \(p \in U\) such that \(Jf(p)\) is invertible. Let \(g: f(U) \times U \to \mathbb{R}^n\) be defined by
+        Suppose that the Implicit Function Theorem has been proven. We will show that the Inverse Function Theorem is also true. Let \(f : U \to \mathbb{R}^n\) be a \(C^1\) function. Let \(p \in U\) such that \(Jf(p)\) is invertible. Let \(g: f(U) \times U \to \mathbb{R}^n\) be defined by
         \[
             g(x,y) = f(y) - x
         \]
@@ -4755,7 +4791,7 @@
         \Phi (f(x)) = \Phi (f_1(x), f_2(x)) = x
     \]
     So we have the case for when the dimension of domain is the same, less than, and greater than that of the codomain. For the case when the domain is higher dimension, the statement involves composing some function inside \(f\). When the domain is lower dimension, we compose outside of \(f\). We conjecture that the general case will involve composing both sides of \(f\).
-    Additionally, these are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? And thus we arrive at the generalized Inverse Function Theorem:
+    Additionally, these are cases where \(Jf(p)\) has full rank, but what if \(\rank Jf(p)\) is less than \(k\)? These questions are answered in the following generalisation of the Inverse Function Theorem:
     \begin{thm}
         Let \(f: U \subseteq \mathbb{R}^n \to \mathbb{R}^m\) be a \(C^1\) function, and suppose that \(\rank Jf(p) = k \leq \min \{ n,m \}\) for all \(p \in U\). Then there exists an open neighborhood \(U_0 \subseteq U\) containing \(p_0\) and two diffeomorphisms \(\Psi: f(U_0) \to V_0 \subseteq \mathbb{R}^m\), \(\Phi : W_0 \subseteq \mathbb{R}^n \to U_0\) such that for all \((x_1, ..., x_n) \in W_0\),
         \[
@@ -4831,8 +4867,8 @@
             O & O \\
         \end{array} \right) 
     \]
-    so the intuition behind this generalisation of the Inverse Function Theorem is locally, \(f\) looks like a linear transformation with rank \(k\), so we can reduce it to a nice looking matrix via row and column operations.
-    
+    so the intuition behind this generalisation of the Inverse Function Theorem is that locally, \(f\) looks like a linear transformation with rank \(k\), so we can reduce it to a nice looking matrix via row and column operations.
+
     \section{Major Theorems}
     \subsection{Sequential Compactness and Compactness}
     \begin{defn}
@@ -5103,7 +5139,7 @@
         \]
         where \(q \in U_0\), \(L\) is linear, and \(S_i\) are simple mappings that are non-singular, and \(S_i (0) = 0\).
 
-        We proceed with induction on the number of consecutive simple entries of \(\Phi\), staring from the first component. If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then 
+        We proceed with induction on the number of consecutive simple entries of \(\Phi\), starting from the first component. If all but one entry is simple, the result is immediate, as \(\Phi\) is already simple. Now suppose that we can decompose such \(\Phi\) if its first \(k\) entries were simple. Take a \(\Phi\) with its first \(k-1\) entries simple. Then 
         \[
             \Phi (x_1, ..., x_n) = (x_1, ..., x_{k-1}, \varphi _k (x), ..., \varphi _n (x)).
         \]
@@ -5130,11 +5166,11 @@
                 0 & \cdots & \cdots & \cdots & \cdots &  1 \\
             \end{pmatrix}
         \]
-        so \(J \Psi(0)\) is invertible. By the Inverse Function Theorem, there is an open neighborhood \(U_0\) containing 0 such that \(\Psi | _{U_0}\) is invertible. Let \(L_{ik}\) be the linear transformation that swaps the \(i\) and \(k\)th component. We write
+        so \(J \Psi(0)\) is invertible. By the Inverse Function Theorem, there is an open neighborhood \(U_0\) containing 0 such that \(\Psi | _{U_0}\) is invertible. We write
         \[
             \Psi^{-1} = (x_1, ..., x_{k-1} , \varphi _i^{-1} , x_{k+1} , ..., x_n), \text{ where } \varphi _i^{-1} : \Psi (U_0) \to \mathbb{R}.
         \]
-        Notice that \(\varphi _i \circ \Psi^{-1} = x_k\). Then consider the function \(\alpha : \Psi (U_0) \to V\) 
+        Notice that \(\varphi _i \circ \Psi^{-1} = x_k\). Let \(L_{ik}\) be the linear transformation that swaps the \(i\) and \(k\)th component. Then consider the function \(\alpha : \Psi (U_0) \to V\) 
         \[
             \alpha(x) = L_{ik} \circ \Phi \circ \Psi^{-1} (x) = L_{ik} (x_1, ..., x_{k-1} , \varphi _k (\Psi ^{-1}(x)), ..., \varphi _{i-1} (\Psi ^{-1}(x)), x_k, \varphi _{i+1} (\Psi ^{-1}(x)), ..., \varphi _n (\Psi ^{-1}(x)))
         \]
