@@ -66,8 +66,8 @@
 \contentsline {subsection}{\numberline {3.1}Antiderivatives}{90}{}%
 \contentsline {subsection}{\numberline {3.2}Precompactness}{97}{}%
 \contentsline {subsection}{\numberline {3.3}Generalizing the Inverse Function Theorem}{98}{}%
-\contentsline {section}{\numberline {4}Major Theorems}{100}{}%
-\contentsline {subsection}{\numberline {4.1}Sequential Compactness and Compactness}{100}{}%
+\contentsline {section}{\numberline {4}Major Theorems}{101}{}%
+\contentsline {subsection}{\numberline {4.1}Sequential Compactness and Compactness}{101}{}%
 \contentsline {subsection}{\numberline {4.2}Equivalence of Norms in Finite Dimensional Vector Spaces}{101}{}%
 \contentsline {subsection}{\numberline {4.3}Differentiability Theorem}{102}{}%
 \contentsline {subsection}{\numberline {4.4}Chain Rule}{103}{}%

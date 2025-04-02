@@ -4885,6 +4885,11 @@
             &= (x, 0)
         \end{align*}
     \end{proof}
+    It is slightly important to note that one of the assumptions in this theorem is that \(Jf\) is of constant rank, rather than just being invertible at a single point. This is because the invertibility of a matrix is not affected under small perturbations of its entries, while in general, the rank is volatile to these changes. For example, the matrix \(\begin{pmatrix}
+        1 &  1 \\
+        1 &  1 \\
+    \end{pmatrix}\) has rank 1, but almost any change in its entries causes the rank to increase. 
+    
     The usage of local diffeomorpisms hint at applications involving manifolds, but as of now, the usage escapes my knowledge. This is still pretty cool though, as the theorem is related to the result in linear algebra that states that any matrix with rank \(r\) can be row and column reduced to the identity matrix in the top left, and if we take the Jacobian of the composition \(\Psi \circ f \circ \Phi\), we get
     \[
         J (\Psi \circ f \circ \Phi)(x) = \left( \begin{array}{@{}c|c@{}}
