@@ -113,13 +113,13 @@
             \hline
             \#31 & Complete \\
             \hline
-            \#32 & Complete \\
+            \#32 & Complete (Specially Selected) \\
             \hline
             \#33 & Complete \\
             \hline
-            \#34 & Complete \\
+            \#34 & Complete (Specially Selected) \\
             \hline
-            \#35 & Complete \\
+            \#35 & Complete (Specially Selected) \\
             \hline
             \#36 & Complete \\
             \hline
@@ -133,7 +133,7 @@
             \hline
             \#41 & Complete \\
             \hline
-            \#42 & Complete \\
+            \#42 & Complete (Specially Selected) \\
             \hline
             \#43 & NA \\
             \hline
@@ -2354,7 +2354,7 @@
         \end{proof}
         \newpage
         \subsection{\#32*}
-        \textit{I selected this problem because I found this question to be challenging, but also rewarding to prove. At first, }
+        \textit{I selected this problem because I found this question to be challenging, but also rewarding to prove. At first, I attempted this problem without knowing about the Implicit Function Theorem. As a result, I could not solve the problem, though I gained some intuition about how to solve it. This intuition was directly related to the application of the Implicit Function Theorem.}
         
         Let $M$ be a subset of $\R^n$, let $p_0\in M$ be a point, and let $\vec{v}\in \R^n$ be a vector. We say that $\vec{v}$ is a \textbf{tangent vector} to $M$ at $p_0$ if there exists $\delta>0$ and a $C^1$ function $\alpha:(-\delta,\delta)\rightarrow M$ such that $\alpha(0)=p_0$ and $\alpha'(0)=\vec{v}$. In other words, $\vec{v}$ is the velocity vector of a curve through $M$.
 
@@ -4347,6 +4347,8 @@
     \end{proof}
     \subsection{Antiderivatives}
     In this section, we look into a possible generalisation of function antiderivatives. We create some definitions and prove results that help us solve specific problems. In particular, we will use the concept of antiderivatives to prove that multivariate polynomials are closed under differentiation and integration.
+
+    To begin, we are interested in functions that ``look like'' the derivative of another function. The following proposition characterizes this.
     \begin{prop}
         \textbf{Exact equations.} Let \(M,N : \mathbb{R}^2 \to \mathbb{R}\) be totally differentiable functions. Then there exists a twice differentiable function \(F: \mathbb{R}^2 \to \mathbb{R}\) such that \(\dfrac{\partial F}{\partial x} = M\) and \(\dfrac{\partial F}{\partial y} = N\) if and only if \(\dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}\).
     \end{prop}
@@ -4369,6 +4371,22 @@
         Since \(F\) is symmetric, taking the partial derivative with respect to \(y\) will similarly give us \(\dfrac{\partial F}{\partial y} (x,y) = N(x,y)\), and the proof is complete.
         \smallbreak
     \end{proof}
+    It is important to note that this is not true in general, namely for an arbitrary domain \(U \subseteq \mathbb{R}^n\), this statement may not hold. For instance, take \(f: \mathbb{R}^2 \setminus \{ 0 \} \to \mathbb{R}^2\) to be
+    \[
+        f(x,y) = \left( \frac{y}{x^2 + y^2}, \frac{-x}{x^2 + y^2} \right) 
+    \]
+    Then
+    \[
+        \frac{d}{dy} \left( \frac{y}{x^2 + y^2} \right) = \frac{x^2 + y^2 - 2y^2}{(x^2 + y^2)^2} = \frac{x^2 - y^2}{(x^2 + y^2)^2}
+    \]
+    \[
+        \frac{d}{dx} \left( \frac{-x}{x^2 + y^2} \right) = \frac{-(x^2 + y^2) + 2x^2}{(x^2 + y^2)^2} = \frac{x^2 - y^2}{(x^2 + y^2)^2}
+    \]
+    so the partial derivatives of each component function match. Following the formula we found above, the supposed function is given by
+    \[
+        F(x,y) = \frac{1}{2}\int \frac{y}{x^2 + y^2}\ dx + \frac{1}{2}\int \frac{-x}{x^2 + y^2}\ dy = \frac{1}{2}\arctan \left( \frac{x}{y} \right) - \frac{1}{2}\arctan \left( \frac{y}{x} \right).
+    \]
+    Each partial derivative of \(F\) does indeed match the components of \(f\), but the issue is that \(F\) is undefined when either \(x = 0\) or \(y = 0\), which is within the domain of \(f\). I have not found a sufficient restriction on the domain to make the implication true, so we need the condition that the domain is \(\mathbb{R}^n\). Luckily, this is enough to prove results about polynomials, as their domain is \(\mathbb{R}^n\).
     \begin{cor}
         Suppose we have a differential equation of the form
         \[
