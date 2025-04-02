@@ -27,7 +27,7 @@
 \contentsline {subsection}{\numberline {1.26}\#29}{37}{}%
 \contentsline {subsection}{\numberline {1.27}\#30}{41}{}%
 \contentsline {subsection}{\numberline {1.28}\#31}{43}{}%
-\contentsline {subsection}{\numberline {1.29}\#32}{45}{}%
+\contentsline {subsection}{\numberline {1.29}\#32*}{45}{}%
 \contentsline {subsection}{\numberline {1.30}\#33}{47}{}%
 \contentsline {subsection}{\numberline {1.31}\#34*}{49}{}%
 \contentsline {subsection}{\numberline {1.32}\#35*}{51}{}%
@@ -37,7 +37,7 @@
 \contentsline {subsection}{\numberline {1.36}\#39}{62}{}%
 \contentsline {subsection}{\numberline {1.37}\#40}{65}{}%
 \contentsline {subsection}{\numberline {1.38}\#41}{67}{}%
-\contentsline {subsection}{\numberline {1.39}\#42}{69}{}%
+\contentsline {subsection}{\numberline {1.39}\#42*}{69}{}%
 \contentsline {subsection}{\numberline {1.40}\#43}{71}{}%
 \contentsline {subsection}{\numberline {1.41}\#44}{72}{}%
 \contentsline {section}{\numberline {2}Handout Exercises}{72}{}%
