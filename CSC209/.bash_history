@@ -1,49 +1,3 @@
-vim parity.c
-gcc -Wall -g -o compute_parity compute_parity.c parity.c
-./compute_parity 4 64 "quotes.txt"
-ls
-vim restore_block.c
-gcc -Wall -g -o restore_block restore_block.c parity.c
-./restore_block
-./restore_block 4 64 "quotes.txt" 0
-vim restore_block.c
-vim parity.c
-gcc -Wall -g -o restore_block restore_block.c parity.c
-vim parity.c
-gcc -Wall -g -o restore_block restore_block.c parity.c
-./restore_block 4 64 "quotes.txt" 0
-ls
-touch testing.txt
-ls
-vim testing.txt
-ls
-gcc -Wall -g -o split_array split_array.c
-./split_array 1 2 3
-./split_array 1 2 3 4 5 6 
-./split_array 1 2 3 4 5 6 7
-./split_array 1 2 3 4 5 6 7 8
-./split_array 1 2 3 4 5 6 7 8 9 10 11 12 13 14
-./split_array 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
-./split_array 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
-cd ..
-cd a1
-ls
-git add compute_parity.c parity.c restore_block.c
-git ci "a1 minus testing complete"
-pwd
-cd ..
-ls
-cd A1
-pqs
-pqs
-pqd
-pwd
-ls
-git add compute_parity.c parity.c restore_block.c
-git status
-git ci "a1 minus testing complete"
-git push
-./compute_parity 3 7 "test1.txt"
 cd documents
 cd uno
 cd ui
@@ -497,4 +451,50 @@ netcat teach.cs.toronto.edu 30017
 netcat -C teach.cs.toronto.edu 30017
 netcat -C teach.cs.toronto.edu 30017
 quit
+exit
+cd a3
+cd ..
+cd A3
+ls
+make
+./raid_sim
+s
+ls
+vim simpletrans
+ls
+nvim test_trans1
+./raid_sim -n 1 -t test_trans1
+nvim raid_sim.c
+make
+./raid_sim -n 1 -t test_trans1
+nvim test_trans1
+make
+./raid_sim -n 1 -t test_trans1
+nvim controller.c
+make
+./raid_sim
+./raid_sim -n 1 -t test_trans1
+nvim controller.c
+make
+./raid_sim -n 1 -t test_trans1
+nvim controller.c
+make
+./raid_sim -n 1 -t test_trans1
+nvim controller.c
+make
+gdb ./raid_sim
+gdb ./raid_sim
+nvim controller.c
+make
+./raid_sim
+nvim controller.c
+make
+./raid_sim -n 1 -t test_trans1
+ls
+for s in *.dat; do xxd $s; end; done
+for s in *.dat; do xxd $s; done
+cat test_trans1
+git add *.c
+git ci "a3 complete"
+git push
 exit
