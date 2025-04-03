@@ -8,7 +8,7 @@
 
     \medskip
 
-    Thank you for reaching out to me and I hope you are doing well. I am writing to inform you that I have finished the task that you assigned to me. Attached to this email is the Python code I wrote to solve this problem. As well, I have provided an explanation for my code below, followed by the amortized complexity analyses for both the scenarios described in your email.
+    Thank you for reaching out to me and I hope you are doing well. I am writing to inform you that I have finished the task that you assigned to me. Attached to this email is the Python code I wrote to solve this problem. Additionally, I have provided an explanation for my code below, followed by the amortized complexity analyses for both the scenarios described in your email.
 
     \medskip
 
@@ -24,13 +24,13 @@
     
     If the address is unoccupied or contains the same key \(k\), then the method will return the index \(h(k)\). If not, it must be true that either another key or the DELETED string is present at this index. The reason why the method does not return the index of a DELETED string immediately is because the key \(k\) can potentially lie at another index; this is a consequence of quadratic probing. To ensure correctness, it first verifies if k exists before returning an index. The method keeps track of the index of the first DELETED occurence encountered so that it knows what to return if \(k\) is not in the hash table.
     
-    Then, using quadratic probing, the method continually performs the same checks at indices \(h_i = h(k) + i^2 \pmod c\), where \(i\) is a positive integer, starting at one, that increments at each iteration. The loop stops when it finds an empty address or an address that contains the key \(k\). This algortihm is guaranteed to terminate given that the capacity of the hash table is less than half, although proving is quite complex. However, I am willing to elaborate on this if need be.
+    Then, using quadratic probing, the method continually performs the same checks at indices \(h_i = h(k) + i^2 \pmod c\), where \(i\) is a positive integer, starting at one, that increments at each iteration. The loop stops when it finds an empty address or an address that contains the key \(k\). This algortihm is guaranteed to terminate given that the capacity of the hash table is less than half, although proving this formally is quite complex. However, I am willing to elaborate on this if need be.
 
     \medskip
 
     \textbf{Implementation of} \texttt{rehash}
 
-    The other helper method, \texttt{rehash}, given a new capacity \(c\), creates a new array with capacity \(c\), and iterates through the current array to reinsert the existing elements into the new array by finding a suitable address for each element using \texttt{find}, and assigning the key to that address. Particularly, \texttt{find} is called with the new array, the capacity \(c\), and each key \(k\) from the current hash table, respectively.
+    The other helper method, \texttt{rehash}, creates a new array with capacity \(c\), and iterates through the current array to reinsert the existing elements into the new array by finding a suitable address for each element using \texttt{find}, and assigning the key to that address. Particularly, \texttt{find} is called with the new array, the capacity \(c\), and each key \(k\) from the current hash table, respectively.
 
     \medskip
 
@@ -48,7 +48,7 @@
 
     \textbf{Implementation of} \texttt{delete}
 
-    Finally, the \texttt{delete} method deletes the key \(k\) from the hash table. The implementation is very similar to \texttt{insert}. First, it attempts to find \(k\) with \texttt{find}. If \(k\) is inside the address found with \texttt{find}, replace it with the DELETED string decrement the size attribute. Otherwise, the method does nothing. Afterwards, it checks if the capacity is below one quarter. If it has, and the maximum capacity is greater than the initial capacity, the method will call \texttt{rehash} with new capacity equal to half of the current capacity to shrink the hash table.
+    Finally, the \texttt{delete} method deletes the key \(k\) from the hash table. The implementation is very similar to \texttt{insert}. First, it attempts to find \(k\) with \texttt{find}. If \(k\) is inside the address found with \texttt{find}, replace it with the DELETED string and decrement the size attribute. Otherwise, the method does nothing. Afterwards, it checks if the capacity is below one quarter. If it has, and the maximum capacity is greater than the initial capacity, the method will call \texttt{rehash} with new capacity equal to half of the current capacity to shrink the hash table.
 
     That concludes the explanations for the implementation of the hash table.
     
@@ -77,13 +77,13 @@
     \end{align*}
     We can perform a very similar analysis on the \(N\) delete operations. The worst-case runtime is when every element hashes to the same address at every capacity, and each element is deleted in backwards order of the most recent rehashing. In particular, with my implementation, rehashing is done linearly, so the last key in the hash table will be inserted last, and due to open addressing, must iterate through the address of every key inserted before it. This guarantees that every other element must be checked before the method is able to access the element to be deleted. Thus we can do a very similar calculation as before to obtain that the total runtime of the delete operations is \(\mathcal{O} (N^2)\).
 
-    Since the total cost of the operations remains \(\mathcal{O} (N^2)\), the amortized cost of the sequence in the first situation is \(\mathcal{O} (N)\).
+    Since the total cost of the operations is \(\mathcal{O} (N^2)\), the amortized cost of the sequence in the first situation is \(\mathcal{O} (N)\).
 
     \medskip
 
     \textbf{Situation 2}
 
-    In the second situation, every insert and delete operation will require a rehashing. This is because the capacity of the hash table is one insertion away from half capacity, so after the insertion the table will be expanded. After this expansion, the capacity is at exactly one quarter, and the current capacity is not the initial capacity (which must be less than or equal to \(2N\)), and deleting an element will cause the table to shrink. After these two operations, the table returns to its previous configuration, allowing the cycle to repeat. Again, the worst-case input for this situation is if every element hashes to the same address, and \texttt{delete} is called on the element that is inserted last in the rehashing. This being the case, every pair of insert and delete operations will have the runtime
+    In the second situation, every insert and delete operation will require a rehashing. This is because the capacity of the hash table is one insertion away from half capacity, so after the insertion the table will be expanded. After this expansion, the capacity is at exactly one quarter, and the current capacity is not the initial capacity (which must be less than or equal to \(2N\)), and deleting an element will cause the table to shrink. After these two operations, the table returns to its previous configuration, allowing the cycle to repeat. Again, the worst-case input occurs when every element hashes to the same address, and \texttt{delete} is called on the element that is inserted last in the rehashing. This being the case, every pair of insert and delete operations will have the runtime
     \[
         \left(N + 2N + \sum_{j=1}^{N} j\right) + \left( N + 4N + \sum_{j=1}^{N-1} j \right) = N^2 + 8N.
     \]
@@ -93,7 +93,7 @@
     \end{align*}
     Thus the amortized runtime in the second situation is \(\mathcal{O} (N^2)\), which completes both the complexity analyses.
     
-    I hope that my explanations and analyses were satisfactory, and I look forward to hearing back from you soon. Thank you very much.
+    I hope that my explanations and analyses were clear, and I look forward to hearing back from you soon. Thank you very much.
 
     \medskip
 
