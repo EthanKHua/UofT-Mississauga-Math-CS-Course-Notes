@@ -59,7 +59,20 @@
         \begin{enumerate}[label=(\alph*)]
             \item Use the composite Simpson's rule to approximate the value of this integral using \(n=3\) intervals.
             
+            We split the interval \([1,7]\) into the three intervals \([1,3], [3,5],[3,7]\) and approximate the integral on each interval. Using Simpson's rule,
+            \begin{align*}
+                \int _1^7 \cos (x^2)\ dx &= \int _1^3 \cos (x^2)\ dx + \int _3^5 \cos (x^2)\ dx + \int _5^7 \cos (x^2)\ dx \\
+                &\approx \frac{(\cos 1^2 + 4 \cos 2^2 + \cos 3^2) + (\cos 3^2 + 4 \cos 4^2 + \cos 5^2)}{3} \\
+                &\ + \frac{\cos 5^2 + 4 \cos 6^2 + \cos 7^2}{3} \\
+                &\approx -1.985
+            \end{align*}
             \item Determine the number of intervals \(n\) needed to guarantee an error of at most \(10^{-4}\).
+            
+            Using composite Simpson's rule, the absolute error for using \(n\) intervals is \(\frac{6^5}{180n^4}|f^{(n)}(\xi)|\), for some \(\xi \in (1,7)\). We can bound the derivative term above by 1 at get that the error bound is \(\frac{6^5}{180n^4}\). We solve for \(n\) such that \(\frac{6^5}{180n^4} < 10^{-4}\) to get
+            \[
+                n^4 > \frac{6^5 \cdot 10^4}{180} \implies n > \sqrt[4]{\frac{6^5 \cdot 10^4}{180}} \approx 25.637
+            \]
+            Thus we need around 26 intervals to guarantee an error better than \(10^{-4}\).
         \end{enumerate}
     \end{question}
     \begin{question}{4}
@@ -68,6 +81,14 @@
             2\dot y + y = t^4 + 1,\ y(1) = 2.
         \]
         Apply the second degree Taylor method with \(h = 0.5\) to this ODE to approximate \(y(2)\). Show the details in each step.
+
+        \medskip
+
+        We let \(f(t,y) = \frac{t^4 - y + 1}{2}\) and rearrange the ODE to see that
+        \[
+            \dot y = f(t,y).
+        \]
+        Set \(x_0 = 1, y_0 = y(1) = 2\).
     \end{question}
     \begin{question}{5}
         Derive an ODE solver based on the stencil and corresponding integration formula.
