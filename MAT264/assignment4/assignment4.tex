@@ -88,7 +88,20 @@
         \[
             \dot y = f(t,y).
         \]
-        Set \(x_0 = 1, y_0 = y(1) = 2\).
+        Set \(t_0 = 1, y_0 = y(1) = 2\). Then
+        \[
+            y_1 = y_0 + \frac{1}{2} f\left(t_0 + \frac{1}{2}, y_0\right) = 2 + \frac{1}{2} f\left(\frac{3}{2}, 2\right) = 2 + \frac{1}{2}\cdot\frac{65}{32} = \frac{129}{64}.
+        \]
+        \[
+            y_2 = y_1 + \frac{1}{2}f(t_1, y_1) = \frac{129}{64} + \frac{1}{2}f\left(2, \frac{129}{64}\right) = \frac{129}{64} + \frac{64 \cdot 2^4 - 129 + 64}{128}
+        \]
+        \[
+            = \frac{129}{64} + \frac{959}{128} = \frac{1217}{128}
+        \]
+        Thus
+        \[
+            y(2) \approx \frac{1217}{128}
+        \]
     \end{question}
     \begin{question}{5}
         Derive an ODE solver based on the stencil and corresponding integration formula.
