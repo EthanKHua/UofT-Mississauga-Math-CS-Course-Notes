@@ -53,6 +53,7 @@
         \[
             \int _{x_0}^{x_0 + 2h}f(x)\ dx - \frac{h}{2}\left[ 3f \left( x_0 + \frac{4}{3}h \right) + f(x_0) \right] = \frac{2}{27}f'''(x_0)h^4 + \frac{4}{15}f^{(4)}(\xi _1)h^5 - \frac{16}{81}f^{(4)}(\xi _2)h^5.
         \]
+        and its degree of precision is 2.
     \end{question}
     \begin{question}{3}
         Consider the integral \(\int _1^7 \cos (x^2)\ dx\)
@@ -76,11 +77,11 @@
             \[
                 |f^{(4)}(\xi)| \leq 48 \cdot 7^2 + 16 \cdot 7^4 - 12 = 40756
             \]
-            Thus the error bound is \(\frac{6^5 \cdot 40756}{180n^4}\). We solve for \(n\) such that \(\frac{6^5}{180n^4} < 10^{-4}\) to get
+            Thus the error bound is \(\frac{6^5 \cdot 40756}{180n^4}\). We solve for \(n\) such that \(\frac{6^5 \cdot 40756}{180n^4} < 10^{-4}\) to get
             \[
-                n^4 > \frac{6^5 \cdot 10^4}{180} \implies n > \sqrt[4]{\frac{6^5 \cdot 10^4}{180}} \approx 25.637
+                n^4 > \frac{6^5 \cdot 10^4 \cdot 40756}{180} \implies n > \sqrt[4]{\frac{6^5 \cdot 10^4 \cdot 40756}{180}} \approx 364.3
             \]
-            Thus we need around 26 intervals to guarantee an error better than \(10^{-4}\).
+            Thus we need around 365 intervals to guarantee an error better than \(10^{-4}\).
         \end{enumerate}
     \end{question}
     \begin{question}{4}
