@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
+\usepackage[left=2.6cm, right=2.6cm, top=1.5cm, includehead, includefoot]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[d]{esvect}
+\usepackage{listings}
+\usepackage{enumitem} % To allow for alph in enumerate
+\usepackage{braket}
+\usepackage{float} % To allow for H setting in figures.
+
+% to draw dfas
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+\lstset{
+    language=Python,
+    basicstyle=\ttm,
+    morekeywords={self},              % Add keywords here
+    keywordstyle=\ttb\color{deepblue},
+    emph={MyClass,__init__},          % Custom highlighting
+    emphstyle=\ttb\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    frame=tb,                         % Any extra options here
+    showstringspaces=false,
+    numbers=left
+}
+
+
+\begin{document}
+    \section*{Pre-Interview Solutions}
+    \textbf{Exercise 1.} We define the \textit{integer square root} of a positive integer \(n\) as a positive integer \(r\) such that
+    \[
+        r^2 \leq n < (r + 1)^2
+    \]
+    \begin{lstlisting}[language=Python]
+        def iroot(n):
+        """
+        PRECONDITION: n is an integer >= 0
+        POSTCONDITION: return integer square root of n.
+        """
+        r = 0
+        while (r+1)**2 <= n:
+            r = r + 1
+        return r
+    \end{lstlisting}
+    Prove the correctness of the above algorithm.
+
+    \begin{proof}
+        Let \(r_i\) represent the value of the variable \texttt{r} at the start of the \(i\)th iteration of the while loop on line 7. For some positive integer \(i\), define the loop invariant
+        \[
+            P(i): r_i \text{ is a positive integer and } r_i^2 \leq n.
+        \]
+        Now, we proceed with simple induction to show that for positive integers \(i\), at the beginning of the \(i\)th loop iteration, then \(P(i)\) holds true. At the start of the first iteration, namely \(i = 1\), \(r_i = 0\) and \(r_i^2 \leq n\) so \(P(1)\) holds.
+
+        \medbreak
+
+        \noindent Next, suppose that for some \(i\), \(P(i)\) is true at the start of the \(i\)th iteration. It will be shown that \(P(i + 1)\) is true at the start of the \(i + 1\)th iteration. If \((r_i + 1)^2 > n\), the loop terminates and there is nothing to prove, so assume that \((r_i + 1)^2 \leq n\). \texttt{r} is incremented by 1, so \(r_{i+1} = r_i + 1\) and the program arrives at the beginning of the \(i + 1\)th iteration. Clearly \(r_{i+1}\) is a positive integer and \(r_{i+1}^2 \leq n\), so \(P(i+1)\) is true. By induction, we can conclude that \(P(i)\) holds at the start of the \(i\)th iteration, for any positive integer \(i\).
+
+        \medbreak
+
+        \noindent To show that the loop terminates, define the loop variant \(v = n - (r + 1)^2\). \(v\) is an integer since \(n\) and \(r\) are integers, and decreases each loop iteration since \(r\) increases. Thus there exists an iteration \(j\) where \(v < 0\), that is, \((r + 1)^2 > n\), so the loop condition is not met and the loop is terminated.
+
+        \medbreak
+
+        \noindent By the loop invariant, \(r_j\) is a positive integer such that \(r_j^2 \leq n\) but also \(n < (r_j + 1)^2\), so \(r_j\) is the desired integer square root of \(n\), which gets returned in line 9. Therefore the algorithm works as intended and the proof is done. \\
+    \end{proof}
+    \newpage
+    \textbf{Exercise 2.} Let \(\Sigma\) be an alphabet. The \textit{reversal}, denoted by \(\mathrm{rev} (w)\) of a string \(w = w_1 w_2 \cdots w_l\) is defined by
+    \[
+        \mathrm{rev} (w_1 w_2 \cdots w_l) = w_l \cdots w_2 w_1
+    \]
+    where \(w_i \in \Sigma\). For a language \(L\) over \(\Sigma\), the \textit{reversal} of the language \(L\) is defined by
+    \[
+        L^{\leftarrow} = \left\{ \mathrm{rev} (w) : w \in L \right\}
+    \]
+    Show using structural induction that if \(L\) is regular than so is \(L^\leftarrow\).
+    \begin{proof}
+        We proceed with structural induction over the set of regular langauges. If \(L = \varnothing\), then \(L^\leftarrow = \varnothing\) is regular. If \(L = \{ a \}\), for some \(a \in \Sigma\), then \(L^\leftarrow = \{ a \}\) is regular.
+
+        \medskip
+
+        \noindent Let \(L,M\) be regular languages over \(\Sigma\) such that their reversals are also regular. We will prove the following claims:
+        \begin{enumerate}[label=(\alph*)]
+            \item \((L \cup M)^\leftarrow = L^\leftarrow \cup M^\leftarrow\)
+            
+            Let \(w \in (L \cup M)^\leftarrow\).
+            Then \(w = \mathrm{rev} (v)\), where \(v \in L \cup M\). It follows that \(v \in L\) or \(v \in M\) and \(w = \mathrm{rev} (v) \in L^\leftarrow\) or \(w \in M^\leftarrow\) so \(w \in L^\leftarrow \cup M^\leftarrow\). Thus we have \((L \cup M)^\leftarrow \subseteq L^\leftarrow \cup M^\leftarrow\). For the reverse inclusion, simply reverse each step above.
+
+            \item \((L + M)^\leftarrow = M^\leftarrow + L^\leftarrow\)
+            
+            Let \(w \in (L + M)^\leftarrow\). Then \(w = \mathrm{rev} (xy)\), where \(x \in L\) and \(y \in M\). Write \(x = x_1 \cdots x_l\) and \(y = y_1 \cdots y_m\). Notice that \(w = y_m \cdots x_1 x_l \cdots x_1 = \mathrm{rev} (y) \mathrm{rev} (x)\). Since \(\mathrm{rev} (x) \in L^\leftarrow\) and \(\mathrm{rev} (y) \in M^\leftarrow\), we have \(w \in M^\leftarrow + L^\leftarrow\). To obtain the reverse inclusion, reverse each step.
+            \item \((L^*)^\leftarrow = (L^\leftarrow)^*\)
+        \end{enumerate}
+    \end{proof}
+\end{document}
