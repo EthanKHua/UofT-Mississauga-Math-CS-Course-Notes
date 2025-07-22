@@ -99,7 +99,11 @@
             \item \((L + M)^\leftarrow = M^\leftarrow + L^\leftarrow\)
             
             Let \(w \in (L + M)^\leftarrow\). Then \(w = \mathrm{rev} (xy)\), where \(x \in L\) and \(y \in M\). Write \(x = x_1 \cdots x_l\) and \(y = y_1 \cdots y_m\). Notice that \(w = y_m \cdots x_1 x_l \cdots x_1 = \mathrm{rev} (y) \mathrm{rev} (x)\). Since \(\mathrm{rev} (x) \in L^\leftarrow\) and \(\mathrm{rev} (y) \in M^\leftarrow\), we have \(w \in M^\leftarrow + L^\leftarrow\). To obtain the reverse inclusion, reverse each step.
+
             \item \((L^*)^\leftarrow = (L^\leftarrow)^*\)
+            
+            If \(w \in (L^*)^\leftarrow\), then \(w = \mathrm{rev} (v)\) for some \(v \in L^*\). We write \(v = v_1 \cdots v_l\), where \(v_i \in L\), and apply the argument from (b) to get that \(w = \mathrm{rev} (v_l) \cdots \mathrm{rev} (v_1)\), so \(w \in (L^\leftarrow)^*\) and therefore \((L^*)^\leftarrow \subseteq (L^\leftarrow)^*\). Once again, reverse the steps above to conclude that \((L^*)^\leftarrow = (L^\leftarrow)^*\).
         \end{enumerate}
+        Finally, since \(L^\leftarrow\) and \(M^\leftarrow\) are regular, it follows that \((L \cup M)^\leftarrow, (L + M)^\leftarrow, (L^*)^\leftarrow\) are regular. By the principle of structural induction, the reversal of regular languages are also regular. \\
     \end{proof}
 \end{document}
