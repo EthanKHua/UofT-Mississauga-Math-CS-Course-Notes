@@ -38,7 +38,7 @@
 
 \begin{document}
     \section*{Pre-Interview Solutions}
-    \textbf{Exercise 1.} We define the \textit{integer square root} of a positive integer \(n\) as a positive integer \(r\) such that
+    \textbf{Exercise 1.} We define the \textit{integer square root} of a non-negative integer \(n\) as a non-negative integer \(r\) such that
     \[
         r^2 \leq n < (r + 1)^2
     \]
@@ -56,15 +56,15 @@
     Prove the correctness of the above algorithm.
 
     \begin{proof}
-        Let \(r_i\) represent the value of the variable \texttt{r} at the start of the \(i\)th iteration of the while loop on line 7. For some positive integer \(i\), define the loop invariant
+        Let \(r_i\) represent the value of the variable \texttt{r} at the start of the \(i\)th iteration of the while loop on line 7. For some non-negative integer \(i\), define the loop invariant
         \[
-            P(i): r_i \text{ is a positive integer and } r_i^2 \leq n.
+            P(i): r_i \text{ is a non-negative integer and } r_i^2 \leq n.
         \]
-        Now, we proceed with simple induction to show that for positive integers \(i\), at the beginning of the \(i\)th loop iteration, then \(P(i)\) holds true. At the start of the first iteration, namely \(i = 1\), \(r_i = 0\) and \(r_i^2 \leq n\) so \(P(1)\) holds.
+        Now, we proceed with simple induction to show that for non-negative integers \(i\), at the beginning of the \(i\)th loop iteration, then \(P(i)\) holds true. At the start of the first iteration, namely \(i = 1\), \(r_i = 0\) and \(r_i^2 \leq n\) so \(P(1)\) holds.
 
         \medbreak
 
-        \noindent Next, suppose that for some \(i\), \(P(i)\) is true at the start of the \(i\)th iteration. It will be shown that \(P(i + 1)\) is true at the start of the \(i + 1\)th iteration. If \((r_i + 1)^2 > n\), the loop terminates and there is nothing to prove, so assume that \((r_i + 1)^2 \leq n\). \texttt{r} is incremented by 1, so \(r_{i+1} = r_i + 1\) and the program arrives at the beginning of the \(i + 1\)th iteration. Clearly \(r_{i+1}\) is a positive integer and \(r_{i+1}^2 \leq n\), so \(P(i+1)\) is true. By induction, we can conclude that \(P(i)\) holds at the start of the \(i\)th iteration, for any positive integer \(i\).
+        \noindent Next, suppose that for some \(i\), \(P(i)\) is true at the start of the \(i\)th iteration. It will be shown that \(P(i + 1)\) is true at the start of the \(i + 1\)th iteration. If \((r_i + 1)^2 > n\), the loop terminates and there is nothing to prove, so assume that \((r_i + 1)^2 \leq n\). \texttt{r} is incremented by 1, so \(r_{i+1} = r_i + 1\) and the program arrives at the beginning of the \(i + 1\)th iteration. Clearly \(r_{i+1}\) is a non-negative integer and \(r_{i+1}^2 \leq n\), so \(P(i+1)\) is true. By induction, we can conclude that \(P(i)\) holds at the start of the \(i\)th iteration, for any non-negative integer \(i\).
 
         \medbreak
 
@@ -72,7 +72,7 @@
 
         \medbreak
 
-        \noindent By the loop invariant, \(r_j\) is a positive integer such that \(r_j^2 \leq n\) but also \(n < (r_j + 1)^2\), so \(r_j\) is the desired integer square root of \(n\), which gets returned in line 9. Therefore the algorithm works as intended and the proof is done. \\
+        \noindent By the loop invariant, \(r_j\) is a non-negative integer such that \(r_j^2 \leq n\) but also \(n < (r_j + 1)^2\), so \(r_j\) is the desired integer square root of \(n\), which gets returned in line 9. Therefore the algorithm works as intended and the proof is done. \\
     \end{proof}
     \newpage
     \textbf{Exercise 2.} Let \(\Sigma\) be an alphabet. The \textit{reversal}, denoted by \(\mathrm{rev} (w)\) of a string \(w = w_1 w_2 \cdots w_l\) is defined by
@@ -104,6 +104,6 @@
             
             If \(w \in (L^*)^\leftarrow\), then \(w = \mathrm{rev} (v)\) for some \(v \in L^*\). We write \(v = v_1 \cdots v_l\), where \(v_i \in L\), and apply the argument from (b) to get that \(w = \mathrm{rev} (v_l) \cdots \mathrm{rev} (v_1)\), so \(w \in (L^\leftarrow)^*\) and therefore \((L^*)^\leftarrow \subseteq (L^\leftarrow)^*\). Once again, reverse the steps above to conclude that \((L^*)^\leftarrow = (L^\leftarrow)^*\).
         \end{enumerate}
-        Finally, since \(L^\leftarrow\) and \(M^\leftarrow\) are regular, it follows that \((L \cup M)^\leftarrow, (L + M)^\leftarrow, (L^*)^\leftarrow\) are regular. By the principle of structural induction, the reversal of regular languages are also regular. \\
+        Finally, since \(L^\leftarrow\) and \(M^\leftarrow\) are regular, from the claims above, it follows that \((L \cup M)^\leftarrow, (L + M)^\leftarrow, (L^*)^\leftarrow\) are regular. By the principle of structural induction, the reversal of regular languages are also regular. \\
     \end{proof}
 \end{document}
